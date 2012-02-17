@@ -1,4 +1,7 @@
 ---
+<% db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
+<% db_role = properties.ccdb.roles.find { |role| role.tag == "ccadmin" } %>
+
 external_uri: api.<%= properties.domain %>
 description: <%= properties.description || "VMware's Cloud Application Platform" %>
 support_address: <%= properties.support_address || "http://support.cloudfoundry.com" %>
@@ -71,12 +74,12 @@ new_initial_placement: false
 
 database_environment:
   production:
-    database: <%= properties.ccdb.dbname %>
+    database: <%= db.name %>
     host: <%= properties.ccdb.address %>
     port: <%= properties.ccdb.port %>
     encoding: utf8
-    username: <%= properties.ccdb.user %>
-    password: <%= properties.ccdb.password %>
+    username: <%= db_role.name %>
+    password: <%= db_role.password %>
     pool: <%= properties.ccdb.pool_size %>
     timeout: 2000
     template: template0 # Required for utf8 encoding
