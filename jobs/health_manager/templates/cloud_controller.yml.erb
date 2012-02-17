@@ -1,4 +1,7 @@
 ---
+<% db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
+<% db_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+
 external_uri: api.<%= properties.domain %>
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 allow_external_app_uris: false
@@ -24,12 +27,12 @@ mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= pro
 rails_environment: production
 database_environment:
   production:
-    database: <%= properties.ccdb.dbname %>
+    database: <%= db.dbname %>
     host: <%= properties.ccdb.address %>
     port: <%= properties.ccdb.port %>
     encoding: utf8
-    username: <%= properties.ccdb.user %>
-    password: <%= properties.ccdb.password %>
+    username: <%= db_role.name %>
+    password: <%= db_role.password %>
     pool: <%= properties.ccdb.pool_size %>
     timeout: 2000
     template: template0 # Required for utf8 encoding
