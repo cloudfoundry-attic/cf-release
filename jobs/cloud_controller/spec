@@ -17,6 +17,7 @@ templates:
   lift_staging.yml: config/staging/lift.yml
   rack_staging.yml: config/staging/rack.yml
   standalone_staging.yml: config/staging/standalone.yml
+  play_staging.yml: config/staging/play.yml
   platform_staging.yml: config/staging/platform.yml
   sudoers: config/sudoers
   blacklist.txt: config/blacklist.txt
