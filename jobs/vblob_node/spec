@@ -1,0 +1,16 @@
+---
+name: vblob_node
+
+templates:
+  vblob_node_ctl: bin/vblob_node_ctl
+  vblob_node.yml.erb: config/vblob_node.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  logrotate.erb: config/logrotate
+
+packages:
+  - vblob_node
+  - vblob
+  - node
+  - ruby
+  - sqlite
+  - syslog_aggregator

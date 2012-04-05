@@ -1,0 +1,66 @@
+#!/bin/bash
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/redis_gateway
+LOG_DIR=/var/vcap/sys/log/redis_gateway
+JOB_DIR=/var/vcap/jobs/redis_gateway
+
+PIDFILE=$RUN_DIR/redis_gateway.pid
+
+<%
+snapshot = properties.service_snapshot
+%>
+
+<% if snapshot %>
+SNAPSHOT_DIR=<%= snapshot.mount_point || "/var/vcap/services_snapshot" %>
+<% end %>
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Redis gateway"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    <% if properties.service_snapshot %>
+    if [ ! -d $SNAPSHOT_DIR ]; then
+      mkdir -p $SNAPSHOT_DIR
+    fi
+    <% end %>
+
+    <% if snapshot && snapshot.nfs_server %>
+    mount -t nfs <%= snapshot.nfs_server.address %>:<%= snapshot.nfs_server.export_dir %> $SNAPSHOT_DIR
+    <% end %>
+
+    exec /var/vcap/packages/redis_gateway/bin/services/redis_gateway \
+         -c $JOB_DIR/config/redis_gateway.yml \
+         >>$LOG_DIR/redis_gateway.stdout.log \
+         2>>$LOG_DIR/redis_gateway.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    <% if snapshot && snapshot.nfs_server %>
+    umount $SNAPSHOT_DIR
+    <% end %>
+
+    ;;
+
+  *)
+    echo "Usage: redis_gateway_ctl {start|stop}"
+
+    ;;
+
+esac

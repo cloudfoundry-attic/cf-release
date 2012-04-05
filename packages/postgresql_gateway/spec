@@ -1,0 +1,9 @@
+---
+name: postgresql_gateway
+dependencies:
+- postgresql
+- sqlite
+- ruby
+files:
+- core/bin/services/postgresql_gateway
+- services/postgresql/**/*

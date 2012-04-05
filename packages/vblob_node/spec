@@ -1,0 +1,7 @@
+---
+name: vblob_node
+dependencies:
+- sqlite
+- ruby
+files:
+- services/vblob/**/*

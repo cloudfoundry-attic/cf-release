@@ -1,0 +1,84 @@
+<% require "base64" %>
+user  root root;
+worker_processes  1;
+
+error_log /var/vcap/sys/log/nginx/nginx.error.log;
+pid       /var/vcap/sys/run/nginx/nginx.pid;
+
+events {
+  worker_connections  8192;
+  use epoll;
+}
+
+http {
+  include       mime.types;
+  default_type  text/html;
+  server_tokens off;
+
+  log_format main  '$host - [$time_local] '
+                   '"$request" $status $bytes_sent '
+                   '"$http_referer" "$http_user_agent" '
+                   '$remote_addr response_time:$upstream_response_time';
+
+  access_log  /var/vcap/sys/log/nginx/nginx.access.log  main;
+
+  sendfile             on;
+  tcp_nopush           on;
+  tcp_nodelay          on;
+
+  keepalive_timeout  75 20;
+
+  gzip                 on;
+  gzip_min_length      1250;
+  gzip_buffers         16 8k;
+  gzip_comp_level      2;
+  gzip_proxied         any;
+  gzip_types           text/plain text/css application/javascript application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+  gzip_vary            on;
+  gzip_disable         "MSIE [1-6]\.(?!.*SV1)";
+
+  client_max_body_size 256M;
+
+  upstream router {
+    server unix:/var/vcap/sys/run/router/router.sock;
+  }
+
+  <% if properties.router.status %>
+  upstream router_status {
+    server <%= spec.networks.send(properties.networks.apps).ip %>:<%= properties.router.status.port %>;
+  }
+  <% end %>
+
+  server {
+    listen       80;
+    server_name  "<%= properties.domain %>";
+    server_name_in_redirect off;
+
+    location / {
+      access_log /var/vcap/sys/log/nginx/router.access.log  main;
+      proxy_buffering             off;
+      proxy_set_header            Host $host;
+      proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_redirect              off;
+      proxy_connect_timeout       10;
+      proxy_send_timeout          <%= properties.router.client_inactivity_timeout || 30 %>;
+      proxy_read_timeout          <%= properties.router.app_inactivity_timeout || 30 %>;
+
+      <% if properties.router.status %>
+      if ($http_user_agent = "HTTP-Monitor/1.1") {
+        set $health_monitor T;
+      }
+      if ($http_host = "") {
+        set $health_monitor "${health_monitor}T";
+      }
+      if ($health_monitor = TT) {
+        more_set_input_headers "Authorization: Basic <%= Base64.encode64("#{properties.router.status.user}:#{properties.router.status.password}").strip %>";
+        rewrite ^.*$ /healthz break;
+        proxy_pass                 http://router_status;
+      }
+      <% end %>
+
+      proxy_pass                   http://router;
+    }
+  }
+}

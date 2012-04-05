@@ -1,0 +1,11 @@
+---
+name: rabbitmq_srs_node
+templates:
+  srs-config.json.erb: config/srs-config.json
+  rabbitmq_srs_agent_ctl: bin/rabbitmq_srs_agent_ctl
+packages:
+  - common
+  - erlang
+  - ruby
+  - rabbitmq_srs
+  - rabbitmq_srs_builds

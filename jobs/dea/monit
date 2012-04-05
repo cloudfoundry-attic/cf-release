@@ -1,0 +1,5 @@
+check process dea
+  with pidfile /var/vcap/sys/run/dea/dea.pid
+  start program "/var/vcap/jobs/dea/bin/dea_ctl start"
+  stop program "/var/vcap/jobs/dea/bin/dea_ctl stop"
+  group vcap

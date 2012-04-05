@@ -1,0 +1,6 @@
+check process collector
+  with pidfile /var/vcap/sys/run/collector/collector.pid
+  start program "/var/vcap/jobs/collector/bin/collector_ctl start"
+  stop program "/var/vcap/jobs/collector/bin/collector_ctl stop"
+  group vcap
+  if totalmem > 500 Mb for 2 cycles then restart

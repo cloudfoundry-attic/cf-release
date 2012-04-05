@@ -1,0 +1,9 @@
+---
+name: dashboard
+dependencies:
+- ruby
+- dea_jvm
+files:
+- dashboard/apache-tomcat-7.0.25.tar.gz
+- dashboard/dashboard-1.0-SNAPSHOT-16ed9e6e.war
+- tools/router_registrar/**/*

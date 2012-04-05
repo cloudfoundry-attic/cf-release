@@ -1,0 +1,9 @@
+---
+name: mysql_gateway
+dependencies:
+- mysqlclient
+- sqlite
+- ruby
+files:
+- core/bin/services/mysql_gateway
+- services/mysql/**/*

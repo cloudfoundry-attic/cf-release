@@ -1,0 +1,12 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+cp -a core/cloud_controller .
+cp -a core/health_manager .
+cp -a core/bin .
+cp -a core/common .
+
+rm -rf core
+rm -rf cloud_controller/spec

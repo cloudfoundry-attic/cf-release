@@ -1,0 +1,9 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cp -a * ${BOSH_INSTALL_TARGET}
+
+(
+  cd ${BOSH_INSTALL_TARGET}/router
+  /var/vcap/packages/ruby/bin/bundle --local install --deployment
+)

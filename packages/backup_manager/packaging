@@ -1,0 +1,17 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cp -a * ${BOSH_INSTALL_TARGET}
+
+(
+  cd ${BOSH_INSTALL_TARGET}/services/tools/backup/manager
+
+  bundle_cmd=/var/vcap/packages/ruby/bin/bundle
+  $bundle_cmd install --local --deployment --without=development test
+
+  cd ${BOSH_INSTALL_TARGET}/services/tools/restore
+
+  bundle_cmd=/var/vcap/packages/ruby/bin/bundle
+  $bundle_cmd install --local --deployment --without=development test
+)
+

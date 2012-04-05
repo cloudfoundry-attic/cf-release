@@ -1,0 +1,10 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+cp -a core_routerv2/router .
+cp -a core_routerv2/bin .
+cp -a core_routerv2/common .
+
+rm -rf core_routerv2

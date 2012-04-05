@@ -1,0 +1,8 @@
+---
+name: routerv2
+dependencies:
+- ruby
+files:
+- core_routerv2/bin/router
+- core_routerv2/router/**/*
+- core_routerv2/common/**/*

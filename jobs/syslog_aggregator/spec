@@ -1,0 +1,11 @@
+---
+name: syslog_aggregator
+templates:
+  rsyslogd.conf.erb: config/rsyslogd.conf
+  syslog_aggregator_ctl: bin/syslog_aggregator_ctl
+  gzip_old_logs: bin/gzip_old_logs
+  reap_old_logs: bin/reap_old_logs
+packages:
+- common
+
+

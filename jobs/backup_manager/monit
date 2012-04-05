@@ -1,0 +1,6 @@
+check process backup_manager
+  with pidfile /var/vcap/sys/run/backup_manager/backup_manager.pid
+  start program "/var/vcap/jobs/backup_manager/bin/backup_manager_ctl start"
+  stop program "/var/vcap/jobs/backup_manager/bin/backup_manager_ctl stop"
+  group vcap
+

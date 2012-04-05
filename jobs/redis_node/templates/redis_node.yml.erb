@@ -1,0 +1,37 @@
+---
+<%
+service = "redis"
+plan_enabled = properties.service_plans
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+%>
+capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
+plan: <%= plan %>
+local_db: sqlite3:/var/vcap/store/redis/redis_node.db
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+index: <%= spec.index %>
+base_dir: /var/vcap/store/redis/instances
+logging:
+  level: debug
+  file: /var/vcap/sys/log/redis_node/redis_node.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.redis_node
+  <% end %>
+pid: /var/vcap/sys/run/redis_node/redis_node.pid
+node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+max_memory: <%= plan_enabled && plan_conf.max_memory || 16 %>
+max_swap: <%= plan_enabled && plan_conf.max_swap || 32 %>
+max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
+redis_server_path: /var/vcap/packages/redis/bin/redis-server
+port_range:
+  first: 5000
+  last: 25000
+migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
+<% if properties.redis_node.ip_route %>
+ip_route: <%= properties.redis_node.ip_route %>
+<% end %>
+z_interval: <%= properties.redis_node.z_interval || 30 %>
+redis_log_dir: /var/vcap/sys/service-log/redis
+command_rename_prefix: <%= properties.redis_node.command_rename_prefix || "magic-protect-command-prefix" %>
+max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>

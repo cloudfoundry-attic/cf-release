@@ -1,0 +1,33 @@
+---
+<%
+service = "mongodb"
+plan_enabled = properties.service_plans
+plan = properties.plan || "free"
+%>
+<% if properties.service_snapshot and properties.service_snapshot.resque %>
+<% snapshot_dir = properties.service_snapshot.mount_point || "/var/vcap/services_snapshot" %>
+service_name: mongodb
+snapshots_base_dir: <%= snapshot_dir %>
+serialization_base_dir: <%= snapshot_dir %>
+local_db: sqlite3:/var/vcap/store/mongodb_node.db
+pid: /var/vcap/sys/run/mongodb_node/mongodb_worker.pid
+tmp_dir: <%= properties.service_snapshot.tmp_dir || "/tmp" %>
+resque:
+  host: <%= properties.service_snapshot.resque.host %>
+  port: <%= properties.service_snapshot.resque.port %>
+  password: <%= properties.service_snapshot.resque.password %>
+  expire: <%= properties.service_snapshot.resque.expire %>
+logging:
+  level: debug
+  file: /var/vcap/sys/log/mongodb_node/mongodb_worker.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.mongodb_worker
+  <% end %>
+index: <%= spec.index %>
+node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+download_url_template: "http://<%= properties.service_snapshot.download_url %>/serialized/#{service}/#{name}?token=#{token}"
+worker_count: 5
+mongodump_path: /var/vcap/packages/mongodb/bin/mongodump
+mongorestore_path: /var/vcap/packages/mongodb/bin/mongorestore
+tar_path: /bin/tar
+<% end %>

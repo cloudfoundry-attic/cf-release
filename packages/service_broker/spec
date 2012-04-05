@@ -1,0 +1,8 @@
+---
+name: service_broker
+dependencies:
+- ruby
+- sqlite
+files:
+- core/bin/services/service_broker
+- services/service_broker/**/*

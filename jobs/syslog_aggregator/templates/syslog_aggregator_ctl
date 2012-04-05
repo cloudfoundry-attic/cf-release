@@ -1,0 +1,42 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/syslog_aggregator
+LOG_DIR=/var/vcap/store/log
+JOB_DIR=/var/vcap/jobs/syslog_aggregator
+BIN_DIR=$JOB_DIR/bin
+PIDFILE=$RUN_DIR/syslog_aggregator.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Syslog aggregator"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    rm -f /etc/cron.daily/bzip_old_logs
+    cp -a $BIN_DIR/gzip_old_logs /etc/cron.daily
+    cp -a $BIN_DIR/reap_old_logs /etc/cron.hourly
+
+    exec /usr/sbin/rsyslogd -f $JOB_DIR/config/rsyslogd.conf -i $PIDFILE -c 4 \
+         >>$LOG_DIR/rsyslogd.stdout.log \
+         2>>$LOG_DIR/rsyslogd.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    rm /etc/cron.daily/gzip_old_logs
+    rm /etc/cron.hourly/reap_old_logs
+
+    ;;
+
+  *)
+    echo "Usage: syslog_aggregator_ctl {start|stop}"
+
+    ;;
+
+esac

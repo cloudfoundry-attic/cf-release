@@ -1,0 +1,12 @@
+check process hbase
+  with pidfile /var/vcap/sys/run/opentsdb/hbase-vcap-master.pid
+  start program "/var/vcap/jobs/opentsdb/bin/hbase_ctl start"
+  stop program "/var/vcap/jobs/opentsdb/bin/hbase_ctl stop"
+  group vcap
+
+check process opentsdb
+  with pidfile /var/vcap/sys/run/opentsdb/opentsdb.pid
+  start program "/var/vcap/jobs/opentsdb/bin/opentsdb_ctl start"
+  stop program "/var/vcap/jobs/opentsdb/bin/opentsdb_ctl stop"
+  depends on hbase
+  group vcap

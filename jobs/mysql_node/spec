@@ -1,0 +1,27 @@
+---
+name: mysql_node
+
+templates:
+  mysql_node_ctl: bin/mysql_node_ctl
+  mysql_worker_ctl: bin/mysql_worker_ctl
+  mysql_migration_util.erb: bin/mysql_migration_util
+
+  my.bootstrap.erb: bin/my.bootstrap
+  my.shutdown.erb: bin/my.shutdown
+
+  mysql_node.yml.erb: config/mysql_node.yml
+  mysql_worker.yml.erb: config/mysql_worker.yml
+  my.cnf.erb: config/my.cnf
+  mysql_backup.yml.erb: config/mysql_backup.yml
+  mysql_backup.cron.erb: config/mysql_backup.cron
+  mysql_backup.erb: config/mysql_backup
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+  - common
+  - mysql_node
+  - mysqlclient
+  - mysql
+  - ruby
+  - sqlite
+  - syslog_aggregator

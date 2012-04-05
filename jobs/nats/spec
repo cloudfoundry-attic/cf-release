@@ -1,0 +1,9 @@
+---
+name: nats
+templates:
+  nats_ctl.erb: bin/nats_ctl
+  nats.yml.erb: config/nats.yml
+packages:
+  - common
+  - nats
+  - ruby

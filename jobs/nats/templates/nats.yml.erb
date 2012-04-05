@@ -1,0 +1,11 @@
+---
+net: <%= properties.nats.address %>
+port: <%= properties.nats.port %>
+
+pid_file: /var/vcap/sys/run/nats/nats.pid
+log_file: /var/vcap/sys/log/nats/nats.log
+
+authorization:
+  user: <%= properties.nats.user %>
+  password: <%= properties.nats.password %>
+  timeout: 1

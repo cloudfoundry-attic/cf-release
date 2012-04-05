@@ -1,0 +1,10 @@
+---
+name: stager
+dependencies:
+- libpq
+- mysqlclient
+- sqlite
+- ruby
+- insight_agent
+files:
+- core/stager/**/*

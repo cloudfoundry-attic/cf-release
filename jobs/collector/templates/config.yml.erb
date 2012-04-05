@@ -1,0 +1,18 @@
+---
+logging:
+  file: /var/vcap/sys/log/collector/collector.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.collector
+  <% end %>
+  level: info
+tsdb:
+  host: <%= properties.opentsdb.address %>
+  port: <%= properties.opentsdb.port %>
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+intervals:
+  discover: 60
+  varz: 30
+  healthz: 30
+  local_metrics: 30
+  prune: 300
+  nats_ping: 30

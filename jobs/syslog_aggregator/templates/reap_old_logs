@@ -1,0 +1,3 @@
+#!/bin/bash
+# Reap logs that are older than 7 days
+find /var/vcap/store/log -mmin +10080 -name '*.log' -exec rm -f '{}' \;

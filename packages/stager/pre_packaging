@@ -1,0 +1,7 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+cp -a core/stager .
+rm -rf core

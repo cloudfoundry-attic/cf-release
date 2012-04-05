@@ -1,0 +1,9 @@
+---
+name: redis_node
+dependencies:
+- sqlite
+- ruby
+files:
+- core/bin/services/redis_node
+- core/bin/services/redis_worker
+- services/redis/**/*

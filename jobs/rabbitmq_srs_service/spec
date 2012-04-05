@@ -1,0 +1,16 @@
+---
+name: rabbitmq_srs_service
+templates:
+  rabbitmq_ctl.erb: bin/rabbitmq_ctl
+  rabbitmq_srs_controller_ctl: bin/rabbitmq_srs_controller_ctl
+
+  srs-config.json.erb: config/srs-config.json
+  rabbitmq.env.erb: config/rabbitmq.env
+  rabbitmq.config: config/rabbitmq.config
+
+packages:
+  - common
+  - erlang
+  - ruby
+  - rabbitmq
+  - rabbitmq_srs

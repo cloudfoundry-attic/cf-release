@@ -1,0 +1,11 @@
+check process uaa
+  with pidfile /var/vcap/sys/run/uaa/uaa.pid
+  start program "/var/vcap/jobs/uaa/bin/uaa_ctl start"
+  stop program "/var/vcap/jobs/uaa/bin/uaa_ctl stop"
+  group vcap
+
+check process vcap_registrar
+  with pidfile /var/vcap/sys/run/vcap_registrar/vcap_registrar.pid
+  start program "/var/vcap/jobs/uaa/bin/vcap_registrar_ctl start"
+  stop program "/var/vcap/jobs/uaa/bin/vcap_registrar_ctl stop"
+  group vcap

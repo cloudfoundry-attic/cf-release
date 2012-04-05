@@ -1,0 +1,8 @@
+---
+name: router
+dependencies:
+- ruby
+files:
+- core/bin/router
+- core/router/**/*
+- core/common/**/*

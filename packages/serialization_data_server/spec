@@ -1,0 +1,7 @@
+---
+name: serialization_data_server
+dependencies:
+- ruby
+files:
+- core/bin/services/serialization_data_server
+- services/serialization_data_server/**/*

@@ -1,0 +1,14 @@
+---
+name: health_manager
+templates:
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  cloud_controller.yml.erb: config/cloud_controller.yml
+  health_manager.yml.erb: config/health_manager.yml
+  health_manager_ctl: bin/health_manager_ctl
+packages:
+  - common
+  - cloud_controller
+  - libpq
+  - mysqlclient
+  - ruby
+  - syslog_aggregator

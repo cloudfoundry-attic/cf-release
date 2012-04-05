@@ -1,0 +1,44 @@
+#!/bin/bash
+
+export ERLANG_HOME=/var/vcap/packages/erlang
+export PATH=/var/vcap/packages/erlang/bin:/var/vcap/packages/rabbitmq/sbin:$PATH
+export HOME=/home/vcap
+export PIDFILE=/var/vcap/sys/run/rabbitmq.pid
+
+source /var/vcap/jobs/rabbitmq_srs_service/config/rabbitmq.env
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+  start)
+    pid_guard $PIDFILE "RabbitMQ"
+
+    # Move log files into a specific subdir of /var/vcap/sys/log/
+    if ! [ -d /var/vcap/sys/log/rabbitmq ] ; then
+      mkdir -p /var/vcap/sys/log/rabbitmq
+      mv /var/vcap/sys/log/rabbit@localhost* /var/vcap/sys/log/rabbitmq_startup_log /var/vcap/sys/log/rabbitmq/
+    fi
+
+    setsid sh -c 'echo $$ > $PIDFILE; exec rabbitmq-server </dev/null >$RABBITMQ_LOG_BASE/rabbitmq_startup_log 2>&1' &
+    rabbitmqctl wait
+
+    if ! [ -f $RABBITMQ_MNESIA_BASE/.deleted_guest ] ; then
+      rabbitmqctl delete_user guest
+      rabbitmqctl add_user <%= properties.rabbitmq_srs.backbone_user %> <%= properties.rabbitmq_srs.backbone_password %>
+      rabbitmqctl set_permissions <%= properties.rabbitmq_srs.backbone_user %> '.*' '.*' '.*'
+      touch $RABBITMQ_MNESIA_BASE/.deleted_guest
+    fi
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    pkill epmd
+
+    ;;
+
+  *)
+    echo "Usage: rabbitmq_ctl {start|stop}"
+
+    ;;
+
+esac

@@ -1,0 +1,27 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+if [[ `uname -a` =~ "x86_64" ]] ; then
+  archive="java/jre-1.6.0_24-x86_64.tar.gz"
+  echo "Using 64-bit version"
+else
+  archive="java/jre-1.6.0_24.tar.gz"
+  echo "Using 32-bit version"
+fi
+
+if [[ -f $archive ]] ; then
+  echo "Archive found"
+else
+  echo "Archive not found"
+  exit 1
+fi
+
+echo "Extracting archive..."
+tar xzf $archive
+
+if [[ -d bin && `bin/java -version 2>&1` =~ "Java HotSpot" && $? == 0 ]]; then
+  cp -a * ${BOSH_INSTALL_TARGET}
+else
+  echo "JVM is not properly packaged"
+  exit 1
+fi

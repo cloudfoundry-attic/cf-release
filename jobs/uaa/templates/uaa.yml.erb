@@ -1,0 +1,70 @@
+---
+pid: /var/vcap/sys/run/uaa.pid
+# nats message bus uri
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
+
+name: uaa
+
+database:
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://<%= properties.uaa.db.address %>:<%= properties.uaa.db.port %>/<%= properties.uaa.db.dbname %>
+  username: <%= properties.uaa.db.user %>
+  password: <%= properties.uaa.db.password %>
+
+jvm_args: -Xmx512m
+spring_profiles: jdbc,postgresql,!legacy
+
+cloud_controller:
+  login_url: http://api.<%= properties.domain %>/users/{username}/tokens
+  client:
+    secret: <%= properties.uaa.cc.client_secret %>
+  database:
+    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= properties.ccdb.dbname %>
+    username: <%= properties.ccdb.user %>
+    password: <%= properties.ccdb.password %>
+
+logging:
+  config: /var/vcap/jobs/uaa/config/log4j.properties
+
+<% if properties.uaa.bootstrap %>
+bootstrap:
+  admin:
+    username: <%= properties.uaa.bootstrap.username %>
+    password: <%= properties.uaa.bootstrap.password %>
+    given_name: <%= properties.uaa.bootstrap.given_name %>
+    family_name: <%= properties.uaa.bootstrap.family_name %>
+    email: <%= properties.uaa.bootstrap.email %>
+<% end %>
+
+varz:
+  username: _random_username_replaced_by_a_script_
+  password: _random_password_replaced_by_a_script_
+  type: uaa
+
+<% if properties.uaa.cc %>
+jwt:
+  token:
+    key: <%= properties.uaa.cc.token_secret %>
+<% end %>
+
+<% if properties.uaa.batch %>
+batch:
+  username: <%= properties.uaa.batch.username %>
+  password: <%= properties.uaa.batch.password %>
+<% end %>
+
+app:
+  client:
+    secret: $2a$08$JKFkUDiMfnCKKnbwE9yxAuBJB8oV5RUPzt553MwPvEtefpxpq0SZO
+
+my:
+  client:
+    secret: $2a$08$HrbalH0yg24el9D1waAkNOAJZbakcTgNilwVUqlCobLJV4rh3At2W
+
+scim:
+  client:
+    secret: $2a$08$iuYnIr4UmTbWJU5ciubvDe7NIrW0Fv6v7vAqgHVPY5Mpq7bEyx9gG
+
+token:
+  client:
+    secret: $2a$08$1l4gKzW9LlEWHjwSgK4WAeJHveTCtPmR3N9wUcUBzk8jNgezhiaiW

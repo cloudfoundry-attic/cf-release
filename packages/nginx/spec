@@ -1,0 +1,15 @@
+---
+name: nginx
+files:
+- nginx/headers-more-v0.15rc1.tgz
+- nginx/nginx-0.8.54.tar.gz
+- nginx/zero_byte_in_cstr_20120315.patch
+- nginx/pcre-8.12.tar.gz
+- nginx/nginx_upload_module-2.2.0.tar.gz
+- nginx/upload_module_put_support.patch
+- nginx/devel-kit-v0.2.17rc2.tar.gz
+- nginx/nginx-lua.v0.3.1rc24.tar.gz
+- nginx/lbase64.tar.gz
+- nginx/lua-5.1.4.tar.gz
+- nginx/lua-cjson-1.0.3.tar.gz
+- nginx/lua-openssl-0.1.1.tar.gz

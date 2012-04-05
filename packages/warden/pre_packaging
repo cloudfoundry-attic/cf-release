@@ -1,0 +1,10 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+cp -a core/warden .
+
+ruby core/common/bin/fetch_gems /warden/Gemfile ./warden/Gemfile.lock ./warden/vendor/cache
+
+rm -rf core

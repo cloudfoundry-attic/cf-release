@@ -1,0 +1,8 @@
+---
+name: atmos_gateway
+dependencies:
+- ruby
+- sqlite
+files:
+- core/bin/services/atmos_gateway
+- services/atmos/**/*

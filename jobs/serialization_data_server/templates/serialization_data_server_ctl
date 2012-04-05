@@ -1,0 +1,63 @@
+#!/bin/bash
+
+<%
+snapshot = properties.service_snapshot
+nfs_server = snapshot && snapshot.nfs_server
+%>
+
+<% if snapshot && nfs_server %>
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/serialization_data_server
+LOG_DIR=/var/vcap/sys/log/serialization_data_server
+PIDFILE=$RUN_DIR/serialization_data_server.pid
+JOB_DIR=/var/vcap/jobs/serialization_data_server
+
+SNAPSHOT_DIR=<%= snapshot.mount_point || "/var/vcap/services_snapshot" %>
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Serialization data server"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    if [ ! -d $SNAPSHOT_DIR ]; then
+      mkdir -p $SNAPSHOT_DIR
+    fi
+
+    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $SNAPSHOT_DIR
+
+    exec /var/vcap/packages/serialization_data_server/bin/services/serialization_data_server \
+         -c /var/vcap/jobs/serialization_data_server/config/serialization_data_server.yml \
+         >>$LOG_DIR/serialization_data_server.stdout.log \
+         2>>$LOG_DIR/serialization_data_server.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $SNAPSHOT_DIR
+
+    umount $SNAPSHOT_DIR
+
+    ;;
+
+  *)
+    echo "Usage: serialization_data_server_ctl {start|stop}"
+
+    ;;
+
+esac
+<% else %>
+echo "Serialization data server is disabled"
+<% end %>

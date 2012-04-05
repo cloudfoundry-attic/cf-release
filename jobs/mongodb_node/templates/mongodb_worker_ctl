@@ -1,0 +1,57 @@
+#!/bin/bash
+
+<%
+  snapshot = properties.service_snapshot
+%>
+
+<% if snapshot && snapshot.nfs_server %>
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/mongodb_node
+LOG_DIR=/var/vcap/sys/log/mongodb_node
+PIDFILE=$RUN_DIR/mongodb_worker.pid
+JOB_DIR=/var/vcap/jobs/mongodb_node
+
+SNAPSHOT_DIR=<%= snapshot.mount_point || "/var/vcap/services_snapshot" %>
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "MongoDB worker"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    if [ ! -d $SNAPSHOT_DIR ]; then
+      mkdir -p $SNAPSHOT_DIR
+    fi
+
+    mount -o noac -t nfs <%= snapshot.nfs_server.address %>:<%= snapshot.nfs_server.export_dir %> $SNAPSHOT_DIR
+
+    echo $$ > $PIDFILE
+    export CLOUD_FOUNDRY_CONFIG_PATH=$JOB_DIR/config/
+
+    exec /var/vcap/packages/mongodb_node/bin/services/mongodb_worker \
+         >>$LOG_DIR/mongodb_worker.stdout.log \
+         2>>$LOG_DIR/mongodb_worker.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    umount $SNAPSHOT_DIR
+
+    ;;
+
+  *)
+    echo "Usage: mongodb_worker_ctl {start|stop}"
+
+    ;;
+
+esac
+<% else %>
+echo "Service snapshots are disabled"
+<% end %>

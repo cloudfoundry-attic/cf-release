@@ -1,0 +1,13 @@
+check process cloud_controller
+  with pidfile /var/vcap/sys/run/cloud_controller/cloud_controller.pid
+  start program "/var/vcap/jobs/cloud_controller/bin/cloud_controller_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller/bin/cloud_controller_ctl stop"
+  group vcap
+
+<% if properties.cc.use_nginx %>
+check process nginx
+  with pidfile /var/vcap/sys/run/nginx/nginx.pid
+  start program "/var/vcap/jobs/cloud_controller/bin/nginx_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller/bin/nginx_ctl stop"
+  group vcap
+<% end %>

@@ -1,0 +1,70 @@
+#!/bin/bash
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+PG_ADMIN_USER=<%= properties.postgresql_node.admin_user || "pg_admin" %>
+PG_ADMIN_GROUP=<%= properties.postgresql_node.admin_group || "admin" %>
+PG_ADMIN_PASSWD_HASH=<%= properties.postgresql_node.admin_passwd_hash || "" %>
+
+RUN_DIR=/var/vcap/sys/run/postgresql_node
+LOG_DIR=/var/vcap/sys/log/postgresql_node
+JOB_DIR=/var/vcap/jobs/postgresql_node
+PIDFILE=$RUN_DIR/postgresql_node.pid
+
+<%
+migration = properties.service_migration
+%>
+
+MIG_DIR=<%= (migration && migration.mount_point) ? migration.mount_point : "/var/vcap/services_migration" %>
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "PostgreSQL node"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    if [ -n "$PG_ADMIN_PASSWD_HASH" ]; then
+      # do a mod in addition to the add in order to support password changes
+      USER_ARGS="-g $PG_ADMIN_GROUP -p $PG_ADMIN_PASSWD_HASH $PG_ADMIN_USER"
+      /usr/sbin/useradd -m -s /bin/bash $USER_ARGS
+      /usr/sbin/usermod $USER_ARGS
+    fi
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    if [ ! -d $MIG_DIR ]; then
+      mkdir -p $MIG_DIR
+    fi
+
+    chmod +x $JOB_DIR/config/postgresql_backup
+    $JOB_DIR/config/postgresql_backup start
+
+    exec /var/vcap/packages/postgresql_node/bin/services/postgresql_node \
+         -c $JOB_DIR/config/postgresql_node.yml \
+         >>$LOG_DIR/postgresql_node.stdout.log \
+         2>>$LOG_DIR/postgresql_node.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    chmod +x $JOB_DIR/config/postgresql_backup
+    $JOB_DIR/config/postgresql_backup stop
+
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}"
+
+    ;;
+
+esac

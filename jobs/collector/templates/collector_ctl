@@ -1,0 +1,48 @@
+#!/bin/bash -e
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/collector
+LOG_DIR=/var/vcap/sys/log/collector
+JOB_DIR=/var/vcap/jobs/collector
+
+PIDFILE=$RUN_DIR/collector.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Collector"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    export CONFIG_FILE=$JOB_DIR/config/config.yml
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    cd /var/vcap/packages/collector
+
+    exec /var/vcap/packages/ruby/bin/ruby \
+         /var/vcap/packages/collector/bin/collector \
+         >>$LOG_DIR/collector.stdout.log \
+         2>>$LOG_DIR/collector.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: collector_ctl {start|stop}"
+
+    ;;
+
+esac

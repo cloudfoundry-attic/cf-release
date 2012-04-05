@@ -1,0 +1,9 @@
+---
+name: warden
+templates:
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+packages:
+  - common
+  - warden
+  - ruby

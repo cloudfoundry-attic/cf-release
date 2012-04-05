@@ -1,0 +1,232 @@
+--- 
+packages: 
+- name: cloud_controller
+  version: 7
+  sha1: 7963121fb00989735964d4fd4c96985bc2bc839c
+  dependencies: 
+  - libpq
+  - mysqlclient
+  - sqlite
+  - ruby
+- name: dea
+  version: 7
+  sha1: 352b6733073b5c87e33d6bdd79eb51b5cc6ddb40
+  dependencies: 
+  - ruby
+- name: dea_jvm
+  version: 2
+  sha1: ca8abdcdfce745302315a7c56ff976cbe9007b38
+  dependencies: []
+
+- name: dea_node
+  version: 2
+  sha1: 1c83f8e57c840c23555c3ba79cbc5adceef0e7cf
+  dependencies: []
+
+- name: dea_ruby18
+  version: 3
+  sha1: 70c2a8cf8f0e22d34478cce825ffacaec016c138
+  dependencies: []
+
+- name: dea_ruby19
+  version: 3
+  sha1: f2519b5e14fbfa272d3bb9ef74672332c8e952c2
+  dependencies: []
+
+- name: dea_seed
+  version: 2
+  sha1: 74b8025fa9bf2537d857aaf9295e239a2e1fd0bb
+  dependencies: 
+  - ruby
+  - dea_ruby18
+  - dea_ruby19
+  - mysqlclient
+  - sqlite
+  - dea_transition
+- name: dea_transition
+  version: 1
+  sha1: d94b5c260552cb9bd7fa5bffa04a38f237b15196
+  dependencies: 
+  - dea_ruby18
+  - dea_ruby19
+  - mysqlclient
+  - sqlite
+- name: debian_nfs_server
+  version: 1
+  sha1: 88cb8578eb0ffde0031a0c5ed4546be63f8cda1a
+  dependencies: []
+
+- name: erlang
+  version: 1
+  sha1: 5eab560878938b570b82846fc26bca7d29854cc6
+  dependencies: []
+
+- name: libpq
+  version: 2
+  sha1: 4693747036d77188ff0180ac9b9f0a1f7570b72a
+  dependencies: []
+
+- name: micro
+  version: 2
+  sha1: 51fabd462e747473a086bf5b11c96cbcdd15b7b4
+  dependencies: 
+  - ruby
+- name: mongodb
+  version: 2
+  sha1: da50006466afbf2a7b5687b785e47e46cdb26ba7
+  dependencies: []
+
+- name: mongodb_gateway
+  version: 8
+  sha1: 5424b502f7ff15626c96ce2ad046b3f7be1a5b3b
+  dependencies: 
+  - ruby
+  - sqlite
+- name: mongodb_node
+  version: 8
+  sha1: 83246153d78351173e1007e18980d77ad0114346
+  dependencies: 
+  - sqlite
+  - ruby
+- name: mysql
+  version: 1
+  sha1: 0b01b20d81a0044e22fd0b335cf93922936a7f7d
+  dependencies: []
+
+- name: mysql_gateway
+  version: 7
+  sha1: 5e77868ebbc4c6f7d930b62c4bcb237eebbe9494
+  dependencies: 
+  - mysqlclient
+  - sqlite
+  - ruby
+- name: mysql_node
+  version: 7
+  sha1: a2240cecd5c28d416423977d1f9077fe63ce6205
+  dependencies: 
+  - mysqlclient
+  - sqlite
+  - ruby
+- name: mysqlclient
+  version: 1
+  sha1: 66db38d9a0e6c1e76d0e7bf1d12b29546f0ac74d
+  dependencies: []
+
+- name: nats
+  version: 1
+  sha1: d4b9d61f914a322a081a2d511dbb03119deb2c40
+  dependencies: 
+  - ruby
+- name: nginx
+  version: 2
+  sha1: 7a98b9573acca8e0741ad006c23343a768da439c
+  dependencies: []
+
+- name: postgres
+  version: 2
+  sha1: a486df2272a7bc335f1862e3715dd4ab4cf3e960
+  dependencies: []
+
+- name: rabbit
+  version: 1
+  sha1: c2d4e4013cec1effff9bc5e2d15017bff7619e2d
+  dependencies: []
+
+- name: rabbit_gateway
+  version: 6
+  sha1: 07db41365f1b83e17758a99d01fabc4f518fa25d
+  dependencies: 
+  - sqlite
+  - ruby
+- name: rabbit_node
+  version: 6
+  sha1: b387a4d32f6dad1746a082aefea31048d57a4204
+  dependencies: 
+  - sqlite
+  - ruby
+- name: redis
+  version: 1
+  sha1: 1c8506e072d334dfb31a46fdbfd6af5d8b901470
+  dependencies: []
+
+- name: redis_gateway
+  version: 7
+  sha1: 8629458418c0cb77bd9ec867eee3702ca9e326bc
+  dependencies: 
+  - sqlite
+  - ruby
+- name: redis_node
+  version: 7
+  sha1: 38690ba1b733766e2f6ee3e5071fed7e5795a275
+  dependencies: 
+  - sqlite
+  - ruby
+- name: router
+  version: 7
+  sha1: 816576add8085ccbe5a431198f24925d024a9274
+  dependencies: 
+  - ruby
+- name: ruby
+  version: 3
+  sha1: 320ad5147b952d0ab33dfa0c2b7efafdb94ebc27
+  dependencies: []
+
+- name: sqlite
+  version: 1
+  sha1: 62f68d5e23f77e1c55df3988b64490384fb12d14
+  dependencies: []
+
+jobs: 
+- name: nats
+  version: 1
+  sha1: f318b6b006ac2e5ba8298976a16890f2aac22ad5
+- name: debian_nfs_server
+  version: 1
+  sha1: acd73788027bfbd10c6926c5654cb3baf0072b22
+- name: ccdb_postgres
+  version: 2
+  sha1: a4436b3a3ddd0d51983e07818ce0f7bdfc6e1df6
+- name: cloud_controller
+  version: 2
+  sha1: ba48957295219abe65f9850e44da1c5f22618985
+- name: health_manager
+  version: 4
+  sha1: a8227c90372d6acec7c122476f15489a7437ddff
+- name: ccdb
+  version: 1
+  sha1: 0c1652b0850134af8c13c5d56f141a30f46ba56f
+- name: dea
+  version: 2
+  sha1: c08cf16de94d5039523bc28794d80de6f3ec2f67
+- name: micro
+  version: 5
+  sha1: 20f73ced2dde8d4f8c5ec9e541b4c043a7cf920f
+- name: mongodb_gateway
+  version: 5
+  sha1: 6c57e018a2a98538d42275b75bca3a097417290b
+- name: mongodb_node
+  version: 2
+  sha1: 4fc29eeba27c501511a5119202004d4bd6d5d0de
+- name: mysql_gateway
+  version: 2
+  sha1: 6c399e7ba3ca22b9ac22aeacbf230ac4e7422463
+- name: mysql_node
+  version: 3
+  sha1: 61217ea334c41be2c6ea293dc9cffee116f1972f
+- name: rabbit_gateway
+  version: 1
+  sha1: 6e443aeb48064f871799a670111289d839d97220
+- name: rabbit_node
+  version: 1
+  sha1: 7ce9ac2e8df80dc41363e2f91528574fc277bedd
+- name: redis_gateway
+  version: 2
+  sha1: 500210818b55b809d1fc682e1ad2f550996c9a92
+- name: redis_node
+  version: 1
+  sha1: 3b52503e4594e8255c9347480316e1defd21cd50
+- name: router
+  version: 2
+  sha1: 4a837d98f2176a3c09f7a3532cb422c43600fd1b
+name: appcloud
+version: 13

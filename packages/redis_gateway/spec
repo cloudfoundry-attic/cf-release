@@ -1,0 +1,8 @@
+---
+name: redis_gateway
+dependencies:
+- sqlite
+- ruby
+files:
+- core/bin/services/redis_gateway
+- services/redis/**/*

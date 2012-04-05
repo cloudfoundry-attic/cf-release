@@ -1,0 +1,9 @@
+---
+name: backup_manager
+dependencies:
+- ruby
+files:
+- services/tools/backup/**/*
+- services/tools/restore/**/*
+- core/bin/services/backup_manager
+

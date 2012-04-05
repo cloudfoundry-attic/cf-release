@@ -1,0 +1,68 @@
+---
+<%
+service = "rabbit"
+acls = properties.rabbit_gateway.acls
+plan_enabled = properties.service_plans
+plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
+plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
+nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
+%>
+mbus: <%= nats %>
+index: <%= spec.index %>
+
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+
+service:
+  name: rabbitmq
+  version: "2.4"
+  description: 'RabbitMQ message queue'
+  plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  tags: ['rabbitmq', 'rabbitmq-2.4', 'message-queue', 'amqp']
+<% if acls %>
+  <% if acls.is_a? String %>
+  acls: <%= acls %>
+  <% else %>
+    <% acls.plans.instance_eval("def fields; @table.keys; end;") if acls && acls.plans %>
+  acls:
+    <%= "users: ['#{acls.users.join("', '")}']" if acls.users %>
+    <%= "wildcards: ['#{acls.wildcards.join("', '")}']" if acls.wildcards %>
+    <% if acls.plans %>
+    plans:
+      <% acls.plans.fields.each do |plan|%>
+      <%= "#{plan}:"%>
+        <%= "users: ['#{acls.plans.send(plan.to_sym).users.join("', '")}']" if acls.plans.send(plan.to_sym).users %>
+        <%= "wildcards: ['#{acls.plans.send(plan.to_sym).wildcards.join("', '")}']" if acls.plans.send(plan.to_sym).wildcards %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+  timeout: <%= properties.rabbit_gateway.service_timeout || 15 %>
+
+<% if properties.rabbit_gateway.ip_route %>
+ip_route: <%= properties.rabbit_gateway.ip_route %>
+<% end %>
+token: <%= properties.rabbit_gateway.token %>
+logging:
+  file: /var/vcap/sys/log/rabbit_gateway/rabbit_gateway.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.rabbit_gateway
+  <% end %>
+
+pid: /var/vcap/sys/run/rabbit_gateway/rabbit_gateway.pid
+z_interval: <%= properties.rabbit_gateway.z_interval || 30 %>
+check_orphan_interval: <%= properties.rabbit_gateway.check_orphan_interval || -1 %>
+double_check_orphan_interval: <%= properties.rabbit_gateway.double_check_orphan_interval || 300 %>
+max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+node_timeout: <%= properties.rabbit_gateway.node_timeout || 10 %>
+
+<% if plan_enabled %>
+plan_management:
+  plans:
+<% plan_mgmt.fields.each do |pf| %>
+    <%= pf %>:
+      high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
+      low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
+      allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>
+<% end %>
+<% end %>

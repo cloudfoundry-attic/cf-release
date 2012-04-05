@@ -1,0 +1,21 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+tar xzf ruby/ruby-1.9.2-p180.tar.gz
+(
+  cd ruby-1.9.2-p180
+  ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc
+  make
+  make install
+)
+
+tar zxvf ruby/rubygems-1.7.2.tgz
+
+(
+  cd rubygems-1.7.2
+  patch -p1 < ../ruby/rubygems-datefix.patch
+
+  ${BOSH_INSTALL_TARGET}/bin/ruby setup.rb
+)
+
+${BOSH_INSTALL_TARGET}/bin/gem install ruby/bundler-1.0.12.gem --no-ri --no-rdoc

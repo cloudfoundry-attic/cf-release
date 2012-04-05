@@ -1,0 +1,5 @@
+check process serialization_data_server
+  with pidfile /var/vcap/sys/run/serialization_data_server/serialization_data_server.pid
+  start program "/var/vcap/jobs/serialization_data_server/bin/serialization_data_server_ctl start"
+  stop program "/var/vcap/jobs/serialization_data_server/bin/serialization_data_server_ctl stop"
+  group vcap

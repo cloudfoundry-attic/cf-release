@@ -1,0 +1,57 @@
+#!/bin/bash
+
+<%
+  snapshot = properties.service_snapshot
+%>
+
+<% if snapshot && snapshot.nfs_server %>
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/redis_node
+LOG_DIR=/var/vcap/sys/log/redis_node
+PIDFILE=$RUN_DIR/redis_worker.pid
+JOB_DIR=/var/vcap/jobs/redis_node
+
+SNAPSHOT_DIR=<%= snapshot.mount_point || "/var/vcap/services_snapshot" %>
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Redis worker"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    if [ ! -d $SNAPSHOT_DIR ]; then
+      mkdir -p $SNAPSHOT_DIR
+    fi
+
+    mount -o noac -t nfs <%= snapshot.nfs_server.address %>:<%= snapshot.nfs_server.export_dir %> $SNAPSHOT_DIR
+
+    echo $$ > $PIDFILE
+    export CLOUD_FOUNDRY_CONFIG_PATH=$JOB_DIR/config/
+
+    exec /var/vcap/packages/redis_node/bin/services/redis_worker \
+         >>$LOG_DIR/redis_worker.stdout.log \
+         2>>$LOG_DIR/redis_worker.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    umount $SNAPSHOT_DIR
+
+    ;;
+
+  *)
+    echo "Usage: redis_worker_ctl {start|stop}"
+
+    ;;
+
+esac
+<% else %>
+echo "Service snapshots are disabled"
+<% end %>

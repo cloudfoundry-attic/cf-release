@@ -1,0 +1,14 @@
+---
+name: cloud_controller
+dependencies:
+- libpq
+- mysqlclient
+- sqlite
+- ruby
+- insight_agent
+files:
+- core/bin/health_manager
+- core/bin/cloud_controller
+- core/cloud_controller/**/*
+- core/health_manager/**/*
+- core/common/**/*

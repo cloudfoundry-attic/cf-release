@@ -1,0 +1,19 @@
+---
+name: rabbit_node
+
+templates:
+  rabbit_node_ctl: bin/rabbit_node_ctl
+  rabbit_node.yml.erb: config/rabbit_node.yml
+  monit.erb: monit
+  rabbit_migration_util.erb: bin/rabbit_migration_util
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  logrotate.erb: config/logrotate
+
+packages:
+  - common
+  - erlang
+  - rabbitmq
+  - ruby
+  - sqlite
+  - rabbit_node
+  - syslog_aggregator

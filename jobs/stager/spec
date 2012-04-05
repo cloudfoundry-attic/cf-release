@@ -1,0 +1,36 @@
+---
+name: stager
+templates:
+  stager_ctl: bin/stager_ctl
+  drain.rb.erb: bin/drain
+
+  stager.yml.erb: config/stager.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  iptables.conf.erb: config/iptables.conf
+  manifests/grails.yml: config/manifests/grails.yml
+  manifests/java_web.yml: config/manifests/java_web.yml
+  manifests/lift.yml: config/manifests/lift.yml
+  manifests/node.yml: config/manifests/node.yml
+  manifests/platform.yml: config/manifests/platform.yml
+  manifests/rails3.yml: config/manifests/rails3.yml
+  manifests/sinatra.yml: config/manifests/sinatra.yml
+  manifests/spring.yml: config/manifests/spring.yml
+  manifests/rack.yml: config/manifests/rack.yml
+  manifests/standalone.yml: config/manifests/standalone.yml
+  sudoers: config/sudoers
+packages:
+- common
+- stager
+- libpq
+- sqlite
+- mysqlclient
+- ruby
+- dea_node04
+- dea_node06
+- dea_ruby18
+- dea_ruby19
+- dea_jvm
+- dea_transition
+- dea_seed
+- syslog_aggregator
+- insight_agent

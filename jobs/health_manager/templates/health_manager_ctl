@@ -1,0 +1,50 @@
+#!/bin/bash
+
+HM_PACKAGE_DIR=/var/vcap/packages/cloud_controller
+HM_JOB_DIR=/var/vcap/jobs/health_manager
+HM_CONF_DIR=$HM_JOB_DIR/config
+RUN_DIR=/var/vcap/sys/run/health_manager
+LOG_DIR=/var/vcap/sys/log/health_manager
+PIDFILE=$RUN_DIR/health_manager.pid
+
+export CLOUD_CONTROLLER_CONFIG=$HM_JOB_DIR/config/cloud_controller.yml
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+export RAILS_ENV=production
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+  start)
+    pid_guard $PIDFILE "Health Manager"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown vcap:vcap $RUN_DIR
+    chown vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $HM_CONF_DIR
+    <% end %>
+
+    exec chpst -u vcap:vcap $HM_PACKAGE_DIR/bin/health_manager \
+         -c $HM_JOB_DIR/config/health_manager.yml \
+         >>$LOG_DIR/health_manager.stdout.log \
+         2>>$LOG_DIR/health_manager.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: health_manager_ctl {start|stop}"
+
+    ;;
+
+esac

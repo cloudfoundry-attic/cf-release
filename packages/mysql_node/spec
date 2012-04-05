@@ -1,0 +1,10 @@
+---
+name: mysql_node
+dependencies:
+- mysqlclient
+- sqlite
+- ruby
+files:
+- core/bin/services/mysql_node
+- core/bin/services/mysql_worker
+- services/mysql/**/*

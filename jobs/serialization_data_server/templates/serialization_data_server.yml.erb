@@ -1,0 +1,24 @@
+---
+<% if properties.service_snapshot and properties.service_snapshot.resque %>
+<% snapshot_dir = properties.service_snapshot.mount_point || "/var/vcap/services_snapshot" %>
+serialization_base_dir: <%= snapshot_dir %>
+pid: /var/vcap/sys/run/serialization_data_server/serialization_data_server.pid
+<% nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}" %>
+mbus: <%= nats %>
+<% if properties.serialization_data_server and properties.serialization_data_server.ip_route %>
+ip_route: <%= properties.serialization_data_server.ip_route %>
+<% end %>
+external_uri: <%= properties.service_snapshot.download_url %>
+logging:
+  level: debug
+  file: /var/vcap/sys/log/serialization_data_server/serialization_data_server.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.serialization_data_server
+  <% end %>
+redis:
+  host: <%= properties.service_snapshot.resque.host %>
+  port: <%= properties.service_snapshot.resque.port %>
+  password: <%= properties.service_snapshot.resque.password %>
+  expire: <%= properties.service_snapshot.resque.expire %>
+index: <%= spec.index %>
+<% end %>

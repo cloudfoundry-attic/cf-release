@@ -1,0 +1,7 @@
+---
+name: vblob_gateway
+dependencies:
+- ruby
+- sqlite
+files:
+- services/vblob/**/*

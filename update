@@ -1,0 +1,3 @@
+#!/bin/bash -x
+
+git pull && git submodule update --init && bosh sync blobs

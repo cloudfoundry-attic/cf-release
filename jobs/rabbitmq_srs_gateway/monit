@@ -1,0 +1,5 @@
+check process rabbitmq_srs_vcap_web
+  with pidfile /var/vcap/sys/run/rabbitmq_srs_vcap_web.pid
+  start program "/var/vcap/jobs/rabbitmq_srs_gateway/bin/rabbitmq_srs_vcap_web_ctl start"
+  stop program "/var/vcap/jobs/rabbitmq_srs_gateway/bin/rabbitmq_srs_vcap_web_ctl stop"
+  group vcap

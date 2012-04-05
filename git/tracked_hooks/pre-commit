@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+  against=HEAD
+else
+  # Initial commit: diff against an empty tree object
+  against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+SRC_FILE_MAX_SIZE=131072 #128kb
+for file in `git diff --cached --name-only`
+do
+  target=`echo $file | grep '^src/.*'`
+  if [ -n "$target" ]
+  then
+    size=`stat -c %s $file`
+    if [ "$size" -gt $SRC_FILE_MAX_SIZE ]
+    then
+      echo "'$file' is too big to be placed under 'src' (max $SRC_FILE_MAX_SIZE bytes). Use bosh blobs"
+      exit 1
+    fi
+  fi
+done
+exec git diff-index --check --cached $against --

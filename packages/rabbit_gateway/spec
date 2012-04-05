@@ -1,0 +1,8 @@
+---
+name: rabbit_gateway
+dependencies:
+- sqlite
+- ruby
+files:
+- core/bin/services/rabbitmq_gateway
+- services/rabbit/**/*

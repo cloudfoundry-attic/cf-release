@@ -1,0 +1,9 @@
+---
+name: postgresql_node
+dependencies:
+- postgresql
+- sqlite
+- ruby
+files:
+- core/bin/services/postgresql_node
+- services/postgresql/**/*

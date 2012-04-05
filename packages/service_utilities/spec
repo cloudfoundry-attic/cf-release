@@ -1,0 +1,8 @@
+---
+name: service_utilities
+dependencies:
+- ruby
+files:
+- services/tools/rebalance/**/*
+- services/tools/restore/**/*
+- services/tools/misc/**/*

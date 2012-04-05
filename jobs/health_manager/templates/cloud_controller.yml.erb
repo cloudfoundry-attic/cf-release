@@ -1,0 +1,45 @@
+---
+external_uri: api.<%= properties.domain %>
+local_route: <%= spec.networks.send(properties.networks.apps).ip %>
+allow_external_app_uris: false
+local_register_only: <%= properties.cc.local_register_only %>
+instance_port: 9022
+index_page: <%= properties.cc.index_page %>
+info_file: /var/vcap/packages/cloud_controller/config/cloud_controller-info.json
+directories:
+  droplets: /var/vcap/shared/droplets
+  resources: /var/vcap/shared/resources
+  staging_manifests: /var/vcap/jobs/cloud_controller/config/staging
+  staging_cache: /var/vcap/data/cloud_controller/staging
+  tmpdir: /var/vcap/data/cloud_controller/tmp
+log_file: /var/vcap/sys/log/health_manager/cloud_controller.log
+log_level: DEBUG
+keys:
+  password: <%= properties.cc.password %>
+  token: <%= properties.cc.token %>
+pid: /var/vcap/sys/run/health_manager/cloud_controller.pid
+
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+
+rails_environment: production
+database_environment:
+  production:
+    database: <%= properties.ccdb.dbname %>
+    host: <%= properties.ccdb.address %>
+    port: <%= properties.ccdb.port %>
+    encoding: utf8
+    username: <%= properties.ccdb.user %>
+    password: <%= properties.ccdb.password %>
+    pool: <%= properties.ccdb.pool_size %>
+    timeout: 2000
+    template: template0 # Required for utf8 encoding
+    adapter: postgresql
+
+admins: [ "<%= properties.cc.admins.join('", "') %>" ]
+
+# Normal users limited to 512M, 4 Services, and 4 URIs per App
+default_account_capacity:
+  memory:   2048
+  app_uris: 4
+  services: 16
+  apps:     20

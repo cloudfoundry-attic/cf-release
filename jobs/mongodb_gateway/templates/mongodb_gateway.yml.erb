@@ -1,0 +1,80 @@
+---
+<%
+service = "mongodb"
+acls = properties.mongodb_gateway.acls
+plan_enabled = properties.service_plans
+plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
+plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
+nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
+%>
+mbus: <%= nats %>
+index: <%= spec.index %>
+
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+
+service:
+  name: mongodb
+  version: "1.8"
+  description: 'MongoDB NoSQL store'
+  plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  tags: ['mongodb', 'mongodb-1.8', 'nosql']
+<% if acls %>
+  <% if acls.is_a? String %>
+  acls: <%= acls %>
+  <% else %>
+    <% acls.plans.instance_eval("def fields; @table.keys; end;") if acls && acls.plans %>
+  acls:
+    <%= "users: ['#{acls.users.join("', '")}']" if acls.users %>
+    <%= "wildcards: ['#{acls.wildcards.join("', '")}']" if acls.wildcards %>
+    <% if acls.plans %>
+    plans:
+      <% acls.plans.fields.each do |plan|%>
+      <%= "#{plan}:"%>
+        <%= "users: ['#{acls.plans.send(plan.to_sym).users.join("', '")}']" if acls.plans.send(plan.to_sym).users %>
+        <%= "wildcards: ['#{acls.plans.send(plan.to_sym).wildcards.join("', '")}']" if acls.plans.send(plan.to_sym).wildcards %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if properties.mongodb_gateway.ip_route %>
+ip_route: <%= properties.mongodb_gateway.ip_route %>
+<% end %>
+token: <%= properties.mongodb_gateway.token %>
+logging:
+  file: /var/vcap/sys/log/mongodb_gateway/mongodb_gateway.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.mongodb_gateway
+  <% end %>
+
+pid: /var/vcap/sys/run/mongodb_gateway/mongodb_gateway.pid
+node_timeout: 10
+z_interval: <%= properties.mongodb_gateway.z_interval || 30 %>
+check_orphan_interval: <%= properties.mongodb_gateway.check_orphan_interval || -1 %>
+double_check_orphan_interval: <%= properties.mongodb_gateway.double_check_orphan_interval || 300 %>
+max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+
+<% if properties.service_snapshot and properties.service_snapshot.resque %>
+api_extensions:
+  - snapshots
+  - serialization
+  - jobs
+resque:
+  host: <%= properties.service_snapshot.resque.host %>
+  port: <%= properties.service_snapshot.resque.port %>
+  password: <%= properties.service_snapshot.resque.password %>
+  expire: <%= properties.service_snapshot.resque.expire %>
+upload_temp_dir: <%= properties.service_snapshot.tmp_dir || "/tmp" %>
+<% end %>
+
+<% if plan_enabled %>
+plan_management:
+  plans:
+<% plan_mgmt.fields.each do |pf| %>
+    <%= pf %>:
+      high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
+      low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
+      allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>
+<% end %>
+<% end %>

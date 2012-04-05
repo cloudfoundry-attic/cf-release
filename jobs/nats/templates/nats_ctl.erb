@@ -1,0 +1,44 @@
+#!/bin/bash
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+export BUNDLE_GEMFILE=/var/vcap/packages/nats/Gemfile
+
+RUN_DIR=/var/vcap/sys/run/nats
+LOG_DIR=/var/vcap/sys/log/nats
+PIDFILE=$RUN_DIR/nats.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "NATS"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    # Avoid Neighbour table overflow
+    sysctl -w net.ipv4.neigh.default.gc_thresh3=4096
+    sysctl -w net.ipv4.neigh.default.gc_thresh2=2048
+    sysctl -w net.ipv4.neigh.default.gc_thresh1=1024
+
+    exec bundle exec nats-server \
+         -c /var/vcap/jobs/nats/config/nats.yml \
+         >>$LOG_DIR/nats.stdout.log \
+         2>>$LOG_DIR/nats.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: nats_ctl {start|stop}"
+
+    ;;
+
+esac

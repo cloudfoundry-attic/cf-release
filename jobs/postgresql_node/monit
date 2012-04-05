@@ -1,0 +1,12 @@
+check process postgresql
+  with pidfile /var/vcap/sys/run/postgresql/postgresql.pid
+  start program "/var/vcap/jobs/postgresql_node/bin/postgresql_ctl start"
+  stop program "/var/vcap/jobs/postgresql_node/bin/postgresql_ctl stop"
+  group vcap
+
+check process postgresql_node
+  with pidfile  /var/vcap/sys/run/postgresql_node/postgresql_node.pid
+  start program "/var/vcap/jobs/postgresql_node/bin/postgresql_node_ctl start"
+  stop  program "/var/vcap/jobs/postgresql_node/bin/postgresql_node_ctl stop"
+  group vcap
+  depends on postgresql

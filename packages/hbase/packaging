@@ -1,0 +1,14 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+tar zxf hbase/hbase-0.90.3-cdh3u1.tar.gz
+
+cd hbase-0.90.3-cdh3u1
+
+cp -a * $BOSH_INSTALL_TARGET
+
+cd $BOSH_COMPILE_TARGET
+
+tar zxf hbase/native-lib.tar.gz
+
+cp -R native/* $BOSH_INSTALL_TARGET/lib/native

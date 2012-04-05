@@ -1,0 +1,69 @@
+---
+<%
+service = "postgresql"
+acls = properties.postgresql_gateway.acls
+plan_enabled = properties.service_plans
+plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
+plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
+nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
+%>
+mbus: <%= nats %>
+
+index: <%= spec.index %>
+
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+
+service:
+  name: postgresql
+  version: "9.0"
+  description: 'PostgreSQL database service (vFabric)'
+  plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  tags: ['postgresql', 'postgresql-9.0', 'relational']
+<% if acls %>
+  <% if acls.is_a? String %>
+  acls: <%= acls %>
+  <% else %>
+    <% acls.plans.instance_eval("def fields; @table.keys; end;") if acls && acls.plans %>
+  acls:
+    <%= "users: ['#{acls.users.join("', '")}']" if acls.users %>
+    <%= "wildcards: ['#{acls.wildcards.join("', '")}']" if acls.wildcards %>
+    <% if acls.plans %>
+    plans:
+      <% acls.plans.fields.each do |plan|%>
+      <%= "#{plan}:"%>
+        <%= "users: ['#{acls.plans.send(plan.to_sym).users.join("', '")}']" if acls.plans.send(plan.to_sym).users %>
+        <%= "wildcards: ['#{acls.plans.send(plan.to_sym).wildcards.join("', '")}']" if acls.plans.send(plan.to_sym).wildcards %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if properties.postgresql_gateway.ip_route %>
+ip_route: <%= properties.postgresql_gateway.ip_route %>
+<% end %>
+token: <%= properties.postgresql_gateway.token %>
+logging:
+  file: /var/vcap/sys/log/postgresql_gateway/postgresql_gateway.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.postgresql_gateway
+  <% end %>
+
+node_timeout: 10
+
+pid: /var/vcap/sys/run/postgresql_gateway/postgresql_gateway.pid
+z_interval: <%= properties.postgresql_gateway.z_interval || 30 %>
+check_orphan_interval: <%= properties.postgresql_gateway.check_orphan_interval || -1 %>
+double_check_orphan_interval: <%= properties.postgresql_gateway.double_check_orphan_interval || 300 %>
+max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+
+<% if plan_enabled %>
+plan_management:
+  plans:
+<% plan_mgmt.fields.each do |pf| %>
+    <%= pf %>:
+      high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
+      low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
+      allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>
+<% end %>
+<% end %>

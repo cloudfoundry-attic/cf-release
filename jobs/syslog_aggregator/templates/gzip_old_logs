@@ -1,0 +1,3 @@
+#!/bin/bash
+# Compress log files that haven't changed in the last day
+find /var/vcap/store/log -type f -mmin +1440 -name '*.log' -exec gzip '{}' \;

@@ -1,0 +1,52 @@
+#!/bin/bash
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    dpkg --unpack -E /var/vcap/packages/debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb
+    rm -rf /etc/init.d/nfs-kernel-server
+    mkdir -p /var/vcap/store/shared
+    chown vcap:vcap /var/vcap/store/shared
+
+    cp -f /var/vcap/jobs/debian_nfs_server/config/exports /etc/exports
+
+    modprobe -q nfsd
+
+    for f in /var/lib/nfs/etab  \
+      /var/lib/nfs/rmtab \
+      /var/lib/nfs/xtab; do
+      [ -e $f ] || touch $f
+    done
+
+    if ! mountpoint -q /proc/fs/nfsd; then
+      mount -t nfsd nfsd /proc/fs/nfsd
+    fi
+
+    /usr/sbin/exportfs -r
+    /usr/sbin/rpc.nfsd 8
+
+    cp -f /var/vcap/jobs/debian_nfs_server/config/idmapd.conf /etc/idmapd.conf
+    /etc/init.d/idmapd restart
+
+    pidof nfsd | cut -f 1 -d \ > /var/vcap/sys/run/rpc_nfsd.pid
+
+    ;;
+
+  stop)
+    kill -2 $(pidof nfsd)
+
+    /usr/sbin/exportfs -au
+    if mountpoint -q /proc/fs/nfsd; then
+      /usr/sbin/exportfs -f
+    fi
+
+    ;;
+
+  *)
+    echo "Usage: rpc_nfsd_ctl {start|stop}"
+
+    ;;
+
+esac

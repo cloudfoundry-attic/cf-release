@@ -1,0 +1,21 @@
+check process mysql
+  with pidfile /var/vcap/sys/run/mysqld/mysqld.pid
+  start program "/var/vcap/packages/mysql/libexec/mysql.server start /var/vcap/jobs/mysql_node/config/my.cnf"
+  stop program "/var/vcap/packages/mysql/libexec/mysql.server stop /var/vcap/jobs/mysql_node/config/my.cnf"
+  group vcap
+
+check process mysql_node
+  with pidfile /var/vcap/sys/run/mysql_node/mysql_node.pid
+  start program "/var/vcap/jobs/mysql_node/bin/mysql_node_ctl start"
+  stop program "/var/vcap/jobs/mysql_node/bin/mysql_node_ctl stop"
+  group vcap
+  depends on mysql
+
+<% if properties.service_snapshot %>
+check process mysql_worker
+  with pidfile /var/vcap/sys/run/mysql_node/mysql_worker.pid
+  start program "/var/vcap/jobs/mysql_node/bin/mysql_worker_ctl start"
+  stop program "/var/vcap/jobs/mysql_node/bin/mysql_worker_ctl stop"
+  group vcap
+  depends on mysql
+<% end %>

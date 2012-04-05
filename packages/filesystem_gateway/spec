@@ -1,0 +1,8 @@
+---
+name: filesystem_gateway
+dependencies:
+- ruby
+- sqlite
+files:
+- core/bin/services/filesystem_gateway
+- services/filesystem/**/*

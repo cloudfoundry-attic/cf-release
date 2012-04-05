@@ -1,0 +1,25 @@
+---
+core:
+  - ccdb_postgres
+  - nats
+  - router
+  - dea
+  - health_manager
+  - cloud_controller
+mongodb:
+  - mongodb_node
+  - mongodb_gateway
+mysql:
+  - mysql_node
+  - mysql_gateway
+postgres:
+  - postgresql_node
+  - postgresql_gateway
+rabbitmq:
+  - rabbitmq_srs_agent
+  - rabbitmq_srs_vcap_web
+  - rabbitmq_srs_controller
+  - rabbitmq
+redis:
+  - redis_node
+  - redis_gateway

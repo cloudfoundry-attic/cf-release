@@ -1,0 +1,18 @@
+---
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+external_uri: <%= properties.service_broker.external_uri %>
+<% if properties.service_broker.ip_route %>
+ip_route: <%= properties.service_broker.ip_route %>
+<% end %>
+index: <%= spec.index %>
+token: <%= properties.service_broker.token %>
+logging:
+  file: /var/vcap/sys/log/service_broker/service_broker.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.service_broker
+  <% end %>
+<% nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}" %>
+mbus: <%= nats %>
+pid: /var/vcap/sys/run/service_broker/service_broker.pid
+local_db: sqlite3:/var/vcap/store/service_broker.db

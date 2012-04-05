@@ -1,0 +1,47 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/warden
+LOG_DIR=/var/vcap/sys/log/warden
+WARDEN_CONF_DIR=/var/vcap/jobs/warden/config
+FIRSTRUN_PATH=$RUN_DIR/firstrun
+QUOTA_FS=/var/vcap/data
+PIDFILE=$RUN_DIR/warden.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Warden"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    echo $$ > $PIDFILE
+
+    if [ ! -e $FIRSTRUN_PATH ]; then
+      /var/vcap/packages/warden/warden/bin/enable_quotas.sh $QUOTA_FS
+      touch $FIRSTRUN_PATH
+    fi
+
+    cd /var/vcap/packages/warden/warden
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    exec /var/vcap/packages/ruby/bin/bundle exec \
+         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
+         >>$LOG_DIR/warden.stdout.log \
+         2>>$LOG_DIR/warden.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+
+    ;;
+
+esac

@@ -1,0 +1,19 @@
+---
+name: postgresql_node
+templates:
+  postgresql_migration_util.erb: bin/postgresql_migration_util
+  postgresql_node_ctl: bin/postgresql_node_ctl
+  postgresql_ctl.erb: bin/postgresql_ctl
+
+  postgresql_node.yml.erb: config/postgresql_node.yml
+  postgresql_backup.yml.erb: config/postgresql_backup.yml
+  postgresql_backup.cron.erb: config/postgresql_backup.cron
+  postgresql_backup.erb: config/postgresql_backup
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+packages:
+  - common
+  - postgresql
+  - postgresql_node
+  - ruby
+  - sqlite
+  - syslog_aggregator

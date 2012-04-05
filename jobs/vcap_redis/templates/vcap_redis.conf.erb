@@ -1,0 +1,34 @@
+# General
+<% if properties.vcap_redis.bind_address %>
+bind <%= properties.vcap_redis.bind_address %>
+<% else %>
+bind 0.0.0.0
+<% end %>
+port <%= properties.vcap_redis.port %>
+daemonize yes
+pidfile /var/vcap/sys/run/vcap_redis/vcap_redis.pid
+# Close the connection after a client is idle for 10 min
+timeout 600
+
+# Auth
+<% if properties.vcap_redis.password %>
+requirepass <%= properties.vcap_redis.password %>
+<% end %>
+
+# Logging
+loglevel notice
+logfile /var/vcap/sys/log/vcap_redis/vcap_redis.log
+
+# LRU - Evict any key (regardless of expiry being set)
+maxmemory <%= properties.vcap_redis.maxmemory %>
+maxmemory-policy allkeys-lru
+
+# Durability.
+# I don't think that we need or want this given
+# the ephemeral nature of the data that we store in redis...
+#save 900 1      # Save every 15min if at least 1   key changed
+#save 300 10     # Save every 5min  if at least 10  keys changed
+#save 60 10000   # Save every 60sec if at least 10k keys changed
+#dbfilename vcap_redis.rdb
+#dir /var/vcap/data/vcap_redis/
+#appendonly no

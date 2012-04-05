@@ -1,0 +1,11 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+# Percona binary Linux build - minor change
+tar zxvf mysql/client-5.1.54-rel12.5-188-Linux-x86_64.tar.gz
+(
+  cd client-5.1.54-rel12.5-188-Linux-x86_64
+  for x in bin include lib; do
+    cp -a ${x} ${BOSH_INSTALL_TARGET}
+  done
+)
