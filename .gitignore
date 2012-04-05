@@ -2,6 +2,7 @@ config/dev.yml
 config/private.yml
 releases/*.tgz
 dev_releases
+blobs
 .dev_builds
 .idea
 .final_builds/jobs/**/*.tgz
