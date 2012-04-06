@@ -9,11 +9,11 @@ JOB_DIR=/var/vcap/jobs/redis_gateway
 PIDFILE=$RUN_DIR/redis_gateway.pid
 
 <%
-snapshot = properties.service_snapshot
+lifecycle = properties.service_lifecycle
 %>
 
-<% if snapshot %>
-SNAPSHOT_DIR=<%= snapshot.mount_point || "/var/vcap/services_snapshot" %>
+<% if lifecycle %>
+SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
@@ -32,14 +32,14 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    <% if properties.service_snapshot %>
+    <% if lifecycle %>
     if [ ! -d $SNAPSHOT_DIR ]; then
       mkdir -p $SNAPSHOT_DIR
     fi
     <% end %>
 
-    <% if snapshot && snapshot.nfs_server %>
-    mount -t nfs <%= snapshot.nfs_server.address %>:<%= snapshot.nfs_server.export_dir %> $SNAPSHOT_DIR
+    <% if lifecycle && lifecycle.nfs_server %>
+    mount -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR
     <% end %>
 
     exec /var/vcap/packages/redis_gateway/bin/services/redis_gateway \
@@ -51,8 +51,7 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
-
-    <% if snapshot && snapshot.nfs_server %>
+    <% if lifecycle && lifecycle.nfs_server %>
     umount $SNAPSHOT_DIR
     <% end %>
 
