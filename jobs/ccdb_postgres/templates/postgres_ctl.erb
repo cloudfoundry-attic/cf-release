@@ -6,7 +6,7 @@ DATA_DIR=/var/vcap/store/postgres
 RUN_DIR=/var/vcap/sys/run/postgres
 PIDFILE=$RUN_DIR/postgres.pid
 
-HOST=<%= properties.ccdb.address %>
+HOST=<%= spec.networks.send(properties.networks.management).ip %>
 PORT=<%= properties.ccdb.port %>
 USER=<%= properties.ccdb.user %>
 PASSWORD=<%= properties.ccdb.password %>
