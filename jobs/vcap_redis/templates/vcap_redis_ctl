@@ -2,6 +2,9 @@
 
 RUN_DIR=/var/vcap/sys/run/vcap_redis
 LOG_DIR=/var/vcap/sys/log/vcap_redis
+<% if properties.vcap_redis.persistence %>
+PERSISTENCE_DIR=<%= properties.vcap_redis.persistence.dir || "/vcar/vcap/store/vcap_redis/" %>
+<% end %>
 PIDFILE=$RUN_DIR/vcap_redis.pid
 
 source /var/vcap/packages/common/utils.sh
@@ -13,6 +16,9 @@ case $1 in
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
+    if [ ! -d $PERSISTENCE_DIR ]; then
+      mkdir -p $PERSISTENCE_DIR
+    fi
     echo $$ > $PIDFILE
 
     exec /var/vcap/packages/redis/bin/redis-server /var/vcap/jobs/vcap_redis/config/vcap_redis.conf

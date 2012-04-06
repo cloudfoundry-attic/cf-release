@@ -1,4 +1,6 @@
 ---
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+z_interval: <%= properties.service_backup_manager && properties.service_backup_manager.z_interval || 30 %>
 logging:
   level: debug
   file: /var/vcap/sys/log/backup_manager/backup_manager.log
