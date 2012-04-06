@@ -11,11 +11,24 @@ check process mysql_node
   group vcap
   depends on mysql
 
-<% if properties.service_snapshot %>
-check process mysql_worker
-  with pidfile /var/vcap/sys/run/mysql_node/mysql_worker.pid
-  start program "/var/vcap/jobs/mysql_node/bin/mysql_worker_ctl start"
-  stop program "/var/vcap/jobs/mysql_node/bin/mysql_worker_ctl stop"
+<%
+service = "mysql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+if properties.service_lifecycle and plan_enabled and plan_conf.lifecycle and plan_conf.lifecycle.enable
+  worker_count = plan_conf.lifecycle.worker_count || 1
+  worker_count.times do |ind|
+%>
+check process mysql_worker_<%= ind %>
+  with pidfile /var/vcap/sys/run/mysql_node/mysql_worker_<%= ind %>.pid
+  start program "/var/vcap/jobs/mysql_node/bin/mysql_worker_ctl start <%= ind %>"
+  stop program "/var/vcap/jobs/mysql_node/bin/mysql_worker_ctl stop <%= ind %>"
+  group worker
   group vcap
   depends on mysql
-<% end %>
+  depends on mysql_node
+<%
+  end
+end
+%>

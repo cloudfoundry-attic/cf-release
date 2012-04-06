@@ -1,23 +1,24 @@
 ---
 <%
 service = "redis"
-plan_enabled = properties.service_plans
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+lifecycle = properties.service_lifecycle
 %>
-<% if properties.service_snapshot and properties.service_snapshot.resque %>
-<% snapshot_dir = properties.service_snapshot.mount_point || "/var/vcap/services_snapshot" %>
+<% if lifecycle and lifecycle.resque %>
+<% snapshot_dir = lifecycle.mount_point || "/var/vcap/services_snapshot" %>
 service_name: redis
 base_dir: /var/vcap/store/redis/instances
 snapshots_base_dir: <%= snapshot_dir %>
 serialization_base_dir: <%= snapshot_dir %>
 local_db: sqlite3:/var/vcap/store/redis/redis_node.db
-pid: /var/vcap/sys/run/redis_node/redis_worker.pid
-tmp_dir: <%= properties.service_snapshot.tmp_dir || "/tmp" %>
+tmp_dir: <%= lifecycle.tmp_dir || "/tmp" %>
 resque:
-  host: <%= properties.service_snapshot.resque.host %>
-  port: <%= properties.service_snapshot.resque.port %>
-  password: <%= properties.service_snapshot.resque.password %>
-  expire: <%= properties.service_snapshot.resque.expire %>
+  host: <%= lifecycle.resque.host %>
+  port: <%= lifecycle.resque.port %>
+  password: <%= lifecycle.resque.password %>
+  expire: <%= lifecycle.resque.expire %>
 logging:
   level: debug
   file: /var/vcap/sys/log/redis_node/redis_worker.log
@@ -26,8 +27,8 @@ logging:
   <% end %>
 index: <%= spec.index %>
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
-download_url_template: "http://<%= properties.service_snapshot.download_url %>/serialized/#{service}/#{name}?token=#{token}"
-worker_count: 5
+download_url_template: "http://<%= lifecycle.download_url %>/serialized/#{service}/#{name}?token=#{token}"
+snapshot_quota: <%= plan_enabled && plan_conf.lifecycle && plan_conf.lifecycle.snapshot_quota || 0 %>
 # addtional options
 command_rename_prefix: <%= properties.redis_node.command_rename_prefix || "magic-protect-command-prefix" %>
 gzip_bin: /bin/gzip
