@@ -15,11 +15,6 @@ mysql:
 postgres:
   - postgresql_node
   - postgresql_gateway
-rabbitmq:
-  - rabbitmq_srs_agent
-  - rabbitmq_srs_vcap_web
-  - rabbitmq_srs_controller
-  - rabbitmq
 redis:
   - redis_node
   - redis_gateway
