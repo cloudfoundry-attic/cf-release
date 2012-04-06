@@ -16,7 +16,6 @@ templates:
   manifests/sinatra.yml: config/manifests/sinatra.yml
   manifests/spring.yml: config/manifests/spring.yml
   manifests/rack.yml: config/manifests/rack.yml
-  manifests/standalone.yml: config/manifests/standalone.yml
   sudoers: config/sudoers
 packages:
 - common

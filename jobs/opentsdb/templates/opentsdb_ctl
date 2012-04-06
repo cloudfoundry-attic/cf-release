@@ -43,6 +43,13 @@ case $1 in
     mem
     healthy
 
+    services.nfs_free_space
+    services.healthy_instances
+    services.plans.high_water
+    services.plans.low_water
+    services.plans.score
+    services.plans.allow_over_provisioning
+
     dea.max_memory
     frameworks.used_cpu
     frameworks.used_disk
