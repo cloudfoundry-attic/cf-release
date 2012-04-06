@@ -8,6 +8,7 @@ templates:
 
 packages:
   - common
+  - postgresql
   - postgresql_gateway
   - ruby
   - sqlite

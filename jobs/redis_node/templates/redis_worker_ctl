@@ -1,18 +1,11 @@
 #!/bin/bash
-
-<%
-  snapshot = properties.service_snapshot
-%>
-
-<% if snapshot && snapshot.nfs_server %>
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+INDEX=$2
 RUN_DIR=/var/vcap/sys/run/redis_node
 LOG_DIR=/var/vcap/sys/log/redis_node
-PIDFILE=$RUN_DIR/redis_worker.pid
+PIDFILE=$RUN_DIR/redis_worker_$INDEX.pid
 JOB_DIR=/var/vcap/jobs/redis_node
-
-SNAPSHOT_DIR=<%= snapshot.mount_point || "/var/vcap/services_snapshot" %>
 
 source /var/vcap/packages/common/utils.sh
 
@@ -24,25 +17,17 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
 
-    if [ ! -d $SNAPSHOT_DIR ]; then
-      mkdir -p $SNAPSHOT_DIR
-    fi
-
-    mount -o noac -t nfs <%= snapshot.nfs_server.address %>:<%= snapshot.nfs_server.export_dir %> $SNAPSHOT_DIR
-
-    echo $$ > $PIDFILE
     export CLOUD_FOUNDRY_CONFIG_PATH=$JOB_DIR/config/
+    export PIDFILE=$PIDFILE
 
     exec /var/vcap/packages/redis_node/bin/services/redis_worker \
-         >>$LOG_DIR/redis_worker.stdout.log \
-         2>>$LOG_DIR/redis_worker.stderr.log
+         >>$LOG_DIR/redis_worker_$INDEX.stdout.log \
+         2>>$LOG_DIR/redis_worker_$INDEX.stderr.log
 
     ;;
 
   stop)
     kill_and_wait $PIDFILE
-
-    umount $SNAPSHOT_DIR
 
     ;;
 
@@ -52,6 +37,3 @@ case $1 in
     ;;
 
 esac
-<% else %>
-echo "Service snapshots are disabled"
-<% end %>

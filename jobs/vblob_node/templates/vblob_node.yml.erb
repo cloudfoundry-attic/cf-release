@@ -1,10 +1,8 @@
 ---
 <%
 service = "vblob"
-plan_enabled = properties.service_plans
-job_name = spec.job.name
-spec.packages.instance_eval("def fields; @table.keys; end;")
-plan = spec.packages.fields.include?(job_name.to_sym)? "free" : job_name[/.+_(.+)/, 1]
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
@@ -25,11 +23,12 @@ logging:
   <% end %>
 pid: /var/vcap/sys/run/vblob_node/vblob_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
-max_memory: 60 # estimated average mem usage per instance
 vblobd_log_dir: /var/vcap/sys/service-log/vblob
 nodejs_path: /var/vcap/packages/node/bin/node
 vblobd_path: /var/vcap/packages/vblob
 vblobd_auth: <%= properties.vblob_node.vblobd_auth || "disabled" %>
+vblobd_quota: <%= plan_enabled && plan_conf.vblobd_quota || 2147483647 %>
+vblobd_obj_limit: <%= plan_enabled && plan_conf.vblobd_obj_limit || 32768 %>
 port_range:
   first: 45001
   last: 65000
