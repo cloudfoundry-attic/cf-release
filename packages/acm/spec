@@ -1,0 +1,8 @@
+---
+name: acm
+dependencies:
+- libpq
+- ruby
+files:
+- acm/**/*
+- core/common/**/*
