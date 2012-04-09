@@ -1,0 +1,50 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/warden
+LOG_DIR=/var/vcap/sys/log/warden
+WARDEN_CONF_DIR=/var/vcap/jobs/mongodb_node/config
+FIRSTRUN_PATH=$RUN_DIR/firstrun
+QUOTA_FS=/var/vcap/data
+PIDFILE=$RUN_DIR/warden.pid
+MONGODB_BIN_DIR=/var/vcap/packages/mongodb/bin
+MONGODB_CONF_DIR=/var/vcap/jobs/mongodb_node/config
+MONGODB_WARDEN_DIR=/var/vcap/packages/warden/warden/root/linux/base/rootfs/
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Warden"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    echo $$ > $PIDFILE
+
+    cd /var/vcap/packages/warden/warden
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    # Copy mongodb binaries and configuration files to warden base file system
+    cp -f $MONGODB_BIN_DIR/* $MONGODB_WARDEN_DIR/usr/bin/
+    cp -f $MONGODB_CONF_DIR/mongodb.init.conf $MONGODB_WARDEN_DIR/etc/init/mongodb.conf
+    cp -f $MONGODB_CONF_DIR/mongodb.conf $MONGODB_WARDEN_DIR/etc/mongodb.conf
+
+    exec /var/vcap/packages/ruby/bin/bundle exec \
+         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
+         >>$LOG_DIR/warden.stdout.log \
+         2>>$LOG_DIR/warden.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+
+    ;;
+
+esac
