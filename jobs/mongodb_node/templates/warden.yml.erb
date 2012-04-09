@@ -1,0 +1,17 @@
+---
+server:
+  container_klass: Warden::Container::Linux
+  unix_domain_permissions: 0777
+logging:
+  file: /var/vcap/sys/log/warden/warden.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.services.mongodb.warden
+  <% end %>
+  level: debug
+quota:
+  filesystem: /var/vcap/data
+  uidpool:
+    name: warden-quota
+    count: 50
+  report_quota_path: /var/vcap/packages/warden/warden/src/report_quota
+  check_interval: 1

@@ -15,6 +15,11 @@ templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.erb: config/logrotate
 
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  mongodb.conf.erb: config/mongodb.conf
+  mongodb.init.conf: config/mongodb.init.conf
+
 packages:
   - common
   - mongodb_node
@@ -22,3 +27,4 @@ packages:
   - ruby
   - sqlite
   - syslog_aggregator
+  - warden
