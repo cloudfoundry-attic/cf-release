@@ -1,5 +1,5 @@
 ---
-name: routerv2
+name: router_next
 
 templates:
   nginx_ctl:        bin/nginx_ctl
@@ -13,7 +13,7 @@ templates:
 
 packages:
   - common
-  - routerv2
-  - nginx
+  - router
+  - nginx_next
   - ruby
   - syslog_aggregator

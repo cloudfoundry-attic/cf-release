@@ -59,7 +59,7 @@ http {
       # Given there are some exceptions to clear some headers,
       # we just leave them as is.
 
-      proxy_pass http://unix:/var/vcap/sys/run/routerv2/router.sock:/;
+      proxy_pass http://unix:/var/vcap/sys/run/router/router.sock:/;
     }
 
     location / {
