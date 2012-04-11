@@ -23,11 +23,15 @@ database_environment:
     template: template0 # Required for utf8 encoding
     adapter: postgresql
 intervals:
-  database_scan:        60
-  droplet_lost:         30
-  droplets_analysis:    10
-  flapping_death:        3
-  flapping_timeout:    180
-  restart_timeout:      20
-  stable_state:         60
+  database_scan:         <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.database_scan         ||  60 %>
+  droplet_lost:          <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.droplet_lost          ||  30 %>
+  droplets_analysis:     <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.droplets_analysis     ||  20 %>
+  flapping_death:        <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.flapping_death        ||   1 %>
+  flapping_timeout:      <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.flapping_timeout      || 500 %>
+  restart_timeout:       <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.restart_timeout       ||  20 %>
+  min_restart_delay:     <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.min_restart_delay     ||  60 %>
+  max_restart_delay:     <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.max_restart_delay     || 480 %>
+  giveup_crash_number:   <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.giveup_crash_number   ||   4 %>
+  stable_state:          <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.stable_state          ||  60 %>
+  max_db_reconnect_wait: <%= properties.health_manager && properties.health_manager.intervals && properties.health_manager.intervals.max_db_reconnect_wait || 300 %>
 dequeueing_rate: <%= properties.health_manager && properties.health_manager.dequeueing_rate || 50 %>
