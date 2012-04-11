@@ -16,11 +16,11 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    export LUA_PATH="/var/vcap/jobs/routerv2/lib/?.lua"
-    export LUA_CPATH="/var/vcap/packages/nginx/lib/?.so"
+    export LUA_PATH="/var/vcap/jobs/router_next/lib/?.lua"
+    export LUA_CPATH="/var/vcap/packages/nginx_next/lib/?.so"
 
-    exec /var/vcap/packages/nginx/sbin/nginx \
-         -c /var/vcap/jobs/routerv2/config/nginx.conf \
+    exec /var/vcap/packages/nginx_next/sbin/nginx \
+         -c /var/vcap/jobs/router_next/config/nginx.conf \
          >>$LOG_DIR/nginx.stdout.log \
          2>>$LOG_DIR/nginx.stderr.log
 
