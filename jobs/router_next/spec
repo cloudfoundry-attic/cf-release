@@ -1,5 +1,5 @@
 ---
-name: routerv2
+name: router_next
 
 templates:
   nginx_ctl:        bin/nginx_ctl
@@ -8,12 +8,10 @@ templates:
   nginx.conf.erb:   config/nginx.conf
   mime.types:       config/mime.types
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
-  uls.lua.erb:      lib/uls.lua
-  tablesave.lua:    lib/tablesave.lua
 
 packages:
   - common
-  - routerv2
-  - nginx
+  - router
+  - nginx_next
   - ruby
   - syslog_aggregator

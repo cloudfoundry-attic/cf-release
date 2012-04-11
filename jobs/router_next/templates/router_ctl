@@ -2,10 +2,10 @@
 
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
-CONF_DIR=/var/vcap/jobs/routerv2/config
+CONF_DIR=/var/vcap/jobs/router_next/config
 
-RUN_DIR=/var/vcap/sys/run/routerv2
-LOG_DIR=/var/vcap/sys/log/routerv2
+RUN_DIR=/var/vcap/sys/run/router
+LOG_DIR=/var/vcap/sys/log/router
 PIDFILE=$RUN_DIR/router.pid
 
 source /var/vcap/packages/common/utils.sh
@@ -49,8 +49,8 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
     <% end %>
 
-    exec /var/vcap/packages/routerv2/bin/router \
-         -c /var/vcap/jobs/routerv2/config/router.yml \
+    exec /var/vcap/packages/router/bin/router \
+         -c /var/vcap/jobs/router_next/config/router.yml \
          >>$LOG_DIR/router.stdout.log \
          2>>$LOG_DIR/router.stderr.log
 

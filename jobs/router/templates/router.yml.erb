@@ -8,7 +8,7 @@ logging:
   <% end %>
   file: /var/vcap/sys/log/router/router.log
 pid: /var/vcap/sys/run/router/router.pid
-index: <%= spec.index %>
+index: <%= properties.router.offset ? properties.router.offset + spec.index : spec.index %>
 <% if properties.router.local_route %>
 local_route: <%= properties.router.local_route %>
 <% end %>
@@ -17,7 +17,4 @@ status:
   port: <%= properties.router.status.port %>
   user: <%= properties.router.status.user %>
   password: <%= properties.router.status.password %>
-<% end %>
-<% if properties.router.client_inactivity_timeout %>
-client_inactivity_timeout: <%= properties.router.client_inactivity_timeout %>
 <% end %>
