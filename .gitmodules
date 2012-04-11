@@ -7,9 +7,6 @@
 [submodule "src/tools"]
 	path = src/tools
 	url = git@github.com:cloudfoundry/vcap-tools.git
-[submodule "src/core_routerv2"]
-	path = src/core_routerv2
-	url = git@github.com:cloudfoundry/vcap.git
 [submodule "src/vblob_src"]
 	path = src/vblob_src
 	url = git@github.com:cloudfoundry/vblob.git
