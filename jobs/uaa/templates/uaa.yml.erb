@@ -12,12 +12,9 @@ database:
   password: <%= properties.uaa.db.password %>
 
 jvm_args: -Xmx512m
-spring_profiles: jdbc,postgresql,!legacy
+spring_profiles: postgresql
 
 cloud_controller:
-  login_url: http://api.<%= properties.domain %>/users/{username}/tokens
-  client:
-    secret: <%= properties.uaa.cc.client_secret %>
   database:
     url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= properties.ccdb.dbname %>
     username: <%= properties.ccdb.user %>
@@ -25,16 +22,6 @@ cloud_controller:
 
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
-
-<% if properties.uaa.bootstrap %>
-bootstrap:
-  admin:
-    username: <%= properties.uaa.bootstrap.username %>
-    password: <%= properties.uaa.bootstrap.password %>
-    given_name: <%= properties.uaa.bootstrap.given_name %>
-    family_name: <%= properties.uaa.bootstrap.family_name %>
-    email: <%= properties.uaa.bootstrap.email %>
-<% end %>
 
 varz:
   username: _random_username_replaced_by_a_script_
@@ -53,18 +40,26 @@ batch:
   password: <%= properties.uaa.batch.password %>
 <% end %>
 
-app:
-  client:
-    secret: $2a$08$JKFkUDiMfnCKKnbwE9yxAuBJB8oV5RUPzt553MwPvEtefpxpq0SZO
-
-my:
-  client:
-    secret: $2a$08$HrbalH0yg24el9D1waAkNOAJZbakcTgNilwVUqlCobLJV4rh3At2W
-
-scim:
-  client:
-    secret: $2a$08$iuYnIr4UmTbWJU5ciubvDe7NIrW0Fv6v7vAqgHVPY5Mpq7bEyx9gG
-
-token:
-  client:
-    secret: $2a$08$1l4gKzW9LlEWHjwSgK4WAeJHveTCtPmR3N9wUcUBzk8jNgezhiaiW
+oauth:
+  clients:
+    admin:
+      authorized-grant-types: client_credentials
+      scope: read,write,password
+      authorities: ROLE_CLIENT,ROLE_ADMIN
+      id: admin
+      secret: <%= properties.uaa.admin.client_secret %>
+      resource-ids: scim,password,tokens,clients,openid
+    cloud_controller:
+      authorized-grant-types: client_credentials
+      scope: read,write,password
+      authorities: ROLE_CLIENT,ROLE_ADMIN
+      id: cloud_controller
+      secret: <%= properties.uaa.cc.client_secret %>
+      resource-ids: scim,password,tokens
+    vmc:
+      authorized-grant-types: implicit
+      scope: read,password
+      authorities: ROLE_UNTRUSTED
+      id: vmc
+      resource-ids: cloud_controller,openid,password
+      redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc
