@@ -2,7 +2,7 @@
 <%
 service = "postgresql"
 acls = properties.postgresql_gateway.acls
-plan_enabled = properties.service_plans
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
@@ -56,6 +56,19 @@ z_interval: <%= properties.postgresql_gateway.z_interval || 30 %>
 check_orphan_interval: <%= properties.postgresql_gateway.check_orphan_interval || -1 %>
 double_check_orphan_interval: <%= properties.postgresql_gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+
+<% if properties.service_lifecycle and properties.service_lifecycle.resque %>
+api_extensions:
+  - snapshots
+  - serialization
+  - jobs
+resque:
+  host: <%= properties.service_lifecycle.resque.host %>
+  port: <%= properties.service_lifecycle.resque.port %>
+  password: <%= properties.service_lifecycle.resque.password %>
+  expire: <%= properties.service_lifecycle.resque.expire %>
+upload_temp_dir: <%= properties.service_lifecycle.tmp_dir || "/tmp" %>
+<% end %>
 
 <% if plan_enabled %>
 plan_management:
