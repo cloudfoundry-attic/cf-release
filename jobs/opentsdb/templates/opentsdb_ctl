@@ -43,6 +43,7 @@ case $1 in
     mem
     healthy
 
+    services.online_nodes
     services.nfs_free_space
     services.healthy_instances
     services.plans.high_water
