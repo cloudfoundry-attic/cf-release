@@ -11,6 +11,7 @@ local_db: sqlite3:/var/vcap/store/mongodb_node.db
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 index: <%= spec.index %>
 base_dir: /var/vcap/store/mongodb
+image_dir: /var/vcap/store/mongodb_image
 logging:
   file: /var/vcap/sys/log/mongodb_node/mongodb_node.log
   level: debug
@@ -20,13 +21,13 @@ logging:
 pid: /var/vcap/sys/run/mongodb_node/mongodb_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
-quota_files: <%= plan_enabled && plan_conf.quota_files || 4 %>
+max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
 mongod_path: /var/vcap/packages/mongodb/bin/mongod
+mongorestore_path: /var/vcap/packages/mongodb/bin/mongorestore
 port_range:
   first: 25001
   last: 45000
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
-mongorestore_path: /var/vcap/packages/mongodb/bin/mongorestore
 <% if properties.mongodb_node.ip_route %>
 ip_route: <%= properties.mongodb_node.ip_route %>
 <% end %>

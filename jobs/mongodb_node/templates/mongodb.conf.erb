@@ -27,6 +27,5 @@ noprealloc = true
 
 # smallfiles = start first container file at 16MB, doubling 4 times.
 # so this = 240MB per user. (i.e. 16MB container + 32MB + 64MB + 128MB)
-quota      = true
-quotaFiles = <%= plan_enabled && plan_conf.quota_files || 4 %>
+#quota      = true
 smallfiles = true
