@@ -29,6 +29,8 @@ case $1 in
     cp -f $MONGODB_BIN_DIR/* $MONGODB_WARDEN_DIR/usr/bin/
     cp -f $MONGODB_CONF_DIR/mongodb.init.conf $MONGODB_WARDEN_DIR/etc/init/mongodb.conf
     cp -f $MONGODB_CONF_DIR/mongodb.conf $MONGODB_WARDEN_DIR/etc/mongodb.conf
+    chmod 0644 $MONGODB_WARDEN_DIR/etc/init/mongodb.conf
+    chmod 0644 $MONGODB_WARDEN_DIR/etc/mongodb.conf
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
