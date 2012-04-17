@@ -36,7 +36,7 @@ case $1 in
     if [ ! -d $MOUNT_POINT ]; then
       mkdir -p $MOUNT_POINT
     fi
-    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $MOUNT_POINT
+    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $MOUNT_POINT || (echo "Fail to mount $MOUNT_POINT"; exit 1)
     <% end %>
 
     exec /var/vcap/packages/backup_manager/bin/services/backup_manager \

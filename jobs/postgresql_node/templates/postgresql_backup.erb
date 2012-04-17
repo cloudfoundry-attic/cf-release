@@ -23,7 +23,7 @@ case $1 in
       mkdir -p $MOUNT_POINT
     fi
 
-    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $MOUNT_POINT
+    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $MOUNT_POINT && \
     (crontab -l | sed /postgresql_backup/d; cat /var/vcap/jobs/postgresql_node/config/postgresql_backup.cron) | sed /^$/d | crontab
 
     ;;

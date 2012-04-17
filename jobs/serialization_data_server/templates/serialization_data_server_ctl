@@ -34,7 +34,7 @@ case $1 in
     <% end %>
 
     mkdir -p $SNAPSHOT_DIR
-    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $SNAPSHOT_DIR
+    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $SNAPSHOT_DIR || (echo "Fail to mount $SNAPSHOT_DIR"; exit 1)
     mkdir -p $SERIAL_TMP_DIR
 
     exec /var/vcap/packages/serialization_data_server/bin/services/serialization_data_server \

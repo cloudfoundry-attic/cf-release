@@ -45,7 +45,7 @@ case $1 in
 
     <% if lifecycle %>
     mkdir -p $SNAPSHOT_DIR
-    mount -o noac -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR
+    mount -o noac -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR || (echo "Fail to mount $SNAPSHOT_DIR"; exit 1)
     <% end %>
 
     chmod +x $JOB_DIR/config/postgresql_backup

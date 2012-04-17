@@ -35,7 +35,7 @@ case $1 in
     mkdir -p $MIG_DIR
     <% if lifecycle %>
     mkdir -p $SNAPSHOT_DIR
-    mount -o noac -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR
+    mount -o noac -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR || (echo "Fail to mount $SNAPSHOT_DIR"; exit 1)
     <% end %>
 
     chmod +x $JOB_DIR/config/mongodb_backup
