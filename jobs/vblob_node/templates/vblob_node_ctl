@@ -41,7 +41,7 @@ case $1 in
     fi
 
     <% if has_nfs %>
-    mount -t nfs <%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_node.nfs_server.export_dir %> $NFS_DIR
+    mount -t nfs <%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_node.nfs_server.export_dir %> $NFS_DIR || echo "Fail to mount $NFS_DIR" && exit 1
     <% end %>
     echo $$ > $PIDFILE
     exec /var/vcap/packages/vblob_node/services/vblob/bin/vblob_node -c /var/vcap/jobs/vblob_node/config/vblob_node.yml >>$LOG_DIR/vblob_node.stdout.log 2>>$LOG_DIR/vblob_node.stderr.log
