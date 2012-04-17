@@ -14,16 +14,15 @@ first_node_only = backup_enabled && plan_conf.backup.first_node_only
 <% if backup_enabled && nfs_server && (!first_node_only || spec.index == 0) %>
 PIDFILE=/var/vcap/sys/run/mongodb_node/mongodb_backup.pid
 MOUNT_POINT=<%= service_backup.mount_point || "/var/vcap/services_backup" %>
+MT_OPTS="-t nfs"
+MT_EXPORT=<%= nfs_server.address %>:<%= nfs_server.export_dir %>
 
 source /var/vcap/packages/common/utils.sh
 
 case $1 in
   start)
-    if [ ! -d $MOUNT_POINT ]; then
-      mkdir -p $MOUNT_POINT
-    fi
-
-    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $MOUNT_POINT
+    mkdir -p $MOUNT_POINT
+    check_mount "$MT_OPTS" "$MT_EXPORT" "$MOUNT_POINT"
     (crontab -l | sed /mongodb_backup/d; cat /var/vcap/jobs/mongodb_node/config/mongodb_backup.cron) | sed /^$/d | crontab
 
     ;;
