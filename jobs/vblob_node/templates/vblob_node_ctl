@@ -26,6 +26,8 @@ NFS_DIR=<%= properties.vblob_node.nfs_mount_point ? properties.vblob_node.nfs_mo
 case $1 in
 
   start)
+    sysctl -w net.ipv4.ip_local_port_range="30000 45000"
+
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
     mkdir -p $SERV_LOG_DIR
