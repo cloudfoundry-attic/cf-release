@@ -12,8 +12,10 @@ PIDFILE=$RUN_DIR/redis_gateway.pid
 lifecycle = properties.service_lifecycle
 %>
 
-<% if lifecycle %>
+<% if lifecycle and lifecycle.nfs_server %>
 SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
+MT_OPTS="-t nfs"
+MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %>
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
@@ -32,14 +34,9 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    <% if lifecycle %>
-    if [ ! -d $SNAPSHOT_DIR ]; then
-      mkdir -p $SNAPSHOT_DIR
-    fi
-    <% end %>
-
-    <% if lifecycle && lifecycle.nfs_server %>
-    mount -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR
+    <% if lifecycle and lifecycle.nfs_server %>
+    mkdir -p $SNAPSHOT_DIR
+    check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
     <% end %>
 
     exec /var/vcap/packages/redis_gateway/bin/services/redis_gateway \

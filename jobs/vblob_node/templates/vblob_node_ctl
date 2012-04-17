@@ -18,10 +18,14 @@ LOG_DIR=/var/vcap/sys/log/vblob_node
 PIDFILE=$RUN_DIR/vblob_node.pid
 CONF_DIR=/var/vcap/jobs/vblob_node/config
 SERV_LOG_DIR=/var/vcap/sys/service-log/vblob
-NFS_DIR=<%= properties.vblob_node.nfs_mount_point ? properties.vblob_node.nfs_mount_point : "/var/vcap/vblob_nfs_mount" %>
 <%
   has_nfs=(properties.vblob_node.nfs_server && properties.vblob_node.nfs_server.address && properties.vblob_node.nfs_server.export_dir)
 %>
+<% if has_nfs %>
+NFS_DIR=<%= properties.vblob_node.nfs_mount_point ? properties.vblob_node.nfs_mount_point : "/var/vcap/vblob_nfs_mount" %>
+MT_OPTS="-t nfs"
+MT_EXPORT=<%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_node.nfs_server.export_dir %>
+<% end %>
 
 case $1 in
 
@@ -37,14 +41,11 @@ case $1 in
     <% end %>
     cp $CONF_DIR/logrotate /etc/logrotate.d/vcap-services
 
-    # create nfs mount directory
-    if [ ! -d $NFS_DIR ]; then
-      mkdir -p $NFS_DIR
-    fi
-
     <% if has_nfs %>
-    mount -t nfs <%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_node.nfs_server.export_dir %> $NFS_DIR
+    mkdir -p $NFS_DIR
+    check_mount "$MT_OPTS" "$MT_EXPORT" "$NFS_DIR"
     <% end %>
+
     echo $$ > $PIDFILE
     exec /var/vcap/packages/vblob_node/services/vblob/bin/vblob_node -c /var/vcap/jobs/vblob_node/config/vblob_node.yml >>$LOG_DIR/vblob_node.stdout.log 2>>$LOG_DIR/vblob_node.stderr.log
     ;;

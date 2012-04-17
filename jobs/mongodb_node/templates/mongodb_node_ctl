@@ -10,8 +10,12 @@ LOG_DIR=/var/vcap/sys/log/mongodb_node
 SERV_LOG_DIR=/var/vcap/sys/service-log/mongodb
 PIDFILE=$RUN_DIR/mongodb_node.pid
 JOB_DIR=/var/vcap/jobs/mongodb_node
-SNAPSHOT_DIR=<%= lifecycle && lifecycle.mount_point || "/var/vcap/services_snapshot" %>
 MIG_DIR=<%= migration && migration.mount_point || "/var/vcap/services_migration" %>
+<% if lifecycle and lifecycle.nfs_server %>
+SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
+MT_OPTS="-o noac -t nfs"
+MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %>
+<% end %>
 
 source /var/vcap/packages/common/utils.sh
 
@@ -35,7 +39,7 @@ case $1 in
     mkdir -p $MIG_DIR
     <% if lifecycle %>
     mkdir -p $SNAPSHOT_DIR
-    mount -o noac -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR
+    check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
     <% end %>
 
     chmod +x $JOB_DIR/config/mongodb_backup
