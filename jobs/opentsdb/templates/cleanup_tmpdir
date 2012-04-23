@@ -13,7 +13,3 @@ if [[ $dir && $threshold && -d $dir ]]; then
 else
   echo "Usage: $0 <dir> <threshold>"
 fi
-
-
-
-
