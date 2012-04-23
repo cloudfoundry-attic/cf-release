@@ -1,0 +1,2 @@
+<% freq_min=properties.mongodb_node && properties.mongodb_node.service_logrotate && properties.mongodb_node.service_logrotate.freq_min || 5 %>
+*/<%= freq_min %> * * * * test -x /usr/sbin/logrotate && /usr/sbin/logrotate /etc/logrotate.conf >>/var/vcap/sys/log/mongodb_node/mongodb_logrotate_cron.log 2>&1
