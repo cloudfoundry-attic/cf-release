@@ -4,3 +4,8 @@ check process backup_manager
   stop program "/var/vcap/jobs/backup_manager/bin/backup_manager_ctl stop"
   group vcap
 
+check process snapshot_manager
+  with pidfile /var/vcap/sys/run/backup_manager/snapshot_manager.pid
+  start program "/var/vcap/jobs/backup_manager/bin/snapshot_manager_ctl start"
+  stop program "/var/vcap/jobs/backup_manager/bin/snapshot_manager_ctl stop"
+  group vcap
