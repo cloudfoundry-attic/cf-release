@@ -6,8 +6,8 @@ logging:
   <% end %>
   level: info
 tsdb:
-  host: <%= properties.opentsdb.address %>
-  port: <%= properties.opentsdb.port %>
+  host: <%= properties.hbase_master.address %>
+  port: <%= properties.hbase_master.opentsdb.port %>
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 intervals:
   discover: 60

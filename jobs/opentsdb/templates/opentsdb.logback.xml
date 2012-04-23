@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
   <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-    <file>/var/vcap/sys/log/opentsdb/opentsdb.log</file>
+    <file>/var/vcap/sys/log/hbase_master/opentsdb.log</file>
 
     <layout class="ch.qos.logback.classic.PatternLayout">
       <Pattern>%d{ISO8601} %-5level [%thread] %logger{0}: %msg%n</Pattern>
