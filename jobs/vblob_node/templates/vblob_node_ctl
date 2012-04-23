@@ -46,6 +46,8 @@ case $1 in
     check_mount "$MT_OPTS" "$MT_EXPORT" "$NFS_DIR"
     <% end %>
 
+    (crontab -l | sed /vblob_logrotate/d; cat /var/vcap/jobs/vblob_node/config/vblob_logrotate.cron) | sed /^$/d | crontab
+
     echo $$ > $PIDFILE
     exec /var/vcap/packages/vblob_node/services/vblob/bin/vblob_node -c /var/vcap/jobs/vblob_node/config/vblob_node.yml >>$LOG_DIR/vblob_node.stdout.log 2>>$LOG_DIR/vblob_node.stderr.log
     ;;
@@ -55,6 +57,8 @@ case $1 in
     kill $PID
     while [ -e /proc/$PID ]; do sleep 0.1; done
     rm -f $PIDFILE
+
+    crontab -l | sed /vblob_logrotate/d | crontab
 
     <% if has_nfs %>
     umount $NFS_DIR

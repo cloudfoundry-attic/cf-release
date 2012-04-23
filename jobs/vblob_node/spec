@@ -6,6 +6,7 @@ templates:
   vblob_node.yml.erb: config/vblob_node.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.erb: config/logrotate
+  vblob_logrotate.cron.erb: config/vblob_logrotate.cron
 
 packages:
   - vblob_node

@@ -45,6 +45,8 @@ case $1 in
     chmod +x $JOB_DIR/config/redis_backup
     $JOB_DIR/config/redis_backup start
 
+    (crontab -l | sed /redis_logrotate/d; cat /var/vcap/jobs/redis_node/config/redis_logrotate.cron) | sed /^$/d | crontab
+
     exec /var/vcap/packages/redis_node/bin/services/redis_node \
          -c $JOB_DIR/config/redis_node.yml \
          >>$LOG_DIR/redis_node.stdout.log \
@@ -54,6 +56,8 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
+
+    crontab -l | sed /redis_logrotate/d | crontab
 
     chmod +x $JOB_DIR/config/redis_backup
     $JOB_DIR/config/redis_backup stop

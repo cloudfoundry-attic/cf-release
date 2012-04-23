@@ -45,6 +45,8 @@ case $1 in
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup start
 
+    (crontab -l | sed /mongodb_logrotate/d; cat /var/vcap/jobs/mongodb_node/config/mongodb_logrotate.cron) | sed /^$/d | crontab
+
     exec /var/vcap/packages/mongodb_node/bin/services/mongodb_node \
          -c $JOB_DIR/config/mongodb_node.yml \
          >>$LOG_DIR/mongodb_node.stdout.log \
@@ -54,6 +56,8 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
+
+    crontab -l | sed /mongodb_logrotate/d | crontab
 
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup stop
