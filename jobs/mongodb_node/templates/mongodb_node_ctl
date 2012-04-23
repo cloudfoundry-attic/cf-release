@@ -34,8 +34,6 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    cp $JOB_DIR/config/logrotate /etc/logrotate.d/vcap-services
-
     mkdir -p $MIG_DIR
     <% if lifecycle %>
     mkdir -p $SNAPSHOT_DIR
@@ -44,6 +42,8 @@ case $1 in
 
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup start
+
+    (crontab -l | sed /mongodb_logrotate/d; cat /var/vcap/jobs/mongodb_node/config/mongodb_logrotate.cron) | sed /^$/d | crontab
 
     exec /var/vcap/packages/mongodb_node/bin/services/mongodb_node \
          -c $JOB_DIR/config/mongodb_node.yml \
@@ -55,12 +55,13 @@ case $1 in
   stop)
     kill_and_wait $PIDFILE
 
+    crontab -l | sed /mongodb_logrotate/d | crontab
+
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup stop
     <% if lifecycle %>
     umount -l $SNAPSHOT_DIR
     <% end %>
-    rm /etc/logrotate.d/vcap-services
 
     ;;
 
