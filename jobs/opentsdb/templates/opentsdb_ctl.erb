@@ -3,14 +3,15 @@
 export JAVA_HOME=/var/vcap/packages/dea_jvm
 export PATH=/var/vcap/packages/dea_jvm/bin:$PATH
 
-BIN_DIR=/var/vcap/jobs/opentsdb/bin
-RUN_DIR=/var/vcap/sys/run/opentsdb
-LOG_DIR=/var/vcap/sys/log/opentsdb
-PIDFILE=$RUN_DIR/opentsdb.pid
-TSDTMP=/var/vcap/data/tsdtmp
+BIN_DIR="/var/vcap/jobs/opentsdb/bin"
+RUN_DIR="/var/vcap/sys/run/opentsdb"
+LOG_DIR="/var/vcap/sys/log/opentsdb"
+PIDFILE="${RUN_DIR}/opentsdb.pid"
+TSDTMP="/var/vcap/data/tsdtmp"
 
-TSDB=$BIN_DIR/tsdb
-CLEANUP_SCRIPT=/etc/cron.d/cleanup_tsdb_tmpdir
+ETC_HOSTS_FILE="/var/vcap/jobs/opentsdb/config/etc.hosts"
+TSDB="${BIN_DIR}/tsdb"
+CLEANUP_SCRIPT="/etc/cron.d/cleanup_tsdb_tmpdir"
 
 source /var/vcap/packages/common/utils.sh
 
@@ -22,6 +23,12 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
+
+    cp /var/vcap/jobs/opentsdb/config/hbase/* /var/vcap/packages/hbase/conf/
+    cp $ETC_HOSTS_FILE /etc/hosts
+    echo "opentsdb" > /etc/hostname
+    # To force the changes to be picked up.
+    hostname --file /etc/hostname
 
     mkdir -p $TSDTMP
 
@@ -36,8 +43,8 @@ case $1 in
     echo "*/30 * * * * root $BIN_DIR/cleanup_tmpdir $TSDTMP 400" > $CLEANUP_SCRIPT
 
     cd /var/vcap/packages/opentsdb/
-
-    env COMPRESSION=snappy HBASE_HOME=/var/vcap/packages/hbase ./src/create_table.sh
+    export HBASE_HOME=/var/vcap/packages/hbase
+    env COMPRESSION=SNAPPY HBASE_HOME=/var/vcap/packages/hbase ./src/create_table.sh
 
     METRICS=$( cat <<SETVAR
     mem
@@ -105,12 +112,14 @@ case $1 in
 SETVAR
     )
 
-    $TSDB mkmetric $METRICS
+    echo "$TSDB mkmetric --zkquorum=hbase-hadoop-master $METRICS"
+    $TSDB mkmetric --zkquorum=hbase-hadoop-master $METRICS
 
     exec $TSDB tsd \
          --port=<%= properties.opentsdb.port %> \
          --staticroot=build/staticroot \
          --cachedir=$TSDTMP \
+         --zkquorum=hbase-hadoop-master \
          >>$LOG_DIR/opentsdb.stdout.log \
          2>>$LOG_DIR/opentsdb.stderr.log
 
