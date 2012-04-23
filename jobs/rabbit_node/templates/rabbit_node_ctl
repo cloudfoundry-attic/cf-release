@@ -33,6 +33,8 @@ case $1 in
       mkdir -p $MIG_DIR
     fi
 
+    (crontab -l | sed /rabbit_logrotate/d; cat /var/vcap/jobs/rabbit_node/config/rabbit_logrotate.cron) | sed /^$/d | crontab
+
     echo $$ > $PIDFILE
     exec /var/vcap/packages/rabbit_node/bin/services/rabbitmq_node \
         -c $JOB_DIR/config/rabbit_node.yml \
@@ -43,6 +45,8 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
+
+    crontab -l | sed /rabbit_logrotate/d | crontab
 
     ;;
 

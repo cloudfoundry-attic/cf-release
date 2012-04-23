@@ -14,6 +14,8 @@ templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.erb: config/logrotate
 
+  redis_logrotate.cron.erb: config/redis_logrotate.cron
+
 packages:
   - common
   - redis_node
