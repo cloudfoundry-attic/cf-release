@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>hdfs://<%= properties.hbase_hadoop_opentsdb_master.hostname %>:<%= properties.hbase_hadoop_opentsdb_master.hadoop_namenode.port %>/hbase</value>
+  </property>
+  <property>
+    <name>hbase.master.port</name>
+    <value><%= properties.hbase_hadoop_opentsdb_master.hbase_master.port %></value>
+  </property>
+  <property>
+    <name>hbase.master.info.port</name>
+    <value><%= properties.hbase_hadoop_opentsdb_master.hbase_master.webui_port %></value>
+  </property>
+  <property>
+    <name>hbase.regionserver.port</name>
+    <value><%= properties.hbase_hadoop_slave.hbase_regionserver.port %></value>
+  </property>
+  <property>
+    <name>hbase.tmp.dir</name>
+    <value>/var/vcap/store/hbase</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.quorum</name>
+    <value><%= properties.hbase_hadoop_opentsdb_master.address %></value>
+  </property>
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+    <description>The mode the cluster will be in. Possible values are
+      false: standalone and pseudo-distributed setups with managed Zookeeper
+      true: fully-distributed with unmanaged Zookeeper Quorum (see hbase-env.sh)
+    </description>
+  </property>
+</configuration>
