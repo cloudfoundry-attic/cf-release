@@ -14,6 +14,10 @@ templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.erb: config/logrotate
 
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  redis.init.conf: config/redis.init.conf
+
 packages:
   - common
   - redis_node
