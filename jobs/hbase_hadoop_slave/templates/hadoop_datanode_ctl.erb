@@ -1,0 +1,83 @@
+#!/bin/bash -e
+
+LOG_DIR="/var/vcap/sys/log/hbase_hadoop_slave"
+RUN_DIR="/var/vcap/sys/run/hbase_hadoop_slave"
+
+ETC_HOSTS_FILE="/var/vcap/jobs/hbase_hadoop_slave/config/etc.hosts"
+HADOOP_BIN="/var/vcap/packages/hadoop/bin"
+HADOOP_DATA_DIR="/var/vcap/store/hbase_hadoop_opentsdb_master"
+PIDFILE="${RUN_DIR}/hadoop-vcap-datanode.pid"
+TMP_DIR="/var/vcap/store/hbase"
+
+export HADOOP_CONF_DIR="/var/vcap/jobs/hbase_hadoop_slave/config/hadoop"
+export HADOOP_DATANODE_USER="vcap"
+export HADOOP_IDENT_STRING="vcap"
+export HADOOP_LOG_DIR=${LOG_DIR}
+export HADOOP_PID_DIR=${RUN_DIR}
+export JAVA_HOME="/var/vcap/packages/dea_jvm"
+
+source /var/vcap/packages/common/utils.sh
+
+addresses=( <% for address in properties.hbase_hadoop_slave.addresses %>"<%= address %>" <% end %>)
+
+function set_hostname {
+  my_ip=`ifconfig eth0 | grep "inet addr" | awk '{print $2}' | awk -F: '{print $2}'`
+  slave_num=1
+  for address in ${addresses[@]}
+  do
+    if [ $address == $my_ip ]; then
+      echo "slave$slave_num" > /etc/hostname
+      # To force the changes to be picked up.
+      hostname --file /etc/hostname
+      break
+    fi
+    slave_num=$(($slave_num+1))
+  done
+}
+
+case $1 in
+
+  start)
+    # hadoop-daemon.sh has its own pid guard,
+    # we use ours for consistency anyway
+    pid_guard $PIDFILE "hadoop_datanode"
+
+    cp $ETC_HOSTS_FILE /etc/hosts
+    set_hostname
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    mkdir -p $HADOOP_DATA_DIR
+    mkdir -p $TMP_DIR
+
+    chmod -R a+rw /var/vcap/sys/log
+    chmod -R a+rw /var/vcap/sys/run
+    chmod -R a+rw $HADOOP_DATA_DIR
+    chmod -R a+rw $TMP_DIR
+
+    # Set maximum number of open file descriptors.
+    ulimit -n 32768
+    # Set maximum number of processes available to a single user.
+    ulimit -u 32000
+
+    # hadoop ctl scripts manage their pidfiles,
+    # so we don't attempt to write ours
+    exec chpst -u vcap:vcap $HADOOP_BIN/hadoop-daemon.sh --config $HADOOP_CONF_DIR start datanode \
+         >>$LOG_DIR/hadoop_datanode_start.stdout.log \
+         2>>$LOG_DIR/hadoop_datanode_start.stderr.log
+
+    ;;
+
+  stop)
+    exec chpst -u vcap:vcap $HADOOP_BIN/hadoop-daemon.sh --config $HADOOP_CONF_DIR stop datanode \
+         >>$LOG_DIR/hadoop_datanode_stop.stdout.log \
+         2>>$LOG_DIR/hadoop_datanode_stop.stderr.log
+
+    ;;
+
+  *)
+    echo "Usage: hadoop_datanode_ctl {start|stop}"
+
+    ;;
+
+esac

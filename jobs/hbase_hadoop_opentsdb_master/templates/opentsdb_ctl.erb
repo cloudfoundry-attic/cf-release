@@ -3,9 +3,9 @@
 export JAVA_HOME=/var/vcap/packages/dea_jvm
 export PATH=/var/vcap/packages/dea_jvm/bin:$PATH
 
-BIN_DIR=/var/vcap/jobs/opentsdb/bin
-RUN_DIR=/var/vcap/sys/run/opentsdb
-LOG_DIR=/var/vcap/sys/log/opentsdb
+BIN_DIR=/var/vcap/jobs/hbase_hadoop_opentsdb_master/bin
+RUN_DIR=/var/vcap/sys/run/hbase_hadoop_opentsdb_master
+LOG_DIR=/var/vcap/sys/log/hbase_hadoop_opentsdb_master
 PIDFILE=$RUN_DIR/opentsdb.pid
 TSDTMP=/var/vcap/data/tsdtmp
 
@@ -37,7 +37,7 @@ case $1 in
 
     cd /var/vcap/packages/opentsdb/
 
-    env COMPRESSION=snappy HBASE_HOME=/var/vcap/packages/hbase ./src/create_table.sh
+    env COMPRESSION=SNAPPY HBASE_HOME=/var/vcap/packages/hbase ./src/create_table.sh
 
     METRICS=$( cat <<SETVAR
     mem
@@ -108,7 +108,7 @@ SETVAR
     $TSDB mkmetric $METRICS
 
     exec $TSDB tsd \
-         --port=<%= properties.opentsdb.port %> \
+         --port=<%= properties.hbase_hadoop_opentsdb_master.opentsdb.port %> \
          --staticroot=build/staticroot \
          --cachedir=$TSDTMP \
          >>$LOG_DIR/opentsdb.stdout.log \
