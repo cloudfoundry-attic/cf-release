@@ -6,9 +6,11 @@ WARDEN_CONF_DIR=/var/vcap/jobs/mongodb_node/config
 FIRSTRUN_PATH=$RUN_DIR/firstrun
 QUOTA_FS=/var/vcap/data
 PIDFILE=$RUN_DIR/warden.pid
+WARDEN_SOURCE_DIR=/var/vcap/packages/mongodb_node/warden
+WARDEN_TARGET_DIR=/var/vcap/store/warden
 MONGODB_BIN_DIR=/var/vcap/packages/mongodb/bin
 MONGODB_CONF_DIR=/var/vcap/jobs/mongodb_node/config
-MONGODB_WARDEN_DIR=/var/vcap/packages/warden/warden/root/linux/base/rootfs/
+MONGODB_WARDEN_DIR=/var/vcap/store/warden/root/linux/base/rootfs/
 
 source /var/vcap/packages/common/utils.sh
 
@@ -21,10 +23,13 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
-    cd /var/vcap/packages/warden/warden
+    cd /var/vcap/packages/mongodb_node/warden
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+    # Copy warden base filysystem to data store
+    mkdir -p $WARDEN_TARGET_DIR
+    cp -af $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
     # Copy mongodb binaries and configuration files to warden base file system
     cp -f $MONGODB_BIN_DIR/* $MONGODB_WARDEN_DIR/usr/bin/
     cp -f $MONGODB_CONF_DIR/mongodb.init.conf $MONGODB_WARDEN_DIR/etc/init/mongodb.conf
