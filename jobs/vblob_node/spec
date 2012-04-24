@@ -9,6 +9,7 @@ templates:
   vblob_logrotate.cron.erb: config/vblob_logrotate.cron
 
 packages:
+  - common
   - vblob_node
   - vblob
   - node

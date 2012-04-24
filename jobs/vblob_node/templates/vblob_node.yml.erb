@@ -11,7 +11,7 @@ local_db: sqlite3:/var/vcap/store/vblob_node.db
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 index: <%= spec.index %>
 <% if (properties.vblob_node.nfs_server && properties.vblob_node.nfs_server.address && properties.vblob_node.nfs_server.export_dir) %>
-base_dir: <%= properties.vblob_node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/vblob_node_<%= spec.index.to_i + 1 %>
+base_dir: <%= properties.vblob_node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/vblob/vblob_node_<%= spec.index.to_i + 1 %>
 <% else %>
 base_dir: /var/vcap/store/vblob
 <% end %>
