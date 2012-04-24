@@ -2,6 +2,7 @@
 server:
   container_klass: Warden::Container::Linux
   container_grace_time: ~
+  container_root: /var/vcap/store/warden/root
   unix_domain_permissions: 0777
 logging:
   file: /var/vcap/sys/log/warden/warden.log

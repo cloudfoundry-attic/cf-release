@@ -29,7 +29,7 @@ case $1 in
 
     # Copy warden base filysystem to data store
     mkdir -p $WARDEN_TARGET_DIR
-    cp -rf $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
+    cp -af $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
     # Copy redis binaries and configuration files to warden base file system
     cp -f $REDIS_BIN_DIR/* $REDIS_WARDEN_DIR/usr/bin/
     cp -f $REDIS_CONF_DIR/redis.init.conf $REDIS_WARDEN_DIR/etc/init/redis.conf
