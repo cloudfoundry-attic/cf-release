@@ -27,14 +27,20 @@ MT_OPTS="-t nfs"
 MT_EXPORT=<%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_node.nfs_server.export_dir %>
 <% end %>
 
+source /var/vcap/packages/common/utils.sh
+
 case $1 in
 
   start)
+    pid_guard $PIDFILE "vBlob node"
+
     sysctl -w net.ipv4.ip_local_port_range="30000 45000"
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
     mkdir -p $SERV_LOG_DIR
+
+    echo $$ > $PIDFILE
     # Enable log aggregation
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
@@ -47,15 +53,11 @@ case $1 in
 
     (crontab -l | sed /vblob_logrotate/d; cat /var/vcap/jobs/vblob_node/config/vblob_logrotate.cron) | sed /^$/d | crontab
 
-    echo $$ > $PIDFILE
     exec /var/vcap/packages/vblob_node/services/vblob/bin/vblob_node -c /var/vcap/jobs/vblob_node/config/vblob_node.yml >>$LOG_DIR/vblob_node.stdout.log 2>>$LOG_DIR/vblob_node.stderr.log
     ;;
 
   stop)
-    PID=$(head -1 $PIDFILE)
-    kill $PID
-    while [ -e /proc/$PID ]; do sleep 0.1; done
-    rm -f $PIDFILE
+    kill_and_wait $PIDFILE
 
     crontab -l | sed /vblob_logrotate/d | crontab
 
