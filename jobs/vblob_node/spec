@@ -8,6 +8,7 @@ templates:
   logrotate.erb: config/logrotate
 
 packages:
+  - common
   - vblob_node
   - vblob
   - node
