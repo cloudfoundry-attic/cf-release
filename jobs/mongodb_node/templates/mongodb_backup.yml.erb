@@ -8,8 +8,9 @@ backup_enabled = plan_enabled && plan_conf.backup && plan_conf.backup.enable
 %>
 service_name: mongodb
 backup_base_dir: <%= properties.service_backup && properties.service_backup.mount_point || "/var/vcap/services_backup" %>
-service_base_dir: /var/vcap/store/mongodb/instances
+base_dir: /var/vcap/store/mongodb
 image_dir: /var/vcap/store/mongodb_image
+mongod_log_dir: /var/vcap/sys/service-log/mongodb
 mongodump_path: /var/vcap/packages/mongodb/bin/mongodump
 logging:
   level: debug
