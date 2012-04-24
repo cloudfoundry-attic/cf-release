@@ -1,0 +1,55 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/warden
+LOG_DIR=/var/vcap/sys/log/warden
+WARDEN_CONF_DIR=/var/vcap/jobs/redis_node/config
+FIRSTRUN_PATH=$RUN_DIR/firstrun
+QUOTA_FS=/var/vcap/data
+PIDFILE=$RUN_DIR/warden.pid
+WARDEN_SOURCE_DIR=/var/vcap/packages/redis_node/warden
+WARDEN_TARGET_DIR=/var/vcap/store/warden
+REDIS_BIN_DIR=/var/vcap/packages/redis/bin
+REDIS_CONF_DIR=/var/vcap/jobs/redis_node/config
+REDIS_WARDEN_DIR=/var/vcap/store/warden/root/linux/base/rootfs/
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Warden"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    echo $$ > $PIDFILE
+
+    cd /var/vcap/packages/redis_node/warden
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    # Copy warden base filysystem to data store
+    mkdir -p $WARDEN_TARGET_DIR
+    cp -rf $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
+    # Copy redis binaries and configuration files to warden base file system
+    cp -f $REDIS_BIN_DIR/* $REDIS_WARDEN_DIR/usr/bin/
+    cp -f $REDIS_CONF_DIR/redis.init.conf $REDIS_WARDEN_DIR/etc/init/redis.conf
+    chmod 0644 $REDIS_WARDEN_DIR/etc/init/redis.conf
+
+    exec /var/vcap/packages/ruby/bin/bundle exec \
+         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
+         >>$LOG_DIR/warden.stdout.log \
+         2>>$LOG_DIR/warden.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+
+    ;;
+
+esac
