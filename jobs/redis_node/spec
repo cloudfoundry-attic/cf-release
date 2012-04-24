@@ -12,7 +12,8 @@ templates:
   redis_backup.cron.erb: config/redis_backup.cron
   redis_backup.erb: config/redis_backup
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
-  logrotate.erb: config/logrotate
+  logrotate.conf.erb: config/logrotate.conf
+  redis_logrotate.cron.erb: config/redis_logrotate.cron
 
 packages:
   - common
