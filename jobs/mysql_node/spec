@@ -8,6 +8,7 @@ templates:
 
   my.bootstrap.erb: bin/my.bootstrap
   my.shutdown.erb: bin/my.shutdown
+  create_mysql_tmp_dir.erb: bin/create_mysql_tmp_dir
 
   mysql_node.yml.erb: config/mysql_node.yml
   mysql_worker.yml.erb: config/mysql_worker.yml
