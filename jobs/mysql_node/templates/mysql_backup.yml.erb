@@ -8,7 +8,7 @@ backup_enabled = plan_enabled && plan_conf.backup && plan_conf.backup.enable
 %>
 service_name: mysql
 backup_base_dir: <%= properties.service_backup && properties.service_backup.mount_point || "/var/vcap/services_backup" %>
-backup_cmd: /var/vcap/packages/mysql/bin/mysqldump --host=:host --user=:user --password=:passwd -S :socket --result-file=:full_path/:name.sql --single-transaction :name
+backup_cmd: /var/vcap/packages/mysql/bin/mysqldump --host=:host --user=:user --password=:passwd -S :socket --result-file=:full_path/:name.sql -R --single-transaction :name
 compress_cmd: /bin/gzip :full_path/:name.sql
 logging:
   file: /var/vcap/sys/log/mysql_node/mysql_backup.log
