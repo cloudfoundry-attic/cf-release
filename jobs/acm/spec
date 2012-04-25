@@ -1,0 +1,12 @@
+---
+name: acm
+templates:
+  acm_ctl.erb: bin/acm_ctl
+  acm.yml.erb: config/acm.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+packages:
+  - libpq
+  - common
+  - ruby
+  - syslog_aggregator
+  - acm
