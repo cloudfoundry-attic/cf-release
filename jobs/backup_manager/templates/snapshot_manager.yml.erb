@@ -1,0 +1,30 @@
+---
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+z_interval: <%= properties.service_snapshot_manager && properties.service_snapshot_manager.z_interval || 30 %>
+logging:
+  level: debug
+  file: /var/vcap/sys/log/backup_manager/snapshot_manager.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.snapshot_manager
+  <% end %>
+
+cleanup:
+  max_days: <%= properties.service_snapshot_manager ? properties.service_snapshot_manager.cleanup_max_days : 7 %>
+  greedy_mark: <%= properties.service_snapshot_manager ? properties.service_snapshot_manager.cleanup_greedy_mark : "false"%>
+  cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+  services:
+    mongodb:
+      version: "1.8"
+      token: <%= properties.mongodb_gateway.token %>
+    redis:
+      version: "2.2"
+      token: <%= properties.redis_gateway.token %>
+    mysql:
+      version: "5.1"
+      token: <%= properties.mysql_gateway.token %>
+    postgresql:
+      version: "9.0"
+      token: <%= properties.postgresql_gateway.token %>
+root: <%= properties.service_lifecycle && properties.service_lifecycle.mount_point ? properties.service_lifecycle.mount_point : "/var/vcap/services_snapshot" %>
+wakeup_interval: <%= properties.service_snapshot_manager ? properties.service_snapshot_manager.cleanup_interval_secs : 43200 %>
+enable: <%= properties.service_snapshot_manager && properties.service_lifecycle && properties.service_lifecycle.nfs_server ? properties.service_snapshot_manager.enable : "false" %>
