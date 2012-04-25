@@ -13,12 +13,4 @@
     <name>hbase.zookeeper.dns.interface</name>
     <value>lo</value>
   </property>
-  <property>
-    <name>hbase.regionserver.dns.interface</name>
-    <value>lo</value>
-  </property>
-  <property>
-    <name>hbase.master.dns.interface</name>
-    <value>lo</value>
-  </property>
 </configuration>
