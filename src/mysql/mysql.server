@@ -59,6 +59,25 @@ defaults=$1
 shift
 other_args="$*"
 
+# HACK HACK HAC - create tmp dir before starting mysqld
+# see also my.cnf.erb
+# [mysqld]
+# tmpdir          = /var/vcap/data/mysql_tmp
+if [ "$mode" = "start" ]; then
+  if test -x /var/vcap/jobs/mysql_node/bin/create_mysql_tmp_dir
+  then
+    /var/vcap/jobs/mysql_node/bin/create_mysql_tmp_dir
+    return_value=$?
+    if [ $return_value -ne 0 ]; then
+      echo "Fail to create tmp directory"
+      exit $return_value
+    fi
+  else
+    exit $return_value
+  fi
+fi
+
+
 # HACK HACK HACK - create database
 # We have not sorted out the lifecycle for the initial creation of state for 
 # components managed by BOSH.
@@ -144,6 +163,7 @@ case "$mode" in
       mkdir -p /var/vcap/sys/log/mysql
       chown vcap /var/vcap/sys/log/mysql
     fi
+
 
     cd $basedir
     pid_file=$server_pid_file
