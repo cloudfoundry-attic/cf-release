@@ -57,16 +57,13 @@ double_check_orphan_interval: <%= properties.mongodb_gateway.double_check_orphan
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 
 <% if lifecycle and lifecycle.resque %>
-api_extensions:
-  - snapshots
-  - serialization
-  - jobs
 resque:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
   password: <%= lifecycle.resque.password %>
   expire: <%= lifecycle.resque.expire %>
 upload_temp_dir: <%= lifecycle.tmp_dir || "/tmp" %>
+download_url_template: "http://<%= lifecycle.download_url %>/serialized/%{service}/%{name}/snapshots/%{snapshot_id}?token=%{token}"
 <% end %>
 
 <% if plan_enabled %>
@@ -77,5 +74,17 @@ plan_management:
       high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
       low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
       allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>
+    <% opts = plan_mgmt.send(pf).configuration.lifecycle %>
+    <% if opts && opts.enable == true %>
+      lifecycle:
+        serialization: <%= opts.serialization || "disable" %>
+      <% if opts.snapshot %>
+        snapshot:
+          quota: <%= opts.snapshot.quota || 0 %>
+      <% end %>
+      <% if opts.serialization || opts.snapshot %>
+        job: enable
+      <% end %>
+    <% end %>
 <% end %>
 <% end %>
