@@ -55,10 +55,6 @@ check_orphan_interval: <%= properties.redis_gateway.check_orphan_interval || -1 
 double_check_orphan_interval: <%= properties.redis_gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 <% if lifecycle and lifecycle.resque %>
-api_extensions:
-  - snapshots
-  - serialization
-  - jobs
 resque:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
@@ -75,5 +71,19 @@ plan_management:
       high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
       low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
       allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>
+    <% opts = plan_mgmt.send(pf).lifecycle %>
+    <% if opts && opts.enable == true %>
+      lifecycle:
+      <% if opts.serialization && opts.serialization == "enable" %>
+        serialization: enable
+      <% end %>
+      <% if opts.snapshot %>
+        snapshot:
+          quota: <%= opts.snapshot.quota || 0 %>
+      <% end %>
+      <% if opts.serialization || opts.snapshot %>
+        job: enable
+      <% end %>
+    <% end %>
 <% end %>
 <% end %>
