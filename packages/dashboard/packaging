@@ -9,7 +9,7 @@ mv apache-tomcat-7.0.25 tomcat
 
 cd tomcat
 rm -rf webapps/*
-cp -a ${BOSH_COMPILE_TARGET}/dashboard/dashboard-1.0-SNAPSHOT-16ed9e6e.war webapps/ROOT.war
+cp -a ${BOSH_COMPILE_TARGET}/dashboard/dashboard-1.0-SNAPSHOT-ea587daf.war webapps/ROOT.war
 
 cd ${BOSH_INSTALL_TARGET}
 cp -a ${BOSH_COMPILE_TARGET}/tools/router_registrar router_registrar
