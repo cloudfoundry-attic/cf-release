@@ -8,6 +8,14 @@ JOB_DIR=/var/vcap/jobs/postgresql_gateway
 
 PIDFILE=$RUN_DIR/postgresql_gateway.pid
 
+<%
+lifecycle = properties.service_lifecycle
+%>
+
+<% if lifecycle %>
+SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
+<% end %>
+
 source /var/vcap/packages/common/utils.sh
 
 case $1 in
@@ -17,6 +25,7 @@ case $1 in
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
+
     echo $$ > $PIDFILE
 
     PG_ADMIN_USER=<%= properties.postgresql_gateway.admin_user || "pg_admin" %>
@@ -34,6 +43,17 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
+    <% if lifecycle %>
+    if [ ! -d $SNAPSHOT_DIR ]; then
+      mkdir -p $SNAPSHOT_DIR
+    fi
+    <% end %>
+
+    <% if lifecycle and lifecycle.nfs_server %>
+    mount -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR
+    <% end %>
+
+
     exec /var/vcap/packages/postgresql_gateway/bin/services/postgresql_gateway \
          -c $JOB_DIR/config/postgresql_gateway.yml \
          >>$LOG_DIR/postgresql_gateway.stdout.log \
@@ -43,6 +63,10 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
+
+    <% if lifecycle and lifecycle.nfs_server %>
+    umount $SNAPSHOT_DIR
+    <% end %>
 
     ;;
 
