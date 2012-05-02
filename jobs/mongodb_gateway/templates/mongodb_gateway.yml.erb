@@ -2,10 +2,11 @@
 <%
 service = "mongodb"
 acls = properties.mongodb_gateway.acls
-plan_enabled = properties.service_plans
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
+lifecycle = properties.service_lifecycle
 %>
 mbus: <%= nats %>
 index: <%= spec.index %>
@@ -55,17 +56,17 @@ check_orphan_interval: <%= properties.mongodb_gateway.check_orphan_interval || -
 double_check_orphan_interval: <%= properties.mongodb_gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 
-<% if properties.service_snapshot and properties.service_snapshot.resque %>
+<% if lifecycle and lifecycle.resque %>
 api_extensions:
   - snapshots
   - serialization
   - jobs
 resque:
-  host: <%= properties.service_snapshot.resque.host %>
-  port: <%= properties.service_snapshot.resque.port %>
-  password: <%= properties.service_snapshot.resque.password %>
-  expire: <%= properties.service_snapshot.resque.expire %>
-upload_temp_dir: <%= properties.service_snapshot.tmp_dir || "/tmp" %>
+  host: <%= lifecycle.resque.host %>
+  port: <%= lifecycle.resque.port %>
+  password: <%= lifecycle.resque.password %>
+  expire: <%= lifecycle.resque.expire %>
+upload_temp_dir: <%= lifecycle.tmp_dir || "/tmp" %>
 <% end %>
 
 <% if plan_enabled %>
