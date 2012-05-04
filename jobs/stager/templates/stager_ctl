@@ -8,21 +8,6 @@ GEM_CACHE_DIR=/var/vcap/data/stager/package_cache/ruby
 TMP_DIR=/var/vcap/data/stager/tmp
 PIDFILE=$RUN_DIR/stager.pid
 
-<% if properties.env %>
-<% if properties.env.http_proxy %>
-export HTTP_PROXY='<%= properties.env.http_proxy %>'
-export http_proxy='<%= properties.env.http_proxy %>'
-<% end %>
-<% if properties.env.https_proxy %>
-export HTTPS_PROXY='<%= properties.env.https_proxy %>'
-export https_proxy='<%= properties.env.https_proxy %>'
-<% end %>
-<% if properties.env.no_proxy %>
-export NO_PROXY='<%= properties.env.no_proxy %>'
-export no_proxy='<%= properties.env.no_proxy %>'
-<% end %>
-<% end %>
-
 export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH
 export LANG=en_US.UTF-8
