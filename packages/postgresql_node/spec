@@ -6,4 +6,5 @@ dependencies:
 - ruby
 files:
 - core/bin/services/postgresql_node
+- core/bin/services/postgresql_worker
 - services/postgresql/**/*
