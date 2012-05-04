@@ -2,7 +2,7 @@
 <%
 service = "vblob"
 acls = properties.vblob_gateway.acls
-plan_enabled = properties.service_plans
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"

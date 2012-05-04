@@ -1,5 +1,4 @@
 #!/bin/bash
-
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
 PG_ADMIN_USER=<%= properties.postgresql_node.admin_user || "pg_admin" %>
@@ -13,9 +12,11 @@ PIDFILE=$RUN_DIR/postgresql_node.pid
 
 <%
 migration = properties.service_migration
+lifecycle = properties.service_lifecycle
 %>
 
-MIG_DIR=<%= (migration && migration.mount_point) ? migration.mount_point : "/var/vcap/services_migration" %>
+MIG_DIR=<%= migration && migration.mount_point || "/var/vcap/services_migration" %>
+SNAPSHOT_DIR=<%= lifecycle && lifecycle.mount_point || "/var/vcap/services_snapshot" %>
 
 source /var/vcap/packages/common/utils.sh
 
@@ -40,9 +41,12 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    if [ ! -d $MIG_DIR ]; then
-      mkdir -p $MIG_DIR
-    fi
+    mkdir -p $MIG_DIR
+
+    <% if lifecycle %>
+    mkdir -p $SNAPSHOT_DIR
+    mount -o noac -t nfs <%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %> $SNAPSHOT_DIR
+    <% end %>
 
     chmod +x $JOB_DIR/config/postgresql_backup
     $JOB_DIR/config/postgresql_backup start
@@ -59,6 +63,9 @@ case $1 in
 
     chmod +x $JOB_DIR/config/postgresql_backup
     $JOB_DIR/config/postgresql_backup stop
+    <% if lifecycle %>
+    umount -l $SNAPSHOT_DIR
+    <% end %>
 
     ;;
 
