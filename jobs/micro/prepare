@@ -13,8 +13,6 @@ def job_dir(job)
 end
 
 JOBS = YAML.load_file("monit.yml")
-# HACK: since rabbitmq_srs doesn't follow the convention we can't just load it :(
-JOBS['rabbitmq'] = %w[rabbitmq_srs_node rabbitmq_srs_gateway rabbitmq_srs_service]
 
 spec = {
   "name" => "micro",
