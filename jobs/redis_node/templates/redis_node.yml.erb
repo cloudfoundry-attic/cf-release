@@ -4,6 +4,7 @@ service = "redis"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+node = properties.redis_node
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -27,12 +28,13 @@ port_range:
   first: 5000
   last: 25000
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
-<% if properties.redis_node.ip_route %>
-ip_route: <%= properties.redis_node.ip_route %>
+<% if node.ip_route %>
+ip_route: <%= node.ip_route %>
 <% end %>
-z_interval: <%= properties.redis_node.z_interval || 30 %>
+z_interval: <%= node.z_interval || 30 %>
 redis_log_dir: /var/vcap/sys/service-log/redis
-command_rename_prefix: <%= properties.redis_node.command_rename_prefix || "magic-protect-command-prefix" %>
+command_rename_prefix: <%= node.command_rename_prefix || "magic-protect-command-prefix" %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
-redis_start_timeout: <%= properties.redis_node.redis_start_timeout || 3 %>
+redis_start_timeout: <%= node.redis_start_timeout || 3 %>
+op_time_limit: <%= node.op_time_limit || 5 %>

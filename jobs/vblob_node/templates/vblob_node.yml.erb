@@ -5,14 +5,15 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 node_id = "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}"
+node = properties.vblob_node
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
 local_db: sqlite3:/var/vcap/store/vblob_node.db
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 index: <%= spec.index %>
-<% if (properties.vblob_node.nfs_server && properties.vblob_node.nfs_server.address && properties.vblob_node.nfs_server.export_dir) %>
-base_dir: <%= properties.vblob_node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/<%= node_id %>
+<% if (node.nfs_server && node.nfs_server.address && node.nfs_server.export_dir) %>
+base_dir: <%= node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/<%= node_id %>
 <% else %>
 base_dir: /var/vcap/store/vblob
 <% end %>
@@ -27,15 +28,16 @@ node_id: <%= node_id %>
 vblobd_log_dir: /var/vcap/sys/service-log/vblob
 nodejs_path: /var/vcap/packages/node/bin/node
 vblobd_path: /var/vcap/packages/vblob
-vblobd_auth: <%= properties.vblob_node.vblobd_auth || "disabled" %>
+vblobd_auth: <%= node.vblobd_auth || "disabled" %>
 vblobd_quota: <%= plan_enabled && plan_conf.vblobd_quota || 2147483647 %>
 vblobd_obj_limit: <%= plan_enabled && plan_conf.vblobd_obj_limit || 32768 %>
 port_range:
   first: 45001
   last: 65000
-<% if properties.vblob_node.ip_route %>
-ip_route: <%= properties.vblob_node.ip_route %>
+<% if node.ip_route %>
+ip_route: <%= node.ip_route %>
 <% end %>
-z_interval: <%= properties.vblob_node.z_interval || 30 %>
+z_interval: <%= node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
+op_time_limit: <%= node.op_time_limit || 5 %>
