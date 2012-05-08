@@ -32,7 +32,8 @@ varz:
 <% if properties.uaa.cc %>
 jwt:
   token:
-    key: <%= properties.uaa.cc.token_secret %>
+    signing-key: <%= properties.uaa.cc.token_secret %>
+    verification-key: <%= properties.uaa.cc.token_secret %>
 <% end %>
 
 <% if properties.uaa.batch %>
