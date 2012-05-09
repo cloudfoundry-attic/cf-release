@@ -14,6 +14,11 @@ external_port: 9022 #public CC port
 max_droplet_size: <%= properties.cc.max_droplet_size %>
 <% end %>
 
+bulk_api:
+  auth:
+    user: bulk_api
+    password: <%= properties.cc.password %>
+
 nginx:
   use_nginx: <%= properties.cc.use_nginx %>   #nginx proxy in front of CC?
   instance_socket: /var/vcap/sys/run/cloud_controller/cloud_controller.sock
