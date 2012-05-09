@@ -1,0 +1,10 @@
+---
+name: health_manager_shadow
+templates:
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  health_manager_shadow.yml.erb: config/health_manager_shadow.yml
+  health_manager_shadow_ctl: bin/health_manager_shadow_ctl
+packages:
+  - common
+  - ruby
+  - syslog_aggregator

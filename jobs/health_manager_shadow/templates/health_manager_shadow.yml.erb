@@ -1,0 +1,23 @@
+---
+local_route: <%= spec.networks.send(properties.networks.apps).ip %>
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+logging:
+  file: /var/vcap/sys/log/health_manager/health_manager_shadow.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.health_manager_shadow
+  <% end %>
+  level: info
+pid: /var/vcap/sys/run/health_manager/health_manager_shadow.pid
+intervals:
+  <% intervals = properties.health_manager && properties.health_manager.intervals || OpenStruct.new %>
+  database_scan:         <%= intervals.database_scan         ||  60 %>
+  droplet_lost:          <%= intervals.droplet_lost          ||  30 %>
+  droplets_analysis:     <%= intervals.droplets_analysis     ||  20 %>
+  flapping_death:        <%= intervals.flapping_death        ||   1 %>
+  flapping_timeout:      <%= intervals.flapping_timeout      || 500 %>
+  restart_timeout:       <%= intervals.restart_timeout       ||  20 %>
+  min_restart_delay:     <%= intervals.min_restart_delay     ||  60 %>
+  max_restart_delay:     <%= intervals.max_restart_delay     || 480 %>
+  giveup_crash_number:   <%= intervals.giveup_crash_number   ||   4 %>
+  stable_state:          <%= intervals.stable_state          ||  60 %>
+dequeueing_rate: <%= properties.health_manager && properties.health_manager.dequeueing_rate || 50 %>
