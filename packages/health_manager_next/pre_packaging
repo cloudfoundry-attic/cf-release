@@ -1,0 +1,11 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+ruby core/common/bin/transform_git_source health_manager_next health_manager_next/vendor/checkout
+rm -rf health_manager_next/vendor/checkout
+ruby core/common/bin/fetch_gems health_manager_next/Gemfile health_manager_next/Gemfile.lock health_manager_next/vendor/cache
+
+rm -rf core
+rm -rf health_manager_next/spec
