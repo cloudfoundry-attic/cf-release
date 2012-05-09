@@ -1,0 +1,5 @@
+check process health_manager_shadow
+  with pidfile /var/vcap/sys/run/health_manager_shadow/health_manager_shadow.pid
+  start program "/var/vcap/jobs/health_manager_shadow/bin/health_manager_shdow_ctl start"
+  stop program "/var/vcap/jobs/health_manager_shadow/bin/health_manager_shadow_ctl stop"
+  group vcap
