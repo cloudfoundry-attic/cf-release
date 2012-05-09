@@ -1,0 +1,15 @@
+---
+listen_port: 3000
+logging:
+  file: /var/vcap/sys/log/package_cache/package_cache.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.package_cache
+  <% end %>
+  level: debug
+pid_filename: /var/vcap/sys/run/package_cache/package_cache.pid
+purge_cache_on_startup: false
+use_warden: true
+base_dir: /var/vcap/data/package_cache
+runtimes:
+  ruby18: /var/vcap/packages/dea_ruby18/bin/ruby
+  ruby19: /var/vcap/packages/dea_ruby19/bin/ruby

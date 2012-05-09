@@ -3,8 +3,17 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/warden .
+mv warden warden_meta
 
-ruby core/common/bin/fetch_gems /warden/Gemfile ./warden/Gemfile.lock ./warden/vendor/cache
+cp -a warden_meta/warden .
 
+# Warden requires warden-client gem
+gem build warden_meta/warden-client/warden-client.gemspec
+mkdir -p warden/vendor/cache
+cp warden-client*.gem warden/vendor/cache
+
+pkg_utils/vendor.sh warden
+
+rm -rf warden_meta
 rm -rf core
+rm -rf pkg_utils

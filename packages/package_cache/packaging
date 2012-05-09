@@ -5,6 +5,6 @@ cp -a * ${BOSH_INSTALL_TARGET}
 
 (
   set -o errexit
-  cd ${BOSH_INSTALL_TARGET}/warden
+  cd ${BOSH_INSTALL_TARGET}/package_cache
   /var/vcap/packages/ruby/bin/bundle --local install --deployment --without=development test
 )

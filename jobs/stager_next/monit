@@ -1,0 +1,15 @@
+check process warden
+  with pidfile /var/vcap/sys/run/warden/warden.pid
+  start program "/var/vcap/jobs/stager_next/bin/warden_ctl start"
+  stop program "/var/vcap/jobs/stager_next/bin/warden_ctl stop"
+  group vcap
+check process package_cache
+  with pidfile /var/vcap/sys/run/package_cache/package_cache.pid
+  start program "/var/vcap/jobs/stager_next/bin/package_cache_ctl start"
+  stop program "/var/vcap/jobs/stager_next/bin/package_cache_ctl stop"
+  group vcap
+check process stager
+  with pidfile /var/vcap/sys/run/stager/stager.pid
+  start program "/var/vcap/jobs/stager_next/bin/stager_ctl start"
+  stop program "/var/vcap/jobs/stager_next/bin/stager_ctl stop"
+  group vcap

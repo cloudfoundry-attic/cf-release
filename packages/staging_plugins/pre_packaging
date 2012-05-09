@@ -1,0 +1,9 @@
+set -o errexit
+
+cd ${BUILD_DIR}
+
+echo "Copying files from staging"
+
+cp -a core/staging .
+
+rm -rf core

@@ -1,8 +1,8 @@
 ---
-name: warden
+name: package_cache
 dependencies:
 - ruby
 files:
-- warden/**/*
+- core/package_cache/**/*
 - core/common/bin/fetch_gems
 - pkg_utils/*

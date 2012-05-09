@@ -1,0 +1,19 @@
+set -o errexit
+
+echo "FOOBAR"
+
+echo "Copying source to ${BOSH_INSTALL_TARGET}"
+
+cp -a staging/* ${BOSH_INSTALL_TARGET}
+
+(
+  cd ${BOSH_INSTALL_TARGET}
+
+  echo "FILES:"
+  ls
+
+  bundle_cmd=/var/vcap/packages/ruby/bin/bundle
+
+ echo "Installing bundle"
+ $bundle_cmd install --local --deployment --without=development test
+)

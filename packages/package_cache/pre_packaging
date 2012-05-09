@@ -1,0 +1,13 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+cp -a core/package_cache .
+cp -a core/common .
+
+pkg_utils/vendor.sh package_cache
+
+rm -rf common
+rm -rf core
+rm -rf pkg_utils

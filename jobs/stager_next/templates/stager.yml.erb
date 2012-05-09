@@ -1,0 +1,44 @@
+---
+logging:
+  level: debug
+  file: /var/vcap/sys/log/stager/stager.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.stager
+  <% end %>
+pid_filename: /var/vcap/sys/run/stager/stager.pid
+nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+max_staging_duration: <%= properties.stager.max_staging_duration %>
+max_active_tasks: <%= properties.stager.max_active_tasks %>
+queues:
+<% for queue in properties.stager.queues %>
+  - <%= queue %>
+<% end %>
+tmpdir: /var/vcap/data/stager/tmp
+plugin_runner:
+  type: warden
+  config:
+    bind_mounts:
+    - /var/vcap/packages/libpq
+    - /var/vcap/packages/mysqlclient
+    - /var/vcap/packages/sqlite
+    - /var/vcap/packages/insight_agent
+    environment_path: /var/vcap/jobs/stager_next/config/container_environment
+    manifests_dir: /var/vcap/jobs/stager_next/config/manifests
+    plugins:
+      grails: /var/vcap/packages/staging_plugins
+      java_web: /var/vcap/packages/staging_plugins
+      lift: /var/vcap/packages/staging_plugins
+      node: /var/vcap/packages/staging_plugins
+      play: /var/vcap/packages/staging_plugins
+      rack: /var/vcap/packages/staging_plugins
+      rails3: /var/vcap/packages/staging_plugins
+      sinatra: /var/vcap/packages/staging_plugins
+      spring: /var/vcap/packages/staging_plugins
+      standalone: /var/vcap/packages/staging_plugins
+    runtimes:
+      java: /var/vcap/packages/dea_jvm
+      node04: /var/vcap/packages/dea_node04
+      node06: /var/vcap/packages/dea_node06
+      ruby18: /var/vcap/packages/dea_ruby18
+      ruby19: /var/vcap/packages/dea_ruby19
+    socket_path: /tmp/warden.sock

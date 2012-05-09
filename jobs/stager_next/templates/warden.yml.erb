@@ -1,0 +1,13 @@
+---
+logging:
+  file: /var/vcap/sys/log/warden/warden.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.warden
+  <% end %>
+  level: debug
+
+server:
+  container_klass: Warden::Container::Linux
+  unix_domain_permissions: 0777
+  container_rootfs: /var/vcap/data/warden/rootfs
+  container_depot: /var/vcap/data/warden/containers

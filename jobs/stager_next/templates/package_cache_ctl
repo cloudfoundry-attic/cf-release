@@ -1,0 +1,46 @@
+#!/bin/bash
+set -o errexit
+
+RUN_DIR=/var/vcap/sys/run/package_cache
+LOG_DIR=/var/vcap/sys/log/package_cache
+PC_DATA_ROOT=/var/vcap/data/package_cache
+PC_CONF_DIR=/var/vcap/jobs/stager_next/config
+PIDFILE=$RUN_DIR/package_cache.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "PackageCache"
+
+    mkdir -p $PC_DATA_ROOT
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    echo $$ > $PIDFILE
+
+    chown -R vcap:vcap $PC_DATA_ROOT
+    chown -R vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    cd /var/vcap/packages/package_cache/package_cache
+
+    exec chpst -u vcap:vcap bin/package_cache \
+         -c $PC_CONF_DIR/package_cache.yml \
+         >>$LOG_DIR/package_cache.stdout.log \
+         2>>$LOG_DIR/package_cache.stderr.log
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: package_cache_ctl {start|stop}"
+
+    ;;
+
+esac

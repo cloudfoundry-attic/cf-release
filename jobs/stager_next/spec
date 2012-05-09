@@ -1,0 +1,44 @@
+---
+name: stager_next
+templates:
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  package_cache_ctl: bin/package_cache_ctl
+  package_cache.yml.erb: config/package_cache.yml
+  stager_ctl: bin/stager_ctl
+  drain.rb.erb: bin/drain
+  container_environment: config/container_environment
+  stager.yml.erb: config/stager.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  iptables.conf.erb: config/iptables.conf
+  manifests/grails.yml: config/manifests/grails.yml
+  manifests/java_web.yml: config/manifests/java_web.yml
+  manifests/lift.yml: config/manifests/lift.yml
+  manifests/node.yml: config/manifests/node.yml
+  manifests/platform.yml: config/manifests/platform.yml
+  manifests/rails3.yml: config/manifests/rails3.yml
+  manifests/sinatra.yml: config/manifests/sinatra.yml
+  manifests/spring.yml: config/manifests/spring.yml
+  manifests/rack.yml: config/manifests/rack.yml
+  manifests/standalone.yml: config/manifests/standalone.yml
+  manifests/play.yml: config/manifests/play.yml
+  sudoers: config/sudoers
+packages:
+- common
+- stager
+- warden
+- libpq
+- sqlite
+- mysqlclient
+- ruby
+- dea_node04
+- dea_node06
+- dea_ruby18
+- dea_ruby19
+- dea_jvm
+- dea_transition
+- dea_seed
+- syslog_aggregator
+- insight_agent
+- staging_plugins
+- package_cache
