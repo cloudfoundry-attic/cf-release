@@ -17,6 +17,10 @@ service:
   version: "1.0"
   description: 'vBlob service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  cf_plan_id:
+<% plan_mgmt.fields.each do |pf| %>
+    <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
+<% end if plan_mgmt %>
   tags: ['vblob', 'vblob-1.0', 'nosql']
 <% if acls %>
   <% if acls.is_a? String %>
