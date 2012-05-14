@@ -8,16 +8,8 @@ cp -a core/health_manager .
 cp -a core/bin .
 cp -a core/common .
 
-vendor () {
-  [ $# -eq 1 ] || ( echo "wrong number of arguments, expected 1 but got $#" ; exit 2 )
-  what=$1
-  ruby core/common/bin/transform_git_source $what $what/vendor/checkout
-  rm -rf $what/vendor/checkout
-  ruby core/common/bin/fetch_gems $what/Gemfile $what/Gemfile.lock $what/vendor/cache
-}
-
-vendor cloud_controller
-vendor health_manager
+pkg_utils/vendor.sh cloud_controller
+pkg_utils/vendor.sh health_manager
 
 rm -rf core
 rm -rf cloud_controller/spec
