@@ -3,6 +3,5 @@ name: dea
 dependencies:
 - ruby
 files:
-- core/bin/dea
-- core/dea/**/*
-- core/common/**/*
+- dea/**/*
+- pkg_utils/*
