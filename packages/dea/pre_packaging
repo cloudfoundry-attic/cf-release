@@ -3,8 +3,6 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/dea .
-cp -a core/bin .
-cp -a core/common .
+pkg_utils/vendor.sh dea
 
 rm -rf core
