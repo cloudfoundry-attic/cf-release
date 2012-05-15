@@ -1,6 +1,6 @@
 ---
 <% db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% db_role = properties.ccdb.roles.find { |role| role.tag == "ccadmin" } %>
+<% db_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
 
 external_uri: api.<%= properties.domain %>
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>

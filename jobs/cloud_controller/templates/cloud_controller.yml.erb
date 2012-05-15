@@ -1,6 +1,6 @@
 ---
 <% db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% db_role = properties.ccdb.roles.find { |role| role.tag == "ccadmin" } %>
+<% db_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
 
 external_uri: api.<%= properties.domain %>
 description: <%= properties.description || "VMware's Cloud Application Platform" %>
