@@ -4,6 +4,7 @@ service = "vblob"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+node_id = "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -11,7 +12,7 @@ local_db: sqlite3:/var/vcap/store/vblob_node.db
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 index: <%= spec.index %>
 <% if (properties.vblob_node.nfs_server && properties.vblob_node.nfs_server.address && properties.vblob_node.nfs_server.export_dir) %>
-base_dir: <%= properties.vblob_node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/vblob_node_<%= spec.index.to_i + 1 %>
+base_dir: <%= properties.vblob_node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/<%= node_id %>
 <% else %>
 base_dir: /var/vcap/store/vblob
 <% end %>
@@ -22,7 +23,7 @@ logging:
   syslog: vcap.vblob_node
   <% end %>
 pid: /var/vcap/sys/run/vblob_node/vblob_node.pid
-node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+node_id: <%= node_id %>
 vblobd_log_dir: /var/vcap/sys/service-log/vblob
 nodejs_path: /var/vcap/packages/node/bin/node
 vblobd_path: /var/vcap/packages/vblob
