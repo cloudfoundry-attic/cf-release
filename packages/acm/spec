@@ -4,5 +4,9 @@ dependencies:
 - libpq
 - ruby
 files:
-- acm/**/*
+- acm/Gemfile*
+- acm/bin/**/*
+- acm/lib/**/*
+- acm/db/**/*
+- acm/vendor/**/*
 - core/common/**/*
