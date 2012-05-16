@@ -1,0 +1,9 @@
+---
+name: health_manager_next
+dependencies:
+- ruby
+files:
+- health_manager_next/Gemfile*
+- health_manager_next/bin/*
+- health_manager_next/lib/**/*
+- pkg_utils/*
