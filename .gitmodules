@@ -16,3 +16,6 @@
 [submodule "src/dea"]
 	path = src/dea
 	url = git@github.com:cloudfoundry/dea.git
+[submodule "src/health_manager_next"]
+	path = src/health_manager_next
+	url = git://github.com/cloudfoundry/health_manager.git
