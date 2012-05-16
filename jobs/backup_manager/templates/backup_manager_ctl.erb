@@ -14,7 +14,11 @@ JOB_DIR=/var/vcap/jobs/backup_manager
   nfs_server = service_backup && service_backup.nfs_server
 %>
 
+<% if backup_enabled && nfs_server %>
 MOUNT_POINT=<%= (service_backup && service_backup.mount_point) || "/var/vcap/services_backup" %>
+MT_OPTS="-t nfs"
+MT_EXPORT=<%= nfs_server.address %>:<%= nfs_server.export_dir %>
+<% end %>
 
 source /var/vcap/packages/common/utils.sh
 
@@ -33,10 +37,8 @@ case $1 in
     <% end %>
 
     <% if backup_enabled && nfs_server %>
-    if [ ! -d $MOUNT_POINT ]; then
-      mkdir -p $MOUNT_POINT
-    fi
-    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $MOUNT_POINT
+    mkdir -p $MOUNT_POINT
+    check_mount "$MT_OPTS" "$MT_EXPORT" "$MOUNT_POINT"
     <% end %>
 
     exec /var/vcap/packages/backup_manager/bin/services/backup_manager \
