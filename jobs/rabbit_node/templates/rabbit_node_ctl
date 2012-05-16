@@ -26,12 +26,13 @@ case $1 in
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
-    cp $JOB_DIR/config/logrotate /etc/logrotate.d/vcap-services
 
     # create service migration directory
     if [ ! -d $MIG_DIR ]; then
       mkdir -p $MIG_DIR
     fi
+
+    (crontab -l | sed /rabbit_logrotate/d; cat /var/vcap/jobs/rabbit_node/config/rabbit_logrotate.cron) | sed /^$/d | crontab
 
     echo $$ > $PIDFILE
     exec /var/vcap/packages/rabbit_node/bin/services/rabbitmq_node \
@@ -43,6 +44,8 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
+
+    crontab -l | sed /rabbit_logrotate/d | crontab
 
     ;;
 
