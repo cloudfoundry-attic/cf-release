@@ -1,10 +1,11 @@
 # abort script on any command that exit with a non zero value
 set -e
 
+VERSION=5.1.62-rel13.3-435-Linux-x86_64
 # Percona binary Linux build
-tar zxvf mysql/server-5.1.54-rel12.5-188-Linux-x86_64.tar.gz
+tar zxvf mysql/server-$VERSION.tar.gz
 (
-  cd server-5.1.54-rel12.5-188-Linux-x86_64
+  cd server-$VERSION
   for x in bin include lib libexec share; do
     cp -a ${x} ${BOSH_INSTALL_TARGET}
   done
