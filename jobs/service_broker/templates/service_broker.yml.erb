@@ -1,11 +1,15 @@
 ---
 cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+<% if properties.service_broker.external_uri %>
 external_uri: <%= properties.service_broker.external_uri %>
+<% end %>
 <% if properties.service_broker.ip_route %>
 ip_route: <%= properties.service_broker.ip_route %>
 <% end %>
 index: <%= spec.index %>
+<% if properties.service_broker.token %>
 token: <%= properties.service_broker.token %>
+<% end %>
 logging:
   file: /var/vcap/sys/log/service_broker/service_broker.log
   level: debug

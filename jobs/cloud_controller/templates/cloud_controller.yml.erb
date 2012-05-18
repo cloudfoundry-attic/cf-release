@@ -191,9 +191,9 @@ builtin_services:
 <% end %>
 <% end %>
 
-<% if properties.service_broker %>
+<% if properties.cc.service_broker %>
 service_broker:
-  token: <%= properties.service_broker.token %>
+  token: <%= properties.cc.service_broker.token %>
 <% end %>
 
 <% if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle%>
