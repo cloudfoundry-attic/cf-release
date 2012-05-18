@@ -18,26 +18,28 @@ LOG_DIR=/var/vcap/sys/log/vblob_gateway
 PIDFILE=$RUN_DIR/vblob_gateway.pid
 CONF_DIR=/var/vcap/jobs/vblob_gateway/config
 
+source /var/vcap/packages/common/utils.sh
+
 case $1 in
 
   start)
+    pid_guard $PIDFILE "vBlob gateway"
+
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
 
     # Enable log aggregation
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
     <% end %>
 
-    echo $$ > $PIDFILE
     exec /var/vcap/packages/vblob_gateway/services/vblob/bin/vblob_gateway -c /var/vcap/jobs/vblob_gateway/config/vblob_gateway.yml >>$LOG_DIR/vblob_gateway.stdout.log 2>>$LOG_DIR/vblob_gateway.stderr.log
     ;;
 
   stop)
-    PID=$(head -1 $PIDFILE)
-    kill $PID
-    while [ -e /proc/$PID ]; do sleep 0.1; done
-    rm -f $PIDFILE
+    kill_and_wait $PIDFILE
     ;;
 
   *)
