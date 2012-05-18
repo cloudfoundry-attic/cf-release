@@ -15,6 +15,8 @@ PIDFILE=$RUN_DIR/serialization_data_server.pid
 JOB_DIR=/var/vcap/jobs/serialization_data_server
 
 SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
+MT_OPTS="-t nfs"
+MT_EXPORT=<%= nfs_server.address %>:<%= nfs_server.export_dir %>
 SERIAL_TMP_DIR=<%= lifecycle.tmp_dir || "/var/vcap/services_snapshot/tmp_dir" %>
 
 source /var/vcap/packages/common/utils.sh
@@ -34,7 +36,7 @@ case $1 in
     <% end %>
 
     mkdir -p $SNAPSHOT_DIR
-    mount -t nfs <%= nfs_server.address %>:<%= nfs_server.export_dir %> $SNAPSHOT_DIR
+    check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
     mkdir -p $SERIAL_TMP_DIR
 
     exec /var/vcap/packages/serialization_data_server/bin/services/serialization_data_server \
@@ -46,7 +48,6 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
-
     umount $SNAPSHOT_DIR
 
     ;;

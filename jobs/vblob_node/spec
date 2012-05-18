@@ -5,9 +5,11 @@ templates:
   vblob_node_ctl: bin/vblob_node_ctl
   vblob_node.yml.erb: config/vblob_node.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
-  logrotate.erb: config/logrotate
+  logrotate.conf.erb: config/logrotate.conf
+  vblob_logrotate.cron.erb: config/vblob_logrotate.cron
 
 packages:
+  - common
   - vblob_node
   - vblob
   - node

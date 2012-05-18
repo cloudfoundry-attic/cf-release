@@ -45,6 +45,7 @@ case $1 in
 
     services.nfs_free_space
     services.healthy_instances
+    services.online_nodes
     services.plans.high_water
     services.plans.low_water
     services.plans.score
