@@ -1,7 +1,7 @@
 check process mysql
   with pidfile /var/vcap/sys/run/mysqld/mysqld.pid
-  start program "/var/vcap/packages/mysql/libexec/mysql.server start /var/vcap/jobs/mysql_node/config/my.cnf"
-  stop program "/var/vcap/packages/mysql/libexec/mysql.server stop /var/vcap/jobs/mysql_node/config/my.cnf"
+  start program "/var/vcap/jobs/mysql_node/bin/mysql_ctl start"
+  stop program "/var/vcap/jobs/mysql_node/bin/mysql_ctl stop"
   group vcap
 
 check process mysql_node
