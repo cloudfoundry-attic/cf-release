@@ -3,8 +3,12 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/warden .
+# duh, this is what happens when warden and friends live together
+TMPDIR=$(mktemp -d ./tmp.XXX)
+mv warden $TMPDIR
+mv $TMPDIR/warden/warden .
+rm -rf $TMPDIR
 
-ruby core/common/bin/fetch_gems /warden/Gemfile ./warden/Gemfile.lock ./warden/vendor/cache
+pkg_utils/vendor.sh warden
 
-rm -rf core
+rm -rf pkg_utils
