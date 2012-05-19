@@ -3,5 +3,5 @@ name: warden
 dependencies:
 - ruby
 files:
-- core/warden/**/*
-- core/common/bin/fetch_gems
+- warden/warden/**
+- pkg_utils/*

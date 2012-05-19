@@ -19,3 +19,6 @@
 [submodule "src/health_manager_next"]
 	path = src/health_manager_next
 	url = git://github.com/cloudfoundry/health_manager.git
+[submodule "src/warden"]
+	path = src/warden
+	url = git://github.com/d/vcap-warden-and-friends.git
