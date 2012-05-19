@@ -73,7 +73,7 @@ case $1 in
       echo "Found NFS mount"
     else
       echo "Mounting NFS..."
-      mount -o timeo=10,intr -t nfs4 <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/" %> $NFS_SHARE
+      mount -o timeo=10,intr,lookupcache=positive -t nfs4 <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/" %> $NFS_SHARE
       if [ $? != 0 ]; then
         echo "Cannot mount NFS, exiting..."
         exit 1
