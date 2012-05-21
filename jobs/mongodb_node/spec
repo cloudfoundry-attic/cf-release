@@ -13,7 +13,8 @@ templates:
   mongodb_backup.erb: config/mongodb_backup
 
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
-  logrotate.erb: config/logrotate
+  logrotate.conf.erb: config/logrotate.conf
+  mongodb_logrotate.cron.erb: config/mongodb_logrotate.cron
 
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml

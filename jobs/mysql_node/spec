@@ -6,8 +6,10 @@ templates:
   mysql_worker_ctl: bin/mysql_worker_ctl
   mysql_migration_util.erb: bin/mysql_migration_util
 
+  mysql_ctl.erb: bin/mysql_ctl
   my.bootstrap.erb: bin/my.bootstrap
   my.shutdown.erb: bin/my.shutdown
+  create_mysql_tmp_dir.erb: bin/create_mysql_tmp_dir
 
   mysql_node.yml.erb: config/mysql_node.yml
   mysql_worker.yml.erb: config/mysql_worker.yml

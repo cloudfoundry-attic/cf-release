@@ -1,15 +1,21 @@
 [submodule "src/services"]
 	path = src/services
-	url = git@github.com:vmware-ac/vcap-services.git
+	url = git@github.com:cloudfoundry/vcap-services.git
 [submodule "src/core"]
 	path = src/core
-	url = git@github.com:vmware-ac/vcap.git
+	url = git@github.com:cloudfoundry/vcap.git
 [submodule "src/tools"]
 	path = src/tools
-	url = git@github.com:vmware-ac/vcap-tools.git
-[submodule "src/core_routerv2"]
-	path = src/core_routerv2
-	url = git@github.com:vmware-ac/vcap.git
+	url = git@github.com:cloudfoundry/vcap-tools.git
 [submodule "src/vblob_src"]
 	path = src/vblob_src
-	url = git@github.com:vmware-ac/vblob.git
+	url = git@github.com:cloudfoundry/vblob.git
+[submodule "src/acm"]
+	path = src/acm
+	url = git@github.com:cloudfoundry/acm.git
+[submodule "src/dea"]
+	path = src/dea
+	url = git@github.com:cloudfoundry/dea.git
+[submodule "src/health_manager_next"]
+	path = src/health_manager_next
+	url = git://github.com/cloudfoundry/health_manager.git

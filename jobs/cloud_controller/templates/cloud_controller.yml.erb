@@ -14,6 +14,11 @@ external_port: 9022 #public CC port
 max_droplet_size: <%= properties.cc.max_droplet_size %>
 <% end %>
 
+bulk_api:
+  auth:
+    user: bulk_api
+    password: <%= properties.cc.password %>
+
 nginx:
   use_nginx: <%= properties.cc.use_nginx %>   #nginx proxy in front of CC?
   instance_socket: /var/vcap/sys/run/cloud_controller/cloud_controller.sock
@@ -88,7 +93,8 @@ uaa:
   url: http://uaa.<%= properties.domain %>
   resource_id: <%= properties.cc.uaa.resource_id %>
   token_secret: <%= properties.uaa.cc.token_secret %>
-  client_secret: <%= properties.cc.uaa.client_secret %>
+  client_secret: <%= properties.uaa.cc.client_secret %>
+  token_creation_email_filter: <%= properties.cc.uaa.token_creation_email_filter %>
 <% else %>
 uaa:
   enabled: false
@@ -96,6 +102,7 @@ uaa:
   resource_id: cloud_controller
   token_secret:
   client_secret:
+  token_creation_email_filter:
 <% end %>
 
 

@@ -2,10 +2,11 @@
 
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+CONF_DIR=/var/vcap/jobs/router/config
+
 RUN_DIR=/var/vcap/sys/run/router
 LOG_DIR=/var/vcap/sys/log/router
 PIDFILE=$RUN_DIR/router.pid
-JOB_DIR=/var/vcap/jobs/router
 
 source /var/vcap/packages/common/utils.sh
 
@@ -45,11 +46,11 @@ case $1 in
     echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
 
     <% if properties.syslog_aggregator %>
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
     <% end %>
 
     exec /var/vcap/packages/router/bin/router \
-         -c $JOB_DIR/config/router.yml \
+         -c /var/vcap/jobs/router/config/router.yml \
          >>$LOG_DIR/router.stdout.log \
          2>>$LOG_DIR/router.stderr.log
 
@@ -62,6 +63,7 @@ case $1 in
 
   *)
     echo "Usage: router_ctl {start|stop}"
+
     ;;
 
 esac
