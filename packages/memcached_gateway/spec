@@ -1,0 +1,8 @@
+---
+name: memcached_gateway
+dependencies:
+- ruby
+- sqlite
+files:
+- core/bin/services/memcached_gateway
+- services/memcached/**/*
