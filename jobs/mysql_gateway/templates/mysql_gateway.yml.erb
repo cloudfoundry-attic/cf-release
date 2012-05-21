@@ -19,6 +19,7 @@ service:
   description: 'MySQL database service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
   tags: ['mysql', 'mysql-5.1', 'relational']
+  timeout: <%= properties.mysql_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
@@ -50,7 +51,7 @@ logging:
   <% end %>
 
 
-node_timeout: 10
+node_timeout: <%= properties.mysql_gateway.node_timeout || 8 %>
 
 pid: /var/vcap/sys/run/mysql_gateway/mysql_gateway.pid
 z_interval: <%= properties.mysql_gateway.z_interval || 30 %>
