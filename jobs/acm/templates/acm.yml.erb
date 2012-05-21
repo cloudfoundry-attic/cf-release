@@ -1,4 +1,7 @@
 ---
+<% db = properties.acmdb.databases.find { |db| db.tag == "acm" } %>
+<% role = properties.acmdb.roles.find { |role| role.tag == "admin" } %>
+
 pid: /var/vcap/sys/run/acm/acm.pid
 name: ACM
 port: 9090
@@ -8,7 +11,7 @@ logging:
   file: /var/vcap/sys/log/acm/acm.log
   syslog: vcap.acm
 db:
-  database: postgres://<%= properties.acm.db.user %>:<%= properties.acm.db.password %>@<%= properties.acm.db.address %>:<%= properties.acm.db.port %>/<%= properties.acm.db.dbname %>
+  database: postgres://<%= role.name %>:<%= role.password %>@<%= properties.acmdb.address %>:<%= properties.acmdb.port %>/<%= db.name %>
   max_connections: 25
   pool_timeout: 2000
 basic_auth:
