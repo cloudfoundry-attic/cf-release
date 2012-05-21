@@ -8,5 +8,9 @@ cp -a core/health_manager .
 cp -a core/bin .
 cp -a core/common .
 
+pkg_utils/vendor.sh cloud_controller
+pkg_utils/vendor.sh health_manager
+
 rm -rf core
 rm -rf cloud_controller/spec
+rm -rf pkg_utils

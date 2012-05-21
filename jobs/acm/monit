@@ -1,0 +1,5 @@
+check process acm
+  with pidfile /var/vcap/sys/run/acm/acm.pid
+  start program "/var/vcap/jobs/acm/bin/acm_ctl start"
+  stop program "/var/vcap/jobs/acm/bin/acm_ctl stop"
+  group vcap

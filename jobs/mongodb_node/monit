@@ -10,6 +10,7 @@ check process mongodb_node
   stop program "/var/vcap/jobs/mongodb_node/bin/mongodb_node_ctl stop"
   group vcap
   depends on warden
+
 <%
 service = "mongodb"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
