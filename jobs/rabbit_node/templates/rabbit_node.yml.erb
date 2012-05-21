@@ -38,4 +38,4 @@ rabbitmq_server: /var/vcap/packages/rabbitmq/sbin/rabbitmq-server
 rabbitmq_log_dir: /var/vcap/sys/service-log/rabbit
 rabbitmq_start_timeout: <%= node.rabbitmq_start_timeout || 5 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
-op_time_limit: <%= node.op_time_limit || 5 %>
+op_time_limit: <%= node.op_time_limit || 8 %>

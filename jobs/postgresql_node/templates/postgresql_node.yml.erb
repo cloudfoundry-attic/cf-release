@@ -40,4 +40,4 @@ migration_nfs: <%= properties.service_migration && properties.service_migration.
 z_interval: <%= node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
-op_time_limit: <%= node.op_time_limit || 5 %>
+op_time_limit: <%= node.op_time_limit || 6 %>
