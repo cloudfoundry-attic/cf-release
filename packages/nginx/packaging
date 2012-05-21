@@ -43,6 +43,8 @@ cd ..
 
 echo "Building lua..."
 (
+  set -e
+
   cd lua-5.1.4
   make linux install INSTALL_TOP=${BOSH_INSTALL_TARGET}/lua
   cd ..
@@ -73,6 +75,8 @@ echo "Building lua..."
 
 echo "Building nginx..."
 (
+  set -e
+
   cd nginx-0.8.54
   export LUA_LIB=${BOSH_INSTALL_TARGET}/lua/lib
   export LUA_INC=${BOSH_INSTALL_TARGET}/lua/include

@@ -17,6 +17,7 @@ templates:
   manifests/spring.yml: config/manifests/spring.yml
   manifests/rack.yml: config/manifests/rack.yml
   manifests/standalone.yml: config/manifests/standalone.yml
+  manifests/play.yml: config/manifests/play.yml
   sudoers: config/sudoers
 packages:
 - common

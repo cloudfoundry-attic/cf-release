@@ -1,0 +1,17 @@
+---
+name: router_next
+
+templates:
+  nginx_ctl:        bin/nginx_ctl
+  router_ctl:       bin/router_ctl
+  router.yml.erb:   config/router.yml
+  nginx.conf.erb:   config/nginx.conf
+  mime.types:       config/mime.types
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+  - common
+  - router
+  - nginx_next
+  - ruby
+  - syslog_aggregator
