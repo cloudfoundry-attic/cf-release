@@ -1,0 +1,42 @@
+---
+<%
+service = "memcached"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+%>
+
+capacity: <%= plan_enabled && plan_conf.capacity || 16 %>
+plan: <%= plan %>
+local_db: sqlite3:/var/vcap/store/memcached/memcached_node.db
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+index: <%= spec.index %>
+base_dir: /var/vcap/store/memcached/instances
+
+logging:
+  level: debug
+  file: /var/vcap/sys/log/memcached_node/memcached_node.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.memcached_node
+  <% end %>
+
+pid: /var/vcap/sys/run/memcached_node/memcached_node.pid
+node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+
+max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
+memcached_server_path: /var/vcap/packages/memcached/bin/memcached
+port_range:
+  first: 11000
+  last: 25000
+
+z_interval: <%= properties.memcached_node.z_interval || 30 %>
+memcached_log_dir: /var/vcap/sys/service-log/memcached
+
+# TODO: max memory allocated to memcached service = capacity * memcached_memory = 16*64 = 1GB
+# Putting this to 1GB for testing, this *MUST* be appropriately changed
+memcached_memory: <%= properties.memcached_memory || 64 %>
+
+max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+memcached_start_timeout: <%= properties.memcached_node.memcached_start_timeout || 3 %>
+
+run_as_user: <%= properties.memcached_node.run_as_user || "" %>
