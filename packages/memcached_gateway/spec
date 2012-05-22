@@ -1,0 +1,7 @@
+---
+name: memcached_gateway
+dependencies:
+- ruby
+- sqlite
+files:
+- services/memcached/**/*
