@@ -172,6 +172,10 @@ builtin_services:
   mongodb:
     token: <%= properties.mongodb_gateway.token %>
 <% end %>
+<% if properties.memcached_gateway %>
+  memcached:
+    token: <%= properties.memcached_gateway.token %>
+<% end %>
 <% if properties.rabbit_gateway %>
   rabbitmq:
     token: <%= properties.rabbit_gateway.token %>
