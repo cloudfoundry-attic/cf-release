@@ -222,3 +222,13 @@ runtimes:
       - suspend
   erlangR14B02:
     version: ".* 5.8.3"
+<% if properties.cc.sys_apps %>
+sys_apps:
+<% properties.cc.sys_apps.instance_eval("def fields; @table.keys; end")%>
+<% properties.cc.sys_apps.fields.each do |name| %>
+  <%="#{name}:"%>
+  <% properties.cc.sys_apps.send(name.to_sym).each do |package_hash| %>
+    - <%= package_hash %>
+  <%end%>
+<% end %>
+<% end %>
