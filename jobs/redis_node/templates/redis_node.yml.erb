@@ -37,4 +37,4 @@ command_rename_prefix: <%= node.command_rename_prefix || "magic-protect-command-
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 redis_start_timeout: <%= node.redis_start_timeout || 3 %>
-op_time_limit: <%= node.op_time_limit || 5 %>
+op_time_limit: <%= node.op_time_limit || 6 %>

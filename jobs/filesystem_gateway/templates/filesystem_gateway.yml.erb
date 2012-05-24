@@ -14,6 +14,7 @@ service:
   description: 'Persistent filesystem service'
   plans: ['free']
   tags: ['filesystem', 'filesystem-1.0', 'Persistent filesystem service']
+  timeout: <%= properties.filesystem_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
