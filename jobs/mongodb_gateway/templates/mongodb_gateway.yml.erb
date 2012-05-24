@@ -19,6 +19,7 @@ service:
   description: 'MongoDB NoSQL store'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
   tags: ['mongodb', 'mongodb-1.8', 'nosql']
+  timeout: <%= properties.mongodb_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
@@ -50,7 +51,7 @@ logging:
   <% end %>
 
 pid: /var/vcap/sys/run/mongodb_gateway/mongodb_gateway.pid
-node_timeout: 10
+node_timeout: <%= properties.mongodb_gateway.node_timeout || 8 %>
 z_interval: <%= properties.mongodb_gateway.z_interval || 30 %>
 check_orphan_interval: <%= properties.mongodb_gateway.check_orphan_interval || -1 %>
 double_check_orphan_interval: <%= properties.mongodb_gateway.double_check_orphan_interval || 300 %>
