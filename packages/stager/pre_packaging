@@ -3,5 +3,6 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/stager .
-rm -rf core
+pkg_utils/vendor.sh stager
+
+rm -rf pkg_utils
