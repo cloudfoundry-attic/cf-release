@@ -48,6 +48,7 @@ logging:
 
 pid: /var/vcap/sys/run/filesystem_gateway/filesystem_gateway.pid
 
+fs_type: nfs
 backends:
 <% for backend in properties.filesystem_gateway.backends %>
   - host: <%= backend.host %>
