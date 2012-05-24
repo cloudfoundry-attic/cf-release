@@ -19,7 +19,8 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
   mongodb.conf.erb: config/mongodb.conf
-  mongodb.init.conf: config/mongodb.init.conf
+  mongod_startup.sh: bin/mongod_startup.sh
+  services.conf: config/services.conf
 
 packages:
   - common
