@@ -2,6 +2,7 @@
 
 RUN_DIR=/var/vcap/sys/run/warden
 LOG_DIR=/var/vcap/sys/log/warden
+JOB_DIR=/var/vcap/jobs/mongodb_node
 WARDEN_CONF_DIR=/var/vcap/jobs/mongodb_node/config
 FIRSTRUN_PATH=$RUN_DIR/firstrun
 QUOTA_FS=/var/vcap/data
@@ -9,8 +10,7 @@ PIDFILE=$RUN_DIR/warden.pid
 WARDEN_SOURCE_DIR=/var/vcap/packages/mongodb_node/warden
 WARDEN_TARGET_DIR=/var/vcap/store/warden
 MONGODB_BIN_DIR=/var/vcap/packages/mongodb/bin
-MONGODB_CONF_DIR=/var/vcap/jobs/mongodb_node/config
-MONGODB_WARDEN_DIR=/var/vcap/store/warden/root/linux/base/rootfs/
+WARDEN_ROOT_DIR=/var/vcap/packages/mongodb_node/warden/root/linux/base/rootfs/
 
 source /var/vcap/packages/common/utils.sh
 
@@ -27,15 +27,17 @@ case $1 in
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+    # Copy mongodb binaries and configuration files to warden base file system
+    cp -f $MONGODB_BIN_DIR/* $WARDEN_ROOT_DIR/usr/bin/
+    cp -f $JOB_DIR/config/mongodb.conf $WARDEN_ROOT_DIR/etc/mongodb.conf
+    chmod 0644 $WARDEN_ROOT_DIR/etc/mongodb.conf
+    cp -f $JOB_DIR/bin/mongod_startup.sh $WARDEN_ROOT_DIR/usr/bin
+    chmod 0755 $WARDEN_ROOT_DIR/usr/bin/mongod_startup.sh
+    cp -f $JOB_DIR/config/services.conf $WARDEN_ROOT_DIR/etc/init/services.conf
+    chmod 0644 $WARDEN_ROOT_DIR/etc/init/services.conf
     # Copy warden base filysystem to data store
     mkdir -p $WARDEN_TARGET_DIR
     cp -af $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
-    # Copy mongodb binaries and configuration files to warden base file system
-    cp -f $MONGODB_BIN_DIR/* $MONGODB_WARDEN_DIR/usr/bin/
-    cp -f $MONGODB_CONF_DIR/mongodb.init.conf $MONGODB_WARDEN_DIR/etc/init/mongodb.conf
-    cp -f $MONGODB_CONF_DIR/mongodb.conf $MONGODB_WARDEN_DIR/etc/mongodb.conf
-    chmod 0644 $MONGODB_WARDEN_DIR/etc/init/mongodb.conf
-    chmod 0644 $MONGODB_WARDEN_DIR/etc/mongodb.conf
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
