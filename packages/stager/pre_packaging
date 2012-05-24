@@ -4,4 +4,8 @@ set -e
 cd ${BUILD_DIR}
 
 cp -a core/stager .
+
+pkg_utils/vendor.sh stager
+
 rm -rf core
+rm -rf pkg_utils
