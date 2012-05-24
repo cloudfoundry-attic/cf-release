@@ -1,0 +1,7 @@
+---
+name: memcached_node
+dependencies:
+- sqlite
+- ruby
+files:
+- services/memcached/**/*
