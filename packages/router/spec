@@ -3,6 +3,6 @@ name: router
 dependencies:
 - ruby
 files:
-- core/bin/router
-- core/router/**/*
-- core/common/**/*
+- router/{Gemfile,Gemfile.lock}
+- router/{bin,ext,lib}/**/*
+- pkg_utils/*

@@ -3,8 +3,6 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/router .
-cp -a core/bin .
-cp -a core/common .
+pkg_utils/vendor.sh router
 
-rm -rf core
+rm -rf pkg_utils
