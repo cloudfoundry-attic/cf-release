@@ -2,6 +2,7 @@
 
 RUN_DIR=/var/vcap/sys/run/warden
 LOG_DIR=/var/vcap/sys/log/warden
+JOB_DIR=/var/vcap/jobs/redis_node
 WARDEN_CONF_DIR=/var/vcap/jobs/redis_node/config
 FIRSTRUN_PATH=$RUN_DIR/firstrun
 QUOTA_FS=/var/vcap/data
@@ -10,7 +11,7 @@ WARDEN_SOURCE_DIR=/var/vcap/packages/redis_node/warden
 WARDEN_TARGET_DIR=/var/vcap/store/warden
 REDIS_BIN_DIR=/var/vcap/packages/redis/bin
 REDIS_CONF_DIR=/var/vcap/jobs/redis_node/config
-REDIS_WARDEN_DIR=/var/vcap/store/warden/root/linux/base/rootfs/
+WARDEN_ROOT_DIR=/var/vcap/packages/redis_node/warden/root/linux/base/rootfs/
 
 source /var/vcap/packages/common/utils.sh
 
@@ -27,13 +28,15 @@ case $1 in
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+    # Copy redis binaries and configuration files to warden base file system
+    cp -f $REDIS_BIN_DIR/* $WARDEN_ROOT_DIR/usr/bin/
+    cp -f $JOB_DIR/bin/redis_startup.sh $WARDEN_ROOT_DIR/usr/bin
+    chmod 755 $WARDEN_ROOT_DIR/usr/bin/redis_startup.sh
+    cp -f $JOB_DIR/config/services.conf $WARDEN_ROOT_DIR/etc/init/services.conf
+    chmod 0644 $WARDEN_ROOT_DIR/etc/init/services.conf
     # Copy warden base filysystem to data store
     mkdir -p $WARDEN_TARGET_DIR
     cp -af $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
-    # Copy redis binaries and configuration files to warden base file system
-    cp -f $REDIS_BIN_DIR/* $REDIS_WARDEN_DIR/usr/bin/
-    cp -f $REDIS_CONF_DIR/redis.init.conf $REDIS_WARDEN_DIR/etc/init/redis.conf
-    chmod 0644 $REDIS_WARDEN_DIR/etc/init/redis.conf
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
