@@ -5,3 +5,5 @@ dependencies:
 - ruby
 files:
 - services/vblob/**/*
+- core/warden/**/*
+- core/common/bin/fetch_gems
