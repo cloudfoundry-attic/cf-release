@@ -8,6 +8,11 @@ templates:
   logrotate.conf.erb: config/logrotate.conf
   vblob_logrotate.cron.erb: config/vblob_logrotate.cron
 
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  vblob_startup.sh: bin/vblob_startup.sh
+  services.conf: config/services.conf
+
 packages:
   - common
   - vblob_node
