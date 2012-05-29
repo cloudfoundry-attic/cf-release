@@ -20,6 +20,7 @@ case $1 in
     rm -f /etc/cron.daily/bzip_old_logs
     cp -a $BIN_DIR/gzip_old_logs /etc/cron.daily
     cp -a $BIN_DIR/reap_old_logs /etc/cron.hourly
+    cp -a $BIN_DIR/symlink_logs /etc/cron.hourly
 
     exec /usr/sbin/rsyslogd -f $JOB_DIR/config/rsyslogd.conf -i $PIDFILE -c 4 \
          >>$LOG_DIR/rsyslogd.stdout.log \
