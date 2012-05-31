@@ -2,10 +2,10 @@
 set -e
 
 if [[ `uname -a` =~ "x86_64" ]] ; then
-  name="mongodb-linux-x86_64-1.8.1"
+  name="mongodb-linux-x86_64-1.8.5"
   echo "Using 64-bit version"
 else
-  name="mongodb-linux-i686-1.8.1"
+  name="mongodb-linux-i686-1.8.5"
   echo "Using 32-bit version"
 fi
 
