@@ -16,5 +16,10 @@ $template VcapComponentLogFormat, "%fromhost-ip% -- %msg%\n"
 # The initial '-' tells rsyslogd to not sync the file after each write
 :programname, startswith, "vcap." -?VcapComponentLogFile;VcapComponentLogFormat
 
+<% if properties.syslog_aggregator.relay_host then %>
+# relay to remote host
+:programname, startswith, "vcap." @@<%= properties.syslog_aggregator.relay_host %>:<%= properties.syslog_aggregator.relay_host_port %>
+<% end %>
+
 # Prevent them from reaching anywhere else
 :programname, startswith, "vcap." ~
