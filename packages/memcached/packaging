@@ -3,6 +3,7 @@ set -e
 
 libevent="libevent-2.0.19-stable"
 memcached="memcached-1.4.13"
+libeventtemp=`mktemp -d`
 
 echo "Building libevent..."
 (
@@ -24,7 +25,7 @@ echo "Building libevent..."
 
   cd $libevent
   ./configure \
-    --prefix=${BOSH_INSTALL_TARGET}/libevent
+    --prefix=$libeventtemp
   make
   make install
 )
@@ -51,8 +52,10 @@ echo "Building memcached..."
   cd $memcached
   ./configure \
     --prefix=${BOSH_INSTALL_TARGET} \
-    --with-libevent=${BOSH_INSTALL_TARGET}/libevent \
+    --with-libevent=$libeventtemp \
     LDFLAGS="-static"
   make
   make install
 )
+
+rm -rf $libeventtemp
