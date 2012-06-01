@@ -24,7 +24,7 @@ echo "Building libevent..."
 
   cd $libevent
   ./configure \
-    --prefix=${BOSH_INSTALL_TARGET}/libevent
+    --prefix=${BOSH_COMPILE_TARGET}/libevent
   make
   make install
 )
@@ -51,7 +51,7 @@ echo "Building memcached..."
   cd $memcached
   ./configure \
     --prefix=${BOSH_INSTALL_TARGET} \
-    --with-libevent=${BOSH_INSTALL_TARGET}/libevent \
+    --with-libevent=${BOSH_COMPILE_TARGET}/libevent \
     LDFLAGS="-static"
   make
   make install
