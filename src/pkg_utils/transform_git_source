@@ -2,6 +2,9 @@
 # vim: fileencoding=utf-8
 # vim: ts=2 sw=2 sts=2 et
 
+require 'digest/sha1'
+require 'tmpdir'
+require 'pathname'
 require 'rubygems'
 require 'bundler'
 require 'fileutils'
@@ -18,14 +21,31 @@ def `(cmd)
   result
 end
 
+GIT_CACHE_PATH=Pathname.new(Dir.tmpdir).join('vcap.omni.git').freeze
+
+# Use a ``omni'' repo to store all objects to speed up repeated clones
+def fetch_into_cache(spec)
+  unless GIT_CACHE_PATH.exist?
+    GIT_CACHE_PATH.mkpath
+    Dir.chdir(GIT_CACHE_PATH) { %x(git init --bare) }
+  end
+  uri = spec.source.uri
+  fingerprint = Digest::SHA1.hexdigest(uri)[0...6]
+  refspec = "refs/heads/*:refs/omni/#{fingerprint}/heads/*"
+  refspec_tags = "refs/tags/*:refs/omni/#{fingerprint}/tags/*"
+  Dir.chdir(GIT_CACHE_PATH) do
+    %x(git fetch --quiet --no-tags --force #{uri} "#{refspec}" "#{refspec_tags}")
+  end
+end
+
 def checkout(spec, path)
+  fetch_into_cache(spec)
   unless path.join('.git').exist?
     path.parent.mkpath
     path.rmtree if path.exist?
-    %x(git clone --no-checkout #{spec.source.uri} #{path})
+    %x(git clone --no-checkout #{GIT_CACHE_PATH.to_s} #{path})
   end
   Dir.chdir(path) do
-    %x(git fetch --quiet --tags #{spec.source.uri})
     # This is gross, but why do they keep this private?
     revision = spec.source.send(:revision)
     %x(git reset --hard #{revision})
