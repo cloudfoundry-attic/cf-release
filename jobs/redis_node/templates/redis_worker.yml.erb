@@ -32,5 +32,8 @@ snapshot_quota: <%= plan_enabled && plan_conf.lifecycle && plan_conf.lifecycle.s
 # addtional options
 command_rename_prefix: <%= properties.redis_node.command_rename_prefix || "magic-protect-command-prefix" %>
 gzip_bin: /bin/gzip
+redis_log_dir: /var/vcap/sys/service-log/redis
 redis_server_path: /var/vcap/packages/redis/bin/redis-server
+image_dir: /var/vcap/store/redis_image
+max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
 <% end %>
