@@ -64,6 +64,7 @@ oauth:
       id: cloud_controller
       secret: <%= properties.uaa.cc.client_secret %>
       resource-ids: scim,password,tokens
+      access-token-validity: 604800
     vmc:
       authorized-grant-types: implicit
       scope: read,password
@@ -71,3 +72,4 @@ oauth:
       id: vmc
       resource-ids: cloud_controller,password
       redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc
+      access-token-validity: 604800
