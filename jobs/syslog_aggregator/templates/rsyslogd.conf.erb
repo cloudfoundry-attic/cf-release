@@ -18,7 +18,8 @@ $template VcapComponentLogFormat, "%fromhost-ip% -- %msg%\n"
 
 <% if properties.syslog_aggregator.relay_host then %>
 # relay to remote host
-:programname, startswith, "vcap." @@<%= properties.syslog_aggregator.relay_host %>:<%= properties.syslog_aggregator.relay_host_port %>
+$template VcapForwardFormat,"<%%PRI%>%TIMESTAMP% cf-<%= properties.syslog_aggregator.address %> %syslogtag:1:32% %fromhost-ip%%msg:::sp-if-no-1st-sp%%msg%"
+:programname, startswith, "vcap." @@<%= properties.syslog_aggregator.relay_host %>:<%= properties.syslog_aggregator.relay_host_port %>;VcapForwardFormat
 <% end %>
 
 # Prevent them from reaching anywhere else
