@@ -46,6 +46,11 @@ http {
   }
   <% end %>
 
+  upstream uls {
+    server unix:/var/vcap/sys/run/router/router.sock;
+    keepalive 16;
+  }
+
   server {
     listen       80;
     server_name  "<%= properties.domain %>";
@@ -59,7 +64,7 @@ http {
       # Given there are some exceptions to clear some headers,
       # we just leave them as is.
 
-      proxy_pass http://unix:/var/vcap/sys/run/router/router.sock:/;
+      proxy_pass http://uls/;
     }
 
     location / {
