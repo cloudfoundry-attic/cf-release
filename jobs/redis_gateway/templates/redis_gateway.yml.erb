@@ -18,7 +18,12 @@ service:
   version: "2.2"
   description: 'Redis key-value store service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  cf_plan_id:
+<% plan_mgmt.fields.each do |pf| %>
+    <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
+<% end if plan_mgmt %>
   tags: ['redis', 'redis-2.2', 'key-value', 'nosql']
+  timeout: <%= properties.redis_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
@@ -50,6 +55,7 @@ logging:
   <% end %>
 
 pid: /var/vcap/sys/run/redis_gateway/redis_gateway.pid
+node_timeout: <%= properties.redis_gateway.node_timeout || 8 %>
 z_interval: <%= properties.redis_gateway.z_interval || 30 %>
 check_orphan_interval: <%= properties.redis_gateway.check_orphan_interval || -1 %>
 double_check_orphan_interval: <%= properties.redis_gateway.double_check_orphan_interval || 300 %>
