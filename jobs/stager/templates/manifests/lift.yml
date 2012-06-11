@@ -12,6 +12,16 @@ runtimes:
         # via the staged resources/generate_server_xml script.
         path: /var/vcap/packages/dea_ruby18/bin:$PATH
         java_home: /var/vcap/packages/dea_jvm
+  - java7:
+      description: Java 7
+      version: 1.7
+      executable: /var/vcap/packages/dea_jvm7/bin/java
+      default: false
+      environment:
+        # Ruby needed here to generate Tomcat server.xml
+        # via the staged resources/generate_server_xml script.
+        path: /var/vcap/packages/dea_ruby18/bin:$PATH
+        java_home: /var/vcap/packages/dea_jvm7
 
 app_servers:
   - tomcat:
