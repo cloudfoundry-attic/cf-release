@@ -15,6 +15,7 @@ service:
   description: 'Atmos object store'
   plans: ['free']
   tags: ['atmos', 'atmos-1.4.1', 'object store']
+  timeout: <%= properties.atmos_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
@@ -47,7 +48,6 @@ logging:
   <% end %>
 
 pid: /var/vcap/sys/run/atmos_gateway/atmos_gateway.pid
-node_timeout: 10
 
 <% if properties.atmos %>
 atmos:

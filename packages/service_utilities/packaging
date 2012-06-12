@@ -14,5 +14,8 @@ cp -a * ${BOSH_INSTALL_TARGET}
 
   cd ${BOSH_INSTALL_TARGET}/services/tools/misc
   $bundle_cmd install --local --deployment --without=development test
+
+  cd ${BOSH_INSTALL_TARGET}/services/tools/service_broker_cli
+  $bundle_cmd install --local --deployment --without=development test
 )
 
