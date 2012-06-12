@@ -26,8 +26,23 @@ HTTP_PROXY_JAVA_OPTIONS="$HTTP_PROXY_JAVA_OPTIONS -Dhttps.proxyHost=${proxy_conf
 <% if properties.env.no_proxy %>
 export NO_PROXY='<%= properties.env.no_proxy %>'
 export no_proxy='<%= properties.env.no_proxy %>'
-no_proxy_conf=`echo $NO_PROXY | sed -e 's/,/|/g' -e 's/ //g'`
-HTTP_PROXY_JAVA_OPTIONS="$HTTP_PROXY_JAVA_OPTIONS -Dhttp.nonProxyHosts=$no_proxy_conf "
+if [ x != x"$NO_PROXY" ]; then
+  proxy_conf=`echo $NO_PROXY | sed -e 's/ //g'`
+
+  OIFS=$IFS
+  IFS=','
+  for host in $proxy_conf; do
+      if [[ $host == .* ]]; then
+        host="*"$host
+      fi
+      java_no_proxies=$java_no_proxies"|"$host
+  done
+  IFS=$OIFS
+
+  # Strip the leading '|'
+  java_no_proxies=${java_no_proxies:1}
+  HTTP_PROXY_JAVA_OPTIONS="$HTTP_PROXY_JAVA_OPTIONS -Dhttp.nonProxyHosts=\"$java_no_proxies\" "
+fi
 <% end %>
 <% end %>
 

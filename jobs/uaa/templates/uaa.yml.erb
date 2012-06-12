@@ -1,4 +1,10 @@
 ---
+<% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
+<% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
+
+<% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
+<% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+
 pid: /var/vcap/sys/run/uaa.pid
 # nats message bus uri
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
@@ -7,18 +13,18 @@ name: uaa
 
 database:
   driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://<%= properties.uaa.db.address %>:<%= properties.uaa.db.port %>/<%= properties.uaa.db.dbname %>
-  username: <%= properties.uaa.db.user %>
-  password: <%= properties.uaa.db.password %>
+  url: jdbc:postgresql://<%= properties.uaadb.address %>:<%= properties.uaadb.port %>/<%= uaa_db.name %>
+  username: <%= uaa_role.name %>
+  password: <%= uaa_role.password %>
 
 jvm_args: -Xmx512m
 spring_profiles: postgresql
 
 cloud_controller:
   database:
-    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= properties.ccdb.dbname %>
-    username: <%= properties.ccdb.user %>
-    password: <%= properties.ccdb.password %>
+    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
+    username: <%= cc_role.name %>
+    password: <%= cc_role.password %>
 
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
@@ -43,6 +49,8 @@ batch:
 <% end %>
 
 oauth:
+  authorize:
+    ssl: true
   clients:
     admin:
       authorized-grant-types: client_credentials
@@ -58,6 +66,7 @@ oauth:
       id: cloud_controller
       secret: <%= properties.uaa.cc.client_secret %>
       resource-ids: scim,password,tokens
+      access-token-validity: 604800
     vmc:
       authorized-grant-types: implicit
       scope: read,password
@@ -65,3 +74,4 @@ oauth:
       id: vmc
       resource-ids: cloud_controller,password
       redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc
+      access-token-validity: 604800
