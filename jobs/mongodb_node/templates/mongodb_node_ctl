@@ -13,7 +13,7 @@ JOB_DIR=/var/vcap/jobs/mongodb_node
 MIG_DIR=<%= migration && migration.mount_point || "/var/vcap/services_migration" %>
 <% if lifecycle and lifecycle.nfs_server %>
 SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
-MT_OPTS="-o noac -t nfs"
+MT_OPTS="-t nfs"
 MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %>
 <% end %>
 
@@ -22,6 +22,7 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
+    sysctl -w net.ipv4.ip_local_port_range="45001 65535"
     pid_guard $PIDFILE "MongoDB node"
 
     mkdir -p $RUN_DIR
@@ -60,7 +61,7 @@ case $1 in
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup stop
     <% if lifecycle %>
-    umount -l $SNAPSHOT_DIR
+    umount $SNAPSHOT_DIR
     <% end %>
 
     ;;
