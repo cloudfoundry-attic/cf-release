@@ -2,6 +2,7 @@
 set -e
 
 cd ${BUILD_DIR}
+pkg_utils/vendor.sh services/rabbit
 
 cp -a core/bin .
 
