@@ -17,6 +17,10 @@ service:
   version: "2.4"
   description: 'RabbitMQ message queue'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  cf_plan_id:
+<% plan_mgmt.fields.each do |pf| %>
+    <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
+<% end if plan_mgmt %>
   tags: ['rabbitmq', 'rabbitmq-2.4', 'message-queue', 'amqp']
 <% if acls %>
   <% if acls.is_a? String %>
