@@ -1,0 +1,3 @@
+#!/bin/bash
+# create symlinks to today's logs in /var/vcap/store/log
+for x in /var/vcap/store/log/*/`date +%Y`/`date +%m`/`date +%d`/* ; do if [ -f "$x" ]; then ln -sf "$x" /var/vcap/store/log; fi; done
