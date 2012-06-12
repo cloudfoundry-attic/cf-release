@@ -39,3 +39,5 @@ ip_route: <%= properties.vblob_node.ip_route %>
 z_interval: <%= properties.vblob_node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
+image_dir: /var/vcap/vblob_nfs_mount/vblob_image
+max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
