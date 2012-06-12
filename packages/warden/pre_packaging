@@ -3,8 +3,10 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/warden .
+mv warden warden_meta
+mv warden_meta/warden .
+rm -rf warden_meta
 
-ruby core/common/bin/fetch_gems /warden/Gemfile ./warden/Gemfile.lock ./warden/vendor/cache
+pkg_utils/vendor.sh warden
 
-rm -rf core
+rm -rf pkg_utils

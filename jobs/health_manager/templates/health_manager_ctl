@@ -30,7 +30,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $HM_CONF_DIR
     <% end %>
 
-    exec chpst -u vcap:vcap $HM_PACKAGE_DIR/bin/health_manager \
+    exec chpst -u vcap:vcap $HM_PACKAGE_DIR/health_manager/bin/health_manager \
          -c $HM_JOB_DIR/config/health_manager.yml \
          >>$LOG_DIR/health_manager.stdout.log \
          2>>$LOG_DIR/health_manager.stderr.log
