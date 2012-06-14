@@ -6,3 +6,4 @@ dependencies:
 files:
 - core/bin/services/rabbitmq_gateway
 - services/rabbit/**/*
+- pkg_utils/*
