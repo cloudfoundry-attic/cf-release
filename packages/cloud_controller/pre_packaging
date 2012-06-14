@@ -3,14 +3,13 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/cloud_controller .
-cp -a core/health_manager .
-cp -a core/bin .
-cp -a core/common .
+mv cloud_controller cchm_meta
+mv cchm_meta/cloud_controller .
+mv cchm_meta/health_manager .
 
 pkg_utils/vendor.sh cloud_controller
 pkg_utils/vendor.sh health_manager
 
-rm -rf core
+rm -rf cchm_meta
 rm -rf cloud_controller/spec
 rm -rf pkg_utils

@@ -39,7 +39,7 @@ end
 def to_lock(specs, platforms, dependencies)
   out = ""
 
-  specs.map {|s| s.source}.sort_by { |s| s.class.to_s }.uniq.each do |source|
+  specs.map(&:source).sort_by { |s| s.class.to_s }.uniq.each do |source|
     # Add the source header
     out << source.to_lock
     # Find all specs for this source
@@ -115,13 +115,16 @@ def rewrite_gemfile(gemfile, checkout_base)
   out = ''
   probe = Object.new
   class << probe
-    attr_reader :name, :version, :options, :path
+    attr_reader :name, :version, :options
     def gem(name, *args)
       @name = name
       @options = args.last.is_a?(Hash) ? args.pop : {}
       @version = args
       unless @options.include?(:git)
         raise ArgumentError, ':git option expected, none found'
+      end
+      [:git, :github, :branch, :ref, :tag, :submodules].each do |o|
+        @options.delete(o)
       end
     end
   end
@@ -134,9 +137,10 @@ def rewrite_gemfile(gemfile, checkout_base)
         next
       end
       probe.instance_eval(line)
-      out << "gem #{probe.name.inspect}"
-      out << ", #{probe.version.map(&:inspect).join(', ')}" unless probe.version.empty?
-      out << "\n"
+      gem_args = [probe.name.inspect]
+      gem_args.concat(probe.version.map(&:inspect))
+      gem_args.concat(probe.options.map { |k,v| "#{k.inspect} => #{v.inspect}" })
+      out << "gem #{gem_args.join(', ')}\n"
     else
       out << line
     end

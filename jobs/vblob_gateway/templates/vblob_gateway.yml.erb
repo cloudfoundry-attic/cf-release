@@ -17,7 +17,12 @@ service:
   version: "1.0"
   description: 'vBlob service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  cf_plan_id:
+<% plan_mgmt.fields.each do |pf| %>
+    <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
+<% end if plan_mgmt %>
   tags: ['vblob', 'vblob-1.0', 'nosql']
+  timeout: <%= properties.vblob_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
@@ -49,7 +54,7 @@ logging:
   <% end %>
 
 pid: /var/vcap/sys/run/vblob_gateway/vblob_gateway.pid
-node_timeout: 10
+node_timeout: <%= properties.vblob_gateway.node_timeout || 8 %>
 z_interval: <%= properties.vblob_gateway.z_interval || 30 %>
 check_orphan_interval: <%= properties.vblob_gateway.check_orphan_interval || -1 %>
 double_check_orphan_interval: <%= properties.vblob_gateway.double_check_orphan_interval || 300 %>
