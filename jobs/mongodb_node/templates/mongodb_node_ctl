@@ -22,7 +22,7 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
-    sysctl -w net.ipv4.ip_local_port_range="45001 65535"
+    sysctl -w net.ipv4.ip_local_port_range="45001 61000"
     pid_guard $PIDFILE "MongoDB node"
 
     mkdir -p $RUN_DIR
