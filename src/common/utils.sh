@@ -87,6 +87,7 @@ check_mount() {
   opts=$1
   exports=$2
   mount_point=$3
+
   if grep -qs $mount_point /proc/mounts; then
     echo "Found NFS mount $mount_point"
   else

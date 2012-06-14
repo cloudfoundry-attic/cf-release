@@ -4,6 +4,7 @@ service = "rabbit"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+node = properties.rabbit_node
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -21,10 +22,10 @@ pid: /var/vcap/sys/run/rabbit_node/rabbit_node.pid
 max_memory_factor: <%= plan_enabled && plan_conf.max_memory_factor || 0.5 %>
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
-<% if properties.rabbit_node.ip_route %>
-ip_route: <%= properties.rabbit_node.ip_route %>
+<% if node.ip_route %>
+ip_route: <%= node.ip_route %>
 <% end %>
-z_interval: <%= properties.rabbit_node.z_interval || 30 %>
+z_interval: <%= node.z_interval || 30 %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048577 %>
 port_range:
@@ -35,7 +36,8 @@ admin_port_range:
   last: 30000
 rabbitmq_server: /var/vcap/packages/rabbitmq/sbin/rabbitmq-server
 rabbitmq_log_dir: /var/vcap/sys/service-log/rabbit
-rabbitmq_start_timeout: <%= properties.rabbit_node.rabbitmq_start_timeout || 5 %>
+rabbitmq_start_timeout: <%= node.rabbitmq_start_timeout || 5 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 image_dir: /var/vcap/store/rabbitmq_image
 max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
+op_time_limit: <%= node.op_time_limit || 8 %>

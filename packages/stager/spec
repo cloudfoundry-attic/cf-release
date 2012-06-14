@@ -7,4 +7,6 @@ dependencies:
 - ruby
 - insight_agent
 files:
-- core/stager/**/*
+- stager/{Gemfile,Gemfile.lock}
+- stager/{bin,lib,vendor/cache}/**/*
+- pkg_utils/*

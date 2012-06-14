@@ -4,6 +4,7 @@ service = "mysql"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+node = properties.mysql_node
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -28,15 +29,16 @@ mysql:
   port: 3306
   socket: /var/vcap/sys/run/mysqld/mysqld.sock
   user: root
-  pass: <%= properties.mysql_node.password %>
-connection_pool_size: <%= properties.mysql_node.connection_pool_size || 5 %>
+  pass: <%= node.password %>
+connection_pool_size: <%= node.connection_pool_size || 5 %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 mysqldump_bin: /var/vcap/packages/mysql/bin/mysqldump
 mysql_bin: /var/vcap/packages/mysql/bin/mysql
 gzip_bin: /bin/gzip
-<% if properties.mysql_node.ip_route %>
-ip_route: <%= properties.mysql_node.ip_route %>
+<% if node.ip_route %>
+ip_route: <%= node.ip_route %>
 <% end %>
-z_interval: <%= properties.mysql_node.z_interval || 30 %>
+z_interval: <%= node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
+op_time_limit: <%= node.op_time_limit || 6 %>

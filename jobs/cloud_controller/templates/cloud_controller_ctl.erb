@@ -125,7 +125,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
     <% end %>
 
-    exec chpst -u vcap:vcap $CC_PACKAGE_DIR/bin/cloud_controller \
+    exec chpst -u vcap:vcap $CC_PACKAGE_DIR/cloud_controller/bin/cloud_controller \
          >>$LOG_DIR/cloud_controller.stdout.log \
          2>>$LOG_DIR/cloud_controller.stderr.log
 
