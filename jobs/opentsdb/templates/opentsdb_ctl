@@ -33,7 +33,7 @@ case $1 in
     fi
 
     # Blow away cache directory once every 30 minutes if it's over 400M
-    echo "*/30 * * * * root $BIN_DIR/cleanup_tmpdir $TSDTMP 400" > $CLEANUP_SCRIPT
+    echo "*/10 * * * * root $BIN_DIR/cleanup_tmpdir $TSDTMP 400" > $CLEANUP_SCRIPT
 
     cd /var/vcap/packages/opentsdb/
 
