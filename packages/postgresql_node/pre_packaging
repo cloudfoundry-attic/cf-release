@@ -2,6 +2,7 @@
 set -e
 
 cd ${BUILD_DIR}
+pkg_utils/vendor.sh services/postgresql
 
 cp -a core/bin .
 
