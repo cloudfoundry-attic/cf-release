@@ -3,7 +3,3 @@ set -e
 
 cd ${BUILD_DIR}
 pkg_utils/vendor.sh services/mysql
-
-cp -a core/bin .
-
-rm -rf core

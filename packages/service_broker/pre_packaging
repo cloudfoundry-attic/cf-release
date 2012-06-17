@@ -3,7 +3,3 @@ set -e
 
 cd ${BUILD_DIR}
 pkg_utils/vendor.sh services/service_broker
-
-cp -a core/bin .
-
-rm -rf core

@@ -5,6 +5,5 @@ dependencies:
 - sqlite
 - ruby
 files:
-- core/bin/services/postgresql_gateway
 - services/postgresql/**/*
 - pkg_utils/*
