@@ -3,8 +3,3 @@ set -e
 
 cd ${BUILD_DIR}
 pkg_utils/vendor.sh services/mongodb
-
-cp -a core/bin .
-
-rm -rf core
-

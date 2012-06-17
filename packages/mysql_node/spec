@@ -5,7 +5,5 @@ dependencies:
 - sqlite
 - ruby
 files:
-- core/bin/services/mysql_node
-- core/bin/services/mysql_worker
 - services/mysql/**/*
 - pkg_utils/*
