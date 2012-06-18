@@ -26,10 +26,8 @@ logging:
 pid: /var/vcap/sys/run/vblob_node/vblob_node.pid
 node_id: <%= node_id %>
 vblobd_log_dir: /var/vcap/sys/service-log/vblob
-nodejs_path: /var/vcap/packages/node/bin/node
 vblobd_path: /var/vcap/packages/vblob
 vblobd_auth: <%= node.vblobd_auth || "disabled" %>
-vblobd_quota: <%= plan_enabled && plan_conf.vblobd_quota || 2147483647 %>
 vblobd_obj_limit: <%= plan_enabled && plan_conf.vblobd_obj_limit || 32768 %>
 port_range:
   first: 45001
@@ -40,6 +38,5 @@ ip_route: <%= node.ip_route %>
 z_interval: <%= node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
-image_dir: /var/vcap/vblob_nfs_mount/vblob_image
-max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
+max_db_size: <%= plan_enabled && plan_conf.max_db_size || 2048 %>
 op_time_limit: <%= node.op_time_limit || 6 %>
