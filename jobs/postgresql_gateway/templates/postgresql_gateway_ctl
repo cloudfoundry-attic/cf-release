@@ -51,7 +51,7 @@ case $1 in
     <% end %>
 
 
-    exec /var/vcap/packages/postgresql_gateway/bin/services/postgresql_gateway \
+    exec /var/vcap/packages/postgresql_gateway/services/postgresql/bin/postgresql_gateway \
          -c $JOB_DIR/config/postgresql_gateway.yml \
          >>$LOG_DIR/postgresql_gateway.stdout.log \
          2>>$LOG_DIR/postgresql_gateway.stderr.log

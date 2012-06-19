@@ -39,7 +39,7 @@ case $1 in
     check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
     <% end %>
 
-    exec /var/vcap/packages/mysql_gateway/bin/services/mysql_gateway \
+    exec /var/vcap/packages/mysql_gateway/services/mysql/bin/mysql_gateway \
          -c $JOB_DIR/config/mysql_gateway.yml \
          >>$LOG_DIR/mysql_gateway.stdout.log \
          2>>$LOG_DIR/mysql_gateway.stderr.log
