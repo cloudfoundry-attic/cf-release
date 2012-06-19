@@ -14,6 +14,7 @@ templates:
   mysql_node.yml.erb: config/mysql_node.yml
   mysql_worker.yml.erb: config/mysql_worker.yml
   my.cnf.erb: config/my.cnf
+  mysql_init.erb: config/mysql_init
   mysql_backup.yml.erb: config/mysql_backup.yml
   mysql_backup.cron.erb: config/mysql_backup.cron
   mysql_backup.erb: config/mysql_backup
