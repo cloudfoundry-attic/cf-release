@@ -46,7 +46,7 @@ case $1 in
 
     (crontab -l | sed /mongodb_logrotate/d; cat /var/vcap/jobs/mongodb_node/config/mongodb_logrotate.cron) | sed /^$/d | crontab
 
-    exec /var/vcap/packages/mongodb_node/bin/services/mongodb_node \
+    exec /var/vcap/packages/mongodb_node/services/mongodb/bin/mongodb_node \
          -c $JOB_DIR/config/mongodb_node.yml \
          >>$LOG_DIR/mongodb_node.stdout.log \
          2>>$LOG_DIR/mongodb_node.stderr.log

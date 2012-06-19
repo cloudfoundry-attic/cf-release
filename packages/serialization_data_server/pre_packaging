@@ -3,7 +3,3 @@ set -e
 
 cd ${BUILD_DIR}
 pkg_utils/vendor.sh services/serialization_data_server
-
-cp -a core/bin .
-
-rm -rf core

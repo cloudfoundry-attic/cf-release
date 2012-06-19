@@ -4,6 +4,5 @@ dependencies:
 - sqlite
 - ruby
 files:
-- core/bin/services/redis_gateway
 - services/redis/**/*
 - pkg_utils/*

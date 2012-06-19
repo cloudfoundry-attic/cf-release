@@ -23,7 +23,7 @@ case $1 in
     <% end %>
 
     echo $$ > $PIDFILE
-    exec /var/vcap/packages/rabbit_gateway/bin/services/rabbitmq_gateway \
+    exec /var/vcap/packages/rabbit_gateway/services/rabbit/bin/rabbit_gateway \
         -c $JOB_DIR/config/rabbit_gateway.yml \
         >>$LOG_DIR/rabbit_gateway.stdout.log \
         2>>$LOG_DIR/rabbit_gateway.stderr.log

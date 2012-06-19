@@ -55,7 +55,7 @@ case $1 in
     chmod +x $JOB_DIR/config/postgresql_backup
     $JOB_DIR/config/postgresql_backup start
 
-    exec /var/vcap/packages/postgresql_node/bin/services/postgresql_node \
+    exec /var/vcap/packages/postgresql_node/services/postgresql/bin/postgresql_node \
          -c $JOB_DIR/config/postgresql_node.yml \
          >>$LOG_DIR/postgresql_node.stdout.log \
          2>>$LOG_DIR/postgresql_node.stderr.log
