@@ -1,0 +1,5 @@
+check process echo_gateway
+  with pidfile /var/vcap/sys/run/echo_gateway/echo_gateway.pid
+  start program "/var/vcap/jobs/echo_gateway/bin/echo_gateway_ctl start"
+  stop program "/var/vcap/jobs/echo_gateway/bin/echo_gateway_ctl stop"
+  group vcap

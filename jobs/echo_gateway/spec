@@ -1,0 +1,14 @@
+---
+name: echo_gateway
+
+templates:
+  echo_gateway_ctl: bin/echo_gateway_ctl
+  echo_gateway.yml.erb: config/echo_gateway.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+- common
+- echo_gateway
+- ruby
+- sqlite
+- syslog_aggregator

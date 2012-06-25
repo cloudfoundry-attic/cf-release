@@ -1,0 +1,18 @@
+---
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+index: <%= spec.index %>
+service:
+  name: echo
+  version: "1.0"
+  description: 'Echo Service'
+  plans: ['free']
+  tags: ['echo', 'echo-1.0', 'demo', 'echobased']
+<% if properties.echo_gateway.ip_route %>
+ip_route: <%= properties.echo_gateway.ip_route %>
+<% end %>
+token: <%= properties.echo_gateway.token %>
+logging:
+  level: debug
+pid: /var/vcap/sys/run/echo_gateway/echo_gateway.pid
+node_timeout: 2
