@@ -1,0 +1,17 @@
+---
+name: echo_node
+
+templates:
+  echoserver_ctl: bin/echoserver_ctl
+  echo_node_ctl: bin/echo_node_ctl
+  echo_node.yml.erb: config/echo_node.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+- common
+- dea_jvm
+- echoserver
+- echo_node
+- ruby
+- sqlite
+- syslog_aggregator

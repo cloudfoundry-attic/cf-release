@@ -196,6 +196,10 @@ builtin_services:
   vblob:
     token: <%= properties.vblob_gateway.token %>
 <% end %>
+<% if properties.echo_gateway %>
+  echo:
+    token: <%= properties.echo_gateway.token %>
+<% end %>
 <% if properties.external_service_tokens %>
 <% properties.external_service_tokens.each do |name,token| %>
   <%= name %>:

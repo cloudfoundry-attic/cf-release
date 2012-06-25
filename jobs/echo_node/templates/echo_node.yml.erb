@@ -1,0 +1,16 @@
+---
+capacity: <%= 200 %>
+plan: free
+local_db: sqlite3:/var/vcap/store/echo_node.db
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+index: <%= spec.index %>
+base_dir: /var/vcap/store/echo/
+logging:
+  file: /var/vcap/sys/log/echo_node/echo_node.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.echo_node
+  <% end %>
+pid: /var/vcap/sys/run/echo_node/echo_node.pid
+node_id: <%= "echo_node_#{spec.index.to_i + 1}" %>
+port: <%= properties.echoserver.port %>

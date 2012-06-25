@@ -1,0 +1,43 @@
+#!/bin/bash
+
+export PATH=$PATH:/var/vcap/packages/ruby/bin
+
+RUN_DIR=/var/vcap/sys/run/echo_node
+LOG_DIR=/var/vcap/sys/log/echo_node
+PIDFILE=$RUN_DIR/echo_node.pid
+JOB_DIR=/var/vcap/jobs/echo_node
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Echo node"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    exec /var/vcap/packages/echo_node/services/echo/bin/echo_node \
+         -c $JOB_DIR/config/echo_node.yml \
+         >>$LOG_DIR/echo_node.stdout.log \
+         2>>$LOG_DIR/echo_node.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: echo_node_ctl {start|stop}"
+
+    ;;
+
+esac
