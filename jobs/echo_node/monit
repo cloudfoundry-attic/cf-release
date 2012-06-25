@@ -1,0 +1,12 @@
+check process echoserver
+  with pidfile /var/vcap/sys/run/echoserver/echoserver.pid
+  start program "/var/vcap/jobs/echo_node/bin/echoserver_ctl start"
+  stop program "/var/vcap/jobs/echo_node/bin/echoserver_ctl stop"
+  group vcap
+
+check process echo_node
+  with pidfile /var/vcap/sys/run/echo_node/echo_node.pid
+  start program "/var/vcap/jobs/echo_node/bin/echo_node_ctl start"
+  stop program "/var/vcap/jobs/echo_node/bin/echo_node_ctl stop"
+  depends on echoserver
+  group vcap
