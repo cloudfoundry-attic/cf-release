@@ -1,0 +1,40 @@
+#!/bin/bash -e
+export JAVA_HOME=/var/vcap/packages/dea_jvm
+export PATH=$PATH:/var/vcap/packages/dea_jvm/bin
+
+BIN_DIR=/var/vcap/jobs/echoserver/bin
+RUN_DIR=/var/vcap/sys/run/echoserver
+LOG_DIR=/var/vcap/sys/log/echoserver
+PIDFILE=$RUN_DIR/echoserver.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "EchoServer"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    echo $$ > $PIDFILE
+
+    cd /var/vcap/packages/echoserver/
+    exec java \
+       -jar EchoServer-0.1.0.jar \
+       -port <%= properties.echoserver.port %> \
+       >>$LOG_DIR/echoserver.stdout.log \
+       2>>$LOG_DIR/echoserver.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: echoserver_ctl {start|stop}"
+
+    ;;
+
+esac
