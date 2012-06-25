@@ -25,6 +25,7 @@ maximum-max_heap_table_size = <%= properties.mysql_node.max_heap_table_size %>
 max_heap_table_size         = <%= properties.mysql_node.max_heap_table_size %>
 <% end %>
 
+init-file = /var/vcap/jobs/mysql_node/config/mysql_init
 
 <% if properties.micro %>
 bind-address            = 127.0.0.1

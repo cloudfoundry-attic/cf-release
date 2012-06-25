@@ -28,7 +28,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    exec /var/vcap/packages/filesystem_gateway/bin/services/filesystem_gateway \
+    exec /var/vcap/packages/filesystem_gateway/services/filesystem/bin/filesystem_gateway \
          -c $JOB_DIR/config/filesystem_gateway.yml \
          >>$LOG_DIR/filesystem_gateway.stdout.log \
          2>>$LOG_DIR/filesystem_gateway.stderr.log

@@ -4,5 +4,5 @@ dependencies:
 - ruby
 - sqlite
 files:
-- core/bin/services/filesystem_gateway
 - services/filesystem/**/*
+- pkg_utils/*

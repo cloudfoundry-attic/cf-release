@@ -35,7 +35,7 @@ case $1 in
     (crontab -l | sed /rabbit_logrotate/d; cat /var/vcap/jobs/rabbit_node/config/rabbit_logrotate.cron) | sed /^$/d | crontab
 
     echo $$ > $PIDFILE
-    exec /var/vcap/packages/rabbit_node/bin/services/rabbitmq_node \
+    exec /var/vcap/packages/rabbit_node/services/rabbit/bin/rabbit_node \
         -c $JOB_DIR/config/rabbit_node.yml \
         >>$LOG_DIR/rabbit_node.stdout.log \
         2>>$LOG_DIR/rabbit_node.stderr.log
