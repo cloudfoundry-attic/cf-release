@@ -1,0 +1,7 @@
+---
+name: echo_gateway
+dependencies:
+- sqlite
+- ruby
+files:
+- services/echo/**/*

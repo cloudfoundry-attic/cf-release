@@ -1,0 +1,7 @@
+---
+name: echo_node
+dependencies:
+- sqlite
+- ruby
+files:
+- services/echo/**/*
