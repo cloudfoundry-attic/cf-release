@@ -1,0 +1,11 @@
+check process dea_ng
+  with pidfile /var/vcap/sys/run/dea_ng/dea_ng.pid
+  start program "/var/vcap/jobs/dea_ng/bin/dea_ng_ctl start"
+  stop program "/var/vcap/jobs/dea_ng/bin/dea_ng_ctl stop"
+  group vcap
+
+check process warden
+  with pidfile /var/vcap/sys/run/warden/warden.pid
+  start program "/var/vcap/jobs/dea_ng/bin/warden_ctl start"
+  stop program "/var/vcap/jobs/dea_ng/bin/warden_ctl stop"
+  group vcap

@@ -1,14 +1,16 @@
 ---
-name: dea
+name: dea_ng
 templates:
   dea.yml.erb: config/dea.yml
-  dea_ctl: bin/dea_ctl
+  dea_ng_ctl: bin/dea_ng_ctl
   drain.rb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
-  iptables.conf.erb: config/iptables.conf
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
 packages:
 - common
-- dea
+- dea_ng
+- warden
 - ruby
 - sqlite
 - mysqlclient
@@ -17,7 +19,6 @@ packages:
 - dea_node04
 - dea_node06
 - dea_jvm
-- dea_jvm7
 - dea_transition
 - syslog_aggregator
 - libpq
