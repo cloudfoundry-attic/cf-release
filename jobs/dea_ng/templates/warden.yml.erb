@@ -8,6 +8,7 @@ logging:
   <% end %>
   level: debug
 server:
+  container_depot_path: /var/vcap/data/warden
   container_klass: Warden::Container::Linux
   unix_domain_permissions: 0777
 user:

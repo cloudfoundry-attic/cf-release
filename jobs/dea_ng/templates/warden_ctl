@@ -2,7 +2,7 @@
 
 RUN_DIR=/var/vcap/sys/run/warden
 LOG_DIR=/var/vcap/sys/log/warden
-WARDEN_CONF_DIR=/var/vcap/jobs/warden/config
+WARDEN_CONF_DIR=/var/vcap/jobs/dea_ng/config
 FIRSTRUN_PATH=$RUN_DIR/firstrun
 QUOTA_FS=/var/vcap/data
 PIDFILE=$RUN_DIR/warden.pid
@@ -18,10 +18,15 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
-    #if [ ! -e $FIRSTRUN_PATH ]; then
-    #  /var/vcap/packages/warden/warden/bin/enable_quotas.sh $QUOTA_FS
-    #  touch $FIRSTRUN_PATH
-    #fi
+    if [ ! -e $FIRSTRUN_PATH ]; then
+      /var/vcap/packages/warden/warden/bin/enable_quotas.sh $QUOTA_FS
+      touch $FIRSTRUN_PATH
+    fi
+
+    #disable IPV6 for now because of bad interaction with warden.
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sysctl -w net.ipv6.conf.default.disable_ipv6=1
+    sysctl -w net.ipv6.conf.lo.disable_ipv6=1
 
     cd /var/vcap/packages/warden/warden
 

@@ -1,0 +1,82 @@
+#dea_ng config template
+---
+base_dir: /var/vcap/data/dea
+pid_filename: /var/vcap/sys/run/dea_ng/dea_ng.pid
+nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+local_route: <%= spec.networks.send(properties.networks.apps).ip %>
+file_viewer_port: 12345
+reset_at_startup: true
+
+logging:
+  file: /var/vcap/sys/log/dea/dea.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.dea
+  <% end %>
+  level: debug
+#XXX index: <%= spec.index %>
+
+#where we expect the warden to live
+warden_socket_path: /tmp/warden.sock
+
+#all limits in mega bytes.
+resources:
+  node_limits:
+    max_memory: 8000
+    max_disk:   16000
+    max_instances: 100
+  default_app_quota:
+    mem_quota: 1024
+    disk_quota: 4096
+
+#replace mounting runtimes with just mounting all the packages, this
+#is probably more granular that we ultimately want but it works for now
+#/var/vcap/data directory contains actual packages, /var/vcap/packages is symlinks
+mounts:
+  - /var/vcap/packages,/var/vcap/packages,ro
+  - /var/vcap/data/packages,/var/vcap/data/packages,ro
+
+mount_runtimes: false
+
+# This is where the execution agent determines its available runtimes.
+# version flags are assumed to be '-v' unless noted below.
+
+runtimes:
+  ruby18:
+    executable: /var/vcap/packages/dea_ruby18/bin/ruby
+    version: 1.8.7
+    version_flag: "-e 'puts RUBY_VERSION'"
+    additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 174'"
+    environment:
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+  ruby19:
+    executable: /var/vcap/packages/dea_ruby19/bin/ruby
+    version: 1.9.2
+    version_flag: "-e 'puts RUBY_VERSION'"
+    additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 180'"
+    environment:
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+  node:
+    executable: /var/vcap/packages/dea_node04/bin/node
+    version: 0.4.12
+    version_flag: '-v'
+    environment:
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+  node06:
+    executable: /var/vcap/packages/dea_node06/bin/node
+    version: 0.6.8
+    version_flag: '-v'
+    environment:
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+  java:
+    executable: /var/vcap/packages/dea_jvm/bin/java
+    version: 1.6.0
+    version_flag: '-version'
+    environment:
+      PATH: /var/vcap/packages/ruby/bin:$PATH
+      JAVA_HOME: /var/vcap/packages/dea_jvm
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+    debug_env:
+      run:
+        - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=n"
+      suspend:
+        - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=y"
