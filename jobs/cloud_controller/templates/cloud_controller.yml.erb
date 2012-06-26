@@ -71,10 +71,10 @@ mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= pro
 
 rails_environment: production
 
-<% if properties.cc.new_initial_placement && spec.index.to_i == 0 %>
-new_initial_placement: true
+<% if properties.cc.new_initial_placement%>
+  new_initial_placement: true
 <% else %>
-new_initial_placement: false
+  new_initial_placement: false
 <% end %>
 
 database_environment:
