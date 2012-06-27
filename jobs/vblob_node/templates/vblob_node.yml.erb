@@ -14,6 +14,7 @@ mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= pro
 index: <%= spec.index %>
 <% if (node.nfs_server && node.nfs_server.address && node.nfs_server.export_dir) %>
 base_dir: <%= node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/<%= node_id %>
+supported_versions = properties.vblob_node.supported_versions || ['0.51']
 <% else %>
 base_dir: /var/vcap/store/vblob
 <% end %>
