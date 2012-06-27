@@ -2,11 +2,10 @@
 set -e
 
 cd ${BUILD_DIR}
+pkg_utils/vendor.sh services/rabbit
 
-cp -a core/bin .
+mv warden warden_meta
+mv warden_meta/warden .
+rm -rf warden_meta
 
-cp -a core/warden .
-
-ruby core/common/bin/fetch_gems ./warden/Gemfile ./warden/Gemfile.lock ./warden/vendor/cache
-
-rm -rf core
+pkg_utils/vendor.sh warden
