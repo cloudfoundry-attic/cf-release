@@ -8,7 +8,7 @@ logging:
   <% end %>
   level: info
 pid: /var/vcap/sys/run/health_manager_next/health_manager_next.pid
-
+index: <%= spec.index %>
 bulk_api:
   host: <%= properties.cc.srv_api_uri %>
 
