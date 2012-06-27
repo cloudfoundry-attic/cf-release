@@ -14,16 +14,17 @@ index: <%= spec.index %>
 cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 
 service:
-  name: vblob
-  version: "1.0"
+  name: blob
+  version: "0.51"
   description: 'vBlob service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
   default_plan: <%= gateway.default_plan || 'free' %>
+  supported_versions: ["0.51"]
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
     <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
-  tags: ['vblob', 'vblob-1.0', 'nosql']
+  tags: ['blob', 'blob-0.51', 'nosql']
   timeout: <%= properties.vblob_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
