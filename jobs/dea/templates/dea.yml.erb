@@ -53,6 +53,13 @@ runtimes:
     environment:
       PATH: /var/vcap/packages/imagemagick/bin:$PATH
       LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
+  node08:
+    executable: /var/vcap/packages/dea_node08/bin/node
+    version: 0.8.2
+    version_flag: '-v'
+    environment:
+      PATH: /var/vcap/packages/imagemagick/bin:$PATH
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
   java:
     executable: /var/vcap/packages/dea_jvm/bin/java
     version: 1.6.0
