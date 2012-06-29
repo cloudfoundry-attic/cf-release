@@ -1,0 +1,4 @@
+UPDATE mysql.user SET Password=PASSWORD('<%= properties.mysql_node.password %>') WHERE User='root';
+FLUSH PRIVILEGES;
+
+DROP DATABASE IF EXISTS test;
