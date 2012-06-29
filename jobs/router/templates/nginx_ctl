@@ -16,7 +16,7 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    export LUA_PATH="/var/vcap/packages/router/router/ext/nginx/?.lua"
+    export LUA_PATH="/var/vcap/packages/router/ext/nginx/?.lua"
     export LUA_CPATH="/var/vcap/packages/nginx/lib/?.so"
 
     exec /var/vcap/packages/nginx/sbin/nginx \

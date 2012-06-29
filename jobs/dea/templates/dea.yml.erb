@@ -29,26 +29,26 @@ runtimes:
     version_flag: "-e 'puts RUBY_VERSION'"
     additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 174'"
     environment:
-      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LD_LIBRARY_PATH'
   ruby19:
     executable: /var/vcap/packages/dea_ruby19/bin/ruby
     version: 1.9.2
     version_flag: "-e 'puts RUBY_VERSION'"
     additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 180'"
     environment:
-      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LD_LIBRARY_PATH'
   node:
     executable: /var/vcap/packages/dea_node04/bin/node
     version: 0.4.12
     version_flag: '-v'
     environment:
-      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LD_LIBRARY_PATH'
   node06:
     executable: /var/vcap/packages/dea_node06/bin/node
     version: 0.6.8
     version_flag: '-v'
     environment:
-      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LD_LIBRARY_PATH'
   java:
     executable: /var/vcap/packages/dea_jvm/bin/java
     version: 1.6.0
@@ -56,6 +56,19 @@ runtimes:
     environment:
       PATH: /var/vcap/packages/ruby/bin:$PATH
       JAVA_HOME: /var/vcap/packages/dea_jvm
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LD_LIBRARY_PATH'
+    debug_env:
+      run:
+        - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=n"
+      suspend:
+        - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=y"
+  java7:
+    executable: /var/vcap/packages/dea_jvm7/bin/java
+    version: 1.7.0
+    version_flag: '-version'
+    environment:
+      PATH: /var/vcap/packages/ruby/bin:$PATH
+      JAVA_HOME: /var/vcap/packages/dea_jvm7
       LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
     debug_env:
       run:

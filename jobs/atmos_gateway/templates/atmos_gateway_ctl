@@ -24,7 +24,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    exec /var/vcap/packages/atmos_gateway/bin/services/atmos_gateway \
+    exec /var/vcap/packages/atmos_gateway/services/atmos/bin/atmos_gateway \
          -c $JOB_DIR/config/atmos_gateway.yml \
          >>$LOG_DIR/atmos_gateway.stdout.log \
          2>>$LOG_DIR/atmos_gateway.stderr.log

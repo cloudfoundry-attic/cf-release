@@ -39,7 +39,7 @@ case $1 in
     check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
     mkdir -p $SERIAL_TMP_DIR
 
-    exec /var/vcap/packages/serialization_data_server/bin/services/serialization_data_server \
+    exec /var/vcap/packages/serialization_data_server/services/serialization_data_server/bin/serialization_data_server \
          -c /var/vcap/jobs/serialization_data_server/config/serialization_data_server.yml \
          >>$LOG_DIR/serialization_data_server.stdout.log \
          2>>$LOG_DIR/serialization_data_server.stderr.log
