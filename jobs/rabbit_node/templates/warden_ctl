@@ -5,7 +5,6 @@ LOG_DIR=/var/vcap/sys/log/warden
 JOB_DIR=/var/vcap/jobs/rabbit_node
 PIDFILE=$RUN_DIR/warden.pid
 WARDEN_SOURCE_DIR=/var/vcap/packages/rabbit_node/warden
-WARDEN_TARGET_DIR=/var/vcap/store/warden
 RABBITMQ_DIR=`readlink /var/vcap/packages/rabbitmq`
 ERLANG_DIR=`readlink /var/vcap/packages/erlang`
 WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs
@@ -37,9 +36,6 @@ case $1 in
     chmod 755 $WARDEN_DIR/usr/bin/rabbitmq_startup.sh
     cp -f $JOB_DIR/config/services.conf $WARDEN_DIR/etc/init/services.conf
     chmod 0644 $WARDEN_DIR/etc/init/services.conf
-    # Copy warden base filysystem to data store
-    mkdir -p $WARDEN_TARGET_DIR
-    cp -af $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
 
     cd /var/vcap/packages/rabbit_node/warden
     export PATH=/var/vcap/packages/ruby/bin:$PATH
