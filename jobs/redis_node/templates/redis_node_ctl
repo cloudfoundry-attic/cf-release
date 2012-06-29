@@ -45,7 +45,7 @@ case $1 in
 
     (crontab -l | sed /redis_logrotate/d; cat /var/vcap/jobs/redis_node/config/redis_logrotate.cron) | sed /^$/d | crontab
 
-    exec /var/vcap/packages/redis_node/bin/services/redis_node \
+    exec /var/vcap/packages/redis_node/services/redis/bin/redis_node \
          -c $JOB_DIR/config/redis_node.yml \
          >>$LOG_DIR/redis_node.stdout.log \
          2>>$LOG_DIR/redis_node.stderr.log

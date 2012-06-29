@@ -4,8 +4,5 @@ dependencies:
 - sqlite
 - ruby
 files:
-- core/bin/services/mongodb_node
-- core/bin/services/mongodb_worker
 - services/mongodb/**/*
-- core/warden/**/*
-- core/common/bin/fetch_gems
+- pkg_utils/*

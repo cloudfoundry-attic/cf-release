@@ -6,6 +6,5 @@ dependencies:
 files:
 - services/tools/backup/**/*
 - services/tools/restore/**/*
-- core/bin/services/backup_manager
-- core/bin/services/snapshot_manager
+- pkg_utils/*
 
