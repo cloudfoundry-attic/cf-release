@@ -18,10 +18,10 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
-    if [ ! -e $FIRSTRUN_PATH ]; then
-      /var/vcap/packages/warden/warden/bin/enable_quotas.sh $QUOTA_FS
-      touch $FIRSTRUN_PATH
-    fi
+    #if [ ! -e $FIRSTRUN_PATH ]; then
+    #  /var/vcap/packages/warden/warden/bin/enable_quotas.sh $QUOTA_FS
+    #  touch $FIRSTRUN_PATH
+    #fi
 
     cd /var/vcap/packages/warden/warden
 
