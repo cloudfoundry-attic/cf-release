@@ -14,6 +14,12 @@ runtimes:
       executable: /var/vcap/packages/dea_node06/bin/node
       npm: /var/vcap/packages/dea_node06/bin/npm
       staging: /var/vcap/packages/ruby/bin/ruby stage
+  - node08:
+      version: '0.8.1'
+      description: Node.js
+      executable: /var/vcap/packages/dea_node08/bin/node
+      npm: /var/vcap/packages/dea_node08/bin/npm
+      staging: /var/vcap/packages/ruby/bin/ruby stage
 
 app_servers:
 
