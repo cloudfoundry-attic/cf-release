@@ -5,4 +5,5 @@ dependencies:
 - ruby
 files:
 - services/mongodb/**/*
+- warden/warden/**/*
 - pkg_utils/*
