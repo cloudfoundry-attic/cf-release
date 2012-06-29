@@ -5,4 +5,5 @@ dependencies:
 - ruby
 files:
 - services/rabbit/**/*
+- warden/warden/**/*
 - pkg_utils/*

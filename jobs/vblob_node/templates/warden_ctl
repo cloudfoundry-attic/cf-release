@@ -6,7 +6,6 @@ JOB_DIR=/var/vcap/jobs/vblob_node
 WARDEN_CONF_DIR=/var/vcap/jobs/vblob_node/config
 PIDFILE=$RUN_DIR/warden.pid
 WARDEN_SOURCE_DIR=/var/vcap/packages/vblob_node/warden
-WARDEN_TARGET_DIR=/var/vcap/store/warden
 NODE_BIN_DIR=/var/vcap/packages/node/
 VBLOB_DIR=/var/vcap/packages/vblob/
 WARDEN_ROOT_DIR=/var/vcap/packages/vblob_node/warden/root/linux/base/rootfs/
@@ -34,10 +33,6 @@ case $1 in
     cp -rf $VBLOB_DIR/* $WARDEN_ROOT_DIR/$VBLOB_DIR
     cp -rf $JOB_DIR/config/services.conf $WARDEN_ROOT_DIR/etc/init/services.conf
     chmod 0644 $WARDEN_ROOT_DIR/etc/init/services.conf
-
-    # Copy warden base filysystem to data store
-    mkdir -p $WARDEN_TARGET_DIR
-    cp -af $WARDEN_SOURCE_DIR/* $WARDEN_TARGET_DIR
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
