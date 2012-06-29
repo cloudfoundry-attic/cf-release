@@ -55,14 +55,14 @@ case $1 in
     cp -an /var/vcap/packages/dea_seed/gem_cache/* $GEM_CACHE_DIR
     chown -R vcap:vcap $GEM_CACHE_DIR
 
-    /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/stager/stager/bin/create_secure_users.rb
+    /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/stager/bin/create_secure_users.rb
 
     chown root:root $JOB_DIR/config/sudoers
     chmod 440 $JOB_DIR/config/sudoers
     cp $JOB_DIR/config/sudoers /etc/sudoers
 
     exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby \
-         /var/vcap/packages/stager/stager/bin/stager \
+         /var/vcap/packages/stager/bin/stager \
          -c $JOB_DIR/config/stager.yml \
          >>$LOG_DIR/stager.stdout.log \
          2>>$LOG_DIR/stager.stderr.log

@@ -25,7 +25,7 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    exec /var/vcap/packages/service_broker/bin/services/service_broker \
+    exec /var/vcap/packages/service_broker/services/service_broker/bin/service_broker \
          -c $JOB_DIR/config/service_broker.yml \
          -p $JOB_DIR/config/pre_defined_services.yml \
          >>$LOG_DIR/service_broker.stdout.log \

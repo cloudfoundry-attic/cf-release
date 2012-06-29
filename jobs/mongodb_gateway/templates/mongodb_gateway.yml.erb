@@ -22,7 +22,7 @@ service:
 <% plan_mgmt.fields.each do |pf| %>
     <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
-  tags: ['mongodb', 'mongodb-1.8', 'nosql']
+  tags: ['mongodb', 'mongodb-1.8', 'nosql', 'document']
   timeout: <%= properties.mongodb_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>

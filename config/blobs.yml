@@ -55,14 +55,14 @@ node/node-v0.4.12.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNGYzMDY4%0ANzYwZjY3ZiIsInNpZyI6ImI2clVsYnpCbFllWGhOMjUwbSt4Tmk2S2pVTT0i%0AfQ==%0A
   sha: 1c6e34b90ad6b989658ee85e0d0cb16797b16460
   size: 12421469
-mongodb/mongodb-linux-i686-1.8.1.tgz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNGYzMDY4%0AODI1M2IyMSIsInNpZyI6Ijl2M2FEREpNNnpobTZ0bGV1bUwvMlZKeDlLMD0i%0AfQ==%0A
-  sha: 766ffe93d99c50f8c040268cd45e03657971e923
-  size: 27612901
-mongodb/mongodb-linux-x86_64-1.8.1.tgz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNGYzMDY4%0AOTMzYjdjOSIsInNpZyI6Im5FdHp2akZZZ0lIRW9tOFUzSENyNHJJYXBhQT0i%0AfQ==%0A
-  sha: aa7f025ddea8ff24a1a66b5da3128df57b1c87d8
-  size: 27911404
+mongodb/mongodb-linux-x86_64-1.8.5.tgz:
+  size: 28156593
+  object_id: eyJzaWciOiIzNG9GazhkWFRNZCtZOXVCK0xlMWt0b2VDNVU9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNTFlMTIxMjA0ZTRlODZlZThlMmM5MDRmYzdmMjY3Nzc1ZWIi%0AfQ==%0A
+  sha: 235605f306b66584d2aa00b61d45b4605f87867e
+mongodb/mongodb-linux-i686-1.8.5.tgz:
+  size: 27749757
+  object_id: eyJzaWciOiIzaEZub2dWYi9ad0Y5MVVQSU0rV0hKcUVrZzA9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNTFlMTIxMDA0ZTRlN2Q1MTkwNmNkMDRmYzdmMWY3OGQ4MTAi%0AfQ==%0A
+  sha: f75d2fd7a4e0a7116ea612bb62b710a1ba0fa2b2
 opentsdb/opentsdb.36fe3cc1.tgz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNGYzMDY4%0AYjQxODZjMSIsInNpZyI6IkExUkliUy9lQ1dVV0RydEZvSjlDYTVub3VjND0i%0AfQ==%0A
   sha: 825cb28918aa5e2c48942558e557d88ab2f34c44
@@ -75,6 +75,14 @@ java/jre-1.6.0_24.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIwMDRlNGU4ZWM2ODQwNzcwNGYzMDY4%0AZDQzMzRhNyIsInNpZyI6InRGclltRjJGUURNNDhRS2VaaGZKSkx4Nkt2ST0i%0AfQ==%0A
   sha: 20c6f2cd888b0b01eafdd8f1d6285569ecdca904
   size: 36132629
+java/jre-7u4-linux-i586.tar.gz:
+  object_id: eyJzaWciOiJhZTAzTkVsbUZwRjZpUDVTcmdDS1FFaXFJanM9Iiwib2lkIjoi%0ANGU0ZTc4YmNhMzFlMTIyMDA0ZTRlOGVjNjQ2ZTIxMDRmZDU2NDVmZWMxNDQi%0AfQ==%0A
+  sha: b8eee3f910083f5b7f490df75dcae9544da1f964
+  size: 34239229
+java/jre-7u4-linux-x64.tar.gz:
+  object_id: eyJzaWciOiJ4a3ltQW1ncitIa0hRUkdlUi9jeGpoSEEraFU9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNDFlMTIxMjA0ZTRlODZlZTUzOTIxMDRmZDU0MjY2MTZiODEi%0AfQ==%0A
+  sha: 1108d1744baa73bf6caa2adf965d0f489ea1ef60
+  size: 32771159
 hbase/native-lib.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNGYzMDY4%0AZTQ5ODhjOCIsInNpZyI6IkFlK1c2bGlOVFVqSGk2alB0Q3IzUlBOR3pvdz0i%0AfQ==%0A
   sha: 8d35c05ce07f0af4a19926fb1497ba101b4116ba
@@ -119,14 +127,6 @@ openjdk/openjdk6-jre-x86_64.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEwMDRlNGU3ZDUxMWY4MjEwNGYzMDY5%0ANTA2OTNlZCIsInNpZyI6IkFRdFExOFZYU3RkSVBiL1o3bktOZ3MweHA0WT0i%0AfQ==%0A
   sha: 367c1e336535b8dd65e08523144180a409e450e6
   size: 28330869
-rabbitmq/rabbitmq-server-generic-unix-2.4.1.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIwMDRlNGU4ZWM2NDg0MzEwNGYzMDY5%0ANjJhZDRmNyIsInNpZyI6InFIUm1NSDJwNllLQStmNGtOeXlOS05IM1VNMD0i%0AfQ==%0A
-  sha: 9e22a652e7e61fa2e3f3f29814bc6b261b6484da
-  size: 1020862
-rabbitmq/rabbitmq-server-generic-unix-2.4.0.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEwMDRlNGU3ZDUxMWY1NTMwNGYzMDY5%0ANjg5YzQxNSIsInNpZyI6Ik9EMjdNSVNmaDdvc01zSUNZZXdGY1g4eGFGQT0i%0AfQ==%0A
-  sha: fb29a454cee4b24904ee70b57166b99d46bda950
-  size: 1008334
 dea_transition/gems/rspec-mocks-2.5.0.gem:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIwMDRlNGU4ZWM2YjQ0YjYwNGYzMDY5%0ANmUyOWViNiIsInNpZyI6Im9YMmJldXpTbUhIU2ZpUnZqMEFVNzZGbXdSZz0i%0AfQ==%0A
   sha: 7de6785760c370baeeb1c4f828682fb68c66f86a
@@ -495,10 +495,6 @@ uaa/apache-tomcat-7.0.27.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjIwMDRlNGU4ZWM2NWY2N2YwNGZhOGJi%0AM2Q1MTIxNSIsInNpZyI6InRlTmMrU0pGTkprbThORi9uS2p0ejdYS1RCMD0i%0AfQ==%0A
   sha: 4aeaab6f098d82cb222434e48571fb1f6fc9736d
   size: 7645670
-uaa/cloudfoundry-identity-uaa-1.0.0.p6.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEyMDRlNGU4NmVlNTM5MjEwNGZiNjli%0AYTdkYWMxNyIsInNpZyI6IkpUbHZWWVpYMW14dE9aZDBjVGZoU0dwVDZBbz0i%0AfQ==%0A
-  sha: ff87daba3401ce797dc203e5ec675a5572437850
-  size: 17874116
 memcached/libevent-2.0.19-stable.tar.gz:
   object_id: eyJzaWciOiJIaWtwTHBwS3QyMjZQUDdycHJuTlFYQWlFRDA9Iiwib2lkIjoi%0ANGU0ZTc4YmNhMTFlMTIyMDA0ZTRlOGVjNjQ4NDMxMDRmYjZkNjI0M2ViZmMi%0AfQ==%0A
   sha: 28c109190345ce5469add8cf3f45c5dd57fe2a85
@@ -515,3 +511,15 @@ mysql/server-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNGZiNjhi%0AMjg5OGRkMCIsInNpZyI6Ing0MEVaWXVra2tXZUo4T2NKeHF3ZjZtT25MTT0i%0AfQ==%0A
   sha: 2bfd575545fe78729c56bb832aa69d8d9fc8630d
   size: 34179263
+ruby/rubygems-1.8.24.tgz:
+  object_id: eyJzaWciOiJkZkdFQ2k0aXFua1pESmZvalNKa09tSGtySkU9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNDFlMTIyMjA0ZTRlOTg2M2QwNzYzMDRmYTFjYzI4Nzk3YTki%0AfQ==%0A
+  sha: 30f27047e74f7943117736a0d3e224994fee0905
+  size: 380101
+ruby/bundler-1.1.3.gem:
+  object_id: eyJzaWciOiJuSFZEcUUvU0lrWHpCOGVJZUxhSjZjZHJVTGM9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNjFlMTIyMDA0ZTRlOGVjNmI0NGI2MDRmYTFjYzI2NGFiMjUi%0AfQ==%0A
+  sha: 64e3aa4457e3d921d766e88b65265ff8b941b306
+  size: 204288
+uaa/cloudfoundry-identity-uaa-1.0.2.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNGZlMzY2%0AM2EwMjExOSIsInNpZyI6ImlVK0NkL2F1cThRQlZPeC9zS1V4bXZTNlJ1bz0i%0AfQ==%0A
+  sha: 5130cb6b1276dd2d1f6deebd37bf0f183a63f5a4
+  size: 17887566
