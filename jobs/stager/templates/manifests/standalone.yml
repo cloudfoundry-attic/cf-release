@@ -54,3 +54,10 @@ runtimes:
       staging: /var/vcap/packages/ruby/bin/ruby stage
       environment:
         path: /var/vcap/packages/dea_node06/bin:$PATH
+  - node08:
+      version: '0.8.2'
+      description: Node.js
+      executable: /var/vcap/packages/dea_node08/bin/node
+      staging: /var/vcap/packages/ruby/bin/ruby stage
+      environment:
+        path: /var/vcap/packages/dea_node08/bin:$PATH
