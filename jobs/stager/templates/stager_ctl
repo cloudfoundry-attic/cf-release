@@ -47,6 +47,10 @@ case $1 in
 
     mkdir -p $GEM_CACHE_DIR
 
+    # rmagick (and possibly other libraries) need to be able to invoke Magick-config
+    # but stager resets PATH to a very minimal set of directories
+    ln -s /var/vcap/packages/imagemagick/bin/Magick-config /usr/bin/Magick-config
+
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
@@ -71,6 +75,8 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
+
+    rm -f /usr/bin/Magick-config
 
     ;;
 
