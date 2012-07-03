@@ -23,8 +23,8 @@ export no_proxy='<%= properties.env.no_proxy %>'
 <% end %>
 <% end %>
 
-export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
-export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH
+export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include:/var/vcap/packages/imagemagick/include/ImageMagick:$C_INCLUDE_PATH
+export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LIBRARY_PATH
 export LANG=en_US.UTF-8
 
 source /var/vcap/packages/common/utils.sh
@@ -55,14 +55,14 @@ case $1 in
     cp -an /var/vcap/packages/dea_seed/gem_cache/* $GEM_CACHE_DIR
     chown -R vcap:vcap $GEM_CACHE_DIR
 
-    /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/stager/stager/bin/create_secure_users.rb
+    /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/stager/bin/create_secure_users.rb
 
     chown root:root $JOB_DIR/config/sudoers
     chmod 440 $JOB_DIR/config/sudoers
     cp $JOB_DIR/config/sudoers /etc/sudoers
 
     exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby \
-         /var/vcap/packages/stager/stager/bin/stager \
+         /var/vcap/packages/stager/bin/stager \
          -c $JOB_DIR/config/stager.yml \
          >>$LOG_DIR/stager.stdout.log \
          2>>$LOG_DIR/stager.stderr.log

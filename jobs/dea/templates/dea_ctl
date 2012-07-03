@@ -54,7 +54,7 @@ case $1 in
     <% end %>
 
     exec nice -n -20 \
-         /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/dea/dea/bin/dea \
+         /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/dea/bin/dea \
          -c $JOB_DIR/config/dea.yml \
          >>$LOG_DIR/dea.stdout.log \
          2>>$LOG_DIR/dea.stderr.log

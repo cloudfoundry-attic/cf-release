@@ -47,7 +47,7 @@ case $1 in
     chmod +x $JOB_DIR/config/mysql_backup
     $JOB_DIR/config/mysql_backup start
 
-    exec /var/vcap/packages/mysql_node/bin/services/mysql_node \
+    exec /var/vcap/packages/mysql_node/services/mysql/bin/mysql_node \
          -c $JOB_DIR/config/mysql_node.yml \
          >>$LOG_DIR/mysql_node.stdout.log \
          2>>$LOG_DIR/mysql_node.stderr.log

@@ -40,7 +40,7 @@ case $1 in
     check_mount "$MT_OPTS" "$MT_EXPORT" "$MOUNT_POINT"
     <% end %>
 
-    exec /var/vcap/packages/backup_manager/bin/services/snapshot_manager \
+    exec /var/vcap/packages/backup_manager/services/tools/backup/manager/bin/snapshot_manager \
          -c $JOB_DIR/config/snapshot_manager.yml \
          >>$LOG_DIR/snapshot_manager.stdout.log \
          2>>$LOG_DIR/snapshot_manager.stderr.log

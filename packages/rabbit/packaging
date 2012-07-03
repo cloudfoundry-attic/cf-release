@@ -1,9 +1,0 @@
-# abort script on any command that exit with a non zero value
-set -e
-
-tar zxf rabbitmq/rabbitmq-server-generic-unix-2.4.0.tar.gz
-
-(
-  cd rabbitmq_server-2.4.0
-  cp -a * $BOSH_INSTALL_TARGET
-)

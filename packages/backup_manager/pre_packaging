@@ -2,8 +2,4 @@
 set -e
 
 cd ${BUILD_DIR}
-
-cp -a core/bin .
-
-rm -rf core
-
+pkg_utils/vendor.sh services/tools/backup/manager

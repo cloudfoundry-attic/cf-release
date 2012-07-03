@@ -6,7 +6,7 @@ interval = 5
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
-backup_enabled = plan_enabled && plan_conf.backup && plan_conf.enable
+backup_enabled = plan_enabled && plan_conf.backup && plan_conf.backup.enable
 if backup_enabled
   cron_time = plan_conf.backup.interval || cron_time
   tmp = plan_conf.backup.node_interval
