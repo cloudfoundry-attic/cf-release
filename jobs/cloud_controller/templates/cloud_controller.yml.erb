@@ -211,6 +211,7 @@ service_broker:
 <% if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle%>
 service_lifecycle:
   max_upload_size: <%= properties.cc.service_extension.service_lifecycle.max_upload_size || 1 %>
+  upload_token: <%= properties.cc.service_extension.service_lifecycle.upload_token %>
 <% end %>
 
 runtimes:
