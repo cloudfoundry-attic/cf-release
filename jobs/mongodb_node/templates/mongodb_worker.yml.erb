@@ -34,6 +34,9 @@ index: <%= spec.index %>
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 download_url_template: "http://<%= lifecycle.download_url %>/serialized/%{service}/%{name}/snapshots/%{snapshot_id}?token=%{token}"
 snapshot_quota: <%= plan_enabled && plan_conf.lifecycle && plan_conf.lifecycle.snapshot && plan_conf.lifecycle.snapshot.quota || 0 %>
+# optional download tuning
+serialization:
+  max_download_size_mb: <%= properties.service_lifecycle.serialization_max_download_size || 10 %>
 default_version: <%= "'#{default_version}'"%>
 mongodump_path:
 <% for version in supported_versions %>
