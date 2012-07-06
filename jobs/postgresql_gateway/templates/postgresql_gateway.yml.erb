@@ -20,6 +20,7 @@ service:
   version: "9.0"
   description: 'PostgreSQL database service (vFabric)'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  default_plan: <%= gateway.default_plan || 'free' %>
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
     <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>

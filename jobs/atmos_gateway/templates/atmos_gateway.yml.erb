@@ -16,6 +16,7 @@ service:
   version: "1.4.1"
   description: 'Atmos object store'
   plans: ['free']
+  default_plan: <%= gateway.default_plan || 'free' %>
   tags: ['atmos', 'atmos-1.4.1', 'object store']
   timeout: <%= properties.atmos_gateway.service_timeout || 10 %>
 <% if acls %>
