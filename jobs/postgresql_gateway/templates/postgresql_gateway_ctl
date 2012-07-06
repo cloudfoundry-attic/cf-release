@@ -8,16 +8,6 @@ JOB_DIR=/var/vcap/jobs/postgresql_gateway
 
 PIDFILE=$RUN_DIR/postgresql_gateway.pid
 
-<%
-lifecycle = properties.service_lifecycle
-%>
-
-<% if lifecycle and lifecycle.nfs_server %>
-SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
-MT_OPTS="-t nfs"
-MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_dir %>
-<% end %>
-
 source /var/vcap/packages/common/utils.sh
 
 case $1 in
@@ -45,12 +35,6 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    <% if lifecycle and lifecycle.nfs_server %>
-    mkdir -p $SNAPSHOT_DIR
-    check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
-    <% end %>
-
-
     exec /var/vcap/packages/postgresql_gateway/services/postgresql/bin/postgresql_gateway \
          -c $JOB_DIR/config/postgresql_gateway.yml \
          >>$LOG_DIR/postgresql_gateway.stdout.log \
@@ -60,10 +44,6 @@ case $1 in
 
   stop)
     kill_and_wait $PIDFILE
-
-    <% if lifecycle and lifecycle.nfs_server %>
-    umount $SNAPSHOT_DIR
-    <% end %>
 
     ;;
 

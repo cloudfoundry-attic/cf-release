@@ -208,9 +208,28 @@ service_broker:
   token: <%= properties.service_broker.token %>
 <% end %>
 
-<% if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle%>
+<%
+if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle
+  max_upload_size = properties.cc.service_extension.service_lifecycle.max_upload_size || 1
+  if properties.service_lifecycle
+    if properties.service_lifecycle.serialization_max_download_size
+      max_download_size = properties.service_lifecycle.serialization_max_download_size
+      if max_upload_size.to_i > max_download_size.to_i
+        max_upload_size = max_download_size.to_i
+      end
+    end
+    sds = properties.service_lifecycle.serialization_data_server
+  end
+%>
 service_lifecycle:
-  max_upload_size: <%= properties.cc.service_extension.service_lifecycle.max_upload_size || 1 %>
+  max_upload_size: <%= max_upload_size %>
+  upload_token: <%= properties.cc.service_extension.service_lifecycle.upload_token %>
+  <% if sds %>
+  serialization_data_server:
+    <% sds.each do |server| %>
+  - <%=server%>:8080
+    <% end %>
+  <% end %>
 <% end %>
 
 runtimes:
