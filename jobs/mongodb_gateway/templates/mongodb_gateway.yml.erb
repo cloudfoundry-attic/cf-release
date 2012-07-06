@@ -80,7 +80,6 @@ resque:
   port: <%= lifecycle.resque.port %>
   password: <%= lifecycle.resque.password %>
   expire: <%= lifecycle.resque.expire %>
-upload_temp_dir: <%= lifecycle.tmp_dir || "/tmp" %>
 download_url_template: "http://<%= lifecycle.download_url %>/serialized/%{service}/%{name}/snapshots/%{snapshot_id}?token=%{token}"
 <% end %>
 
