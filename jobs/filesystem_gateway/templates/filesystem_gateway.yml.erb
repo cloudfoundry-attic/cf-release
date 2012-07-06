@@ -1,6 +1,8 @@
 ---
 <%
-acls = properties.filesystem_gateway.acls
+service = "filesystem"
+gateway = eval("properties.#{service}_gateway")
+acls = gateway.acls
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
 %>
 mbus: <%= nats %>
@@ -34,8 +36,8 @@ service:
   <% end %>
 <% end %>
 
-<% if properties.filesystem_gateway.ip_route %>
-ip_route: <%= properties.filesystem_gateway.ip_route %>
+<% if gateway.ip_route %>
+ip_route: <%= gateway.ip_route %>
 <% end %>
 token: <%= properties.filesystem_gateway.token %>
 
@@ -50,7 +52,7 @@ pid: /var/vcap/sys/run/filesystem_gateway/filesystem_gateway.pid
 
 fs_type: nfs
 backends:
-<% for backend in properties.filesystem_gateway.backends %>
+<% for backend in gateway.backends %>
   - host: <%= backend.host %>
     export: <%= backend.export %>
     mount: <%= backend.mount %>
