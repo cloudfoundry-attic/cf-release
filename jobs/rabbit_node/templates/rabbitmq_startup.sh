@@ -1,3 +1,10 @@
+for n in `seq 1 100`; do
+  if [ -f /tmp/vcap_chown.out ]; then
+    break
+  fi
+  sleep 0.1
+done
+
 export ERLANG_HOME=/var/vcap/packages/erlang
 export PATH=/var/vcap/packages/erlang/bin:$PATH
 export HOME=/store/instance
