@@ -5,6 +5,6 @@ blobstore:
   provider: atmos
   options: 
     tag: BOSH
-    url: https://blob.cfblob.com
+    url: http://blob.cfblob.com
     uid: bb6a0c89ef4048a8a0f814e25385d1c5/user1
 blobstore_options: deprecated
