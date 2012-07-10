@@ -35,6 +35,15 @@ mongod_path:
 <% for version in supported_versions %>
   <%= "'#{version}': /var/vcap/packages/mongodb#{packages[version]}/bin/mongod" %>
 <% end %>
+
+mongod_options:
+<% for version in supported_versions
+     option = version =~ /1.8/  ? "" : "--nojournal"
+%>
+  <%= "'#{version}': '#{option}'" %>
+<% end %>
+
+
 port_range:
   first: 25001
   last: 45000
