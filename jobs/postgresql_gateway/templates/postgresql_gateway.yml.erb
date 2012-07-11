@@ -1,7 +1,8 @@
 ---
 <%
 service = "postgresql"
-acls = properties.postgresql_gateway.acls
+gateway = eval("properties.#{service}_gateway")
+acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
@@ -44,10 +45,10 @@ service:
   <% end %>
 <% end %>
 
-<% if properties.postgresql_gateway.ip_route %>
-ip_route: <%= properties.postgresql_gateway.ip_route %>
+<% if gateway.ip_route %>
+ip_route: <%= gateway.ip_route %>
 <% end %>
-token: <%= properties.postgresql_gateway.token %>
+token: <%= gateway.token %>
 logging:
   file: /var/vcap/sys/log/postgresql_gateway/postgresql_gateway.log
   level: debug
@@ -55,12 +56,12 @@ logging:
   syslog: vcap.postgresql_gateway
   <% end %>
 
-node_timeout: <%= properties.postgresql_gateway.node_timeout || 8 %>
+node_timeout: <%= gateway.node_timeout || 8 %>
 
 pid: /var/vcap/sys/run/postgresql_gateway/postgresql_gateway.pid
-z_interval: <%= properties.postgresql_gateway.z_interval || 30 %>
-check_orphan_interval: <%= properties.postgresql_gateway.check_orphan_interval || -1 %>
-double_check_orphan_interval: <%= properties.postgresql_gateway.double_check_orphan_interval || 300 %>
+z_interval: <%= gateway.z_interval || 30 %>
+check_orphan_interval: <%= gateway.check_orphan_interval || -1 %>
+double_check_orphan_interval: <%= gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 
 <% if lifecycle and lifecycle.resque %>
