@@ -39,3 +39,4 @@ max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>
 filesystem_quota: <%= node.filesystem_quota || "false" %>
+service_start_timeout: <%= node.service_start_timeout || 3 %>
