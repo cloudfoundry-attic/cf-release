@@ -36,7 +36,7 @@ redis_log_dir: /var/vcap/sys/service-log/redis
 command_rename_prefix: <%= node.command_rename_prefix || "magic-protect-command-prefix" %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
-redis_start_timeout: <%= node.redis_start_timeout || 3 %>
+service_start_timeout: <%= node.service_start_timeout || 3 %>
 image_dir: /var/vcap/store/redis_image
 max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
 persistent: <%= plan_enabled && plan_conf.persistent || false %>
