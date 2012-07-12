@@ -1,0 +1,16 @@
+---
+server:
+  dummy: dummy
+logging:
+  file: /var/vcap/sys/log/warden/warden.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.warden
+  <% end %>
+  level: debug
+server:
+  container_depot_path: /var/vcap/data/warden
+  container_klass: Warden::Container::Linux
+  unix_domain_permissions: 0777
+user:
+  pool_start_uid: 20000
+  pool_size: 256

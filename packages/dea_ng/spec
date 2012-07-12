@@ -1,0 +1,9 @@
+---
+name: dea_ng
+dependencies:
+- ruby
+files:
+- dea_ng/Gemfile
+- dea_ng/Gemfile.lock
+- dea_ng/{bin,lib}/**/*
+- pkg_utils/*
