@@ -25,7 +25,7 @@ export no_proxy='<%= properties.env.no_proxy %>'
 
 export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include:/var/vcap/packages/imagemagick/include/ImageMagick:$C_INCLUDE_PATH
 export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LIBRARY_PATH
-export PATH=/var/vcap/packages/imagemagick/bin:$PATH
+export PATH=/var/vcap/packages/imagemagick/bin:/var/vcap/packages/git/bin:$PATH
 export LANG=en_US.UTF-8
 
 source /var/vcap/packages/common/utils.sh
