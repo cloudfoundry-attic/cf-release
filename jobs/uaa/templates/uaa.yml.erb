@@ -91,3 +91,8 @@ oauth:
       redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc
       access-token-validity: 604800
 <% end %>
+<% if properties.uaa.scim && properties.uaa.scim.users then %>
+scim:
+  users: <% properties.uaa.scim.users.each do |user| %>
+    - <%= user %><% end %>
+<% end %>
