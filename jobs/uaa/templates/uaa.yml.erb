@@ -58,6 +58,11 @@ oauth:
       - micro
       - support-signon
   clients:
+<% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
+    <%= id %>:<% client.marshal_dump.each do |key,value|%>
+      <%= key %>: <%= value %><% end %><% end %>
+<% end %>
+<% if !properties.uaa.clients || !properties.uaa.clients.admin %>
     admin:
       authorized-grant-types: client_credentials
       scope: read,write,password
@@ -65,6 +70,8 @@ oauth:
       id: admin
       secret: <%= properties.uaa.admin.client_secret %>
       resource-ids: clients
+<% end %>
+<% if !properties.uaa.clients || !properties.uaa.clients.cloud_controller %>
     cloud_controller:
       authorized-grant-types: client_credentials
       scope: read,write,password
@@ -73,6 +80,8 @@ oauth:
       secret: <%= properties.uaa.cc.client_secret %>
       resource-ids: scim,password,tokens
       access-token-validity: 604800
+<% end %>
+<% if !properties.uaa.clients || !properties.uaa.clients.vmc %>
     vmc:
       authorized-grant-types: implicit
       scope: read,password
@@ -81,3 +90,4 @@ oauth:
       resource-ids: cloud_controller,password
       redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc
       access-token-validity: 604800
+<% end %>
