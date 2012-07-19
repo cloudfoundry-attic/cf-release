@@ -1,16 +1,20 @@
 ---
 server:
-  dummy: dummy
+  unix_domain_permissions: 0777
+  container_klass: Warden::Container::Linux
+  container_depot_path: /var/vcap/data/warden
+
 logging:
   file: /var/vcap/sys/log/warden/warden.log
   <% if properties.syslog_aggregator %>
   syslog: vcap.warden
   <% end %>
   level: debug
-quota:
-  filesystem: /var/vcap/data
-  uidpool:
-    name: warden-quota
-    count: 50
-  report_quota_path: /var/vcap/packages/warden/warden/src/report_quota
-  quota_check_interval: 5
+
+network:
+  pool_start_address: 10.254.0.0
+  pool_size: 256
+
+user:
+  pool_start_uid: 20000
+  pool_size: 256
