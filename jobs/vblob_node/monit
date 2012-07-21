@@ -2,7 +2,7 @@ check process warden
   with pidfile /var/vcap/sys/run/warden/warden.pid
   start program "/var/vcap/jobs/vblob_node/bin/warden_ctl start"
   stop program "/var/vcap/jobs/vblob_node/bin/warden_ctl stop"
-  group vcap
+  if failed unixsocket /tmp/warden.sock with timeout 10 seconds then restart
 
 check process vblob_node
   with pidfile /var/vcap/sys/run/vblob_node/vblob_node.pid
