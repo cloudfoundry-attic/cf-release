@@ -18,3 +18,7 @@ status:
   user: <%= properties.router.status.user %>
   password: <%= properties.router.status.password %>
 <% end %>
+<% if properties.router.port %>
+inet: 127.0.0.1
+port: <%= properties.router.port %>
+<% end %>

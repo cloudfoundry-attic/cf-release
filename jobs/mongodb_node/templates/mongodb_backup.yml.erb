@@ -5,13 +5,21 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 backup_enabled = plan_enabled && plan_conf.backup && plan_conf.backup.enable
+# backward compatible, fallback to 1.8 if old manifest file can't supply supported versions
+supported_versions = properties.mongodb_node.supported_versions || ["1.8"]
+packages = {}
+# convention, package contains mongodb 1.8 is mongodb18
+supported_versions.each{|v| packages[v] = v.sub(".","")}
 %>
 service_name: mongodb
 backup_base_dir: <%= properties.service_backup && properties.service_backup.mount_point || "/var/vcap/services_backup" %>
 base_dir: /var/vcap/store/mongodb
 image_dir: /var/vcap/store/mongodb_image
 mongod_log_dir: /var/vcap/sys/service-log/mongodb
-mongodump_path: /var/vcap/packages/mongodb/bin/mongodump
+mongodump_path:
+<% for version in supported_versions %>
+  <%= "'#{version}': /var/vcap/packages/mongodb#{packages[version]}/bin/mongodump" %>
+<% end %>
 logging:
   level: debug
   file: /var/vcap/sys/log/mongodb_node/mongodb_backup.log

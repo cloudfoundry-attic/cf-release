@@ -40,4 +40,6 @@ intervals:
   giveup_crash_number:   <%= intervals.giveup_crash_number   ||   4 %>
   stable_state:          <%= intervals.stable_state          ||  60 %>
   max_db_reconnect_wait: <%= intervals.max_db_reconnect_wait || 300 %>
+  inactivity_period_for_spindown: <%= intervals.inactivity_period_for_spindown || -1 %>
+
 dequeueing_rate: <%= properties.health_manager && properties.health_manager.dequeueing_rate || 50 %>
