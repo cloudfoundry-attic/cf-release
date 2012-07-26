@@ -1,43 +1,29 @@
 #!/bin/bash
 
-RUN_DIR=/var/vcap/sys/run/warden
-LOG_DIR=/var/vcap/sys/log/warden
+JOB_NAME=vblob_node
 JOB_DIR=/var/vcap/jobs/vblob_node
-WARDEN_CONF_DIR=/var/vcap/jobs/vblob_node/config
-PIDFILE=$RUN_DIR/warden.pid
-WARDEN_SOURCE_DIR=/var/vcap/packages/vblob_node/warden
-NODE_BIN_DIR=/var/vcap/packages/node/
+PIDFILE=/var/vcap/sys/run/warden/warden.pid
+NODE_BIN_DIR=/var/vcap/packages/node
 VBLOB_DIR=/var/vcap/packages/vblob/
 WARDEN_ROOT_DIR=/var/vcap/packages/vblob_node/warden/root/linux/base/rootfs/
+VBLOB_STARTUP=$WARDEN_ROOT_DIR/usr/bin/vblob_startup.sh
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/vblob_node/common/warden_service.sh
 
 case $1 in
 
   start)
     pid_guard $PIDFILE "Warden"
 
-    mkdir -p $RUN_DIR
-    mkdir -p $LOG_DIR
-    echo $$ > $PIDFILE
+    src=("$NODE_BIN_DIR" "$JOB_DIR/bin/vblob_startup.sh" "$VBLOB_DIR" \
+         "$JOB_DIR/config/services.conf")
+    dest=("$WARDEN_ROOT_DIR/usr" "$WARDEN_ROOT_DIR/usr/bin" "$WARDEN_ROOT_DIR/$VBLOB_DIR" \
+          "$WARDEN_ROOT_DIR/etc/init")
 
-    cd /var/vcap/packages/vblob_node/warden
+    prepare_warden $JOB_NAME $src $dest
 
-    export PATH=/var/vcap/packages/ruby/bin:$PATH
-
-    # Copy node.js binaries and vblob server to warden base file system
-    cp -rf $NODE_BIN_DIR/* $WARDEN_ROOT_DIR/usr
-    cp -rf $JOB_DIR/bin/vblob_startup.sh $WARDEN_ROOT_DIR/usr/bin
-    chmod 755 $WARDEN_ROOT_DIR/usr/bin/vblob_startup.sh
-    mkdir -p $WARDEN_ROOT_DIR/$VBLOB_DIR
-    cp -rf $VBLOB_DIR/* $WARDEN_ROOT_DIR/$VBLOB_DIR
-    cp -rf $JOB_DIR/config/services.conf $WARDEN_ROOT_DIR/etc/init/services.conf
-    chmod 0644 $WARDEN_ROOT_DIR/etc/init/services.conf
-
-    exec /var/vcap/packages/ruby/bin/bundle exec \
-         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
-         >>$LOG_DIR/warden.stdout.log \
-         2>>$LOG_DIR/warden.stderr.log
+    start_warden $JOB_NAME $VBLOB_STARTUP
 
     ;;
 

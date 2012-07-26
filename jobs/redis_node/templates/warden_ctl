@@ -1,43 +1,26 @@
 #!/bin/bash
 
-RUN_DIR=/var/vcap/sys/run/warden
-LOG_DIR=/var/vcap/sys/log/warden
+JOB_NAME=redis_node
 JOB_DIR=/var/vcap/jobs/redis_node
-WARDEN_CONF_DIR=/var/vcap/jobs/redis_node/config
-FIRSTRUN_PATH=$RUN_DIR/firstrun
-QUOTA_FS=/var/vcap/data
-PIDFILE=$RUN_DIR/warden.pid
-WARDEN_SOURCE_DIR=/var/vcap/packages/redis_node/warden
+PIDFILE=/var/vcap/sys/run/warden/warden.pid
 REDIS_BIN_DIR=/var/vcap/packages/redis/bin
-REDIS_CONF_DIR=/var/vcap/jobs/redis_node/config
 WARDEN_ROOT_DIR=/var/vcap/packages/redis_node/warden/root/linux/base/rootfs/
+REDIS_STARTUP=$WARDEN_ROOT_DIR/usr/bin/redis_startup.sh
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/redis_node/common/warden_service.sh
 
 case $1 in
 
   start)
     pid_guard $PIDFILE "Warden"
 
-    mkdir -p $RUN_DIR
-    mkdir -p $LOG_DIR
-    echo $$ > $PIDFILE
+    src=("$REDIS_BIN_DIR" "$JOB_DIR/bin/redis_startup.sh" "$JOB_DIR/config/services.conf")
+    dest=("$WARDEN_ROOT_DIR/usr/bin" "$WARDEN_ROOT_DIR/usr/bin" "$WARDEN_ROOT_DIR/etc/init")
 
-    cd /var/vcap/packages/redis_node/warden
+    prepare_warden $JOB_NAME $src $dest
 
-    export PATH=/var/vcap/packages/ruby/bin:$PATH
-
-    # Copy redis binaries and configuration files to warden base file system
-    cp -f $REDIS_BIN_DIR/* $WARDEN_ROOT_DIR/usr/bin/
-    cp -f $JOB_DIR/bin/redis_startup.sh $WARDEN_ROOT_DIR/usr/bin
-    chmod 755 $WARDEN_ROOT_DIR/usr/bin/redis_startup.sh
-    cp -f $JOB_DIR/config/services.conf $WARDEN_ROOT_DIR/etc/init/services.conf
-    chmod 0644 $WARDEN_ROOT_DIR/etc/init/services.conf
-
-    exec /var/vcap/packages/ruby/bin/bundle exec \
-         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
-         >>$LOG_DIR/warden.stdout.log \
-         2>>$LOG_DIR/warden.stderr.log
+    start_warden $JOB_NAME $REDIS_STARTUP
 
     ;;
 
