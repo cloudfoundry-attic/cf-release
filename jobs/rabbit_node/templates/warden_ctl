@@ -1,48 +1,37 @@
 #!/bin/bash
 
-RUN_DIR=/var/vcap/sys/run/warden
-LOG_DIR=/var/vcap/sys/log/warden
+JOB_NAME=rabbit_node
 JOB_DIR=/var/vcap/jobs/rabbit_node
-PIDFILE=$RUN_DIR/warden.pid
-WARDEN_SOURCE_DIR=/var/vcap/packages/rabbit_node/warden
+PIDFILE=/var/vcap/sys/run/warden//warden.pid
 RABBITMQ_DIR=`readlink /var/vcap/packages/rabbitmq`
 ERLANG_DIR=`readlink /var/vcap/packages/erlang`
 WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs
-RABBITMQ_WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs/$RABBITMQ_DIR
-ERLANG_WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs/$ERLANG_DIR
-WARDEN_PACKAGES_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs/var/vcap/packages
+RABBITMQ_WARDEN_DIR=$WARDEN_DIR/$RABBITMQ_DIR
+ERLANG_WARDEN_DIR=$WARDEN_DIR/$ERLANG_DIR
+WARDEN_PACKAGES_DIR=$WARDEN_DIR/var/vcap/packages
+RABBITMQ_STARTUP=$WARDEN_DIR/usr/bin/rabbitmq_startup.sh
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/rabbit_node/common/warden_service.sh
 
 case $1 in
 
   start)
     pid_guard $PIDFILE "Warden"
 
-    mkdir -p $RUN_DIR
-    mkdir -p $LOG_DIR
-    echo $$ > $PIDFILE
+    src=("$RABBITMQ_DIR" "$ERLANG_DIR" "$JOB_DIR/bin/rabbitmq_startup.sh" \
+         "$JOB_DIR/config/services.conf")
+    dest=("$RABBITMQ_WARDEN_DIR" "$ERLANG_WARDEN_DIR" "$WARDEN_DIR/usr/bin" \
+          "$WARDEN_DIR/etc/init")
 
-    # Copy rabbitmq and erlang binaries and configuration files to warden base file system
-    mkdir -p $RABBITMQ_WARDEN_DIR
-    mkdir -p $ERLANG_WARDEN_DIR
-    cp -af $RABBITMQ_DIR/* $RABBITMQ_WARDEN_DIR
-    cp -af $ERLANG_DIR/* $ERLANG_WARDEN_DIR
+    prepare_warden $JOB_NAME $src $dest
+
     mkdir -p $WARDEN_PACKAGES_DIR
     cd $WARDEN_PACKAGES_DIR
     ln -s ../../../$ERLANG_DIR erlang
     ln -s ../../../$RABBITMQ_DIR rabbitmq
-    cp -f $JOB_DIR/bin/rabbitmq_startup.sh $WARDEN_DIR/usr/bin
-    chmod 755 $WARDEN_DIR/usr/bin/rabbitmq_startup.sh
-    cp -f $JOB_DIR/config/services.conf $WARDEN_DIR/etc/init/services.conf
-    chmod 0644 $WARDEN_DIR/etc/init/services.conf
 
-    cd /var/vcap/packages/rabbit_node/warden
-    export PATH=/var/vcap/packages/ruby/bin:$PATH
-    exec /var/vcap/packages/ruby/bin/bundle exec \
-         rake warden:start[$JOB_DIR/config/warden.yml] \
-         >>$LOG_DIR/warden.stdout.log \
-         2>>$LOG_DIR/warden.stderr.log
+    start_warden $JOB_NAME $RABBITMQ_STARTUP
 
     ;;
 
