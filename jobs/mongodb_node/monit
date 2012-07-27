@@ -9,7 +9,6 @@ check process mongodb_node
   start program "/var/vcap/jobs/mongodb_node/bin/mongodb_node_ctl start"
   stop program "/var/vcap/jobs/mongodb_node/bin/mongodb_node_ctl stop"
   group vcap
-  depends on warden
 
 <%
 service = "mongodb"
@@ -26,7 +25,6 @@ check process mongodb_worker_<%= ind %>
   stop program "/var/vcap/jobs/mongodb_node/bin/mongodb_worker_ctl stop <%= ind %>"
   group worker
   group vcap
-  depends on mongodb_node
 <%
   end
 end

@@ -7,7 +7,6 @@ PIDFILE=$RUN_DIR/warden.pid
 WARDEN_SOURCE_DIR=/var/vcap/packages/rabbit_node/warden
 RABBITMQ_DIR=`readlink /var/vcap/packages/rabbitmq`
 ERLANG_DIR=`readlink /var/vcap/packages/erlang`
-WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs
 RABBITMQ_WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs/$RABBITMQ_DIR
 ERLANG_WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs/$ERLANG_DIR
 WARDEN_PACKAGES_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs/var/vcap/packages
@@ -23,6 +22,25 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
+    dpkg --install --skip-same-version /var/vcap/packages/rabbit_node/libnl1_1.1-5build1_amd64.deb
+    dpkg --install --skip-same-version /var/vcap/packages/rabbit_node/quota_3.17-6_amd64.deb
+
+    rootfs_path=/var/vcap/data/warden/rootfs
+    mkdir -p $rootfs_path
+    rootfs_tgz=/var/vcap/stemcell_base.tar.gz
+
+    # Extract rootfs if needed
+    if [ ! -d $rootfs_path ]
+    then
+      # Extract to temporary path, then rename to target path.
+      # This makes sure that it is not possible that we end up with directory
+      # that contains a partially extracted archive.
+      tmp_path=$(mktemp --tmpdir=$(dirname $rootfs_path) -d)
+      chmod 755 $tmp_path
+      tar -C $tmp_path -zxf $rootfs_tgz
+      mv $tmp_path $rootfs_path
+    fi
+
     # Copy rabbitmq and erlang binaries and configuration files to warden base file system
     mkdir -p $RABBITMQ_WARDEN_DIR
     mkdir -p $ERLANG_WARDEN_DIR
@@ -32,10 +50,10 @@ case $1 in
     cd $WARDEN_PACKAGES_DIR
     ln -s ../../../$ERLANG_DIR erlang
     ln -s ../../../$RABBITMQ_DIR rabbitmq
-    cp -f $JOB_DIR/bin/rabbitmq_startup.sh $WARDEN_DIR/usr/bin
-    chmod 755 $WARDEN_DIR/usr/bin/rabbitmq_startup.sh
-    cp -f $JOB_DIR/config/services.conf $WARDEN_DIR/etc/init/services.conf
-    chmod 0644 $WARDEN_DIR/etc/init/services.conf
+    cp -f $JOB_DIR/bin/rabbitmq_startup.sh $rootfs_path/usr/bin
+    chmod 755 $rootfs_path/usr/bin/rabbitmq_startup.sh
+    cp -f $JOB_DIR/config/services.conf $rootfs_path/etc/init/services.conf
+    chmod 0644 $rootfs_path/etc/init/services.conf
 
     cd /var/vcap/packages/rabbit_node/warden
     export PATH=/var/vcap/packages/ruby/bin:$PATH

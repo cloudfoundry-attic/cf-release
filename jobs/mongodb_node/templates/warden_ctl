@@ -7,9 +7,7 @@ WARDEN_CONF_DIR=/var/vcap/jobs/mongodb_node/config
 FIRSTRUN_PATH=$RUN_DIR/firstrun
 QUOTA_FS=/var/vcap/data
 PIDFILE=$RUN_DIR/warden.pid
-WARDEN_SOURCE_DIR=/var/vcap/packages/mongodb_node/warden
-MONGODB_BIN_DIR=/var/vcap/packages/mongodb/bin
-WARDEN_ROOT_DIR=/var/vcap/packages/mongodb_node/warden/root/linux/base/rootfs/
+MONGODB_BIN_DIR=/var/vcap/packages/mongodb18/bin
 
 source /var/vcap/packages/common/utils.sh
 
@@ -22,22 +20,41 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
+    dpkg --install --skip-same-version /var/vcap/packages/mongodb_node/libnl1_1.1-5build1_amd64.deb
+    dpkg --install --skip-same-version /var/vcap/packages/mongodb_node/quota_3.17-6_amd64.deb
+
+    rootfs_path=/var/vcap/data/warden/rootfs
+    mkdir -p $rootfs_path
+    rootfs_tgz=/var/vcap/stemcell_base.tar.gz
+
+    # Extract rootfs if needed
+    if [ ! -d $rootfs_path ]
+    then
+      # Extract to temporary path, then rename to target path.
+      # This makes sure that it is not possible that we end up with directory
+      # that contains a partially extracted archive.
+      tmp_path=$(mktemp --tmpdir=$(dirname $rootfs_path) -d)
+      chmod 755 $tmp_path
+      tar -C $tmp_path -zxf $rootfs_tgz
+      mv $tmp_path $rootfs_path
+    fi
+
     cd /var/vcap/packages/mongodb_node/warden
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
     # Copy mongodb binaries and configuration files to warden base file system
-    cp -f $MONGODB_BIN_DIR/* $WARDEN_ROOT_DIR/usr/bin/
-    cp -f $JOB_DIR/config/mongodb.conf $WARDEN_ROOT_DIR/etc/mongodb.conf
-    chmod 0644 $WARDEN_ROOT_DIR/etc/mongodb.conf
-    cp -f $JOB_DIR/bin/mongod_startup.sh $WARDEN_ROOT_DIR/usr/bin
-    chmod 0755 $WARDEN_ROOT_DIR/usr/bin/mongod_startup.sh
-    cp -f $JOB_DIR/config/services.conf $WARDEN_ROOT_DIR/etc/init/services.conf
-    chmod 0644 $WARDEN_ROOT_DIR/etc/init/services.conf
+    cp -f $MONGODB_BIN_DIR/* $rootfs_path/usr/bin/
+    cp -f $JOB_DIR/config/mongodb.conf $rootfs_path/etc/mongodb.conf
+    chmod 0644 $rootfs_path/etc/mongodb.conf
+    cp -f $JOB_DIR/bin/mongod_startup.sh $rootfs_path/usr/bin
+    chmod 0755 $rootfs_path/usr/bin/mongod_startup.sh
+    cp -f $JOB_DIR/config/services.conf $rootfs_path/etc/init/services.conf
+    chmod 0644 $rootfs_path/etc/init/services.conf
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
-         >>$LOG_DIR/warden.stdout.log \
+         1>>$LOG_DIR/warden.stdout.log \
          2>>$LOG_DIR/warden.stderr.log
 
     ;;
