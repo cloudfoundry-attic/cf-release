@@ -21,6 +21,9 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
+    dpkg --install --skip-same-version /var/vcap/packages/vblob_node/libnl1_1.1-5build1_amd64.deb
+    dpkg --install --skip-same-version /var/vcap/packages/vblob_node/quota_3.17-6_amd64.deb
+
     cd /var/vcap/packages/vblob_node/warden
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH

@@ -23,6 +23,9 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
+    dpkg --install --skip-same-version /var/vcap/packages/rabbit_node/libnl1_1.1-5build1_amd64.deb
+    dpkg --install --skip-same-version /var/vcap/packages/rabbit_node/quota_3.17-6_amd64.deb
+
     # Copy rabbitmq and erlang binaries and configuration files to warden base file system
     mkdir -p $RABBITMQ_WARDEN_DIR
     mkdir -p $ERLANG_WARDEN_DIR
