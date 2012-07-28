@@ -1,18 +1,16 @@
 #!/bin/bash -e
 
-export HBASE_CONF_DIR=/var/vcap/jobs/opentsdb/config/hbase
 export JAVA_HOME=/var/vcap/packages/dea_jvm
 export PATH=/var/vcap/packages/dea_jvm/bin:$PATH
 
-BIN_DIR="/var/vcap/jobs/opentsdb/bin"
-RUN_DIR="/var/vcap/sys/run/opentsdb"
-LOG_DIR="/var/vcap/sys/log/opentsdb"
-PIDFILE="${RUN_DIR}/opentsdb.pid"
-TSDTMP="/var/vcap/data/tsdtmp"
-FAKE_ZOOKEEPER_HOSTNAME="fake-zookeeper-hostname"
+BIN_DIR=/var/vcap/jobs/opentsdb/bin
+RUN_DIR=/var/vcap/sys/run/opentsdb
+LOG_DIR=/var/vcap/sys/log/opentsdb
+PIDFILE=$RUN_DIR/opentsdb.pid
+TSDTMP=/var/vcap/data/tsdtmp
 
-TSDB="${BIN_DIR}/tsdb"
-CLEANUP_SCRIPT="/etc/cron.d/cleanup_tsdb_tmpdir"
+TSDB=$BIN_DIR/tsdb
+CLEANUP_SCRIPT=/etc/cron.d/cleanup_tsdb_tmpdir
 
 source /var/vcap/packages/common/utils.sh
 
@@ -20,11 +18,6 @@ case $1 in
 
   start)
     pid_guard $PIDFILE "OpenTSDB"
-
-		if [ ! -f /etc/hosts_saved ]; then
-			cp /etc/hosts /etc/hosts_saved
-			echo "<%= properties.hbase_master.address %> $FAKE_ZOOKEEPER_HOSTNAME" >> /etc/hosts
-		fi
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
@@ -43,8 +36,8 @@ case $1 in
     echo "*/10 * * * * root $BIN_DIR/cleanup_tmpdir $TSDTMP 400" > $CLEANUP_SCRIPT
 
     cd /var/vcap/packages/opentsdb/
-    export HBASE_HOME=/var/vcap/packages/hbase
-    env COMPRESSION=SNAPPY HBASE_HOME=/var/vcap/packages/hbase ./src/create_table.sh
+
+    env COMPRESSION=snappy HBASE_HOME=/var/vcap/packages/hbase ./src/create_table.sh
 
     METRICS=$( cat <<SETVAR
     mem
@@ -112,14 +105,12 @@ case $1 in
 SETVAR
     )
 
-    echo "$TSDB mkmetric --zkquorum=$FAKE_ZOOKEEPER_HOSTNAME $METRICS"
-    $TSDB mkmetric --zkquorum=$FAKE_ZOOKEEPER_HOSTNAME $METRICS
+    $TSDB mkmetric $METRICS
 
     exec $TSDB tsd \
          --port=<%= properties.opentsdb.port %> \
          --staticroot=build/staticroot \
          --cachedir=$TSDTMP \
-         --zkquorum=$FAKE_ZOOKEEPER_HOSTNAME \
          >>$LOG_DIR/opentsdb.stdout.log \
          2>>$LOG_DIR/opentsdb.stderr.log
 
