@@ -1,8 +1,0 @@
-# abort script on any command that exit with a non zero value
-set -e
-
-tar zxf hadoop/hadoop-0.20.2-cdh3u4.tar.gz
-
-cd hadoop-0.20.2-cdh3u4
-
-cp -a * $BOSH_INSTALL_TARGET

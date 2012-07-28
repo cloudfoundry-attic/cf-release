@@ -1,0 +1,54 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/opentsdb
+LOG_DIR=/var/vcap/sys/log/opentsdb
+PIDFILE=$RUN_DIR/hbase-vcap-master.pid
+
+export JAVA_HOME=/var/vcap/packages/dea_jvm
+export HBASE_IDENT_STRING=vcap
+export HBASE_PID_DIR=$RUN_DIR
+export HBASE_LOG_DIR=$LOG_DIR
+export HBASE_CONF_DIR=/var/vcap/jobs/opentsdb/config/hbase
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    # start-hbase.sh has its own pid guard,
+    # we use ours for consistency anyway
+    pid_guard $PIDFILE "HBase"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    mkdir -p /var/vcap/data/hbase
+    mkdir -p /var/vcap/store/hbase
+
+    ulimit -n 32768
+    ulimit -u 32000
+
+    # HBase ctl scripts manage their pidfiles,
+    # so we don't attempt to write ours
+    cd /var/vcap/packages/hbase/
+    exec bin/start-hbase.sh \
+         >>$LOG_DIR/hbase-start.stdout.log \
+         2>>$LOG_DIR/hbase-start.stderr.log
+
+    ;;
+
+  stop)
+    cd /var/vcap/packages/hbase/
+
+    exec bin/stop-hbase.sh \
+         >>$LOG_DIR/hbase-stop.stdout.log \
+         2>>$LOG_DIR/hbase-stop.stderr.log
+
+    ;;
+
+  *)
+    echo "Usage: hbase_ctl {start|stop}"
+
+    ;;
+
+esac
