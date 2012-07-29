@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+find src/warden/warden \
+  -path "src/warden/warden/tmp" -prune -o \
+  -path "src/warden/warden/root/linux/base/rootfs" -prune -o \
+  -path "src/warden/warden/root/linux/tmp" -prune -o \
+  -print
+
+find blobs/warden -name "*.deb"
+
+find src/pkg_utils

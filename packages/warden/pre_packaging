@@ -3,9 +3,9 @@ set -e
 
 cd ${BUILD_DIR}
 
-mv warden warden_meta
-mv warden_meta/* .
-rmdir warden_meta
+mv src/warden/warden .
+mv blobs/warden/* .
+mv src/pkg_utils .
 
 pkg_utils/vendor.sh warden
 
