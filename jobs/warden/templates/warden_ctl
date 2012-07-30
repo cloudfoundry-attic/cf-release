@@ -21,6 +21,21 @@ case $1 in
     dpkg --install --skip-same-version /var/vcap/packages/warden/libnl1_1.1-5build1_amd64.deb
     dpkg --install --skip-same-version /var/vcap/packages/warden/quota_3.17-6_amd64.deb
 
+    rootfs_path=/var/vcap/data/warden/rootfs
+    rootfs_tgz=/var/vcap/stemcell_base.tar.gz
+
+    # Extract rootfs if needed
+    if [ ! -d $rootfs_path ]
+    then
+      # Extract to temporary path, then rename to target path.
+      # This makes sure that it is not possible that we end up with directory
+      # that contains a partially extracted archive.
+      tmp_path=$(mktemp --tmpdir=$(dirname $rootfs_path) -d)
+      chmod 755 $tmp_path
+      tar -C $tmp_path -zxf $rootfs_tgz
+      mv $tmp_path $rootfs_path
+    fi
+
     cd /var/vcap/packages/warden/warden
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
