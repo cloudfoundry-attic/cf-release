@@ -160,41 +160,17 @@ default_account_capacity:
 <% end %>
 
 builtin_services:
-<% if properties.mysql_gateway %>
-  mysql:
-    token: <%= properties.mysql_gateway.token %>
-<% end %>
-<% if properties.redis_gateway %>
-  redis:
-    token: <%= properties.redis_gateway.token %>
-<% end %>
-<% if properties.mongodb_gateway %>
-  mongodb:
-    token: <%= properties.mongodb_gateway.token %>
-<% end %>
-<% if properties.memcached_gateway %>
-  memcached:
-    token: <%= properties.memcached_gateway.token %>
-<% end %>
-<% if properties.rabbit_gateway %>
-  rabbitmq:
-    token: <%= properties.rabbit_gateway.token %>
-<% end %>
-<% if properties.postgresql_gateway %>
-  postgresql:
-    token: <%= properties.postgresql_gateway.token %>
-<% end %>
-<% if properties.atmos_gateway %>
-  atmos:
-    token: <%= properties.atmos_gateway.token %>
-<% end %>
-<% if properties.filesystem_gateway %>
-  filesystem:
-    token: <%= properties.filesystem_gateway.token %>
-<% end %>
-<% if properties.vblob_gateway %>
-  blob:
-    token: <%= properties.vblob_gateway.token %>
+<% services = ['mysql', 'redis', 'mongodb', 'memcached', 'rabbit', 'postgresql', 'atmos', 'filesystem', 'vblob'] %>
+<% for service in services %>
+  <% service_gateway = "#{service}_gateway" %>
+  <% if properties.send(service_gateway.to_sym) %>
+  <% service = 'rabbitmq' if service == 'rabbit' %>
+  <%= "#{service}:"%>
+    token: <%= properties.send(service_gateway.to_sym).token %>
+    <% if properties.send(service_gateway.to_sym).token_b %>
+    token_b: <%= properties.send(service_gateway.to_sym).token_b %>
+    <% end %>
+  <% end %>
 <% end %>
 <% if properties.external_service_tokens %>
 <% properties.external_service_tokens.each do |name,token| %>
