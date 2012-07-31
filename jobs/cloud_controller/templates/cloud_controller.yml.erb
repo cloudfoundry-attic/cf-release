@@ -163,38 +163,47 @@ builtin_services:
 <% if properties.mysql_gateway %>
   mysql:
     token: <%= properties.mysql_gateway.token %>
+    token_b: <%= properties.mysql_gateway.token_b %>
 <% end %>
 <% if properties.redis_gateway %>
   redis:
     token: <%= properties.redis_gateway.token %>
+    token_b: <%= properties.redis_gateway.token_b %>
 <% end %>
 <% if properties.mongodb_gateway %>
   mongodb:
     token: <%= properties.mongodb_gateway.token %>
+    token_b: <%= properties.mongodb_gateway.token_b %>
 <% end %>
 <% if properties.memcached_gateway %>
   memcached:
     token: <%= properties.memcached_gateway.token %>
+    token_b: <%= properties.memcached_gateway.token_b %>
 <% end %>
 <% if properties.rabbit_gateway %>
   rabbitmq:
     token: <%= properties.rabbit_gateway.token %>
+    token_b: <%= properties.rabbit_gateway.token_b %>
 <% end %>
 <% if properties.postgresql_gateway %>
   postgresql:
     token: <%= properties.postgresql_gateway.token %>
+    token_b: <%= properties.postgresql_gateway.token_b %>
 <% end %>
 <% if properties.atmos_gateway %>
   atmos:
     token: <%= properties.atmos_gateway.token %>
+    token_b: <%= properties.atmos_gateway.token_b %>
 <% end %>
 <% if properties.filesystem_gateway %>
   filesystem:
     token: <%= properties.filesystem_gateway.token %>
+    token_b: <%= properties.filesystem_gateway.token_b %>
 <% end %>
 <% if properties.vblob_gateway %>
   vblob:
     token: <%= properties.vblob_gateway.token %>
+    token_b: <%= properties.vblob_gateway.token_b %>
 <% end %>
 <% if properties.external_service_tokens %>
 <% properties.external_service_tokens.each do |name,token| %>
