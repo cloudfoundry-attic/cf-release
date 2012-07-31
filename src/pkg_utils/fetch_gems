@@ -44,19 +44,17 @@ parser.specs.each do |spec|
 end
 
 unless to_fetch.empty?
-  urls = to_fetch.map do |gem_basename|
-    "http://production.s3.rubygems.org/gems/#{gem_basename}"
-  end.join(' ')
+  to_fetch.map do |gem_basename|
+    url = "http://production.s3.rubygems.org/gems/#{gem_basename}"
+    cmd = "curl -s --retry 3 --connect-timeout 5 -o #{gem_store_dir}/#{gem_basename} #{url}"
 
-  cmd = "wget --quiet --retry-connrefused --connect-timeout=5"
-  cmd += " --no-check-certificate --directory-prefix #{gem_store_dir} #{urls}"
+    logger.info("Fetching #{gem_basename} from rubygems")
+    logger.info("Executing '#{cmd}'")
 
-  logger.info("Fetching #{to_fetch.join(', ')} from rubygems")
-  logger.info("Executing '#{cmd}'")
-
-  unless system(cmd)
-    logger.error("#{cmd} failed with status #{$?}!")
-    exit $?.exitstatus
+    unless system(cmd)
+      logger.error("#{cmd} failed with status #{$?}!")
+      exit $?.exitstatus
+    end
   end
 end
 
