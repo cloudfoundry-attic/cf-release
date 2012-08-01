@@ -4,6 +4,7 @@ require 'rubygems'
 require 'bundler'
 require 'fileutils'
 require 'logger'
+require 'net/http'
 
 # Provides functionality similar to `bundle package`, but without needing
 # to install any gems.
@@ -43,20 +44,28 @@ parser.specs.each do |spec|
   end
 end
 
-unless to_fetch.empty?
-  urls = to_fetch.map do |gem_basename|
-    "http://production.s3.rubygems.org/gems/#{gem_basename}"
-  end.join(' ')
+if to_fetch.empty?
+  logger.info("Done")
+  exit 0
+end
 
-  cmd = "wget --quiet --retry-connrefused --connect-timeout=5"
-  cmd += " --no-check-certificate --directory-prefix #{gem_store_dir} #{urls}"
-
-  logger.info("Fetching #{to_fetch.join(', ')} from rubygems")
-  logger.info("Executing '#{cmd}'")
-
-  unless system(cmd)
-    logger.error("#{cmd} failed with status #{$?}!")
-    exit $?.exitstatus
+to_fetch.map do |gem_basename|
+  logger.info("Fetching #{gem_basename} from rubygems")
+  begin
+    File.open("#{gem_store_dir}/#{gem_basename}","wb") do |file|
+      uri = URI.parse("http://production.s3.rubygems.org/gems/#{gem_basename}")
+      Net::HTTP.start(uri.host,uri.port) do |http|
+        http.request_get(uri.path) do |res|
+          res.read_body do |seg|
+            file << seg
+          end
+        end
+      end
+    end
+  rescue => e
+    logger.error("Failed to fetch #{gem_basename}, #{e.message}")
+    FileUtils.rm_f("#{gem_store_dir}/#{gem_basename}") if File.exists?("#{gem_store_dir}/#{gem_basename}")
+    exit -1
   end
 end
 
