@@ -12,7 +12,9 @@ index: <%= spec.index %>
 bulk_api:
   host: <%= properties.cc.srv_api_uri %>
 
-shadow_mode: <%= properties.health_manager_next && properties.health_manager_next.shadow_mode || 'enable' %>
+cc_partition: <%= properties.health_manager && properties.health_manager.cc_partition || "default" %>
+
+shadow_mode: <%= properties.health_manager_next && properties.health_manager_next.shadow_mode || "enable" %>
 
 intervals:
   <% intervals = properties.health_manager && properties.health_manager.intervals || OpenStruct.new %>

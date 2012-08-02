@@ -1,6 +1,14 @@
 ---
-<% db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% db_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+<% if spec.job.name=="health_manager_2" %>
+<% cc_db = properties.ccdb2 %>
+<% cc_partition = "cc2" %>
+<% else %>
+<% cc_db = properties.ccdb %>
+<% cc_partition = "cc" %>
+<% end %>
+
+<% db = cc_db.databases.find { |db| db.tag == "cc" } %>
+<% db_role = cc_db.roles.find { |role| role.tag == "admin" } %>
 <% network = spec.networks.send(properties.networks.apps) %>
 <% nats = properties.nats %>
 
@@ -15,15 +23,16 @@ logging:
 pid: /var/vcap/sys/run/health_manager/health_manager.pid
 rails_environment: production
 index: <%= spec.index %>
+cc_partition: <%= cc_partition %>
 database_environment:
   production:
     database: <%= db.name %>
-    host: <%= properties.ccdb.address %>
-    port: <%= properties.ccdb.port %>
+    host: <%= cc_db.address %>
+    port: <%= cc_db.port %>
     encoding: utf8
     username: <%= db_role.name %>
     password: <%= db_role.password %>
-    pool: <%= properties.ccdb.pool_size %>
+    pool: <%= cc_db.pool_size %>
     timeout: 2000
     template: template0 # Required for utf8 encoding
     adapter: postgresql

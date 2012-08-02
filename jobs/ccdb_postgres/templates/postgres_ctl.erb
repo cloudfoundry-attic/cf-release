@@ -1,5 +1,11 @@
 #!/bin/bash
 
+<% if spec.job.name=="ccdb_postgres2" %>
+<% cc_db = properties.ccdb2 %>
+<% else %>
+<% cc_db = properties.ccdb %>
+<% end %>
+
 PACKAGE_DIR=/var/vcap/packages/postgres
 JOB_DIR=/var/vcap/jobs/ccdb
 DATA_DIR=/var/vcap/store/postgres
@@ -7,10 +13,10 @@ RUN_DIR=/var/vcap/sys/run/postgres
 PIDFILE=$RUN_DIR/postgres.pid
 
 HOST=<%= spec.networks.send(properties.networks.management).ip %>
-PORT=<%= properties.ccdb.port %>
-USER=<%= properties.ccdb.user %>
-PASSWORD=<%= properties.ccdb.password %>
-DBNAME=<%= properties.ccdb.dbname %>
+PORT=<%= cc_db.port %>
+USER=<%= cc_db.user %>
+PASSWORD=<%= cc_db.password %>
+DBNAME=<%= cc_db.dbname %>
 
 case "$1" in
   start)

@@ -1,8 +1,18 @@
 ---
-<% db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% db_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+<% if spec.job.name=="cloud_controller_ng" %>
+<% cc_db = properties.ccdb2 %>
+<% cc_partition = "cc2" %>
+<% api_prefix = "api2" %>
+<% else %>
+<% cc_db = properties.ccdb %>
+<% cc_partition = "cc" %>
+<% api_prefix = "api" %>
+<% end %>
 
-external_uri: api.<%= properties.domain %>
+<% db = cc_db.databases.find { |db| db.tag == "cc"  } %>
+<% db_role = cc_db.roles.find { |role| role.tag == "admin" } %>
+
+external_uri: <%=api_prefix %>.<%= properties.domain %>
 description: <%= properties.description || "VMware's Cloud Application Platform" %>
 support_address: <%= properties.support_address || "http://support.cloudfoundry.com" %>
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
@@ -41,8 +51,8 @@ app_uris:
   reserved_length: 3
 
 directories:
-  droplets: /var/vcap/shared/droplets
-  resources: /var/vcap/shared/resources
+  droplets: /var/vcap/shared/droplets # _<%= cc_partition %>
+  resources: /var/vcap/shared/resources # _<%= cc_partition %>
   staging_manifests: /var/vcap/jobs/cloud_controller/config/staging
   staging_cache: /var/vcap/data/cloud_controller/staging
   tmpdir: /var/vcap/data/cloud_controller/tmp
@@ -77,15 +87,17 @@ new_initial_placement: true
 new_initial_placement: false
 <% end %>
 
+cc_partition: <%= cc_partition %>
+
 database_environment:
   production:
     database: <%= db.name %>
-    host: <%= properties.ccdb.address %>
-    port: <%= properties.ccdb.port %>
+    host: <%= cc_db.address %>
+    port: <%= cc_db.port %>
     encoding: utf8
     username: <%= db_role.name %>
     password: <%= db_role.password %>
-    pool: <%= properties.ccdb.pool_size %>
+    pool: <%= cc_db.pool_size %>
     timeout: 2000
     template: template0 # Required for utf8 encoding
     adapter: postgresql
