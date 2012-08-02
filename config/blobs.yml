@@ -63,6 +63,14 @@ mongodb/mongodb-linux-i686-1.8.5.tgz:
   size: 27749757
   object_id: eyJzaWciOiIzaEZub2dWYi9ad0Y5MVVQSU0rV0hKcUVrZzA9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNTFlMTIxMDA0ZTRlN2Q1MTkwNmNkMDRmYzdmMWY3OGQ4MTAi%0AfQ==%0A
   sha: f75d2fd7a4e0a7116ea612bb62b710a1ba0fa2b2
+mongodb/mongodb-linux-x86_64-2.0.6.tgz:
+  size: 38572579
+  object_id: eyJzaWciOiJXcFFIdzhINXlWcHd5aitZMUNDQ0JJMUZheHM9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNjFlMTIxMjA0ZTRlODZlZWJlNTkxMDRmZjIzMzA1NTUxMmEi%0AfQ==%0A
+  sha: 4ba3f2849653cb8f63410f9d901a3388b291d879
+mongodb/mongodb-linux-i686-2.0.6.tgz:
+  size: 38296132
+  object_id: eyJzaWciOiJ4aXJ5STRaeDdreXozdDcrRVZjYUZWOWpoeXc9Iiwib2lkIjoi%0ANGU0ZTc4YmNhMjFlMTIyMDA0ZTRlOGVjNjQ3YTU0MDRmZjIzMzI0NDAzOTMi%0AfQ==%0A
+  sha: b46ea3927388532ad1d5027fdaed1d37d6c00fa6
 opentsdb/opentsdb.36fe3cc1.tgz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNGYzMDY4%0AYjQxODZjMSIsInNpZyI6IkExUkliUy9lQ1dVV0RydEZvSjlDYTVub3VjND0i%0AfQ==%0A
   sha: 825cb28918aa5e2c48942558e557d88ab2f34c44
@@ -427,10 +435,6 @@ postgres/postgresql-9.0.3.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNGYzMDZi%0AMGVjMjQ2ZSIsInNpZyI6IkFvZG1TUHFFcEZxN0pyU3d6OXJoUGlJMFZURT0i%0AfQ==%0A
   sha: c8fb5d1d7930e78211e554bb5751183a8148d0ee
   size: 18335858
-redis/redis-2.2.4.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNGYzMDZi%0AMWI3MGQ3YSIsInNpZyI6IjVpb2t6dzFPMzRuRmhiK0x1NEM2bkdWUExtOD0i%0AfQ==%0A
-  sha: 063e6e9f615ceda664d0691a6ea59befb22ebc40
-  size: 447499
 debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjIyMDRlNGU5ODYzZDA3NjMwNGYzMDcx%0AMzZkYjE5MCIsInNpZyI6IkpLcTFCV0tpeHN0a2s4Lzk5MG1lUXJnQUo4bz0i%0AfQ==%0A
   sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
@@ -519,7 +523,67 @@ ruby/bundler-1.1.3.gem:
   object_id: eyJzaWciOiJuSFZEcUUvU0lrWHpCOGVJZUxhSjZjZHJVTGM9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNjFlMTIyMDA0ZTRlOGVjNmI0NGI2MDRmYTFjYzI2NGFiMjUi%0AfQ==%0A
   sha: 64e3aa4457e3d921d766e88b65265ff8b941b306
   size: 204288
-uaa/cloudfoundry-identity-uaa-1.0.2.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNGZlMzY2%0AM2EwMjExOSIsInNpZyI6ImlVK0NkL2F1cThRQlZPeC9zS1V4bXZTNlJ1bz0i%0AfQ==%0A
-  sha: 5130cb6b1276dd2d1f6deebd37bf0f183a63f5a4
-  size: 17887566
+imagemagick/freetype-2.4.10.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIyMDRlNGU5ODYzYjFiNzQwNGZlOGVh%0AYTkxYjU2MCIsInNpZyI6Iks1TVlZa3NBa0hEQ2U1ckY5ZlpMSjZsWVhkOD0i%0AfQ==%0A
+  sha: 44dba26ff965b1cd1c62e480fdefaeca62ed33da
+  size: 2006563
+imagemagick/ghostscript-9.05.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNGZlOGVh%0AYWQxYmU3YSIsInNpZyI6IjF1blozUE9hakNhMC9BNVVKQVBCWnUwNk5ORT0i%0AfQ==%0A
+  sha: af93787ba966360abbe085b213ec563b5db5a8cc
+  size: 32570231
+imagemagick/ghostscript-fonts-std-8.11.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNGZlOGVh%0AYjY4MzZhNiIsInNpZyI6ImZuNGprNlVMck9oUlpjU2FoWDZ5dmlwaHFYVT0i%0AfQ==%0A
+  sha: 2a7198e8178b2e7dba87cb5794da515200b568f5
+  size: 3752871
+imagemagick/ImageMagick-6.7.7-7.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNGZlOGVh%0AYmRkZjRmMSIsInNpZyI6IjRVMzBEdHVsNHFFYWwxMG9GWU1mT08vc0JiVT0i%0AfQ==%0A
+  sha: 6d77d114f3c90c178b573fd59e316f471572e37a
+  size: 12839949
+imagemagick/jpegsrc.v8d.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjIyMDRlNGU5ODYzZDA3NjMwNGZlOGVh%0AYzRiZTY5NCIsInNpZyI6InRXZmZDenVDQkpQcjkxcG9MeGFkV0ptT0VnQT0i%0AfQ==%0A
+  sha: f080b2fffc7581f7d19b968092ba9ebc234556ff
+  size: 991456
+imagemagick/lcms2-2.3.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNGZlOGVh%0AYzkyMjBhYSIsInNpZyI6InJ0UTZVSXBOY3FoODRxdVRNMUJjVVh6cXJEVT0i%0AfQ==%0A
+  sha: 67d5fabda2f5777ca8387766539b9c871d993133
+  size: 4461644
+imagemagick/libiconv-1.14.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEyMDRlNGU4NmVlMTUyOTQwNGZlOGVh%0AZDMwOGY0NCIsInNpZyI6IlpwemZLeXpDdG95bUhhRVZBRmRjNTZWbTl3ST0i%0AfQ==%0A
+  sha: be7d67e50d72ff067b2c0291311bc283add36965
+  size: 4984397
+imagemagick/libpng-1.5.11.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIwMDRlNGU4ZWM2NDZlMjEwNGZlOGVh%0AZDlkMGVlOCIsInNpZyI6Iko5YlQ1Ym5ONlZ0Ymd4dHRzNVcwemJtQU5UND0i%0AfQ==%0A
+  sha: 0e223e58075c4401f0018fa241a0274cd2e4c26d
+  size: 1061614
+imagemagick/libwmf-0.2.8.4.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNGZlOGVh%0AZGUyMjEyYyIsInNpZyI6IkNrdGlsUnhkb0tKRjNiYmxpMW5Yelh3NlBndz0i%0AfQ==%0A
+  sha: 822ab3bd0f5e8f39ad732f2774a8e9f18fc91e89
+  size: 2169375
+imagemagick/tiff-4.0.2.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEwMDRlNGU3ZDUxMWY1NTMwNGZlOGVh%0AZTFmMWQ1MSIsInNpZyI6IjQ3aVdmNUFOV0dzN2hVaVN0V0pBa1A3eTRZUT0i%0AfQ==%0A
+  sha: d84b7b33a6cfb3d15ca386c8c16b05047f8b5352
+  size: 2022814
+uaa/cloudfoundry-identity-uaa-1.0.3.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjIwMDRlNGU4ZWM2NWY2N2YwNGZmNzQ0%0AOWQ0MWU2OSIsInNpZyI6ImZsSU51L3A3d0ttdHVpYWZlbmZYMWw4a3M5az0i%0AfQ==%0A
+  sha: 94141664de252119d378dafd920d202a65be53b1
+  size: 24271827
+git/git-1.7.11.2.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEyMDRlNGU4NmVlYmU1OTEwNGZmZjEy%0AZDdlNDljNiIsInNpZyI6IkdvaUhZdDA2OFpDcUowVzhYOFdLYUVyV2RLRT0i%0AfQ==%0A
+  sha: f67b4f6c0277250411c6872ae7b8a872ae11d313
+  size: 4015780
+node/node-v0.8.2.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIyMDRlNGU5ODY0M2Q5YWUwNGZmYjVk%0AOTY1MWJhMCIsInNpZyI6ImpQUzhLRTFOWE5XbENkYnhUbjlPQU9wQ3JJbz0i%0AfQ==%0A
+  sha: 0e743d21b487151e67950f09198def058db19a1e
+  size: 11727164
+redis/redis-2.2.15.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNGZmZjRh%0AZjYxYjY5ZSIsInNpZyI6InA3Mkl4MVBKYWdGZnNYb0xjcGlDczY1QnJKRT0i%0AfQ==%0A
+  sha: aa6758590363556e73f8d36bdfccb429011da331
+  size: 456185
+warden/quota_3.17-6_amd64.deb:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTAwODc3%0ANzRhYTAyYiIsInNpZyI6Imh4b3hnUlQzbWpNdHBHQzJOYnZ6UUpRSHBLWT0i%0AfQ==%0A
+  sha: 0e35020b422a01e86235e37bb8155d720162df38
+  size: 518240
+warden/libnl1_1.1-5build1_amd64.deb:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTAwODk0%0ANDljZTAwNyIsInNpZyI6IndsQ3ZVVVBjVjVrZUJXOWkwSlA5UHQ4ZVNHYz0i%0AfQ==%0A
+  sha: 2c6c2dfa973ba4fa24dcc45153c07eb622c360fa
+  size: 143038

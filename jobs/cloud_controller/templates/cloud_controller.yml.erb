@@ -193,7 +193,7 @@ builtin_services:
     token: <%= properties.filesystem_gateway.token %>
 <% end %>
 <% if properties.vblob_gateway %>
-  vblob:
+  blob:
     token: <%= properties.vblob_gateway.token %>
 <% end %>
 <% if properties.external_service_tokens %>
@@ -222,6 +222,8 @@ runtimes:
     version: 0.4.12
   node06:
     version: 0.6.8
+  node08:
+    version: 0.8.2
   java:
     version: 1.6.0
     debug_modes:

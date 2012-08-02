@@ -25,7 +25,8 @@ templates:
 packages:
   - common
   - mongodb_node
-  - mongodb
+  - mongodb18
+  - mongodb20
   - ruby
   - sqlite
   - syslog_aggregator

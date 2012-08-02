@@ -1,7 +1,8 @@
 ---
 <%
 service = "vblob"
-acls = properties.vblob_gateway.acls
+gateway = eval("properties.#{service}_gateway")
+acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
@@ -13,15 +14,17 @@ index: <%= spec.index %>
 cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 
 service:
-  name: vblob
-  version: "1.0"
+  name: blob
+  version: "0.51"
   description: 'vBlob service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  default_plan: <%= gateway.default_plan || 'free' %>
+  supported_versions: ["0.51"]
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
     <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
-  tags: ['vblob', 'vblob-1.0', 'nosql']
+  tags: ['blob', 'blob-0.51', 'nosql']
   timeout: <%= properties.vblob_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
@@ -42,10 +45,10 @@ service:
   <% end %>
 <% end %>
 
-<% if properties.vblob_gateway.ip_route %>
-ip_route: <%= properties.vblob_gateway.ip_route %>
+<% if gateway.ip_route %>
+ip_route: <%= gateway.ip_route %>
 <% end %>
-token: <%= properties.vblob_gateway.token %>
+token: <%= gateway.token %>
 logging:
   file: /var/vcap/sys/log/vblob_gateway/vblob_gateway.log
   level: debug
@@ -54,10 +57,10 @@ logging:
   <% end %>
 
 pid: /var/vcap/sys/run/vblob_gateway/vblob_gateway.pid
-node_timeout: <%= properties.vblob_gateway.node_timeout || 8 %>
-z_interval: <%= properties.vblob_gateway.z_interval || 30 %>
-check_orphan_interval: <%= properties.vblob_gateway.check_orphan_interval || -1 %>
-double_check_orphan_interval: <%= properties.vblob_gateway.double_check_orphan_interval || 300 %>
+node_timeout: <%= gateway.node_timeout || 8 %>
+z_interval: <%= gateway.z_interval || 30 %>
+check_orphan_interval: <%= gateway.check_orphan_interval || -1 %>
+double_check_orphan_interval: <%= gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 
 <% if plan_enabled %>
