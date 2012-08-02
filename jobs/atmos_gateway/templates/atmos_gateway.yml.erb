@@ -1,6 +1,8 @@
 ---
 <%
-acls = properties.atmos_gateway.acls
+service = "atmos"
+gateway = eval("properties.#{service}_gateway")
+acls = gateway.acls
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
 %>
 mbus: <%= nats %>
@@ -14,6 +16,7 @@ service:
   version: "1.4.1"
   description: 'Atmos object store'
   plans: ['free']
+  default_plan: <%= gateway.default_plan || 'free' %>
   tags: ['atmos', 'atmos-1.4.1', 'object store']
   timeout: <%= properties.atmos_gateway.service_timeout || 10 %>
 <% if acls %>
@@ -35,10 +38,10 @@ service:
   <% end %>
 <% end %>
 
-<% if properties.atmos_gateway.ip_route %>
-ip_route: <%= properties.atmos_gateway.ip_route %>
+<% if gateway.ip_route %>
+ip_route: <%= gateway.ip_route %>
 <% end %>
-token: <%= properties.atmos_gateway.token %>
+token: <%= gateway.token %>
 
 logging:
   file: /var/vcap/sys/log/atmos_gateway/atmos_gateway.log

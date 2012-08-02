@@ -4,6 +4,12 @@ service = "mongodb"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+# backward compatible, fallback to 1.8 if old manifest file can't supply supported versions
+supported_versions = properties.mongodb_node.supported_versions || ["1.8"]
+default_version = properties.mongodb_node.default_version || "1.8"
+packages = {}
+# convention, package contains mongodb 1.8 is mongodb18
+supported_versions.each{|v| packages[v] = v.sub(".","")}
 node = properties.mongodb_node
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
@@ -23,13 +29,26 @@ pid: /var/vcap/sys/run/mongodb_node/mongodb_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
 max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
-mongod_path: /var/vcap/packages/mongodb/bin/mongod
-mongorestore_path: /var/vcap/packages/mongodb/bin/mongorestore
+supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+default_version: <%= "'#{default_version}'"%>
+
+mongod_path:
+<% for version in supported_versions %>
+  <%= "'#{version}': /var/vcap/packages/mongodb#{packages[version]}/bin/mongod" %>
+<% end %>
+
+mongod_options:
+  "1.8": ""
+  "2.0": "--nojournal"
+
 port_range:
   first: 25001
   last: 45000
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
-mongorestore_path: /var/vcap/packages/mongodb/bin/mongorestore
+mongorestore_path:
+<% for version in supported_versions %>
+  <%= "'#{version}': /var/vcap/packages/mongodb#{packages[version]}/bin/mongorestore" %>
+<% end %>
 <% if node.ip_route %>
 ip_route: <%= node.ip_route %>
 <% end %>

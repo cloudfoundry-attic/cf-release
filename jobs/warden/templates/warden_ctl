@@ -18,10 +18,8 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
-    if [ ! -e $FIRSTRUN_PATH ]; then
-      /var/vcap/packages/warden/warden/bin/enable_quotas.sh $QUOTA_FS
-      touch $FIRSTRUN_PATH
-    fi
+    dpkg --install --skip-same-version /var/vcap/packages/warden/libnl1_1.1-5build1_amd64.deb
+    dpkg --install --skip-same-version /var/vcap/packages/warden/quota_3.17-6_amd64.deb
 
     cd /var/vcap/packages/warden/warden
 
@@ -29,7 +27,7 @@ case $1 in
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
-         >>$LOG_DIR/warden.stdout.log \
+         1>>$LOG_DIR/warden.stdout.log \
          2>>$LOG_DIR/warden.stderr.log
 
     ;;

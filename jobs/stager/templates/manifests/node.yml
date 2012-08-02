@@ -12,6 +12,11 @@ runtimes:
       description: Node.js
       executable: /var/vcap/packages/dea_node06/bin/node
       npm: /var/vcap/packages/dea_node06/bin/npm
+  - node08:
+      version: '0.8.2'
+      description: Node.js
+      executable: /var/vcap/packages/dea_node08/bin/node
+      npm: /var/vcap/packages/dea_node08/bin/npm
 
 app_servers:
 

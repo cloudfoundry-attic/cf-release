@@ -1,10 +1,15 @@
 ---
 <%
 service = "mongodb"
-acls = properties.mongodb_gateway.acls
+gateway = eval("properties.#{service}_gateway")
+acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
+# backward compatible, fallback to 1.8 if old manifest file can't supply supported versions
+supported_versions = properties.mongodb_gateway.supported_versions || ["1.8"]
+version_aliases = properties.mongodb_gateway.version_aliases
+version_aliases.instance_eval("def fields; @table.keys; end;") if version_aliases
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
 lifecycle = properties.service_lifecycle
 %>
@@ -18,6 +23,7 @@ service:
   version: "1.8"
   description: 'MongoDB NoSQL store'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  default_plan: <%= gateway.default_plan || 'free' %>
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
     <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
@@ -42,11 +48,18 @@ service:
     <% end %>
   <% end %>
 <% end %>
-
-<% if properties.mongodb_gateway.ip_route %>
-ip_route: <%= properties.mongodb_gateway.ip_route %>
+  supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+<% if version_aliases && !version_aliases.fields.empty? %>
+  version_aliases:
+  <% for version_alias in version_aliases.fields.each %>
+    <%= "'#{version_alias}': '#{version_aliases.send(version_alias.to_sym)}'" %>
+  <% end %>
 <% end %>
-token: <%= properties.mongodb_gateway.token %>
+
+<% if gateway.ip_route %>
+ip_route: <%= gateway.ip_route %>
+<% end %>
+token: <%= gateway.token %>
 logging:
   file: /var/vcap/sys/log/mongodb_gateway/mongodb_gateway.log
   level: debug
@@ -55,10 +68,10 @@ logging:
   <% end %>
 
 pid: /var/vcap/sys/run/mongodb_gateway/mongodb_gateway.pid
-node_timeout: <%= properties.mongodb_gateway.node_timeout || 8 %>
-z_interval: <%= properties.mongodb_gateway.z_interval || 30 %>
-check_orphan_interval: <%= properties.mongodb_gateway.check_orphan_interval || -1 %>
-double_check_orphan_interval: <%= properties.mongodb_gateway.double_check_orphan_interval || 300 %>
+node_timeout: <%= gateway.node_timeout || 8 %>
+z_interval: <%= gateway.z_interval || 30 %>
+check_orphan_interval: <%= gateway.check_orphan_interval || -1 %>
+double_check_orphan_interval: <%= gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 
 <% if lifecycle and lifecycle.resque %>
