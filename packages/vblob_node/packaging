@@ -1,3 +1,6 @@
+# abort script on any command that exit with a non zero value
+set -e
+
 cp -a * ${BOSH_INSTALL_TARGET}
 
 (
@@ -7,11 +10,8 @@ cp -a * ${BOSH_INSTALL_TARGET}
   $bundle_cmd install --local --deployment --without=development test
 
   cd ${BOSH_INSTALL_TARGET}/warden
-  /var/vcap/packages/ruby/bin/bundle --local install --deployment
+  $bundle_cmd --local install --deployment --without=development test
 
-  chroot_base=/${BOSH_INSTALL_TARGET}/warden/root/linux/base
-  mkdir -p ${chroot_base}/rootfs
-  tar -C ${chroot_base}/rootfs -zxf /var/vcap/stemcell_base.tar.gz
-
-  env SKIP_DEBOOTSTRAP=true SKIP_APT=true /var/vcap/packages/ruby/bin/bundle exec rake setup
+  # Configure it to our liking, as well as compile helper binaries
+  $bundle_cmd exec rake setup:bin
 )

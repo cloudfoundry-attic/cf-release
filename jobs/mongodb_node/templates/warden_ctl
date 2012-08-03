@@ -1,41 +1,30 @@
 #!/bin/bash
 
-JOB_NAME=mongodb_node
 JOB_DIR=/var/vcap/jobs/mongodb_node
-PIDFILE=/var/vcap/sys/run/warden/warden.pid
-MONGODB_BIN_DIR=/var/vcap/packages/mongodb/bin
-WARDEN_ROOT_DIR=/var/vcap/packages/mongodb_node/warden/root/linux/base/rootfs/
-MONGOD_STARTUP=$WARDEN_ROOT_DIR/usr/bin/mongod_startup.sh
+PKG_DIR=/var/vcap/packages/mongodb_node
+BIN_DIR=/var/vcap/packages/mongodb18/bin
 
-source /var/vcap/packages/common/utils.sh
 source /var/vcap/packages/mongodb_node/common/warden_service.sh
 
 case $1 in
 
   start)
-    pid_guard $PIDFILE "Warden"
+    setup_warden
 
-    src=("$MONGODB_BIN_DIR" "$JOB_DIR/config/mongodb.conf" "$JOB_DIR/bin/mongod_startup.sh" \
-         "$JOB_DIR/config/services.conf")
-    dest=("$WARDEN_ROOT_DIR/usr/bin" "$WARDEN_ROOT_DIR/etc" "$WARDEN_ROOT_DIR/usr/bin" \
-          "$WARDEN_ROOT_DIR/etc/init")
+    # Copy mongodb binaries and configuration files to warden base file system
+    install -m 0755 -t $ROOT_DIR/usr/bin $JOB_DIR/bin/mongod_startup.sh $BIN_DIR/*
+    install -m 0644 -t $ROOT_DIR/etc     $JOB_DIR/config/mongodb.conf
+    install -m 0644 -t $ROOT_DIR/etc/init    $JOB_DIR/config/services.conf
 
-    prepare_warden $JOB_NAME $src $dest
-
-    chmod 0644 $WARDEN_ROOT_DIR/etc/mongodb.conf
-
-    start_warden $JOB_NAME $MONGOD_STARTUP
-
+    start_warden
     ;;
 
   stop)
     kill_and_wait $PIDFILE
-
     ;;
 
   *)
     echo "Usage: warden_ctl {start|stop}"
-
     ;;
 
 esac

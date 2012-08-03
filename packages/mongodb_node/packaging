@@ -4,19 +4,16 @@ set -e
 cp -a * ${BOSH_INSTALL_TARGET}
 
 (
+  export PATH=/var/vcap/packages/ruby/bin:$PATH
+
   cd ${BOSH_INSTALL_TARGET}/services/mongodb
   bundle_cmd=/var/vcap/packages/ruby/bin/bundle
   $bundle_cmd config build.do_sqlite3 --with-sqlite3-dir=/var/vcap/packages/sqlite
   $bundle_cmd install --local --deployment
 
   cd ${BOSH_INSTALL_TARGET}/warden
-  /var/vcap/packages/ruby/bin/bundle --local install --deployment
-
-  # Unzip base chroot from stemcell
-  chroot_base=/${BOSH_INSTALL_TARGET}/warden/root/linux/base
-  mkdir -p ${chroot_base}/rootfs
-  tar -C ${chroot_base}/rootfs -zxf /var/vcap/stemcell_base.tar.gz
+  $bundle_cmd --local install --deployment --without=development test
 
   # Configure it to our liking, as well as compile helper binaries
-  env SKIP_DEBOOTSTRAP=true SKIP_APT=true /var/vcap/packages/ruby/bin/bundle exec rake setup
+  $bundle_cmd exec rake setup:bin
 )

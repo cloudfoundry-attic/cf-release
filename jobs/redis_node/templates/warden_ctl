@@ -1,37 +1,29 @@
 #!/bin/bash
 
-JOB_NAME=redis_node
 JOB_DIR=/var/vcap/jobs/redis_node
-PIDFILE=/var/vcap/sys/run/warden/warden.pid
-REDIS_BIN_DIR=/var/vcap/packages/redis/bin
-WARDEN_ROOT_DIR=/var/vcap/packages/redis_node/warden/root/linux/base/rootfs/
-REDIS_STARTUP=$WARDEN_ROOT_DIR/usr/bin/redis_startup.sh
+PKG_DIR=/var/vcap/packages/redis_node
+BIN_DIR=/var/vcap/packages/redis/bin
 
-source /var/vcap/packages/common/utils.sh
 source /var/vcap/packages/redis_node/common/warden_service.sh
 
 case $1 in
 
   start)
-    pid_guard $PIDFILE "Warden"
+    setup_warden
 
-    src=("$REDIS_BIN_DIR" "$JOB_DIR/bin/redis_startup.sh" "$JOB_DIR/config/services.conf")
-    dest=("$WARDEN_ROOT_DIR/usr/bin" "$WARDEN_ROOT_DIR/usr/bin" "$WARDEN_ROOT_DIR/etc/init")
+    # Copy mongodb binaries and configuration files to warden base file system
+    install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/redis_startup.sh $BIN_DIR/*
+    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
 
-    prepare_warden $JOB_NAME $src $dest
-
-    start_warden $JOB_NAME $REDIS_STARTUP
-
+    start_warden
     ;;
 
   stop)
     kill_and_wait $PIDFILE
-
     ;;
 
   *)
     echo "Usage: warden_ctl {start|stop}"
-
     ;;
 
 esac
