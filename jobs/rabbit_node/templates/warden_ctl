@@ -1,48 +1,34 @@
 #!/bin/bash
 
-JOB_NAME=rabbit_node
 JOB_DIR=/var/vcap/jobs/rabbit_node
-PIDFILE=/var/vcap/sys/run/warden//warden.pid
-RABBITMQ_DIR=`readlink /var/vcap/packages/rabbitmq`
-ERLANG_DIR=`readlink /var/vcap/packages/erlang`
-WARDEN_DIR=/var/vcap/packages/rabbit_node/warden/root/linux/base/rootfs
-RABBITMQ_WARDEN_DIR=$WARDEN_DIR/$RABBITMQ_DIR
-ERLANG_WARDEN_DIR=$WARDEN_DIR/$ERLANG_DIR
-WARDEN_PACKAGES_DIR=$WARDEN_DIR/var/vcap/packages
-RABBITMQ_STARTUP=$WARDEN_DIR/usr/bin/rabbitmq_startup.sh
+PKG_DIR=/var/vcap/packages/rabbit_node
 
-source /var/vcap/packages/common/utils.sh
 source /var/vcap/packages/rabbit_node/common/warden_service.sh
 
 case $1 in
 
   start)
-    pid_guard $PIDFILE "Warden"
+    setup_warden
 
-    src=("$RABBITMQ_DIR" "$ERLANG_DIR" "$JOB_DIR/bin/rabbitmq_startup.sh" \
-         "$JOB_DIR/config/services.conf")
-    dest=("$RABBITMQ_WARDEN_DIR" "$ERLANG_WARDEN_DIR" "$WARDEN_DIR/usr/bin" \
-          "$WARDEN_DIR/etc/init")
+    # Copy mongodb binaries and configuration files to warden base file system
+    install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/rabbitmq_startup.sh
+    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+    for i in "var/vcap/packages" "var/vcap/data/packages"
+    do
+	mkdir -p $ROOT_DIR/$i
+	cp -af /$i/rabbitmq $ROOT_DIR/$i
+	cp -af /$i/erlang $ROOT_DIR/$i
+    done
 
-    prepare_warden $JOB_NAME $src $dest
-
-    mkdir -p $WARDEN_PACKAGES_DIR
-    cd $WARDEN_PACKAGES_DIR
-    ln -s ../../../$ERLANG_DIR erlang
-    ln -s ../../../$RABBITMQ_DIR rabbitmq
-
-    start_warden $JOB_NAME $RABBITMQ_STARTUP
-
+    start_warden
     ;;
 
   stop)
     kill_and_wait $PIDFILE
-
     ;;
 
   *)
     echo "Usage: warden_ctl {start|stop}"
-
     ;;
 
 esac

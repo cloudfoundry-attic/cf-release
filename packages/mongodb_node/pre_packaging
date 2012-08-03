@@ -5,7 +5,7 @@ cd ${BUILD_DIR}
 
 pkg_utils/vendor.sh services/mongodb
 mv warden warden_meta
-mv warden_meta/warden .
+mv warden_meta/* .
 rm -rf warden_meta
 
 pkg_utils/vendor.sh warden

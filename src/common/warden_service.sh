@@ -1,47 +1,42 @@
-SCRIPT=$(basename $0)
-mkdir -p /var/vcap/sys/log/monit
-
-exec 1>> /var/vcap/sys/log/monit/$SCRIPT.log
-exec 2>> /var/vcap/sys/log/monit/$SCRIPT.err.log
+source /var/vcap/packages/common/utils.sh
 
 RUN_DIR=/var/vcap/sys/run/warden
 LOG_DIR=/var/vcap/sys/log/warden
 PIDFILE=$RUN_DIR/warden.pid
+ROOT_DIR=/var/vcap/data/warden/rootfs
+ROOT_TGZ=/var/vcap/stemcell_base.tar.gz
 
-source /var/vcap/packages/common/utils.sh
+setup_warden() {
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
 
-prepare_warden() {
-  job_name=$1
-  src=$2
-  dest=$3
+    pid_guard $PIDFILE "Warden"
+    echo $$ > $PIDFILE
 
-  mkdir -p $RUN_DIR
-  mkdir -p $LOG_DIR
-  echo $$ > $PIDFILE
+    dpkg --install --skip-same-version $PKG_DIR/libnl1_1.1-5build1_amd64.deb
+    dpkg --install --skip-same-version $PKG_DIR/quota_3.17-6_amd64.deb
 
-  export PATH=/var/vcap/packages/ruby/bin:$PATH
-
-  # copy all the necessities to correct positions
-  for (( i = 0; i < ${#src[@]}; i++ )) do
-    mkdir -p "${dest[$i]}"
-    [ -d ${src[$i]} ] && cp -af ${src[$i]}/* ${dest[$i]} || cp -af ${src[$i]} ${dest[$i]}
-  done
+    # Extract rootfs if needed
+    if [ ! -d $ROOT_DIR ]
+    then
+        # Extract to temporary path, then rename to target path.
+        # This makes sure that it is not possible that we end up with directory
+        # that contains a partially extracted archive.
+        mkdir -p $(dirname $ROOT_DIR)
+	TMP=$(mktemp --tmpdir=$(dirname $ROOT_DIR) -d)
+	chmod 755 $TMP
+	tar -C $TMP -zxf $ROOT_TGZ
+	mv $TMP $ROOT_DIR
+    fi
 }
 
 start_warden() {
-  job_name=$1
-  service_startup=$2
+  cd $PKG_DIR/warden
 
-  warden_conf_dir=/var/vcap/jobs/$job_name/config
-  warden_root_dir=/var/vcap/packages/$job_name/warden/root/linux/base/rootfs
-
-  cd /var/vcap/packages/$job_name/warden
-
-  chmod 0755 $service_startup
-  chmod 0644 $warden_root_dir/etc/init/services.conf
+  export PATH=/var/vcap/packages/ruby/bin:$PATH
 
   exec /var/vcap/packages/ruby/bin/bundle exec \
-       rake warden:start[$warden_conf_dir/warden.yml] \
+       rake warden:start[$JOB_DIR/config/warden.yml] \
        >>$LOG_DIR/warden.stdout.log \
        2>>$LOG_DIR/warden.stderr.log
 }
