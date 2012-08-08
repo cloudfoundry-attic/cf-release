@@ -4,7 +4,7 @@ JOB_DIR=/var/vcap/jobs/redis_node
 PKG_DIR=/var/vcap/packages/redis_node
 BIN_DIR=/var/vcap/packages/redis/bin
 
-source /var/vcap/packages/redis_node/common/warden_service.sh
+source /var/vcap/packages/redis_node/common/services/utils.sh
 
 case $1 in
 

@@ -6,7 +6,7 @@ BIN_DIR=/var/vcap/packages
 
 VBLOB_STARTUP=$WARDEN_ROOT_DIR/usr/bin/vblob_startup.sh
 
-source /var/vcap/packages/vblob_node/common/warden_service.sh
+source /var/vcap/packages/vblob_node/common/services/utils.sh
 
 case $1 in
 

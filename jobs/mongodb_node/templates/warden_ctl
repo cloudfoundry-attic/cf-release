@@ -4,7 +4,7 @@ JOB_DIR=/var/vcap/jobs/mongodb_node
 PKG_DIR=/var/vcap/packages/mongodb_node
 BIN_DIR=/var/vcap/packages/mongodb18/bin
 
-source /var/vcap/packages/mongodb_node/common/warden_service.sh
+source /var/vcap/packages/mongodb_node/common/services/utils.sh
 
 case $1 in
 
