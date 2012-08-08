@@ -28,6 +28,15 @@ setup_warden() {
 	tar -C $TMP -zxf $ROOT_TGZ
 	mv $TMP $ROOT_DIR
     fi
+
+    # Create loop devices for disk quota
+    for i in $(seq 0 1023); do
+      file=/dev/loop${i}
+      if [ ! -b ${file} ]; then
+        mknod -m0660 ${file} b 7 ${i}
+        chown root.disk ${file}
+      fi
+    done
 }
 
 start_warden() {
