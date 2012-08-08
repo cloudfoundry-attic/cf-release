@@ -3,7 +3,7 @@
 JOB_DIR=/var/vcap/jobs/rabbit_node
 PKG_DIR=/var/vcap/packages/rabbit_node
 
-source /var/vcap/packages/rabbit_node/common/warden_service.sh
+source /var/vcap/packages/rabbit_node/common/services/utils.sh
 
 case $1 in
 

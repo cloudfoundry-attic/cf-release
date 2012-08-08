@@ -5,6 +5,7 @@ LOG_DIR=/var/vcap/sys/log/warden
 PIDFILE=$RUN_DIR/warden.pid
 ROOT_DIR=/var/vcap/data/warden/rootfs
 ROOT_TGZ=/var/vcap/stemcell_base.tar.gz
+LOOP_DEVICE_COUNT=1024
 
 setup_warden() {
     mkdir -p $RUN_DIR
@@ -28,6 +29,15 @@ setup_warden() {
 	tar -C $TMP -zxf $ROOT_TGZ
 	mv $TMP $ROOT_DIR
     fi
+
+    # Create loop devices for disk quota
+    for i in $(seq 0 $(expr $LOOP_DEVICE_COUNT - 1)); do
+      file=/dev/loop${i}
+      if [ ! -b ${file} ]; then
+        mknod -m0660 ${file} b 7 ${i}
+        chown root.disk ${file}
+      fi
+    done
 }
 
 start_warden() {
