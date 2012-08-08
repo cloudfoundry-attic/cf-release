@@ -28,7 +28,7 @@ logging:
 pid: /var/vcap/sys/run/mongodb_node/mongodb_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
-max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
+max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
 
