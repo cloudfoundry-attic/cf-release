@@ -2,7 +2,8 @@
 server:
   unix_domain_permissions: 0777
   container_klass: Warden::Container::Linux
-  container_depot_path: /var/vcap/data/warden
+  container_rootfs_path: /var/vcap/data/warden/rootfs
+  container_depot_path: /var/vcap/data/warden/depot
 
 logging:
   file: /var/vcap/sys/log/warden/warden.log
