@@ -6,9 +6,8 @@ acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
-# backward compatible, fallback to 1.8 if old manifest file can't supply supported versions
-supported_versions = properties.mongodb_gateway.supported_versions || ["1.8"]
-version_aliases = properties.mongodb_gateway.version_aliases
+supported_versions = gateway.supported_versions
+version_aliases = gateway.version_aliases
 version_aliases.instance_eval("def fields; @table.keys; end;") if version_aliases
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
 lifecycle = properties.service_lifecycle
