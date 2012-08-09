@@ -160,41 +160,18 @@ default_account_capacity:
 <% end %>
 
 builtin_services:
-<% if properties.mysql_gateway %>
-  mysql:
-    token: <%= properties.mysql_gateway.token %>
-<% end %>
-<% if properties.redis_gateway %>
-  redis:
-    token: <%= properties.redis_gateway.token %>
-<% end %>
-<% if properties.mongodb_gateway %>
-  mongodb:
-    token: <%= properties.mongodb_gateway.token %>
-<% end %>
-<% if properties.memcached_gateway %>
-  memcached:
-    token: <%= properties.memcached_gateway.token %>
-<% end %>
-<% if properties.rabbit_gateway %>
-  rabbitmq:
-    token: <%= properties.rabbit_gateway.token %>
-<% end %>
-<% if properties.postgresql_gateway %>
-  postgresql:
-    token: <%= properties.postgresql_gateway.token %>
-<% end %>
-<% if properties.atmos_gateway %>
-  atmos:
-    token: <%= properties.atmos_gateway.token %>
-<% end %>
-<% if properties.filesystem_gateway %>
-  filesystem:
-    token: <%= properties.filesystem_gateway.token %>
-<% end %>
-<% if properties.vblob_gateway %>
-  blob:
-    token: <%= properties.vblob_gateway.token %>
+<% services = ['mysql', 'redis', 'mongodb', 'memcached', 'rabbit', 'postgresql', 'atmos', 'filesystem', 'vblob'] %>
+<% for service in services %>
+  <% service_gateway = "#{service}_gateway" %>
+  <% if properties.send(service_gateway.to_sym) %>
+  <% service = 'rabbitmq' if service == 'rabbit'
+     service = 'blob' if service == 'vblob' %>
+  <%= "#{service}:"%>
+    token: <%= properties.send(service_gateway.to_sym).token %>
+    <% if properties.send(service_gateway.to_sym).token_b %>
+    token_b: <%= properties.send(service_gateway.to_sym).token_b %>
+    <% end %>
+  <% end %>
 <% end %>
 <% if properties.external_service_tokens %>
 <% properties.external_service_tokens.each do |name,token| %>
@@ -208,9 +185,37 @@ service_broker:
   token: <%= properties.service_broker.token %>
 <% end %>
 
-<% if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle%>
+<%
+if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle
+  max_upload_size = properties.cc.service_extension.service_lifecycle.max_upload_size || 1
+  if properties.service_lifecycle
+    if properties.service_lifecycle.serialization_max_download_size
+      max_download_size = properties.service_lifecycle.serialization_max_download_size
+      if max_upload_size.to_i > max_download_size.to_i
+        max_upload_size = max_download_size.to_i
+      end
+    end
+    sds = properties.service_lifecycle.serialization_data_server
+  end
+  if properties.serialization_data_server
+    sds_port = properties.serialization_data_server.port
+    upload_token = properties.serialization_data_server.upload_token
+    upload_timeout = properties.serialization_data_server.upload_timeout
+  end
+  sds_port ||= 8080
+%>
 service_lifecycle:
-  max_upload_size: <%= properties.cc.service_extension.service_lifecycle.max_upload_size || 1 %>
+  max_upload_size: <%= max_upload_size %>
+  upload_token: <%= upload_token %>
+  <% if upload_timeout %>
+  upload_timeout: <%=upload_timeout%>
+  <% end %>
+  <% if sds %>
+  serialization_data_server:
+    <% sds.each do |server| %>
+  - <%=server%>:<%=sds_port%>
+    <% end %>
+  <% end %>
 <% end %>
 
 runtimes:
