@@ -1,0 +1,100 @@
+---
+deployment: micro
+release:
+  name: micro
+  version: 13
+configuration_hash: {}
+properties:
+  micro: true
+  domain: vcap.me
+  env:
+  networks:
+    apps: local
+    management: local
+  dea:
+    max_memory: 1024
+  router:
+    client_inactivity_timeout: 600
+    app_inactivity_timeout: 600
+    local_route: 127.0.0.1
+    status:
+      port: 8080
+      user:
+      password:
+  nats:
+    user: nats
+    password:
+    address: 127.0.0.1
+    port: 4222
+  ccdb:
+    address: 127.0.0.1
+    user: root
+    password:
+    port: 2544
+    dbname: appcloud
+  cc:
+    description: "VMware's Micro Cloud Application Platform"
+    srv_api_uri: http://api.vcap.me
+    password:
+    token:
+    allow_debug: true
+    allow_registration: true
+    admins:
+    - admin@vcap.me
+    admin_account_capacity:
+      memory: 1024
+      app_uris: 32
+      services: 16
+      apps: 16
+    default_account_capacity:
+      memory: 512
+      app_uris: 8
+      services: 4
+      apps: 4
+  mysql_gateway:
+    ip_route: 127.0.0.1
+    token:
+  mysql_node:
+    ip_route: 127.0.0.1
+    available_storage: 2048
+    password:
+    max_db_size: 256
+  redis_gateway:
+    ip_route: 127.0.0.1
+    token:
+  redis_node:
+    ip_route: 127.0.0.1
+    available_memory: 256
+  mongodb_gateway:
+    ip_route: 127.0.0.1
+    token:
+  mongodb_node:
+    ip_route: 127.0.0.1
+    available_memory: 256
+  postgresql_gateway:
+    ip_route: 127.0.0.1
+    admin_user: psql_admin
+    admin_passwd_hash:
+    token:
+  postgresql_node:
+    ip_route: 127.0.0.1
+    admin_user: psql_admin
+    admin_passwd_hash:
+    available_storage: 2048
+    max_db_size: 256
+    max_long_tx: 30
+  postgresql_server:
+    max_connections: 30
+    listen_address: 127.0.0.1
+  rabbitmq_srs:
+    admin_user: srs_admin
+    admin_passwd_hash:
+    admin_group: admin
+    token:
+    backbone_user: backbone
+    backbone_password:
+    backbone_address: 127.0.0.1
+    backbone_port: 1672
+  rabbitmq_srs_gateway:
+    ip_route: 127.0.0.1
+    port: 8000
