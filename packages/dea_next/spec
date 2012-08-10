@@ -1,0 +1,10 @@
+---
+name: dea_next
+dependencies:
+- ruby
+- warden
+files:
+- dea_next/Gemfile
+- dea_next/Gemfile.lock
+- dea_next/{bin,lib}/**/*
+- pkg_utils/*
