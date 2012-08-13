@@ -18,9 +18,6 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
-    dpkg --install --skip-same-version /var/vcap/packages/warden/libnl1_1.1-5build1_amd64.deb
-    dpkg --install --skip-same-version /var/vcap/packages/warden/quota_3.17-6_amd64.deb
-
     rootfs_path=/var/vcap/data/warden/rootfs
     rootfs_tgz=/var/vcap/stemcell_base.tar.gz
 
