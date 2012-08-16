@@ -1,0 +1,23 @@
+---
+name: cloud_controller_ng
+templates:
+  cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
+  cloud_controller_ng_ctl.erb: bin/cloud_controller_ng_ctl
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  iptables.conf.erb: config/iptables.conf
+packages:
+  - common
+  - cloud_controller_ng
+  - libpq
+  - sqlite
+  - ruby
+  - dea_node04
+  - dea_node06
+  - dea_node08
+  - dea_ruby18
+  - dea_ruby19
+  - dea_jvm
+  - dea_jvm7
+  - dea_transition
+  - dea_seed
+  - syslog_aggregator
