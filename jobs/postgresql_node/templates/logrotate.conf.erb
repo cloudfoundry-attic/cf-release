@@ -1,0 +1,12 @@
+<%
+  rotate = properties.postgresql_node.logrotate && properties.postgresql_node.logrotate.rotate
+  size = properties.postgresql_node.logrotate && properties.postgresql_node.logrotate.size
+%>
+/var/vcap/data/sys/log/postgresql/*.log /var/vcap/data/sys/service-log/*/*/*.log {
+  missingok
+  rotate <%= rotate || 3 %>
+  compress
+  delaycompress
+  copytruncate
+  size=<%= size || "10240k" %>
+}

@@ -5,6 +5,7 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 lifecycle = properties.service_lifecycle
+use_warden = plan_enabled && plan_conf.warden && plan_conf.warden.enable
 %>
 <% if lifecycle and lifecycle.resque %>
 <% snapshot_dir = lifecycle.mount_point || "/var/vcap/services_snapshot" %>
@@ -41,3 +42,6 @@ postgresql:
 restore_bin: /var/vcap/packages/postgresql/bin/pg_restore
 dump_bin: /var/vcap/packages/postgresql/bin/pg_dump
 <% end %>
+<%if use_warden%>
+use_warden: true
+<%end%>
