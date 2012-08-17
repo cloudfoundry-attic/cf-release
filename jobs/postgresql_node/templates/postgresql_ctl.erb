@@ -1,5 +1,10 @@
 #!/bin/bash
-
+<%
+service = "postgresql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+%>
 PACKAGE_DIR=/var/vcap/packages/postgresql
 DATA_DIR=/var/vcap/store/postgresql
 RUN_DIR=/var/vcap/sys/run/postgresql
@@ -16,9 +21,16 @@ case "$1" in
 
     mkdir -p $RUN_DIR
     echo $$ > $PIDFILE # Satisfy Monit in case of slow start
-
+    <% if plan_conf && plan_conf.shmmax %>
+    sysctl -w 'kernel.shmmax=<%=plan_conf.shmmax%>'
+    <%else%>
     sysctl -w 'kernel.shmmax=284934144'
-
+    <%end%>
+    
+    <% if plan_conf && plan_conf.shmall%>
+    sysctl -w 'kernel.shmall=<%=plan_conf.shmall%>'
+    <%end%>
+   
     if [ ! -d $DATA_DIR -o ! -f $DATA_DIR/postgresql.conf ]; then
       FIRST_TIME=1
       mkdir -p $DATA_DIR
@@ -48,11 +60,21 @@ case "$1" in
       chown vcap:vcap $LOG_DIR
     fi
     sed -i "/log_directory/ {s/#log_directory/log_directory/;s/pg_log/\/var\/vcap\/sys\/log\/postgresql/}" $DATA_DIR/postgresql.conf
+    # disable built-in log rotator
+    sed -i "s/^[\w|#]*logging_collector = .*/logging_collector = off/" $DATA_DIR/postgresql.conf
 
     # pg global max connections
     # this can be updated by re-deployment rather than the first initialization
     <% if properties.postgresql_server && properties.postgresql_server.max_connections %>
     sed -i "s/^max_connections =.*/max_connections = <%= properties.postgresql_server.max_connections %>/" $DATA_DIR/postgresql.conf
+    <% end %>
+    
+    # set adjustable configurations per plan
+    <% adjustable_configs = %w(max_connections shared_buffers effective_cache_size work_mem temp_buffers checkpoint_segments) %>
+    <% adjustable_configs.each do |config| %>
+    	<% if plan_conf && plan_conf.send(config.to_sym) %>
+    sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=plan_conf.send(config.to_sym)%>/" $DATA_DIR/postgresql.conf
+    	<% end %>
     <% end %>
 
     # stop psql from adding timestamps to its log file names

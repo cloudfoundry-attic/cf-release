@@ -55,6 +55,8 @@ case $1 in
     chmod +x $JOB_DIR/config/postgresql_backup
     $JOB_DIR/config/postgresql_backup start
 
+    (crontab -l | sed /postgresql_logrotate/d; cat /var/vcap/jobs/postgresql_node/config/postgresql_logrotate.cron) | sed /^$/d | crontab
+
     exec /var/vcap/packages/postgresql_node/services/postgresql/bin/postgresql_node \
          -c $JOB_DIR/config/postgresql_node.yml \
          >>$LOG_DIR/postgresql_node.stdout.log \
@@ -63,7 +65,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE
+    kill_and_wait $PIDFILE 400 0
 
     chmod +x $JOB_DIR/config/postgresql_backup
     $JOB_DIR/config/postgresql_backup stop
