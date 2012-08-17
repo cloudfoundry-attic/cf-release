@@ -6,4 +6,6 @@ dependencies:
 - ruby
 files:
 - services/postgresql/**/*
+- warden/warden/**/*
 - pkg_utils/*
+- common/services/utils.sh

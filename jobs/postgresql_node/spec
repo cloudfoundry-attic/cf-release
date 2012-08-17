@@ -11,6 +11,11 @@ templates:
   postgresql_backup.erb: config/postgresql_backup
   postgresql_ctl.erb: bin/postgresql_ctl
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+  warden_ctl: bin/warden_ctl
+  warden.yml: config/warden.yml
+  warden_postgresql_ctl: bin/warden_postgresql_ctl
+  services.conf: config/services.conf
 packages:
   - common
   - postgresql
