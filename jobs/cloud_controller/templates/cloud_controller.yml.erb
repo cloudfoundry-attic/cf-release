@@ -93,7 +93,7 @@ database_environment:
 <% if properties.cc.uaa && properties.uaa.cc %>
 uaa:
   enabled: <%= properties.cc.uaa.enabled %>
-  url: http://uaa.<%= properties.domain %>
+  url: https://uaa.<%= properties.domain %>
   resource_id: <%= properties.cc.uaa.resource_id %>
   token_secret: <%= properties.uaa.cc.token_secret %>
   client_secret: <%= properties.uaa.cc.client_secret %>
