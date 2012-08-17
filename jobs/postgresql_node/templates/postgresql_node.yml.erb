@@ -5,6 +5,8 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 node = properties.postgresql_node
+warden = plan_conf.warden
+use_warden = warden && warden.enable
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -41,3 +43,14 @@ z_interval: <%= node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>
+<%if use_warden %>
+use_warden: true
+warden:
+ log_dir: /var/vcap/sys/service-log/postgresql
+ image_dir: /var/vcap/store/postgresql_image
+ service_start_timeout: <%= warden.servie_start_timeout || 3 %>
+ filesystem_quota: <%= warden.filesystem_quota || "false" %>
+ port_range:
+   first: 15000
+   last: 25000
+<%end%>
