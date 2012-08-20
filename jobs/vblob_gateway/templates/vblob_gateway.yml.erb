@@ -26,7 +26,7 @@ service:
 <% plan_mgmt.fields.each do |pf| %>
     <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
-  tags: ['blob', 'blob-0.51', 'nosql']
+  tags: ['nosql']
   timeout: <%= properties.vblob_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
