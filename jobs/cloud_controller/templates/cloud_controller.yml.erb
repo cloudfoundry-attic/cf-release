@@ -52,11 +52,11 @@ logging:
   <% if properties.syslog_aggregator %>
   syslog: vcap.cloud_controller
   <% end %>
-  level: debug
+  level: <%= properties.cc.logging_level || "info" %>
 
 rails_logging:
   file: /var/vcap/sys/log/cloud_controller/rails.log
-  level: debug
+  level: <%= properties.cc.rails_logging_level || "info" %>
 
 event_logging:
   file: /var/vcap/sys/log/cloud_controller/events.log
