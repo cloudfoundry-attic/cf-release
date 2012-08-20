@@ -10,7 +10,7 @@ logging:
   <% if properties.syslog_aggregator %>
   syslog: vcap.dea
   <% end %>
-  level: debug
+  level: info
 multi_tenant: true
 max_memory: <%= properties.dea.max_memory %>
 secure: <%= properties.dea.secure.nil? ? true : properties.dea.secure %>
