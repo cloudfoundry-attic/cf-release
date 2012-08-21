@@ -4,13 +4,12 @@ service = "mongodb"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
-# backward compatible, fallback to 1.8 if old manifest file can't supply supported versions
-supported_versions = properties.mongodb_node.supported_versions || ["1.8"]
-default_version = properties.mongodb_node.default_version || "1.8"
+node = properties.mongodb_node
+supported_versions = node.supported_versions
+default_version = node.default_version
 packages = {}
 # convention, package contains mongodb 1.8 is mongodb18
 supported_versions.each{|v| packages[v] = v.sub(".","")}
-node = properties.mongodb_node
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>

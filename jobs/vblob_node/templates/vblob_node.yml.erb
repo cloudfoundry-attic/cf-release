@@ -4,9 +4,10 @@ service = "vblob"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
-supported_versions = properties.vblob_node.supported_versions || ['0.51']
-node_id = "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}"
 node = properties.vblob_node
+supported_versions = node.supported_versions
+default_version = node.default_version
+node_id = "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -28,6 +29,8 @@ pid: /var/vcap/sys/run/vblob_node/vblob_node.pid
 node_id: <%= node_id %>
 vblobd_log_dir: /var/vcap/sys/service-log/vblob
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+default_version: <%= "'#{default_version}'"%>
+
 nodejs_path: /var/vcap/packages/node/bin/node
 vblobd_path: /var/vcap/packages/vblob
 vblobd_auth: <%= node.vblobd_auth || "disabled" %>
