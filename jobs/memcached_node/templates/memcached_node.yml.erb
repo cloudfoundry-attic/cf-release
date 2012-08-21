@@ -4,6 +4,9 @@ service = "memcached"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+node = properties.memcached_node
+supported_versions = node.supported_versions
+default_version = node.default_version
 %>
 
 capacity: <%= plan_enabled && plan_conf.capacity || 16 %>
@@ -22,6 +25,8 @@ logging:
 
 pid: /var/vcap/sys/run/memcached_node/memcached_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+default_version: <%= "'#{default_version}'"%>
 
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
 memcached_server_path: /var/vcap/packages/memcached/bin/memcached
