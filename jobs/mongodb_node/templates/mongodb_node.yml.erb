@@ -27,7 +27,11 @@ logging:
 pid: /var/vcap/sys/run/mongodb_node/mongodb_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
+<% if plan_conf.enable_journaling %>
+max_disk: <%= ((plan_enabled && plan_conf.max_disk || 128) * 1.25).to_i %>
+<% else %>
 max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
+<% end %>
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
 
@@ -37,8 +41,16 @@ mongod_path:
 <% end %>
 
 mongod_options:
+  <% if plan_enabled && plan_conf.enable_journaling %>
+  "1.8": "--journal"
+  <% else %>
   "1.8": ""
+  <% end %>
+  <% if plan_enabled && plan_conf.enable_journaling %>
+  "2.0": ""
+  <% else %>
   "2.0": "--nojournal"
+  <% end %>
 
 port_range:
   first: 25001
