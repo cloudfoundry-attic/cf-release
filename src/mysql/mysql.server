@@ -178,6 +178,11 @@ case "$mode" in
         if test -f $defaultsdir/../bin/my.shutdown; then
           echo "Gracefully shutting down MySQL"
           $defaultsdir/../bin/my.shutdown; return_value=$?
+          if [ $return_value -ne 0 ]; then
+            echo "Gracefully shut down MySQL failed, kill it"
+            kill $mysqld_pid
+            wait_for_pid removed "$mysqld_pid"; return_value=$?
+          fi
         else
           kill $mysqld_pid
           wait_for_pid removed "$mysqld_pid"; return_value=$?
