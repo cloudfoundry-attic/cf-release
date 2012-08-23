@@ -80,10 +80,11 @@ tar zxf imagemagick/ghostscript-fonts-std-8.11.tar.gz
 mkdir -p ${BOSH_INSTALL_TARGET}/share/ghostscript/fonts
 mv -f fonts/* ${BOSH_INSTALL_TARGET}/share/ghostscript/fonts
 
-tar zxf imagemagick/ImageMagick-6.7.7-7.tar.gz
+tar zxf imagemagick/ImageMagick-6.7.9-0.tar.gz
 
 (
-  cd ImageMagick-6.7.7-7
+  cd ImageMagick-6.7.9-0
+  patch -p1 < ../imagemagick/im-lib-version-677-for-rmagick.patch
   export CPPFLAGS=-I${BOSH_INSTALL_TARGET}/include
   export LDFLAGS=-L${BOSH_INSTALL_TARGET}/lib
  ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-static --with-modules --without-perl --without-magick-plus-plus --with-quantum-depth=8 --with-gs-font-dir=${BOSH_INSTALL_TARGET}/share/ghostscript/fonts
