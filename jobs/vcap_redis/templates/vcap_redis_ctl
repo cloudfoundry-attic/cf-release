@@ -23,7 +23,10 @@ case $1 in
     <% end %>
     echo $$ > $PIDFILE
 
-    exec /var/vcap/packages/redis/bin/redis-server /var/vcap/jobs/vcap_redis/config/vcap_redis.conf
+    exec /var/vcap/packages/redis/bin/redis-server \
+      /var/vcap/jobs/vcap_redis/config/vcap_redis.conf \
+      >>$LOG_DIR/vcap_redis.stdout.log \
+      2>>$LOG_DIR/vcap_redis.stderr.log
 
     ;;
 
