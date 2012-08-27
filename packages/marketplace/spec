@@ -1,0 +1,7 @@
+---
+name: marketplace
+dependencies:
+- ruby
+files:
+- services/marketplace/**/*
+- pkg_utils/*

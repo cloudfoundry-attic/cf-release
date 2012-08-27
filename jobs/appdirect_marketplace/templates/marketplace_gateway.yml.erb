@@ -1,0 +1,23 @@
+---
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+<% if properties.appdirect_marketplace.ip_route %>
+ip_route: <%= properties.appdirect_marketplace.ip_route %>
+<% end %>
+index: <%= spec.index %>
+token: <%= properties.appdirect_marketplace.token %>
+
+<% nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}" %>
+mbus: <%= nats %>
+pid: /var/vcap/sys/run/marketplace_gateway/marketplace_gateway.pid
+
+# node_timeout is required by base async gateway class. This is defined in #{marketplace}.yml
+# since this value is specific to interactions with #{marketplace}
+
+marketplace: appdirect
+
+logging:
+  file: /var/vcap/sys/log/marketplace_gateway/marketplace_gateway.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.marketplace_gateway
+  <% end %>

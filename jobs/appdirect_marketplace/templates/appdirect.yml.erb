@@ -1,0 +1,15 @@
+---
+
+classname: "VCAP::Services::Marketplace::Appdirect::AppdirectMarketplace"
+
+node_timeout: <%= properties.appdirect_marketplace.node_timeout || 15 %>
+
+# appdirect configuration
+# Not configured by default as it would require revealing
+# credentials to a non-local resource.
+appdirect:
+  scheme: <%= properties.appdirect_marketplace.appdirect_access_scheme %>
+  host:   <%= properties.appdirect_marketplace.appdirect_host %>
+  port:   <%= properties.appdirect_marketplace.appdirect_port %>
+  key:    <%= properties.appdirect_marketplace.appdirect_access_key %>
+  secret: <%= properties.appdirect_marketplace.appdirect_access_secret %>

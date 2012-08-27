@@ -180,10 +180,16 @@ builtin_services:
 <% end %>
 <% end %>
 
+<% service_proxy_tokens = [] %>
 <% if properties.service_broker %>
-service_broker:
-  token: <%= properties.service_broker.token %>
+    <% service_proxy_tokens << properties.service_broker.token %>
 <% end %>
+<% if properties.appdirect_marketplace %>
+    <% service_proxy_tokens << properties.appdirect_marketplace.token %>
+<% end %>
+
+service_proxy:
+  token: <%= "['#{service_proxy_tokens.join("' , '")}']" %>
 
 <%
 if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle
