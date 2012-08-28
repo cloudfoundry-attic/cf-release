@@ -33,6 +33,12 @@ case $1 in
       mv $tmp_path $rootfs_path
     fi
 
+    # The kernel has a bug where network interfaces cannot be removed when a
+    # network namespace is destroyed (NEW_NETNS) due to dangling references.
+    # It is not triggered when IPv6 is disabled.
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
     cd /var/vcap/packages/warden/warden
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
