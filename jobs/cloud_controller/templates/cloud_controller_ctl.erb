@@ -12,6 +12,7 @@ LOG_DIR=/var/vcap/sys/log/cloud_controller
 PIDFILE=$RUN_DIR/cloud_controller.pid
 
 export CLOUD_CONTROLLER_CONFIG=$CC_JOB_DIR/config/cloud_controller.yml
+export PLATFORM_CONFIG=$CC_JOB_DIR/config/platform.yml
 export BUNDLE_GEMFILE=$CC_PACKAGE_DIR/cloud_controller/Gemfile
 export HOME=/home/vcap # rake needs it to be set to run tasks
 export TMPDIR=/var/vcap/data/cloud_controller/tmp
