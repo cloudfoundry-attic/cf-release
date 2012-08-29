@@ -6,6 +6,9 @@ acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
+supported_versions = gateway.supported_versions
+version_aliases = gateway.version_aliases
+version_aliases.instance_eval("def fields; @table.keys; end;") if version_aliases
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
 %>
 mbus: <%= nats %>
@@ -16,10 +19,9 @@ cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 service:
   name: blob
   version: "0.51"
-  description: 'vBlob service'
+  description: 'Blob service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
   default_plan: <%= gateway.default_plan || 'free' %>
-  supported_versions: ["0.51"]
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
     <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
@@ -42,6 +44,13 @@ service:
         <%= "wildcards: ['#{acls.plans.send(plan.to_sym).wildcards.join("', '")}']" if acls.plans.send(plan.to_sym).wildcards %>
       <% end %>
     <% end %>
+  <% end %>
+<% end %>
+  supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+<% if version_aliases && !version_aliases.fields.empty? %>
+  version_aliases:
+  <% for version_alias in version_aliases.fields.each %>
+    <%= "'#{version_alias}': '#{version_aliases.send(version_alias.to_sym)}'" %>
   <% end %>
 <% end %>
 

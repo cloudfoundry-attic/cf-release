@@ -13,7 +13,7 @@ case $1 in
   start)
     setup_warden
 
-    # Copy mongodb binaries and configuration files to warden base file system
+    # Copy vblob binaries and configuration files to warden base file system
     install -m 0755 -t $ROOT_DIR/usr/bin   $JOB_DIR/bin/vblob_startup.sh
     install -m 0644 -t $ROOT_DIR/etc/init  $JOB_DIR/config/services.conf
     cp -af $BIN_DIR/node/* $ROOT_DIR/usr/

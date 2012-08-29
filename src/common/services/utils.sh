@@ -14,9 +14,6 @@ setup_warden() {
     pid_guard $PIDFILE "Warden"
     echo $$ > $PIDFILE
 
-    dpkg --install --skip-same-version $PKG_DIR/libnl1_1.1-5build1_amd64.deb
-    dpkg --install --skip-same-version $PKG_DIR/quota_3.17-6_amd64.deb
-
     # Extract rootfs if needed
     if [ ! -d $ROOT_DIR ]
     then

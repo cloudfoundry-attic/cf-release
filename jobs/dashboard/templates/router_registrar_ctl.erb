@@ -3,6 +3,7 @@
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/router_registrar
 LOG_DIR=/var/vcap/sys/log/router_registrar
+JOB_DIR=/var/vcap/jobs/dashboard
 PIDFILE=$RUN_DIR/router_registrar.pid
 
 source /var/vcap/packages/common/utils.sh
@@ -15,6 +16,10 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
 
     export CONFIG_FILE=/var/vcap/jobs/dashboard/config/router_registrar/config.yml
 

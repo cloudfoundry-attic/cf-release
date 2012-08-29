@@ -13,7 +13,7 @@ mv apache-tomcat-7.0.27 tomcat
 
 cd tomcat
 rm -rf webapps/*
-cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-uaa-1.1.0.war webapps/ROOT.war
+cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-uaa-1.1.2.war webapps/ROOT.war
 
 cd ${BOSH_INSTALL_TARGET}
 cp -a ${BOSH_COMPILE_TARGET}/tools/vcap_registrar vcap_registrar

@@ -1,0 +1,255 @@
+---
+port: 8181
+pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
+nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+
+external_domain: api2.<%= properties.domain %>
+
+bootstrap_admin_email: sre@vmware.com
+
+info:
+  name: <%= properties.name || "vcap" %>
+  build: <%= properties.build || "\"2222\"" %>
+  version: <%= properties.version || 2 %>
+  support_address: <%= properties.support_address || "http://support.cloudfoundry.com" %>
+  description: <%= properties.description || "VMware's Cloud Application Platform" %>
+  api_version: <%= properties.api_version || "2.0.0" %>
+# TODO: put back once json schema is sorted out
+# allow_debug: false
+
+directories:
+<% if properties.directories %>
+  droplets: <%= properties.directories.droplets %>
+  tmpdir: <%= properties.directories.tmpdir %>
+<% else %>
+  droplets: "/var/vcap/shared/droplets"
+  tmpdir: " /var/vcap/data/cloud_controller/tmp"
+<% end %>
+
+logging:
+  file: /var/vcap/sys/log/cloud_controller_ng/cloud_controller_ng.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.cloud_controller_ng
+  <% end %>
+  level: debug2
+
+<% db = properties.ccdb_ng.databases.find { |db| db.tag == "cc" } %>
+<% db_role = properties.ccdb_ng.roles.find { |role| role.tag == "admin" } %>
+db:
+  database: postgres://<%= db_role.name %>:<%= db_role.password %>@<%= properties.ccdb_ng.address %>:<%= properties.ccdb_ng.port %>/<%= db.name %>
+  max_connections: <%= properties.ccdb_ng.max_connections || 32 %>
+  pool_timeout: <%= properties.ccdb_ng.pool_timeout || 10 %>
+
+<% if properties.vcap_redis %>
+redis:
+  host: <%= properties.vcap_redis.address %>
+  port: <%= properties.vcap_redis.port %>
+  password: <%= properties.vcap_redis.password %>
+<% end %>
+
+uaa:
+  url: http://uaa.<%= properties.domain %>
+  resource_id: <%= properties.cc.uaa.resource_id %>
+  symmetric_secret: <%= properties.uaa.cc.token_secret %>
+
+quota_manager:
+<% if properties.quota_manager %>
+  policy: <%= properties.quota_manager.policy %>
+  base_url: <%= properties.quota_manager.base_url %>
+  auth_token: <%= properties.quota_manager.auth_token %>
+  http_timeout_sec: <%= properties.quota_manager.http_timeout_sec %>
+<% else %>
+  policy: "BlindApproval"
+  base_url: ""
+  auth_token: ""
+  http_timeout_sec: 2
+<% end %>
+
+# App staging parameters
+staging:
+  max_staging_runtime: <%= properties.cc.max_staging_runtime || 120 %>
+  auth:
+    user: <%= properties.cc.staging_upload_user %>
+    password: <%= properties.cc.staging_upload_password %>
+
+# TODO: this will be removed when we do full runtime/framework
+# db population when we work on real running app support
+#
+# The first entry in the runtimes array is the default runtime for that
+# framework.
+
+legacy_framework_manifest:
+  django:
+    name: django
+    runtimes:
+    - name: python2
+      version: 2.6.5
+      description: Python 2.6.5
+    appservers: []
+
+    detection:
+    - "*.py": .
+  grails:
+    name: grails
+    runtimes:
+    - name: java
+      version: "1.6"
+      description: Java 6
+    appservers:
+    - name: tomcat
+      description: Tomcat
+    detection:
+    - "*.war": true
+  java_web:
+    name: java_web
+    runtimes:
+    - name: java
+      version: "1.6"
+      description: Java 6
+    appservers:
+    - name: tomcat
+      description: Tomcat
+    detection:
+    - "*.war": true
+  lift:
+    name: lift
+    runtimes:
+    - name: java
+      version: "1.6"
+      description: Java 6
+    appservers:
+    - name: tomcat
+      description: Tomcat
+    detection:
+    - "*.war": true
+  node:
+    name: node
+    runtimes:
+    - name: node06
+      version: 0.6.8
+      description: Node.js
+    - name: node
+      version: 0.4.12
+      description: Node.js
+    appservers: []
+
+    detection:
+    - "*.js": .
+  otp_rebar:
+    name: otp_rebar
+    runtimes:
+    - name: erlangR14B02
+      version: R14B02
+      description: Erlang R14B02
+    appservers: []
+
+    detection:
+    - releases/*/*.rel: .
+  php:
+    name: php
+    runtimes:
+    - name: php
+      version: "5.3"
+      description: PHP 5
+    appservers:
+    - name: apache
+      description: Apache
+    detection:
+    - "*.php": true
+  rack:
+    name: rack
+    runtimes:
+    - name: ruby18
+      version: 1.8.7
+      description: Ruby 1.8.7
+    - name: ruby19
+      version: 1.9.2p180
+      description: Ruby 1.9.2
+    appservers:
+    - name: thin
+      description: Thin
+    detection:
+    - config.ru: true
+    - config/environment.rb: false
+  rails3:
+    name: rails3
+    runtimes:
+    - name: ruby18
+      version: 1.8.7
+      description: Ruby 1.8.7
+    - name: ruby19
+      version: 1.9.2p180
+      description: Ruby 1.9.2
+    appservers:
+    - name: thin
+      description: Thin
+    detection:
+    - config/application.rb: true
+    - config/environment.rb: true
+  sinatra:
+    name: sinatra
+    runtimes:
+    - name: ruby18
+      version: 1.8.7
+      description: Ruby 1.8.7
+    - name: ruby19
+      version: 1.9.2p180
+      description: Ruby 1.9.2
+    appservers:
+    - name: thin
+      description: Thin
+    detection:
+    - "*.rb": require 'sinatra'|require "sinatra"
+    - config.ru: false
+    - config/environment.rb: false
+  spring:
+    name: spring
+    runtimes:
+    - name: java
+      version: "1.6"
+      description: Java 6
+    appservers:
+    - name: tomcat
+      description: Tomcat
+    detection:
+    - "*.war": true
+  standalone:
+    name: standalone
+    runtimes:
+    - name: ruby18
+      version: 1.8.7
+      description: Ruby 1.8.7
+    - name: ruby19
+      version: 1.9.2p180
+      description: Ruby 1.9.2
+    - name: python2
+      version: 2.6.5
+      description: Python 2.6.5
+    - name: java
+      version: "1.6"
+      description: Java 6
+    - name: node
+      version: 0.4.12
+      description: Node.js
+    - name: node06
+      version: 0.6.8
+      description: Node.js
+    - name: erlangR14B02
+      version: R14B02
+      description: Erlang R14B02
+    - name: php
+      version: "5.3"
+      description: PHP 5
+    appservers: []
+
+    detection:
+  wsgi:
+    name: wsgi
+    runtimes:
+    - name: python2
+      version: 2.6.5
+      description: Python 2.6.5
+    appservers: []
+
+    detection:
+    - "*.py": .
