@@ -1,0 +1,120 @@
+#!/bin/bash
+
+export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
+NFS_SHARE=/var/vcap/shared
+
+RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
+LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
+PIDFILE=$RUN_DIR/cloud_controller_ng.pid
+
+export CONFIG_DIR=$CC_JOB_DIR/config
+export CLOUD_CONTROLLER_NG_CONFIG=$CONFIG_DIR/cloud_controller_ng.yml
+export BUNDLE_GEMFILE=$CC_PACKAGE_DIR/cloud_controller_ng/Gemfile
+export HOME=/home/vcap # rake needs it to be set to run tasks
+export TMPDIR=/var/vcap/data/cloud_controller_ng/tmp
+
+<% if properties.env %>
+<% if properties.env.http_proxy %>
+export HTTP_PROXY='<%= properties.env.http_proxy %>'
+export http_proxy='<%= properties.env.http_proxy %>'
+<% end %>
+<% if properties.env.https_proxy %>
+export HTTPS_PROXY='<%= properties.env.https_proxy %>'
+export https_proxy='<%= properties.env.https_proxy %>'
+<% end %>
+<% if properties.env.no_proxy %>
+export NO_PROXY='<%= properties.env.no_proxy %>'
+export no_proxy='<%= properties.env.no_proxy %>'
+<% end %>
+<% end %>
+
+export C_INCLUDE_PATH=/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
+export LIBRARY_PATH=/var/vcap/packages/libpq/lib:$LIBRARY_PATH
+export LANG=en_US.UTF-8
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Cloud controller ng"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    mkdir -p $TMPDIR
+
+    chown vcap:vcap $RUN_DIR
+    chown vcap:vcap $LOG_DIR
+    chown vcap:vcap $TMPDIR
+
+    echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
+
+    <% if properties.nfs_server %>
+    modprobe nfs
+    mkdir -p $NFS_SHARE
+
+    cp -f /etc/default/nfs-common /etc/default/nfs-common.orig
+    cp -f $CC_JOB_DIR/config/nfs-common /etc/default/nfs-common
+
+    cp -f $CC_JOB_DIR/config/idmapd.conf /etc/idmapd.conf
+    /etc/init.d/idmapd restart
+
+    if grep -qs $NFS_SHARE /proc/mounts; then
+      echo "Found NFS mount"
+    else
+      echo "Mounting NFS..."
+      mount -o timeo=10,intr,lookupcache=positive -t nfs4 <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/" %> $NFS_SHARE
+      if [ $? != 0 ]; then
+        echo "Cannot mount NFS, exiting..."
+        exit 1
+      fi
+    fi
+
+    chpst -u vcap:vcap touch $NFS_SHARE/.nfs_test
+
+    if [ $? != 0 ]; then
+      echo "Failed to start: cannot write to NFS"
+      exit 1
+    fi
+    <% end %>
+
+    # Configure the core file location
+    mkdir -p /var/vcap/sys/cores
+    chown vcap:vcap /var/vcap/sys/cores
+    echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
+
+    ulimit -c unlimited
+
+    <% if properties.syslog_aggregator %>
+    # TODO(kowshik): Configure Steno to write to the correct files.
+    # Log to syslog agg, Log rotation.
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
+    <% end %>
+
+    # Run the migrations only on the first CC launch
+    <% if spec.index.to_i == 0 %>
+      exec chpst -u vcap:vcap $CC_PACKAGE_DIR/cloud_controller_ng/bin/cloud_controller -m \
+        -c $CLOUD_CONTROLLER_NG_CONFIG \
+        >>$LOG_DIR/cloud_controller_ng.stdout.log \
+        2>>$LOG_DIR/cloud_controller_ng.stderr.log
+    <% else %>
+      exec chpst -u vcap:vcap $CC_PACKAGE_DIR/cloud_controller_ng/bin/cloud_controller \
+        -c $CLOUD_CONTROLLER_NG_CONFIG \
+        >>$LOG_DIR/cloud_controller_ng.stdout.log \
+        2>>$LOG_DIR/cloud_controller_ng.stderr.log
+    <% end %>
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: cloud_controller_ng_ctl {start|stop}"
+    ;;
+
+esac

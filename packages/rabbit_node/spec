@@ -6,7 +6,5 @@ dependencies:
 files:
 - services/rabbit/**/*
 - warden/warden/**/*
-- warden/libnl1_1.1-5build1_amd64.deb
-- warden/quota_3.17-6_amd64.deb
 - pkg_utils/*
 - common/services/utils.sh

@@ -52,11 +52,11 @@ logging:
   <% if properties.syslog_aggregator %>
   syslog: vcap.cloud_controller
   <% end %>
-  level: debug
+  level: <%= properties.cc.logging_level || "info" %>
 
 rails_logging:
   file: /var/vcap/sys/log/cloud_controller/rails.log
-  level: debug
+  level: <%= properties.cc.rails_logging_level || "info" %>
 
 event_logging:
   file: /var/vcap/sys/log/cloud_controller/events.log
@@ -93,7 +93,7 @@ database_environment:
 <% if properties.cc.uaa && properties.uaa.cc %>
 uaa:
   enabled: <%= properties.cc.uaa.enabled %>
-  url: http://uaa.<%= properties.domain %>
+  url: https://uaa.<%= properties.domain %>
   resource_id: <%= properties.cc.uaa.resource_id %>
   token_secret: <%= properties.uaa.cc.token_secret %>
   client_secret: <%= properties.uaa.cc.client_secret %>
@@ -101,7 +101,7 @@ uaa:
 <% else %>
 uaa:
   enabled: false
-  url: http://uaa.<%= properties.domain %>
+  url: https://uaa.<%= properties.domain %>
   resource_id: cloud_controller
   token_secret:
   client_secret:

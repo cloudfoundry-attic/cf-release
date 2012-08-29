@@ -1,0 +1,9 @@
+---
+name: cloud_controller_ng
+dependencies:
+- libpq
+- sqlite
+- ruby
+files:
+- cloud_controller_ng/**/*
+- pkg_utils/*
