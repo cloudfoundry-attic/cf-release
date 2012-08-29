@@ -218,26 +218,4 @@ service_lifecycle:
   <% end %>
 <% end %>
 
-runtimes:
-  ruby18:
-    version: 1.8.7
-  ruby19:
-    version: 1.9.2
-  node:
-    version: 0.4.12
-  node06:
-    version: 0.6.8
-  node08:
-    version: 0.8.2
-  java:
-    version: 1.6.0
-    debug_modes:
-      - run
-      - suspend
-  java7:
-    version: 1.7.0
-    debug_modes:
-      - run
-      - suspend
-  erlangR14B02:
-    version: ".* 5.8.3"
+runtimes_file: /var/vcap/jobs/cloud_controller/config/runtimes.yml
