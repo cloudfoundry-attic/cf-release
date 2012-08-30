@@ -180,10 +180,19 @@ builtin_services:
 <% end %>
 <% end %>
 
-<% if properties.service_broker %>
-service_broker:
-  token: <%= properties.service_broker.token %>
-<% end %>
+<%
+  service_proxy_tokens = []
+  if properties.service_broker
+    service_proxy_tokens << properties.service_broker.token
+  end
+
+  if properties.marketplace_gateway
+    properties.marketplace_gateway.tokens.each { |tok| service_proxy_tokens << tok }
+  end
+%>
+
+service_proxy:
+  token: <%= "['#{service_proxy_tokens.join("' , '")}']" %>
 
 <%
 if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle

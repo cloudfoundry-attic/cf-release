@@ -1,0 +1,14 @@
+---
+classname: "VCAP::Services::Marketplace::Appdirect::AppdirectMarketplace"
+
+<%
+  gateway = properties.marketplace_gateway
+  marketplace = gateway.send(gateway.marketplace.to_sym)
+%>
+
+node_timeout: <%= gateway.node_timeout %>
+
+appdirect:
+  endpoint: <%= marketplace.endpoint %>
+  key:      <%= marketplace.key %>
+  secret:   <%= marketplace.secret %>
