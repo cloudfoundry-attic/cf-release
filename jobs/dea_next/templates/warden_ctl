@@ -41,6 +41,12 @@ case $1 in
 
     cd /var/vcap/packages/warden/warden
 
+    # Clear existing containers if warden was not drained
+    if [ ! -f /var/vcap/data/warden/depot/drained ]
+    then
+      root/linux/clear.sh /var/vcap/data/warden/depot
+    fi
+
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
