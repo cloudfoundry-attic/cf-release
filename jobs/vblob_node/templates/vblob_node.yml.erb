@@ -30,9 +30,7 @@ node_id: <%= node_id %>
 vblobd_log_dir: /var/vcap/sys/service-log/vblob
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
-
 nodejs_path: /var/vcap/packages/node/bin/node
->>>>>>> master
 vblobd_path: /var/vcap/packages/vblob
 vblobd_auth: <%= node.vblobd_auth || "disabled" %>
 vblobd_obj_limit: <%= plan_enabled && plan_conf.vblobd_obj_limit || 32768 %>
