@@ -57,7 +57,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE
+    kill_and_wait $PIDFILE 400 0
 
     crontab -l | sed /vblob_logrotate/d | crontab
 
