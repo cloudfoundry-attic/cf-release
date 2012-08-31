@@ -4,6 +4,8 @@ server:
   container_grace_time: ~
   container_rootfs_path: /var/vcap/data/warden/rootfs
   container_depot_path: /var/vcap/store/containers
+  container_limits_conf:
+      as: -1
   unix_domain_permissions: 0777
 logging:
   file: /var/vcap/sys/log/warden/warden.log
