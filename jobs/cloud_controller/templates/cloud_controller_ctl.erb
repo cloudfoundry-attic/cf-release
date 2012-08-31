@@ -93,10 +93,9 @@ case $1 in
     fi
     <% end %>
 
-    # Setup sudo privs for vcap
-    chown root:root $CC_JOB_DIR/config/sudoers
-    chmod 440 $CC_JOB_DIR/config/sudoers
-    cp $CC_JOB_DIR/config/sudoers /etc/sudoers
+    # Set up sudoers for cloud controller.
+    install_sudoers "$CONFIG_DIR/sudoers" /etc/sudoers.d/cloud_controller
+    file_must_include /etc/sudoers '#includedir /etc/sudoers.d'
 
     # Only done on the first CC launch
     <% if spec.index.to_i == 0 %>
