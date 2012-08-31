@@ -98,9 +98,9 @@ runtimes:
     version: 1.7.0
     version_flag: '-version'
     environment:
-      PATH: /var/vcap/packages/ruby/bin:$PATH
+      PATH: /var/vcap/packages/ruby/bin:/var/vcap/packages/imagemagick/bin:$PATH
       JAVA_HOME: /var/vcap/packages/dea_jvm7
-      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:$LIBRARY_PATH'
+      LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LIBRARY_PATH'
     debug_env:
       run:
         - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=n"
