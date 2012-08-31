@@ -92,9 +92,18 @@ case $1 in
     # NB: This needs to happen _before_ executing `rake db:migrate' as that requires
     #     the existence of secure users (staging initializer).
     $CC_PACKAGE_DIR/cloud_controller/script/create_secure_users.rb
-    chown root:root $CC_JOB_DIR/config/sudoers
-    chmod 440 $CC_JOB_DIR/config/sudoers
-    cp $CC_JOB_DIR/config/sudoers /etc/sudoers
+
+    # set up sudoers for cloud controller
+    SUDOERS_D=/etc/sudoers.d
+    CC_SUDOERS=$CONFIG_DIR/sudoers
+    chown root:root $CC_SUDOERS
+    chmod 440 $CC_SUDOERS
+    cp $CC_SUDOERS $SUDOERS_D/cloud_controller
+
+    # make sure sudoers.d is included
+    SUDOERS_INC="#includedir $SUDOERS_D"
+    SUDOERS=/etc/sudoers
+    grep --quiet "$SUDOERS_INC" $SUDOERS || echo "$SUDOERS_INC" >> $SUDOERS
 
     # Only done on the first CC launch
     <% if spec.index.to_i == 0 %>

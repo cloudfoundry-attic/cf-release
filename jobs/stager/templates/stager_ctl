@@ -58,9 +58,17 @@ case $1 in
 
     /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/stager/bin/create_secure_users.rb
 
-    chown root:root $JOB_DIR/config/sudoers
-    chmod 440 $JOB_DIR/config/sudoers
-    cp $JOB_DIR/config/sudoers /etc/sudoers
+    # set up sudoers for stager
+    SUDOERS_D=/etc/sudoers.d
+    STAGER_SUDOERS=$JOB_DIR/config/sudoers
+    chown root:root $STAGER_SUDOERS
+    chmod 440 $STAGER_SUDOERS
+    cp $STAGER_SUDOERS $SUDOERS_D/stager
+
+    # make sure sudoers.d is included
+    SUDOERS_INC="#includedir $SUDOERS_D"
+    SUDOERS=/etc/sudoers
+    grep --quiet "$SUDOERS_INC" $SUDOERS || echo "$SUDOERS_INC" >> $SUDOERS
 
     exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby \
          /var/vcap/packages/stager/bin/stager \
