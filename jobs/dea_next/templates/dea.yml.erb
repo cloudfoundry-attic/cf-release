@@ -49,7 +49,7 @@ runtimes:
     version_flag: "-e 'puts RUBY_VERSION'"
     additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 174'"
     environment:
-      PATH: /var/vcap/data/packages/imagemagick/bin:$PATH
+      PATH: /var/vcap/packages/imagemagick/bin:$PATH
       LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
   ruby19:
     executable: /var/vcap/packages/dea_ruby19/bin/ruby
@@ -57,7 +57,7 @@ runtimes:
     version_flag: "-e 'puts RUBY_VERSION'"
     additional_checks: "-e 'puts RUBY_PATCHLEVEL >= 180'"
     environment:
-      PATH: /var/vcap/data/packages/imagemagick/bin:$PATH
+      PATH: /var/vcap/packages/imagemagick/bin:$PATH
       LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
   node:
     executable: /var/vcap/packages/dea_node04/bin/node
