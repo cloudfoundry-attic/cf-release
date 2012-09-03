@@ -7,6 +7,8 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 node = properties.mysql_node
 supported_versions = node.supported_versions
 default_version = node.default_version
+warden = plan_conf.warden
+use_warden = warden && warden.enable
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -30,6 +32,7 @@ max_long_query: <%= plan_enabled && plan_conf.max_long_query || 3 %>
 max_long_tx: <%= plan_enabled && plan_conf.max_long_tx || 0 %>
 kill_long_tx: <%= plan_enabled && plan_conf.kill_long_tx || false %>
 max_user_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
+disk_overhead: <%= plan_enabled && plan_conf.disk_overhead || 0.0 %>
 mysql:
   host: localhost
   port: 3306
@@ -48,3 +51,14 @@ z_interval: <%= node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>
+<%if use_warden %>
+use_warden: true
+warden:
+  log_dir: /var/vcap/sys/service-log/mysql
+  image_dir: /var/vcap/store/mysql_image
+  service_start_timeout: <%= warden.service_start_timeout || 3 %>
+  filesystem_quota: <%= warden.filesystem_quota || false %>
+  port_range:
+    first: 15000
+    last: 25000
+<%end%>
