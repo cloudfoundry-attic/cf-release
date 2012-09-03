@@ -1,0 +1,15 @@
+---
+name: login
+
+uaa:
+  url: http://localhost:8080/uaa
+  token:
+    url: http://localhost:8080/uaa/oauth/token
+  login:
+    url: http://localhost:8080/uaa/login.do
+
+<% if !properties.uaa.clients || !properties.uaa.clients.login %>
+LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
+<% else %>
+LOGIN_SECRET: <%= properties.uaa.clients.login.secret %>
+<% end %>

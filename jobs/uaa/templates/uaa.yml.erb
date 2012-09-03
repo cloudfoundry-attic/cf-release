@@ -2,9 +2,6 @@
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
 
-<% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
-
 pid: /var/vcap/sys/run/uaa.pid
 # nats message bus uri
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
@@ -17,14 +14,7 @@ database:
   username: <%= uaa_role.name %>
   password: <%= uaa_role.password %>
 
-jvm_args: -Xmx512m
 spring_profiles: postgresql
-
-cloud_controller:
-  database:
-    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
-    username: <%= cc_role.name %>
-    password: <%= cc_role.password %>
 
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
@@ -40,12 +30,6 @@ jwt:
   token:
     signing-key: <%= properties.uaa.cc.token_secret %>
     verification-key: <%= properties.uaa.cc.token_secret %>
-<% end %>
-
-<% if properties.uaa.batch %>
-batch:
-  username: <%= properties.uaa.batch.username %>
-  password: <%= properties.uaa.batch.password %>
 <% end %>
 
 oauth:
@@ -85,6 +69,13 @@ oauth:
       id: vmc
       redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc,https://uaa.cloudfoundry.com/redirect/vmc
       access-token-validity: 604800
+<% end %>
+<% if !properties.uaa.clients || !properties.uaa.clients.login %>
+    login:
+      id: login
+      secret: <%= properties.uaa.login.client_secret %>
+      authorized-grant-types: client_credentials
+      authorities: oauth.login
 <% end %>
 <% if properties.uaa.scim && properties.uaa.scim.users then %>
 scim:
