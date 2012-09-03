@@ -20,6 +20,12 @@ templates:
   mysql_backup.erb: config/mysql_backup
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
+  warden_ctl: bin/warden_ctl
+  warden.yml: config/warden.yml
+  mysql_startup.sh: bin/mysql_startup.sh
+  services.conf: config/services.conf
+  warden_mysql_init.erb: config/warden_mysql_init
+
 packages:
   - common
   - mysql_node

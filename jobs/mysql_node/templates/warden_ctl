@@ -1,0 +1,39 @@
+#!/bin/bash
+
+JOB_DIR=/var/vcap/jobs/mysql_node
+PKG_DIR=/var/vcap/packages/mysql_node
+MYSQL_DIR=/var/vcap/packages/mysql
+
+source /var/vcap/packages/mysql_node/common/services/utils.sh
+
+case $1 in
+
+  start)
+    echo "Setup warden."
+    setup_warden
+
+    install -m 0755 -d $ROOT_DIR/$MYSQL_DIR
+    rsync -arl $JOB_DIR/packages/mysql/* $ROOT_DIR/$MYSQL_DIR/
+
+    rsync -arl $JOB_DIR/bin/mysql_startup.sh $ROOT_DIR/usr/bin/mysql_startup.sh
+    chmod 0755 $ROOT_DIR/usr/bin/mysql_startup.sh
+
+    install -m 0755 -d $ROOT_DIR/$JOB_DIR/config
+    rsync -arl $JOB_DIR/config/warden_mysql_init $ROOT_DIR/$JOB_DIR/config/mysql_init
+
+    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+
+    echo "Starting warden."
+
+    start_warden
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac

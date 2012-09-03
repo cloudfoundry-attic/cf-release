@@ -5,6 +5,8 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 backup_enabled = plan_enabled && plan_conf.backup && plan_conf.backup.enable
+warden = plan_conf.warden
+use_warden = warden && warden.enable
 %>
 service_name: mysql
 backup_base_dir: <%= properties.service_backup && properties.service_backup.mount_point || "/var/vcap/services_backup" %>
@@ -25,3 +27,6 @@ mysql:
 timeout: <%= backup_enabled && plan_conf.backup.timeout || 600 %>
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 pid: /var/vcap/sys/run/mysql_node/mysql_backup.pid
+<%if use_warden%>
+  use_warden: true
+<%end%>

@@ -1,8 +1,24 @@
+<%
+service = "mysql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+use_warden= plan_conf.warden and plan_conf.warden.enable
+%>
+
 check process mysql
   with pidfile /var/vcap/sys/run/mysqld/mysqld.pid
   start program "/var/vcap/jobs/mysql_node/bin/mysql_ctl start"
   stop program "/var/vcap/jobs/mysql_node/bin/mysql_ctl stop"
   group vcap
+
+<%if use_warden%>
+check process warden
+  with pidfile /var/vcap/sys/run/warden/warden.pid
+  start program "/var/vcap/jobs/mysql_node/bin/warden_ctl start"
+  stop program "/var/vcap/jobs/mysql_node/bin/warden_ctl stop"
+  group vcap
+<%end%>
 
 check process mysql_node
   with pidfile /var/vcap/sys/run/mysql_node/mysql_node.pid
@@ -10,12 +26,11 @@ check process mysql_node
   stop program "/var/vcap/jobs/mysql_node/bin/mysql_node_ctl stop"
   group vcap
   depends on mysql
+<%if use_warden %>
+  depends on warden
+<%end%>
 
 <%
-service = "mysql"
-plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
-plan = properties.plan || "free"
-plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 if properties.service_lifecycle and plan_enabled and plan_conf.lifecycle and plan_conf.lifecycle.enable
   worker_count = plan_conf.lifecycle.worker_count || 1
   worker_count.times do |ind|
