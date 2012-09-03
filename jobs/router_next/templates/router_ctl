@@ -49,6 +49,8 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
     <% end %>
 
+    /var/vcap/jobs/router_next/bin/setup_trafficlog_forwarder.sh $CONF_DIR
+
     exec /var/vcap/packages/router/bin/router \
          -c /var/vcap/jobs/router_next/config/router.yml \
          >>$LOG_DIR/router.stdout.log \
