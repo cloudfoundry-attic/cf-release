@@ -1,11 +1,16 @@
 ---
 core:
-  - ccdb_postgres
+  - postgres
   - nats
   - router
   - dea
   - health_manager
   - cloud_controller
+  - acm
+  - serialization_data_server
+  - stager
+  - uaa
+  - vcap_redis
 mongodb:
   - mongodb_node
   - mongodb_gateway
@@ -18,3 +23,6 @@ postgres:
 redis:
   - redis_node
   - redis_gateway
+rabbitmq:
+  - rabbit_node
+  - rabbit_gateway

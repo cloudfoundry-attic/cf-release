@@ -64,7 +64,7 @@ JOBS.each do |group, jobs|
       elsif File.exist?(override)
         FileUtils.cp(override, dest)
       else
-        FileUtils.cp(file, dest)
+        FileUtils.cp_r(file, dest)
       end
     end
 
