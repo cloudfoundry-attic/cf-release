@@ -2,28 +2,10 @@
 name: "node"
 runtimes:
   - node:
-      version: '0.4.12'
-      description: Node.js
-      executable: /var/vcap/packages/dea_node04/bin/node
-      npm: /var/vcap/packages/dea_node04/npm/bin/npm-cli.js
       default: true
-      staging: /var/vcap/packages/ruby/bin/ruby stage
   - node06:
-      version: '0.6.8'
-      description: Node.js
-      executable: /var/vcap/packages/dea_node06/bin/node
-      npm: /var/vcap/packages/dea_node06/bin/npm
-      staging: /var/vcap/packages/ruby/bin/ruby stage
+      default: false
   - node08:
-      version: '0.8.2'
-      description: Node.js
-      executable: /var/vcap/packages/dea_node08/bin/node
-      npm: /var/vcap/packages/dea_node08/bin/npm
-      staging: /var/vcap/packages/ruby/bin/ruby stage
-
-app_servers:
-
+      default: false
 detection:
   - "*.js": '.'
-
-staged_services:

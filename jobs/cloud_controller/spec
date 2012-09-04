@@ -18,7 +18,8 @@ templates:
   rack_staging.yml: config/staging/rack.yml
   standalone_staging.yml: config/staging/standalone.yml
   play_staging.yml: config/staging/play.yml
-  platform_staging.yml: config/staging/platform.yml
+  platform_staging.yml: config/platform.yml
+  runtimes.yml: config/runtimes.yml
   sudoers: config/sudoers
   blacklist.txt: config/blacklist.txt
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
