@@ -1,0 +1,35 @@
+---
+pid: /var/vcap/sys/run/login.pid
+# nats message bus uri
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
+
+name: login
+
+logging:
+  config: /var/vcap/jobs/login/config/log4j.properties
+
+varz:
+  username: _random_username_replaced_by_a_script_
+  password: _random_password_replaced_by_a_script_
+  type: login
+  uuid: _random_uuid_replaced_by_a_script_
+
+<% if !properties.login || !properties.login.uaa_base
+  # Fix this to https when SSL certs are working in dev and staging
+  protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http"
+  uaa_base = "#{protocol}://uaa.#{properties.domain}"
+else
+  uaa_base = properties.login.uaa_base
+end %>
+uaa:
+  url: <%= uaa_base %>
+  token:
+    url: <%= uaa_base %>/oauth/token
+  login:
+    url: <%= uaa_base %>/login.do
+
+<% if !properties.uaa.clients || !properties.uaa.clients.login %>
+LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
+<% else %>
+LOGIN_SECRET: <%= properties.uaa.clients.login.secret %>
+<% end %>
