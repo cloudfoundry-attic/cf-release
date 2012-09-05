@@ -1,0 +1,10 @@
+---
+name: login
+dependencies:
+- ruby
+- dea_jvm
+- uaa
+files:
+- login/**/*
+- uaa/**/*
+- tools/vcap_registrar/**/*
