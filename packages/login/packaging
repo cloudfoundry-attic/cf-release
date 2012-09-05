@@ -1,0 +1,22 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BOSH_INSTALL_TARGET}
+
+tar zxvf ${BOSH_COMPILE_TARGET}/uaa/apache-tomcat-7.0.27.tar.gz
+if [[ $? != 0 ]] ; then
+  echo "Cannot unpack Tomcat"
+  exit 1
+fi
+
+mv apache-tomcat-7.0.27 tomcat
+
+cd tomcat
+rm -rf webapps/*
+cp -a ${BOSH_COMPILE_TARGET}/login/cloudfoundry-identity-batch-1.0.0.war webapps/batch.war
+cp -a ${BOSH_COMPILE_TARGET}/login/cloudfoundry-login-server-1.0.0.war webapps/ROOT.war
+
+cd ${BOSH_INSTALL_TARGET}
+cp -a ${BOSH_COMPILE_TARGET}/tools/vcap_registrar vcap_registrar
+cd vcap_registrar
+/var/vcap/packages/ruby/bin/bundle --local install --deployment --without=development test
