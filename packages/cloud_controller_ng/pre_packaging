@@ -5,6 +5,4 @@ cd ${BUILD_DIR}
 
 pkg_utils/vendor.sh cloud_controller_ng
 
-rm -rf cloud_controller_ng/spec
-rm -rf cloud_controller_ng/docs
 rm -rf pkg_utils
