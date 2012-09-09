@@ -2,6 +2,9 @@
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
 
+<% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
+<% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+
 pid: /var/vcap/sys/run/uaa.pid
 # nats message bus uri
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
@@ -16,6 +19,12 @@ database:
 
 jvm_args: -Xmx512m
 spring_profiles: postgresql
+
+cloud_controller:
+  database:
+    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
+    username: <%= cc_role.name %>
+    password: <%= cc_role.password %>
 
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
