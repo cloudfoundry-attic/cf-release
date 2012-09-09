@@ -1,18 +1,11 @@
 ---
-port: <%= properties.port || 9022 %>
+port: 8181
 pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 
-external_domain: <%= properties.ccng.external_host || "api2" %>.<%= properties.domain %>
-serving_domain: <%= properties.domain %>
+external_domain: api2.<%= properties.domain %>
 
-cc_partition: <%= properties.ccng.cc_partition || "ng" %>
-
-bootstrap_admin_email: <%= properties.ccng.bootstrap_admin_email || "sre@vmware.com" %>
-
-bulk_api:
-  auth_user: <%= properties.ccng.bulk_api_user || "bulk_api" %>
-  auth_password: <%= properties.ccng.bulk_api_password %>
+bootstrap_admin_email: sre@vmware.com
 
 info:
   name: <%= properties.name || "vcap" %>
@@ -30,7 +23,7 @@ directories:
   tmpdir: <%= properties.directories.tmpdir %>
 <% else %>
   droplets: "/var/vcap/shared/droplets"
-  tmpdir: "/var/vcap/data/cloud_controller_ng/tmp"
+  tmpdir: " /var/vcap/data/cloud_controller/tmp"
 <% end %>
 
 logging:
@@ -38,7 +31,7 @@ logging:
   <% if properties.syslog_aggregator %>
   syslog: vcap.cloud_controller_ng
   <% end %>
-  level: <%= properties.ccng.logging_level || "info" %>
+  level: debug2
 
 <% db = properties.ccdb_ng.databases.find { |db| db.tag == "cc" } %>
 <% db_role = properties.ccdb_ng.roles.find { |role| role.tag == "admin" } %>
@@ -46,7 +39,6 @@ db:
   database: postgres://<%= db_role.name %>:<%= db_role.password %>@<%= properties.ccdb_ng.address %>:<%= properties.ccdb_ng.port %>/<%= db.name %>
   max_connections: <%= properties.ccdb_ng.max_connections || 32 %>
   pool_timeout: <%= properties.ccdb_ng.pool_timeout || 10 %>
-  log_level: <%= properties.ccng.db_logging_level || "debug2" %>
 
 <% if properties.vcap_redis %>
 redis:
@@ -57,15 +49,15 @@ redis:
 
 uaa:
   url: http://uaa.<%= properties.domain %>
-  resource_id: <%= properties.ccng.uaa_resource_id %>
+  resource_id: <%= properties.cc.uaa.resource_id %>
   symmetric_secret: <%= properties.uaa.cc.token_secret %>
 
 quota_manager:
-<% if properties.ccng.quota_manager %>
-  policy: <%= properties.ccng.quota_manager.policy %>
-  base_url: <%= properties.ccng.quota_manager.base_url %>
-  auth_token: <%= properties.ccng.quota_manager.auth_token %>
-  http_timeout_sec: <%= properties.ccng.quota_manager.http_timeout_sec %>
+<% if properties.quota_manager %>
+  policy: <%= properties.quota_manager.policy %>
+  base_url: <%= properties.quota_manager.base_url %>
+  auth_token: <%= properties.quota_manager.auth_token %>
+  http_timeout_sec: <%= properties.quota_manager.http_timeout_sec %>
 <% else %>
   policy: "BlindApproval"
   base_url: ""
@@ -77,8 +69,8 @@ quota_manager:
 staging:
   max_staging_runtime: <%= properties.cc.max_staging_runtime || 120 %>
   auth:
-    user: <%= properties.ccng.staging_upload_user %>
-    password: <%= properties.ccng.staging_upload_password %>
+    user: <%= properties.cc.staging_upload_user %>
+    password: <%= properties.cc.staging_upload_password %>
 
 # TODO: this will be removed when we do full runtime/framework
 # db population when we work on real running app support
