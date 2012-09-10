@@ -42,6 +42,14 @@ node:
   environment:
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
     PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_node04/bin:$PATH
+  debug_modes:
+    - run
+    - suspend
+  debug_env:
+    run:
+      - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
+    suspend:
+      - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
 node06:
   version: '0.6.8'
   description: "Node.js"
@@ -53,6 +61,14 @@ node06:
   environment:
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
     PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_node06/bin:$PATH
+  debug_modes:
+    - run
+    - suspend
+  debug_env:
+    run:
+      - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
+    suspend:
+      - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
 node08:
   version: '0.8.2'
   description: "Node.js"
@@ -64,6 +80,14 @@ node08:
   environment:
     PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_node08/bin:$PATH
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
+  debug_modes:
+    - run
+    - suspend
+  debug_env:
+    run:
+      - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
+    suspend:
+      - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
 ruby18:
   description: Ruby 1.8
   version: 1.8.7
