@@ -1,0 +1,26 @@
+---
+classname: "VCAP::Services::Marketplace::Appdirect::AppdirectMarketplace"
+
+<%
+  gateway = properties.marketplace_gateway
+  marketplace = gateway.send(gateway.marketplace.to_sym)
+%>
+
+node_timeout: <%= gateway.node_timeout %>
+
+appdirect:
+  endpoint: <%= marketplace.endpoint %>
+  key:      <%= marketplace.key %>
+  secret:   <%= marketplace.secret %>
+
+offering_whitelist: <%= gateway.whitelist.join("', '") %>
+offering_mapping:
+<%
+  gateway.service_mappings.each { |svc|
+%>
+  <%= svc.service %>:
+    name: <%= svc.name %>
+    provider: <%= svc.provider %>
+<%
+  }
+%>
