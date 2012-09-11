@@ -1,0 +1,8 @@
+---
+name: marketplace
+dependencies:
+- ruby
+- sqlite
+files:
+- services/marketplace/**/*
+- pkg_utils/*
