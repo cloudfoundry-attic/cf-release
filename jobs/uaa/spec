@@ -8,7 +8,7 @@ templates:
   uaa.yml.erb: config/uaa.yml
   log4j.properties.erb: config/log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
-  tomcat.server.xml: config/tomcat/server.xml
+  tomcat.server.xml.erb: config/tomcat/server.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 packages:
