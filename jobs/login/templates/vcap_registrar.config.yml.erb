@@ -10,7 +10,7 @@ uri:
   - lgn.<%= properties.domain %>
 host: <%= spec.networks.send(properties.networks.apps).ip %>
 index: <%= spec.index %>
-port: 8080
+port: <%= (properties.login && properties.login.port) ? properties.login.port : 8080 %>
 tags:
   component: login
 varz:
