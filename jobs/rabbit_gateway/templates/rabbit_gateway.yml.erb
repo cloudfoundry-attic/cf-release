@@ -9,7 +9,9 @@ plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
 supported_versions = gateway.supported_versions
 version_aliases = gateway.version_aliases
 version_aliases.instance_eval("def fields; @table.keys; end;") if version_aliases
-nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 mbus: <%= nats %>
 index: <%= spec.index %>
@@ -69,7 +71,7 @@ pid: /var/vcap/sys/run/rabbit_gateway/rabbit_gateway.pid
 z_interval: <%= gateway.z_interval || 30 %>
 check_orphan_interval: <%= gateway.check_orphan_interval || -1 %>
 double_check_orphan_interval: <%= gateway.double_check_orphan_interval || 300 %>
-max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 node_timeout: <%= gateway.node_timeout || 10 %>
 
 <% if plan_enabled %>
