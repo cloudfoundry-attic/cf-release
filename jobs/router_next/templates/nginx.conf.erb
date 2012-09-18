@@ -46,15 +46,6 @@ http {
   }
   <% end %>
 
-  upstream uls {
-    <% if properties.router.port %>
-    server localhost:<%= properties.router.port %>;
-    <% else %>
-    server unix:/var/vcap/sys/run/router/router.sock;
-    <% end %>
-    keepalive 128;
-  }
-
   server {
     listen       80;
     server_name  "<%= properties.domain %>";
@@ -68,9 +59,7 @@ http {
       # Given there are some exceptions to clear some headers,
       # we just leave them as is.
 
-      proxy_http_version 1.1;
-      proxy_set_header Connection "";
-      proxy_pass http://uls/;
+      proxy_pass http://unix:/var/vcap/sys/run/router/router.sock:/;
     }
 
     location / {
@@ -80,8 +69,8 @@ http {
       proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_redirect              off;
       proxy_connect_timeout       10;
-      proxy_send_timeout          <%= properties.router.client_inactivity_timeout || 30 %>;
-      proxy_read_timeout          <%= properties.router.app_inactivity_timeout || 30 %>;
+      proxy_send_timeout          <%= properties.router.client_inactivity_timeout || 60 %>;
+      proxy_read_timeout          <%= properties.router.app_inactivity_timeout || 60 %>;
 
       set $health_monitor '';
       set $app_id 0;
