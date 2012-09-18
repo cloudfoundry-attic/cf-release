@@ -9,7 +9,6 @@ supported_versions = node.supported_versions
 default_version = node.default_version
 warden = plan_enabled && plan_conf.warden
 use_warden = warden && warden.enable
-
 version_configs = {
   '9.0' => {
     'port'        => 5432,
@@ -21,6 +20,9 @@ version_configs = {
     'binary_dir'  => '/var/vcap/packages/postgresql91/bin',
   }
 }
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -32,7 +34,7 @@ base_dir: /var/vcap/store/postgresql_data
 <%else%>
 base_dir: /var/vcap/store/postgresql
 <%end%>
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+mbus: <%= nats %>
 index: <%= spec.index %>
 logging:
   level: debug
@@ -70,7 +72,7 @@ ip_route: <%= node.ip_route %>
 <% end %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 z_interval: <%= node.z_interval || 30 %>
-max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>
 <%if use_warden %>

@@ -8,11 +8,14 @@ node = properties.vblob_node
 supported_versions = node.supported_versions
 default_version = node.default_version
 node_id = "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}"
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
 local_db: sqlite3:/var/vcap/store/vblob_node.db
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+mbus: <%= nats %>
 index: <%= spec.index %>
 <% if (node.nfs_server && node.nfs_server.address && node.nfs_server.export_dir) %>
 base_dir: <%= node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/<%= node_id %>
@@ -43,6 +46,6 @@ port_range:
 ip_route: <%= node.ip_route %>
 <% end %>
 z_interval: <%= node.z_interval || 30 %>
-max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>

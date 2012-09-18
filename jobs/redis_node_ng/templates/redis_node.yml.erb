@@ -7,11 +7,14 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 node = properties.redis_node
 supported_versions = node.supported_versions
 default_version = node.default_version
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
 local_db: sqlite3:/var/vcap/store/redis/redis_node.db
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+mbus: <%= nats %>
 index: <%= spec.index %>
 base_dir: /var/vcap/store/redis/instances
 logging:
@@ -37,7 +40,7 @@ ip_route: <%= node.ip_route %>
 z_interval: <%= node.z_interval || 30 %>
 service_log_dir: /var/vcap/sys/service-log/redis
 command_rename_prefix: <%= node.command_rename_prefix || "magic-protect-command-prefix" %>
-max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 service_start_timeout: <%= node.service_start_timeout || 3 %>
 image_dir: /var/vcap/store/redis_image
