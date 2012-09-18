@@ -8,11 +8,14 @@ node = properties.vblob_node
 supported_versions = node.supported_versions
 default_version = node.default_version
 node_id = "#{service}_node_#{plan}_#{spec.index}"
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
 local_db: sqlite3:/var/vcap/store/vblob_node.db
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+mbus: <%= nats %>
 index: <%= spec.index %>
 <% if (node.nfs_server && node.nfs_server.address && node.nfs_server.export_dir) %>
 base_dir: <%= node.nfs_mount_point || "/var/vcap/vblob_nfs_mount" %>/<%= node_id %>
