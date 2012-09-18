@@ -5,10 +5,12 @@ sds = properties.serialization_data_server
 sds_port = sds.port || 8080
 if lifecycle and lifecycle.resque
   snapshot_dir = lifecycle.mount_point || "/var/vcap/services_snapshot"
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 serialization_base_dir: <%= snapshot_dir %>
 pid: /var/vcap/sys/run/serialization_data_server/serialization_data_server.pid
-<% nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}" %>
 mbus: <%= nats %>
 <% if sds and sds.ip_route %>
 ip_route: <%= sds.ip_route %>
