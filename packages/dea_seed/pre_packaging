@@ -3,5 +3,4 @@ set -e
 
 cd ${BUILD_DIR}
 
-cp -a core/staging/lib/vcap/staging/plugin/gem_cache.rb dea_seed
 rm -rf core

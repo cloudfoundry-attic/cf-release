@@ -5,6 +5,8 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 node = properties.rabbit_node
+supported_versions = node.supported_versions
+default_version = node.default_version
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -21,6 +23,9 @@ logging:
 pid: /var/vcap/sys/run/rabbit_node/rabbit_node.pid
 max_memory_factor: <%= plan_enabled && plan_conf.max_memory_factor || 0.5 %>
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+default_version: <%= "'#{default_version}'"%>
+
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 <% if node.ip_route %>
 ip_route: <%= node.ip_route %>

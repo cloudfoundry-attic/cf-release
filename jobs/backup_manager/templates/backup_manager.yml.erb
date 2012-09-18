@@ -9,7 +9,8 @@ logging:
   <% end %>
 
 rotation:
-  max_days: <%= properties.service_backup_manager ? properties.service_backup_manager.rotation_max_days : 7 %>
+  max_days: <%= properties.service_backup_manager && properties.service_backup_manager.rotation_max_days || 7 %>
+  unprovisioned_max_days: <%= properties.service_backup_manager && properties.service_backup_manager.rotation_unprovisioned_max_days || 10 %>
   cloud_controller_uri: <%= properties.cc.srv_api_uri %>
   services:
     mongodb:

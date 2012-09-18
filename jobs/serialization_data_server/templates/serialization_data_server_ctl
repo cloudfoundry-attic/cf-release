@@ -17,7 +17,7 @@ JOB_DIR=/var/vcap/jobs/serialization_data_server
 SNAPSHOT_DIR=<%= lifecycle.mount_point || "/var/vcap/services_snapshot" %>
 MT_OPTS="-t nfs"
 MT_EXPORT=<%= nfs_server.address %>:<%= nfs_server.export_dir %>
-SERIAL_TMP_DIR=<%= lifecycle.tmp_dir || "/var/vcap/services_snapshot/tmp_dir" %>
+SDS_TMP_UPLOAD_DIR=/var/vcap/data/serialization_data_server/tmp/uploads
 
 source /var/vcap/packages/common/utils.sh
 
@@ -37,7 +37,8 @@ case $1 in
 
     mkdir -p $SNAPSHOT_DIR
     check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
-    mkdir -p $SERIAL_TMP_DIR
+    mkdir -p $SDS_TMP_UPLOAD_DIR
+    chown vcap:vcap $SDS_TMP_UPLOAD_DIR
 
     exec /var/vcap/packages/serialization_data_server/services/serialization_data_server/bin/serialization_data_server \
          -c /var/vcap/jobs/serialization_data_server/config/serialization_data_server.yml \

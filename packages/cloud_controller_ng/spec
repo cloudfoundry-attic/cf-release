@@ -1,0 +1,11 @@
+---
+name: cloud_controller_ng
+dependencies:
+- libpq
+- sqlite
+- ruby
+files:
+- cloud_controller_ng/{Gemfile,Gemfile.lock}
+- cloud_controller_ng/bin/cloud_controller
+- cloud_controller_ng/{db,lib}/**/*
+- pkg_utils/*

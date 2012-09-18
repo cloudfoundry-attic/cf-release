@@ -16,6 +16,9 @@
 [submodule "src/dea"]
 	path = src/dea
 	url = git@github.com:cloudfoundry/dea.git
+[submodule "src/dea_next"]
+	path = src/dea_next
+	url = git@github.com:cloudfoundry/dea_ng.git
 [submodule "src/health_manager_next"]
 	path = src/health_manager_next
 	url = git://github.com/cloudfoundry/health_manager.git
@@ -31,3 +34,9 @@
 [submodule "src/cloud_controller"]
 	path = src/cloud_controller
 	url = git@github.com:cloudfoundry/cloud_controller.git
+[submodule "src/cloud_controller_ng"]
+	path = src/cloud_controller_ng
+	url = git@github.com:cloudfoundry/cloud_controller_ng.git
+[submodule "src/tests"]
+	path = src/tests
+	url = git@github.com:cloudfoundry/vcap-yeti.git

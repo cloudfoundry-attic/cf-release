@@ -1,10 +1,14 @@
 ---
 <%
 service = "memcached"
-acls = properties.memcached_gateway.acls
+gateway = eval("properties.#{service}_gateway")
+acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
+supported_versions = gateway.supported_versions
+version_aliases = gateway.version_aliases
+version_aliases.instance_eval("def fields; @table.keys; end;") if version_aliases
 nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
 lifecycle = properties.service_lifecycle
 %>
@@ -18,7 +22,8 @@ service:
   version: "1.4"
   description: 'Memcached in-memory cache service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
-  tags: ['memcached', 'memcached-1.4', 'key-value', 'cache']
+  default_plan: <%= gateway.default_plan || 'free' %>
+  tags: ['key-value', 'cache']
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
@@ -37,11 +42,18 @@ service:
     <% end %>
   <% end %>
 <% end %>
-
-<% if properties.memcached_gateway.ip_route %>
-ip_route: <%= properties.memcached_gateway.ip_route %>
+  supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+<% if version_aliases && !version_aliases.fields.empty? %>
+  version_aliases:
+  <% for version_alias in version_aliases.fields.each %>
+    <%= "'#{version_alias}': '#{version_aliases.send(version_alias.to_sym)}'" %>
+  <% end %>
 <% end %>
-token: <%= properties.memcached_gateway.token %>
+
+<% if gateway.ip_route %>
+ip_route: <%= gateway.ip_route %>
+<% end %>
+token: <%= gateway.token %>
 logging:
   file: /var/vcap/sys/log/memcached_gateway/memcached_gateway.log
   level: debug
@@ -50,7 +62,7 @@ logging:
   <% end %>
 
 pid: /var/vcap/sys/run/memcached_gateway/memcached_gateway.pid
-z_interval: <%= properties.memcached_gateway.z_interval || 30 %>
-check_orphan_interval: <%= properties.memcached_gateway.check_orphan_interval || -1 %>
-double_check_orphan_interval: <%= properties.memcached_gateway.double_check_orphan_interval || 300 %>
+z_interval: <%= gateway.z_interval || 30 %>
+check_orphan_interval: <%= gateway.check_orphan_interval || -1 %>
+double_check_orphan_interval: <%= gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>

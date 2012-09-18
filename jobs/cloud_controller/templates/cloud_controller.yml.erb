@@ -44,7 +44,6 @@ directories:
   droplets: /var/vcap/shared/droplets
   resources: /var/vcap/shared/resources
   staging_manifests: /var/vcap/jobs/cloud_controller/config/staging
-  staging_cache: /var/vcap/data/cloud_controller/staging
   tmpdir: /var/vcap/data/cloud_controller/tmp
 
 logging:
@@ -52,11 +51,11 @@ logging:
   <% if properties.syslog_aggregator %>
   syslog: vcap.cloud_controller
   <% end %>
-  level: debug
+  level: <%= properties.cc.logging_level || "info" %>
 
 rails_logging:
   file: /var/vcap/sys/log/cloud_controller/rails.log
-  level: debug
+  level: <%= properties.cc.rails_logging_level || "info" %>
 
 event_logging:
   file: /var/vcap/sys/log/cloud_controller/events.log
@@ -93,7 +92,7 @@ database_environment:
 <% if properties.cc.uaa && properties.uaa.cc %>
 uaa:
   enabled: <%= properties.cc.uaa.enabled %>
-  url: http://uaa.<%= properties.domain %>
+  url: https://uaa.<%= properties.domain %>
   resource_id: <%= properties.cc.uaa.resource_id %>
   token_secret: <%= properties.uaa.cc.token_secret %>
   client_secret: <%= properties.uaa.cc.client_secret %>
@@ -101,7 +100,7 @@ uaa:
 <% else %>
 uaa:
   enabled: false
-  url: http://uaa.<%= properties.domain %>
+  url: https://uaa.<%= properties.domain %>
   resource_id: cloud_controller
   token_secret:
   client_secret:
@@ -117,15 +116,7 @@ redis:
 <% end %>
 
 staging:
-  max_concurrent_stagers: <%= properties.cc.max_concurrent_stagers || 20 %>
   max_staging_runtime:    <%= properties.cc.max_staging_runtime || 120 %>
-  secure: true
-  <% if properties.cc.new_stager_percent %>
-  new_stager_percent: <%= properties.cc.new_stager_percent %>
-  <% end %>
-  <% if properties.cc.new_stager_email_regexp %>
-  new_stager_email_regexp: <%= properties.cc.new_stager_email_regexp %>
-  <% end %>
   auth:
     user: <%= properties.cc.staging_upload_user %>
     password: <%= properties.cc.staging_upload_password %>
@@ -160,41 +151,18 @@ default_account_capacity:
 <% end %>
 
 builtin_services:
-<% if properties.mysql_gateway %>
-  mysql:
-    token: <%= properties.mysql_gateway.token %>
-<% end %>
-<% if properties.redis_gateway %>
-  redis:
-    token: <%= properties.redis_gateway.token %>
-<% end %>
-<% if properties.mongodb_gateway %>
-  mongodb:
-    token: <%= properties.mongodb_gateway.token %>
-<% end %>
-<% if properties.memcached_gateway %>
-  memcached:
-    token: <%= properties.memcached_gateway.token %>
-<% end %>
-<% if properties.rabbit_gateway %>
-  rabbitmq:
-    token: <%= properties.rabbit_gateway.token %>
-<% end %>
-<% if properties.postgresql_gateway %>
-  postgresql:
-    token: <%= properties.postgresql_gateway.token %>
-<% end %>
-<% if properties.atmos_gateway %>
-  atmos:
-    token: <%= properties.atmos_gateway.token %>
-<% end %>
-<% if properties.filesystem_gateway %>
-  filesystem:
-    token: <%= properties.filesystem_gateway.token %>
-<% end %>
-<% if properties.vblob_gateway %>
-  vblob:
-    token: <%= properties.vblob_gateway.token %>
+<% services = ['mysql', 'redis', 'mongodb', 'memcached', 'rabbit', 'postgresql', 'atmos', 'filesystem', 'vblob'] %>
+<% for service in services %>
+  <% service_gateway = "#{service}_gateway" %>
+  <% if properties.send(service_gateway.to_sym) %>
+  <% service = 'rabbitmq' if service == 'rabbit'
+     service = 'blob' if service == 'vblob' %>
+  <%= "#{service}:"%>
+    token: <%= properties.send(service_gateway.to_sym).token %>
+    <% if properties.send(service_gateway.to_sym).token_b %>
+    token_b: <%= properties.send(service_gateway.to_sym).token_b %>
+    <% end %>
+  <% end %>
 <% end %>
 <% if properties.external_service_tokens %>
 <% properties.external_service_tokens.each do |name,token| %>
@@ -208,29 +176,37 @@ service_broker:
   token: <%= properties.service_broker.token %>
 <% end %>
 
-<% if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle%>
+<%
+if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle
+  max_upload_size = properties.cc.service_extension.service_lifecycle.max_upload_size || 1
+  if properties.service_lifecycle
+    if properties.service_lifecycle.serialization_max_download_size
+      max_download_size = properties.service_lifecycle.serialization_max_download_size
+      if max_upload_size.to_i > max_download_size.to_i
+        max_upload_size = max_download_size.to_i
+      end
+    end
+    sds = properties.service_lifecycle.serialization_data_server
+  end
+  if properties.serialization_data_server
+    sds_port = properties.serialization_data_server.port
+    upload_token = properties.serialization_data_server.upload_token
+    upload_timeout = properties.serialization_data_server.upload_timeout
+  end
+  sds_port ||= 8080
+%>
 service_lifecycle:
-  max_upload_size: <%= properties.cc.service_extension.service_lifecycle.max_upload_size || 1 %>
+  max_upload_size: <%= max_upload_size %>
+  upload_token: <%= upload_token %>
+  <% if upload_timeout %>
+  upload_timeout: <%=upload_timeout%>
+  <% end %>
+  <% if sds %>
+  serialization_data_server:
+    <% sds.each do |server| %>
+  - <%=server%>:<%=sds_port%>
+    <% end %>
+  <% end %>
 <% end %>
 
-runtimes:
-  ruby18:
-    version: 1.8.7
-  ruby19:
-    version: 1.9.2
-  node:
-    version: 0.4.12
-  node06:
-    version: 0.6.8
-  java:
-    version: 1.6.0
-    debug_modes:
-      - run
-      - suspend
-  java7:
-    version: 1.7.0
-    debug_modes:
-      - run
-      - suspend
-  erlangR14B02:
-    version: ".* 5.8.3"
+runtimes_file: /var/vcap/jobs/cloud_controller/config/runtimes.yml

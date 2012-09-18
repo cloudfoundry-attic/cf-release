@@ -5,6 +5,8 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 node = properties.redis_node
+supported_versions = node.supported_versions
+default_version = node.default_version
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -20,6 +22,9 @@ logging:
   <% end %>
 pid: /var/vcap/sys/run/redis_node/redis_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+default_version: <%= "'#{default_version}'"%>
+
 max_memory: <%= plan_enabled && plan_conf.max_memory || 16 %>
 max_swap: <%= plan_enabled && plan_conf.max_swap || 32 %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>

@@ -18,3 +18,6 @@ status:
   user: <%= properties.router.status.user %>
   password: <%= properties.router.status.password %>
 <% end %>
+
+enable_nonprod_apps: <%= properties.router.enable_nonprod_apps || false %>
+flush_apps_interval: <%= properties.router.flush_apps_interval || 30 %>

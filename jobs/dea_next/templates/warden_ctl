@@ -1,0 +1,69 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/warden
+LOG_DIR=/var/vcap/sys/log/warden
+WARDEN_CONF_DIR=/var/vcap/jobs/dea_next/config
+FIRSTRUN_PATH=$RUN_DIR/firstrun
+QUOTA_FS=/var/vcap/data
+PIDFILE=$RUN_DIR/warden.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Warden"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    echo $$ > $PIDFILE
+
+    rootfs_path=/var/vcap/data/warden/rootfs
+    rootfs_tgz=/var/vcap/stemcell_base.tar.gz
+
+    # Extract rootfs if needed
+    if [ ! -d $rootfs_path ]
+    then
+      # Extract to temporary path, then rename to target path.
+      # This makes sure that it is not possible that we end up with directory
+      # that contains a partially extracted archive.
+      tmp_path=$(mktemp --tmpdir=$(dirname $rootfs_path) -d)
+      chmod 755 $tmp_path
+      tar -C $tmp_path -zxf $rootfs_tgz
+      mv $tmp_path $rootfs_path
+    fi
+
+    # The kernel has a bug where network interfaces cannot be removed when a
+    # network namespace is destroyed (NEW_NETNS) due to dangling references.
+    # It is not triggered when IPv6 is disabled.
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
+    cd /var/vcap/packages/warden/warden
+
+    # Clear existing containers if warden was not drained
+    if [ ! -f /var/vcap/data/warden/depot/drained ]
+    then
+      root/linux/clear.sh /var/vcap/data/warden/depot
+    fi
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    exec /var/vcap/packages/ruby/bin/bundle exec \
+         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
+         1>>$LOG_DIR/warden.stdout.log \
+         2>>$LOG_DIR/warden.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+
+    ;;
+
+esac
