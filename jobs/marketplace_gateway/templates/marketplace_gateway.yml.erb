@@ -1,0 +1,35 @@
+---
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+
+<%
+  props = properties.marketplace_gateway
+  nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
+  acls = props.acls
+%>
+
+<% if props.ip_route %>
+ip_route: <%= props.ip_route %>
+<% end %>
+
+index: <%= spec.index %>
+token: <%= props.token %>
+mbus: <%= nats %>
+pid: /var/vcap/sys/run/marketplace_gateway/marketplace_gateway.pid
+external_uri: <%= props.external_uri %>
+acls:
+  users: <%= "['#{acls.users.join("', '")}']" if acls && acls.users %>
+  wildcards: <%= "['#{acls.wildcards.join("', '")}']" if acls && acls.wildcards %>
+
+# node_timeout is required by base async gateway class. This is defined in #{marketplace}.yml
+# since this value is specific to interactions with #{marketplace}
+
+marketplace: <%= props.marketplace %>
+
+refresh_interval: <%= props.refresh_interval || 300 %>
+
+logging:
+  file: /var/vcap/sys/log/marketplace_gateway/marketplace_gateway.log
+  level: info
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.marketplace_gateway
+  <% end %>
