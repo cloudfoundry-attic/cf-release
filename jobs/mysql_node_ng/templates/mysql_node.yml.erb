@@ -9,6 +9,20 @@ supported_versions = node.supported_versions
 default_version = node.default_version
 warden = plan_conf.warden
 use_warden = warden && warden.enable
+
+version_configs = {
+  '5.1' => {
+    'port'        => 3306,
+    'socket'      => '/var/vcap/sys/run/mysqld/mysqld.sock',
+    'binary_dir'  => '/var/vcap/packages/mysql/bin',
+  },
+
+  '5.5' => {
+    'port'        => 3307,
+    'socket'      => '/var/vcap/sys/run/mysqld/mysqld55.sock',
+    'binary_dir'  => '/var/vcap/packages/mysql55/bin',
+  }
+}
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -34,15 +48,18 @@ kill_long_tx: <%= plan_enabled && plan_conf.kill_long_tx || false %>
 max_user_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
 disk_overhead: <%= plan_enabled && plan_conf.disk_overhead || 0.0 %>
 mysql:
-  host: localhost
-  port: 3306
-  socket: /var/vcap/sys/run/mysqld/mysqld.sock
-  user: root
-  pass: <%= node.password %>
+<% for version in supported_versions %>
+  '<%= version %>':
+    host: localhost
+    port: <%= version_configs[version]['port'] %>
+    socket: <%= version_configs[version]['socket'] %>
+    user: root
+    pass: <%= node.password %>
+    mysqldump_bin:  <%= "#{version_configs[version]['binary_dir']}/mysqldump" %>
+    mysql_bin:  <%= "#{version_configs[version]['binary_dir']}/mysql" %>
+<% end %>
 connection_pool_size: <%= node.connection_pool_size || 5 %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
-mysqldump_bin: /var/vcap/packages/mysql/bin/mysqldump
-mysql_bin: /var/vcap/packages/mysql/bin/mysql
 gzip_bin: /bin/gzip
 <% if node.ip_route %>
 ip_route: <%= node.ip_route %>
