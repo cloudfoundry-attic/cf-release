@@ -1,4 +1,17 @@
 #!/bin/bash
+<%
+supported_versions = properties.mysql_node.supported_versions
+version = supported_versions[0]
+
+case version
+when '5.1'
+  binary_dir  = '/var/vcap/packages/mysql'
+  config_file = '/var/vcap/jobs/mysql_node/config/my.cnf'
+when '5.5'
+  binary_dir  = '/var/vcap/packages/mysql55'
+  config_file = '/var/vcap/jobs/mysql_node/config/my55.cnf'
+end
+%>
 
 case $1 in
 
@@ -9,12 +22,12 @@ case $1 in
       echo "Failed to create mysql tmp directory"
       exit $return_value
     fi
-    /var/vcap/packages/mysql/libexec/mysql.server start /var/vcap/jobs/mysql_node/config/my.cnf
+    <%= "#{binary_dir}/libexec/mysql.server start #{config_file}" %>
 
     ;;
 
   stop)
-    /var/vcap/packages/mysql/libexec/mysql.server stop /var/vcap/jobs/mysql_node/config/my.cnf
+    <%= "#{binary_dir}/libexec/mysql.server stop #{config_file}" %>
 
     ;;
 
