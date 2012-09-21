@@ -9,11 +9,14 @@ templates:
   mysql_ctl.erb: bin/mysql_ctl
   my.bootstrap.erb: bin/my.bootstrap
   my.shutdown.erb: bin/my.shutdown
+  my55.bootstrap.erb: bin/my55.bootstrap
+  my55.shutdown.erb: bin/my55.shutdown
   create_mysql_tmp_dir.erb: bin/create_mysql_tmp_dir
 
   mysql_node.yml.erb: config/mysql_node.yml
   mysql_worker.yml.erb: config/mysql_worker.yml
   my.cnf.erb: config/my.cnf
+  my55.cnf.erb: config/my55.cnf
   mysql_init.erb: config/mysql_init
   mysql_backup.yml.erb: config/mysql_backup.yml
   mysql_backup.cron.erb: config/mysql_backup.cron
@@ -25,6 +28,7 @@ packages:
   - mysql_node
   - mysqlclient
   - mysql
+  - mysql55
   - ruby
   - sqlite
   - syslog_aggregator
