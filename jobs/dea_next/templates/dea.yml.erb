@@ -13,7 +13,11 @@ warden_socket: /var/vcap/data/warden/warden.sock
 
 directory_server_port: 12345
 
+directory_server_v2_port: 34567
+
 file_api_port: 23456
+
+domain: <%= properties.domain %>
 
 logging:
   file: /var/vcap/sys/log/dea_next/dea_next.log
