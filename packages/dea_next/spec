@@ -3,8 +3,10 @@ name: dea_next
 dependencies:
 - ruby
 - warden
+- golang
 files:
 - dea_next/Gemfile
 - dea_next/Gemfile.lock
 - dea_next/{bin,lib}/**/*
+- dea_next/go/**/*
 - pkg_utils/*
