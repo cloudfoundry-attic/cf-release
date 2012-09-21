@@ -10,3 +10,9 @@ check process dea_next
   stop program "/var/vcap/jobs/dea_next/bin/dea_ctl stop"
   group vcap
   depends on warden
+
+check process dir_server
+  with pidfile /var/vcap/sys/run/dea_next/dir_server.pid
+  start program "/var/vcap/jobs/dea_next/bin/dir_server_ctl start"
+  stop program "/var/vcap/jobs/dea_next/bin/dir_server_ctl stop"
+  group vcap
