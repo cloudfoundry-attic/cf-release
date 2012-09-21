@@ -5,10 +5,10 @@
 # GIANT HACK for BOSH: this is just a trimmed down version of the ugly hack included
 # in the mysql distribution - tailored just enough to be usable with BOSH.
 
-LD_LIBRARY_PATH=/var/vcap/packages/mysql/lib/mysql
+LD_LIBRARY_PATH=/var/vcap/packages/mysql55/lib/mysql
 export LD_LIBRARY_PATH
 
-basedir=/var/vcap/packages/mysql
+basedir=/var/vcap/packages/mysql55
 datadir=/store/instance/data
 
 # Default value, in seconds, afterwhich the script should timeout waiting
@@ -69,8 +69,8 @@ if [ "$mode" = "start" ] && ! test -d ${datadir}; then
   chown vcap /var/vcap/sys/run/mysqld
 
   cd $basedir
-  /var/vcap/packages/mysql/bin/mysql_install_db \
-    --basedir=/var/vcap/packages/mysql --user=vcap \
+  /var/vcap/packages/mysql55/bin/mysql_install_db \
+    --basedir=/var/vcap/packages/mysql55 --user=vcap \
     --datadir=/store/instance/data
 
   bootstrap=1
