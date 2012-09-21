@@ -1,5 +1,17 @@
+<%
+node = properties.mysql_node
+supported_versions = node.supported_versions
+version = supported_versions[0]
+
+case version
+when '5.1'
+  pid         = '/var/vcap/sys/run/mysqld/mysqld.pid'
+when '5.5'
+  pid         = '/var/vcap/sys/run/mysqld/mysqld55.pid'
+end
+%>
 check process mysql
-  with pidfile /var/vcap/sys/run/mysqld/mysqld.pid
+  <%= "with pidfile #{pid} " %>
   start program "/var/vcap/jobs/mysql_node/bin/mysql_ctl start"
   stop program "/var/vcap/jobs/mysql_node/bin/mysql_ctl stop"
   group vcap
