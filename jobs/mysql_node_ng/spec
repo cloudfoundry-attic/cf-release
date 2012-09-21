@@ -11,6 +11,12 @@ templates:
   my.shutdown.erb: bin/my.shutdown
   create_mysql_tmp_dir.erb: bin/create_mysql_tmp_dir
 
+  # mysql 5.5 related files
+  my55.bootstrap.erb: bin/my55.bootstrap
+  my55.shutdown.erb: bin/my55.shutdown
+  my55.cnf.erb: config/my55.cnf
+  mysql55_ctl.erb: bin/mysql55_ctl
+
   mysql_node.yml.erb: config/mysql_node.yml
   mysql_worker.yml.erb: config/mysql_worker.yml
   my.cnf.erb: config/my.cnf
@@ -23,6 +29,7 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml: config/warden.yml
   mysql_startup.sh: bin/mysql_startup.sh
+  mysql55_startup.sh: bin/mysql55_startup.sh
   services.conf: config/services.conf
   warden_mysql_init.erb: config/warden_mysql_init
 
@@ -31,6 +38,7 @@ packages:
   - mysql_node_ng
   - mysqlclient
   - mysql
+  - mysql55
   - ruby
   - sqlite
   - syslog_aggregator
