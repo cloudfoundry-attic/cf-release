@@ -17,6 +17,12 @@ directory_server_v2_port: 34567
 
 file_api_port: 23456
 
+<% if properties.dea_next && properties.dea_next.streaming_timeout %>
+streaming_timeout: <%= properties.dea_next.streaming_timeout %>
+<% else %>
+streaming_timeout: 60
+<% end %>
+
 domain: <%= properties.domain %>
 
 logging:
