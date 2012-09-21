@@ -1,0 +1,41 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/dea_next
+LOG_DIR=/var/vcap/sys/log/dea_next
+PIDFILE=$RUN_DIR/dir_server.pid
+JOB_DIR=/var/vcap/jobs/dea_next
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "DIR_SERVER"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    exec /var/vcap/packages/dea_next/go/bin/runner \
+         $JOB_DIR/config/dea.yml \
+         >>$LOG_DIR/dir_server.stdout.log \
+         2>>$LOG_DIR/dir_server.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: dir_server_ctl {start|stop}"
+
+    ;;
+
+esac
