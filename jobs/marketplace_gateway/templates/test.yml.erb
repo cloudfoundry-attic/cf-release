@@ -2,23 +2,17 @@
 <%
 gateway = properties.marketplace_gateway
 
-if gateway.marketplace == "appdirect"
-  marketplace = gateway.send(gateway.marketplace.to_sym)
+if gateway.marketplace == "test"
 %>
-classname: "VCAP::Services::Marketplace::Appdirect::AppdirectMarketplace"
-node_timeout: <%= gateway.node_timeout || 10 %>
-
-appdirect:
-  endpoint: <%= marketplace.endpoint %>
-  key:      <%= marketplace.key %>
-  secret:   <%= marketplace.secret %>
+classname: "VCAP::Services::Marketplace::Test::TestMarketplace"
+node_timeout: <%= gateway.node_timeout || 5 %>
 
 <%
   if gateway.whitelist
 %>
 offering_whitelist: <%= "['#{gateway.whitelist.join("', '")}']" %>
 <%
-  end
+ end
 %>
 
 <%
