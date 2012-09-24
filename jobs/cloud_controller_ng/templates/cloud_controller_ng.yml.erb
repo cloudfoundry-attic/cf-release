@@ -1,5 +1,5 @@
 ---
-port: <%= properties.port || 9022 %>
+port: 9022 # external CC port
 pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 
@@ -13,6 +13,10 @@ bootstrap_admin_email: <%= properties.ccng.bootstrap_admin_email || "sre@vmware.
 bulk_api:
   auth_user: <%= properties.ccng.bulk_api_user || "bulk_api" %>
   auth_password: <%= properties.ccng.bulk_api_password %>
+
+nginx:
+  use_nginx: <%= properties.ccng.use_nginx || true %>
+  instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
 
 info:
   name: <%= properties.name || "vcap" %>
