@@ -1,4 +1,7 @@
 <% if properties.report_processor %>
+#Disable filter of duplicated messages for traffic log
+$RepeatedMsgReduction off
+
 $ModLoad imfile
 $InputFileName /var/vcap/data/sys/log/nginx/router.access.log
 $InputFileTag router
