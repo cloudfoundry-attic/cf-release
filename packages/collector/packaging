@@ -2,6 +2,7 @@
 set -e
 
 cp -a tools/collector/* ${BOSH_INSTALL_TARGET}
+cp -a tools_billing/collector/* ${BOSH_INSTALL_TARGET}
 
 cd ${BOSH_INSTALL_TARGET}
 
