@@ -1,0 +1,15 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+DPX_HOME=services/filesystem/dpxfs
+
+mkdir -p ${DPX_HOME}/packages/hiredis
+mkdir -p ${DPX_HOME}/packages/fuse
+
+tar xzvf hiredis/hiredis-0.10.1.tgz -C ${DPX_HOME}/packages/hiredis
+tar xzvf fuse/fuse-2.8.7.tgz -C ${DPX_HOME}/packages/fuse
+cp -a * ${BOSH_INSTALL_TARGET}
+(
+  cd ${BOSH_INSTALL_TARGET}/${DPX_HOME}/src
+  make clean all
+)
