@@ -33,6 +33,9 @@ case $1 in
       mv $tmp_path $rootfs_path
     fi
 
+    # Use default local port range (higher ports are used for pooling)
+    echo 32768 61000 > /proc/sys/net/ipv4/ip_local_port_range
+
     # The kernel has a bug where network interfaces cannot be removed when a
     # network namespace is destroyed (NEW_NETNS) due to dangling references.
     # It is not triggered when IPv6 is disabled.
