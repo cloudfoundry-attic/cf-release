@@ -33,13 +33,25 @@ intervals:
   advertise: 5
 
 resources:
-  memory_mb: <%= properties.dea_next.memory_mb || 8000 %>
+  <% if properties.dea_next && properties.dea_next.memory_mb %>
+  memory_mb: <%= properties.dea_next.memory_mb %>
+  <% else %>
+  memory_mb: 8000
+  <% end %>
   memory_overcommit_factor: 1
 
-  disk_mb: <%= properties.dea_next.disk_mb || 32000 %>
+  <% if properties.dea_next && properties.dea_next.disk_mb %>
+  disk_mb: <%= properties.dea_next.disk_mb %>
+  <% else %>
+  disk_mb: 32000
+  <% end %>
   disk_overcommit_factor: 1
 
-  num_instances: <%= properties.dea_next.num_instances || 30 %>
+  <% if properties.dea_next && properties.dea_next.num_instances %>
+  num_instances: <%= properties.dea_next.num_instances %>
+  <% else %>
+  num_instances: 30
+  <% end %>
 
 bind_mounts:
   - src_path: /var/vcap/packages/
