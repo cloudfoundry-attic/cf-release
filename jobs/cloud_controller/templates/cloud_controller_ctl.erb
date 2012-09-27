@@ -31,9 +31,6 @@ export no_proxy='<%= properties.env.no_proxy %>'
 <% end %>
 <% end %>
 
-export STAGING_CONFIG_DIR=$CC_JOB_DIR/config/staging
-export STAGING_CACHE_DIR=/var/vcap/data/cloud_controller/staging
-
 export CONFIG_DIR=$CC_JOB_DIR/config
 
 export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
@@ -49,7 +46,6 @@ case $1 in
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
-    mkdir -p $STAGING_CACHE_DIR
     mkdir -p $TMPDIR
 
     chown vcap:vcap $RUN_DIR
@@ -70,14 +66,23 @@ case $1 in
     /etc/init.d/idmapd restart
 
     if grep -qs $NFS_SHARE /proc/mounts; then
-      echo "Found NFS mount"
-    else
-      echo "Mounting NFS..."
-      mount -o timeo=10,intr,lookupcache=positive -t nfs4 <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/" %> $NFS_SHARE
-      if [ $? != 0 ]; then
-        echo "Cannot mount NFS, exiting..."
+      echo "Found NFS mount, unmounting..."
+      umount $NFS_SHARE
+      if [ $? -ne 0 ]; then
+        echo "Failed to unmount NFS, exiting..."
         exit 1
       fi
+    fi
+
+    echo "Mounting NFS..."
+    <% if properties.nfs_server.nfsv4 %>
+    mount -o timeo=10,intr,lookupcache=positive -t nfs4 <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/" %> $NFS_SHARE
+    <% else %>
+    mount -o timeo=10,intr,lookupcache=positive -t nfs <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/var/vcap/store/shared" %> $NFS_SHARE
+    <% end %>
+    if [ $? != 0 ]; then
+      echo "Cannot mount NFS, exiting..."
+      exit 1
     fi
 
     chpst -u vcap:vcap touch $NFS_SHARE/.nfs_test
@@ -88,13 +93,9 @@ case $1 in
     fi
     <% end %>
 
-    # Create the secure users and setup sudo privs for vcap
-    # NB: This needs to happen _before_ executing `rake db:migrate' as that requires
-    #     the existence of secure users (staging initializer).
-    $CC_PACKAGE_DIR/cloud_controller/script/create_secure_users.rb
-    chown root:root $CC_JOB_DIR/config/sudoers
-    chmod 440 $CC_JOB_DIR/config/sudoers
-    cp $CC_JOB_DIR/config/sudoers /etc/sudoers
+    # Set up sudoers for cloud controller.
+    install_sudoers "$CONFIG_DIR/sudoers" /etc/sudoers.d/cloud_controller
+    file_must_include /etc/sudoers '#includedir /etc/sudoers.d'
 
     # Only done on the first CC launch
     <% if spec.index.to_i == 0 %>
@@ -109,10 +110,6 @@ case $1 in
       unset CC_NOSTART
 
     <% end %>
-
-    # Seed the staging cache
-    cp -an /var/vcap/packages/dea_seed/gem_cache/* $STAGING_CACHE_DIR
-    chown -R vcap:vcap $STAGING_CACHE_DIR
 
     # Configure the core file location
     mkdir -p /var/vcap/sys/cores

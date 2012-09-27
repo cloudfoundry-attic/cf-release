@@ -3,43 +3,11 @@ name: sinatra
 
 runtimes:
   - ruby18:
-      description: Ruby 1.8
-      version: 1.8.7
-      executable: /var/vcap/packages/dea_ruby18/bin/ruby
-      staging: /var/vcap/packages/ruby/bin/ruby stage
       default: true
-      environment:
-        bundle_gemfile:
-        path: /var/vcap/packages/dea_transition/rubygems/1.8/bin:/var/vcap/packages/dea_ruby18/bin:$PATH
-        gem_path: /var/vcap/packages/dea_transition/rubygems/1.8:$GEM_PATH
-
   - ruby19:
-      description: Ruby 1.9
-      version: 1.9.2p180
-      executable: /var/vcap/packages/dea_ruby19/bin/ruby
-      staging: /var/vcap/packages/ruby/bin/ruby stage
-      environment:
-        bundle_gemfile:
-        path: /var/vcap/packages/dea_transition/rubygems/1.9.1/bin:/var/vcap/packages/dea_ruby19/bin:$PATH
-        gem_path: /var/vcap/packages/dea_transition/rubygems/1.9.1:$GEM_PATH
-
-app_servers:
-  - thin:
-      description: Thin
-      executable: thin
-      default: true
+      default: false
 
 detection:
-  - "*.rb": "require\\s+'sinatra'|require\\s+\"sinatra\"" # .rb files in the root dir containing a require?
+  - "*.rb": "\\s*require[\\s\\(]*['\"]sinatra(/base)?['\"]" # .rb files in the root dir containing a require?
   - config/environment.rb: false # and config/environment.rb must not exist
-
-staged_services:
-  - name: mysql
-    version: *
-
-  - name: postgresql
-    version: *
-
-  - name: redis
-    version: 2
 

@@ -1,0 +1,17 @@
+---
+logging:
+  file: /var/vcap/sys/log/vcap_registrar/vcap_registrar.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.login_vcap_registrar
+  <% end %>
+  level: info
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+uri:
+  - lgn.<%= properties.domain %>
+host: <%= spec.networks.send(properties.networks.apps).ip %>
+index: <%= spec.index %>
+port: <%= (properties.login && properties.login.port) ? properties.login.port : 8080 %>
+tags:
+  component: login
+varz:
+  file: /var/vcap/jobs/login/config/login.yml
