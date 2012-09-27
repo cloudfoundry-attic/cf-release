@@ -18,9 +18,6 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    # ephemeral port range
-    # echo "1024 65535" > /proc/sys/net/ipv4/ip_local_port_range
-
     # TCP_FIN_TIMEOUT
     # This setting determines the time that must elapse before TCP/IP can release a closed connection and reuse
     # its resources. During this TIME_WAIT state, reopening the connection to the client costs less than establishing
