@@ -1,0 +1,47 @@
+#!/bin/bash
+
+JOB_DIR=/var/vcap/jobs/postgresql_node_ng
+PKG_DIR=/var/vcap/packages/postgresql_node_ng
+PG_DIR=/var/vcap/packages/postgresql
+
+source $PKG_DIR/common/services/utils.sh
+
+case $1 in
+
+  start)
+    echo "Setup warden."
+    setup_warden
+
+    install -m 0755 -d $ROOT_DIR/$PG_DIR
+    rsync -arl $JOB_DIR/packages/postgresql/* $ROOT_DIR/$PG_DIR/
+    # create a initialized data dir
+    rm -rf $ROOT_DIR/$PG_DIR/initdb
+    mkdir -p /var/vcap/data/initdb_tmp
+    chmod -R 1777 /var/vcap/data/initdb_tmp
+    if test ! -d /var/vcap/data/initdb_tmp/initdb/base
+    then
+      rm -rf /var/vcap/data/initdb_tmp/initdb
+      echo "Initialize the postgresql database cluster."
+      su - vcap -c "LD_LIBRARY_PATH=$ROOT_DIR/$PG_DIR/lib:$LD_LIBRARY_PATH $ROOT_DIR/$PG_DIR/bin/initdb -E utf8 -D /var/vcap/data/initdb_tmp/initdb"
+    fi
+    rsync -arl /var/vcap/data/initdb_tmp/initdb $ROOT_DIR/$PG_DIR
+    mkdir -p $ROOT_DIR/$PG_DIR/initdb/pg_log
+    chmod -R 777 $ROOT_DIR/$PG_DIR/initdb
+    rsync -arl $JOB_DIR/bin/warden_postgresql_ctl $ROOT_DIR/usr/bin/postgresql_ctl
+    chmod 0755 $ROOT_DIR/usr/bin/postgresql_ctl
+    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+
+    echo "Starting warden."
+
+    start_warden
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac
