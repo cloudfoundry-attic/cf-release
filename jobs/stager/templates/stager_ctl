@@ -27,6 +27,7 @@ export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/pac
 export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LIBRARY_PATH
 export PATH=/var/vcap/packages/imagemagick/bin:/var/vcap/packages/git/bin:$PATH
 export LANG=en_US.UTF-8
+export PLATFORM_CONFIG=$JOB_DIR/config/platform.yml
 
 source /var/vcap/packages/common/utils.sh
 
@@ -58,9 +59,9 @@ case $1 in
 
     /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/stager/bin/create_secure_users.rb
 
-    chown root:root $JOB_DIR/config/sudoers
-    chmod 440 $JOB_DIR/config/sudoers
-    cp $JOB_DIR/config/sudoers /etc/sudoers
+    # Set up sudoers for stager.
+    install_sudoers "$JOB_DIR/config/sudoers" /etc/sudoers.d/stager
+    file_must_include /etc/sudoers '#includedir /etc/sudoers.d'
 
     exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby \
          /var/vcap/packages/stager/bin/stager \

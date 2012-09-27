@@ -6,4 +6,12 @@ cp -a dea_next/* ${BOSH_INSTALL_TARGET}
 (
   cd ${BOSH_INSTALL_TARGET}
   /var/vcap/packages/ruby/bin/bundle --local install --deployment --without=development test
+
+  GOLANG_PATH=`readlink -nf /var/vcap/packages/golang`
+  PATH=$GOLANG_PATH/bin:$PATH
+  export GOROOT=`readlink -nf /var/vcap/packages/golang`
+  export GOPATH=`readlink -nf ${BOSH_INSTALL_TARGET}/go`
+
+  cd ${BOSH_INSTALL_TARGET}/go/src
+  go install runner
 )

@@ -1,0 +1,41 @@
+---
+<%
+gateway = properties.marketplace_gateway
+
+if gateway.marketplace == "appdirect"
+  marketplace = gateway.send(gateway.marketplace.to_sym)
+%>
+classname: "VCAP::Services::Marketplace::Appdirect::AppdirectMarketplace"
+node_timeout: <%= gateway.node_timeout || 10 %>
+
+appdirect:
+  endpoint: <%= marketplace.endpoint %>
+  key:      <%= marketplace.key %>
+  secret:   <%= marketplace.secret %>
+
+<%
+  if gateway.whitelist
+%>
+offering_whitelist: <%= "['#{gateway.whitelist.join("', '")}']" %>
+<%
+  end
+%>
+
+<%
+  if gateway.service_mappings
+%>
+offering_mapping:
+<%
+    gateway.service_mappings.each { |svc|
+%>
+  <%= svc.service %>:
+    name: <%= svc.name %>
+    provider: <%= svc.provider %>
+<%
+    }
+  end
+%>
+
+<%
+end
+%>

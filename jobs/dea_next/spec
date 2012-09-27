@@ -9,11 +9,14 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
 
+  dir_server_ctl: bin/dir_server_ctl
+
 packages:
 - common
 - dea_next
 - warden
 - ruby
+- golang
 - sqlite
 - mysqlclient
 - dea_ruby18

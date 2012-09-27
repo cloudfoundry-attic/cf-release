@@ -44,7 +44,6 @@ directories:
   droplets: /var/vcap/shared/droplets
   resources: /var/vcap/shared/resources
   staging_manifests: /var/vcap/jobs/cloud_controller/config/staging
-  staging_cache: /var/vcap/data/cloud_controller/staging
   tmpdir: /var/vcap/data/cloud_controller/tmp
 
 logging:
@@ -117,15 +116,7 @@ redis:
 <% end %>
 
 staging:
-  max_concurrent_stagers: <%= properties.cc.max_concurrent_stagers || 20 %>
   max_staging_runtime:    <%= properties.cc.max_staging_runtime || 120 %>
-  secure: true
-  <% if properties.cc.new_stager_percent %>
-  new_stager_percent: <%= properties.cc.new_stager_percent %>
-  <% end %>
-  <% if properties.cc.new_stager_email_regexp %>
-  new_stager_email_regexp: <%= properties.cc.new_stager_email_regexp %>
-  <% end %>
   auth:
     user: <%= properties.cc.staging_upload_user %>
     password: <%= properties.cc.staging_upload_password %>
@@ -180,10 +171,19 @@ builtin_services:
 <% end %>
 <% end %>
 
-<% if properties.service_broker %>
-service_broker:
-  token: <%= properties.service_broker.token %>
-<% end %>
+<%
+  service_proxy_tokens = []
+  if properties.service_broker
+    properties.service_broker.token.each { |tok| service_proxy_tokens << tok }
+  end
+
+  if properties.marketplace_gateway
+    properties.marketplace_gateway.tokens.each { |tok| service_proxy_tokens << tok }
+  end
+%>
+
+service_proxy:
+  token: <%= "['#{service_proxy_tokens.join("' , '")}']" %>
 
 <%
 if properties.cc.service_extension && properties.cc.service_extension.service_lifecycle
@@ -218,26 +218,4 @@ service_lifecycle:
   <% end %>
 <% end %>
 
-runtimes:
-  ruby18:
-    version: 1.8.7
-  ruby19:
-    version: 1.9.2
-  node:
-    version: 0.4.12
-  node06:
-    version: 0.6.8
-  node08:
-    version: 0.8.2
-  java:
-    version: 1.6.0
-    debug_modes:
-      - run
-      - suspend
-  java7:
-    version: 1.7.0
-    debug_modes:
-      - run
-      - suspend
-  erlangR14B02:
-    version: ".* 5.8.3"
+runtimes_file: /var/vcap/jobs/cloud_controller/config/runtimes.yml

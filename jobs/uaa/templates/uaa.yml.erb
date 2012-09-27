@@ -80,11 +80,18 @@ oauth:
 <% if !properties.uaa.clients || !properties.uaa.clients.vmc %>
     vmc:
       authorized-grant-types: implicit
-      scope: cloud_controller.read,cloud_controller.write,openid
+      scope: cloud_controller.read,cloud_controller.write,openid,password.write
       authorities: uaa.none
       id: vmc
       redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc,https://uaa.cloudfoundry.com/redirect/vmc
       access-token-validity: 604800
+<% end %>
+<% if !properties.uaa.clients || !properties.uaa.clients.login %>
+    login:
+      id: login
+      secret: <%= properties.uaa.login.client_secret %>
+      authorized-grant-types: client_credentials
+      authorities: oauth.login
 <% end %>
 <% if properties.uaa.scim && properties.uaa.scim.users then %>
 scim:
