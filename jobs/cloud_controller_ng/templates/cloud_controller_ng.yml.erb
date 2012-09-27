@@ -87,22 +87,15 @@ staging:
 # framework.
 
 legacy_framework_manifest:
-  django:
-    name: django
-    runtimes:
-    - name: python2
-      version: 2.6.5
-      description: Python 2.6.5
-    appservers: []
-
-    detection:
-    - "*.py": .
   grails:
     name: grails
     runtimes:
     - name: java
       version: "1.6"
       description: Java 6
+    - name: java
+      version: "1.7"
+      description: Java 7
     appservers:
     - name: tomcat
       description: Tomcat
@@ -114,6 +107,9 @@ legacy_framework_manifest:
     - name: java
       version: "1.6"
       description: Java 6
+    - name: java
+      version: "1.7"
+      description: Java 7
     appservers:
     - name: tomcat
       description: Tomcat
@@ -125,6 +121,9 @@ legacy_framework_manifest:
     - name: java
       version: "1.6"
       description: Java 6
+    - name: java
+      version: "1.7"
+      description: Java 7
     appservers:
     - name: tomcat
       description: Tomcat
@@ -146,27 +145,6 @@ legacy_framework_manifest:
 
     detection:
     - "*.js": .
-  otp_rebar:
-    name: otp_rebar
-    runtimes:
-    - name: erlangR14B02
-      version: R14B02
-      description: Erlang R14B02
-    appservers: []
-
-    detection:
-    - releases/*/*.rel: .
-  php:
-    name: php
-    runtimes:
-    - name: php
-      version: "5.3"
-      description: PHP 5
-    appservers:
-    - name: apache
-      description: Apache
-    detection:
-    - "*.php": true
   rack:
     name: rack
     runtimes:
@@ -219,6 +197,9 @@ legacy_framework_manifest:
     - name: java
       version: "1.6"
       description: Java 6
+    - name: java
+      version: "1.7"
+      description: Java 7
     appservers:
     - name: tomcat
       description: Tomcat
@@ -239,28 +220,17 @@ legacy_framework_manifest:
     - name: java
       version: "1.6"
       description: Java 6
+    - name: java
+      version: "1.7"
+      description: Java 7
     - name: node
       version: 0.4.12
       description: Node.js
     - name: node06
       version: 0.6.8
       description: Node.js
-    - name: erlangR14B02
-      version: R14B02
-      description: Erlang R14B02
-    - name: php
-      version: "5.3"
-      description: PHP 5
+    - name: node08
+      version: 0.8.2
+      description: Node.js
     appservers: []
-
     detection:
-  wsgi:
-    name: wsgi
-    runtimes:
-    - name: python2
-      version: 2.6.5
-      description: Python 2.6.5
-    appservers: []
-
-    detection:
-    - "*.py": .
