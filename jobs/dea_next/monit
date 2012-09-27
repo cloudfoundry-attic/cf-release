@@ -9,3 +9,4 @@ check process dea_next
   start program "/var/vcap/jobs/dea_next/bin/dea_ctl start"
   stop program "/var/vcap/jobs/dea_next/bin/dea_ctl stop"
   group vcap
+  depends on warden
