@@ -95,10 +95,6 @@ hbase/native-lib.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNGYzMDY4%0AZTQ5ODhjOCIsInNpZyI6IkFlK1c2bGlOVFVqSGk2alB0Q3IzUlBOR3pvdz0i%0AfQ==%0A
   sha: 8d35c05ce07f0af4a19926fb1497ba101b4116ba
   size: 546495
-hbase/hbase-0.90.3-cdh3u1.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIwMDRlNGU4ZWM2YjQ0YjYwNGYzMDY4%0AZWEyNmVlNyIsInNpZyI6IlMvZ1R5ZXlRdHhLZUxqSGU0QUU5WmErd1F3WT0i%0AfQ==%0A
-  sha: 34e7de45ed6c36f618e9625128422023868c5e51
-  size: 35113844
 postgresql/postgresql-9.0-x86_64.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEwMDRlNGU3ZDUxMWY4MjEwNGYzMDY4%0AZmI3MTJlNCIsInNpZyI6IkMzS0hrcTAxWnZSVU9wQVI2OWFXWXFlR1FVST0i%0AfQ==%0A
   sha: 1c777413ce355ebf79c5786e7dbc5a060883986f
@@ -579,3 +575,23 @@ uaa/cloudfoundry-identity-uaa-1.1.2.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTAzZDBl%0AMWMwY2RlMyIsInNpZyI6InZ1L3k5N05jaC9GNUljVFZuR2tpMXJpS29vaz0i%0AfQ==%0A
   sha: f84e77cc0e6193755913fa59bf0d88c2125705a0
   size: 24268942
+hadoop/hadoop-0.20.2-cdh3u4.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNGZiZDAx%0AODQwN2YwYiIsInNpZyI6ImtrWDA3SXVFVzNiTmNPSHhqMGNhd0Nmb2I0RT0i%0AfQ==%0A
+  sha: 1a9e6437b4b7f0bdbfdd3bd9170a33238e151f12
+  size: 70157279
+hbase/hbase-0.90.6-cdh3u4-vmware-patched.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTAxMDVh%0AYzVjNTkwMSIsInNpZyI6IldlMi9yRjRybFZ3Y1ptR3FwWklzcHFZT2RiUT0i%0AfQ==%0A
+  sha: 4290e2a35fc54d34d8ea4e0559e6de6e485322d4
+  size: 36978703
+login/cloudfoundry-login-server-1.0.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEyMDRlNGU4NmVlMTUyOTQwNTA1MGI0%0AOGE2YjVkMCIsInNpZyI6InkrUllaeVVXenJ4OUphTXgzR3JhbCtNMXVMUT0i%0AfQ==%0A
+  sha: 1231f9e348718083e531e6117e34a41e69b31114
+  size: 19228610
+login/cloudfoundry-identity-batch-1.0.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA0YTIy%0ANDAzZjA0ZCIsInNpZyI6Inp3aE80OURHSXFhRnZFb292Rng5ek81aDViYz0i%0AfQ==%0A
+  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
+  size: 24049331
+golang/go1.0.1.src.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEwMDRlNGU3ZDUxNzYxOGYwNTA2MGI5%0AODBjMDE4MiIsInNpZyI6Ik5HczVyeml3SDJxc2l4c3l4c2wrUVdUbFd5OD0i%0AfQ==%0A
+  sha: fc8a6d6725f7f2bf7c94685c5fd0880c9b7f67f6
+  size: 9617092
