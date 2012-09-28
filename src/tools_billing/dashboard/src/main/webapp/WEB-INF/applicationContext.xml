@@ -1,0 +1,59 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+  <context:component-scan base-package="com.cloudfoundry.dashboard.server"/>
+  <context:component-scan base-package="com.gwtplatform.dispatch.server.spring"/>
+  <context:annotation-config/>
+
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+  </bean>
+
+  <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer">
+    <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+    <property name="searchContextAttributes" value="true"/>
+    <property name="contextOverride" value="true"/>
+    <property name="ignoreResourceNotFound" value="true"/>
+    <property name="locations">
+      <list>
+        <value>classpath:application.properties</value>
+        <value>classpath:local.properties</value>
+        <value>${config}</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="logger" class="com.gwtplatform.dispatch.server.spring.LoggerFactoryBean">
+    <constructor-arg>
+      <bean class="java.util.logging.Logger" factory-method="getAnonymousLogger">
+        <property name="level">
+          <value>FINEST</value>
+        </property>
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <security:global-method-security pre-post-annotations="enabled">
+  </security:global-method-security>
+
+  <security:http use-expressions="true" realm="Dashboard">
+    <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+    <security:http-basic/>
+  </security:http>
+
+  <security:authentication-manager>
+    <security:authentication-provider>
+      <security:user-service properties="${users.properties}"/>
+    </security:authentication-provider>
+  </security:authentication-manager>
+
+</beans>

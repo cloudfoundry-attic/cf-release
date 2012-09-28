@@ -1,0 +1,15 @@
+---
+index: 0
+logging:
+  level: info
+tsdb:
+  host: localhost
+  port: 4242
+mbus: nats://localhost:4222
+intervals:
+  discover: 60
+  varz: 10
+  healthz: 5
+  local_metrics: 10
+  prune: 300
+  nats_ping: 10

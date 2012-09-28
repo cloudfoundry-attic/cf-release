@@ -1,0 +1,17 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:cf='urn:import:com.cloudfoundry.dashboard.client.ui'>
+
+  <ui:style type="com.cloudfoundry.dashboard.client.ui.NavigationBar.MyStyle">
+    .now {
+      color: #229017;
+    }
+  </ui:style>
+
+  <g:HorizontalPanel ui:field="container" spacing="5" horizontalAlignment="ALIGN_CENTER"/>
+
+</ui:UiBinder>

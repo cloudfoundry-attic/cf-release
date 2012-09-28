@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<module rename-to='dashboard'>
+  <inherits name="com.google.gwt.inject.Inject"/>
+  <inherits name='com.google.gwt.junit.JUnit'/>
+  <inherits name="com.google.gwt.logging.Logging"/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  <inherits name="com.google.gwt.uibinder.GinUiBinder"/>
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name='com.google.gwt.user.theme.chrome.Chrome'/>
+
+  <inherits name="com.google.common.collect.Collect"/>
+  <inherits name="com.googlecode.gchart.GChart"/>
+  <inherits name='com.gwtplatform.mvp.Mvp'/>
+  <inherits name="com.gwtplatform.dispatch.Dispatch"/>
+
+  <entry-point class='com.cloudfoundry.dashboard.client.Dashboard'/>
+
+  <source path='client'/>
+  <source path='shared'/>
+
+  <define-configuration-property name="gin.ginjector" is-multi-valued="false"/>
+  <set-configuration-property name="gin.ginjector" value="com.cloudfoundry.dashboard.client.gin.ClientGinjector"/>
+
+  <set-property name="gwt.logging.logLevel" value="INFO"/>
+  <set-property name="gwt.logging.popupHandler" value="DISABLED"/>
+  <set-configuration-property name="UiBinder.useSafeHtmlTemplates" value="true"/>
+</module>

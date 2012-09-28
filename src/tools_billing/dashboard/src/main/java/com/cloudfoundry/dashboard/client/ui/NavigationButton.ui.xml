@@ -1,0 +1,44 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:image field="skipForward" src="../resources/skip-forward.png"/>
+  <ui:image field="seekForward" src="../resources/seek-forward.png"/>
+  <ui:image field="seekBackward" src="../resources/seek-backward.png"/>
+
+  <ui:style type="com.cloudfoundry.dashboard.client.ui.NavigationButton.MyStyle">
+    @sprite .skip-forward {
+      gwt-image: "skipForward";
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    @sprite .seek-forward {
+      gwt-image: "seekForward";
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    @sprite .seek-backward {
+      gwt-image: "seekBackward";
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+
+    .label {
+      display: inline-block;
+      vertical-align: middle;
+      font-weight: bold;
+    }
+  </ui:style>
+
+  <g:Button enabled='true' ui:field="button">
+    <div class="{style.label}" ui:field="label"/>
+    <div class="{style.seek-backward}" ui:field="image"/>
+  </g:Button>
+
+</ui:UiBinder>

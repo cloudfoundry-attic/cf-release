@@ -1,0 +1,21 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    daemons (1.1.4)
+    eventmachine (0.12.10)
+    json_pure (1.5.3)
+    nats (0.4.10)
+      daemons (>= 1.1.0)
+      eventmachine (>= 0.12.10)
+      json_pure (>= 1.5.1)
+    vcap_logging (0.1.0)
+    yajl-ruby (0.8.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  eventmachine
+  nats
+  vcap_logging
+  yajl-ruby

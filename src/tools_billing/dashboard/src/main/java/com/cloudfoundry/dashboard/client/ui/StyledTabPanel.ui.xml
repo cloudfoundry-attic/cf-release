@@ -1,0 +1,23 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:style>
+    .content-panel {
+      background-color: #bcbcbc;
+    }
+  </ui:style>
+
+  <g:DockLayoutPanel>
+    <g:north size="24">
+      <g:FlowPanel ui:field="tabPanel" styleName="gwt-TabLayoutPanel"/>
+    </g:north>
+    <g:center>
+      <g:ScrollPanel ui:field="contentPanel" addStyleNames="gwt-TabLayoutPanelContentContainer {style.content-panel}"/>
+    </g:center>
+  </g:DockLayoutPanel>
+
+</ui:UiBinder>
