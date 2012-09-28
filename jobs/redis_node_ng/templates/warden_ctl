@@ -1,0 +1,29 @@
+#!/bin/bash
+
+JOB_DIR=/var/vcap/jobs/redis_node_ng
+PKG_DIR=/var/vcap/packages/redis_node_ng
+BIN_DIR=/var/vcap/packages/redis/bin
+
+source /var/vcap/packages/redis_node_ng/common/services/utils.sh
+
+case $1 in
+
+  start)
+    setup_warden
+
+    # Copy redis binaries and configuration files to warden base file system
+    install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/redis_startup.sh $BIN_DIR/*
+    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+
+    start_warden
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac

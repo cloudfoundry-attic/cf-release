@@ -1,0 +1,23 @@
+---
+name: vblob_node_ng
+
+templates:
+  vblob_node_ctl: bin/vblob_node_ctl
+  vblob_node.yml.erb: config/vblob_node.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  logrotate.conf.erb: config/logrotate.conf
+  vblob_logrotate.cron.erb: config/vblob_logrotate.cron
+
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  vblob_startup.sh: bin/vblob_startup.sh
+  services.conf: config/services.conf
+
+packages:
+  - common
+  - vblob_node_ng
+  - vblob
+  - node
+  - ruby
+  - sqlite
+  - syslog_aggregator

@@ -1,0 +1,32 @@
+---
+name: mongodb_node_ng
+
+templates:
+  mongodb_node_ctl: bin/mongodb_node_ctl
+  mongodb_worker_ctl: bin/mongodb_worker_ctl
+  mongodb_migration_util.erb: bin/mongodb_migration_util
+
+  mongodb_node.yml.erb: config/mongodb_node.yml
+  mongodb_worker.yml.erb: config/mongodb_worker.yml
+  mongodb_backup.yml.erb: config/mongodb_backup.yml
+  mongodb_backup.cron.erb: config/mongodb_backup.cron
+  mongodb_backup.erb: config/mongodb_backup
+
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  logrotate.conf.erb: config/logrotate.conf
+  mongodb_logrotate.cron.erb: config/mongodb_logrotate.cron
+
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  mongodb.conf.erb: config/mongodb.conf
+  mongod_startup.sh: bin/mongod_startup.sh
+  services.conf: config/services.conf
+
+packages:
+  - common
+  - mongodb_node_ng
+  - mongodb18
+  - mongodb20
+  - ruby
+  - sqlite
+  - syslog_aggregator
