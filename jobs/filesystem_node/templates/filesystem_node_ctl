@@ -1,0 +1,52 @@
+#!/bin/bash
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/filesystem_node
+LOG_DIR=/var/vcap/sys/log/filesystem_node
+PIDFILE=$RUN_DIR/filesystem_node.pid
+CONF_DIR=/var/vcap/jobs/filesystem_node/config
+SERV_LOG_DIR=/var/vcap/sys/service-log/filesystem
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Filesystem node"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    mkdir -p $SERV_LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% for backend in properties.filesystem_node.backends %>
+    mkdir -p <%= backend.mount %>
+    mount <%= backend.host %>:<%= backend.export %> <%= backend.mount %>
+    <% end %>
+
+    # Enable log aggregation
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
+    <% end %>
+
+    (crontab -l | sed /filesystem_logrotate/d; cat $CONF_DIR/filesystem_logrotate.cron) | sed /^$/d | crontab
+
+    exec /var/vcap/packages/filesystem_node/services/filesystem/bin/filesystem_node \
+      -c $CONF_DIR/filesystem_node.yml \
+      >>$LOG_DIR/filesystem_node.stdout.log \
+      2>>$LOG_DIR/filesystem_node.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    crontab -l | sed /filesystem_logrotate/d | crontab
+
+    ;;
+
+  *)
+  echo "Usage: filesystem_node_ctl {start|stop}" ;;
+esac

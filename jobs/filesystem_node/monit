@@ -1,0 +1,5 @@
+check process filesystem_node
+  with pidfile /var/vcap/sys/run/filesystem_node/filesystem_node.pid
+  start program "/var/vcap/jobs/filesystem_node/bin/filesystem_node_ctl start"
+  stop program "/var/vcap/jobs/filesystem_node/bin/filesystem_node_ctl stop"
+  group vcap

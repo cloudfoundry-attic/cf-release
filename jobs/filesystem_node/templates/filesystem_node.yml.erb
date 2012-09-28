@@ -1,0 +1,49 @@
+---
+<%
+service = "filesystem"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+node = properties.filesystem_node
+supported_versions = node.supported_versions
+default_version = node.default_version
+node_id = "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}"
+%>
+capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
+plan: <%= plan %>
+local_db: sqlite3:/var/vcap/store/filesystem_node.db
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+index: <%= spec.index %>
+base_dir: /var/vcap/services/filesystem/instances
+logging:
+  file: /var/vcap/sys/log/filesystem_node/filesystem_node.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.filesystem_node
+  <% end %>
+pid: /var/vcap/sys/run/filesystem_node/filesystem_node.pid
+node_id: <%= node_id %>
+filesystemd_log_dir: /var/vcap/sys/service-log/filesystem
+supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+default_version: <%= "'#{default_version}'"%>
+
+<% if node.ip_route %>
+ip_route: <%= node.ip_route %>
+<% end %>
+z_interval: <%= node.z_interval || 30 %>
+max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
+op_time_limit: <%= node.op_time_limit || 6 %>
+
+redis:
+  ip: <%= properties.services_redis.address %>
+  port: <%= properties.services_redis.port %>
+  passwd: <%= properties.services_redis.password %>
+wake_interval: <%= node.wake_interval || 1 %>
+fs_type: <%= node.fs_type || "nfs" %>
+backends:
+<% for backend in node.backends %>
+  - host: <%= backend.host %>
+    export: <%= backend.export %>
+    mount: <%= backend.mount %>
+<% end %>

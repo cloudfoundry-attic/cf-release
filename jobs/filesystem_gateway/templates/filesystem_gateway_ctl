@@ -19,11 +19,6 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    <% for backend in properties.filesystem_gateway.backends %>
-    mkdir -p <%= backend.mount %>
-    mount <%= backend.host %>:<%= backend.export %> <%= backend.mount %>
-    <% end %>
-
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>

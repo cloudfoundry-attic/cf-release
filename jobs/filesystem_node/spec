@@ -1,0 +1,16 @@
+---
+name: filesystem_node
+
+templates:
+  filesystem_node_ctl: bin/filesystem_node_ctl
+  filesystem_node.yml.erb: config/filesystem_node.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  logrotate.conf.erb: config/logrotate.conf
+  filesystem_logrotate.cron.erb: config/filesystem_logrotate.cron
+
+packages:
+  - common
+  - filesystem_node
+  - ruby
+  - sqlite
+  - syslog_aggregator

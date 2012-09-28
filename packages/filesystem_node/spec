@@ -1,0 +1,8 @@
+---
+name: filesystem_node
+dependencies:
+- sqlite
+- ruby
+files:
+- services/filesystem/**/*
+- pkg_utils/*
