@@ -53,7 +53,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE 400 0
+    kill_and_wait $PIDFILE
 
     crontab -l | sed /redis_logrotate/d | crontab
 

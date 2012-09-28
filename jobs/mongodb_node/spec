@@ -16,12 +16,6 @@ templates:
   logrotate.conf.erb: config/logrotate.conf
   mongodb_logrotate.cron.erb: config/mongodb_logrotate.cron
 
-  warden_ctl: bin/warden_ctl
-  warden.yml.erb: config/warden.yml
-  mongodb.conf.erb: config/mongodb.conf
-  mongod_startup.sh: bin/mongod_startup.sh
-  services.conf: config/services.conf
-
 packages:
   - common
   - mongodb_node

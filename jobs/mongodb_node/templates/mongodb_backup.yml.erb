@@ -13,9 +13,7 @@ supported_versions.each{|v| packages[v] = v.sub(".","")}
 %>
 service_name: mongodb
 backup_base_dir: <%= properties.service_backup && properties.service_backup.mount_point || "/var/vcap/services_backup" %>
-base_dir: /var/vcap/store/mongodb
-image_dir: /var/vcap/store/mongodb_image
-mongod_log_dir: /var/vcap/sys/service-log/mongodb
+service_base_dir: /var/vcap/store/mongodb/instances
 mongodump_path:
 <% for version in supported_versions %>
   <%= "'#{version}': /var/vcap/packages/mongodb#{packages[version]}/bin/mongodump" %>

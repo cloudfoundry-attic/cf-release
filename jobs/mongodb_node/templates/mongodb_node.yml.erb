@@ -17,7 +17,6 @@ local_db: sqlite3:/var/vcap/store/mongodb_node.db
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 index: <%= spec.index %>
 base_dir: /var/vcap/store/mongodb
-image_dir: /var/vcap/store/mongodb_image
 logging:
   file: /var/vcap/sys/log/mongodb_node/mongodb_node.log
   level: debug
@@ -27,7 +26,7 @@ logging:
 pid: /var/vcap/sys/run/mongodb_node/mongodb_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
-max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
+quota_files: <%= plan_enabled && plan_conf.quota_files || 4 %>
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
 
@@ -56,5 +55,3 @@ mongod_log_dir: /var/vcap/sys/service-log/mongodb
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>
-filesystem_quota: <%= node.filesystem_quota || "false" %>
-service_start_timeout: <%= node.service_start_timeout || 3 %>

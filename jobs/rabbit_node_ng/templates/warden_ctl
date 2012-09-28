@@ -1,9 +1,9 @@
 #!/bin/bash
 
-JOB_DIR=/var/vcap/jobs/rabbit_node
-PKG_DIR=/var/vcap/packages/rabbit_node
+JOB_DIR=/var/vcap/jobs/rabbit_node_ng
+PKG_DIR=/var/vcap/packages/rabbit_node_ng
 
-source /var/vcap/packages/rabbit_node/common/services/utils.sh
+source /var/vcap/packages/rabbit_node_ng/common/services/utils.sh
 
 case $1 in
 

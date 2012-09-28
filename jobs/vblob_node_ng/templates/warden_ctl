@@ -1,12 +1,12 @@
 #!/bin/bash
 
-JOB_DIR=/var/vcap/jobs/vblob_node
-PKG_DIR=/var/vcap/packages/vblob_node
+JOB_DIR=/var/vcap/jobs/vblob_node_ng
+PKG_DIR=/var/vcap/packages/vblob_node_ng
 BIN_DIR=/var/vcap/packages
 
 VBLOB_STARTUP=$WARDEN_ROOT_DIR/usr/bin/vblob_startup.sh
 
-source /var/vcap/packages/vblob_node/common/services/utils.sh
+source /var/vcap/packages/vblob_node_ng/common/services/utils.sh
 
 case $1 in
 

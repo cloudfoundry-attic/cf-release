@@ -15,11 +15,6 @@ templates:
   logrotate.conf.erb: config/logrotate.conf
   redis_logrotate.cron.erb: config/redis_logrotate.cron
 
-  warden_ctl: bin/warden_ctl
-  warden.yml.erb: config/warden.yml
-  redis_startup.sh: bin/redis_startup.sh
-  services.conf: config/services.conf
-
 packages:
   - common
   - redis_node

@@ -1,0 +1,5 @@
+check process memcached_node
+  with pidfile /var/vcap/sys/run/memcached_node/memcached_node.pid
+  start program "/var/vcap/jobs/memcached_node_ng/bin/memcached_node_ctl start"
+  stop program "/var/vcap/jobs/memcached_node_ng/bin/memcached_node_ctl stop"
+  group vcap

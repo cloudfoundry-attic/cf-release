@@ -1,0 +1,10 @@
+---
+name: vblob_node_ng
+dependencies:
+- sqlite
+- ruby
+files:
+- services/ng/vblob/**/*
+- warden/warden/**/*
+- pkg_utils/*
+- common/services/utils.sh
