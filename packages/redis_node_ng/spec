@@ -1,0 +1,10 @@
+---
+name: redis_node_ng
+dependencies:
+- sqlite
+- ruby
+files:
+- services/ng/redis/**/*
+- warden/warden/**/*
+- pkg_utils/*
+- common/services/utils.sh
