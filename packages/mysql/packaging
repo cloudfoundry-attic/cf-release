@@ -12,3 +12,4 @@ tar zxvf mysql/server-$VERSION.tar.gz
 )
 
 cp -v mysql/mysql.server ${BOSH_INSTALL_TARGET}/libexec/mysql.server
+cp -v mysql/mysql_warden.server ${BOSH_INSTALL_TARGET}/libexec/mysql_warden.server
