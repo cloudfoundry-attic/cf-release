@@ -1,10 +1,10 @@
 #!/bin/bash
 
-JOB_DIR=/var/vcap/jobs/mysql_node
-PKG_DIR=/var/vcap/packages/mysql_node
+JOB_DIR=/var/vcap/jobs/mysql_node_ng
+PKG_DIR=/var/vcap/packages/mysql_node_ng
 MYSQL_DIR=/var/vcap/packages/mysql
 
-source /var/vcap/packages/mysql_node/common/services/utils.sh
+source /var/vcap/packages/mysql_node_ng/common/services/utils.sh
 
 case $1 in
 

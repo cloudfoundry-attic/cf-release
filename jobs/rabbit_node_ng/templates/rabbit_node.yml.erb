@@ -1,0 +1,49 @@
+---
+<%
+service = "rabbit"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+node = properties.rabbit_node
+supported_versions = node.supported_versions
+default_version = node.default_version
+%>
+capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
+plan: <%= plan %>
+local_db: sqlite3:/var/vcap/store/rabbit/rabbit_node.db
+base_dir: /var/vcap/store/rabbit/instances
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+index: <%= spec.index %>
+logging:
+  level: debug
+  file: /var/vcap/sys/log/rabbit_node/rabbit_node.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.rabbit_node
+  <% end %>
+pid: /var/vcap/sys/run/rabbit_node/rabbit_node.pid
+max_memory_factor: <%= plan_enabled && plan_conf.max_memory_factor || 0.5 %>
+node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
+default_version: <%= "'#{default_version}'"%>
+
+migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
+<% if node.ip_route %>
+ip_route: <%= node.ip_route %>
+<% end %>
+z_interval: <%= node.z_interval || 30 %>
+max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
+max_nats_payload: <%= properties.nats.max_payload || 1048577 %>
+port_range:
+  first: 10001
+  last: 20000
+admin_port_range:
+  first: 20001
+  last: 30000
+rabbitmq_server: /var/vcap/packages/rabbitmq/sbin/rabbitmq-server
+rabbitmq_log_dir: /var/vcap/sys/service-log/rabbit
+service_start_timeout: <%= node.service_start_timeout || 5 %>
+fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
+image_dir: /var/vcap/store/rabbitmq_image
+max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
+op_time_limit: <%= node.op_time_limit || 8 %>
+filesystem_quota: <%= node.filesystem_quota || "false" %>

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-JOB_DIR=/var/vcap/jobs/redis_node
-PKG_DIR=/var/vcap/packages/redis_node
+JOB_DIR=/var/vcap/jobs/redis_node_ng
+PKG_DIR=/var/vcap/packages/redis_node_ng
 BIN_DIR=/var/vcap/packages/redis/bin
 
-source /var/vcap/packages/redis_node/common/services/utils.sh
+source /var/vcap/packages/redis_node_ng/common/services/utils.sh
 
 case $1 in
 

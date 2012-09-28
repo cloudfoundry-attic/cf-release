@@ -5,6 +5,4 @@ dependencies:
 - ruby
 files:
 - services/redis/**/*
-- warden/warden/**/*
 - pkg_utils/*
-- common/services/utils.sh
