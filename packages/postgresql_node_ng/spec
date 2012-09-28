@@ -1,0 +1,11 @@
+---
+name: postgresql_node_ng
+dependencies:
+- postgresql
+- sqlite
+- ruby
+files:
+- services/ng/postgresql/**/*
+- warden/warden/**/*
+- pkg_utils/*
+- common/services/utils.sh
