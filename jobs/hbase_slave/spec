@@ -4,6 +4,7 @@ templates:
   hadoop.core-site.xml.erb: config/hadoop/core-site.xml
   hadoop.hdfs-site.xml: config/hadoop/hdfs-site.xml
   hadoop.slaves.erb: config/hadoop/slaves
+  hadoop.log4j.properties: config/hadoop/log4j.properties
   hadoop_datanode_ctl.erb: bin/hadoop_datanode_ctl
   hbase.hadoop-metrics.properties: config/hbase/hadoop-metrics.properties
   hbase.hbase-env.sh: config/hbase/hbase-env.sh
