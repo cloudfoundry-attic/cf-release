@@ -1,0 +1,12 @@
+check process warden
+  with pidfile /var/vcap/sys/run/warden/warden.pid
+  start program "/var/vcap/jobs/rabbit_node_ng/bin/warden_ctl start"
+  stop program "/var/vcap/jobs/rabbit_node_ng/bin/warden_ctl stop"
+  group vcap
+
+check process rabbit_node
+  with pidfile /var/vcap/sys/run/rabbit_node/rabbit_node.pid
+  start program "/var/vcap/jobs/rabbit_node_ng/bin/rabbit_node_ctl start"
+  stop program "/var/vcap/jobs/rabbit_node_ng/bin/rabbit_node_ctl stop"
+  group vcap
+  depends on warden
