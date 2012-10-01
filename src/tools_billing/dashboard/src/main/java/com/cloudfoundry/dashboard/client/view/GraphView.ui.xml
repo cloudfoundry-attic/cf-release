@@ -1,0 +1,61 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:style>
+    .title {
+      font-weight: bold;
+      font-size: 24px;
+      padding: 10px 10px;
+    }
+
+    .title a {
+      margin: 0;
+      cursor: pointer;
+      cursor: hand;
+    }
+
+    .grid td {
+      vertical-align: top;
+    }
+
+    .chart div {
+      float: right;
+    }
+
+    .labels {
+      width: 200px;
+    }
+
+  </ui:style>
+
+  <g:DecoratorPanel>
+    <g:Grid ui:field="container" addStyleNames="{style.grid}">
+      <g:row>
+        <g:customCell>
+          <g:SimplePanel ui:field="titleContainer" styleName="{style.title}"/>
+        </g:customCell>
+        <g:cell/>
+      </g:row>
+      <g:row>
+        <g:customCell>
+          <g:SimplePanel ui:field="chartContainer" styleName="{style.chart}"/>
+        </g:customCell>
+        <g:customCell>
+          <g:VerticalPanel ui:field="labelContainer" styleName="{style.labels}">
+          </g:VerticalPanel>
+        </g:customCell>
+      </g:row>
+      <g:row>
+        <g:customCell>
+          <g:SimplePanel ui:field="navigationContainer"/>
+        </g:customCell>
+        <g:cell/>
+      </g:row>
+    </g:Grid>
+  </g:DecoratorPanel>
+
+</ui:UiBinder>

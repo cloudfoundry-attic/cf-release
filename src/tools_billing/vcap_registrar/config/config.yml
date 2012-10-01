@@ -1,0 +1,17 @@
+---
+logging:
+  level: info
+mbus: nats://localhost:4222
+uri: test.vcap.me
+# Alternatively, multiple urls are support like so
+# uri:
+#   - test.vcap.me
+#   - abc.vcap.me
+host: localhost
+port: 80
+varz:
+  type: new_component
+  username: varz
+  password: varzclientpassword
+# Absolute path to file containing the varz credentials
+#  file: /tmp/uaa.yml

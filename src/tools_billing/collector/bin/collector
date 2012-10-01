@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+$:.unshift(File.expand_path("../lib", File.dirname(__FILE__)))
+
+require "collector"
+
+config_file = ENV["CONFIG_FILE"] || File.expand_path("../config/config.yml", File.dirname(__FILE__))
+Collector::Config.configure(YAML.load_file(config_file))
+
+EM.run do
+  Collector::Collector.new
+end

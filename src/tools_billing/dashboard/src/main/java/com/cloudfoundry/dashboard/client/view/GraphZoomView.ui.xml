@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:cf='urn:import:com.cloudfoundry.dashboard.client.ui'
+    >
+
+  <ui:style>
+    .graph-container {
+      text-align: left;
+      display: inline-block;
+    }
+
+    .container {
+      text-align: center;
+    }
+  </ui:style>
+
+  <g:FlowPanel styleName="{style.container}">
+    <g:SimplePanel ui:field="graphContainer" styleName="{style.graph-container}"/>
+  </g:FlowPanel>
+
+</ui:UiBinder>

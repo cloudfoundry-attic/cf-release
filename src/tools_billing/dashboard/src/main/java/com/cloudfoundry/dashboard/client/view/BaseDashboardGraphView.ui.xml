@@ -1,0 +1,27 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:style>
+    @external .middleCenterInner;
+
+    .graphs table {
+      display: inline-table;
+    }
+
+    .graphs > table {
+      margin: 5px 10px;
+    }
+
+    .graphs .middleCenterInner {
+      background-color: white;
+    }
+
+  </ui:style>
+
+  <g:FlowPanel ui:field="graphPanel" addStyleNames="{style.graphs}"/>
+
+</ui:UiBinder>
