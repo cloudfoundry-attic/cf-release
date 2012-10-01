@@ -1,7 +1,7 @@
 ---
 java:
   description: Java 6
-  version: 1.6
+  version: "1.6"
   executable: /var/vcap/packages/dea_jvm/bin/java
   staging: /var/vcap/packages/ruby/bin/ruby stage
   version_output: 1.6.0
@@ -20,7 +20,7 @@ java:
       - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=y"
 java7:
   description: Java 7
-  version: 1.7
+  version: "1.7"
   executable: /var/vcap/packages/dea_jvm7/bin/java
   staging: /var/vcap/packages/ruby/bin/ruby stage
   version_output: 1.7.0
@@ -38,7 +38,7 @@ java7:
     suspend:
       - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=y"
 node:
-  version: '0.4.12'
+  version: "0.4.12"
   description: "Node.js"
   executable: /var/vcap/packages/dea_node04/bin/node
   npm: /var/vcap/packages/dea_node04/npm/bin/npm-cli.js
@@ -49,7 +49,7 @@ node:
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
     PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_node04/bin:$PATH
 node06:
-  version: '0.6.8'
+  version: "0.6.8"
   description: "Node.js"
   executable: /var/vcap/packages/dea_node06/bin/node
   npm: /var/vcap/packages/dea_node06/bin/npm
@@ -60,7 +60,7 @@ node06:
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
     PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_node06/bin:$PATH
 node08:
-  version: '0.8.2'
+  version: "0.8.2"
   description: "Node.js"
   executable: /var/vcap/packages/dea_node08/bin/node
   npm: /var/vcap/packages/dea_node08/bin/npm
@@ -72,7 +72,7 @@ node08:
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
 ruby18:
   description: Ruby 1.8
-  version: 1.8.7
+  version: "1.8.7"
   executable: /var/vcap/packages/dea_ruby18/bin/ruby
   staging: /var/vcap/packages/ruby/bin/ruby stage
   version_output: 1.8.7
@@ -85,7 +85,7 @@ ruby18:
     GEM_PATH: /var/vcap/packages/dea_transition/rubygems/1.8:$GEM_PATH
 ruby19:
   description: Ruby 1.9
-  version: 1.9.2p180
+  version: "1.9.2p180"
   executable: /var/vcap/packages/dea_ruby19/bin/ruby
   staging: /var/vcap/packages/ruby/bin/ruby stage
   version_output: 1.9.2
