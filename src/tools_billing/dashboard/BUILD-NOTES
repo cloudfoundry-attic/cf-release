@@ -1,0 +1,16 @@
+Build with Maven 3.0.4 (http://mirror.lividpenguin.com/pub/apache/maven/binaries/apache-maven-3.0.4-bin.tar.gz):
+
+    $ mvn package
+    $ ls target/*.war
+    target/dashboard-1.0-SNAPSHOT-xxxxx.war
+
+Or run directly with
+
+    $ mvn tomcat:run-war
+
+The app will start at http://localhost:8080/dashboard.
+
+Once you have built the war file, if you stop and want to start the
+server again and haven't made any changes, you will find this useful:
+
+    $ mvn tomcat:run-war -Dgwt.compiler.skip=true

@@ -1,0 +1,1272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Collector::Handler
+  
+    &mdash; Collector
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (H)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Collector.html" title="Collector (module)">Collector</a></span></span>
+     &raquo; 
+    <span class="title">Handler</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Collector::Handler
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Collector::Handler</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/collector/handler.rb<span class="defines">,<br />
+  lib/collector/handlers/dea.rb,<br /> lib/collector/handlers/router.rb,<br /> lib/collector/handlers/health_manager.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Varz metric handler
+</p>
+<p>
+It&#8217;s used for processing varz from jobs and publishing them to the
+TSDB server
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="Handler/Dea.html" title="Collector::Handler::Dea (class)">Dea</a></span>, <span class='object_link'><a href="Handler/HealthManager.html" title="Collector::Handler::HealthManager (class)">HealthManager</a></span>, <span class='object_link'><a href="Handler/Router.html" title="Collector::Handler::Router (class)">Router</a></span></p>
+</div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Handler/Dea.html" title="Collector::Handler::Dea (class)">Dea</a></span>, <span class='object_link'><a href="Handler/HealthManager.html" title="Collector::Handler::HealthManager (class)">HealthManager</a></span>, <span class='object_link'><a href="Handler/Router.html" title="Collector::Handler::Router (class)">Router</a></span>
+    
+  
+</p>
+
+
+  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#handler_map-class_method" title="handler_map (class method)">+ (Hash&lt;String, Handler&gt;) <strong>handler_map</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Hash of jobs to <span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span>s.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#index-instance_method" title="#index (instance method)">- (Fixnum) <strong>index</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Job index.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#job-instance_method" title="#job (instance method)">- (String) <strong>job</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Job name.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#now-instance_method" title="#now (instance method)">- (Fixnum) <strong>now</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Timestamp when metrics were collected.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#handler-class_method" title="handler (class method)">+ (Handler) <strong>handler</strong>(tsdb_connection, job, index, now) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Retrieves a <span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span> for the job type with the provided context.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#register-class_method" title="register (class method)">+ (Object) <strong>register</strong>(job) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Registers the <span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span> for a job type.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Handler) <strong>initialize</strong>(tsdb_connection, job, index, now) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new varz handler.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#process-instance_method" title="#process (instance method)">- (Object) <strong>process</strong>(varz) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Processes varz in the context of the collection.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send_latency_metric-instance_method" title="#send_latency_metric (instance method)">- (Object) <strong>send_latency_metric</strong>(name, value, tags = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Sends latency metrics to the TSDB server.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#send_metric-instance_method" title="#send_metric (instance method)">- (Object) <strong>send_metric</strong>(name, value, tags = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Sends the metric to the TSDB server.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span></tt>) <strong>initialize</strong>(tsdb_connection, job, index, now) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new varz handler
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>tsdb_connection</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TsdbConnection.html" title="Collector::TsdbConnection (class)">Collector::TsdbConnection</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>job</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the job for this varz
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>index</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the index for this varz
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>now</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the timestamp when it was collected
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id tsdb_connection'>tsdb_connection</span><span class='comma'>,</span> <span class='id job'>job</span><span class='comma'>,</span> <span class='id index'>index</span><span class='comma'>,</span> <span class='id now'>now</span><span class='rparen'>)</span>
+  <span class='ivar'>@tsdb_connection</span> <span class='op'>=</span> <span class='id tsdb_connection'>tsdb_connection</span>
+  <span class='ivar'>@job</span> <span class='op'>=</span> <span class='id job'>job</span>
+  <span class='ivar'>@index</span> <span class='op'>=</span> <span class='id index'>index</span>
+  <span class='ivar'>@now</span> <span class='op'>=</span> <span class='id now'>now</span>
+  <span class='ivar'>@logger</span> <span class='op'>=</span> <span class='const'>Config</span><span class='period'>.</span><span class='id logger'>logger</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="class_attr_details" class="attr_details">
+    <h2>Class Attribute Details</h2>
+    
+      
+      <span id="handler_map=-class_method"></span>
+      <span id="handler_map-class_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="handler_map-class_method">
+  
+    + (<tt>Hash&lt;String, <span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span>&gt;</tt>) <strong>handler_map</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Hash of jobs to <span class='object_link'><a href="" title="Collector::Handler (class)">Collector::Handler</a></span>s
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;String, <span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+hash of jobs to <span class='object_link'><a href="" title="Collector::Handler (class)">Collector::Handler</a></span>s
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id handler_map'>handler_map</span>
+  <span class='ivar'>@handler_map</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="index=-instance_method"></span>
+      <span id="index-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="index-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>index</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Job index
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+job index
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id index'>index</span>
+  <span class='ivar'>@index</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="job=-instance_method"></span>
+      <span id="job-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="job-instance_method">
+  
+    - (<tt>String</tt>) <strong>job</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Job name
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+job name
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id job'>job</span>
+  <span class='ivar'>@job</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="now=-instance_method"></span>
+      <span id="now-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="now-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>now</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Timestamp when metrics were collected
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+timestamp when metrics were collected
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id now'>now</span>
+  <span class='ivar'>@now</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="handler-class_method">
+  
+    + (<tt><span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span></tt>) <strong>handler</strong>(tsdb_connection, job, index, now) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Retrieves a <span class='object_link'><a href="" title="Collector::Handler (class)">Collector::Handler</a></span> for the job type with the provided context. Will
+default to the generic one if the job does not have a handler registered.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>tsdb_connection</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TsdbConnection.html" title="Collector::TsdbConnection (class)">TsdbConnection</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the TSDB connection to use for writing metrics
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>job</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the job name
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>index</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the job index
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>now</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the timestamp of when the metrics were collected
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Collector::Handler (class)">Handler</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the handler for this job from the handler map or the default one
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id handler'>handler</span><span class='lparen'>(</span><span class='id tsdb_connection'>tsdb_connection</span><span class='comma'>,</span> <span class='id job'>job</span><span class='comma'>,</span> <span class='id index'>index</span><span class='comma'>,</span> <span class='id now'>now</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id handler_class'>handler_class</span> <span class='op'>=</span> <span class='const'>Handler</span><span class='period'>.</span><span class='id handler_map'>handler_map</span><span class='lbracket'>[</span><span class='id job'>job</span><span class='rbracket'>]</span>
+    <span class='id handler_class'>handler_class</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id tsdb_connection'>tsdb_connection</span><span class='comma'>,</span> <span class='id job'>job</span><span class='comma'>,</span> <span class='id index'>index</span><span class='comma'>,</span> <span class='id now'>now</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='const'>Handler</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id tsdb_connection'>tsdb_connection</span><span class='comma'>,</span> <span class='id job'>job</span><span class='comma'>,</span> <span class='id index'>index</span><span class='comma'>,</span> <span class='id now'>now</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="register-class_method">
+  
+    + (<tt>Object</tt>) <strong>register</strong>(job) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Registers the <span class='object_link'><a href="" title="Collector::Handler (class)">Collector::Handler</a></span> for a job type.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>job</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the job name
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id register'>register</span><span class='lparen'>(</span><span class='id job'>job</span><span class='rparen'>)</span>
+  <span class='id job'>job</span> <span class='op'>=</span> <span class='id job'>job</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+  <span class='const'>Config</span><span class='period'>.</span><span class='id logger'>logger</span><span class='period'>.</span><span class='id info'>info</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Registering handler: </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='rbrace'>}</span><span class='tstring_content'> for job: </span><span class='embexpr_beg'>#{</span><span class='id job'>job</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Job: </span><span class='embexpr_beg'>#{</span><span class='id job'>job</span><span class='rbrace'>}</span><span class='tstring_content'> already registered</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='const'>Handler</span><span class='period'>.</span><span class='id handler_map'>handler_map</span><span class='lbracket'>[</span><span class='id job'>job</span><span class='rbracket'>]</span>
+  <span class='const'>Handler</span><span class='period'>.</span><span class='id handler_map'>handler_map</span><span class='lbracket'>[</span><span class='id job'>job</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="process-instance_method">
+  
+    - (<tt>Object</tt>) <strong>process</strong>(varz) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Processes varz in the context of the collection
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>varz</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the varzs collected for this job
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id process'>process</span><span class='lparen'>(</span><span class='id varz'>varz</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send_latency_metric-instance_method">
+  
+    - (<tt>Object</tt>) <strong>send_latency_metric</strong>(name, value, tags = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Sends latency metrics to the TSDB server
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the metric name
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the latency metric value
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tags</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the metric tags
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+84
+85
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 84</span>
+
+<span class='kw'>def</span> <span class='id send_latency_metric'>send_latency_metric</span><span class='lparen'>(</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id value'>value</span><span class='comma'>,</span> <span class='id tags'>tags</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id value'>value</span> <span class='op'>&amp;&amp;</span> <span class='id value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>samples</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>samples</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='id send_metric'>send_metric</span><span class='lparen'>(</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>/</span> <span class='id value'>value</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>samples</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id tags'>tags</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send_metric-instance_method">
+  
+    - (<tt>Object</tt>) <strong>send_metric</strong>(name, value, tags = {}) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Sends the metric to the TSDB server
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the metric name
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the metric value
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>tags</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the metric tags
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector/handler.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='id send_metric'>send_metric</span><span class='lparen'>(</span><span class='id name'>name</span><span class='comma'>,</span> <span class='id value'>value</span><span class='comma'>,</span> <span class='id tags'>tags</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id tags'>tags</span> <span class='op'>=</span> <span class='id tags'>tags</span><span class='period'>.</span><span class='id merge'>merge</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:job</span> <span class='op'>=&gt;</span> <span class='ivar'>@job</span><span class='comma'>,</span> <span class='ivar'>@index</span> <span class='op'>=&gt;</span> <span class='ivar'>@index</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id debug1'>debug1</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Sending to TSDB: put </span><span class='embexpr_beg'>#{</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='ivar'>@now</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id value'>value</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id tags'>tags</span><span class='period'>.</span><span class='id collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id tag'>tag</span><span class='op'>|</span> <span class='id tag'>tag</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@tsdb_connection</span><span class='period'>.</span><span class='id send_data'>send_data</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>put </span><span class='embexpr_beg'>#{</span><span class='id name'>name</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='ivar'>@now</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id value'>value</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id tags'>tags</span><span class='period'>.</span><span class='id collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id tag'>tag</span><span class='op'>|</span> <span class='id tag'>tag</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Fri Jul 29 16:47:25 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

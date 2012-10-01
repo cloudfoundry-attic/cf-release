@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+$:.unshift(File.expand_path("../lib", File.dirname(__FILE__)))
+
+require "rubygems"
+require "yaml"
+
+require "vcap_registrar"
+require "vcap/logging"
+
+if ARGV.empty?
+  puts ("Usage: vcap_registrar --<mode1> --<mode2> ...\n\nModes can be --register_with_router and --register_varz_credentials")
+  exit
+end
+
+config_file = ENV["CONFIG_FILE"] || File.expand_path("../config/config.yml", File.dirname(__FILE__))
+config = YAML.load_file(config_file)
+
+VCAP::Logging.setup_from_config(config["logging"])
+logger = VCAP::Logging.logger("vcap_registrar")
+
+unless config["varz"]["file"].nil?
+  varz_config = YAML.load_file(config["varz"]["file"])
+  unless varz_config.nil?
+    logger.info ("Reading varz config from #{config["varz"]["file"]}")
+    config["varz"] = varz_config["varz"]
+  end
+end
+
+logger.debug("Config #{config.inspect}")
+
+VcapRegistrar::Config.configure(config)
+
+EM.run do
+  vcap_registrar = VcapRegistrar::VcapRegistrar.new
+  if ARGV.include? ("--register_with_router")
+    vcap_registrar.register_with_router
+  end
+
+  if ARGV.include? ("--register_varz_credentials")
+    vcap_registrar.register_varz_credentials
+  end
+
+  ['TERM', 'INT', 'QUIT'].each do |signal|
+    trap (signal) do
+      logger.info("Shutting down")
+      if ARGV.include? ("--register_with_router")
+        vcap_registrar.shutdown { exit }
+      end
+      exit
+    end
+  end
+end

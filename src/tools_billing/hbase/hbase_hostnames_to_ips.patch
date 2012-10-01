@@ -1,0 +1,51 @@
+commit 1ee0b6ee33559a50cff750d2ed4a5bd55426f543
+Author: Ben Lisbakken <lisbakke@gmail.com>
+Date:   Fri Jul 13 14:38:12 2012 -0700
+
+    Allow master and regionserver to identify themselves with IPs instead of just hostnames.
+
+diff --git a/src/main/java/org/apache/hadoop/hbase/master/HMaster.java b/src/main/java/org/apache/hadoop/hbase/master/HMaster.java
+index 85b2b63..619cba7 100644
+--- a/src/main/java/org/apache/hadoop/hbase/master/HMaster.java
++++ b/src/main/java/org/apache/hadoop/hbase/master/HMaster.java
+@@ -523,9 +523,13 @@ implements HMasterInterface, HMasterRegionInterface, MasterServices, Server {
+   private static String getMyAddress(final Configuration c)
+   throws UnknownHostException {
+     // Find out our address up in DNS.
+-    String s = Strings.domainNamePointerToHostName(DNS.getDefaultHost(c.get(
+-        "hbase.master.dns.interface", "default"), c.get(
+-        "hbase.master.dns.nameserver", "default")));
++    String myPort = c.get(HConstants.MASTER_PORT);
++    String dnsInterface = c.get("hbase.master.dns.interface", "default");
++    if (c.get("hbase.use_ips", "false").equals("true")) {
++        return DNS.getIPs(dnsInterface)[1] + ":" + myPort;
++    }
++    String s = Strings.domainNamePointerToHostName(DNS.getDefaultHost(
++        dnsInterface, c.get("hbase.master.dns.nameserver", "default")));
+     s += ":" + c.get(HConstants.MASTER_PORT,
+         Integer.toString(HConstants.DEFAULT_MASTER_PORT));
+     return s;
+diff --git a/src/main/java/org/apache/hadoop/hbase/regionserver/HRegionServer.java b/src/main/java/org/apache/hadoop/hbase/regionserver/HRegionServer.java
+index 17a393e..bbec615 100644
+--- a/src/main/java/org/apache/hadoop/hbase/regionserver/HRegionServer.java
++++ b/src/main/java/org/apache/hadoop/hbase/regionserver/HRegionServer.java
+@@ -321,9 +321,16 @@ public class HRegionServer implements HRegionInterface, HBaseRPCErrorHandler,
+     this.stopped = false;
+
+     // Server to handle client requests
+-    String machineName = Strings.domainNamePointerToHostName(
+-        DNS.getDefaultHost(conf.get("hbase.regionserver.dns.interface", "default")
+-            , conf.get("hbase.regionserver.dns.nameserver", "default")));
++    String machineName;
++    String dnsInterface = conf.get("hbase.regionserver.dns.interface",
++        "default");
++    if (conf.get("hbase.use_ips", "false").equals("true")) {
++      machineName = DNS.getIPs(dnsInterface)[1];
++    } else {
++      machineName = Strings.domainNamePointerToHostName(
++          DNS.getDefaultHost(dnsInterface,
++          conf.get("hbase.regionserver.dns.nameserver", "default")));
++    }
+     String addressStr = machineName + ":" +
+       conf.get(HConstants.REGIONSERVER_PORT,
+         Integer.toString(HConstants.DEFAULT_REGIONSERVER_PORT));

@@ -1,0 +1,9 @@
+---
+logging:
+  level: info
+mbus: nats://localhost:4222
+uri: test.vcap.me
+host: localhost
+port: 80
+tags:
+  foo: bar

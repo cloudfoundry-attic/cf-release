@@ -1,0 +1,24 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+  <ui:style>
+    .bold {
+      font-weight: bold;
+    }
+  </ui:style>
+
+  <g:DecoratedPopupPanel autoHideOnHistoryEventsEnabled="true" autoHideEnabled="true" width="420px">
+    <g:HTMLPanel>
+      <span class="{style.bold}">Copy and paste the link below</span>
+      <br/>
+      (This URL will take you to the view you're currently seeing)
+      <br/>
+      <br/>
+      <g:TextBox ui:field="urlTextBox" width="400px" readOnly="true"/>
+    </g:HTMLPanel>
+  </g:DecoratedPopupPanel>
+</ui:UiBinder>

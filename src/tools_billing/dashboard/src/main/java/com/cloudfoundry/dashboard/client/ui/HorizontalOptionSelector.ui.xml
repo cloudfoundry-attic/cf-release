@@ -1,0 +1,23 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:style type='com.cloudfoundry.dashboard.client.ui.HorizontalOptionSelector.MyStyle'>
+
+    .panel td {
+      padding: 0 2px;
+      height: 24px;
+    }
+
+    .selected {
+      font-weight: 900;
+    }
+  </ui:style>
+
+  <g:HorizontalPanel ui:field="panel" styleName="{style.panel}">
+  </g:HorizontalPanel>
+
+</ui:UiBinder>

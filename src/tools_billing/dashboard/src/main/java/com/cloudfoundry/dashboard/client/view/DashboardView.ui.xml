@@ -1,0 +1,10 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:cf='urn:import:com.cloudfoundry.dashboard.client.ui'>
+
+  <cf:StyledTabPanel ui:field="tabPanel"/>
+
+</ui:UiBinder>
