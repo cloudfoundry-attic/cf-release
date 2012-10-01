@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/applicationContext.xml
+    </param-value>
+  </context-param>
+
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>cookieFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>cachingFilter</filter-name>
+    <filter-class>com.cloudfoundry.dashboard.server.CachingFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>cookieFilter</filter-name>
+    <url-pattern>/dashboard.html</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>cachingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>jUnitHostImpl</servlet-name>
+    <servlet-class>com.google.gwt.junit.server.JUnitHostImpl</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>dispatch</servlet-name>
+    <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>jUnitHostImpl</servlet-name>
+    <url-pattern>/dashboard/junithost/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>dispatch</servlet-name>
+    <url-pattern>/dispatch/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>dashboard.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

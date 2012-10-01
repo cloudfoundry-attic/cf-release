@@ -1,0 +1,29 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:style>
+    .symbol {
+      width: 10px;
+      height: 10px;
+    }
+
+    .container td {
+      padding: 0 1px;
+    }
+  </ui:style>
+
+  <g:HorizontalPanel styleName="{style.container}">
+    <g:CheckBox ui:field="checkbox"/>
+    <g:cell verticalAlignment="ALIGN_MIDDLE">
+      <g:HTML>
+        <div ui:field="symbol" class="{style.symbol}"/>
+      </g:HTML>
+    </g:cell>
+    <g:Label ui:field="label"/>
+  </g:HorizontalPanel>
+
+</ui:UiBinder>

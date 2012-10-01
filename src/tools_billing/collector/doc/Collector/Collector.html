@@ -1,0 +1,852 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Collector::Collector
+  
+    &mdash; Collector
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../Collector.html" title="Collector (module)">Collector</a></span></span>
+     &raquo; 
+    <span class="title">Collector</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Collector::Collector
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Collector::Collector</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/collector.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+Varz collector
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="ANNOUNCE_SUBJECT-constant" class="">ANNOUNCE_SUBJECT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vcap.component.announce</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="DISCOVER_SUBJECT-constant" class="">DISCOVER_SUBJECT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>vcap.component.discover</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_healthz-instance_method" title="#fetch_healthz (instance method)">- (Object) <strong>fetch_healthz</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Fetches the healthz from all the components and calls the proper <span class='object_link'><a href="Handler.html" title="Collector::Handler (class)">Handler</a></span>
+to record the metrics in the TSDB server.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fetch_varz-instance_method" title="#fetch_varz (instance method)">- (Object) <strong>fetch_varz</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Fetches the varzs from all the components and calls the proper <span class='object_link'><a href="Handler.html" title="Collector::Handler (class)">Handler</a></span> to
+record the metrics in the TSDB server.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_job_tags-instance_method" title="#get_job_tags (instance method)">- (Hash&lt;Symbol, String&gt;) <strong>get_job_tags</strong>(type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Generates the common tags used for generating common (memory, health, etc.)
+metrics.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Collector) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Creates a new varz collector based on the <span class='object_link'><a href="Config.html" title="Collector::Config (class)">Config</a></span> settings.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#process_component_discovery-instance_method" title="#process_component_discovery (instance method)">- (Object) <strong>process_component_discovery</strong>(message) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Processes a discovered component message, recording it&#8217;s location for
+varz/healthz probes.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prune_components-instance_method" title="#prune_components (instance method)">- (Object) <strong>prune_components</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Prunes components that haven&#8217;t been heard from in a while.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setup_timers-instance_method" title="#setup_timers (instance method)">- (Object) <strong>setup_timers</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Configures the periodic timers for collecting varzs.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Collector::Collector (class)">Collector</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Creates a new varz collector based on the <span class='object_link'><a href="Config.html" title="Collector::Config (class)">Collector::Config</a></span> settings.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span>
+  <span class='const'>Dir</span><span class='lbracket'>[</span><span class='const'>File</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>..</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lib</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>collector</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>handlers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*.rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id file'>file</span><span class='op'>|</span>
+    <span class='id require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>collector</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>handlers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id basename'>basename</span><span class='lparen'>(</span><span class='id file'>file</span><span class='comma'>,</span> <span class='const'>File</span><span class='period'>.</span><span class='id extname'>extname</span><span class='lparen'>(</span><span class='id file'>file</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@logger</span> <span class='op'>=</span> <span class='const'>Config</span><span class='period'>.</span><span class='id logger'>logger</span>
+
+  <span class='ivar'>@components</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@core_components</span> <span class='op'>=</span> <span class='const'>Set</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='const'>CLOUD_CONTROLLER_COMPONENT</span><span class='comma'>,</span> <span class='const'>DEA_COMPONENT</span><span class='comma'>,</span>
+                              <span class='const'>HEALTH_MANAGER_COMPONENT</span><span class='comma'>,</span> <span class='const'>ROUTER_COMPONENT</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@tsdb_connection</span> <span class='op'>=</span> <span class='const'>EventMachine</span><span class='period'>.</span><span class='id connect'>connect</span><span class='lparen'>(</span><span class='const'>Config</span><span class='period'>.</span><span class='id tsdb_host'>tsdb_host</span><span class='comma'>,</span> <span class='const'>Config</span><span class='period'>.</span><span class='id tsdb_port'>tsdb_port</span><span class='comma'>,</span> <span class='const'>TsdbConnection</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@nats</span> <span class='op'>=</span> <span class='const'>NATS</span><span class='period'>.</span><span class='id connect'>connect</span><span class='lparen'>(</span><span class='symbol'>:uri</span> <span class='op'>=&gt;</span> <span class='const'>Config</span><span class='period'>.</span><span class='id nats_uri'>nats_uri</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='comment'># Send initially to discover what's already running
+</span>    <span class='ivar'>@nats</span><span class='period'>.</span><span class='id subscribe'>subscribe</span><span class='lparen'>(</span><span class='const'>ANNOUNCE_SUBJECT</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id message'>message</span><span class='op'>|</span> <span class='id process_component_discovery'>process_component_discovery</span><span class='lparen'>(</span><span class='id message'>message</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+
+    <span class='ivar'>@inbox</span> <span class='op'>=</span> <span class='const'>NATS</span><span class='period'>.</span><span class='id create_inbox'>create_inbox</span>
+    <span class='ivar'>@nats</span><span class='period'>.</span><span class='id subscribe'>subscribe</span><span class='lparen'>(</span><span class='ivar'>@inbox</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id message'>message</span><span class='op'>|</span> <span class='id process_component_discovery'>process_component_discovery</span><span class='lparen'>(</span><span class='id message'>message</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+
+    <span class='ivar'>@nats</span><span class='period'>.</span><span class='id publish'>publish</span><span class='lparen'>(</span><span class='const'>DISCOVER_SUBJECT</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@inbox</span><span class='rparen'>)</span>
+
+    <span class='id setup_timers'>setup_timers</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="fetch_healthz-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fetch_healthz</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Fetches the healthz from all the components and calls the proper <span class='object_link'><a href="Handler.html" title="Collector::Handler (class)">Handler</a></span>
+to record the metrics in the TSDB server
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id fetch_healthz'>fetch_healthz</span>
+  <span class='ivar'>@components</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id job'>job</span><span class='comma'>,</span> <span class='id instances'>instances</span><span class='op'>|</span>
+    <span class='id instances'>instances</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id index'>index</span><span class='comma'>,</span> <span class='id instance'>instance</span><span class='op'>|</span>
+      <span class='id http'>http</span> <span class='op'>=</span> <span class='const'>EventMachine</span><span class='op'>::</span><span class='const'>HttpRequest</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://</span><span class='embexpr_beg'>#{</span><span class='id instance'>instance</span><span class='lbracket'>[</span><span class='symbol'>:host</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>/healthz</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id get'>get</span><span class='lparen'>(</span>
+              <span class='symbol'>:head</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id instance'>instance</span><span class='lbracket'>[</span><span class='symbol'>:credentials</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id http'>http</span><span class='period'>.</span><span class='id errback'>errback</span> <span class='kw'>do</span>
+        <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed fetching healthz from: </span><span class='embexpr_beg'>#{</span><span class='id instance'>instance</span><span class='lbracket'>[</span><span class='symbol'>:host</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='id http'>http</span><span class='period'>.</span><span class='id callback'>callback</span> <span class='kw'>do</span>
+        <span class='kw'>begin</span>
+          <span class='id now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+          <span class='id handler'>handler</span> <span class='op'>=</span> <span class='const'>Handler</span><span class='period'>.</span><span class='id handler'>handler</span><span class='lparen'>(</span><span class='ivar'>@tsdb_connection</span><span class='comma'>,</span> <span class='id job'>job</span><span class='comma'>,</span> <span class='id index'>index</span><span class='comma'>,</span> <span class='id now'>now</span><span class='rparen'>)</span>
+          <span class='id handler'>handler</span><span class='period'>.</span><span class='id send_metric'>send_metric</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>healthy</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id http'>http</span><span class='period'>.</span><span class='id response'>response</span><span class='period'>.</span><span class='id strip'>strip</span><span class='period'>.</span><span class='id downcase'>downcase</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ok</span><span class='tstring_end'>&quot;</span></span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id get_job_tags'>get_job_tags</span><span class='lparen'>(</span><span class='id job'>job</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id e'>e</span>
+          <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error processing healthz: </span><span class='embexpr_beg'>#{</span><span class='id e'>e</span><span class='period'>.</span><span class='id message'>message</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='id e'>e</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="fetch_varz-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fetch_varz</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Fetches the varzs from all the components and calls the proper <span class='object_link'><a href="Handler.html" title="Collector::Handler (class)">Handler</a></span> to
+record the metrics in the TSDB server
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='id fetch_varz'>fetch_varz</span>
+  <span class='ivar'>@components</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id job'>job</span><span class='comma'>,</span> <span class='id instances'>instances</span><span class='op'>|</span>
+    <span class='id instances'>instances</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id index'>index</span><span class='comma'>,</span> <span class='id instance'>instance</span><span class='op'>|</span>
+      <span class='id http'>http</span> <span class='op'>=</span> <span class='const'>EventMachine</span><span class='op'>::</span><span class='const'>HttpRequest</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://</span><span class='embexpr_beg'>#{</span><span class='id instance'>instance</span><span class='lbracket'>[</span><span class='symbol'>:host</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>/varz</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id get'>get</span><span class='lparen'>(</span>
+              <span class='symbol'>:head</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>authorization</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id instance'>instance</span><span class='lbracket'>[</span><span class='symbol'>:credentials</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id http'>http</span><span class='period'>.</span><span class='id errback'>errback</span> <span class='kw'>do</span>
+        <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed fetching varz from: </span><span class='embexpr_beg'>#{</span><span class='id instance'>instance</span><span class='lbracket'>[</span><span class='symbol'>:host</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='id http'>http</span><span class='period'>.</span><span class='id callback'>callback</span> <span class='kw'>do</span>
+        <span class='kw'>begin</span>
+          <span class='id varz'>varz</span> <span class='op'>=</span> <span class='const'>Yajl</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id http'>http</span><span class='period'>.</span><span class='id response'>response</span><span class='rparen'>)</span>
+          <span class='id now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+
+          <span class='id handler'>handler</span> <span class='op'>=</span> <span class='const'>Handler</span><span class='period'>.</span><span class='id handler'>handler</span><span class='lparen'>(</span><span class='ivar'>@tsdb_connection</span><span class='comma'>,</span> <span class='id job'>job</span><span class='comma'>,</span> <span class='id index'>index</span><span class='comma'>,</span> <span class='id now'>now</span><span class='rparen'>)</span>
+          <span class='id handler'>handler</span><span class='period'>.</span><span class='id send_metric'>send_metric</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mem</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id varz'>varz</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mem</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>/</span> <span class='int'>1024</span><span class='comma'>,</span> <span class='id get_job_tags'>get_job_tags</span><span class='lparen'>(</span><span class='id job'>job</span><span class='rparen'>)</span><span class='rparen'>)</span>
+          <span class='id handler'>handler</span><span class='period'>.</span><span class='id process'>process</span><span class='lparen'>(</span><span class='id varz'>varz</span><span class='rparen'>)</span>
+        <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id e'>e</span>
+          <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error processing varz: </span><span class='embexpr_beg'>#{</span><span class='id e'>e</span><span class='period'>.</span><span class='id message'>message</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='id e'>e</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="get_job_tags-instance_method">
+  
+    - (<tt>Hash&lt;Symbol, String&gt;</tt>) <strong>get_job_tags</strong>(type) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Generates the common tags used for generating common (memory, health, etc.)
+metrics.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the job type
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash&lt;Symbol, String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+tags for this job type
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='id get_job_tags'>get_job_tags</span><span class='lparen'>(</span><span class='id type'>type</span><span class='rparen'>)</span>
+  <span class='id tags'>tags</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='ivar'>@core_components</span><span class='period'>.</span><span class='id include?'>include?</span><span class='lparen'>(</span><span class='id type'>type</span><span class='rparen'>)</span>
+    <span class='id tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:role</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>core</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>elsif</span> <span class='id type'>type</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:(^[^-]+)-Service)|(?:(^.*)aaS-(?:(?:Node)|(?:Provisioner)))</span><span class='regexp_end'>/</span></span>
+    <span class='id tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:role</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>service</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id tags'>tags</span><span class='lbracket'>[</span><span class='symbol'>:service_type</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='backref'>$1</span> <span class='op'>||</span> <span class='backref'>$2</span>
+  <span class='kw'>end</span>
+  <span class='id tags'>tags</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="process_component_discovery-instance_method">
+  
+    - (<tt>Object</tt>) <strong>process_component_discovery</strong>(message) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Processes a discovered component message, recording it&#8217;s location for
+varz/healthz probes.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>message</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the discovery message
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id process_component_discovery'>process_component_discovery</span><span class='lparen'>(</span><span class='id message'>message</span><span class='rparen'>)</span>
+  <span class='id message'>message</span> <span class='op'>=</span> <span class='const'>Yajl</span><span class='op'>::</span><span class='const'>Parser</span><span class='period'>.</span><span class='id parse'>parse</span><span class='lparen'>(</span><span class='id message'>message</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@logger</span><span class='period'>.</span><span class='id debug1'>debug1</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Found </span><span class='embexpr_beg'>#{</span><span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> @ </span><span class='embexpr_beg'>#{</span><span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>host</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>credentials</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id instances'>instances</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='ivar'>@components</span><span class='lbracket'>[</span><span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id instances'>instances</span><span class='lbracket'>[</span><span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>index</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+      <span class='symbol'>:host</span> <span class='op'>=&gt;</span> <span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>host</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='symbol'>:credentials</span> <span class='op'>=&gt;</span> <span class='id message'>message</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>credentials</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='symbol'>:timestamp</span> <span class='op'>=&gt;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id e'>e</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error discovering components: </span><span class='embexpr_beg'>#{</span><span class='id e'>e</span><span class='period'>.</span><span class='id message'>message</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='id e'>e</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="prune_components-instance_method">
+  
+    - (<tt>Object</tt>) <strong>prune_components</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Prunes components that haven&#8217;t been heard from in a while
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id prune_components'>prune_components</span>
+  <span class='ivar'>@components</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id _'>_</span><span class='comma'>,</span> <span class='id instances'>instances</span><span class='op'>|</span>
+    <span class='id instances'>instances</span><span class='period'>.</span><span class='id delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id _'>_</span><span class='comma'>,</span> <span class='id component'>component</span><span class='op'>|</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span><span class='period'>.</span><span class='id to_i'>to_i</span> <span class='op'>-</span> <span class='id component'>component</span><span class='lbracket'>[</span><span class='symbol'>:timestamp</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='const'>Config</span><span class='period'>.</span><span class='id prune_interval'>prune_interval</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@components</span><span class='period'>.</span><span class='id delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id _'>_</span><span class='comma'>,</span> <span class='id instances'>instances</span><span class='op'>|</span> <span class='id instances'>instances</span><span class='period'>.</span><span class='id empty?'>empty?</span> <span class='rbrace'>}</span>
+<span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id e'>e</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error pruning components: </span><span class='embexpr_beg'>#{</span><span class='id e'>e</span><span class='period'>.</span><span class='id message'>message</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span><span class='period'>.</span><span class='id warn'>warn</span><span class='lparen'>(</span><span class='id e'>e</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setup_timers-instance_method">
+  
+    - (<tt>Object</tt>) <strong>setup_timers</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Configures the periodic timers for collecting varzs.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/collector.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id setup_timers'>setup_timers</span>
+  <span class='const'>EM</span><span class='period'>.</span><span class='id add_periodic_timer'>add_periodic_timer</span><span class='lparen'>(</span><span class='const'>Config</span><span class='period'>.</span><span class='id discover_interval'>discover_interval</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='ivar'>@nats</span><span class='period'>.</span><span class='id publish'>publish</span><span class='lparen'>(</span><span class='const'>DISCOVER_SUBJECT</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@inbox</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='const'>EM</span><span class='period'>.</span><span class='id add_periodic_timer'>add_periodic_timer</span><span class='lparen'>(</span><span class='const'>Config</span><span class='period'>.</span><span class='id varz_interval'>varz_interval</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id fetch_varz'>fetch_varz</span> <span class='rbrace'>}</span>
+  <span class='const'>EM</span><span class='period'>.</span><span class='id add_periodic_timer'>add_periodic_timer</span><span class='lparen'>(</span><span class='const'>Config</span><span class='period'>.</span><span class='id healthz_interval'>healthz_interval</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id fetch_healthz'>fetch_healthz</span> <span class='rbrace'>}</span>
+  <span class='const'>EM</span><span class='period'>.</span><span class='id add_periodic_timer'>add_periodic_timer</span><span class='lparen'>(</span><span class='const'>Config</span><span class='period'>.</span><span class='id prune_interval'>prune_interval</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id prune_components'>prune_components</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Fri Jul 29 16:47:25 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.2 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

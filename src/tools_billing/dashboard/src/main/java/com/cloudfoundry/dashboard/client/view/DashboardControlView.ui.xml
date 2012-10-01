@@ -1,0 +1,87 @@
+<!--
+  ~ Copyright (c) 2011 VMware, Inc.
+  -->
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:cf='urn:import:com.cloudfoundry.dashboard.client.ui'>
+  <ui:with field="resources" type="com.cloudfoundry.dashboard.client.resources.Resources"/>
+  <ui:image field="logo" src="../resources/logo.png"/>
+
+  <ui:style>
+    @sprite .logo {
+      gwt-image: "logo";
+      display: inline-block;
+      cursor: hand;
+      cursor: pointer;
+    }
+
+    .header {
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .spinner, .last-updated {
+      float: left;
+    }
+
+    .last-updated {
+      padding-right: 5px;
+    }
+
+    .link-button {
+      margin-left: 2px;
+      text-align: center;
+    }
+
+    .logo-container {
+      float: left;
+    }
+  </ui:style>
+
+  <g:HTMLPanel>
+    <g:NotificationMole ui:field="notificationMole"/>
+
+    <g:VerticalPanel height="100%" verticalAlignment="middle" styleName="{style.logo-container}">
+      <g:Anchor ui:field="logoAnchor">
+        <div class="{style.logo}"/>
+      </g:Anchor>
+    </g:VerticalPanel>
+
+    <table style="float: right">
+      <tr>
+        <td class="{style.header}">Range:</td>
+        <td>
+          <cf:HorizontalOptionSelector ui:field="rangeSelector" options="30m, 4h, 1d, 1w, 4w"/>
+        </td>
+      </tr>
+      <tr class="{style.header}">
+        <td>Update:</td>
+        <td>
+          <cf:HorizontalOptionSelector ui:field="updateSelector" options="off, 15s, 30s, 1m, 5m"/>
+        </td>
+      </tr>
+      <tr class="{style.header}">
+        <td>Timezone:</td>
+        <td>
+          <cf:HorizontalOptionSelector ui:field="timezoneSelector" options="local, UTC"/>
+        </td>
+      </tr>
+      <tr>
+        <td class="{style.header}">Link Here:</td>
+        <td>
+          <g:PushButton ui:field="linkButton" width="38px" height="16px" addStyleNames="{style.link-button}">
+            <g:upFace image="{resources.link}"/>
+          </g:PushButton>
+        </td>
+      </tr>
+      <tr>
+        <td class="{style.header}">Last updated:</td>
+        <td>
+          <g:InlineLabel ui:field="lastUpdated" styleName="{style.last-updated}">N/A</g:InlineLabel>
+          <g:Image resource="{resources.spinner}" ui:field="spinner" visible="false" styleName="{style.spinner}"/>
+        </td>
+      </tr>
+    </table>
+  </g:HTMLPanel>
+</ui:UiBinder>

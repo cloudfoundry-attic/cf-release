@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+$:.unshift(File.expand_path("../lib", File.dirname(__FILE__)))
+
+require "router_registrar"
+
+config_file = ENV["CONFIG_FILE"] || File.expand_path("../config/config.yml", File.dirname(__FILE__))
+RouterRegistrar::Config.configure(YAML.load_file(config_file))
+
+EM.run do
+  router_registrar = RouterRegistrar::RouterRegistrar.new
+  ['TERM', 'INT', 'QUIT'].each do |signal|
+    trap(signal) do
+      router_registrar.shutdown { exit }
+    end
+  end
+end
