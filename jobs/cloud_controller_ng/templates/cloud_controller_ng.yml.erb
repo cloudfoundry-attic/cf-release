@@ -27,9 +27,11 @@ info:
 directories:
 <% if properties.directories %>
   droplets: <%= properties.directories.droplets %>
+  resources: <%= properties.directories.resources %>
   tmpdir: <%= properties.directories.tmpdir %>
 <% else %>
   droplets: "/var/vcap/shared/droplets"
+  resources: "/var/vcap/shared/resources"
   tmpdir: "/var/vcap/data/cloud_controller_ng/tmp"
 <% end %>
 
