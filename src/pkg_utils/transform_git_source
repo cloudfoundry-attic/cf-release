@@ -2,6 +2,9 @@
 # vim: fileencoding=utf-8
 # vim: ts=2 sw=2 sts=2 et
 
+require 'digest/sha1'
+require 'tmpdir'
+require 'pathname'
 require 'rubygems'
 require 'bundler'
 require 'fileutils'
@@ -18,16 +21,33 @@ def `(cmd)
   result
 end
 
+GIT_CACHE_PATH=Pathname.new(Dir.tmpdir).join('vcap.omni.git').freeze
+
+# Use an ``omni'' repo to store all objects to speed up repeated clones
+def fetch_into_cache(spec)
+  unless GIT_CACHE_PATH.exist?
+    GIT_CACHE_PATH.mkpath
+    Dir.chdir(GIT_CACHE_PATH) { %x(git init --bare) }
+  end
+  uri = spec.source.uri
+  refspec = "refs/heads/*:refs/omni/heads/*"
+  refspec_tags = "refs/tags/*:refs/omni/tags/*"
+  Dir.chdir(GIT_CACHE_PATH) do
+    cmd_rev_exist = "git cat-file -e #{spec.source.options["revision"]}"
+    cmd_fetch = "git fetch --quiet --no-tags --force #{uri} \"#{refspec}\" \"#{refspec_tags}\""
+    %x(#{cmd_rev_exist} || #{cmd_fetch} )
+  end
+end
+
 def checkout(spec, path)
+  fetch_into_cache(spec)
   unless path.join('.git').exist?
     path.parent.mkpath
     path.rmtree if path.exist?
-    %x(git clone --no-checkout #{spec.source.uri} #{path})
+    %x(git clone --no-checkout #{GIT_CACHE_PATH.to_s} #{path})
   end
   Dir.chdir(path) do
-    %x(git fetch --quiet --tags #{spec.source.uri})
-    # This is gross, but why do they keep this private?
-    revision = spec.source.send(:revision)
+    revision = spec.source.options["revision"]
     %x(git reset --hard #{revision})
   end
 end
