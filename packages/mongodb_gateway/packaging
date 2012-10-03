@@ -4,7 +4,7 @@ set -e
 cp -a * ${BOSH_INSTALL_TARGET}
 
 (
-  cd ${BOSH_INSTALL_TARGET}/services/mongodb
+  cd ${BOSH_INSTALL_TARGET}/services/ng/mongodb
 
   bundle_cmd=/var/vcap/packages/ruby/bin/bundle
   $bundle_cmd config build.do_sqlite3 --with-sqlite3-dir=/var/vcap/packages/sqlite

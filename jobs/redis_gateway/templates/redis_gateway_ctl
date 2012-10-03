@@ -24,7 +24,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    exec /var/vcap/packages/redis_gateway/services/redis/bin/redis_gateway \
+    exec /var/vcap/packages/redis_gateway/services/ng/redis/bin/redis_gateway \
          -c $JOB_DIR/config/redis_gateway.yml \
          >>$LOG_DIR/redis_gateway.stdout.log \
          2>>$LOG_DIR/redis_gateway.stderr.log

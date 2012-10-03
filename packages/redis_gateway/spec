@@ -4,5 +4,5 @@ dependencies:
 - sqlite
 - ruby
 files:
-- services/redis/**/*
+- services/ng/redis/**/*
 - pkg_utils/*
