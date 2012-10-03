@@ -2,4 +2,4 @@
 set -e
 
 cd ${BUILD_DIR}
-pkg_utils/vendor.sh services/rabbit
+pkg_utils/vendor.sh services/ng/rabbit

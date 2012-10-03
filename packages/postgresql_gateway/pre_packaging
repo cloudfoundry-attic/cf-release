@@ -2,4 +2,4 @@
 set -e
 
 cd ${BUILD_DIR}
-pkg_utils/vendor.sh services/postgresql
+pkg_utils/vendor.sh services/ng/postgresql

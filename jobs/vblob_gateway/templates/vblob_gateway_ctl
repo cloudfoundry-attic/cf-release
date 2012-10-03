@@ -35,7 +35,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
     <% end %>
 
-    exec /var/vcap/packages/vblob_gateway/services/vblob/bin/vblob_gateway -c /var/vcap/jobs/vblob_gateway/config/vblob_gateway.yml >>$LOG_DIR/vblob_gateway.stdout.log 2>>$LOG_DIR/vblob_gateway.stderr.log
+    exec /var/vcap/packages/vblob_gateway/services/ng/vblob/bin/vblob_gateway -c /var/vcap/jobs/vblob_gateway/config/vblob_gateway.yml >>$LOG_DIR/vblob_gateway.stdout.log 2>>$LOG_DIR/vblob_gateway.stderr.log
     ;;
 
   stop)

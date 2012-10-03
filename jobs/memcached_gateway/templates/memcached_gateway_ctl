@@ -24,7 +24,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    exec /var/vcap/packages/memcached_gateway/services/memcached/bin/memcached_gateway \
+    exec /var/vcap/packages/memcached_gateway/services/ng/memcached/bin/memcached_gateway \
          -c $JOB_DIR/config/memcached_gateway.yml \
          >>$LOG_DIR/memcached_gateway.stdout.log \
          2>>$LOG_DIR/memcached_gateway.stderr.log

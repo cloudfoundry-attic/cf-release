@@ -1,4 +1,4 @@
 set -e
 
 cd ${BUILD_DIR}
-pkg_utils/vendor.sh services/vblob
+pkg_utils/vendor.sh services/ng/vblob
