@@ -13,6 +13,7 @@ mv apache-tomcat-7.0.27 tomcat
 
 cd tomcat
 rm -rf webapps/*
+cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-batch-1.0.0.war webapps/batch.war
 cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-uaa-1.2.1.war webapps/ROOT.war
 
 cd ${BOSH_INSTALL_TARGET}
