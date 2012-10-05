@@ -57,12 +57,12 @@ properties:
     admins:
     - admin@vcap.me
     admin_account_capacity:
-      memory: 1024
+      memory: 2048
       app_uris: 32
       services: 16
       apps: 16
     default_account_capacity:
-      memory: 512
+      memory: 1024
       app_uris: 8
       services: 4
       apps: 4
