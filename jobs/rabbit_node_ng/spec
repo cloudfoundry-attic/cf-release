@@ -1,0 +1,25 @@
+---
+name: rabbit_node_ng
+
+templates:
+  rabbit_node_ctl: bin/rabbit_node_ctl
+  rabbit_node.yml.erb: config/rabbit_node.yml
+  monit.erb: monit
+  rabbit_migration_util.erb: bin/rabbit_migration_util
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  logrotate.conf.erb: config/logrotate.conf
+  rabbit_logrotate.cron.erb: config/rabbit_logrotate.cron
+
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  rabbitmq_startup.sh: bin/rabbitmq_startup.sh
+  services.conf: config/services.conf
+
+packages:
+  - common
+  - erlang
+  - rabbitmq
+  - ruby
+  - sqlite
+  - rabbit_node_ng
+  - syslog_aggregator
