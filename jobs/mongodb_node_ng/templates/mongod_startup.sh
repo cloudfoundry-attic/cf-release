@@ -8,4 +8,12 @@ done
 
 touch /store/log/mongodb.log
 mkdir -p /store/instance/data
-exec /usr/bin/mongod --config /etc/mongodb.conf
+
+# mongod_startup.sh 1.8
+# mongod_startup.sh 1.8 --journal
+# mongod_startup.sh 2.0
+# mongod_startup.sh 2.0 --nojournal
+version=$1
+shift
+args=$*
+exec /usr/share/mongodb/mongodb-$version/mongod $args --config /etc/mongodb.conf
