@@ -1,0 +1,6 @@
+CREATE USER 'root'@'%' IDENTIFIED BY '<%= properties.mysql_node.password %>';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+DROP DATABASE IF EXISTS test;

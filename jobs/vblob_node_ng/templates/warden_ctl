@@ -1,0 +1,34 @@
+#!/bin/bash
+
+JOB_DIR=/var/vcap/jobs/vblob_node_ng
+PKG_DIR=/var/vcap/packages/vblob_node_ng
+BIN_DIR=/var/vcap/packages
+
+VBLOB_STARTUP=$WARDEN_ROOT_DIR/usr/bin/vblob_startup.sh
+
+source /var/vcap/packages/vblob_node_ng/common/services/utils.sh
+
+case $1 in
+
+  start)
+    setup_warden
+
+    # Copy vblob binaries and configuration files to warden base file system
+    install -m 0755 -t $ROOT_DIR/usr/bin   $JOB_DIR/bin/vblob_startup.sh
+    install -m 0644 -t $ROOT_DIR/etc/init  $JOB_DIR/config/services.conf
+    cp -af $BIN_DIR/node/* $ROOT_DIR/usr/
+    mkdir -p $ROOT_DIR/var/vcap/packages/vblob
+    cp -af $BIN_DIR/vblob/* $ROOT_DIR/var/vcap/packages/vblob/
+
+    start_warden $JOB_NAME $VBLOB_STARTUP
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac

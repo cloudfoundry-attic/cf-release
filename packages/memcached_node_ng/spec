@@ -1,0 +1,8 @@
+---
+name: memcached_node_ng
+dependencies:
+- sqlite
+- ruby
+files:
+- services/ng/memcached/**/*
+- pkg_utils/*

@@ -1,0 +1,10 @@
+---
+name: mongodb_node_ng
+dependencies:
+- sqlite
+- ruby
+files:
+- services/ng/mongodb/**/*
+- warden/warden/**/*
+- pkg_utils/*
+- common/services/utils.sh
