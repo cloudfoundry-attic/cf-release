@@ -105,7 +105,7 @@ ruby18:
   environment:
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
     BUNDLE_GEMFILE:
-    PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_transition/rubygems/1.8/bin:/var/vcap/packages/dea_ruby18/bin:$PATH
+    PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_transition/rubygems/1.8/bin:/var/vcap/packages/dea_ruby18/bin:/var/vcap/packages/dea_node08/bin:$PATH
     GEM_PATH: /var/vcap/packages/dea_transition/rubygems/1.8:$GEM_PATH
 ruby19:
   description: Ruby 1.9
@@ -118,5 +118,5 @@ ruby19:
   environment:
     LD_LIBRARY_PATH: '/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH'
     BUNDLE_GEMFILE:
-    PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_transition/rubygems/1.9.1/bin:/var/vcap/packages/dea_ruby19/bin:$PATH
+    PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_transition/rubygems/1.9.1/bin:/var/vcap/packages/dea_ruby19/bin:/var/vcap/packages/dea_node08/bin:$PATH
     GEM_PATH: /var/vcap/packages/dea_transition/rubygems/1.9.1:$GEM_PATH
