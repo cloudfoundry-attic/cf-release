@@ -64,12 +64,9 @@ case $1 in
     # Generate a random usernames and passwords
     username=$RANDOM-$RANDOM-$RANDOM-$RANDOM
     password=$RANDOM-$RANDOM-$RANDOM-$RANDOM
-    secret=$RANDOM-$RANDOM-$RANDOM-$RANDOM
-    uuid=$RANDOM-$RANDOM-$RANDOM-$RANDOM
 
-    sed -i "s/_random_username_replaced_by_a_script_/${username}/g" $JOB_DIR/config/login.yml
-    sed -i "s/_random_password_replaced_by_a_script_/${password}/g" $JOB_DIR/config/login.yml
-    sed -i "s/_random_uuid_replaced_by_a_script_/${uuid}/g" $JOB_DIR/config/login.yml
+    sed -i "s/_random_username_replaced_by_a_script_/${username}/g" $JOB_DIR/config/varz.yml
+    sed -i "s/_random_password_replaced_by_a_script_/${password}/g" $JOB_DIR/config/varz.yml
 
     # We want to keep packages pristine, since tomcat is modified in place we stage it elsewhere.
     rm -rf /var/vcap/data/login

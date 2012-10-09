@@ -6,6 +6,7 @@ templates:
 
   vcap_registrar.config.yml.erb: config/vcap_registrar/config.yml
   login.yml.erb: config/login.yml
+  varz.yml.erb: config/varz.yml
   log4j.properties.erb: config/log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml

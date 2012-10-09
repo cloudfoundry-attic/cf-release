@@ -3,7 +3,7 @@ log4j.rootCategory=INFO, CONSOLE, FILE, SYSLOG
 PID=????
 LOG_PATH=/var/vcap/sys/log/uaa
 LOG_FILE=${LOG_PATH}/uaa.log
-LOG_PATTERN=[%d{yyyy-MM-dd HH:mm:ss.SSS}] uaa - ${PID} [%t] .... %5p --- %c{1}: %m%n
+LOG_PATTERN=[%d{yyyy-MM-dd HH:mm:ss.SSS}] uaa%X{context} - ${PID} [%t] .... %5p --- %c{1}: %m%n
 
 # CONSOLE is set to be a ConsoleAppender using a PatternLayout.
 log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
