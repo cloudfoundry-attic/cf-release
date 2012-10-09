@@ -36,7 +36,7 @@ case $1 in
       echo "Found tmpfs mount"
     else
       echo "Mounting tmpfs..."
-      mount -t tmpfs -o size=512m tmpfs $TSDTMP
+      mount -t tmpfs -o size=1024m tmpfs $TSDTMP
     fi
 
     # Blow away cache directory once every 30 minutes if it's over 400M
