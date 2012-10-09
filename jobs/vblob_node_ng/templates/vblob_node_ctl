@@ -51,6 +51,12 @@ case $1 in
     check_mount "$MT_OPTS" "$MT_EXPORT" "$NFS_DIR"
     <% end %>
 
+    /var/vcap/jobs/vblob_node_ng/bin/create_vblob_tmp_dir
+    if [ $? -ne 0 ]; then
+      echo "failed to create vblob tmp directory"
+      exit 1
+    fi
+
     (crontab -l | sed /vblob_logrotate/d; cat /var/vcap/jobs/vblob_node_ng/config/vblob_logrotate.cron) | sed /^$/d | crontab
 
     exec /var/vcap/packages/vblob_node_ng/services/ng/vblob/bin/vblob_node -c /var/vcap/jobs/vblob_node_ng/config/vblob_node.yml >>$LOG_DIR/vblob_node.stdout.log 2>>$LOG_DIR/vblob_node.stderr.log
