@@ -5,10 +5,6 @@
 <% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
 <% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
 
-pid: /var/vcap/sys/run/uaa.pid
-# nats message bus uri
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
-
 name: uaa
 
 database:
@@ -17,7 +13,6 @@ database:
   username: <%= uaa_role.name %>
   password: <%= uaa_role.password %>
 
-jvm_args: -Xmx512m
 spring_profiles: postgresql
 
 cloud_controller:
@@ -28,12 +23,6 @@ cloud_controller:
 
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
-
-varz:
-  username: _random_username_replaced_by_a_script_
-  password: _random_password_replaced_by_a_script_
-  type: uaa
-  uuid: _random_uuid_replaced_by_a_script_
 
 <% if properties.uaa.cc %>
 jwt:
