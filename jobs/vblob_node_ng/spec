@@ -8,6 +8,7 @@ templates:
   logrotate.conf.erb: config/logrotate.conf
   vblob_logrotate.cron.erb: config/vblob_logrotate.cron
 
+  create_vblob_tmp_dir.erb: bin/create_vblob_tmp_dir
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
   vblob_startup.sh: bin/vblob_startup.sh
