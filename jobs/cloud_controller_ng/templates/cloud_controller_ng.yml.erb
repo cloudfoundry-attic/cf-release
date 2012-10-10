@@ -15,7 +15,7 @@ bulk_api:
   auth_password: <%= properties.ccng.bulk_api_password %>
 
 nginx:
-  use_nginx: <%= properties.ccng.use_nginx || true %>
+  use_nginx: <%= properties.ccng.use_nginx || false %>
   instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
 
 info:
