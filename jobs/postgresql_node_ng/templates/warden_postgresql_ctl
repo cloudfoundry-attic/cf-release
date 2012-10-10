@@ -52,10 +52,29 @@ sed -i "/log_directory/ {s/#log_directory/log_directory/;s|pg_log|$LOG_DIR|}" $D
 sed -i "s/^[\w|#]*logging_collector = .*/logging_collector = off/" $DATA_DIR/postgresql.conf
 
 # set adjustable configurations per plan
-<% adjustable_configs = %w(max_connections shared_buffers effective_cache_size work_mem temp_buffers checkpoint_segments) %>
-<% adjustable_configs.each do |config| %>
+<%
+default_max_connections = 500
+if properties.postgresql_server && properties.postgresql_server.max_connections
+  default_max_connections = properties.postgresql_server.max_connections
+end
+
+adjustable_configs = {
+  :max_connections => default_max_connections,
+  :shared_buffers => '128MB',
+  :effective_cache_size => '128MB',
+  :work_mem => '1MB',
+  :temp_buffers => '1MB',
+  :wal_buffers => '1MB',
+  :maintenance_work_mem => '30MB',
+  :checkpoint_segments => 16,
+  :checkpoint_segments_max => 300,
+  :max_prepared_transactions => 0
+} %>
+<% adjustable_configs.each do |config, default_value| %>
   <% if plan_conf && plan_conf.respond_to?(config.to_sym) && plan_conf.send(config.to_sym) %>
-sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=plan_conf.send(config.to_sym)%>/" $DATA_DIR/postgresql.conf
+sed -i "s/^[\w|#]*<%=config.to_s%> = .*/<%=config.to_s%> = <%=plan_conf.send(config.to_sym)%>/" $DATA_DIR/postgresql.conf
+  <% else %>
+sed -i "s/^[\w|#]*<%=config.to_s%> = .*/<%=config.to_s%> = <%=default_value.to_s%>/" $DATA_DIR/postgresql.conf
   <% end %>
 <% end %>
 
