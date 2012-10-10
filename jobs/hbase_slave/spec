@@ -1,6 +1,7 @@
 ---
 name: hbase_slave
 templates:
+  cleanup_logs: bin/cleanup_logs
   hadoop.core-site.xml.erb: config/hadoop/core-site.xml
   hadoop.hdfs-site.xml: config/hadoop/hdfs-site.xml
   hadoop.slaves.erb: config/hadoop/slaves
