@@ -1,5 +1,10 @@
 #!/bin/bash
-
+<%
+service = "postgresql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+%>
 JOB_DIR=/var/vcap/jobs/postgresql_node_ng
 PKG_DIR=/var/vcap/packages/postgresql_node_ng
 PG_DIR=/var/vcap/packages/postgresql
@@ -12,6 +17,16 @@ case $1 in
     echo "Setup warden."
     setup_warden
 
+    <% if plan_conf && plan_conf.shmmax %>
+    sysctl -w 'kernel.shmmax=<%=plan_conf.shmmax%>'
+    <%else%>
+    sysctl -w 'kernel.shmmax=284934144'
+    <%end%>
+
+    <% if plan_conf && plan_conf.shmall%>
+    sysctl -w 'kernel.shmall=<%=plan_conf.shmall%>'
+    <%end%>
+
     install -m 0755 -d $ROOT_DIR/$PG_DIR
     rsync -arl $JOB_DIR/packages/postgresql/* $ROOT_DIR/$PG_DIR/
     # create a initialized data dir
@@ -23,6 +38,11 @@ case $1 in
       rm -rf /var/vcap/data/initdb_tmp/initdb
       echo "Initialize the postgresql database cluster."
       su - vcap -c "LD_LIBRARY_PATH=$ROOT_DIR/$PG_DIR/lib:$LD_LIBRARY_PATH $ROOT_DIR/$PG_DIR/bin/initdb -E utf8 -D /var/vcap/data/initdb_tmp/initdb"
+    fi
+    if test ! -d /var/vcap/data/initdb_tmp/initdb/base
+    then
+      echo "Fail to initialize the postgresql database cluster, check the error log."
+      exit 1
     fi
     rsync -arl /var/vcap/data/initdb_tmp/initdb $ROOT_DIR/$PG_DIR
     mkdir -p $ROOT_DIR/$PG_DIR/initdb/pg_log
