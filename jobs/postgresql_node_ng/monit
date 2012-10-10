@@ -5,13 +5,13 @@ plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 use_warden= plan_conf.warden and plan_conf.warden.enable
 %>
+<%unless use_warden%>
 check process postgresql
   with pidfile /var/vcap/sys/run/postgresql/postgresql.pid
   start program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_ctl start"
   stop program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_ctl stop"
   group vcap
-
-<%if use_warden%>
+<%else%>
 check process warden
   with pidfile /var/vcap/sys/run/warden/warden.pid
   start program "/var/vcap/jobs/postgresql_node_ng/bin/warden_ctl start"
@@ -24,8 +24,9 @@ check process postgresql_node
   start program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_node_ctl start"
   stop  program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_node_ctl stop"
   group vcap
+<%unless use_warden%>
   depends on postgresql
-<%if use_warden %>
+<%else%>
   depends on warden
 <%end%>
 <%
@@ -39,7 +40,11 @@ check process postgresql_worker_<%= ind %>
   stop program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_worker_ctl stop <%= ind %>"
   group worker
   group vcap
+<%unless use_warden%>
   depends on postgresql
+<%else%>
+  depends on warden
+<%end%>
   depends on postgresql_node
 <%
   end
