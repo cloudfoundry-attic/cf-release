@@ -70,7 +70,7 @@ case "$1" in
     <% end %>
 
     # set adjustable configurations per plan
-    <% adjustable_configs = %w(max_connections shared_buffers effective_cache_size work_mem temp_buffers checkpoint_segments) %>
+    <% adjustable_configs = %w(max_connections shared_buffers effective_cache_size work_mem temp_buffers checkpoint_segmentsi checkpoint_segments_max) %>
     <% adjustable_configs.each do |config| %>
       <% if plan_conf && plan_conf.respond_to?(config.to_sym) && plan_conf.send(config.to_sym) %>
     sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=plan_conf.send(config.to_sym)%>/" $DATA_DIR/postgresql.conf
