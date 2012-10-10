@@ -3,6 +3,7 @@
 LOG_DIR="/var/vcap/sys/log/hbase_slave"
 RUN_DIR="/var/vcap/sys/run/hbase_slave"
 
+CLEANUP_SCRIPT="/etc/cron.d/cleanup_logs_tmpdir"
 HADOOP_BIN="/var/vcap/packages/hadoop/bin"
 HADOOP_DATA_DIR="/var/vcap/store/hbase_master"
 PIDFILE="${RUN_DIR}/hadoop-vcap-datanode.pid"
@@ -38,6 +39,9 @@ case $1 in
     ulimit -n 32768
     # Set maximum number of processes available to a single user.
     ulimit -u 32000
+
+    # Blow away logs directory once every 10 minutes if it's over 1500M
+    echo "*/10 * * * * root $BIN_DIR/cleanup_tmpdir $LOG_DIR 1500" > $CLEANUP_SCRIPT
 
     # hadoop ctl scripts manage their pidfiles,
     # so we don't attempt to write ours
