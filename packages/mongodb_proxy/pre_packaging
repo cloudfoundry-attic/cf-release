@@ -1,0 +1,16 @@
+#abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+cd services/tools/mongodb_proxy/src/
+
+mkdir -p github.com/xushiwei/goyaml/
+git clone git://github.com/xushiwei/goyaml.git github.com/xushiwei/goyaml/
+
+mkdir -p github.com/xushiwei/mgo/
+git clone git://github.com/xushiwei/mgo.git github.com/xushiwei/mgo/
+mv github.com/xushiwei/mgo/src/labix.org .
+
+mkdir -p github.com/moovweb/log4go/
+git clone git://github.com/moovweb/log4go.git github.com/moovweb/log4go/
