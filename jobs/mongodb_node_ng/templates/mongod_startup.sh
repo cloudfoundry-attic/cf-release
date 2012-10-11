@@ -16,4 +16,6 @@ mkdir -p /store/instance/data
 version=$1
 shift
 args=$*
-exec /usr/share/mongodb/mongodb-$version/mongod $args --config /etc/mongodb.conf
+/usr/share/mongodb/mongodb-$version/mongod $args --config /etc/mongodb.conf &
+
+/usr/share/mongodb/mongodb_proxy/proxyctl -c /etc/mongodb_proxy.yml &
