@@ -19,12 +19,14 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
   mongodb.conf.erb: config/mongodb.conf
+  mongodb_proxy.yml.erb: config/mongodb_proxy.yml
   mongod_startup.sh: bin/mongod_startup.sh
   services.conf: config/services.conf
 
 packages:
   - common
   - mongodb_node_ng
+  - mongodb_proxy
   - mongodb18
   - mongodb20
   - ruby
