@@ -5,6 +5,7 @@ nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%=
 
 external_domain: <%= properties.ccng.external_host || "api2" %>.<%= properties.domain %>
 serving_domain: <%= properties.domain %>
+local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 
 cc_partition: <%= properties.ccng.cc_partition || "ng" %>
 
