@@ -1,0 +1,20 @@
+#abort script on any command that exit with a non zero value
+set -e
+
+cp -a services/tools/mongodb_proxy/* ${BOSH_INSTALL_TARGET}
+
+(
+  GOLANG_PATH=`readlink -nf /var/vcap/packages/golang`
+  PATH=$GOLANG_PATH/bin:$PATH
+  export GOROOT=`readlink -nf /var/vcap/packages/golang`
+  export GOPATH=`readlink -nf ${BOSH_INSTALL_TARGET}`
+
+  blobs=`pwd`
+
+  cd ${BOSH_INSTALL_TARGET}/src
+  tar zxf $blobs/golang/goyaml.068c0b7271.src.tar.gz
+  tar zxf $blobs/golang/log4go.1fa5d16681.src.tar.gz
+  tar zxf $blobs/golang/mgo.57414de697.src.tar.gz
+
+  go install proxyctl
+)
