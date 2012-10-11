@@ -1,4 +1,5 @@
 ---
+local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 port: 9022 # external CC port
 pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
