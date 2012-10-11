@@ -1,0 +1,30 @@
+#!/bin/bash
+
+JOB_DIR=/var/vcap/jobs/memcached_node_ng
+PKG_DIR=/var/vcap/packages/memcached_node_ng
+MEMCACHED_BIN_DIR=/var/vcap/packages/memcached/bin
+
+source /var/vcap/packages/memcached_node_ng/common/services/utils.sh
+
+case $1 in
+
+  start)
+    setup_warden
+
+    mkdir -p $ROOT_DIR/usr/share/memcached/bin
+
+    # Copy memcached binaries to warden base file system
+    install -m 0755 -t $ROOT_DIR/usr/share/memcached/bin $MEMCACHED_BIN_DIR/*
+
+    start_warden
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac
