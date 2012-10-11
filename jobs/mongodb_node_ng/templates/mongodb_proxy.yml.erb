@@ -1,0 +1,24 @@
+---
+<%
+service="mongodb"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+%>
+host: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.host || "0.0.0.0" %>
+port: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.port || 29017 %>
+
+mongodb:
+  host: 127.0.0.1
+  port: 27017
+  dbname: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.dbname || "db" %>
+  user: admin
+
+filter:
+  fs_reserved_blocks: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.fs_reserved_blocks || 0.05 %>  # by default 5% of filesystem blocks are reserved for root user
+  threshold: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.filter_threshold || 0.8 %>              # if disk usage percent equals or exceeds this value then block some operations
+  enabled: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.enabled || "true" %>
+
+logging:
+  level: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.log_level || "info" %>
+  path: <%= plan_enabled && plan_conf.proxy && plan_conf.proxy.log_path || "/store/log/mongodb_proxy.log" %>

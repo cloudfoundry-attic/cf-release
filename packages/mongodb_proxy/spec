@@ -1,0 +1,9 @@
+---
+name: mongodb_proxy
+dependencies:
+- golang
+files:
+- services/tools/mongodb_proxy/**/*
+- golang/goyaml.src.tar.gz
+- golang/log4go.src.tar.gz
+- golang/mgo.src.tar.gz

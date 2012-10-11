@@ -1,0 +1,14 @@
+#abort script on any command that exit with a non zero value
+set -e
+
+blobs=`pwd`
+
+cd ${BUILD_DIR}
+
+cd services/tools/mongodb_proxy/src/
+
+tar zxf $blobs/golang/goyaml.src.tar.gz
+
+tar zxf $blobs/golang/log4go.src.tar.gz
+
+tar zxf $blobs/golang/mgo.src.tar.gz
