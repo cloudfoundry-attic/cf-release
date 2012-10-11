@@ -21,10 +21,10 @@ case $1 in
   start)
     pid_guard $PIDFILE "OpenTSDB"
 
-		if [ ! -f /etc/hosts_saved ]; then
-			cp /etc/hosts /etc/hosts_saved
-			echo "<%= properties.hbase_master.address %> $FAKE_ZOOKEEPER_HOSTNAME" >> /etc/hosts
-		fi
+    if [ ! grep -q $FAKE_ZOOKEEPER_HOSTNAME /etc/hosts ]; then
+      cp /etc/hosts /etc/hosts_saved
+      echo "<%= properties.hbase_master.address %> $FAKE_ZOOKEEPER_HOSTNAME" >> /etc/hosts
+    fi
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
