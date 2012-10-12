@@ -25,11 +25,13 @@ acls:
 
 marketplace: <%= props.marketplace %>
 
-refresh_interval: <%= props.refresh_interval || 300 %>
+cc_api_version: <%= props.cc_api_version || "v1" %>
 
+refresh_interval: <%= props.refresh_interval || 300 %>
+z_interval: <%= props.z_interval || 30 %>
 logging:
   file: /var/vcap/sys/log/marketplace_gateway/marketplace_gateway.log
-  level: info
+  level: <%= props.logging_level || "info" %>
   <% if properties.syslog_aggregator %>
   syslog: vcap.marketplace_gateway
   <% end %>
