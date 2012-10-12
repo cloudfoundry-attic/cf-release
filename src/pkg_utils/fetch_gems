@@ -49,20 +49,36 @@ if to_fetch.empty?
   exit 0
 end
 
+def download(uri, file)
+  Net::HTTP.start(uri.host,uri.port) do |http|
+    http.request_get(uri.path) do |res|
+      raise "HTTP GET failed with #{res.code} #{res.message}" unless res.is_a? Net::HTTPOK
+      res.read_body do |seg|
+        file << seg
+      end
+    end
+  end
+end
+
+raise ArgumentError, "$RELEASE_DIR expected but not found" unless ENV["RELEASE_DIR"]
+
 to_fetch.map do |gem_basename|
   logger.info("Fetching #{gem_basename} from rubygems")
   begin
-    File.open("#{gem_store_dir}/#{gem_basename}","wb") do |file|
-      uri = URI.parse("http://production.s3.rubygems.org/gems/#{gem_basename}")
-      Net::HTTP.start(uri.host,uri.port) do |http|
-        http.request_get(uri.path) do |res|
-          raise "HTTP GET failed with #{res.code} #{res.message}" unless res.is_a? Net::HTTPOK
-          res.read_body do |seg|
-            file << seg
-          end
-        end
-      end
+    target = "#{gem_store_dir}/#{gem_basename}"
+    cache_store = File.join(ENV["RELEASE_DIR"], ".cache", "fetch_gems")
+    Dir.mkdir(cache_store) unless File.directory?(cache_store)
+    cached = File.join(cache_store, gem_basename)
+    if File.exist?(cached)
+      FileUtils.copy(cached, target)
+      logger.info("Found cached #{gem_basename}, happy")
+      next
     end
+    File.open(cached, "wb") do |file|
+      uri = URI.parse("http://production.s3.rubygems.org/gems/#{gem_basename}")
+      download(uri, file)
+    end
+    FileUtils.copy(cached, target)
   rescue => e
     logger.error("Failed to fetch #{gem_basename}, #{e.message}")
     FileUtils.rm_f("#{gem_store_dir}/#{gem_basename}") if File.exists?("#{gem_store_dir}/#{gem_basename}")
