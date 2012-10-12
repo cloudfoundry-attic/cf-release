@@ -237,3 +237,14 @@ legacy_framework_manifest:
       description: Node.js
     appservers: []
     detection:
+  play:
+    name: play
+    runtimes:
+    - name: java
+      version: "1.6"
+      description: Java 6
+    - name: java7
+      version: "1.7"
+      description: Java 7
+    detection:
+    - "lib/play.*.jar": true
