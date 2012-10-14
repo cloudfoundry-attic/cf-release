@@ -1,0 +1,6 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+tar zxf monit/monit-5.5-linux-x64.tar.gz
+
+cp -a monit-5.5/* ${BOSH_INSTALL_TARGET}

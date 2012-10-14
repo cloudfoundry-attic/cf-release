@@ -1,0 +1,64 @@
+#!/bin/bash
+
+usage()
+{
+  cat <<EOF
+usage $0 options
+
+This script is to launch monit daemon
+and wait for all monitor processes get started
+
+OPTIONS
+  -c  configure file to start monit daemon
+  -t  timeout to start all monitor processes
+  -h  help
+EOF
+}
+
+CONF=
+MONIT_OPTIONS=
+TIMEOUT=5
+while getopts "ht:c:" OPTION
+do
+  case $OPTION in
+    h)
+      usage
+      exit 1
+      ;;
+    c)
+      CONF=$OPTARG
+      ;;
+    t)
+      TIMEOUT=$OPTARG
+      ;;
+    ?)
+      usage
+      exit
+      ;;
+  esac
+done
+
+if [ -n "$CONF" ]; then
+  MONIT_OPTIONS += "-c $CONF"
+fi
+
+monit $MONIT_OPTIONS
+
+for ((reties=0; reties<TIMEOUT; reties++))
+do
+  sleep 1
+  monit start all
+  st_line=`monit status|awk '/^ *status/ {print $2 }'`
+  ready=true
+  for st in $st_line
+  do
+    echo $st
+    if [[ ! "$st" =~ Running ]]; then
+      ready=false
+    fi
+  done
+  if $ready; then
+    exit 0
+  fi
+done
+exit 1

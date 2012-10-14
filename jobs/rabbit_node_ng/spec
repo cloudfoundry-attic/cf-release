@@ -13,6 +13,7 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
   rabbitmq_startup.sh: bin/rabbitmq_startup.sh
+  services_ctl: bin/services_ctl
   services.conf: config/services.conf
 
 packages:
@@ -23,3 +24,4 @@ packages:
   - sqlite
   - rabbit_node_ng
   - syslog_aggregator
+  - monit

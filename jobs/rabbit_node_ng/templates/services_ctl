@@ -1,0 +1,26 @@
+#!/bin/bash
+PIDFILE=/store/instance/services.pid
+case $1 in
+  start)
+    for n in `seq 1 100`; do
+      if [ -f /tmp/vcap_chown.out ]; then
+        break
+      fi
+      sleep 0.1
+    done
+
+    echo "$$" > $PIDFILE
+    exec start-stop-daemon --start --quiet --chuid vcap --exec /var/vcap/packages/rabbitmq/sbin/rabbitmq-server >/store/log/rabbitmq_stdout.log 2>/store/log/rabbitmq_stderr.log
+
+    ;;
+
+  stop)
+    kill `head -1 $PIDFILE`
+
+    ;;
+
+  *)
+    echo "Usage: services_ctl {start|stop}"
+
+    ;;
+esac
