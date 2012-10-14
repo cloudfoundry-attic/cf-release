@@ -1,0 +1,8 @@
+set daemon 10
+set logfile /store/log/monit.log
+set httpd port 2812 and use address localhost allow localhost
+
+check process service with pidfile /store/instance/services.pid
+  start program "/usr/bin/services_ctl start ${ctl_args}"
+  stop program "/usr/bin/services_ctl stop ${ctl_args}"
+  group vcap

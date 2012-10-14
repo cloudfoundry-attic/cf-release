@@ -3,6 +3,7 @@
 JOB_DIR=/var/vcap/jobs/postgresql_node_ng
 PKG_DIR=/var/vcap/packages/postgresql_node_ng
 PG_DIR=/var/vcap/packages/postgresql
+MONIT_DIR=/var/vcap/packages/monit/bin
 
 source $PKG_DIR/common/services/utils.sh
 
@@ -27,9 +28,9 @@ case $1 in
     rsync -arl /var/vcap/data/initdb_tmp/initdb $ROOT_DIR/$PG_DIR
     mkdir -p $ROOT_DIR/$PG_DIR/initdb/pg_log
     chmod -R 777 $ROOT_DIR/$PG_DIR/initdb
-    rsync -arl $JOB_DIR/bin/warden_postgresql_ctl $ROOT_DIR/usr/bin/postgresql_ctl
-    chmod 0755 $ROOT_DIR/usr/bin/postgresql_ctl
+    install -m 0755 -t $ROOT_DIR/usr/bin  $BIN_DIR/* $MONIT_DIR/* $JOB_DIR/bin/services_ctl $PKG_DIR/common/services/monit_ctl
     install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+    install -m 0600 -T $PKG_DIR/common/services/services.monitrc $ROOT_DIR/usr/local/etc/monitrc
 
     echo "Starting warden."
 
