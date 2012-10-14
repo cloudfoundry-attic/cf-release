@@ -20,6 +20,7 @@ templates:
   warden.yml.erb: config/warden.yml
   mongodb.conf.erb: config/mongodb.conf
   mongod_startup.sh: bin/mongod_startup.sh
+  services_ctl: bin/services_ctl
   services.conf: config/services.conf
 
 packages:
@@ -30,3 +31,4 @@ packages:
   - ruby
   - sqlite
   - syslog_aggregator
+  - monit
