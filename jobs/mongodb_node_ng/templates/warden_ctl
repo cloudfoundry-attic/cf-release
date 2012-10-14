@@ -4,6 +4,7 @@ JOB_DIR=/var/vcap/jobs/mongodb_node_ng
 PKG_DIR=/var/vcap/packages/mongodb_node_ng
 BIN_MONGO_1dot8_DIR=/var/vcap/packages/mongodb18/bin
 BIN_MONGO_2dot0_DIR=/var/vcap/packages/mongodb20/bin
+MONIT_DIR=/var/vcap/packages/monit/bin
 
 source /var/vcap/packages/mongodb_node_ng/common/services/utils.sh
 
@@ -16,11 +17,12 @@ case $1 in
     mkdir -p $ROOT_DIR/usr/share/mongodb/mongodb-2.0
 
     # Copy mongodb binaries and configuration files to warden base file system
-    install -m 0755 -t $ROOT_DIR/usr/bin $JOB_DIR/bin/mongod_startup.sh
     install -m 0755 -t $ROOT_DIR/usr/share/mongodb/mongodb-1.8 $BIN_MONGO_1dot8_DIR/*
     install -m 0755 -t $ROOT_DIR/usr/share/mongodb/mongodb-2.0 $BIN_MONGO_2dot0_DIR/*
+    install -m 0755 -t $ROOT_DIR/usr/bin  $BIN_DIR/* $MONIT_DIR/* $JOB_DIR/bin/services_ctl $PKG_DIR/common/services/monit_ctl
     install -m 0644 -t $ROOT_DIR/etc     $JOB_DIR/config/mongodb.conf
     install -m 0644 -t $ROOT_DIR/etc/init    $JOB_DIR/config/services.conf
+    install -m 0600 -T $PKG_DIR/common/services/services.monitrc $ROOT_DIR/usr/local/etc/monitrc
 
     start_warden
     ;;

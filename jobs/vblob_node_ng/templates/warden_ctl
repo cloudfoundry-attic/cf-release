@@ -3,8 +3,7 @@
 JOB_DIR=/var/vcap/jobs/vblob_node_ng
 PKG_DIR=/var/vcap/packages/vblob_node_ng
 BIN_DIR=/var/vcap/packages
-
-VBLOB_STARTUP=$WARDEN_ROOT_DIR/usr/bin/vblob_startup.sh
+MONIT_DIR=/var/vcap/packages/monit/bin
 
 source /var/vcap/packages/vblob_node_ng/common/services/utils.sh
 
@@ -14,13 +13,14 @@ case $1 in
     setup_warden
 
     # Copy vblob binaries and configuration files to warden base file system
-    install -m 0755 -t $ROOT_DIR/usr/bin   $JOB_DIR/bin/vblob_startup.sh
+    install -m 0755 -t $ROOT_DIR/usr/bin   $MONIT_DIR/* $JOB_DIR/bin/services_ctl $PKG_DIR/common/services/monit_ctl
     install -m 0644 -t $ROOT_DIR/etc/init  $JOB_DIR/config/services.conf
+    install -m 0600 -T $PKG_DIR/common/services/services.monitrc $ROOT_DIR/usr/local/etc/monitrc
     cp -af $BIN_DIR/node/* $ROOT_DIR/usr/
     mkdir -p $ROOT_DIR/var/vcap/packages/vblob
     cp -af $BIN_DIR/vblob/* $ROOT_DIR/var/vcap/packages/vblob/
 
-    start_warden $JOB_NAME $VBLOB_STARTUP
+    start_warden
     ;;
 
   stop)
