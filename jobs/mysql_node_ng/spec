@@ -23,6 +23,7 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml: config/warden.yml
   mysql_startup.sh: bin/mysql_startup.sh
+  services_ctl: bin/services_ctl
   services.conf: config/services.conf
   warden_mysql_init.erb: config/warden_mysql_init
 
@@ -34,3 +35,4 @@ packages:
   - ruby
   - sqlite
   - syslog_aggregator
+  - monit

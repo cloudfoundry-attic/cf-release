@@ -11,6 +11,7 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
   vblob_startup.sh: bin/vblob_startup.sh
+  services_ctl: bin/services_ctl
   services.conf: config/services.conf
 
 packages:
@@ -21,3 +22,4 @@ packages:
   - ruby
   - sqlite
   - syslog_aggregator
+  - monit
