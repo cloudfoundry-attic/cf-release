@@ -20,6 +20,7 @@ case $1 in
 
     install -m 0755 -d $ROOT_DIR/$JOB_DIR/config
     rsync -arl $JOB_DIR/config/warden_mysql_init $ROOT_DIR/$JOB_DIR/config/mysql_init
+    rsync -arl $JOB_DIR/config/my.cnf $ROOT_DIR/$JOB_DIR/config/my.cnf
 
     install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
 
