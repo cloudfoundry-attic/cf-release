@@ -46,6 +46,7 @@ logging:
   syslog: vcap.cloud_controller_ng
   <% end %>
   level: <%= properties.ccng.logging_level || "info" %>
+  max_retries: <%= properties.ccng.logging_max_retries || 1 %>
 
 <% db = properties.ccdb_ng.databases.find { |db| db.tag == "cc" } %>
 <% db_role = properties.ccdb_ng.roles.find { |role| role.tag == "admin" } %>
