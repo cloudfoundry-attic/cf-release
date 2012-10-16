@@ -4,3 +4,9 @@ timeout.connection = 60000
 timeout.socket = 60000
 users.properties = file:///var/vcap/jobs/dashboard/config/dashboard/users.properties
 logback.xml = /var/vcap/jobs/dashboard/config/dashboard/logback.xml
+uaa.url = http://uaa.<%= properties.domain %>
+uaa.accessToken.url = http://uaa.<%= properties.domain %>/oauth/token
+uaa.userAuthorize.url = http://uaa.<%= properties.domain %>/oauth/authorize
+uaa.checkToken.url = http://uaa.<%= properties.domain %>/check_token
+uaa.client.id = <%= properties.dashboard.uaa.client_id %>
+uaa.client.secret = <%= properties.dashboard.uaa.client_secret %>
