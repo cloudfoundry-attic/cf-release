@@ -1,0 +1,8 @@
+---
+name: bandwidth_proxy
+
+dependencies:
+- golang
+
+files:
+- services/tools/bandwidth_proxy/**/*
