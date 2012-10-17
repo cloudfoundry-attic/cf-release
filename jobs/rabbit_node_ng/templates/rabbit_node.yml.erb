@@ -40,7 +40,7 @@ admin_port_range:
   first: 20001
   last: 30000
 rabbitmq_server: /var/vcap/packages/rabbitmq/sbin/rabbitmq-server
-rabbitmq_log_dir: /var/vcap/sys/service-log/rabbit
+service_log_dir: /var/vcap/sys/service-log/rabbit
 service_start_timeout: <%= node.service_start_timeout || 5 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 image_dir: /var/vcap/store/rabbitmq_image
