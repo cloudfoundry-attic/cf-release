@@ -54,7 +54,7 @@ op_time_limit: <%= node.op_time_limit || 6 %>
 <%if use_warden %>
 use_warden: true
 warden:
-  log_dir: /var/vcap/sys/service-log/mysql
+  service_log_dir: /var/vcap/sys/service-log/mysql
   image_dir: /var/vcap/store/mysql_image
   service_start_timeout: <%= warden.service_start_timeout || 3 %>
   filesystem_quota: <%= warden.filesystem_quota || false %>
