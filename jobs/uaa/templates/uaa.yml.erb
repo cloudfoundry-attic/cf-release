@@ -58,6 +58,7 @@ oauth:
       - micro
       - support-signon
       - appdirect
+      - dashboard
   clients:
 <% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
     <%= id %>:<% client.marshal_dump.each do |key,value|%>
