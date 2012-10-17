@@ -41,12 +41,11 @@ serialization:
 # addtional options
 command_rename_prefix: <%= properties.redis_node.command_rename_prefix || "magic-protect-command-prefix" %>
 gzip_bin: /bin/gzip
-redis_log_dir: /var/vcap/sys/service-log/redis
 redis_server_path:
-+<% for version in supported_versions %>
-+  <%= "'#{version}': /var/vcap/packages/redis#{packages[version]}/bin/redis-server" %>
-+<% end %>
-
+<% for version in supported_versions %>
+  <%= "'#{version}': /var/vcap/packages/redis#{packages[version]}/bin/redis-server" %>
+<% end %>
+service_log_dir: /var/vcap/sys/service-log/redis
 image_dir: /var/vcap/store/redis_image
 max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 <% end %>
