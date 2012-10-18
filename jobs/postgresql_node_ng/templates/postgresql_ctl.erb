@@ -59,9 +59,8 @@ case "$1" in
       mkdir -p $LOG_DIR
       chown vcap:vcap $LOG_DIR
     fi
+
     sed -i "/log_directory/ {s/#log_directory/log_directory/;s/pg_log/\/var\/vcap\/sys\/log\/postgresql/}" $DATA_DIR/postgresql.conf
-    # disable built-in log rotator
-    sed -i "s/^[\w|#]*logging_collector = .*/logging_collector = off/" $DATA_DIR/postgresql.conf
 
     # pg global max connections
     # this can be updated by re-deployment rather than the first initialization

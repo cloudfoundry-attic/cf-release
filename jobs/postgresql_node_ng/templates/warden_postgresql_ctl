@@ -48,9 +48,6 @@ if [ ! -d $LOG_DIR ]; then
 fi
 sed -i "/log_directory/ {s/#log_directory/log_directory/;s|pg_log|$LOG_DIR|}" $DATA_DIR/postgresql.conf
 
-# disable built-in log rotator
-sed -i "s/^[\w|#]*logging_collector = .*/logging_collector = off/" $DATA_DIR/postgresql.conf
-
 # set adjustable configurations per plan
 <% adjustable_configs = %w(max_connections shared_buffers effective_cache_size work_mem temp_buffers checkpoint_segments) %>
 <% adjustable_configs.each do |config| %>
