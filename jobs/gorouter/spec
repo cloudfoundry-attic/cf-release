@@ -1,0 +1,10 @@
+---
+name: gorouter
+templates:
+  router.yml.erb: config/router.yml
+  gorouter_ctl: bin/gorouter_ctl
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+- common
+- gorouter

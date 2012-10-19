@@ -1,0 +1,41 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/gorouter
+LOG_DIR=/var/vcap/sys/log/gorouter
+PIDFILE=$RUN_DIR/gorouter.pid
+JOB_DIR=/var/vcap/jobs/gorouter
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "GOROUTER"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    exec /var/vcap/packages/gorouter/gorouter/bin/router \
+         -c $JOB_DIR/config/router.yml \
+         >>$LOG_DIR/gorouter.stdout.log \
+         2>>$LOG_DIR/gorouter.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: gorouter_ctl {start|stop}"
+
+    ;;
+
+esac

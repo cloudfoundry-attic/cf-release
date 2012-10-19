@@ -1,0 +1,11 @@
+---
+port: 80
+index: 1
+status:
+    port: 8084
+    user: "user"
+    password: "password"
+# session key should be a string of length 32
+sessionkey: "14fbc303b76bacd1e0a3ab641c11d114"
+nats:
+    uri: "nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>"
