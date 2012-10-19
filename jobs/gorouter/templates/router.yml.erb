@@ -1,0 +1,21 @@
+---
+port: <%= properties.gorouter.port %>
+index: <%= properties.gorouter.offset ? properties.gorouter.offset + spec.index : spec.index %>
+logging:
+  level: all
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.gorouter
+  <% end %>
+  file: /var/vcap/sys/log/gorouter/gorouter.log
+pidfile: /var/vcap/sys/run/gorouter/gorouter.pid
+<% if properties.gorouter.status %>
+status:
+    port: <%= properties.gorouter.status.port %>
+    user: <%= properties.gorouter.status.user %>
+    password: <%= properties.gorouter.status.password %>
+<% end %>
+# session key should be a string of length 32
+sessionkey: <%= properties.gorouter.session %>
+go_max_procs: <%= properties.gorouter.go_max_procs %>
+nats:
+    uri: "nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>"
