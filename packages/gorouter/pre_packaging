@@ -1,0 +1,15 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cd ${BUILD_DIR}
+
+git clone git@github.com:cloudfoundry/govendor.git govendor
+cp -a govendor/src/* gorouter/src/
+
+cd gorouter/src/
+git clone ssh://jefflee@reviews.cloudfoundry.org:29418/gometrics metrics
+git clone git@github.com:cloudfoundry/gonats.git github.com/cloudfoundry/gonats
+
+cd ../..
+rm -rf core
+rm -rf govendor
