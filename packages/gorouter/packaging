@@ -1,0 +1,16 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cp -a gorouter/* ${BOSH_INSTALL_TARGET}
+
+(
+  cd ${BOSH_INSTALL_TARGET}
+
+  GOLANG_PATH=`readlink -nf /var/vcap/packages/golang`
+  PATH=$GOLANG_PATH/bin:$PATH
+  export GOROOT=`readlink -nf /var/vcap/packages/golang`
+  export GOPATH=$PWD:$PWD/vendor
+
+  cd ${BOSH_INSTALL_TARGET}/src/router/router
+  go install
+)
