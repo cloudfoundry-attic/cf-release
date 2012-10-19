@@ -21,14 +21,16 @@ case "$1" in
 
     mkdir -p $RUN_DIR
     echo $$ > $PIDFILE # Satisfy Monit in case of slow start
-    <% if plan_conf && plan_conf.shmmax %>
+    <%if plan_conf && plan_conf.shmmax %>
     sysctl -w 'kernel.shmmax=<%=plan_conf.shmmax%>'
     <%else%>
     sysctl -w 'kernel.shmmax=284934144'
     <%end%>
 
-    <% if plan_conf && plan_conf.shmall%>
+    <%if plan_conf && plan_conf.shmall%>
     sysctl -w 'kernel.shmall=<%=plan_conf.shmall%>'
+    <%else%>
+    sysctl -w 'kernel.shmall=2097152'
     <%end%>
 
     if [ ! -d $DATA_DIR -o ! -f $DATA_DIR/postgresql.conf ]; then
@@ -63,18 +65,30 @@ case "$1" in
     # disable built-in log rotator
     sed -i "s/^[\w|#]*logging_collector = .*/logging_collector = off/" $DATA_DIR/postgresql.conf
 
-    # pg global max connections
-    # this can be updated by re-deployment rather than the first initialization
-    <% if properties.postgresql_server && properties.postgresql_server.max_connections %>
-    sed -i "s/^max_connections =.*/max_connections = <%= properties.postgresql_server.max_connections %>/" $DATA_DIR/postgresql.conf
-    <% end %>
-
     # set adjustable configurations per plan
-    <% adjustable_configs = %w(max_connections shared_buffers effective_cache_size work_mem temp_buffers checkpoint_segments) %>
-    <% adjustable_configs.each do |config| %>
-      <% if plan_conf && plan_conf.respond_to?(config.to_sym) && plan_conf.send(config.to_sym) %>
-    sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=plan_conf.send(config.to_sym)%>/" $DATA_DIR/postgresql.conf
-      <% end %>
+    <%
+      default_max_connections = 500
+      if properties.postgresql_server && properties.postgresql_server.max_connections
+        default_max_connections = properties.postgresql_server.max_connections
+      end
+      adjustable_configs = {
+      :max_connections => default_max_connections,
+      :shared_buffers => '128MB',
+      :effective_cache_size => '128MB',
+      :work_mem => '1MB',
+      :temp_buffers => '1MB',
+      :wal_buffers => '1MB',
+      :maintenance_work_mem => '30MB',
+      :checkpoint_segments => 16,
+      :checkpoint_segments_max => 300,
+      :max_prepared_transactions => 0
+    } %>
+    <% adjustable_configs.each do |config, default_value| %>
+    <% if plan_conf && plan_conf.respond_to?(config.to_sym) && plan_conf.send(config.to_sym) %>
+    sed -i "s/^[\w|#]*<%=config.to_s%> = .*/<%=config.to_s%> = <%=plan_conf.send(config.to_sym)%>/" $DATA_DIR/postgresql.conf
+    <% else %>
+    sed -i "s/^[\w|#]*<%=config.to_s%> = .*/<%=config.to_s%> = <%=default_value.to_s%>/" $DATA_DIR/postgresql.conf
+    <% end %>
     <% end %>
 
     # stop psql from adding timestamps to its log file names
