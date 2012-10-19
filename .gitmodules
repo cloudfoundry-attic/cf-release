@@ -37,3 +37,9 @@
 [submodule "src/tests"]
 	path = src/tests
 	url = git@github.com:cloudfoundry/vcap-yeti.git
+[submodule "gorouter"]
+	path = gorouter
+	url = ssh://jefflee@reviews.cloudfoundry.org:29418/gorouter
+[submodule "src/gorouter"]
+	path = src/gorouter
+	url = ssh://jefflee@reviews.cloudfoundry.org:29418/gorouter
