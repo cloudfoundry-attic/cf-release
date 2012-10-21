@@ -47,4 +47,4 @@ image_dir: /var/vcap/store/redis_image
 max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 persistent: <%= plan_enabled && plan_conf.persistent || false %>
 op_time_limit: <%= node.op_time_limit || 6 %>
-filesystem_quota: <%= node.filesystem_quota || "false" %>
+filesystem_quota: <%= plan_enabled && plan_conf.filesystem_quota || "false" %>
