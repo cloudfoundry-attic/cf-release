@@ -3,7 +3,7 @@ service = "postgresql"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
-use_warden= plan_conf.warden and plan_conf.warden.enable
+use_warden= plan_conf.warden && plan_conf.warden.enable
 %>
 check process postgresql
   with pidfile /var/vcap/sys/run/postgresql/postgresql.pid
