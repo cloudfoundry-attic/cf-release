@@ -9,3 +9,9 @@ check process router
   start program "/var/vcap/jobs/router_next/bin/router_ctl start"
   stop program "/var/vcap/jobs/router_next/bin/router_ctl stop"
   group vcap
+
+check process trafficlog_forwarder
+  with pidfile /var/vcap/sys/run/router/trafficlog_forwarder.pid
+  start program "/var/vcap/jobs/router_next/bin/trafficlog_forwarder_ctl start"
+  stop program "/var/vcap/jobs/router_next/bin/trafficlog_forwarder_ctl stop"
+  group vcap

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/router
+LOG_DIR=/var/vcap/sys/log/router
+JOB_DIR=/var/vcap/jobs/router_next
+BIN_DIR=$JOB_DIR/bin
+PIDFILE=$RUN_DIR/trafficlog_forwarder.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "trafficlog forwarder"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    # Remove the 'rm -f' line after several rounds of upgrade
+    # rsyslogd should be restarted if this file exists and gets removed.
+    # But for now, keep it simple for the impact is small.
+    rm -f /etc/rsyslog.d/10-trafficlog_forwarder.conf
+
+    exec /usr/sbin/rsyslogd -f $JOB_DIR/config/trafficlog_forwarder.conf -i $PIDFILE -c 4 \
+         >>$LOG_DIR/trafficlog_forwarder.stdout.log \
+         2>>$LOG_DIR/trafficlog_forwarder.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  reload)
+    pid=$(head -1 $PIDFILE)
+    kill -HUP pid
+
+    ;;
+
+  *)
+    echo "Usage: trafficlog_forwarder_ctl {start|stop}"
+
+    ;;
+
+esac
