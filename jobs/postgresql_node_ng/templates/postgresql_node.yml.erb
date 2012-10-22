@@ -62,6 +62,10 @@ warden:
  image_dir: /var/vcap/store/postgresql_image
  service_start_timeout: <%= warden.servie_start_timeout || 3 %>
  filesystem_quota: <%= warden.filesystem_quota || "false" %>
+<% if warden.clean_image_cache %>
+ clean_image_cache: true
+ clean_image_cache_interval: <%= warden.clean_image_cache_interval || 3 %>
+<% end %>
  port_range:
    first: 15000
    last: 25000
