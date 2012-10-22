@@ -49,6 +49,13 @@ case $1 in
 
     mkdir -p $GEM_CACHE_DIR
 
+    # Remove unused npm cache directory
+    NPM_OLD_CACHE=$GEM_CACHE_DIR/npm_cache/installed
+    if [ -d $NPM_OLD_CACHE ]; then
+      echo "Found old npm cache directory, deleting..."
+      rm -rf $NPM_OLD_CACHE
+    fi
+
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
