@@ -3,6 +3,7 @@
 JOB_DIR=/var/vcap/jobs/mysql_node_ng
 PKG_DIR=/var/vcap/packages/mysql_node_ng
 MYSQL_DIR=/var/vcap/packages/mysql
+MYSQL55_DIR=/var/vcap/packages/mysql55
 
 source /var/vcap/packages/mysql_node_ng/common/services/utils.sh
 
@@ -15,8 +16,14 @@ case $1 in
     install -m 0755 -d $ROOT_DIR/$MYSQL_DIR
     rsync -arl $JOB_DIR/packages/mysql/* $ROOT_DIR/$MYSQL_DIR/
 
+    install -m 0755 -d $ROOT_DIR/$MYSQL55_DIR
+    rsync -arl $JOB_DIR/packages/mysql55/* $ROOT_DIR/$MYSQL55_DIR/
+
     rsync -arl $JOB_DIR/bin/mysql_startup.sh $ROOT_DIR/usr/bin/mysql_startup.sh
     chmod 0755 $ROOT_DIR/usr/bin/mysql_startup.sh
+
+    rsync -arl $JOB_DIR/bin/mysql55_startup.sh $ROOT_DIR/usr/bin/mysql55_startup.sh
+    chmod 0755 $ROOT_DIR/usr/bin/mysql55_startup.sh
 
     install -m 0755 -d $ROOT_DIR/$JOB_DIR/config
     rsync -arl $JOB_DIR/config/warden_mysql_init $ROOT_DIR/$JOB_DIR/config/mysql_init

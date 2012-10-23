@@ -503,6 +503,14 @@ mysql/server-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNGZiNjhi%0AMjg5OGRkMCIsInNpZyI6Ing0MEVaWXVra2tXZUo4T2NKeHF3ZjZtT25MTT0i%0AfQ==%0A
   sha: 2bfd575545fe78729c56bb832aa69d8d9fc8630d
   size: 34179263
+mysql/server-5.5.27-rel28.1-296.Linux.x86_64.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEyMDRlNGU4NmVlMzk2OTIwNTA1YzQ0%0AOTFiOWJlYiIsInNpZyI6IjltcFhudjN4a1lhK0xibDVCVEFnVnNQTGVYST0i%0AfQ==%0A
+  sha: 2509e80864c20c381ad263ccc085e0794ef8307e
+  size: 59482086
+mysql/client-5.5.27-rel28.1-296.Linux.x86_64.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIwMDRlNGU4ZWM2NDZlMjEwNTA1YzQ0%0AOTg5NGE3ZSIsInNpZyI6IldFUE1NeEFvQU55Rm1tcVErbVNzc1FtcWxGOD0i%0AfQ==%0A
+  sha: e24b89fec6b9bb5380d8171e5fcad03dc86ca970
+  size: 4556418
 ruby/rubygems-1.8.24.tgz:
   object_id: eyJzaWciOiJkZkdFQ2k0aXFua1pESmZvalNKa09tSGtySkU9Iiwib2lkIjoi%0ANGU0ZTc4YmNhNDFlMTIyMjA0ZTRlOTg2M2QwNzYzMDRmYTFjYzI4Nzk3YTki%0AfQ==%0A
   sha: 30f27047e74f7943117736a0d3e224994fee0905
@@ -563,6 +571,10 @@ redis/redis-2.2.15.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNGZmZjRh%0AZjYxYjY5ZSIsInNpZyI6InA3Mkl4MVBKYWdGZnNYb0xjcGlDczY1QnJKRT0i%0AfQ==%0A
   sha: aa6758590363556e73f8d36bdfccb429011da331
   size: 456185
+redis/redis-2.4.17.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTA3ODc2%0ANDFhMDQ3NCIsInNpZyI6IkgxVGtzZUVzdnJUT0kxMTBsU1ZTTkUveU5icz0i%0AfQ==%0A
+  sha: 3d540531b3d7103a511d29661c2ae666dac60522
+  size: 656155
 hadoop/hadoop-0.20.2-cdh3u4.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNGZiZDAx%0AODQwN2YwYiIsInNpZyI6ImtrWDA3SXVFVzNiTmNPSHhqMGNhd0Nmb2I0RT0i%0AfQ==%0A
   sha: 1a9e6437b4b7f0bdbfdd3bd9170a33238e151f12
@@ -599,10 +611,10 @@ uaa/jdk1.6.0_35.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA3YzVk%0AODNlZDNlYSIsInNpZyI6IjJoU0Z3OXE0bHh1SzBaUmh6R1BkMnlscWJpaz0i%0AfQ==%0A
   sha: 47ead45c658f9c72577d202d8aa1675461ee3ad6
   size: 67126391
-uaa/cloudfoundry-identity-uaa-1.2.4.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEyMDRlNGU4NmVlOGUyYzkwNTA3ZGE3%0AOGRjZjBhNSIsInNpZyI6IjQ5eEdCelNmSVpZaGUzNEduVlJTVnZFVEpJVT0i%0AfQ==%0A
-  sha: 60db244045476aaaefed37073269ffdb3cacc42e
-  size: 17958524
+uaa/cloudfoundry-identity-uaa-1.2.5.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIwMDRlNGU4ZWM2NDg0MzEwNTA4NzAx%0AMzgyMDVkMiIsInNpZyI6IjVmSEVRaFUvWjZLamRZNUo2TEVjcCt0d1Fndz0i%0AfQ==%0A
+  sha: f357c80c2febbfc5505e4d7c2e1edda0d29c3bf1
+  size: 17960086
 dashboard/dashboard-1.0-SNAPSHOT-a4d4ea58.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTA3NGI3%0AOWJkN2JkZSIsInNpZyI6InRjclB1em84QXExbUw2RXpJU3RNTnpEUEpzND0i%0AfQ==%0A
   sha: f445ee816ccd46607da8c739551293773a36588e

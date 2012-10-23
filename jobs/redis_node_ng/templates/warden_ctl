@@ -2,7 +2,9 @@
 
 JOB_DIR=/var/vcap/jobs/redis_node_ng
 PKG_DIR=/var/vcap/packages/redis_node_ng
-BIN_DIR=/var/vcap/packages/redis/bin
+
+REDIS22_BIN_DIR=/var/vcap/packages/redis22/bin
+REDIS24_BIN_DIR=/var/vcap/packages/redis24/bin
 
 source /var/vcap/packages/redis_node_ng/common/services/utils.sh
 
@@ -11,8 +13,13 @@ case $1 in
   start)
     setup_warden
 
+    mkdir -p $ROOT_DIR/usr/share/redis/redis-2.2
+    mkdir -p $ROOT_DIR/usr/share/redis/redis-2.4
+
     # Copy redis binaries and configuration files to warden base file system
-    install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/redis_startup.sh $BIN_DIR/*
+    install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/redis_startup.sh
+    install -m 0755 -t $ROOT_DIR/usr/share/redis/redis-2.2 $REDIS22_BIN_DIR/*
+    install -m 0755 -t $ROOT_DIR/usr/share/redis/redis-2.4 $REDIS24_BIN_DIR/*
     install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
 
     start_warden

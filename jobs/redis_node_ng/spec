@@ -23,7 +23,8 @@ templates:
 packages:
   - common
   - redis_node_ng
-  - redis
+  - redis22
+  - redis24
   - ruby
   - sqlite
   - syslog_aggregator

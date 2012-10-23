@@ -41,6 +41,13 @@ case $1 in
     mkdir -p $SERV_LOG_DIR
 
     echo $$ > $PIDFILE
+
+    /var/vcap/jobs/vblob_node_ng/bin/create_vblob_tmp_dir
+    if [ $? -ne 0 ]; then
+      echo "failed to create vblob tmp directory"
+      exit 1
+    fi
+
     # Enable log aggregation
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
