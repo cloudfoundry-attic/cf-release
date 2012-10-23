@@ -5,8 +5,11 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 node = properties.redis_node
-supported_versions = node.supported_versions
+supported_versions = node.supported_versions || ["2.2"]
 default_version = node.default_version
+packages = {}
+# convention, package contains redis 2.2 is redis22
+supported_versions.each{|v| packages[v] = v.sub(".","")}
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -28,7 +31,10 @@ default_version: <%= "'#{default_version}'"%>
 max_memory: <%= plan_enabled && plan_conf.max_memory || 16 %>
 max_swap: <%= plan_enabled && plan_conf.max_swap || 32 %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
-redis_server_path: /var/vcap/packages/redis/bin/redis-server
+redis_server_path:
+<% for version in supported_versions %>
+  <%= "'#{version}': /var/vcap/packages/redis#{packages[version]}/bin/redis-server" %>
+<% end %>
 port_range:
   first: 5000
   last: 25000
