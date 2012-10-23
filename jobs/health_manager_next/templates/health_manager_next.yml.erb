@@ -16,7 +16,7 @@ shadow_mode: <%= properties.health_manager_next && properties.health_manager_nex
 
 intervals:
   <% intervals = properties.health_manager && properties.health_manager.intervals || OpenStruct.new %>
-  database_scan:         <%= intervals.database_scan         ||  60 %>
+  expected_state_update: <%= intervals.expected_state_update ||  60 %>
   droplet_lost:          <%= intervals.droplet_lost          ||  30 %>
   droplets_analysis:     <%= intervals.droplets_analysis     ||  20 %>
   flapping_death:        <%= intervals.flapping_death        ||   1 %>
