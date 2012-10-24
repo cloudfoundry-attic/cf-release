@@ -60,8 +60,35 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
+    # Migrate blessed gems to their new home
+    mkdir -p $GEM_CACHE_DIR/blessed_gems
+    if [ -d $GEM_CACHE_DIR/1.8/blessed_gems ]; then
+      mv -n $GEM_CACHE_DIR/1.8/blessed_gems/* $GEM_CACHE_DIR/blessed_gems
+    fi
+    if [-d $GEM_CACHE_DIR/1.9.1/blessed_gems ]; then
+      mv -n $GEM_CACHE_DIR/1.9.1/blessed_gems/* $GEM_CACHE_DIR/blessed_gems
+    fi
+    rm -rf $GEM_CACHE_DIR/1.8/blessed_gems
+    rm -rf $GEM_CACHE_DIR/1.9.1/blessed_gems
+
+    # Migrate cached gems to their new home
+    mkdir -p $GEM_CACHE_DIR/1.8.7
+    if [ -d $GEM_CACHE_DIR/1.8 ]; then
+      mv -n $GEM_CACHE_DIR/1.8/* $GEM_CACHE_DIR/1.8.7
+    fi
+    mkdir -p $GEM_CACHE_DIR/1.9.2p180
+    if [ -d $GEM_CACHE_DIR/1.9.1 ]; then
+      mv -n $GEM_CACHE_DIR/1.9.1/* $GEM_CACHE_DIR/1.9.2p180
+    fi
+    rm -rf $GEM_CACHE_DIR/1.8
+    rm -rf $GEM_CACHE_DIR/1.9.1
+
     # Seed the staging cache
-    cp -an /var/vcap/packages/dea_seed/gem_cache/* $GEM_CACHE_DIR
+    # TODO make dea_seed use a single blessed_gems dir and correct version numbers for easier copy
+    cp -an /var/vcap/packages/dea_seed/gem_cache/1.8/gem_cache/* $GEM_CACHE_DIR/1.8.7/gem_cache
+    cp -an /var/vcap/packages/dea_seed/gem_cache/1.9.1/gem_cache/* $GEM_CACHE_DIR/1.9.2p180/gem_cache
+    cp -an /var/vcap/packages/dea_seed/gem_cache/1.9.1/blessed_gems/* $GEM_CACHE_DIR/blessed_gems
+
     chown -R vcap:vcap $GEM_CACHE_DIR
 
     /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/stager/bin/create_secure_users.rb
