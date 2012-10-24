@@ -5,7 +5,22 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
-PACKAGE_DIR=/var/vcap/packages/postgresql
+version=$2
+case "$version" in
+  "9.0")
+    PACKAGE_DIR=/var/vcap/packages/postgresql
+    DATA_DIR=/var/vcap/store/postgresql
+    PORT=5432
+
+    ;;
+  "9.1")
+    PACKAGE_DIR=/var/vcap/packages/postgresql91
+    DATA_DIR=/var/vcap/store/postgresql91
+    PORT=5433
+
+    ;;
+esac
+
 DATA_DIR=/store/instance
 LOG_DIR=/store/log
 FIRST_TIME=0
@@ -17,6 +32,7 @@ case $1 in
     if [ ! -d $DATA_DIR -o ! -f $DATA_DIR/postgresql.conf ]; then
       FIRST_TIME=1
       mkdir -p $DATA_DIR
+      chown vcap:vcap $DATA_DIR
 
       # not to initdb
       #LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/initdb -E utf8 -D $DATA_DIR >> $LOG_DIR/postgresql_ctl.log
@@ -33,6 +49,7 @@ case $1 in
 
     rsync -arl $PACKAGE_DIR/initdb/pg_hba.conf $DATA_DIR/pg_hba.conf
 
+    chown -R vcap:vcap $DATA_DIR
     chmod -R 700 $DATA_DIR
 
     # host server could connect the container without password
@@ -44,6 +61,7 @@ case $1 in
     # log dir change should cover both clean deploy and upgrade push
     if [ ! -d $LOG_DIR ]; then
       mkdir -p $LOG_DIR
+      chown vcap:vcap $LOG_DIR
     fi
     sed -i "/log_directory/ {s/#log_directory/log_directory/;s|pg_log|$LOG_DIR|}" $DATA_DIR/postgresql.conf
 
@@ -52,9 +70,9 @@ case $1 in
     default_max_connections = 500
     if properties.postgresql_server && properties.postgresql_server.max_connections
       default_max_connections = properties.postgresql_server.max_connections
-      end
+    end
 
-      adjustable_configs = {
+    adjustable_configs = {
       :max_connections => [default_max_connections, nil],
       :shared_buffers => [128, 'MB'],
       :effective_cache_size => [128, 'MB'],
@@ -64,7 +82,8 @@ case $1 in
       :maintenance_work_mem => [30, 'MB'],
       :checkpoint_segments => [16, nil],
       :checkpoint_segments_max => [300, nil],
-      :max_prepared_transactions => [0, nil]
+      :max_prepared_transactions => [0, nil],
+      :port => ['$PORT', nil],
     } %>
 
     <% adjustable_configs.each do |config, default_value| %>
@@ -107,6 +126,6 @@ case $1 in
 
   *)
     echo "Usage: $0 {start|stop|status}"
-
     ;;
+
 esac
