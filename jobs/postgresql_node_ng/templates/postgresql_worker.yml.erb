@@ -6,6 +6,20 @@ plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 lifecycle = properties.service_lifecycle
 use_warden = plan_enabled && plan_conf.warden && plan_conf.warden.enable
+node = properties.postgresql_node
+supported_versions = node.supported_versions
+
+version_configs = {
+  '9.0' => {
+    'port'        => 5432,
+    'binary_dir'  => '/var/vcap/packages/postgresql/bin',
+  },
+
+  '9.1' => {
+    'port'        => 5433,
+    'binary_dir'  => '/var/vcap/packages/postgresql91/bin',
+  }
+}
 %>
 <% if lifecycle and lifecycle.resque %>
 <% snapshot_dir = lifecycle.mount_point || "/var/vcap/services_snapshot" %>
@@ -34,14 +48,20 @@ serialization:
   max_download_size_mb: <%= properties.service_lifecycle.serialization_max_download_size || 10 %>
 # addtional options
 postgresql:
-  host: 127.0.0.1
-  port: 5432
-  user: vcap
-  pass: vcap
-  database: postgres
-restore_bin: /var/vcap/packages/postgresql/bin/pg_restore
-dump_bin: /var/vcap/packages/postgresql/bin/pg_dump
+<% for version in supported_versions
+     config = version_configs[version]
+%>
+  '<%= version %>':
+   host: 127.0.0.1
+   user: vcap
+   pass: vcap
+   port: <%= config['port'] %>
+   database: postgres
+   dump_bin: <%= "#{config['binary_dir']}/pg_dump" %>
+   restore_bin: <%= "#{config['binary_dir']}/pg_restore" %>
 <% end %>
+
 <%if use_warden%>
 use_warden: true
 <%end%>
+<% end %>
