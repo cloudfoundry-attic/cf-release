@@ -9,6 +9,18 @@ supported_versions = node.supported_versions
 default_version = node.default_version
 warden = plan_enabled && plan_conf.warden
 use_warden = warden && warden.enable
+
+version_configs = {
+  '9.0' => {
+    'port'        => 5432,
+    'binary_dir'  => '/var/vcap/packages/postgresql/bin',
+  },
+
+  '9.1' => {
+    'port'        => 5433,
+    'binary_dir'  => '/var/vcap/packages/postgresql91/bin',
+  }
+}
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
@@ -40,16 +52,22 @@ max_long_tx: <%= plan_enabled && plan_conf.max_long_tx || 0 %>
 max_db_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
 disk_overhead: <%= plan_enabled && plan_conf.disk_overhead || 0.0 %>
 postgresql:
+<% for version in supported_versions
+     config = version_configs[version]
+%>
+  '<%= version %>':
    host: 127.0.0.1
    user: vcap
    pass: vcap
-   port: 5432
+   port: <%= config['port'] %>
    database: postgres
+   dump_bin: <%= "#{config['binary_dir']}/pg_dump" %>
+   restore_bin: <%= "#{config['binary_dir']}/pg_restore" %>
+<% end %>
+
 <% if node.ip_route %>
 ip_route: <%= node.ip_route %>
 <% end %>
-dump_bin: /var/vcap/packages/postgresql/bin/pg_dump
-restore_bin: /var/vcap/packages/postgresql/bin/pg_restore
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 z_interval: <%= node.z_interval || 30 %>
 max_nats_payload: <%= properties.nats.max_payload || 1048576 %>

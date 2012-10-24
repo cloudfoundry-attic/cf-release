@@ -5,7 +5,23 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
-PACKAGE_DIR=/var/vcap/packages/postgresql
+version=$1
+
+case "$version" in
+  "9.0")
+    PACKAGE_DIR=/var/vcap/packages/postgresql
+    DATA_DIR=/var/vcap/store/postgresql
+    PORT=5432
+
+    ;;
+  "9.1")
+    PACKAGE_DIR=/var/vcap/packages/postgresql91
+    DATA_DIR=/var/vcap/store/postgresql91
+    PORT=5433
+
+    ;;
+esac
+
 DATA_DIR=/store/instance
 LOG_DIR=/store/log
 FIRST_TIME=0
@@ -65,7 +81,8 @@ adjustable_configs = {
   :maintenance_work_mem => [30, 'MB'],
   :checkpoint_segments => [16, nil],
   :checkpoint_segments_max => [300, nil],
-  :max_prepared_transactions => [0, nil]
+  :max_prepared_transactions => [0, nil],
+  :port => ['$PORT', nil],
 } %>
 
 <% adjustable_configs.each do |config, default_value| %>
