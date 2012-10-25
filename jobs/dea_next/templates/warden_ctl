@@ -44,7 +44,7 @@ case $1 in
     # Clear existing containers if warden was not drained
     if [ ! -f /var/vcap/data/warden/depot/drained ]
     then
-      root/linux/clear.sh /var/vcap/data/warden/depot
+      find /var/vcap/data/warden/depot/ -mindepth 1 -maxdepth 1 -type d | xargs -t -n1 root/linux/destroy.sh
     fi
 
     export PATH=/var/vcap/packages/ruby/bin:$PATH
