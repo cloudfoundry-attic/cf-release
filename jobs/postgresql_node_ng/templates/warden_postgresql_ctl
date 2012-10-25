@@ -59,23 +59,23 @@ if properties.postgresql_server && properties.postgresql_server.max_connections
 end
 
 adjustable_configs = {
-  :max_connections => default_max_connections,
-  :shared_buffers => '128MB',
-  :effective_cache_size => '128MB',
-  :work_mem => '1MB',
-  :temp_buffers => '1MB',
-  :wal_buffers => '1MB',
-  :maintenance_work_mem => '30MB',
-  :checkpoint_segments => 16,
-  :checkpoint_segments_max => 300,
-  :max_prepared_transactions => 0
+  :max_connections => [default_max_connections, nil],
+  :shared_buffers => [128, 'MB'],
+  :effective_cache_size => [128, 'MB'],
+  :work_mem => [1, 'MB'],
+  :temp_buffers => [1, 'MB'],
+  :wal_buffers => [1, 'MB'],
+  :maintenance_work_mem => [30, 'MB'],
+  :checkpoint_segments => [16, nil],
+  :checkpoint_segments_max => [300, nil],
+  :max_prepared_transactions => [0, nil]
 } %>
+
 <% adjustable_configs.each do |config, default_value| %>
-  <% if plan_conf && plan_conf.respond_to?(config.to_sym) && plan_conf.send(config.to_sym) %>
-sed -i "s/^[\w|#]*<%=config.to_s%> = .*/<%=config.to_s%> = <%=plan_conf.send(config.to_sym)%>/" $DATA_DIR/postgresql.conf
-  <% else %>
-sed -i "s/^[\w|#]*<%=config.to_s%> = .*/<%=config.to_s%> = <%=default_value.to_s%>/" $DATA_DIR/postgresql.conf
-  <% end %>
+<% value = plan_conf && plan_conf.respond_to?(config) && plan_conf.send(config)? plan_conf.send(config) : default_value[0] %>
+<% units = default_value[1] %>
+<% config = config.to_s %>
+sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=value%><%=units%>/" $DATA_DIR/postgresql.conf
 <% end %>
 
 # stop psql from adding timestamps to its log file names
