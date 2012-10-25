@@ -46,4 +46,4 @@ fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false"
 image_dir: /var/vcap/store/rabbitmq_image
 max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 op_time_limit: <%= node.op_time_limit || 8 %>
-filesystem_quota: <%= node.filesystem_quota || "false" %>
+filesystem_quota: <%= plan_enabled && plan_conf.filesystem_quota || "false" %>
