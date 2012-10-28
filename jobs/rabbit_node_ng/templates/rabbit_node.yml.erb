@@ -21,7 +21,6 @@ logging:
   syslog: vcap.rabbit_node
   <% end %>
 pid: /var/vcap/sys/run/rabbit_node/rabbit_node.pid
-max_memory_factor: <%= plan_enabled && plan_conf.max_memory_factor || 0.5 %>
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
@@ -47,3 +46,9 @@ image_dir: /var/vcap/store/rabbitmq_image
 max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 op_time_limit: <%= node.op_time_limit || 8 %>
 filesystem_quota: <%= plan_enabled && plan_conf.filesystem_quota || "false" %>
+vm_memory_high_watermark: <%= plan_enabled && plan_conf.vm_memory_high_watermark || 0.0793 %>
+bandwidth_proxy:
+  bin: /var/vcap/packages/bandwidth_proxy/bin/bandwidth_proxy
+  # Set default window to 1 day
+  window: 86400
+  size: <%= plan_enabled && plan_conf.bandwidth_quotas && plan_conf.bandwidth_quotas.per_day || 1 %>
