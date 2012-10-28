@@ -12,7 +12,7 @@ case $1 in
 
     # Copy rabbitmq binaries and configuration files to warden base file system
     install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/rabbitmq_startup.sh
-    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
     for i in "var/vcap/packages" "var/vcap/data/packages"
     do
 	mkdir -p $ROOT_DIR/$i
