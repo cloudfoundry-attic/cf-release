@@ -30,7 +30,7 @@ templates:
   warden.yml: config/warden.yml
   mysql_startup.sh: bin/mysql_startup.sh
   mysql55_startup.sh: bin/mysql55_startup.sh
-  services.conf: config/services.conf
+  pre_service_start.sh: bin/pre_service_start.sh
   warden_mysql_init.erb: config/warden_mysql_init
 
 packages:
