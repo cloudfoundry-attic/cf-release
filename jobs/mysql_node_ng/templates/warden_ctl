@@ -28,7 +28,7 @@ case $1 in
     install -m 0755 -d $ROOT_DIR/$JOB_DIR/config
     rsync -arl $JOB_DIR/config/warden_mysql_init $ROOT_DIR/$JOB_DIR/config/mysql_init
 
-    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
 
     echo "Starting warden."
 

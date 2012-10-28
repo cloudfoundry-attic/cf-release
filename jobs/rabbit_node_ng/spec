@@ -13,7 +13,7 @@ templates:
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
   rabbitmq_startup.sh: bin/rabbitmq_startup.sh
-  services.conf: config/services.conf
+  pre_service_start.sh: bin/pre_service_start.sh
 
 packages:
   - common
