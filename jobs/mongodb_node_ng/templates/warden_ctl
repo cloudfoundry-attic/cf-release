@@ -24,7 +24,7 @@ case $1 in
     install -m 0755 -t $ROOT_DIR/usr/share/mongodb/mongodb_proxy $BIN_MONGO_PROXY_DIR/*
     install -m 0644 -t $ROOT_DIR/etc     $JOB_DIR/config/mongodb.conf
     install -m 0644 -t $ROOT_DIR/etc     $JOB_DIR/config/mongodb_proxy.yml
-    install -m 0644 -t $ROOT_DIR/etc/init    $JOB_DIR/config/services.conf
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
 
     start_warden
     ;;
