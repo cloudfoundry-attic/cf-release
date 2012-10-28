@@ -49,7 +49,7 @@ case $1 in
     chmod -R 777 $ROOT_DIR/$PG_DIR/initdb
     rsync -arl $JOB_DIR/bin/warden_postgresql_ctl $ROOT_DIR/usr/bin/postgresql_ctl
     chmod 0755 $ROOT_DIR/usr/bin/postgresql_ctl
-    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
 
     echo "Starting warden."
 
