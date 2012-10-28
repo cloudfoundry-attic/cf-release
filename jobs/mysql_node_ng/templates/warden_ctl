@@ -30,7 +30,7 @@ case $1 in
     rsync -arl $JOB_DIR/config/my.cnf $ROOT_DIR/$JOB_DIR/config/my.cnf
     rsync -arl $JOB_DIR/config/my55.cnf $ROOT_DIR/$JOB_DIR/config/my55.cnf
 
-    install -m 0644 -t $ROOT_DIR/etc/init $JOB_DIR/config/services.conf
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
 
     echo "Starting warden."
 

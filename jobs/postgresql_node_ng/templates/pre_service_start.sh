@@ -4,7 +4,6 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
-pre-start script
 chown vcap:vcap -R /store
 touch /tmp/vcap_chown.out
 <% if plan_conf && plan_conf.shmmax %>
@@ -18,8 +17,3 @@ sysctl -w 'kernel.shmall=<%=plan_conf.shmall%>'
 <%else%>
 sysctl -w 'kernel.shmall=2097152'
 <%end%>
-end script
-
-#start on runlevel [2345]
-start on filesystem
-stop on runlevel S

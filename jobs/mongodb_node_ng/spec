@@ -21,7 +21,7 @@ templates:
   mongodb.conf.erb: config/mongodb.conf
   mongodb_proxy.yml.erb: config/mongodb_proxy.yml
   mongod_startup.sh: bin/mongod_startup.sh
-  services.conf: config/services.conf
+  pre_service_start.sh: bin/pre_service_start.sh
 
 packages:
   - common
