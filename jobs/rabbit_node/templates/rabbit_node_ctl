@@ -12,8 +12,6 @@ MIG_DIR=<%= properties.service_migration && properties.service_migration.mount_p
 
 source /var/vcap/packages/common/utils.sh
 
-source /var/vcap/packages/common/utils.sh
-
 case $1 in
 
   start)
