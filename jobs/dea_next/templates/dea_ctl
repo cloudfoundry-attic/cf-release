@@ -18,6 +18,13 @@ case $1 in
 
     echo $$ > $PIDFILE
 
+    # Configure the core file location
+    mkdir -p /var/vcap/sys/cores
+    chown vcap:vcap /var/vcap/sys/cores
+    echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
+
+    ulimit -c unlimited
+
     # TCP_FIN_TIMEOUT
     # This setting determines the time that must elapse before TCP/IP can release a closed connection and reuse
     # its resources. During this TIME_WAIT state, reopening the connection to the client costs less than establishing
@@ -39,12 +46,6 @@ case $1 in
     # Default value is 0 (disabled). It is generally a safer alternative to tcp_tw_recycle
 
     echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
-
-    # Configure the core file location
-    mkdir -p /var/vcap/sys/cores
-    echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
-
-    ulimit -c unlimited
 
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
