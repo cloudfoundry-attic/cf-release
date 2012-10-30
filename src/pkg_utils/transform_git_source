@@ -2,10 +2,14 @@
 # vim: fileencoding=utf-8
 # vim: ts=2 sw=2 sts=2 et
 
+require 'digest/sha1'
+require 'tmpdir'
+require 'pathname'
 require 'rubygems'
 require 'bundler'
 require 'fileutils'
 require 'logger'
+require 'uri'
 
 # Rewrite git sources in Gemfile and lock files to paths
 #
@@ -18,16 +22,53 @@ def `(cmd)
   result
 end
 
+raise ArgumentError, "expecting $RELEASE_DIR, but not found" unless ENV["RELEASE_DIR"]
+GIT_CACHE_ROOT_PATH=Pathname.new(ENV["RELEASE_DIR"]).join('.cache','vcap_git_gems').freeze
+
+# fetch into a per-repo local bare repo to store all objects to speed up
+# repeated clones
+#
+# rant: I like omni-repos, but per-repo checkouts make pieter happy, and i'm
+# happy that he's happy
+def fetch_into_cache(local_repo, spec)
+  uri = spec.source.uri
+  unless local_repo.exist?
+    local_repo.mkpath
+    Dir.chdir(local_repo.to_s) do
+      %x(git clone --bare #{uri} .)
+    end
+  end
+  Dir.chdir(local_repo) do
+    cmd_rev_exist = "git cat-file -e #{spec.source.options["revision"]}"
+    cmd_fetch = "git fetch --quiet --force"
+    %x(#{cmd_rev_exist} || #{cmd_fetch} )
+  end
+end
+
+# @param [URI] uri URI to the git repo
+# @return [Pathname]
+def local_repo_path(uri)
+  raise unless uri.kind_of?(URI::Generic)
+  scheme, host, port, path = [ uri.scheme, uri.host, uri.port, uri.path ]
+  sanitized_parts = path.split('/').map {|s| URI::unescape(s).gsub(/[^-.\w]/, '_')}
+  GIT_CACHE_ROOT_PATH.join([scheme, host, port].join("_")).join(*sanitized_parts)
+end
+
+# @param [Pathname] path
 def checkout(spec, path)
-  unless path.join('.git').exist?
+  local_repo = local_repo_path(URI::parse(spec.source.uri))
+  fetch_into_cache(local_repo, spec)
+  if path.join('.git').exist?
+    # somebody's done a checkout, hmm
+    %x(git fetch --quiet #{local_repo.to_s})
+  else
+    # we haven't done a checkout yet
     path.parent.mkpath
     path.rmtree if path.exist?
-    %x(git clone --no-checkout #{spec.source.uri} #{path})
+    %x(git clone --no-checkout #{local_repo.to_s} #{path.to_s})
   end
   Dir.chdir(path) do
-    %x(git fetch --quiet --tags #{spec.source.uri})
-    # This is gross, but why do they keep this private?
-    revision = spec.source.send(:revision)
+    revision = spec.source.options["revision"]
     %x(git reset --hard #{revision})
   end
 end
