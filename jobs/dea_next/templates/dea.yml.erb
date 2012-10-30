@@ -44,14 +44,24 @@ resources:
   <% else %>
   memory_mb: 8000
   <% end %>
+
+  <% if properties.dea_next && properties.dea_next.memory_overcommit_factor %>
+  memory_overcommit_factor: <%= properties.dea_next.memory_overcommit_factor %>
+  <% else %>
   memory_overcommit_factor: 1
+  <% end %>
 
   <% if properties.dea_next && properties.dea_next.disk_mb %>
   disk_mb: <%= properties.dea_next.disk_mb %>
   <% else %>
   disk_mb: 32000
   <% end %>
+
+  <% if properties.dea_next && properties.dea_next.disk_overcommit_factor %>
+  disk_overcommit_factor: <%= properties.dea_next.disk_overcommit_factor %>
+  <% else %>
   disk_overcommit_factor: 1
+  <% end %>
 
   <% if properties.dea_next && properties.dea_next.num_instances %>
   num_instances: <%= properties.dea_next.num_instances %>
