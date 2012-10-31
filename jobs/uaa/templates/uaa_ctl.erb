@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export PATH=/var/vcap/packages/uaa/jre/bin:$PATH
+export PATH=/var/vcap/packages/dea_jvm/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/uaa
 LOG_DIR=/var/vcap/sys/log/uaa
 JOB_DIR=/var/vcap/jobs/uaa
@@ -78,7 +78,6 @@ case $1 in
 
     export CLOUD_FOUNDRY_CONFIG_PATH=/var/vcap/jobs/uaa/config
     export JAVA_OPTS="-DPID=$$ $HTTP_PROXY_JAVA_OPTIONS"
-    export CATALINA_OPTS="<%= properties.uaa.catalina_opts %>"
 
     cd /var/vcap/data/uaa
     exec tomcat/bin/catalina.sh run
