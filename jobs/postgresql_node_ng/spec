@@ -16,7 +16,7 @@ templates:
 
   warden_ctl: bin/warden_ctl
   warden.yml: config/warden.yml
-  warden_postgresql_ctl: bin/warden_postgresql_ctl
+  warden_service_ctl: bin/warden_service_ctl
   services.conf: config/services.conf
 packages:
   - common
