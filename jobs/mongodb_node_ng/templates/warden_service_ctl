@@ -1,0 +1,26 @@
+#!/bin/bash
+case $1 in
+  start)
+    shift
+
+    touch /store/log/mongodb.log
+    mkdir -p /store/instance/data
+    version=$1
+    shift
+    args=$*
+    exec /usr/share/mongodb/mongodb-$version/mongod $args --config /etc/mongodb.conf
+    ;;
+
+  stop)
+    #TODO
+    ;;
+
+  status)
+    #TODO
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+
+    ;;
+esac

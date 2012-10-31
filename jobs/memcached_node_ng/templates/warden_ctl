@@ -15,6 +15,8 @@ case $1 in
 
     # Copy memcached binaries to warden base file system
     install -m 0755 -t $ROOT_DIR/usr/share/memcached/bin $MEMCACHED_BIN_DIR/*
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
+    install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/warden_service_ctl
 
     start_warden
     ;;
