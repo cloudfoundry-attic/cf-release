@@ -29,7 +29,7 @@ logging:
   syslog: vcap.postgresql_node
   <% end %>
 pid: /var/vcap/sys/run/postgresql_node/postgresql_node.pid
-node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
 
