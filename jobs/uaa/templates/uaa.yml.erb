@@ -35,18 +35,18 @@ varz:
   type: uaa
   uuid: _random_uuid_replaced_by_a_script_
 
-<% if properties.uaa.cc && properties.uaa.cc.token_secret %>
-jwt:
-  token:
-    signing-key: <%= properties.uaa.cc.token_secret %>
-    verification-key: <%= properties.uaa.cc.token_secret %>
-<% elsif properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
+<% if properties.uaa.jwt && properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
 jwt:
   token:
     signing-key: |
 <%= "        " + properties.uaa.jwt.signing_key.gsub("\n", "\n        ") %>
     verification-key: |
 <%= "        " + properties.uaa.jwt.verification_key.gsub("\n", "\n        ") %>
+<% elsif properties.uaa.cc && properties.uaa.cc.token_secret %>
+jwt:
+  token:
+    signing-key: <%= properties.uaa.cc.token_secret %>
+    verification-key: <%= properties.uaa.cc.token_secret %>
 <% end %>
 
 <% if properties.uaa.batch %>
