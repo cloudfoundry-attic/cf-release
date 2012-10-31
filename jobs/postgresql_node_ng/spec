@@ -16,8 +16,8 @@ templates:
 
   warden_ctl: bin/warden_ctl
   warden.yml: config/warden.yml
-  warden_postgresql_ctl: bin/warden_postgresql_ctl
   pre_service_start.sh: bin/pre_service_start.sh
+  warden_service_ctl: bin/warden_service_ctl
 packages:
   - common
   - postgresql

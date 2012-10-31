@@ -29,7 +29,6 @@ supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
 
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
-memcached_server_path: /usr/share/memcached/bin/memcached
 port_range:
   first: 11000
   last: 25000
