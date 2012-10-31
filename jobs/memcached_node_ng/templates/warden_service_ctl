@@ -1,0 +1,22 @@
+#!/bin/bash
+case $1 in
+  start)
+    shift
+
+    args=$*
+    exec start-stop-daemon --start --quiet --chuid vcap --exec /usr/share/memcached/bin/memcached -- $args
+    ;;
+
+  stop)
+    #TODO
+    ;;
+
+  status)
+    #TODO
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+
+    ;;
+esac

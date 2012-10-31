@@ -22,6 +22,7 @@ templates:
   mongodb_proxy.yml.erb: config/mongodb_proxy.yml
   mongod_startup.sh: bin/mongod_startup.sh
   pre_service_start.sh: bin/pre_service_start.sh
+  warden_service_ctl: bin/warden_service_ctl
 
 packages:
   - common

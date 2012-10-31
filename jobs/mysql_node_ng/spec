@@ -28,9 +28,8 @@ templates:
 
   warden_ctl: bin/warden_ctl
   warden.yml: config/warden.yml
-  mysql_startup.sh: bin/mysql_startup.sh
-  mysql55_startup.sh: bin/mysql55_startup.sh
   pre_service_start.sh: bin/pre_service_start.sh
+  warden_service_ctl: bin/warden_service_ctl
   warden_mysql_init.erb: config/warden_mysql_init
 
 packages:
