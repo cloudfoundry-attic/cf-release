@@ -5,7 +5,6 @@ plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
 chown vcap:vcap -R /store
-touch /tmp/vcap_chown.out
 <% if plan_conf && plan_conf.shmmax %>
 sysctl -w 'kernel.shmmax=<%=plan_conf.shmmax%>'
 <%else%>

@@ -1,0 +1,22 @@
+#!/bin/bash
+case $1 in
+  start)
+    shift
+    version=$1
+    shift
+    exec start-stop-daemon --start --quiet --chuid vcap --exec  /usr/share/redis/redis-${version}/redis-server -- /store/instance/redis.conf
+    ;;
+
+  stop)
+    #TODO
+    ;;
+
+  status)
+    #TODO
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+
+    ;;
+esac
