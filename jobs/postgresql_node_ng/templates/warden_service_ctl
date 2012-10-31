@@ -1,0 +1,112 @@
+#!/bin/bash
+<%
+service = "postgresql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+%>
+PACKAGE_DIR=/var/vcap/packages/postgresql
+DATA_DIR=/store/instance
+LOG_DIR=/store/log
+FIRST_TIME=0
+
+case $1 in
+  start)
+    echo `date` >> $LOG_DIR/postgresql_ctl.log
+
+    if [ ! -d $DATA_DIR -o ! -f $DATA_DIR/postgresql.conf ]; then
+      FIRST_TIME=1
+      mkdir -p $DATA_DIR
+
+      # not to initdb
+      #LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/initdb -E utf8 -D $DATA_DIR >> $LOG_DIR/postgresql_ctl.log
+      # copy initdb
+      rsync -arl $PACKAGE_DIR/initdb/* $DATA_DIR
+
+      if [ $? != 0 ]; then
+        echo "ERROR: Unable to initialize PostgreSQL DB" >> $LOG_DIR/postgresql_ctl.log
+        exit 1
+      fi
+      # set listening address if supplied
+      sed -i "s/#listen_addresses\( *\)=\( *\)'localhost'/listen_addresses\1=\2'*'/" $DATA_DIR/postgresql.conf
+    fi
+
+    rsync -arl $PACKAGE_DIR/initdb/pg_hba.conf $DATA_DIR/pg_hba.conf
+
+    chmod -R 700 $DATA_DIR
+
+    # host server could connect the container without password
+    host_ip=`cat /etc/hosts | grep " host$"| cut -d' ' -f1`
+    echo "host all all $host_ip/32 trust" >> $DATA_DIR/pg_hba.conf
+    echo "host all all 0.0.0.0/0 md5" >> $DATA_DIR/pg_hba.conf
+
+    # since postgresql service is alive
+    # log dir change should cover both clean deploy and upgrade push
+    if [ ! -d $LOG_DIR ]; then
+      mkdir -p $LOG_DIR
+    fi
+    sed -i "/log_directory/ {s/#log_directory/log_directory/;s|pg_log|$LOG_DIR|}" $DATA_DIR/postgresql.conf
+
+    # set adjustable configurations per plan
+    <%
+    default_max_connections = 500
+    if properties.postgresql_server && properties.postgresql_server.max_connections
+      default_max_connections = properties.postgresql_server.max_connections
+      end
+
+      adjustable_configs = {
+      :max_connections => [default_max_connections, nil],
+      :shared_buffers => [128, 'MB'],
+      :effective_cache_size => [128, 'MB'],
+      :work_mem => [1, 'MB'],
+      :temp_buffers => [1, 'MB'],
+      :wal_buffers => [1, 'MB'],
+      :maintenance_work_mem => [30, 'MB'],
+      :checkpoint_segments => [16, nil],
+      :checkpoint_segments_max => [300, nil],
+      :max_prepared_transactions => [0, nil]
+    } %>
+
+    <% adjustable_configs.each do |config, default_value| %>
+    <% value = plan_conf && plan_conf.respond_to?(config) && plan_conf.send(config)? plan_conf.send(config) : default_value[0] %>
+    <% units = default_value[1] %>
+    <% config = config.to_s %>
+    sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=value%><%=units%>/" $DATA_DIR/postgresql.conf
+    <% end %>
+
+    # stop psql from adding timestamps to its log file names
+    sed -i "/log_filename/ {s/#log_filename/log_filename/;s/postgresql-%Y-%m-%d_%H%M%S.log/postgresql.log/}" $DATA_DIR/postgresql.conf
+
+    echo "Starting PostgreSQL `cat $DATA_DIR/PG_VERSION`: " >> $LOG_DIR/postgresql_ctl.log
+    LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/pg_ctl -w start -D $DATA_DIR -l "$LOG_DIR/startup.log"
+
+    if [ $? == 0 ]; then
+      echo "PostgreSQL `cat $DATA_DIR/PG_VERSION` started successfully" >> $LOG_DIR/postgresql_ctl.log
+      if [ $FIRST_TIME -eq 1 ]; then
+        # Setup contrib packages
+        for sqlf in citext.sql fuzzystrmatch.sql isn.sql ltree.sql pageinspect.sql pg_buffercache.sql pgcrypto.sql pg_freespacemap.sql sslinfo.sql tablefunc.sql uuid-ossp.sql
+        do
+          echo "Installing contrib package ${sqlf}" >> $LOG_DIR/postgresql_ctl.log
+          ${PACKAGE_DIR}/bin/psql -U vcap -f ${PACKAGE_DIR}/share/${sqlf} -d postgres >> $LOG_DIR/postgresql_ctl.log
+        done
+      fi
+      echo `date` >> $LOG_DIR/postgresql_ctl.log
+    else
+      echo "The PostgreSQL server start seems to have some problems, please see logs for details." >> $LOG_DIR/postgresql_ctl.log
+      exit 1
+    fi
+    ;;
+
+  stop)
+    #TODO
+    ;;
+
+  status)
+    #TODO
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+
+    ;;
+esac
