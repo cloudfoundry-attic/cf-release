@@ -1,0 +1,21 @@
+#!/bin/bash
+case $1 in
+  start)
+    # start the instance
+    touch /store/log/vblob.log
+    exec /usr/bin/node /var/vcap/packages/vblob/server.js -f /store/instance/config.json
+    ;;
+
+  stop)
+    #TODO
+    ;;
+
+  status)
+    #TODO
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+
+    ;;
+esac

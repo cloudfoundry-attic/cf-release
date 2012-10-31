@@ -1,0 +1,25 @@
+#!/bin/bash
+case $1 in
+  start)
+    shift
+    version=$1
+
+    mkdir -p /store/instance/mysql_tmp
+    mkdir -p /var/vcap/sys/run
+
+    /var/vcap/packages/mysql${version}/libexec/mysql_warden.server start /var/vcap/jobs/mysql_node_ng/config/my${version}.cnf
+    ;;
+
+  stop)
+    #TODO
+    ;;
+
+  status)
+    #TODO
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+
+    ;;
+esac
