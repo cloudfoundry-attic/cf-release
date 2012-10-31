@@ -62,7 +62,10 @@ check process mysql_worker_<%= ind %>
   stop program "/var/vcap/jobs/mysql_node_ng/bin/mysql_worker_ctl stop <%= ind %>"
   group worker
   group vcap
-<% if not use_warden %>
+
+<% if use_warden %>
+  depends on warden
+<% else %>
   <% supported_versions.each do |version|  %>
   depends on <%= version_configs[version]['name'] %>
   <% end %>
