@@ -11,4 +11,4 @@ done
 mkdir -p /store/instance/mysql_tmp
 mkdir -p /var/vcap/sys/run
 
-/var/vcap/packages/mysql/libexec/mysql_warden.server start /store/instance/my.cnf
+/var/vcap/packages/mysql/libexec/mysql_warden.server start /var/vcap/jobs/mysql_node_ng/config/my.cnf
