@@ -4,6 +4,7 @@ service = "mysql"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+connection_pool_size = plan_enabled && plan_conf.connection_pool_size
 node = properties.mysql_node
 supported_versions = node.supported_versions
 default_version = node.default_version
@@ -58,7 +59,9 @@ mysql:
     mysqldump_bin:  <%= "#{version_configs[version]['binary_dir']}/mysqldump" %>
     mysql_bin:  <%= "#{version_configs[version]['binary_dir']}/mysql" %>
 <% end %>
-connection_pool_size: <%= node.connection_pool_size || 5 %>
+connection_pool_size:
+  min: <%= connection_pool_size && connection_pool_size.min || 5 %>
+  max: <%= connection_pool_size && connection_pool_size.max || 10 %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 gzip_bin: /bin/gzip
 <% if node.ip_route %>
