@@ -18,7 +18,8 @@ templates:
 packages:
   - common
   - erlang
-  - rabbitmq
+  - rabbitmq-2.4
+  - rabbitmq-2.8
   - ruby
   - sqlite
   - rabbit_node_ng
