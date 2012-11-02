@@ -21,7 +21,7 @@ logging:
   syslog: vcap.redis_node
   <% end %>
 pid: /var/vcap/sys/run/redis_node/redis_node.pid
-node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
 max_memory: <%= plan_enabled && plan_conf.max_memory || 16 %>

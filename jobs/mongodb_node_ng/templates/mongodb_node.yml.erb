@@ -25,7 +25,7 @@ logging:
   syslog: vcap.mongodb_node
   <% end %>
 pid: /var/vcap/sys/run/mongodb_node/mongodb_node.pid
-node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
+node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
 max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 filesystem_quota: <%= plan_enabled && plan_conf.filesystem_quota || "false" %>

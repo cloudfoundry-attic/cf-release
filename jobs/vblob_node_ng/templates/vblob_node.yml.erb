@@ -7,7 +7,7 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 node = properties.vblob_node
 supported_versions = node.supported_versions
 default_version = node.default_version
-node_id = "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}"
+node_id = "#{service}_node_#{plan}_#{spec.index}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
