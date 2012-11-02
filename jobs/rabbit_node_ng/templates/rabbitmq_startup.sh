@@ -1,9 +1,13 @@
+set -e
 for n in `seq 1 100`; do
   if [ -f /tmp/vcap_chown.out ]; then
     break
   fi
   sleep 0.1
 done
+
+version=$1
+shift
 
 export ERLANG_HOME=/var/vcap/packages/erlang
 export PATH=/var/vcap/packages/erlang/bin:$PATH
@@ -20,4 +24,4 @@ export RABBITMQ_SERVER_START_ARGS="-smp disable"
 export RABBITMQ_CONSOLE_LOG=reuse
 export ERL_CRASH_DUMP="/dev/null"
 export ERL_CRASH_DUMP_SECONDS="1"
-exec start-stop-daemon --start --quiet --chuid vcap --exec /var/vcap/packages/rabbitmq/sbin/rabbitmq-server >/store/log/rabbitmq_stdout.log 2>/store/log/rabbitmq_stderr.log
+exec start-stop-daemon --start --quiet --chuid vcap --exec /var/vcap/packages/rabbitmq-${version}/sbin/rabbitmq-server >/store/log/rabbitmq_stdout.log 2>/store/log/rabbitmq_stderr.log

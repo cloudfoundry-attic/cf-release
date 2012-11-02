@@ -24,6 +24,11 @@ pid: /var/vcap/sys/run/rabbit_node/rabbit_node.pid
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
+versions:
+  2.4:
+    config_template: /var/vcap/packages/rabbit_node_ng/services/ng/rabbit/resources/rabbitmq24.config.erb
+  2.8:
+    config_template: /var/vcap/packages/rabbit_node_ng/services/ng/rabbit/resources/rabbitmq28.config.erb
 
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 <% if node.ip_route %>
