@@ -1,3 +1,11 @@
+<%
+service = "mysql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+warden = plan_conf.warden
+use_warden = warden && warden.enable
+%>
 [client]
 port      = 3307
 socket		= /var/vcap/sys/run/mysqld/mysqld55.sock
@@ -5,7 +13,7 @@ socket		= /var/vcap/sys/run/mysqld/mysqld55.sock
 [mysqld_safe]
 socket		= /var/vcap/sys/run/mysqld/mysqld55.sock
 nice      = 0
-log-error = /var/vcap/sys/log/mysql/mysqld55.err.log
+log-error = <%= use_warden ? '/store/log/mysqld55.err.log' : '/var/vcap/sys/log/mysql/mysqld55.err.log' %>
 
 [mysqld]
 collation_server        = utf8_unicode_ci
@@ -15,8 +23,8 @@ pid-file	              = /var/vcap/sys/run/mysqld/mysqld55.pid
 socket		              = /var/vcap/sys/run/mysqld/mysqld55.sock
 port     	              = 3307
 basedir		              = /var/vcap/packages/mysql55
-datadir		              = /var/vcap/store/mysql55
-tmpdir		              = /var/vcap/data/mysql_tmp
+datadir                 = <%= use_warden ? '/store/instance/data' : '/var/vcap/store/mysql55' %>
+tmpdir                  = <%= use_warden ? '/store/instance/mysql_tmp' : '/var/vcap/data/mysql_tmp' %>
 lc-messages-dir         = /var/vcap/packages/mysql55/share
 skip-external-locking
 <% if properties.mysql_node.max_heap_table_size %>
@@ -29,19 +37,17 @@ init-file = /var/vcap/jobs/mysql_node_ng/config/mysql_init
 <% if properties.micro %>
 bind-address            = 127.0.0.1
 <% end %>
-key_buffer              = <%= properties.mysql_node.production ? '3276M' : '16M' %>
-innodb_buffer_pool_size = <%= properties.mysql_node.production ? '3276M' : '256M' %>
-max_allowed_packet      = 16M
+key_buffer              = <%= plan_enabled && plan_conf.key_buffer || '24' %>M
+innodb_buffer_pool_size = <%= plan_enabled && plan_conf.innodb_buffer_pool_size || '72' %>M
+max_allowed_packet      = <%= plan_enabled && plan_conf.max_allowed_packet || '16' %>M
 thread_stack            = 256K
-thread_cache_size       = <%= properties.mysql_node.production ? 128 : 8 %>
-thread_concurrency      = <%= properties.mysql_node.production ? 8 : 2 %>
-max_connections         = <%= properties.mysql_node.production ? 512 : 16 %>
-table_cache             = <%= properties.mysql_node.production ? 2048 : 256 %>
+thread_cache_size       = <%= plan_enabled && plan_conf.thread_cache_size || 8 %>
+max_connections         = <%= plan_enabled && plan_conf.max_connections || 40 %>
+table_open_cache        = <%= plan_enabled && plan_conf.table_open_cache || 140 %>
 myisam-recover          = BACKUP
 query_cache_limit       = 1M
-query_cache_size        = <%= properties.mysql_node.production ? '128M' : '16M' %>
+query_cache_size        = <%= plan_enabled && plan_conf.query_cache_size || '16' %>M
 expire_logs_days        = 10
-max_binlog_size         = 100M
 
 [mysqldump]
 quick
