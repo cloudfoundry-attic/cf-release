@@ -5,7 +5,9 @@ pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 
 external_domain: <%= properties.ccng.external_host || "api2" %>.<%= properties.domain %>
-serving_domain: <%= properties.domain %>
+
+<% system_domains = properties.ccng.system_domains || [ properties.domain ] %>
+system_domains: [ <%= system_domains.join(", ") %> ]
 
 cc_partition: <%= properties.ccng.cc_partition || "ng" %>
 
@@ -14,6 +16,12 @@ bootstrap_admin_email: <%= properties.ccng.bootstrap_admin_email || "sre@vmware.
 bulk_api:
   auth_user: <%= properties.ccng.bulk_api_user || "bulk_api" %>
   auth_password: <%= properties.ccng.bulk_api_password %>
+
+service_lifecycle:
+  max_upload_size: 1
+  upload_token: <%= properties.serialization_data_server.upload_token %>
+  upload_timeout: <%= properties.serialization_data_server.upload_timeout %>
+  serialization_data_server: <%= properties.service_lifecycle.serialization_data_server.map {|ip| "http://#{ip}:#{properties.serialization_data_server.port}" } %>
 
 nginx:
   use_nginx: <%= properties.ccng.use_nginx || true %>
@@ -67,19 +75,6 @@ uaa:
   url: http://uaa.<%= properties.domain %>
   resource_id: <%= properties.ccng.uaa_resource_id %>
   symmetric_secret: <%= properties.uaa.cc.token_secret %>
-
-quota_manager:
-<% if properties.ccng.quota_manager %>
-  policy: <%= properties.ccng.quota_manager.policy %>
-  base_url: <%= properties.ccng.quota_manager.base_url %>
-  auth_token: <%= properties.ccng.quota_manager.auth_token %>
-  http_timeout_sec: <%= properties.ccng.quota_manager.http_timeout_sec %>
-<% else %>
-  policy: "BlindApproval"
-  base_url: ""
-  auth_token: ""
-  http_timeout_sec: 2
-<% end %>
 
 # App staging parameters
 staging:
