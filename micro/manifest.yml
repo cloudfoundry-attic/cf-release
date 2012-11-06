@@ -193,7 +193,7 @@ properties:
       username:
       password:
     port: 8100
-    catalina_opts: -Xmx128m -Xms30m -XX:MaxPermSize=64m
+    catalina_opts: -Xmx128m -Xms30m -XX:MaxPermSize=128m
   uaadb:
     address: 127.0.0.1
     port: 2544
