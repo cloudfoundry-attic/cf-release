@@ -17,6 +17,8 @@ uaa:
     url: <%= uaa_base %>/oauth/token
   login:
     url: <%= uaa_base %>/login.do
+  clientinfo:
+    url: <%= uaa_base %>/clientinfo
 
 <% if !properties.uaa.clients || !properties.uaa.clients.login %>
 LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
