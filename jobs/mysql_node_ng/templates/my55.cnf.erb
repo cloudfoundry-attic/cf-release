@@ -5,13 +5,14 @@ plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 warden = plan_conf.warden
 use_warden = warden && warden.enable
+base_folder = use_warden ? '/store/instance' : '/var/vcap/sys/run/mysqld'
 %>
 [client]
 port      = 3307
-socket		= /var/vcap/sys/run/mysqld/mysqld55.sock
+socket		= <%= "#{base_folder}/mysqld55.sock" %>
 
 [mysqld_safe]
-socket		= /var/vcap/sys/run/mysqld/mysqld55.sock
+socket		= <%= "#{base_folder}/mysqld55.sock" %>
 nice      = 0
 log-error = <%= use_warden ? '/store/log/mysqld55.err.log' : '/var/vcap/sys/log/mysql/mysqld55.err.log' %>
 
@@ -19,8 +20,8 @@ log-error = <%= use_warden ? '/store/log/mysqld55.err.log' : '/var/vcap/sys/log/
 collation_server        = utf8_unicode_ci
 character_set_server    = utf8
 user		                = vcap
-pid-file	              = /var/vcap/sys/run/mysqld/mysqld55.pid
-socket		              = /var/vcap/sys/run/mysqld/mysqld55.sock
+pid-file	              = <%= "#{base_folder}/mysqld55.pid" %>
+socket		              = <%= "#{base_folder}/mysqld55.sock" %>
 port     	              = 3307
 basedir		              = /var/vcap/packages/mysql55
 datadir                 = <%= use_warden ? '/store/instance/data' : '/var/vcap/store/mysql55' %>
