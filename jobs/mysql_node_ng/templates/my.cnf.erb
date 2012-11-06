@@ -8,10 +8,10 @@ use_warden = warden && warden.enable
 %>
 [client]
 port      = 3306
-socket		= /var/vcap/sys/run/mysqld/mysqld.sock
+socket		= <%= use_warden ? '/store/instance/mysqld.sock' : '/var/vcap/sys/run/mysqld/mysqld.sock' %>
 
 [mysqld_safe]
-socket		= /var/vcap/sys/run/mysqld/mysqld.sock
+socket		= <%= use_warden ? '/store/instance/mysqld.sock' : '/var/vcap/sys/run/mysqld/mysqld.sock' %>
 nice      = 0
 log-error = <%= use_warden ? '/store/log/mysqld.err.log' : '/var/vcap/sys/log/mysql/mysqld.err.log' %>
 
@@ -19,8 +19,8 @@ log-error = <%= use_warden ? '/store/log/mysqld.err.log' : '/var/vcap/sys/log/my
 collation_server        = utf8_unicode_ci
 character_set_server    = utf8
 user		= vcap
-pid-file	= /var/vcap/sys/run/mysqld/mysqld.pid
-socket		= /var/vcap/sys/run/mysqld/mysqld.sock
+pid-file	= <%= use_warden ? '/store/instance/mysqld.pid' : '/var/vcap/sys/run/mysqld/mysqld.pid' %>
+socket		= <%= use_warden ? '/store/instance/mysqld.sock' : '/var/vcap/sys/run/mysqld/mysqld.sock' %>
 port     	= 3306
 basedir		= /var/vcap/packages/mysql
 datadir		= <%= use_warden ? '/store/instance/data' : '/var/vcap/store/mysql' %>

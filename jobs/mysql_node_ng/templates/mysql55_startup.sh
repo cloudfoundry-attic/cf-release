@@ -9,6 +9,8 @@ for n in `seq 1 100`; do
 done
 
 mkdir -p /store/instance/mysql_tmp
-mkdir -p /var/vcap/sys/run
+if test ! -d /store/instance/data/mysql; then
+  rsync -arl /var/vcap/packages/mysql55/initdb55/* /store/instance/data
+fi
 
 /var/vcap/packages/mysql55/libexec/mysql_warden.server start /var/vcap/jobs/mysql_node_ng/config/my55.cnf
