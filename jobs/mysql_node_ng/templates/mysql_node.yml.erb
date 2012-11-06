@@ -47,7 +47,6 @@ max_long_query: <%= plan_enabled && plan_conf.max_long_query || 3 %>
 max_long_tx: <%= plan_enabled && plan_conf.max_long_tx || 0 %>
 kill_long_tx: <%= plan_enabled && plan_conf.kill_long_tx || false %>
 max_user_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
-disk_overhead: <%= plan_enabled && plan_conf.disk_overhead || 0.0 %>
 mysql:
 <% for version in supported_versions %>
   '<%= version %>':
@@ -72,6 +71,7 @@ max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>
 <%if use_warden %>
+max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 use_warden: true
 warden:
   service_log_dir: /var/vcap/sys/service-log/mysql
