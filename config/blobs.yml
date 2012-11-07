@@ -107,10 +107,6 @@ ruby/ruby-1.9.2-p180.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEwMDRlNGU3ZDUxMWY1NTMwNGYzMDY5%0AMGM4OGZkOSIsInNpZyI6IkE1VlllWVduMVpadFNHbGRpeGM1STgzTU9Jaz0i%0AfQ==%0A
   sha: 6a482bc07239b37bcadf68dda63c65d20dc19ebe
   size: 11158935
-ruby/ruby-1.9.3-p194.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTA1N2M0%0AZDgyYjRkMyIsInNpZyI6Ii9r
-  sha: 31cf6bd981e4c929e5dc3bbdb341833eab1bd9f2
-  size: 12432239
 ruby/bundler-1.0.12.gem:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIwMDRlNGU4ZWM2YjQ0YjYwNGYzMDY5%0AMTcxNjY1MSIsInNpZyI6IkRLQnNDUFpZTEg1VHVkZTNPRlREMzFFa1NkRT0i%0AfQ==%0A
   sha: 4acd470b77d0d8f66440f137c918464b3e967a42
@@ -587,30 +583,10 @@ hbase/hbase-0.90.6-cdh3u4-vmware-patched.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTAxMDVh%0AYzVjNTkwMSIsInNpZyI6IldlMi9yRjRybFZ3Y1ptR3FwWklzcHFZT2RiUT0i%0AfQ==%0A
   sha: 4290e2a35fc54d34d8ea4e0559e6de6e485322d4
   size: 36978703
-login/cloudfoundry-identity-batch-1.0.0.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA0YTIy%0ANDAzZjA0ZCIsInNpZyI6Inp3aE80OURHSXFhRnZFb292Rng5ek81aDViYz0i%0AfQ==%0A
-  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
-  size: 24049331
-golang/go1.0.1.src.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEwMDRlNGU3ZDUxNzYxOGYwNTA2MGI5%0AODBjMDE4MiIsInNpZyI6Ik5HczVyeml3SDJxc2l4c3l4c2wrUVdUbFd5OD0i%0AfQ==%0A
-  sha: fc8a6d6725f7f2bf7c94685c5fd0880c9b7f67f6
-  size: 9617092
-login/cloudfoundry-login-server-1.1.0.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIyMDRlNGU5ODY0M2Q5YWUwNTA2YjRi%0AYWJkMzZmZSIsInNpZyI6IncyZnpicyszVlc3dWRWQjVjNmJqVlFUQU1DND0i%0AfQ==%0A
-  sha: 75c5b365c58a10b98cc2eaca441ae52a29aad40c
-  size: 8449305
-uaa/cloudfoundry-identity-batch-1.0.0.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTA2ZDhj%0AZmU1NWRjNCIsInNpZyI6InlJdHBnOFhHUWVjMDRYb2sySG5oY2VXMzdhVT0i%0AfQ==%0A
-  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
-  size: 24049331
 uaa/apache-tomcat-7.0.32.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTA3ODZj%0AYjNjNzNlMSIsInNpZyI6IklUR0hRVmorU1paeVBaVkRPMVl3ODNMN2RkMD0i%0AfQ==%0A
   sha: 94d7efcb0d2797b196b1a7d9537e3ed53f7607f4
   size: 7701019
-postgresql/postgresql-9.1-x86_64.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEyMDRlNGU4NmVlYmU1OTEwNTA3NDk1%0AMDgzNWQ4MCIsInNpZyI6IjNSYks4Qk5tcFlhMHA3ejdVeVZpQjVpZ3hxND0i%0AfQ==%0A
-  sha: d6c44760c1e5eb055b6ac4a8080b061d6d04fa3c
-  size: 26556736
 uaa/jdk1.6.0_35.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA3YzVk%0AODNlZDNlYSIsInNpZyI6IjJoU0Z3OXE0bHh1SzBaUmh6R1BkMnlscWJpaz0i%0AfQ==%0A
   sha: 47ead45c658f9c72577d202d8aa1675461ee3ad6
@@ -619,6 +595,18 @@ uaa/cloudfoundry-identity-uaa-1.2.5.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIwMDRlNGU4ZWM2NDg0MzEwNTA4NzAx%0AMzgyMDVkMiIsInNpZyI6IjVmSEVRaFUvWjZLamRZNUo2TEVjcCt0d1Fndz0i%0AfQ==%0A
   sha: f357c80c2febbfc5505e4d7c2e1edda0d29c3bf1
   size: 17960086
+ruby/ruby-1.9.3-p194.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTA1N2M0%0AZDgyYjRkMyIsInNpZyI6Ii9rY212b3JDYmFtNEJ2S1pJaEV5bGk2Q2lyST0i%0AfQ==%0A
+  sha: 31cf6bd981e4c929e5dc3bbdb341833eab1bd9f2
+  size: 12432239
+golang/go1.0.1.src.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEwMDRlNGU3ZDUxNzYxOGYwNTA2MGI5%0AODBjMDE4MiIsInNpZyI6Ik5HczVyeml3SDJxc2l4c3l4c2wrUVdUbFd5OD0i%0AfQ==%0A
+  sha: fc8a6d6725f7f2bf7c94685c5fd0880c9b7f67f6
+  size: 9617092
+postgresql/postgresql-9.1-x86_64.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEyMDRlNGU4NmVlYmU1OTEwNTA3NDk1%0AMDgzNWQ4MCIsInNpZyI6IjNSYks4Qk5tcFlhMHA3ejdVeVZpQjVpZ3hxND0i%0AfQ==%0A
+  sha: d6c44760c1e5eb055b6ac4a8080b061d6d04fa3c
+  size: 26556736
 dashboard/dashboard-1.0-SNAPSHOT-2b7dcaa1.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNTA4YWNk%0ANDJlMjI4ZSIsInNpZyI6Im9FcTdQaTBsb21HclJPSHJYQTh1YVI3L1RaZz0i%0AfQ==%0A
   sha: 08004df2a5b2a7a7e610da4ac1eaaa5a0c14ad25
