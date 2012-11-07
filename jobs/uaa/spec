@@ -6,14 +6,15 @@ templates:
 
   vcap_registrar.config.yml.erb: config/vcap_registrar/config.yml
   uaa.yml.erb: config/uaa.yml
+  batch.yml.erb: config/batch.yml
+  varz.yml.erb: config/varz.yml
   log4j.properties.erb: config/log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
-  tomcat.server.xml: config/tomcat/server.xml
+  tomcat.server.xml.erb: config/tomcat/server.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 packages:
   - common
   - ruby
-  - dea_jvm
   - syslog_aggregator
   - uaa

@@ -11,8 +11,8 @@ uri:
   - login.<%= properties.domain %>
 host: <%= spec.networks.send(properties.networks.apps).ip %>
 index: <%= spec.index %>
-port: 8080
+port: <%= (properties.uaa && properties.uaa.port) ? properties.uaa.port : 8080 %>
 tags:
   component: uaa
 varz:
-  file: /var/vcap/jobs/uaa/config/uaa.yml
+  file: /var/vcap/jobs/uaa/config/varz.yml
