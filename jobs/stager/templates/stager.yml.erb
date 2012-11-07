@@ -17,3 +17,6 @@ dirs:
   tmp: /var/vcap/data/stager/tmp
 ruby_path: /var/vcap/packages/ruby/bin/ruby
 secure: true
+<% if properties.stager.local_route %>
+local_route: <%= properties.stager.local_route %>
+<% end %>
