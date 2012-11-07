@@ -575,10 +575,30 @@ redis/redis-2.2.15.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNGZmZjRh%0AZjYxYjY5ZSIsInNpZyI6InA3Mkl4MVBKYWdGZnNYb0xjcGlDczY1QnJKRT0i%0AfQ==%0A
   sha: aa6758590363556e73f8d36bdfccb429011da331
   size: 456185
-uaa/cloudfoundry-identity-uaa-1.1.2.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTAzZDBl%0AMWMwY2RlMyIsInNpZyI6InZ1L3k5N05jaC9GNUljVFZuR2tpMXJpS29vaz0i%0AfQ==%0A
-  sha: f84e77cc0e6193755913fa59bf0d88c2125705a0
-  size: 24268942
+login/cloudfoundry-identity-batch-1.0.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA0YTIy%0ANDAzZjA0ZCIsInNpZyI6Inp3aE80OURHSXFhRnZFb292Rng5ek81aDViYz0i%0AfQ==%0A
+  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
+  size: 24049331
+login/cloudfoundry-login-server-1.1.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIyMDRlNGU5ODY0M2Q5YWUwNTA2YjRi%0AYWJkMzZmZSIsInNpZyI6IncyZnpicyszVlc3dWRWQjVjNmJqVlFUQU1DND0i%0AfQ==%0A
+  sha: 75c5b365c58a10b98cc2eaca441ae52a29aad40c
+  size: 8449305
+uaa/cloudfoundry-identity-batch-1.0.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTA2ZDhj%0AZmU1NWRjNCIsInNpZyI6InlJdHBnOFhHUWVjMDRYb2sySG5oY2VXMzdhVT0i%0AfQ==%0A
+  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
+  size: 24049331
+uaa/apache-tomcat-7.0.32.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTA3ODZj%0AYjNjNzNlMSIsInNpZyI6IklUR0hRVmorU1paeVBaVkRPMVl3ODNMN2RkMD0i%0AfQ==%0A
+  sha: 94d7efcb0d2797b196b1a7d9537e3ed53f7607f4
+  size: 7701019
+uaa/jdk1.6.0_35.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA3YzVk%0AODNlZDNlYSIsInNpZyI6IjJoU0Z3OXE0bHh1SzBaUmh6R1BkMnlscWJpaz0i%0AfQ==%0A
+  sha: 47ead45c658f9c72577d202d8aa1675461ee3ad6
+  size: 67126391
+uaa/cloudfoundry-identity-uaa-1.2.5.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIwMDRlNGU4ZWM2NDg0MzEwNTA4NzAx%0AMzgyMDVkMiIsInNpZyI6IjVmSEVRaFUvWjZLamRZNUo2TEVjcCt0d1Fndz0i%0AfQ==%0A
+  sha: f357c80c2febbfc5505e4d7c2e1edda0d29c3bf1
+  size: 17960086
 ruby/ruby-1.9.3-p194.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTA1N2M0%0AZDgyYjRkMyIsInNpZyI6Ii9rY212b3JDYmFtNEJ2S1pJaEV5bGk2Q2lyST0i%0AfQ==%0A
   sha: 31cf6bd981e4c929e5dc3bbdb341833eab1bd9f2

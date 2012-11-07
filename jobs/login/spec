@@ -1,12 +1,11 @@
 ---
-name: uaa
+name: login
 templates:
-  uaa_ctl.erb: bin/uaa_ctl
+  login_ctl.erb: bin/login_ctl
   vcap_registrar_ctl: bin/vcap_registrar_ctl
 
   vcap_registrar.config.yml.erb: config/vcap_registrar/config.yml
-  uaa.yml.erb: config/uaa.yml
-  batch.yml.erb: config/batch.yml
+  login.yml.erb: config/login.yml
   log4j.properties.erb: config/log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml
@@ -16,4 +15,4 @@ packages:
   - common
   - ruby
   - syslog_aggregator
-  - uaa
+  - login

@@ -2,6 +2,9 @@
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
 
+<% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
+<% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+
 pid: /var/vcap/sys/run/uaa.pid
 # nats message bus uri
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
@@ -17,6 +20,12 @@ database:
 jvm_args: -Xmx512m
 spring_profiles: postgresql
 
+cloud_controller:
+  database:
+    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
+    username: <%= cc_role.name %>
+    password: <%= cc_role.password %>
+
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
 
@@ -26,7 +35,14 @@ varz:
   type: uaa
   uuid: _random_uuid_replaced_by_a_script_
 
-<% if properties.uaa.cc %>
+<% if properties.uaa.jwt && properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
+jwt:
+  token:
+    signing-key: |
+<%= "        " + properties.uaa.jwt.signing_key.gsub("\n", "\n        ") %>
+    verification-key: |
+<%= "        " + properties.uaa.jwt.verification_key.gsub("\n", "\n        ") %>
+<% elsif properties.uaa.cc && properties.uaa.cc.token_secret %>
 jwt:
   token:
     signing-key: <%= properties.uaa.cc.token_secret %>
@@ -48,6 +64,9 @@ oauth:
       - my
       - micro
       - support-signon
+      - appdirect
+      - dashboard
+      - portal
   clients:
 <% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
     <%= id %>:<% client.marshal_dump.each do |key,value|%>
@@ -71,14 +90,28 @@ oauth:
 <% if !properties.uaa.clients || !properties.uaa.clients.vmc %>
     vmc:
       authorized-grant-types: implicit
-      scope: cloud_controller.read,cloud_controller.write,openid
+      scope: cloud_controller.read,cloud_controller.write,openid,password.write
       authorities: uaa.none
       id: vmc
       redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc,https://uaa.cloudfoundry.com/redirect/vmc
       access-token-validity: 604800
 <% end %>
-<% if properties.uaa.scim && properties.uaa.scim.users then %>
+<% if !properties.uaa.clients || !properties.uaa.clients.login %>
+    login:
+      override: true
+      id: login
+      secret: <%= properties.uaa.login.client_secret %>
+      authorized-grant-types: client_credentials
+      authorities: oauth.login
+<% end %>
+<% if properties.uaa.scim %>
 scim:
+  userids_enabled: <%= properties.uaa.scim.userids_enabled || false %>
+<% else %>
+scim:
+  userids_enabled: false
+<% end %>
+<% if properties.uaa.scim && properties.uaa.scim.users then %>
   users: <% properties.uaa.scim.users.each do |user| %>
     - <%= user %><% end %>
 <% end %>
