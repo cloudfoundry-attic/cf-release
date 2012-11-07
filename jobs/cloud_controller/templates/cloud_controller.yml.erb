@@ -165,7 +165,7 @@ builtin_services:
   <% end %>
 <% end %>
 <% if properties.external_service_tokens %>
-<% properties.external_service_tokens.each do |name,token| %>
+<% properties.external_service_tokens.marshal_dump.each do |name,token| %>
   <%= name %>:
     token: <%= token %>
 <% end %>
