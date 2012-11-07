@@ -47,6 +47,7 @@ max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 op_time_limit: <%= node.op_time_limit || 8 %>
 filesystem_quota: <%= plan_enabled && plan_conf.filesystem_quota || "false" %>
 vm_memory_high_watermark: <%= plan_enabled && plan_conf.vm_memory_high_watermark || 0.0793 %>
+bandwidth_per_second: <%= (plan_enabled && plan_conf.bandwidth_quotas && plan_conf.bandwidth_quotas.per_second || 0.09).to_f %>
 bandwidth_proxy:
   bin: /var/vcap/packages/bandwidth_proxy/bin/bandwidth_proxy
   # Set default window to 1 day
