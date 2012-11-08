@@ -18,7 +18,7 @@ case $1 in
     export RABBITMQ_CONSOLE_LOG=reuse
     export ERL_CRASH_DUMP="/dev/null"
     export ERL_CRASH_DUMP_SECONDS="1"
-    exec start-stop-daemon --start --quiet --chuid vcap --exec /var/vcap/packages/rabbitmq/sbin/rabbitmq-server >/store/log/rabbitmq_stdout.log 2>/store/log/rabbitmq_stderr.log
+    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec /var/vcap/packages/rabbitmq/sbin/rabbitmq-server >/store/log/rabbitmq_stdout.log 2>/store/log/rabbitmq_stderr.log
     ;;
 
   stop)
