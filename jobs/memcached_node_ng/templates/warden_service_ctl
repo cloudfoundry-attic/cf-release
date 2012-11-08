@@ -4,7 +4,7 @@ case $1 in
     shift
 
     args=$*
-    exec start-stop-daemon --start --quiet --chuid vcap --exec /usr/share/memcached/bin/memcached -- $args
+    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec /usr/share/memcached/bin/memcached -- $args
     ;;
 
   stop)
