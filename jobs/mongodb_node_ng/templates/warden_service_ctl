@@ -5,6 +5,9 @@ case $1 in
 
     touch /store/log/mongodb.log
     mkdir -p /store/instance/data
+    adminpass=$1
+    shift
+    /usr/share/mongodb/mongodb_proxy/proxyctl -c /etc/mongodb_proxy.yml -p $adminpass &
     version=$1
     shift
     args=$*
