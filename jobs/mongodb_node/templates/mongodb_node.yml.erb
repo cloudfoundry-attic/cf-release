@@ -10,11 +10,14 @@ default_version = node.default_version
 packages = {}
 # convention, package contains mongodb 1.8 is mongodb18
 supported_versions.each{|v| packages[v] = v.sub(".","")}
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
 local_db: sqlite3:/var/vcap/store/mongodb_node.db
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+mbus: <%= nats %>
 index: <%= spec.index %>
 base_dir: /var/vcap/store/mongodb
 logging:
@@ -52,6 +55,6 @@ ip_route: <%= node.ip_route %>
 <% end %>
 z_interval: <%= node.z_interval || 30 %>
 mongod_log_dir: /var/vcap/sys/service-log/mongodb
-max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>

@@ -3,7 +3,9 @@
 service = "atmos"
 gateway = eval("properties.#{service}_gateway")
 acls = gateway.acls
-nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}"
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 mbus: <%= nats %>
 

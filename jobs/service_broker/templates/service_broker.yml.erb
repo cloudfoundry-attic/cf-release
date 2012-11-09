@@ -12,7 +12,11 @@ logging:
   <% if properties.syslog_aggregator %>
   syslog: vcap.service_broker
   <% end %>
-<% nats = "nats://#{properties.nats.user}:#{properties.nats.password}@#{properties.nats.address}:#{properties.nats.port}" %>
+<%
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
+%>
 mbus: <%= nats %>
 pid: /var/vcap/sys/run/service_broker/service_broker.pid
 local_db: sqlite3:/var/vcap/store/service_broker.db
