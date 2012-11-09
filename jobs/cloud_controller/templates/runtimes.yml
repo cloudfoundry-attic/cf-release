@@ -18,6 +18,10 @@ java:
       - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=n"
     suspend:
       - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=y"
+  status:
+    name: current
+  series: java
+  category: java
 java7:
   description: Java 7
   version: "1.7.0_04"
@@ -37,6 +41,10 @@ java7:
       - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=n"
     suspend:
       - JAVA_OPTS="$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=$VCAP_DEBUG_PORT,server=y,suspend=y"
+  status:
+    name: current
+  series: java7
+  category: java
 node:
   version: "0.4.12"
   description: "Node.js"
@@ -56,6 +64,10 @@ node:
       - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
     suspend:
       - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
+  status:
+    name: current
+  series: node
+  category: node
 node06:
   version: "0.6.8"
   description: "Node.js"
@@ -75,6 +87,10 @@ node06:
       - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
     suspend:
       - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
+  status:
+    name: current
+  series: node06
+  category: node
 node08:
   version: "0.8.2"
   description: "Node.js"
@@ -94,6 +110,10 @@ node08:
       - NODE_ARGS="--debug=$VCAP_DEBUG_PORT"
     suspend:
       - NODE_ARGS="--debug-brk=$VCAP_DEBUG_PORT"
+  status:
+    name: current
+  series: node08
+  category: node
 ruby18:
   description: Ruby 1.8
   version: "1.8.7p357"
@@ -107,6 +127,10 @@ ruby18:
     BUNDLE_GEMFILE:
     PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_transition/rubygems/1.8/bin:/var/vcap/packages/dea_ruby18/bin:/var/vcap/packages/dea_node08/bin:$PATH
     GEM_PATH: /var/vcap/packages/dea_transition/rubygems/1.8:$GEM_PATH
+  status:
+    name: current
+  series: ruby18
+  category: ruby
 ruby19:
   description: Ruby 1.9
   version: "1.9.2p180"
@@ -120,3 +144,7 @@ ruby19:
     BUNDLE_GEMFILE:
     PATH: /var/vcap/packages/imagemagick/bin:/var/vcap/packages/dea_transition/rubygems/1.9.1/bin:/var/vcap/packages/dea_ruby19/bin:/var/vcap/packages/dea_node08/bin:$PATH
     GEM_PATH: /var/vcap/packages/dea_transition/rubygems/1.9.1:$GEM_PATH
+  status:
+    name: current
+  series: ruby19
+  category: ruby
