@@ -8,13 +8,15 @@ node = properties.redis_node
 supported_versions = node.supported_versions || ["2.2"]
 default_version = node.default_version
 packages = {}
-# convention, package contains redis 2.2 is redis22
-supported_versions.each{|v| packages[v] = v.sub(".","")}
+supported_versions.each{ |v| packages[v] = v.sub(".","") } # convention: package containing redis 2.2 is redis22
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
 plan: <%= plan %>
 local_db: sqlite3:/var/vcap/store/redis/redis_node.db
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+mbus: <%= nats %>
 index: <%= spec.index %>
 base_dir: /var/vcap/store/redis/instances
 logging:
@@ -45,7 +47,7 @@ ip_route: <%= node.ip_route %>
 z_interval: <%= node.z_interval || 30 %>
 redis_log_dir: /var/vcap/sys/service-log/redis
 command_rename_prefix: <%= node.command_rename_prefix || "magic-protect-command-prefix" %>
-max_nats_payload: <%= properties.nats.max_payload || 1048576 %>
+max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 redis_start_timeout: <%= node.redis_start_timeout || 3 %>
 op_time_limit: <%= node.op_time_limit || 6 %>
