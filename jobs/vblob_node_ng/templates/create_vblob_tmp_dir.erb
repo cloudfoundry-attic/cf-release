@@ -26,7 +26,10 @@ create_loop_device() {
   fi
 }
 
-current_size=`ls -l ${vblobd_tmp_loop} | cut -d" " -f5`
+current_size=0
+if [ -f ${vblobd_tmp_loop} ] ; then
+  current_size=`ls -l ${vblobd_tmp_loop} | cut -d" " -f5`
+fi
 expected_size=`expr ${vblobd_tmp_size} \* 1024 \* 1024`
 
 will_create_file=0
@@ -67,9 +70,10 @@ else
 fi
 
 if [ $will_create_file -eq 1 ]; then
-  umount -d $vblobd_tmp_dir
+  if mountpoint -q "$vblobd_tmp_dir" ; then
+    umount -d $vblobd_tmp_dir
+  fi
   rm -rf $vblobd_tmp_dir
-  losetup -d $loop_device
   rm -rf $vblobd_tmp_loop
 
   create_loop_device
