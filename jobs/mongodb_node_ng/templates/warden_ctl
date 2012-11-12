@@ -4,6 +4,7 @@ JOB_DIR=/var/vcap/jobs/mongodb_node_ng
 PKG_DIR=/var/vcap/packages/mongodb_node_ng
 BIN_MONGO_1dot8_DIR=/var/vcap/packages/mongodb18/bin
 BIN_MONGO_2dot0_DIR=/var/vcap/packages/mongodb20/bin
+BIN_MONGO_2dot2_DIR=/var/vcap/packages/mongodb22/bin
 BIN_MONGO_PROXY_DIR=/var/vcap/packages/mongodb_proxy/bin
 
 source /var/vcap/packages/mongodb_node_ng/common/services/utils.sh
@@ -15,6 +16,7 @@ case $1 in
 
     mkdir -p $ROOT_DIR/usr/share/mongodb/mongodb-1.8
     mkdir -p $ROOT_DIR/usr/share/mongodb/mongodb-2.0
+    mkdir -p $ROOT_DIR/usr/share/mongodb/mongodb-2.2
     mkdir -p $ROOT_DIR/usr/share/mongodb/mongodb_proxy
 
     # Copy mongodb binaries and configuration files to warden base file system
@@ -22,6 +24,7 @@ case $1 in
     install -m 0755 -t $ROOT_DIR/usr/bin  /var/vcap/packages/common/utils.sh
     install -m 0755 -t $ROOT_DIR/usr/share/mongodb/mongodb-1.8 $BIN_MONGO_1dot8_DIR/*
     install -m 0755 -t $ROOT_DIR/usr/share/mongodb/mongodb-2.0 $BIN_MONGO_2dot0_DIR/*
+    install -m 0755 -t $ROOT_DIR/usr/share/mongodb/mongodb-2.2 $BIN_MONGO_2dot2_DIR/*
     install -m 0755 -t $ROOT_DIR/usr/share/mongodb/mongodb_proxy $BIN_MONGO_PROXY_DIR/*
     install -m 0644 -t $ROOT_DIR/etc     $JOB_DIR/config/mongodb.conf
     install -m 0644 -t $ROOT_DIR/etc     $JOB_DIR/config/mongodb_proxy.yml
