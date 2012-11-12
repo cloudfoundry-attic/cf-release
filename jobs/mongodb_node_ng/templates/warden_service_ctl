@@ -1,22 +1,32 @@
 #!/bin/bash
+LOGDIR=/store/log
+INSDIR=/store/instance
+PIDFILE=${INSDIR}/service.pid
+STOP_TIMEOUT=<%= properties.mongodb_node.instance_stop_timeout || 3 %>
+
+source /usr/bin/utils.sh
+exec 1>> ${LOGDIR}/${SCRIPT}.log
+exec 2>> ${LOGDIR}/${SCRIPT}.err.log
+
 case $1 in
   start)
     shift
 
-    touch /store/log/mongodb.log
-    mkdir -p /store/instance/data
+    touch ${LOGDIR}/mongodb.log
+    mkdir -p ${INSDIR}/data
     version=$1
     shift
     args=$*
+    echo $$ >> $PIDFILE
     exec /usr/share/mongodb/mongodb-$version/mongod $args --config /etc/mongodb.conf
     ;;
 
   stop)
-    #TODO
+    kill_and_wait $PIDFILE $STOP_TIMEOUT 1
     ;;
 
   status)
-    #TODO
+    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
     ;;
 
   *)

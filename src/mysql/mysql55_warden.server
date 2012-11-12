@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Copyright Abandoned 1996 TCX DataKonsult AB & Monty Program KB & Detron HB
 # This file is public domain and comes with NO WARRANTY of any kind
 #
@@ -12,11 +12,10 @@ basedir=/var/vcap/packages/mysql55
 datadir=/store/instance/data
 
 # Default value, in seconds, afterwhich the script should timeout waiting
-# for server start.
-# Value here is overriden by value in my.cnf.
+# for server start/stop.
 # 0 means don't wait at all
 # Negative numbers mean to wait indefinitely
-service_startup_timeout=900
+default_timeout=900
 
 # The following variables are only set for letting mysql.server find things.
 
@@ -57,31 +56,16 @@ mode=$1    # start or stop
 shift
 defaults=$1
 shift
+timeout=${1:-$default_timeout}
+shift
 other_args="$*"
-
-# HACK HACK HACK - create database
-# We have not sorted out the lifecycle for the initial creation of state for
-# components managed by BOSH.
-
-if [ "$mode" = "start" ] && ! test -d ${datadir}; then
-  echo "HACK: creating initial database"
-  mkdir -p /var/vcap/sys/run/mysqld
-  chown vcap /var/vcap/sys/run/mysqld
-
-  cd $basedir
-  /var/vcap/packages/mysql55/bin/mysql_install_db \
-    --basedir=/var/vcap/packages/mysql55 --user=vcap \
-    --datadir=/store/instance/data
-
-  bootstrap=1
-fi
 
 wait_for_pid () {
   verb="$1"
   manager_pid="$2"  # process ID of the program operating on the pid-file
   i=0
   avoid_race_condition="by checking again"
-  while test $i -ne $service_startup_timeout ; do
+  while test $i -ne $timeout ; do
 
     case "$verb" in
       'created')
@@ -140,14 +124,6 @@ case "$mode" in
     $bindir/mysqld_safe --defaults-file=$defaults --datadir=$datadir --pid-file=$server_pid_file $other_args >/dev/null 2>&1 &
     wait_for_pid created $!; return_value=$?
 
-    if [ "$bootstrap" = 1 ];then
-      defaultsdir=`dirname ${defaults}`
-      if test -f $defaultsdir/../bin/my.bootstrap; then
-        echo "HACKISH: bootstrap - after mysql is started"
-        $defaultsdir/../bin/my.bootstrap
-      fi
-    fi
-
     exit $return_value
     ;;
 
@@ -165,9 +141,9 @@ case "$mode" in
       then
         echo $echo_n "Shutting down MySQL"
         defaultsdir=`dirname ${defaults}`
-        if test -f $defaultsdir/../bin/my.shutdown; then
+        if test -f $defaultsdir/../bin/my55.shutdown; then
           echo "Gracefully shutting down MySQL"
-          $defaultsdir/../bin/my.shutdown; return_value=$?
+          $defaultsdir/../bin/my55.shutdown; return_value=$?
           if [ $return_value -ne 0 ]; then
             echo "Gracefully shut down MySQL failed, kill it"
             kill $mysqld_pid
