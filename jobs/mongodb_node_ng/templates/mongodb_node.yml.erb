@@ -38,16 +38,10 @@ mongod_path:
 <% end %>
 
 mongod_options:
-  <% if plan_enabled && plan_conf.enable_journaling %>
-  "1.8": "--journal"
-  <% else %>
-  "1.8": ""
-  <% end %>
-  <% if plan_enabled && plan_conf.enable_journaling %>
-  "2.0": ""
-  <% else %>
-  "2.0": "--nojournal"
-  <% end %>
+<% enable_journaling = plan_enabled && plan_conf.enable_journaling %>
+  "1.8": <%= enable_journaling ? "--journal": "" %>
+  "2.0": <%= enable_journaling ? "": "--nojournal" %>
+  "2.2": <%= enable_journaling ? "": "--nojournal" %>
 
 port_range:
   first: 25001
