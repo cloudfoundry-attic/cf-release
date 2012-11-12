@@ -6,10 +6,10 @@ templates:
   mysql_worker_ctl: bin/mysql_worker_ctl
   mysql_migration_util.erb: bin/mysql_migration_util
 
-  mysql_ctl.erb: bin/mysql_ctl
   my.bootstrap.erb: bin/my.bootstrap
   my.shutdown.erb: bin/my.shutdown
-  create_mysql_tmp_dir.erb: bin/create_mysql_tmp_dir
+  my.cnf.erb: config/my.cnf
+  mysql_ctl.erb: bin/mysql_ctl
 
   # mysql 5.5 related files
   my55.bootstrap.erb: bin/my55.bootstrap
@@ -17,9 +17,9 @@ templates:
   my55.cnf.erb: config/my55.cnf
   mysql55_ctl.erb: bin/mysql55_ctl
 
+  create_mysql_tmp_dir.erb: bin/create_mysql_tmp_dir
   mysql_node.yml.erb: config/mysql_node.yml
   mysql_worker.yml.erb: config/mysql_worker.yml
-  my.cnf.erb: config/my.cnf
   mysql_init.erb: config/mysql_init
   mysql_backup.yml.erb: config/mysql_backup.yml
   mysql_backup.cron.erb: config/mysql_backup.cron
