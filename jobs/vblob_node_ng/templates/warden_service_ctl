@@ -1,17 +1,27 @@
 #!/bin/bash
+LOGDIR=/store/log
+INSDIR=/store/instance
+PIDFILE=${INSDIR}/service.pid
+STOP_TIMEOUT=<%= properties.vblob_node.instance_stop_timeout || 3 %>
+
+source /usr/bin/utils.sh
+exec 1>> ${LOGDIR}/${SCRIPT}.log
+exec 2>> ${LOGDIR}/${SCRIPT}.err.log
+
 case $1 in
   start)
     # start the instance
-    touch /store/log/vblob.log
-    exec /usr/bin/node /var/vcap/packages/vblob/server.js -f /store/instance/config.json
+    touch ${LOGDIR}/vblob.log
+    echo $$ >> $PIDFILE
+    exec /usr/bin/node /var/vcap/packages/vblob/server.js -f ${INSDIR}/config.json
     ;;
 
   stop)
-    #TODO
+    kill_and_wait $PIDFILE $STOP_TIMEOUT 1
     ;;
 
   status)
-    #TODO
+    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
     ;;
 
   *)

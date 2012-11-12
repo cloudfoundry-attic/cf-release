@@ -1,23 +1,34 @@
 #!/bin/bash
+LOGDIR=/store/log
+INSDIR=/store/instance
+PIDFILE=${INSDIR}/service.pid
+STOP_TIMEOUT=<%= properties.mysql_node.instance_stop_timeout || 3 %>
+
+source /usr/bin/utils.sh
+exec 1>> ${LOGDIR}/${SCRIPT}.log
+exec 2>> ${LOGDIR}/${SCRIPT}.err.log
+
 case $1 in
   start)
     shift
     version=$1
 
-    mkdir -p /store/instance/mysql_tmp
-    if test ! -d /store/instance/data/mysql; then
-      rsync -arl /var/vcap/packages/mysql${version}/initdb${version}/* /store/instance/data
+    mkdir -p ${INSDIR}/mysql_tmp
+    if test ! -d ${INSDIR}/data/mysql; then
+      rsync -arl /var/vcap/packages/mysql${version}/initdb${version}/* ${INSDIR}/data
     fi
 
     /var/vcap/packages/mysql${version}/libexec/mysql_warden.server start /var/vcap/jobs/mysql_node_ng/config/my${version}.cnf
+    head -1 ${INSDIR}/mysqld${version}.pid > $PIDFILE
     ;;
 
   stop)
-    #TODO
+    /var/vcap/packages/mysql${version}/libexec/mysql_warden.server stop /var/vcap/jobs/mysql_node_ng/config/my${version}.cnf $STOP_TIMEOUT
+    rm -f $PIDFILE
     ;;
 
   status)
-    #TODO
+    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
     ;;
 
   *)
