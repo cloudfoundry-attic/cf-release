@@ -5,24 +5,29 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
+LOG_DIR=/store/log
+DATA_DIR=/store/instance
+PIDFILE=${DATA_DIR}/service.pid
+STOP_TIMEOUT=<%= properties.postgresql_node.instance_stop_timeout || 3 %>
+
+source /usr/bin/utils.sh
+exec 1>> ${LOG_DIR}/${SCRIPT}.log
+exec 2>> ${LOG_DIR}/${SCRIPT}.err.log
+
 version=$2
 case "$version" in
   "9.0")
     PACKAGE_DIR=/var/vcap/packages/postgresql
-    DATA_DIR=/var/vcap/store/postgresql
     PORT=5432
 
     ;;
   "9.1")
     PACKAGE_DIR=/var/vcap/packages/postgresql91
-    DATA_DIR=/var/vcap/store/postgresql91
     PORT=5433
 
     ;;
 esac
 
-DATA_DIR=/store/instance
-LOG_DIR=/store/log
 FIRST_TIME=0
 
 case $1 in
@@ -96,6 +101,7 @@ case $1 in
 
     if [ $? == 0 ]; then
       echo "PostgreSQL `cat $DATA_DIR/PG_VERSION` started successfully" >> $LOG_DIR/postgresql_ctl.log
+      head -1 $DATA_DIR/postmaster.pid > $PIDFILE
       if [ $FIRST_TIME -eq 1 ]; then
         # Setup contrib packages
         for sqlf in citext.sql fuzzystrmatch.sql isn.sql ltree.sql pageinspect.sql pg_buffercache.sql pgcrypto.sql pg_freespacemap.sql sslinfo.sql tablefunc.sql uuid-ossp.sql
@@ -112,11 +118,12 @@ case $1 in
     ;;
 
   stop)
-    #TODO
+    LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/pg_ctl stop -m fast -w -D $DATA_DIR
+    wait_pidfile $PIDFILE 0 $STOP_TIMEOUT
     ;;
 
   status)
-    #TODO
+    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
     ;;
 
   *)
