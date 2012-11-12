@@ -1,18 +1,27 @@
 #!/bin/bash
+LOGDIR=/store/log
+INSDIR=/store/instance
+PIDFILE=${INSDIR}/service.pid
+STOP_TIMEOUT=<%= properties.redis_node.instance_stop_timeout || 3 %>
+
+source /usr/bin/utils.sh
+exec 1>> ${LOGDIR}/${SCRIPT}.log
+exec 2>> ${LOGDIR}/${SCRIPT}.err.log
+
 case $1 in
   start)
     shift
     version=$1
-    shift
-    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec  /usr/share/redis/redis-${version}/redis-server -- /store/instance/redis.conf
+    echo $$ > $PIDFILE
+    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec  /usr/share/redis/redis-${version}/redis-server -- ${INSDIR}/redis.conf
     ;;
 
   stop)
-    #TODO
+    kill_and_wait $PIDFILE $STOP_TIMEOUT 1
     ;;
 
   status)
-    #TODO
+    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
     ;;
 
   *)

@@ -20,7 +20,6 @@ log-error = <%= use_warden ? '/store/log/mysqld55.err.log' : '/var/vcap/sys/log/
 collation_server        = utf8_unicode_ci
 character_set_server    = utf8
 user		                = vcap
-pid-file	              = <%= "#{base_folder}/mysqld55.pid" %>
 socket		              = <%= "#{base_folder}/mysqld55.sock" %>
 port     	              = 3307
 basedir		              = /var/vcap/packages/mysql55
