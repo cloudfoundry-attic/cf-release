@@ -79,6 +79,7 @@ case $1 in
 
     rsync -arl $JOB_DIR/bin/warden_service_ctl $ROOT_DIR/usr/bin/warden_service_ctl
     chmod 0755 $ROOT_DIR/usr/bin/warden_service_ctl
+    install -m 0755 -t $ROOT_DIR/usr/bin  /var/vcap/packages/common/utils.sh
 
     install -m 0755 -d $ROOT_DIR/$JOB_DIR/config
     rsync -arl $JOB_DIR/config/warden_mysql_init $ROOT_DIR/$JOB_DIR/config/mysql_init
@@ -87,6 +88,11 @@ case $1 in
     rsync -arl $JOB_DIR/config/my55.cnf $ROOT_DIR/$JOB_DIR/config/my55.cnf
     chmod 0644 $ROOT_DIR/$JOB_DIR/config/my.cnf
     chmod 0644 $ROOT_DIR/$JOB_DIR/config/my55.cnf
+    install -m 0755 -d $ROOT_DIR/$JOB_DIR/bin
+    install -m 0755 -t $ROOT_DIR/$JOB_DIR/bin  $JOB_DIR/bin/my.shutdown
+    install -m 0755 -t $ROOT_DIR/$JOB_DIR/bin  $JOB_DIR/bin/my.bootstrap
+    install -m 0755 -t $ROOT_DIR/$JOB_DIR/bin  $JOB_DIR/bin/my55.shutdown
+    install -m 0755 -t $ROOT_DIR/$JOB_DIR/bin  $JOB_DIR/bin/my55.bootstrap
 
     install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
 
