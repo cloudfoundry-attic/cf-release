@@ -1,0 +1,44 @@
+<%
+  # Fix this to https when SSL certs are working in dev and staging
+  protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http"
+%>
+<%
+  redirect_uri = (properties.uaa.clients && properties.uaa.clients.oauth2service) ? properties.uaa.clients.oauth2service.marshal_dump['redirect-uri'.to_sym] : nil 
+%>
+---
+<%
+service = "oauth2"
+gateway = eval("properties.#{service}_gateway") || {}.to_openstruct
+%>
+index: <%= spec.index %>
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
+
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+
+service:
+  name: oauth2
+  version: "1.0"
+  description: 'OAuth2 service'
+  plans: ['free']
+  default_plan: 'free'
+  tags: ['oauth2', 'uaa']
+  timeout: 60
+  supported_versions: ["1.0"]
+  version_aliases:
+    current: "1.0"
+  uaa: <%= protocol %>://uaa.<%= properties.domain %>
+  login: <%= protocol %>://login.<%= properties.domain %>
+  client_secret: <%= (properties.uaa.clients && properties.uaa.clients.oauth2service) ? properties.uaa.clients.oauth2service.secret : 'oauth2servicesecret' %>
+  redirect_uri: <%= redirect_uri ? redirect_uri : 'https://uaa.cloudfoundry.com/redirect/oauth2service' %>
+
+<% if gateway.ip_route %>
+ip_route: <%= gateway.ip_route %>
+<% end %>
+logging:
+  file: /var/vcap/sys/log/oauth2_gateway/oauth2_gateway.log
+  level: debug
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.oauth2_gateway
+  <% end %>
+pid: /var/vcap/sys/run/oauth2_gateway/oauth2_gateway.pid
+token: <%= gateway.token ? gateway.token : 0xdeadbeef %>
