@@ -1,0 +1,5 @@
+check process oauth2
+  with pidfile /var/vcap/sys/run/oauth2/oauth2.pid
+  start program "/var/vcap/jobs/oauth2/bin/oauth2_ctl start"
+  stop program "/var/vcap/jobs/oauth2/bin/oauth2_ctl stop"
+  group vcap
