@@ -37,3 +37,6 @@
 [submodule "src/tests"]
 	path = src/tests
 	url = git@github.com:cloudfoundry/vcap-yeti.git
+[submodule "src/oauth2"]
+	path = src/oauth2
+	url = git@github.com:cfid/oauth2-service.git
