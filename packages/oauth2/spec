@@ -1,0 +1,10 @@
+---
+name: oauth2
+dependencies:
+- ruby
+- sqlite
+files:
+- oauth2/Gemfile*
+- oauth2/bin/**/*
+- oauth2/lib/**/*
+- pkg_utils/*

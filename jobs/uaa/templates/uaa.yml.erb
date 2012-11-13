@@ -5,6 +5,8 @@
 <% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
 <% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
 
+<% autoapprove = properties.uaa.client && properties.uaa.client.autoapprove ? properties.uaa.client.marshal_dump[:autoapprove] : %w(vmc my micro support-signon appdirect dashboard) %>
+
 name: uaa
 
 database:
@@ -42,13 +44,8 @@ oauth:
   authorize:
     ssl: true
   client:
-    autoapprove:
-      - vmc
-      - my
-      - micro
-      - support-signon
-      - appdirect
-      - dashboard
+    autoapprove:<% autoapprove.each do |client| %>
+      - <%= client %><% end %>
   clients:
 <% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
     <%= id %>:<% client.marshal_dump.each do |key,value|%>

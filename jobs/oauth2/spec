@@ -1,0 +1,11 @@
+---
+name: oauth2
+templates:
+  oauth2_ctl.erb: bin/oauth2_ctl
+  oauth2.yml.erb: config/oauth2.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+packages:
+  - common
+  - ruby
+  - syslog_aggregator
+  - oauth2
