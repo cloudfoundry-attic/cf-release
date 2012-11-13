@@ -16,10 +16,10 @@ case $1 in
     for i in "var/vcap/packages" "var/vcap/data/packages"
     do
       mkdir -p $ROOT_DIR/$i
-      cp -af /$i/rabbitmq $ROOT_DIR/$i
+      cp -af /$i/rabbitmq-2.4 $ROOT_DIR/$i
+      cp -af /$i/rabbitmq-2.8 $ROOT_DIR/$i
       cp -af /$i/erlang $ROOT_DIR/$i
     done
-
     start_warden
     ;;
 
