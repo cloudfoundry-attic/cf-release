@@ -96,3 +96,10 @@ scim:
   users: <% properties.uaa.scim.users.each do |user| %>
     - <%= user %><% end %>
 <% end %>
+<% if properties.uaa.require_https %>
+require_https: <%= properties.uaa.require_https %>
+<% end %>
+<% if properties.uaa.dump_requests %>
+dump_requests: <%= properties.uaa.dump_requests %>
+<% end %>
+
