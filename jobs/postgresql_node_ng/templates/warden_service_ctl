@@ -67,13 +67,8 @@ case $1 in
 
     # set adjustable configurations per plan
     <%
-    default_max_connections = 500
-    if properties.postgresql_server && properties.postgresql_server.max_connections
-      default_max_connections = properties.postgresql_server.max_connections
-    end
-
     adjustable_configs = {
-      :max_connections => [default_max_connections, nil],
+      :max_connections => [500, nil],
       :shared_buffers => [128, 'MB'],
       :effective_cache_size => [128, 'MB'],
       :work_mem => [1, 'MB'],
