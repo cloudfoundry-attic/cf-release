@@ -14,6 +14,7 @@ case $1 in
     # Copy vblob binaries and configuration files to warden base file system
     install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
     install -m 0755 -t $ROOT_DIR/usr/bin   $JOB_DIR/bin/warden_service_ctl
+    install -m 0755 -t $ROOT_DIR/usr/bin  /var/vcap/packages/common/utils.sh
     cp -af $BIN_DIR/node/* $ROOT_DIR/usr/
     mkdir -p $ROOT_DIR/var/vcap/packages/vblob
     cp -af $BIN_DIR/vblob/* $ROOT_DIR/var/vcap/packages/vblob/
