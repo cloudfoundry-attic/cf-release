@@ -20,6 +20,7 @@ templates:
   warden.yml: config/warden.yml
   pre_service_start.sh: bin/pre_service_start.sh
   warden_service_ctl: bin/warden_service_ctl
+  post_service_start.sh: bin/post_service_start.sh
 packages:
   - common
   - postgresql

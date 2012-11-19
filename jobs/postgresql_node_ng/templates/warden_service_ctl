@@ -72,6 +72,17 @@ case $OP in
       fi
       echo `date` >> $LOG_DIR/postgresql_ctl.log
     else
+      rm $PIDFILE
+      if [ -e $DATA_DIR/postmaster.pid ]; then
+        ps -p `head -n 1 $DATA_DIR/postmaster.pid` 1>/dev/null 2>/dev/null
+        if [ $? == 1 ]; then
+          echo "There is a stale postmaster pid file, will remove it and kill possible orphan processes"
+          # remove the stale postmaster pid file
+          rm $DATA_DIR/postmaster.pid
+          # remove the orphan processes in hack style
+          ps -o pid,cmd --ppid=1 | grep 'postgres:' | cut -d' ' -f1 | xargs -r kill
+        fi
+      fi
       echo "The PostgreSQL server start seems to have some problems, please see logs for details." >> $LOG_DIR/postgresql_ctl.log
       exit 1
     fi
