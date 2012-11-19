@@ -83,7 +83,8 @@ case "$1" in
 
     if [ $? == 0 ]; then
       echo "PostgreSQL $version started successfully"
-      head -n 1 $DATA_DIR/postmaster.pid > $PIDFILE
+      master_pid=`head -n 1 $DATA_DIR/postmaster.pid`
+      echo $master_pid > $PIDFILE
       if [ $FIRST_TIME -eq 1 ]; then
         # Setup contrib packages
         for sqlf in citext.sql fuzzystrmatch.sql isn.sql ltree.sql pageinspect.sql pg_buffercache.sql pgcrypto.sql pg_freespacemap.sql sslinfo.sql tablefunc.sql uuid-ossp.sql
@@ -92,8 +93,25 @@ case "$1" in
           ${PACKAGE_DIR}/bin/psql -U vcap -f ${PACKAGE_DIR}/share/${sqlf} -d postgres
         done
       fi
+      # absolve postmaster from OOM killer
+      if [ -e /proc/$master_pid/oom_score_adj ]; then
+        echo -1000 > /proc/$master_pid/oom_score_adj
+      elif [ -e /proc/$master_pid/oom_adj ]; then
+        # oom_adj is deprecated in 2.6.36+
+        echo -17 > /proc/$master_pid/oom_adj
+      fi
     else
       rm $PIDFILE
+      if [ -e $DATA_DIR/postmaster.pid ]; then
+        ps -p `head -n 1 $DATA_DIR/postmaster.pid` 1>/dev/null 2>/dev/null
+        if [ $? == 1 ]; then
+          echo "There is a stale postmaster pid file, will remove it and kill possible orphan processes"
+          # remove the stale postmaster pid file
+          rm $DATA_DIR/postmaster.pid
+          # try to terminate the orphan processes in hack style
+          ps -o pid,cmd --ppid=1 | grep 'postgres:' | cut -d' ' -f1 | xargs -r kill
+        fi
+      fi
       echo "The PostgreSQL server start seems to have some problems, please see logs for details."
       exit 1
     fi
