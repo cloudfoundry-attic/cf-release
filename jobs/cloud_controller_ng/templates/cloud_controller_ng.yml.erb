@@ -41,10 +41,12 @@ directories:
 <% if properties.directories %>
   droplets: <%= properties.directories.droplets %>
   resources: <%= properties.directories.resources %>
+  staging_manifests: <%= properties.directories.staging_manifests %>
   tmpdir: <%= properties.directories.tmpdir %>
 <% else %>
   droplets: "/var/vcap/shared/droplets"
   resources: "/var/vcap/shared/resources"
+  staging_manifests: "/var/vcap/jobs/cloud_controller_ng/config/staging"
   tmpdir: "/var/vcap/data/cloud_controller_ng/tmp"
 <% end %>
 
@@ -83,165 +85,4 @@ staging:
     user: <%= properties.ccng.staging_upload_user %>
     password: <%= properties.ccng.staging_upload_password %>
 
-# TODO: this will be removed when we do full runtime/framework
-# db population when we work on real running app support
-#
-# The first entry in the runtimes array is the default runtime for that
-# framework.
-
-legacy_framework_manifest:
-  grails:
-    name: grails
-    runtimes:
-    - name: java
-      version: "1.6"
-      description: Java 6
-    - name: java7
-      version: "1.7"
-      description: Java 7
-    appservers:
-    - name: tomcat
-      description: Tomcat
-    detection:
-    - "*.war": true
-  java_web:
-    name: java_web
-    runtimes:
-    - name: java
-      version: "1.6"
-      description: Java 6
-    - name: java7
-      version: "1.7"
-      description: Java 7
-    appservers:
-    - name: tomcat
-      description: Tomcat
-    detection:
-    - "*.war": true
-  lift:
-    name: lift
-    runtimes:
-    - name: java
-      version: "1.6"
-      description: Java 6
-    - name: java7
-      version: "1.7"
-      description: Java 7
-    appservers:
-    - name: tomcat
-      description: Tomcat
-    detection:
-    - "*.war": true
-  node:
-    name: node
-    runtimes:
-    - name: node08
-      version: 0.8.2
-      description: Node.js
-    - name: node06
-      version: 0.6.8
-      description: Node.js
-    - name: node
-      version: 0.4.12
-      description: Node.js
-    appservers: []
-
-    detection:
-    - "*.js": .
-  rack:
-    name: rack
-    runtimes:
-    - name: ruby18
-      version: 1.8.7
-      description: Ruby 1.8.7
-    - name: ruby19
-      version: 1.9.2p180
-      description: Ruby 1.9.2
-    appservers:
-    - name: thin
-      description: Thin
-    detection:
-    - config.ru: true
-    - config/environment.rb: false
-  rails3:
-    name: rails3
-    runtimes:
-    - name: ruby18
-      version: 1.8.7
-      description: Ruby 1.8.7
-    - name: ruby19
-      version: 1.9.2p180
-      description: Ruby 1.9.2
-    appservers:
-    - name: thin
-      description: Thin
-    detection:
-    - config/application.rb: true
-    - config/environment.rb: true
-  sinatra:
-    name: sinatra
-    runtimes:
-    - name: ruby18
-      version: 1.8.7
-      description: Ruby 1.8.7
-    - name: ruby19
-      version: 1.9.2p180
-      description: Ruby 1.9.2
-    appservers:
-    - name: thin
-      description: Thin
-    detection:
-    - "*.rb": require 'sinatra'|require "sinatra"
-    - config.ru: false
-    - config/environment.rb: false
-  spring:
-    name: spring
-    runtimes:
-    - name: java
-      version: "1.6"
-      description: Java 6
-    - name: java7
-      version: "1.7"
-      description: Java 7
-    appservers:
-    - name: tomcat
-      description: Tomcat
-    detection:
-    - "*.war": true
-  standalone:
-    name: standalone
-    runtimes:
-    - name: ruby18
-      version: 1.8.7
-      description: Ruby 1.8.7
-    - name: ruby19
-      version: 1.9.2p180
-      description: Ruby 1.9.2
-    - name: java
-      version: "1.6"
-      description: Java 6
-    - name: java7
-      version: "1.7"
-      description: Java 7
-    - name: node
-      version: 0.4.12
-      description: Node.js
-    - name: node06
-      version: 0.6.8
-      description: Node.js
-    - name: node08
-      version: 0.8.2
-      description: Node.js
-    appservers: []
-    detection:
-  play:
-    name: play
-    runtimes:
-    - name: java
-      version: "1.6"
-      description: Java 6
-    - name: java7
-      version: "1.7"
-      description: Java 7
-    detection:
-    - "lib/play.*.jar": true
+runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
