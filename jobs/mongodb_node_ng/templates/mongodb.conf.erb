@@ -6,7 +6,6 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 %>
 dbpath = /store/instance/data
 logpath = /store/log/mongodb.log
-logappend = false  # This doesn't works
 
 bind_ip = 0.0.0.0
 port = 27017
@@ -24,6 +23,9 @@ maxConns = <%= plan_enabled && plan_conf.max_clients || 500 %>
 #
 #journal    = true
 noprealloc = true
+
+# forbidden the server-side javascript execution
+noscripting = true
 
 # smallfiles = start first container file at 16MB, doubling 4 times.
 # so this = 240MB per user. (i.e. 16MB container + 32MB + 64MB + 128MB)
