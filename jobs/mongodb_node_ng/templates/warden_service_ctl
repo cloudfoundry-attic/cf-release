@@ -2,6 +2,8 @@
 LOGDIR=/store/log
 INSDIR=/store/instance
 PIDFILE=${INSDIR}/service.pid
+PROXY_PIDFILE=${INSDIR}/proxy.pid
+PROXY_EXEC=/usr/share/mongodb/mongodb_proxy/proxyctl
 STOP_TIMEOUT=<%= properties.mongodb_node.instance_stop_timeout || 3 %>
 
 source /usr/bin/utils.sh
@@ -14,19 +16,26 @@ case $1 in
 
     touch ${LOGDIR}/mongodb.log
     mkdir -p ${INSDIR}/data
+    adminpass=$1
+    shift
+    $PROXY_EXEC -c /etc/mongodb_proxy.yml -p $adminpass &
+    sleep 1
+    proxy_pid=`pidof $PROXY_EXEC`
+    echo $proxy_pid > $PROXY_PIDFILE
     version=$1
     shift
     args=$*
-    echo $$ >> $PIDFILE
+    echo $$ > $PIDFILE
     exec /usr/share/mongodb/mongodb-$version/mongod $args --config /etc/mongodb.conf
     ;;
 
   stop)
     kill_and_wait $PIDFILE $STOP_TIMEOUT 1
+    kill_and_wait $PROXY_PIDFILE 1 1
     ;;
 
   status)
-    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
+    [ -f $PROXY_PIDFILE ] && [ -e /proc/`head -1 $PROXY_PIDFILE` ] && [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
     ;;
 
   *)
