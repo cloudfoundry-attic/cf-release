@@ -11,5 +11,10 @@ tar zxvf mysql/server-$VERSION.tar.gz
   done
 )
 
+# initialized database
+tar zxvf mysql/mysql-initdb-$VERSION.tar.gz
+
+cp -a initdb ${BOSH_INSTALL_TARGET}
+
 cp -v mysql/mysql.server ${BOSH_INSTALL_TARGET}/libexec/mysql.server
 cp -v mysql/mysql_warden.server ${BOSH_INSTALL_TARGET}/libexec/mysql_warden.server
