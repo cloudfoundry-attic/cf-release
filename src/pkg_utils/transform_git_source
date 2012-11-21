@@ -23,7 +23,7 @@ def `(cmd)
 end
 
 raise ArgumentError, "expecting $RELEASE_DIR, but not found" unless ENV["RELEASE_DIR"]
-GIT_CACHE_ROOT_PATH=Pathname.new(ENV["RELEASE_DIR"]).join('tmp','vcap_git_gems').freeze
+GIT_CACHE_ROOT_PATH=Pathname.new(ENV["RELEASE_DIR"]).join('.cache','vcap_git_gems').freeze
 
 # fetch into a per-repo local bare repo to store all objects to speed up
 # repeated clones

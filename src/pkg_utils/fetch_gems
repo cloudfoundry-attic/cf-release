@@ -66,7 +66,7 @@ to_fetch.map do |gem_basename|
   logger.info("Fetching #{gem_basename} from rubygems")
   begin
     target = "#{gem_store_dir}/#{gem_basename}"
-    cache_store = File.join(ENV["RELEASE_DIR"], "tmp", "fetch_gems")
+    cache_store = File.join(ENV["RELEASE_DIR"], ".cache", "fetch_gems")
     Dir.mkdir(cache_store) unless File.directory?(cache_store)
     cached = File.join(cache_store, gem_basename)
     if File.exist?(cached)
