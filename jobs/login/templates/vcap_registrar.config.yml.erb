@@ -7,7 +7,7 @@ logging:
   level: info
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 uri:
-  - lgn.<%= properties.domain %>
+  - login.<%= properties.domain %>
 host: <%= spec.networks.send(properties.networks.apps).ip %>
 index: <%= spec.index %>
 port: <%= (properties.login && properties.login.port) ? properties.login.port : 8080 %>
