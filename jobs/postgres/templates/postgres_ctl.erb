@@ -56,7 +56,7 @@ case "$1" in
       chown vcap:vcap $DATA_DIR
 
       # initdb creates data directories
-      su - vcap -c "$PACKAGE_DIR/bin/initdb -E utf8 -D $DATA_DIR"
+      su - vcap -c "$PACKAGE_DIR/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR"
 
       mkdir -p $DATA_DIR/pg_log
       chown vcap:vcap $DATA_DIR/pg_log

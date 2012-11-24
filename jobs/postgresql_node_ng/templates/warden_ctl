@@ -50,7 +50,7 @@ case $1 in
       if test ! -d $TMPDB_DIR/initdb/base
       then
         rm -rf $TMPDB_DIR/initdb
-        su - vcap -c "LD_LIBRARY_PATH=$ROOT_DIR/$PG_DIR/lib:$LD_LIBRARY_PATH $ROOT_DIR/$PG_DIR/bin/initdb -E utf8 -D $TMPDB_DIR/initdb"
+        su - vcap -c "LD_LIBRARY_PATH=$ROOT_DIR/$PG_DIR/lib:$LD_LIBRARY_PATH $ROOT_DIR/$PG_DIR/bin/initdb -E utf8 --locale en_US.UTF-8 -D $TMPDB_DIR/initdb"
       fi
       if test ! -d $TMPDB_DIR/initdb/base
       then
