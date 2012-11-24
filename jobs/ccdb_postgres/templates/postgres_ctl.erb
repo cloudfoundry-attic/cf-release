@@ -23,7 +23,7 @@ case "$1" in
       mkdir -p $DATA_DIR
       chown vcap:vcap $DATA_DIR
 
-      su - vcap -c "LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/initdb -E utf8 -D $DATA_DIR"
+      su - vcap -c "LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR"
 
       if [ $? != 0 ]; then
         echo "ERROR: Unable to Initialize Postgres DB"
