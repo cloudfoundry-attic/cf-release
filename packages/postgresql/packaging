@@ -7,4 +7,8 @@ tar xzf postgresql/postgresql-9.0-x86_64.tar.gz
 
 cp -a * ${BOSH_INSTALL_TARGET}
 
+tar xzf postgresql/postgresql-initdb-9.0-x86_64.tar.gz
+
+cp -a initdb ${BOSH_INSTALL_TARGET}
+
 rm ${BOSH_INSTALL_TARGET}/packaging

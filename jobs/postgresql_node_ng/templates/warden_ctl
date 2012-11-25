@@ -32,34 +32,30 @@ case $1 in
       case "$version" in
         "9.0")
           PG_DIR=/var/vcap/packages/postgresql
-          TMPDB_DIR=/var/vcap/data/initdb_tmp
           ;;
         "9.1")
           PG_DIR=/var/vcap/packages/postgresql91
-          TMPDB_DIR=/var/vcap/data/initdb91_tmp
           ;;
       esac
 
+      INITDB_DIR=$ROOT_DIR/$PG_DIR/initdb
+
       echo "Initialize the postgresql $version database cluster"
       install -m 0755 -d $ROOT_DIR/$PG_DIR
+
+      echo "Sync binaries and initialized data"
+      rm -rf $INITDB_DIR
       rsync -arl $PG_DIR/* $ROOT_DIR/$PG_DIR/
 
-      rm -rf $ROOT_DIR/$PG_DIR/initdb
-      mkdir -p $TMPDB_DIR
-      chmod -R 1777 $TMPDB_DIR
-      if test ! -d $TMPDB_DIR/initdb/base
-      then
-        rm -rf $TMPDB_DIR/initdb
-        su - vcap -c "LD_LIBRARY_PATH=$ROOT_DIR/$PG_DIR/lib:$LD_LIBRARY_PATH $ROOT_DIR/$PG_DIR/bin/initdb -E utf8 -D $TMPDB_DIR/initdb"
-      fi
-      if test ! -d $TMPDB_DIR/initdb/base
+      if test ! -d $INITDB_DIR/base
       then
         echo "Fail to initialize the postgresql $version database cluster, check the error log."
         exit 1
       fi
-      rsync -arl $TMPDB_DIR/initdb $ROOT_DIR/$PG_DIR
-      mkdir -p $ROOT_DIR/$PG_DIR/initdb/pg_log
-      chmod -R 777 $ROOT_DIR/$PG_DIR/initdb
+
+      mkdir -p $INITDB_DIR/pg_log
+      # initdb direcotry cloud not be modified by non-root users.
+      chmod -R 755 $INITDB_DIR
     done
     install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
     rsync -arl $JOB_DIR/bin/warden_service_ctl $ROOT_DIR/usr/bin/warden_service_ctl
