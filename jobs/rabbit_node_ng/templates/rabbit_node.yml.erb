@@ -59,5 +59,5 @@ bandwidth_per_second: <%= (plan_enabled && plan_conf.bandwidth_quotas && plan_co
 bandwidth_proxy:
   bin: /var/vcap/packages/bandwidth_proxy/bin/bandwidth_proxy
   # Set default window to 1 day
-  window: 86400
   size: <%= plan_enabled && plan_conf.bandwidth_quotas && plan_conf.bandwidth_quotas.per_day || 1 %>
+  window: <%= plan_enabled && plan_conf.bandwidth_quotas && plan_conf.bandwidth_quotas.time_window || 86400 %>
