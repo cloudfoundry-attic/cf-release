@@ -9,7 +9,7 @@ LD_LIBRARY_PATH=/var/vcap/packages/mysql/lib/mysql
 export LD_LIBRARY_PATH
 
 basedir=/var/vcap/packages/mysql
-datadir=/store/instance/data
+datadir=/var/vcap/store/mysql
 
 # Default value, in seconds, afterwhich the script should timeout waiting
 # for server start.
@@ -20,8 +20,8 @@ default_timeout=900
 # The following variables are only set for letting mysql.server find things.
 
 # Set some defaults
-pid_file=/store/instance/mysqld.pid
-server_pid_file=/store/instance/mysqld.pid
+pid_file=/var/vcap/sys/run/mysqld/mysqld.pid
+server_pid_file=/var/vcap/sys/run/mysqld/mysqld.pid
 use_mysqld_safe=1
 user=vcap
 

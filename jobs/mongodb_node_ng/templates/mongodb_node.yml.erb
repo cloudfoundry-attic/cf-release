@@ -61,7 +61,10 @@ mongorestore_path:
 ip_route: <%= node.ip_route %>
 <% end %>
 z_interval: <%= node.z_interval || 30 %>
+service_bin_dir: /var/vcap/packages
 service_log_dir: /var/vcap/sys/service-log/mongodb
+service_script_dir: /var/vcap/jobs/mongodb_node_ng/bin
+service_conf_dir: /var/vcap/jobs/mongodb_node_ng/config
 max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>

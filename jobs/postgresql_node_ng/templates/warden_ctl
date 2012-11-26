@@ -40,33 +40,25 @@ case $1 in
           ;;
       esac
 
-      echo "Initialize the postgresql $version database cluster"
-      install -m 0755 -d $ROOT_DIR/$PG_DIR
-      rsync -arl $PG_DIR/* $ROOT_DIR/$PG_DIR/
-
-      rm -rf $ROOT_DIR/$PG_DIR/initdb
       mkdir -p $TMPDB_DIR
       chmod -R 1777 $TMPDB_DIR
       if test ! -d $TMPDB_DIR/initdb/base
       then
         rm -rf $TMPDB_DIR/initdb
-        su - vcap -c "LD_LIBRARY_PATH=$ROOT_DIR/$PG_DIR/lib:$LD_LIBRARY_PATH $ROOT_DIR/$PG_DIR/bin/initdb -E utf8 -D $TMPDB_DIR/initdb"
+        su - vcap -c "LD_LIBRARY_PATH=$PG_DIR/lib:$LD_LIBRARY_PATH $PG_DIR/bin/initdb -E utf8 -D $TMPDB_DIR/initdb"
       fi
       if test ! -d $TMPDB_DIR/initdb/base
       then
         echo "Fail to initialize the postgresql $version database cluster, check the error log."
         exit 1
       fi
-      rsync -arl $TMPDB_DIR/initdb $ROOT_DIR/$PG_DIR
-      mkdir -p $ROOT_DIR/$PG_DIR/initdb/pg_log
-      chmod -R 777 $ROOT_DIR/$PG_DIR/initdb
+      rsync -arl $TMPDB_DIR/initdb $PG_DIR
+      mkdir -p $PG_DIR/initdb/pg_log
+      chmod -R 777 $PG_DIR/initdb
     done
-    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
-    rsync -arl $JOB_DIR/bin/warden_service_ctl $ROOT_DIR/usr/bin/warden_service_ctl
-    chmod 0755 $ROOT_DIR/usr/bin/warden_service_ctl
-    install -m 0755 -t $ROOT_DIR/usr/bin  /var/vcap/packages/common/utils.sh
-    echo "Starting warden."
+    chmod -R 755 $JOB_DIR/bin
 
+    echo "Starting warden."
     start_warden
     ;;
 
