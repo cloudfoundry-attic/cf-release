@@ -1,0 +1,73 @@
+<%
+service = "postgresql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+use_warden= plan_conf.warden && plan_conf.warden.enable
+
+node = properties.postgresql_node
+supported_versions = node.supported_versions
+version_configs = {
+  '9.0' => {
+    'name'    => 'postgresql',
+    'pid'     => '/var/vcap/sys/run/postgresql/postgresql.pid',
+  },
+
+  '9.1' => {
+    'name'    => 'postgresql91',
+    'pid'     => '/var/vcap/sys/run/postgresql/postgresql91.pid',
+  }
+}
+%>
+<% if use_warden %>
+check process warden
+  with pidfile /var/vcap/sys/run/warden/warden.pid
+  start program "/var/vcap/jobs/postgresql_node_ng/bin/warden_ctl start"
+  stop program "/var/vcap/jobs/postgresql_node_ng/bin/warden_ctl stop"
+  if failed unixsocket /tmp/warden.sock with timeout 10 seconds then restart
+  group vcap
+<% else %>
+<% supported_versions.each do |version| %>
+check process <%= version_configs[version]['name'] %>
+  with pidfile <%= version_configs[version]['pid'] %>
+  start program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_ctl '<%= version %>' start"
+  stop program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_ctl '<%= version %>' stop"
+  group vcap
+<% end %>
+<% end %>
+
+check process postgresql_node
+  with pidfile  /var/vcap/sys/run/postgresql_node/postgresql_node.pid
+  start program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_node_ctl start"
+  stop  program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_node_ctl stop"
+  group vcap
+<%if use_warden %>
+  depends on warden
+<% else %>
+  <% supported_versions.each do |version|  %>
+  depends on <%= version_configs[version]['name'] %>
+  <% end %>
+<%end%>
+<%
+if properties.service_lifecycle and plan_enabled and plan_conf.lifecycle and plan_conf.lifecycle.enable
+  worker_count = plan_conf.lifecycle.worker_count || 1
+  worker_count.times do |ind|
+%>
+check process postgresql_worker_<%= ind %>
+  with pidfile /var/vcap/sys/run/postgresql_node/postgresql_worker_<%= ind %>.pid
+  start program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_worker_ctl start <%= ind %>"
+  stop program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_worker_ctl stop <%= ind %>"
+  group worker
+  group vcap
+  depends on postgresql_node
+<% if use_warden %>
+  depends on warden
+<% else %>
+  <% supported_versions.each do |version|  %>
+  depends on <%= version_configs[version]['name'] %>
+  <% end %>
+<% end %>
+<%
+  end
+end
+%>

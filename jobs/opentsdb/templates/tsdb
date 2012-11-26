@@ -45,5 +45,5 @@ case $1 in
 esac
 shift
 
-exec java -Xmx2048m -ea -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:OnOutOfMemoryError='kill -9 %p' \
+exec java -Xmx<%= properties.opentsdb.heap_size || "2048" %>m -ea -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:OnOutOfMemoryError='kill -9 %p' \
  -Dtsd.feature.compactions -classpath "$CLASSPATH" net.opentsdb.tools.$MAINCLASS "$@"

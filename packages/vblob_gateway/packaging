@@ -1,7 +1,7 @@
 cp -a * ${BOSH_INSTALL_TARGET}
 
 (
-  cd ${BOSH_INSTALL_TARGET}/services/vblob
+  cd ${BOSH_INSTALL_TARGET}/services/ng/vblob
 
   bundle_cmd=/var/vcap/packages/ruby/bin/bundle
   $bundle_cmd config build.do_sqlite3 --with-sqlite3-dir=/var/vcap/packages/sqlite

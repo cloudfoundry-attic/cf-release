@@ -6,7 +6,7 @@ tar xzf postgres/postgresql-9.0.3.tar.gz
 (
   cd postgresql-9.0.3
   ./configure --prefix=$BOSH_INSTALL_TARGET
-  cp -R src/include $BOSH_INSTALL_TARGET
+  cp -LR src/include $BOSH_INSTALL_TARGET
   cd src/interfaces/libpq
   make
   make install

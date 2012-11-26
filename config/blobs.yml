@@ -439,6 +439,10 @@ rabbitmq/rabbitmq-server-with-plugins-generic-unix-2.4.1.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEwMDRlNGU3ZDUxMWY4MjEwNGY0NGYx%0AYmRjYmY0NSIsInNpZyI6IkZXWUQwYi9oQmtRdW9adjNJb0d6K1lzd0NuND0i%0AfQ==%0A
   sha: dfdfcf988a780af034c1568cae96e6a84e0c3668
   size: 1780598
+rabbitmq/rabbitmq-server-with-plugins-generic-unix-2.8.7.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIyMDRlNGU5ODYzOTI2YjEwNTA5MGQ2%0AYzUzNDc5NCIsInNpZyI6IlFJVjA0TDA5ZlZqZUlZeUNGcHZaMU4zclgxND0i%0AfQ==%0A
+  sha: 23db4c0fb8a43a0131f8e909c2821aaf85ea410b
+  size: 2894762
 nats/vendor/cache/json_pure-1.6.5.gem:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjIyMDRlNGU5ODYzZDA3NjMwNGY1MjVm%0AMDAxYjZkMSIsInNpZyI6Imh1ZGFBVUk1V1VzaE5jU01UQnE5andIaCtBVT0i%0AfQ==%0A
   sha: 739c40b6acebe9b7b3fdcaf3ff6bd4600ce3dcfb
@@ -583,10 +587,30 @@ hbase/hbase-0.90.6-cdh3u4-vmware-patched.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTAxMDVh%0AYzVjNTkwMSIsInNpZyI6IldlMi9yRjRybFZ3Y1ptR3FwWklzcHFZT2RiUT0i%0AfQ==%0A
   sha: 4290e2a35fc54d34d8ea4e0559e6de6e485322d4
   size: 36978703
+login/cloudfoundry-identity-batch-1.0.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA0YTIy%0ANDAzZjA0ZCIsInNpZyI6Inp3aE80OURHSXFhRnZFb292Rng5ek81aDViYz0i%0AfQ==%0A
+  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
+  size: 24049331
+golang/go1.0.1.src.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEwMDRlNGU3ZDUxNzYxOGYwNTA2MGI5%0AODBjMDE4MiIsInNpZyI6Ik5HczVyeml3SDJxc2l4c3l4c2wrUVdUbFd5OD0i%0AfQ==%0A
+  sha: fc8a6d6725f7f2bf7c94685c5fd0880c9b7f67f6
+  size: 9617092
+login/cloudfoundry-login-server-1.1.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIyMDRlNGU5ODY0M2Q5YWUwNTA2YjRi%0AYWJkMzZmZSIsInNpZyI6IncyZnpicyszVlc3dWRWQjVjNmJqVlFUQU1DND0i%0AfQ==%0A
+  sha: 75c5b365c58a10b98cc2eaca441ae52a29aad40c
+  size: 8449305
+uaa/cloudfoundry-identity-batch-1.0.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTA2ZDhj%0AZmU1NWRjNCIsInNpZyI6InlJdHBnOFhHUWVjMDRYb2sySG5oY2VXMzdhVT0i%0AfQ==%0A
+  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
+  size: 24049331
 uaa/apache-tomcat-7.0.32.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTA3ODZj%0AYjNjNzNlMSIsInNpZyI6IklUR0hRVmorU1paeVBaVkRPMVl3ODNMN2RkMD0i%0AfQ==%0A
   sha: 94d7efcb0d2797b196b1a7d9537e3ed53f7607f4
   size: 7701019
+postgresql/postgresql-9.1-x86_64.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEyMDRlNGU4NmVlYmU1OTEwNTA3NDk1%0AMDgzNWQ4MCIsInNpZyI6IjNSYks4Qk5tcFlhMHA3ejdVeVZpQjVpZ3hxND0i%0AfQ==%0A
+  sha: d6c44760c1e5eb055b6ac4a8080b061d6d04fa3c
+  size: 26556736
 uaa/jdk1.6.0_35.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA3YzVk%0AODNlZDNlYSIsInNpZyI6IjJoU0Z3OXE0bHh1SzBaUmh6R1BkMnlscWJpaz0i%0AfQ==%0A
   sha: 47ead45c658f9c72577d202d8aa1675461ee3ad6
@@ -599,14 +623,6 @@ ruby/ruby-1.9.3-p194.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTA1N2M0%0AZDgyYjRkMyIsInNpZyI6Ii9rY212b3JDYmFtNEJ2S1pJaEV5bGk2Q2lyST0i%0AfQ==%0A
   sha: 31cf6bd981e4c929e5dc3bbdb341833eab1bd9f2
   size: 12432239
-golang/go1.0.1.src.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEwMDRlNGU3ZDUxNzYxOGYwNTA2MGI5%0AODBjMDE4MiIsInNpZyI6Ik5HczVyeml3SDJxc2l4c3l4c2wrUVdUbFd5OD0i%0AfQ==%0A
-  sha: fc8a6d6725f7f2bf7c94685c5fd0880c9b7f67f6
-  size: 9617092
-postgresql/postgresql-9.1-x86_64.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEyMDRlNGU4NmVlYmU1OTEwNTA3NDk1%0AMDgzNWQ4MCIsInNpZyI6IjNSYks4Qk5tcFlhMHA3ejdVeVZpQjVpZ3hxND0i%0AfQ==%0A
-  sha: d6c44760c1e5eb055b6ac4a8080b061d6d04fa3c
-  size: 26556736
 dashboard/dashboard-1.0-SNAPSHOT-2b7dcaa1.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNTA4YWNk%0ANDJlMjI4ZSIsInNpZyI6Im9FcTdQaTBsb21HclJPSHJYQTh1YVI3L1RaZz0i%0AfQ==%0A
   sha: 08004df2a5b2a7a7e610da4ac1eaaa5a0c14ad25
@@ -635,7 +651,15 @@ uaa/cloudfoundry-identity-varz-1.0.2.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTA5Mjhi%0AYTU4ZjUyNyIsInNpZyI6InZLWlNDdURrQ3pCVjdoKy9zWVFUL2I1M0pibz0i%0AfQ==%0A
   sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
   size: 5727747
-login/cloudfoundry-login-server-1.1.1.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNTA5M2E1%0AYjY3MzE2YiIsInNpZyI6IlNubjBiTFlqRGVXd0p2TlRTQ0RxRnpFVThIQT0i%0AfQ==%0A
-  sha: d8540f7e5aa91c15763595a555808c753b8ce3d1
-  size: 8452796
+dashboard/dashboard-1.0-SNAPSHOT-032eecf9.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEyMDRlNGU4NmVlNTM5MjEwNTA5ZDU1%0ANDM4NTZlNyIsInNpZyI6IlVuQkgwcWdrRklQWXVOOHlXYktkT1IrOUNmbz0i%0AfQ==%0A
+  sha: b254e4140e09bc9e3f862cd6633dcd1d61abfbdc
+  size: 18251707
+login/cloudfoundry-login-server-1.1.2.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA5ZDM3%0AODgxYmY4YiIsInNpZyI6ImVGZkorV2RtMlFWU2VhamV3Z2hDb09VRm13VT0i%0AfQ==%0A
+  sha: a5122090d2082b004fc068a3010e74ccbc0e55af
+  size: 7073828
+uaa/cloudfoundry-identity-uaa-1.2.6.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEyMDRlNGU4NmVlMzk2OTIwNTA5ZDM3%0AOTExOGJjNCIsInNpZyI6IlR1cDMzWjBtVFU1QVB5TGNrTmp0eUs4NllNWT0i%0AfQ==%0A
+  sha: df4825f7d1ba86d3019af50acbeaf828f91d7a63
+  size: 17960046

@@ -1,0 +1,113 @@
+#!/bin/bash
+
+JOB_DIR=/var/vcap/jobs/mysql_node_ng
+PKG_DIR=/var/vcap/packages/mysql_node_ng
+MYSQL_DIR=/var/vcap/packages/mysql
+MYSQL55_DIR=/var/vcap/packages/mysql55
+
+source /var/vcap/packages/mysql_node_ng/common/services/utils.sh
+
+create_initdb () {
+  initdb_name=$1
+  mysql_dir=$2
+  i=0
+  server_startup_timeout=10
+  server_shutdown_timeout=10
+
+  rm -rf $ROOT_DIR/$mysql_dir/$initdb_name
+  rm -rf /var/vcap/data/$initdb_name
+  mkdir -p /var/vcap/data/$initdb_name
+  chmod -R 1777 /var/vcap/data/$initdb_name
+
+  echo "Initialize data directory for mysql in $mysql_dir"
+
+  $mysql_dir/bin/mysql_install_db --basedir=$mysql_dir --user=vcap \
+    --datadir=/var/vcap/data/$initdb_name
+  cd $mysql_dir
+  ./bin/mysqld_safe --user=vcap --datadir=/var/vcap/data/$initdb_name &
+
+  while test $i -ne $server_startup_timeout; do
+    if test -s /var/vcap/data/$initdb_name/*.pid; then
+      i='' && break
+    fi
+    sleep 1
+    i=`expr $i + 1`
+  done
+
+  if test -n "$i"; then
+    echo "Fail to start the temporary mysql server in $msyql_dir"
+    exit 1
+  fi
+
+  export LD_LIBRARY_PATH=$mysql_dir/lib/mysql
+  ./bin/mysqladmin shutdown
+  i=0
+  while test $i -ne $server_shutdown_timeout; do
+    if test ! -s /var/vcap/data/$initdb_name/*.pid; then
+      i='' && break
+    fi
+    sleep 1
+    i=`expr $i + 1`
+  done
+
+  if test -n "$i"; then
+    echo "Fail to shutdown the temporary mysql server in $mysql_dir"
+    exit 1
+  fi
+
+  if test ! -d /var/vcap/data/$initdb_name/mysql; then
+    echo "Fail to initialize database directory in $mysql_dir"
+    exit 1
+  fi
+
+  rsync -arl --exclude=test --exclude=*.err \
+    /var/vcap/data/$initdb_name $ROOT_DIR/$mysql_dir
+  chmod -R 777 $ROOT_DIR/$mysql_dir/$initdb_name
+}
+
+case $1 in
+
+  start)
+    echo "Setup warden."
+    setup_warden
+
+    install -m 0755 -d $ROOT_DIR/$MYSQL_DIR
+    rsync -arl $JOB_DIR/packages/mysql/* $ROOT_DIR/$MYSQL_DIR/
+
+    install -m 0755 -d $ROOT_DIR/$MYSQL55_DIR
+    rsync -arl $JOB_DIR/packages/mysql55/* $ROOT_DIR/$MYSQL55_DIR/
+
+    rsync -arl $JOB_DIR/bin/warden_service_ctl $ROOT_DIR/usr/bin/warden_service_ctl
+    chmod 0755 $ROOT_DIR/usr/bin/warden_service_ctl
+    install -m 0755 -t $ROOT_DIR/usr/bin  /var/vcap/packages/common/utils.sh
+
+    install -m 0755 -d $ROOT_DIR/$JOB_DIR/config
+    rsync -arl $JOB_DIR/config/warden_mysql_init $ROOT_DIR/$JOB_DIR/config/mysql_init
+    chmod 0644 $ROOT_DIR/$JOB_DIR/config/mysql_init
+    rsync -arl $JOB_DIR/config/my.cnf $ROOT_DIR/$JOB_DIR/config/my.cnf
+    rsync -arl $JOB_DIR/config/my55.cnf $ROOT_DIR/$JOB_DIR/config/my55.cnf
+    chmod 0644 $ROOT_DIR/$JOB_DIR/config/my.cnf
+    chmod 0644 $ROOT_DIR/$JOB_DIR/config/my55.cnf
+    install -m 0755 -d $ROOT_DIR/$JOB_DIR/bin
+    install -m 0755 -t $ROOT_DIR/$JOB_DIR/bin  $JOB_DIR/bin/my.shutdown
+    install -m 0755 -t $ROOT_DIR/$JOB_DIR/bin  $JOB_DIR/bin/my55.shutdown
+
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
+
+    create_initdb "initdb" $MYSQL_DIR
+    create_initdb "initdb55" $MYSQL55_DIR
+
+    echo "Starting warden."
+
+    start_warden
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac

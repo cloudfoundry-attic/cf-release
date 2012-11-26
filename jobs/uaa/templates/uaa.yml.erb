@@ -5,10 +5,6 @@
 <% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
 <% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
 
-pid: /var/vcap/sys/run/uaa.pid
-# nats message bus uri
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
-
 name: uaa
 
 database:
@@ -27,12 +23,6 @@ cloud_controller:
 
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
-
-varz:
-  username: _random_username_replaced_by_a_script_
-  password: _random_password_replaced_by_a_script_
-  type: uaa
-  uuid: _random_uuid_replaced_by_a_script_
 
 <% if properties.uaa.jwt && properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
 jwt:
@@ -59,7 +49,6 @@ oauth:
       - support-signon
       - appdirect
       - dashboard
-      - portal
   clients:
 <% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
     <%= id %>:<% client.marshal_dump.each do |key,value|%>
@@ -91,7 +80,6 @@ oauth:
 <% end %>
 <% if !properties.uaa.clients || !properties.uaa.clients.login %>
     login:
-      override: true
       id: login
       secret: <%= properties.uaa.login.client_secret %>
       authorized-grant-types: client_credentials

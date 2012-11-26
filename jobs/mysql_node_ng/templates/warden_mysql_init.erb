@@ -1,0 +1,6 @@
+GRANT ALL ON *.* to 'root'@'%' IDENTIFIED BY '<%= properties.mysql_node.password %>' WITH GRANT OPTION;
+GRANT ALL ON *.* to 'root'@'localhost' IDENTIFIED BY '<%= properties.mysql_node.password %>' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+DROP DATABASE IF EXISTS test;

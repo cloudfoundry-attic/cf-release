@@ -5,6 +5,11 @@ LOG_DIR=/var/vcap/sys/log/vcap_redis
 <% if properties.vcap_redis.persistence %>
 PERSISTENCE_DIR=<%= properties.vcap_redis.persistence.dir || "/vcar/vcap/store/vcap_redis/" %>
 <% end %>
+
+<%
+  redis_version = properties.vcap_redis.redis_version || "2.2"
+%>
+REDIS_INSTALL_DIR=/var/vcap/packages/redis<%= redis_version.sub(".", "") %>
 PIDFILE=$RUN_DIR/vcap_redis.pid
 
 source /var/vcap/packages/common/utils.sh
@@ -23,7 +28,7 @@ case $1 in
     <% end %>
     echo $$ > $PIDFILE
 
-    exec /var/vcap/packages/redis/bin/redis-server /var/vcap/jobs/vcap_redis/config/vcap_redis.conf
+    exec $REDIS_INSTALL_DIR/bin/redis-server /var/vcap/jobs/vcap_redis/config/vcap_redis.conf
 
     ;;
 

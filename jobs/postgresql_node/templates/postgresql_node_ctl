@@ -55,6 +55,8 @@ case $1 in
     chmod +x $JOB_DIR/config/postgresql_backup
     $JOB_DIR/config/postgresql_backup start
 
+    (crontab -l | sed /postgresql_logrotate/d; cat $JOB_DIR/config/postgresql_logrotate.cron) | sed /^$/d | crontab
+
     exec /var/vcap/packages/postgresql_node/services/postgresql/bin/postgresql_node \
          -c $JOB_DIR/config/postgresql_node.yml \
          >>$LOG_DIR/postgresql_node.stdout.log \

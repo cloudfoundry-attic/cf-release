@@ -1,0 +1,81 @@
+#!/bin/bash
+<%
+service = "postgresql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+%>
+JOB_DIR=/var/vcap/jobs/postgresql_node_ng
+PKG_DIR=/var/vcap/packages/postgresql_node_ng
+PG_DIR=/var/vcap/packages/postgresql
+
+source $PKG_DIR/common/services/utils.sh
+
+case $1 in
+
+  start)
+    echo "Setup warden."
+    setup_warden
+
+    <% if plan_conf && plan_conf.shmmax %>
+    sysctl -w 'kernel.shmmax=<%=plan_conf.shmmax%>'
+    <%else%>
+    sysctl -w 'kernel.shmmax=284934144'
+    <%end%>
+
+    <% if plan_conf && plan_conf.shmall%>
+    sysctl -w 'kernel.shmall=<%=plan_conf.shmall%>'
+    <%end%>
+
+    for version in "9.0" "9.1"
+    do
+      case "$version" in
+        "9.0")
+          PG_DIR=/var/vcap/packages/postgresql
+          TMPDB_DIR=/var/vcap/data/initdb_tmp
+          ;;
+        "9.1")
+          PG_DIR=/var/vcap/packages/postgresql91
+          TMPDB_DIR=/var/vcap/data/initdb91_tmp
+          ;;
+      esac
+
+      echo "Initialize the postgresql $version database cluster"
+      install -m 0755 -d $ROOT_DIR/$PG_DIR
+      rsync -arl $PG_DIR/* $ROOT_DIR/$PG_DIR/
+
+      rm -rf $ROOT_DIR/$PG_DIR/initdb
+      mkdir -p $TMPDB_DIR
+      chmod -R 1777 $TMPDB_DIR
+      if test ! -d $TMPDB_DIR/initdb/base
+      then
+        rm -rf $TMPDB_DIR/initdb
+        su - vcap -c "LD_LIBRARY_PATH=$ROOT_DIR/$PG_DIR/lib:$LD_LIBRARY_PATH $ROOT_DIR/$PG_DIR/bin/initdb -E utf8 -D $TMPDB_DIR/initdb"
+      fi
+      if test ! -d $TMPDB_DIR/initdb/base
+      then
+        echo "Fail to initialize the postgresql $version database cluster, check the error log."
+        exit 1
+      fi
+      rsync -arl $TMPDB_DIR/initdb $ROOT_DIR/$PG_DIR
+      mkdir -p $ROOT_DIR/$PG_DIR/initdb/pg_log
+      chmod -R 777 $ROOT_DIR/$PG_DIR/initdb
+    done
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
+    rsync -arl $JOB_DIR/bin/warden_service_ctl $ROOT_DIR/usr/bin/warden_service_ctl
+    chmod 0755 $ROOT_DIR/usr/bin/warden_service_ctl
+    install -m 0755 -t $ROOT_DIR/usr/bin  /var/vcap/packages/common/utils.sh
+    echo "Starting warden."
+
+    start_warden
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac

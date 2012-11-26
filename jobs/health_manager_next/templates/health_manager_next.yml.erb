@@ -1,10 +1,4 @@
 ---
-<% cc_props_name = properties.cc_props || 'cc' %>
-<% cc_props = properties.send(cc_props_name) %>
-
-<% hm_props_name = properties.hm_props || 'health_manager' %>
-<% hm_props = properties.send(hm_props_name) || OpenStruct.new %>
-
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 logging:
@@ -16,15 +10,11 @@ logging:
 pid: /var/vcap/sys/run/health_manager_next/health_manager_next.pid
 index: <%= spec.index %>
 bulk_api:
-  host: <%= cc_props.srv_api_uri %>
-
-cc_partition: <%= hm_props.cc_partition || "default" %>
-
-shadow_mode: <%= hm_props.shadow_mode || "enable" %>
+  host: <%= properties.cc.srv_api_uri %>
 
 intervals:
-  <% intervals = hm_props.intervals || OpenStruct.new %>
-  database_scan:         <%= intervals.database_scan         ||  60 %>
+  <% intervals = properties.health_manager && properties.health_manager.intervals || OpenStruct.new %>
+  expected_state_update: <%= intervals.expected_state_update ||  60 %>
   droplet_lost:          <%= intervals.droplet_lost          ||  30 %>
   droplets_analysis:     <%= intervals.droplets_analysis     ||  20 %>
   flapping_death:        <%= intervals.flapping_death        ||   1 %>
@@ -34,4 +24,4 @@ intervals:
   max_restart_delay:     <%= intervals.max_restart_delay     || 480 %>
   giveup_crash_number:   <%= intervals.giveup_crash_number   ||   4 %>
   stable_state:          <%= intervals.stable_state          ||  60 %>
-dequeueing_rate: <%= hm_props.dequeueing_rate || 50 %>
+dequeueing_rate: <%= properties.health_manager && properties.health_manager.dequeueing_rate || 50 %>

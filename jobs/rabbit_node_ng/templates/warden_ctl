@@ -1,0 +1,35 @@
+#!/bin/bash
+
+JOB_DIR=/var/vcap/jobs/rabbit_node_ng
+PKG_DIR=/var/vcap/packages/rabbit_node_ng
+
+source /var/vcap/packages/rabbit_node_ng/common/services/utils.sh
+
+case $1 in
+
+  start)
+    setup_warden
+
+    # Copy rabbitmq binaries and configuration files to warden base file system
+    install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
+    install -m 0755 -t $ROOT_DIR/usr/bin  $JOB_DIR/bin/warden_service_ctl
+    install -m 0755 -t $ROOT_DIR/usr/bin  /var/vcap/packages/common/utils.sh
+    for i in "var/vcap/packages" "var/vcap/data/packages"
+    do
+      mkdir -p $ROOT_DIR/$i
+      cp -af /$i/rabbitmq-2.4 $ROOT_DIR/$i
+      cp -af /$i/rabbitmq-2.8 $ROOT_DIR/$i
+      cp -af /$i/erlang $ROOT_DIR/$i
+    done
+    start_warden
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+    ;;
+
+esac
