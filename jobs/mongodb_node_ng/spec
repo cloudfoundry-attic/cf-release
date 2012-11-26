@@ -20,7 +20,6 @@ templates:
   warden.yml.erb: config/warden.yml
   mongodb.conf.erb: config/mongodb.conf
   mongodb_proxy.yml.erb: config/mongodb_proxy.yml
-  pre_service_start.sh: bin/pre_service_start.sh
   warden_service_ctl: bin/warden_service_ctl
 
 packages:

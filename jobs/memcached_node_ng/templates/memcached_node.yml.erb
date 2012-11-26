@@ -38,6 +38,9 @@ port_range:
 
 z_interval: <%= properties.memcached_node.z_interval || 30 %>
 service_log_dir: /var/vcap/sys/service-log/memcached
+service_script_dir: /var/vcap/jobs/memcached_node_ng/bin
+service_bin_dir:
+  memcached: /var/vcap/packages/memcached
 
 # TODO: max memory allocated to memcached service = capacity * memcached_memory = 16*64 = 1GB
 # Putting this to 1GB for testing, this *MUST* be appropriately changed
