@@ -7,6 +7,8 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 node = properties.redis_node
 supported_versions = node.supported_versions
 default_version = node.default_version
+packages = {}
+supported_versions.each{ |v| packages[v] = v.sub(".","") } # convention: package containing redis 2.2 is redis22
 nats_props_name = properties.nats_props || "nats"
 nats_props = properties.send(nats_props_name) || OpenStruct.new
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
@@ -39,6 +41,11 @@ ip_route: <%= node.ip_route %>
 <% end %>
 z_interval: <%= node.z_interval || 30 %>
 service_log_dir: /var/vcap/sys/service-log/redis
+service_script_dir: /var/vcap/jobs/redis_node_ng/bin
+service_bin_dir:
+<% for version in supported_versions %>
+  <%= "'#{version}': /var/vcap/packages/redis#{packages[version]}" %>
+<% end %>
 command_rename_prefix: <%= node.command_rename_prefix || "magic-protect-command-prefix" %>
 max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>

@@ -4,7 +4,10 @@ plan_enabled = properties.service_plans && properties.service_plans.send(service
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
-chown vcap:vcap -R /store
+BASE_DIR=$1
+LOG_DIR=$2
+chown vcap:vcap -R $BASE_DIR
+chown vcap:vcap -R $LOG_DIR
 <% if plan_conf && plan_conf.shmmax %>
 sysctl -w 'kernel.shmmax=<%=plan_conf.shmmax%>'
 <%else%>

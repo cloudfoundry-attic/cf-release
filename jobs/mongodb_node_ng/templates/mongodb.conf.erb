@@ -4,9 +4,6 @@ plan_enabled = properties.service_plans
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 %>
-dbpath = /store/instance/data
-logpath = /store/log/mongodb.log
-
 bind_ip = 0.0.0.0
 port = 27017
 

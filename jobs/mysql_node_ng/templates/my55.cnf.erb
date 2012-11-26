@@ -5,7 +5,7 @@ plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 warden = plan_conf.warden
 use_warden = warden && warden.enable
-base_folder = use_warden ? '/store/instance' : '/var/vcap/sys/run/mysqld'
+base_folder = "/var/vcap/sys/run/mysqld"
 %>
 [client]
 port      = 3307
@@ -14,7 +14,7 @@ socket		= <%= "#{base_folder}/mysqld55.sock" %>
 [mysqld_safe]
 socket		= <%= "#{base_folder}/mysqld55.sock" %>
 nice      = 0
-log-error = <%= use_warden ? '/store/log/mysqld55.err.log' : '/var/vcap/sys/log/mysql/mysqld55.err.log' %>
+log-error = /var/vcap/sys/log/mysql/mysqld55.err.log
 
 [mysqld]
 collation_server        = utf8_unicode_ci
@@ -23,8 +23,8 @@ user		                = vcap
 socket		              = <%= "#{base_folder}/mysqld55.sock" %>
 port     	              = 3307
 basedir		              = /var/vcap/packages/mysql55
-datadir                 = <%= use_warden ? '/store/instance/data' : '/var/vcap/store/mysql55' %>
-tmpdir                  = <%= use_warden ? '/store/instance/mysql_tmp' : '/var/vcap/data/mysql_tmp' %>
+datadir                 = /var/vcap/store/mysql55
+tmpdir                  = /var/vcap/data/mysql_tmp
 lc-messages-dir         = /var/vcap/packages/mysql55/share
 skip-external-locking
 <% if properties.mysql_node.max_heap_table_size %>
@@ -32,7 +32,7 @@ maximum-max_heap_table_size = <%= properties.mysql_node.max_heap_table_size %>
 max_heap_table_size         = <%= properties.mysql_node.max_heap_table_size %>
 <% end %>
 
-init-file = /var/vcap/jobs/mysql_node_ng/config/mysql_init
+init-file = <%= use_warden ? '/var/vcap/sys/run/mysqld/warden_mysql_init' : '/var/vcap/jobs/mysql_node_ng/config/mysql_init' %>
 
 <% if properties.micro %>
 bind-address            = 127.0.0.1
