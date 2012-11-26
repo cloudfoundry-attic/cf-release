@@ -1,19 +1,19 @@
 #!/bin/bash
-LOGDIR=/store/log
-INSDIR=/store/instance
-PIDFILE=${INSDIR}/service.pid
 STOP_TIMEOUT=<%= properties.redis_node.instance_stop_timeout || 3 %>
+OP=$1
+BASE_DIR=$2
+LOG_DIR=$3
+PIDFILE=$BASE_DIR/service.pid
 
-source /usr/bin/utils.sh
-exec 1>> ${LOGDIR}/${SCRIPT}.log
-exec 2>> ${LOGDIR}/${SCRIPT}.err.log
+source /var/vcap/packages/common/utils.sh
+exec 1>> $LOG_DIR/$SCRIPT.log
+exec 2>> $LOG_DIR/$SCRIPT.err.log
 
-case $1 in
+case $OP in
   start)
-    shift
-    version=$1
+    BIN_DIR=$4
     echo $$ > $PIDFILE
-    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec  /usr/share/redis/redis-${version}/redis-server -- ${INSDIR}/redis.conf
+    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec $BIN_DIR/bin/redis-server -- $BASE_DIR/redis.conf
     ;;
 
   stop)
