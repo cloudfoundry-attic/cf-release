@@ -14,13 +14,13 @@ version_configs = {
   '5.1' => {
     'port'        => 3306,
     'socket'      => '/var/vcap/sys/run/mysqld/mysqld.sock',
-    'binary_dir'  => '/var/vcap/packages/mysql/bin',
+    'binary_dir'  => '/var/vcap/packages/mysql',
   },
 
   '5.5' => {
     'port'        => 3307,
     'socket'      => '/var/vcap/sys/run/mysqld/mysqld55.sock',
-    'binary_dir'  => '/var/vcap/packages/mysql55/bin',
+    'binary_dir'  => '/var/vcap/packages/mysql55',
   }
 }
 nats_props_name = properties.nats_props || "nats"
@@ -57,8 +57,8 @@ mysql:
     socket: <%= version_configs[version]['socket'] %>
     user: root
     pass: <%= node.password %>
-    mysqldump_bin:  <%= "#{version_configs[version]['binary_dir']}/mysqldump" %>
-    mysql_bin:  <%= "#{version_configs[version]['binary_dir']}/mysql" %>
+    mysqldump_bin:  <%= "#{version_configs[version]['binary_dir']}/bin/mysqldump" %>
+    mysql_bin:  <%= "#{version_configs[version]['binary_dir']}/bin/mysql" %>
 <% end %>
 connection_pool_size:
   min: <%= connection_pool_size && connection_pool_size.min || 5 %>
@@ -77,6 +77,12 @@ max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 use_warden: true
 warden:
   service_log_dir: /var/vcap/sys/service-log/mysql
+  service_script_dir: /var/vcap/jobs/mysql_node_ng/bin
+  service_conf_dir: /var/vcap/jobs/mysql_node_ng/config
+  service_bin_dir:
+  <% for version in supported_versions %>
+    '<%= version %>': <%= "#{version_configs[version]['binary_dir']}" %>
+  <% end %>
   image_dir: /var/vcap/store/mysql_image
   service_start_timeout: <%= warden.service_start_timeout || 3 %>
   filesystem_quota: <%= warden.filesystem_quota || false %>
