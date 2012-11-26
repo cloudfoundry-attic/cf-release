@@ -16,7 +16,15 @@ case $1 in
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
+
     echo $$ > $PIDFILE
+
+    # Configure the core file location
+    mkdir -p /var/vcap/sys/cores
+    chown vcap:vcap /var/vcap/sys/cores
+    echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
+
+    ulimit -c unlimited
 
     rootfs_path=/var/vcap/data/warden/rootfs
     rootfs_tgz=/var/vcap/stemcell_base.tar.gz
@@ -32,6 +40,9 @@ case $1 in
       tar -C $tmp_path -zxf $rootfs_tgz
       mv $tmp_path $rootfs_path
     fi
+
+    # Use default local port range (higher ports are used for pooling)
+    echo 32768 61000 > /proc/sys/net/ipv4/ip_local_port_range
 
     # The kernel has a bug where network interfaces cannot be removed when a
     # network namespace is destroyed (NEW_NETNS) due to dangling references.
