@@ -1,36 +1,36 @@
 #!/bin/bash
-LOGDIR=/store/log
-INSDIR=/store/instance
-PIDFILE=${INSDIR}/service.pid
 STOP_TIMEOUT=<%= properties.rabbit_node.instance_stop_timeout || 3 %>
+OP=$1
+BASE_DIR=$2
+LOG_DIR=$3
+PIDFILE=$BASE_DIR/service.pid
 
-source /usr/bin/utils.sh
-exec 1>> ${LOGDIR}/${SCRIPT}.log
-exec 2>> ${LOGDIR}/${SCRIPT}.err.log
+source /var/vcap/packages/common/utils.sh
+exec 1>> $LOG_DIR/$SCRIPT.log
+exec 2>> $LOG_DIR/$SCRIPT.err.log
 
-case $1 in
+case $OP in
   start)
-    shift
-
-    version=$1
-    shift
-    export ERLANG_HOME=/var/vcap/packages/erlang
-    export PATH=/var/vcap/packages/erlang/bin:$PATH
-    export HOME=${INSDIR}
-    export RABBITMQ_NODENAME="$1@localhost"
+    BIN_DIR=$4
+    ERLANG_DIR=$5
+    NAME=$6
+    export ERLANG_HOME=$ERLANG_DIR
+    export PATH=$ERLANG_DIR/bin:$PATH
+    export HOME=$BASE_DIR
+    export RABBITMQ_NODENAME="$NAME@localhost"
     export RABBITMQ_NODE_PORT=10001
-    export RABBITMQ_BASE=${INSDIR}
-    export RABBITMQ_LOG_BASE=${LOGDIR}
-    export RABBITMQ_MNESIA_DIR=${INSDIR}/mnesia
-    export RABBITMQ_PLUGINS_EXPAND_DIR=${INSDIR}/plugins
-    export RABBITMQ_CONFIG_FILE=${INSDIR}/config/rabbitmq
-    export RABBITMQ_ENABLED_PLUGINS_FILE=${INSDIR}/config/enabled_plugins
+    export RABBITMQ_BASE=$BASE_DIR
+    export RABBITMQ_LOG_BASE=$LOG_DIR
+    export RABBITMQ_MNESIA_DIR=$BASE_DIR/mnesia
+    export RABBITMQ_PLUGINS_EXPAND_DIR=$BASE_DIR/plugins
+    export RABBITMQ_CONFIG_FILE=$BASE_DIR/config/rabbitmq
+    export RABBITMQ_ENABLED_PLUGINS_FILE=$BASE_DIR/config/enabled_plugins
     export RABBITMQ_SERVER_START_ARGS="-smp disable"
     export RABBITMQ_CONSOLE_LOG=reuse
     export ERL_CRASH_DUMP="/dev/null"
     export ERL_CRASH_DUMP_SECONDS="1"
     echo $$ >> $PIDFILE
-    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec /var/vcap/packages/rabbitmq-${version}/sbin/rabbitmq-server >${LOGDIR}/rabbitmq_stdout.log 2>${LOGDIR}/rabbitmq_stderr.log
+    exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec $BIN_DIR/sbin/rabbitmq-server >$LOG_DIR/rabbitmq_stdout.log 2>$LOG_DIR/rabbitmq_stderr.log
     ;;
 
   stop)

@@ -17,7 +17,6 @@ templates:
 
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
-  pre_service_start.sh: bin/pre_service_start.sh
   warden_service_ctl: bin/warden_service_ctl
 
 packages:

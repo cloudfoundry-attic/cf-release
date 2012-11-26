@@ -5,7 +5,7 @@ plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 warden = plan_conf.warden
 use_warden = warden && warden.enable
-base_folder = use_warden ? '/store/instance' : '/var/vcap/sys/run/mysqld'
+base_folder = '/var/vcap/sys/run/mysqld'
 %>
 [client]
 port      = 3306
@@ -14,7 +14,7 @@ socket		= <%= "#{base_folder}/mysqld.sock" %>
 [mysqld_safe]
 socket		= <%= "#{base_folder}/mysqld.sock" %>
 nice      = 0
-log-error = <%= use_warden ? '/store/log/mysqld.err.log' : '/var/vcap/sys/log/mysql/mysqld.err.log' %>
+log-error = /var/vcap/sys/log/mysql/mysqld.err.log
 
 [mysqld]
 collation_server        = utf8_unicode_ci
@@ -23,8 +23,8 @@ user		= vcap
 socket		= <%= "#{base_folder}/mysqld.sock" %>
 port     	= 3306
 basedir		= /var/vcap/packages/mysql
-datadir		= <%= use_warden ? '/store/instance/data' : '/var/vcap/store/mysql' %>
-tmpdir		= <%= use_warden ? '/store/instance/mysql_tmp' : '/var/vcap/data/mysql_tmp' %>
+datadir		= /var/vcap/store/mysql
+tmpdir		= /var/vcap/data/mysql_tmp
 language	= /var/vcap/packages/mysql/share/mysql/english
 skip-external-locking
 fast_index_creation = false
@@ -33,7 +33,7 @@ maximum-max_heap_table_size = <%= properties.mysql_node.max_heap_table_size %>
 max_heap_table_size         = <%= properties.mysql_node.max_heap_table_size %>
 <% end %>
 
-init-file = /var/vcap/jobs/mysql_node_ng/config/mysql_init
+init-file = <%= use_warden ? '/var/vcap/sys/run/mysqld/warden_mysql_init' : '/var/vcap/jobs/mysql_node_ng/config/mysql_init' %>
 
 <% if properties.micro %>
 bind-address            = 127.0.0.1

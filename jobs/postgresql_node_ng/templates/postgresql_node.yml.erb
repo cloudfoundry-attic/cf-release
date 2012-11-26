@@ -12,12 +12,12 @@ use_warden = warden && warden.enable
 version_configs = {
   '9.0' => {
     'port'        => 5432,
-    'binary_dir'  => '/var/vcap/packages/postgresql/bin',
+    'binary_dir'  => '/var/vcap/packages/postgresql',
   },
 
   '9.1' => {
     'port'        => 5433,
-    'binary_dir'  => '/var/vcap/packages/postgresql91/bin',
+    'binary_dir'  => '/var/vcap/packages/postgresql91',
   }
 }
 nats_props_name = properties.nats_props || "nats"
@@ -61,8 +61,8 @@ postgresql:
    pass: vcap
    port: <%= config['port'] %>
    database: postgres
-   dump_bin: <%= "#{config['binary_dir']}/pg_dump" %>
-   restore_bin: <%= "#{config['binary_dir']}/pg_restore" %>
+   dump_bin: <%= "#{config['binary_dir']}/bin/pg_dump" %>
+   restore_bin: <%= "#{config['binary_dir']}/bin/pg_restore" %>
 <% end %>
 
 <% if node.ip_route %>
@@ -77,17 +77,23 @@ op_time_limit: <%= node.op_time_limit || 6 %>
 max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 use_warden: true
 warden:
- service_log_dir: /var/vcap/sys/service-log/postgresql
- image_dir: /var/vcap/store/postgresql_image
- service_start_timeout: <%= warden.servie_start_timeout || 3 %>
- filesystem_quota: <%= warden.filesystem_quota || "false" %>
+  service_log_dir: /var/vcap/sys/service-log/postgresql
+  service_script_dir: /var/vcap/jobs/postgresql_node_ng/bin
+  service_conf_dir: /var/vcap/jobs/postgresql_node_ng/config
+  service_bin_dir:
+  <% for version in supported_versions %>
+    '<%= version %>': <%= "#{version_configs[version]['binary_dir']}" %>
+  <% end %>
+  image_dir: /var/vcap/store/postgresql_image
+  service_start_timeout: <%= warden.servie_start_timeout || 3 %>
+  filesystem_quota: <%= warden.filesystem_quota || "false" %>
 <% if warden.clean_image_cache %>
- clean_image_cache: true
- clean_image_cache_interval: <%= warden.clean_image_cache_interval || 3 %>
+  clean_image_cache: true
+  clean_image_cache_interval: <%= warden.clean_image_cache_interval || 3 %>
 <% end %>
- port_range:
-   first: 15000
-   last: 25000
+  port_range:
+    first: 15000
+    last: 25000
 <%end%>
 m_interval: <%= node.m_interval || 10 %>
 <% if node.m_actions %>

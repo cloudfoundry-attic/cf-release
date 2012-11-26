@@ -31,6 +31,10 @@ logging:
 pid: /var/vcap/sys/run/vblob_node/vblob_node.pid
 node_id: <%= node_id %>
 service_log_dir: /var/vcap/sys/service-log/vblob
+service_script_dir: /var/vcap/jobs/vblob_node_ng/bin
+service_bin_dir:
+  vblob: /var/vcap/packages/vblob
+  node: /var/vcap/packages/node
 supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
 default_version: <%= "'#{default_version}'"%>
 nodejs_path: /var/vcap/packages/node/bin/node
