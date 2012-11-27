@@ -47,3 +47,10 @@ image_dir: /var/vcap/store/redis_image
 persistent: <%= plan_enabled && plan_conf.persistent || false %>
 op_time_limit: <%= node.op_time_limit || 6 %>
 filesystem_quota: <%= plan_enabled && plan_conf.filesystem_quota || "false" %>
+m_interval: <%= node.m_interval || 10 %>
+<% if node.m_actions %>
+m_actions:
+<% node.m_actions.each do |act| %>
+  - <%= act %>
+<% end %>
+<% end %>
