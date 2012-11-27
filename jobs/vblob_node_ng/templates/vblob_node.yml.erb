@@ -50,3 +50,10 @@ fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false"
 max_disk: <%= plan_enabled && plan_conf.max_disk || 2048 %>
 op_time_limit: <%= node.op_time_limit || 6 %>
 service_start_timeout: <%= node.service_start_timeout || 3 %>
+m_interval: <%= node.m_interval || 10 %>
+<% if node.m_actions %>
+m_actions:
+<% node.m_actions.each do |act| %>
+  - <%= act %>
+<% end %>
+<% end %>
