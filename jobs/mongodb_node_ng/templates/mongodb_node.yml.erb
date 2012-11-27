@@ -44,9 +44,9 @@ mongod_options:
   "1.8": ""
   <% end %>
   <% if plan_enabled && plan_conf.enable_journaling %>
-  "2.0": ""
+  "2.0": "--nopreallocj"
   <% else %>
-  "2.0": "--nojournal"
+  "2.0": "--nopreallocj --nojournal"
   <% end %>
 
 port_range:
