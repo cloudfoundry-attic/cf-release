@@ -47,3 +47,10 @@ max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 memcached_start_timeout: <%= properties.memcached_node.memcached_start_timeout || 3 %>
 
 run_as_user: <%= properties.memcached_node.run_as_user || "" %>
+m_interval: <%= node.m_interval || 10 %>
+<% if node.m_actions %>
+m_actions:
+<% node.m_actions.each do |act| %>
+  - <%= act %>
+<% end %>
+<% end %>

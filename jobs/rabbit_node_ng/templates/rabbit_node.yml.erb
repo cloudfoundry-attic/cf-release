@@ -61,3 +61,10 @@ bandwidth_proxy:
   # Set default window to 1 day
   size: <%= plan_enabled && plan_conf.bandwidth_quotas && plan_conf.bandwidth_quotas.per_day || 1 %>
   window: <%= plan_enabled && plan_conf.bandwidth_quotas && plan_conf.bandwidth_quotas.time_window || 86400 %>
+m_interval: <%= node.m_interval || 10 %>
+<% if node.m_actions %>
+m_actions:
+<% node.m_actions.each do |act| %>
+  - <%= act %>
+<% end %>
+<% end %>
