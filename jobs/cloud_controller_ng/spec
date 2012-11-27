@@ -1,23 +1,33 @@
 ---
 name: cloud_controller_ng
 templates:
+  nginx_ctl:      bin/nginx_ctl
+  nginx.conf.erb:     config/nginx.conf
+  mime.types    :   config/mime.types
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_ng_ctl.erb: bin/cloud_controller_ng_ctl
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   iptables.conf.erb: config/iptables.conf
+  nfs-common: config/nfs-common
+  idmapd.conf.erb: config/idmapd.conf
+  node_staging.yml: config/staging/node.yml
+  sinatra_staging.yml: config/staging/sinatra.yml
+  java_web_staging.yml: config/staging/java_web.yml
+  spring_staging.yml: config/staging/spring.yml
+  rails3_staging.yml: config/staging/rails3.yml
+  grails_staging.yml: config/staging/grails.yml
+  lift_staging.yml: config/staging/lift.yml
+  rack_staging.yml: config/staging/rack.yml
+  standalone_staging.yml: config/staging/standalone.yml
+  play_staging.yml: config/staging/play.yml
+  runtimes.yml: config/runtimes.yml
 packages:
   - common
   - cloud_controller_ng
+  - nginx
   - libpq
   - sqlite
-  - ruby
-  - dea_node04
-  - dea_node06
-  - dea_node08
-  - dea_ruby18
-  - dea_ruby19
-  - dea_jvm
-  - dea_jvm7
+  - ruby_next
   - dea_transition
   - dea_seed
   - syslog_aggregator
