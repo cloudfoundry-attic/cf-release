@@ -116,7 +116,7 @@ redis:
 <% end %>
 
 staging:
-  max_staging_runtime:    <%= properties.cc.max_staging_runtime || 120 %>
+  max_staging_runtime:    <%= properties.cc.max_staging_runtime || 300 %>
   auth:
     user: <%= properties.cc.staging_upload_user %>
     password: <%= properties.cc.staging_upload_password %>
