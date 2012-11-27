@@ -8,7 +8,7 @@ logback.xml = /var/vcap/jobs/dashboard/config/dashboard/logback.xml
   # Fix this to https when SSL certs are working in dev and staging
   protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http"
 %>
-uaa.url = <%= protocol%>://uaa.<%= properties.domain %>
+uaa.logout.url = <%= protocol%>://login.<%= properties.domain %>/logout.do
 uaa.accessToken.url = <%= protocol%>://uaa.<%= properties.domain %>/oauth/token
 uaa.userAuthorize.url = <%= protocol%>://login.<%= properties.domain %>/oauth/authorize
 uaa.checkToken.url = <%= protocol%>://uaa.<%= properties.domain %>/check_token
