@@ -25,7 +25,7 @@ http {
   tcp_nopush           on;
   tcp_nodelay          on;  #disable nagel's algorithm
 
-  keepalive_timeout  75 20; #inherited from router
+  keepalive_timeout  300 300; #inherited from router
 
   client_max_body_size 256M; #already enforced upstream/but doesn't hurt.
 
