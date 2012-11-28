@@ -125,7 +125,7 @@ redis:
 
 staging:
   max_concurrent_stagers: <%= cc_props.max_concurrent_stagers || 20 %>
-  max_staging_runtime:    <%= cc_props.max_staging_runtime || 120 %>
+  max_staging_runtime:    <%= cc_props.max_staging_runtime || 300 %>
   secure: true
   <% if cc_props.new_stager_percent %>
   new_stager_percent: <%= cc_props.new_stager_percent %>
