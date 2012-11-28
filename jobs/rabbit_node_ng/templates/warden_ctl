@@ -3,6 +3,8 @@
 JOB_DIR=/var/vcap/jobs/rabbit_node_ng
 PKG_DIR=/var/vcap/packages/rabbit_node_ng
 
+export USE_LOOP_DEVICE=true
+
 source /var/vcap/packages/rabbit_node_ng/common/services/utils.sh
 
 case $1 in

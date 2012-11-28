@@ -25,13 +25,16 @@ setup_warden() {
   fi
 
   # Create loop devices for disk quota
-  for i in $(seq 0 $(expr $LOOP_DEVICE_COUNT - 1)); do
-    file=/dev/loop${i}
-    if [ ! -b ${file} ]; then
-      mknod -m0660 ${file} b 7 ${i}
-      chown root.disk ${file}
-    fi
-  done
+  if [ ! -z ${USE_LOOP_DEVICE} ]
+  then
+    for i in $(seq 0 $(expr $LOOP_DEVICE_COUNT - 1)); do
+      file=/dev/loop${i}
+      if [ ! -b ${file} ]; then
+        mknod -m0660 ${file} b 7 ${i}
+        chown root.disk ${file}
+      fi
+    done
+  fi
 }
 
 start_warden() {
