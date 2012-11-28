@@ -25,3 +25,10 @@ LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
 <% else %>
 LOGIN_SECRET: <%= properties.uaa.clients.login.secret %>
 <% end %>
+<% if !properties.uaa.require_https.nil? %>
+require_https: <%= properties.uaa.require_https %>
+<% end %>
+<% if !properties.uaa.dump_requests.nil? %>
+dump_requests: <%= properties.uaa.dump_requests %>
+<% end %>
+
