@@ -8,6 +8,7 @@ cloud_controller_uri: <%= properties.cc.srv_api_uri %>
   nats_props = properties.send(nats_props_name) || OpenStruct.new
   nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
   acls = props.acls
+  cc_api_version = props.cc_api_version || "v1"
 %>
 
 <% if props.ip_route %>
@@ -15,7 +16,6 @@ ip_route: <%= props.ip_route %>
 <% end %>
 
 index: <%= spec.index %>
-token: <%= props.token %>
 mbus: <%= nats %>
 pid: /var/vcap/sys/run/marketplace_gateway/marketplace_gateway.pid
 external_uri: <%= props.external_uri %>
@@ -31,7 +31,28 @@ acls:
 
 marketplace: <%= props.marketplace %>
 
-cc_api_version: <%= props.cc_api_version || "v1" %>
+cc_api_version: <%= cc_api_version %>
+
+<% if cc_api_version == "v2" %>
+
+uaa_endpoint: <%= props.uaa_endpoint %>
+
+uaa_client_auth_credentials:
+  username: <%= props.uaa_client_auth_credentials.username %>
+  password: <%= props.uaa_client_auth_credentials.password %>
+
+service_auth_tokens:
+<%
+  props.service_auth_tokens.instance_eval("def fields; @table.keys; end;")
+  props.service_auth_tokens.fields.each { |offering|
+    token = props.service_auth_tokens.send(offering.to_sym)
+%>
+  <%= offering %>: <%= token %>
+<% } %>
+<% else %>
+
+token: <%= props.token %>
+<% end %>
 
 refresh_interval: <%= props.refresh_interval || 300 %>
 z_interval: <%= props.z_interval || 30 %>
