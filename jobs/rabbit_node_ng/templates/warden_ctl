@@ -2,13 +2,14 @@
 
 JOB_DIR=/var/vcap/jobs/rabbit_node_ng
 PKG_DIR=/var/vcap/packages/rabbit_node_ng
+USE_LOOP_DEVICE=true
 
 source /var/vcap/packages/rabbit_node_ng/common/services/utils.sh
 
 case $1 in
 
   start)
-    setup_warden
+    setup_warden ${USE_LOOP_DEVICE}
 
     # Copy rabbitmq binaries and configuration files to warden base file system
     install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
