@@ -1,0 +1,10 @@
+---
+name: java_web
+
+runtimes:
+  - java:
+      default: true
+  - java7:
+      default: false
+detection:
+  - *.war: true
