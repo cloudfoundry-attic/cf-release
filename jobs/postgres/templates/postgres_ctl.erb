@@ -95,6 +95,15 @@ case "$1" in
       su - vcap -c "$PACKAGE_DIR/bin/createdb \"<%= database.name %>\" -p $PORT"
       set -e
 
+      <% if database.citext %>
+        echo "Trying to install citext..."
+        set +e
+        $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
+                              -d "<%= database.name %>" \
+                              -f $PACKAGE_DIR/share/postgresql/contrib/citext.sql
+        set -e
+      <% end %>
+
       <% if database.run_on_every_startup %>
         <% database.run_on_every_startup.each do |query| %>
           $PACKAGE_DIR/bin/psql -U vcap -p $PORT \

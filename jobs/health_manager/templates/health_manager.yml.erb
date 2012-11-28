@@ -1,6 +1,12 @@
 ---
-<% db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% db_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+<% hm_props_name = properties.hm_props || 'health_manager' %>
+<% hm_props = properties.send(hm_props_name) || OpenStruct.new %>
+
+<% ccdb_prop_name = properties.db || 'ccdb' %>
+<% ccdb = properties.send(ccdb_prop_name)  %>
+<% db_name = ccdb.databases.find { |db| db.tag == "cc" }.name %>
+<% db_role = ccdb.roles.find { |role| role.tag == "admin" } %>
+
 <% network = spec.networks.send(properties.networks.apps) %>
 <% nats = properties.nats %>
 
@@ -15,20 +21,21 @@ logging:
 pid: /var/vcap/sys/run/health_manager/health_manager.pid
 rails_environment: production
 index: <%= spec.index %>
+cc_partition: <%= hm_props.cc_partition || "default" %>
 database_environment:
   production:
-    database: <%= db.name %>
-    host: <%= properties.ccdb.address %>
-    port: <%= properties.ccdb.port %>
+    database: <%= db_name %>
+    host: <%= ccdb.address %>
+    port: <%= ccdb.port %>
     encoding: utf8
     username: <%= db_role.name %>
     password: <%= db_role.password %>
-    pool: <%= properties.ccdb.pool_size %>
+    pool: <%= ccdb.pool_size %>
     timeout: 2000
     template: template0 # Required for utf8 encoding
     adapter: postgresql
 intervals:
-  <% intervals = properties.health_manager && properties.health_manager.intervals || OpenStruct.new %>
+  <% intervals = hm_props.intervals || OpenStruct.new %>
   database_scan:         <%= intervals.database_scan         ||  60 %>
   droplet_lost:          <%= intervals.droplet_lost          ||  30 %>
   droplets_analysis:     <%= intervals.droplets_analysis     ||  20 %>
@@ -42,4 +49,4 @@ intervals:
   max_db_reconnect_wait: <%= intervals.max_db_reconnect_wait || 300 %>
   inactivity_period_for_spindown: <%= intervals.inactivity_period_for_spindown || -1 %>
 
-dequeueing_rate: <%= properties.health_manager && properties.health_manager.dequeueing_rate || 50 %>
+dequeueing_rate: <%= hm_props.dequeueing_rate || 50 %>

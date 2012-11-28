@@ -3,3 +3,9 @@ check process cloud_controller_ng
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
   group vcap
+
+check process nginx
+  with pidfile /var/vcap/sys/run/nginx/nginx.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl stop"
+  group vcap
