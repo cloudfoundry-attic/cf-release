@@ -80,7 +80,7 @@ uaa:
 
 # App staging parameters
 staging:
-  max_staging_runtime: <%= properties.cc.max_staging_runtime || 120 %>
+  max_staging_runtime: <%= properties.ccng.max_staging_runtime || 300 %>
   auth:
     user: <%= properties.ccng.staging_upload_user %>
     password: <%= properties.ccng.staging_upload_password %>
