@@ -18,6 +18,8 @@ index: <%= spec.index %>
 bulk_api:
   host: <%= cc_props.srv_api_uri %>
 
+cc_partition: <%= hm_props.cc_partition || "default" %>
+
 intervals:
   <% intervals = hm_props.intervals || OpenStruct.new %>
   expected_state_update: <%= intervals.expected_state_update ||  60 %>
