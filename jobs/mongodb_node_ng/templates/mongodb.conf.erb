@@ -14,7 +14,9 @@ auth = true
 
 nohttpinterface = true
 
-maxConns = <%= plan_enabled && plan_conf.max_clients || 500 %>
+# give max_clients '+1' because proxy needs to connect to mongodb to get
+# the data size
+maxConns = <%= plan_enabled && plan_conf.max_clients && plan_conf.max_clients.to_i + 1 || 500 %>
 
 # mms-token = 33f75ccb-ec85-4294-b6ec-e6ae7a63901f
 
