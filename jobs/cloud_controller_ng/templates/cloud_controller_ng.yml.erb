@@ -64,7 +64,7 @@ db:
   database: postgres://<%= db_role.name %>:<%= db_role.password %>@<%= properties.ccdb_ng.address %>:<%= properties.ccdb_ng.port %>/<%= db.name %>
   max_connections: <%= properties.ccdb_ng.max_connections || 32 %>
   pool_timeout: <%= properties.ccdb_ng.pool_timeout || 10 %>
-  log_level: <%= properties.ccng.db_logging_level || "info" %>
+  log_level: <%= properties.ccng.db_logging_level || "debug2" %>
 
 <% if properties.vcap_redis %>
 redis:
