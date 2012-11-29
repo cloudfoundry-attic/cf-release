@@ -123,7 +123,7 @@ redis:
 <% end %>
 
 staging:
-  max_staging_runtime:    <%= cc_props.max_staging_runtime || 120 %>
+  max_staging_runtime:    <%= cc_props.max_staging_runtime || 300 %>
   auth:
     user: <%= cc_props.staging_upload_user %>
     password: <%= cc_props.staging_upload_password %>
