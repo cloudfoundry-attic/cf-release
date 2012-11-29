@@ -42,6 +42,10 @@ oauth:
   authorize:
     ssl: true
   client:
+  <% if properties.uaa.autoapprove %>
+    autoapprove: <% properties.uaa.autoapprove.each do |client_id| %>
+      - <%= client_id %><% end %>
+  <% else %>
     autoapprove:
       - vmc
       - my
@@ -49,6 +53,8 @@ oauth:
       - support-signon
       - appdirect
       - dashboard
+      - portal
+  <% end %>
   clients:
 <% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
     <%= id %>:<% client.marshal_dump.each do |key,value|%>
