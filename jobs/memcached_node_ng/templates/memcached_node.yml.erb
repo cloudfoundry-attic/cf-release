@@ -13,7 +13,7 @@ nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#
 %>
 
 capacity: <%= plan_enabled && plan_conf.capacity || 16 %>
-plan: <%= plan %>
+plan: '<%= plan %>'
 local_db: sqlite3:/var/vcap/store/memcached/memcached_node.db
 mbus: <%= nats %>
 index: <%= spec.index %>
