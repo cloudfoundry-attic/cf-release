@@ -3,7 +3,7 @@ set -e
 
 cd ${BUILD_DIR}
 pkg_utils/vendor.sh services/ng/postgresql
-mv warden warden_meta
+mv services_warden warden_meta
 mv warden_meta/* .
 rm -rf warden_meta
 

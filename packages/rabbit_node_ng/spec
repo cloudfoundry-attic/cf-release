@@ -5,6 +5,6 @@ dependencies:
 - ruby
 files:
 - services/ng/rabbit/**/*
-- warden/warden/**/*
+- services_warden/warden/**/*
 - pkg_utils/*
 - common/services/utils.sh
