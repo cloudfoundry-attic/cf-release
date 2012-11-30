@@ -28,6 +28,9 @@
 [submodule "src/warden"]
 	path = src/warden
 	url = git@github.com:cloudfoundry/warden.git
+[submodule "src/services_warden"]
+	path = src/services_warden
+	url = git@github.com:cloudfoundry/warden.git
 [submodule "src/cloud_controller"]
 	path = src/cloud_controller
 	url = git@github.com:cloudfoundry/cloud_controller.git
