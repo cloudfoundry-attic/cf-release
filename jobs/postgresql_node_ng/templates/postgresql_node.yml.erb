@@ -25,7 +25,7 @@ nats_props = properties.send(nats_props_name) || OpenStruct.new
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
-plan: <%= plan %>
+plan: '<%= plan %>'
 local_db: sqlite3:/var/vcap/store/postgresql_node.db
 <%
 if use_warden

@@ -29,7 +29,7 @@ service:
   version: "1.4"
   description: 'Memcached in-memory cache service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
-  default_plan: <%= gateway.default_plan || 'free' %>
+  default_plan: '<%= gateway.default_plan || 'free' %>'
   tags: ['key-value', 'cache']
   timeout: <%= properties.memcached_gateway.service_timeout || 10 %>
 <% if acls %>
