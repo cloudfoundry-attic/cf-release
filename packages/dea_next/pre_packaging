@@ -2,12 +2,5 @@
 set -e
 
 cd ${BUILD_DIR}
-
 pkg_utils/vendor.sh dea_next
-
-cd dea_next/go/src/
-mkdir -p github.com/xushiwei/goyaml/
-git clone git://github.com/xushiwei/goyaml.git github.com/xushiwei/goyaml/
-cd ../../..
-
 rm -rf core
