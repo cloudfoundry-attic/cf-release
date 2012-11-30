@@ -28,6 +28,7 @@ case "$version" in
     ;;
 esac
 
+INITDB_DIR=$PACKAGE_DIR/initdb
 FIRST_TIME=0
 
 case $1 in
@@ -39,10 +40,8 @@ case $1 in
       mkdir -p $DATA_DIR
       chown vcap:vcap $DATA_DIR
 
-      # not to initdb
-      #LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/initdb -E utf8 -D $DATA_DIR >> $LOG_DIR/postgresql_ctl.log
       # copy initdb
-      rsync -arl $PACKAGE_DIR/initdb/* $DATA_DIR
+      rsync -arl $INITDB_DIR/* $DATA_DIR
 
       if [ $? != 0 ]; then
         echo "ERROR: Unable to initialize PostgreSQL DB" >> $LOG_DIR/postgresql_ctl.log
@@ -52,7 +51,7 @@ case $1 in
       sed -i "s/#listen_addresses\( *\)=\( *\)'localhost'/listen_addresses\1=\2'*'/" $DATA_DIR/postgresql.conf
     fi
 
-    rsync -arl $PACKAGE_DIR/initdb/pg_hba.conf $DATA_DIR/pg_hba.conf
+    rsync -arl $INITDB_DIR/pg_hba.conf $DATA_DIR/pg_hba.conf
 
     chown -R vcap:vcap $DATA_DIR
     chmod -R 700 $DATA_DIR
