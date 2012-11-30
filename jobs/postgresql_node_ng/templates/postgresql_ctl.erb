@@ -80,7 +80,7 @@ case "$1" in
       chown vcap:vcap $LOG_DIR
     fi
 
-    sed -i "/log_directory/ {s/#log_directory/log_directory/;s/pg_log/\/var\/vcap\/sys\/log\/postgresql/}" $DATA_DIR/postgresql.conf
+    sed -i "/log_directory/ {s/#log_directory/log_directory/;s,pg_log,$LOG_DIR,}" $DATA_DIR/postgresql.conf
 
     # set adjustable configurations per plan
     <%
