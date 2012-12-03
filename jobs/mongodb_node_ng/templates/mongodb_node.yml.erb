@@ -40,8 +40,8 @@ mongod_path:
 mongod_options:
 <% enable_journaling = plan_enabled && plan_conf.enable_journaling %>
   "1.8": <%= enable_journaling ? "--journal": "" %>
-  "2.0": <%= enable_journaling ? "": "--nojournal" %>
-  "2.2": <%= enable_journaling ? "": "--nojournal" %>
+  "2.0": <%= enable_journaling ? "": "--nojournal" %> --nopreallocj
+  "2.2": <%= enable_journaling ? "": "--nojournal" %> --nopreallocj
 
 port_range:
   first: 25001
