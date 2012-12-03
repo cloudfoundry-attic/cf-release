@@ -32,9 +32,13 @@ case $1 in
       case "$version" in
         "9.0")
           PG_DIR=/var/vcap/packages/postgresql
+          SRC_CONF_FILE=$JOB_DIR/config/postgresql.conf
+
           ;;
         "9.1")
           PG_DIR=/var/vcap/packages/postgresql91
+          SRC_CONF_FILE=$JOB_DIR/config/postgresql91.conf
+
           ;;
       esac
 
@@ -54,9 +58,13 @@ case $1 in
       fi
 
       mkdir -p $INITDB_DIR/pg_log
+
+      # update postgresql.conf in initdb
+      rsync -arl $SRC_CONF_FILE $INITDB_DIR/postgresql.conf
       # initdb direcotry cloud not be modified by non-root users.
       chmod -R 755 $INITDB_DIR
     done
+
     install -m 0755 -t $ROOT_DIR/usr/sbin $JOB_DIR/bin/pre_service_start.sh
     rsync -arl $JOB_DIR/bin/warden_service_ctl $ROOT_DIR/usr/bin/warden_service_ctl
     chmod 0755 $ROOT_DIR/usr/bin/warden_service_ctl
