@@ -28,10 +28,10 @@ service:
   version: "0.51"
   description: 'Blob service'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
-  default_plan: <%= gateway.default_plan || 'free' %>
+  default_plan: '<%= gateway.default_plan || 'free' %>'
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
-    <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
+    <%= "'#{pf}': #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
   tags: ['nosql']
   timeout: <%= properties.vblob_gateway.service_timeout || 10 %>
@@ -83,7 +83,7 @@ max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 plan_management:
   plans:
 <% plan_mgmt.fields.each do |pf| %>
-    <%= pf %>:
+    '<%= pf %>':
       high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
       low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
       allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>

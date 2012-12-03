@@ -29,10 +29,10 @@ service:
   version: "1.8"
   description: 'MongoDB NoSQL store'
   plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
-  default_plan: <%= gateway.default_plan || 'free' %>
+  default_plan: '<%= gateway.default_plan || 'free' %>'
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
-    <%= "#{pf}: #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
+    <%= "'#{pf}': #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
   tags: ['nosql', 'document']
   timeout: <%= properties.mongodb_gateway.service_timeout || 10 %>
@@ -93,7 +93,7 @@ download_url_template: "http://<%= lifecycle.download_url %>/serialized/%{servic
 plan_management:
   plans:
 <% plan_mgmt.fields.each do |pf| %>
-    <%= pf %>:
+    '<%= pf %>':
       high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
       low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
       allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>
