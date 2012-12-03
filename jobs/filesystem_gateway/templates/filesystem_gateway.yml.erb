@@ -17,7 +17,7 @@ service:
   version: "1.0"
   description: 'Persistent filesystem service'
   plans: ['free']
-  default_plan: <%= gateway.default_plan || 'free' %>
+  default_plan: '<%= gateway.default_plan || 'free' %>'
   tags: ['Persistent filesystem service']
   timeout: <%= properties.filesystem_gateway.service_timeout || 10 %>
 <% if acls %>
