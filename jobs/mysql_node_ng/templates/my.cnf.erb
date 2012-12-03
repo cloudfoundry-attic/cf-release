@@ -24,7 +24,7 @@ socket		= <%= "#{base_folder}/mysqld.sock" %>
 port     	= 3306
 basedir		= /var/vcap/packages/mysql
 datadir		= <%= use_warden ? '/store/instance/data' : '/var/vcap/store/mysql' %>
-tmpdir		= <%= use_warden ? '/store/instance/mysql_tmp' : '/var/vcap/data/mysql_tmp' %>
+tmpdir		= <%= use_warden ? '/store/mysql_tmp' : '/var/vcap/data/mysql_tmp/mysql' %>
 language	= /var/vcap/packages/mysql/share/mysql/english
 skip-external-locking
 fast_index_creation = false
