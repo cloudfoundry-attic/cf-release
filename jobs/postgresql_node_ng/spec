@@ -13,6 +13,8 @@ templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.conf.erb: config/logrotate.conf
   postgresql_logrotate.cron.erb: config/postgresql_logrotate.cron
+  postgresql.conf.erb: config/postgresql.conf
+  postgresql91.conf.erb: config/postgresql91.conf
 
   warden_ctl: bin/warden_ctl
   warden.yml: config/warden.yml

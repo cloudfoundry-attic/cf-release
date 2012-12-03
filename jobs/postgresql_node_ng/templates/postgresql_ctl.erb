@@ -8,6 +8,8 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 version=$1
 shift
 
+JOB_DIR=/var/vcap/jobs/postgresql_node_ng
+
 case "$version" in
   "9.0")
     PACKAGE_DIR=/var/vcap/packages/postgresql
@@ -15,7 +17,7 @@ case "$version" in
     RUN_DIR=/var/vcap/sys/run/postgresql
     PIDFILE=$RUN_DIR/postgresql.pid
     LOG_DIR=/var/vcap/sys/log/postgresql
-    PORT=5432
+    SRC_CONF_FILE=$JOB_DIR/config/postgresql.conf
 
     ;;
   "9.1")
@@ -24,7 +26,7 @@ case "$version" in
     RUN_DIR=/var/vcap/sys/run/postgresql
     PIDFILE=$RUN_DIR/postgresql91.pid
     LOG_DIR=/var/vcap/sys/log/postgresql91
-    PORT=5433
+    SRC_CONF_FILE=$JOB_DIR/config/postgresql91.conf
 
     ;;
 esac
@@ -64,14 +66,10 @@ case "$1" in
       fi
 
       echo "host all all 0.0.0.0/0 md5" >> $DATA_DIR/pg_hba.conf
-
-      # set listening address if supplied
-      <% if properties.postgresql_server && properties.postgresql_server.listen_address %>
-        sed -i "s/#listen_addresses\( *\)=\( *\)'localhost'/listen_addresses\1=\2'<%= properties.postgresql_server.listen_address %>'/" $DATA_DIR/postgresql.conf
-      <% else %>
-        sed -i "s/#listen_addresses\( *\)=\( *\)'localhost'/listen_addresses\1=\2'*'/" $DATA_DIR/postgresql.conf
-      <% end %>
     fi
+
+    # update the config file in data directory
+    rsync -arl $SRC_CONF_FILE $DATA_DIR/postgresql.conf
 
     # since postgresql service is alive
     # log dir change should cover both clean deploy and upgrade push
@@ -79,33 +77,6 @@ case "$1" in
       mkdir -p $LOG_DIR
       chown vcap:vcap $LOG_DIR
     fi
-
-    sed -i "/log_directory/ {s/#log_directory/log_directory/;s,pg_log,$LOG_DIR,}" $DATA_DIR/postgresql.conf
-
-    # set adjustable configurations per plan
-    <%
-    adjustable_configs = {
-      :max_connections => [500, nil],
-      :shared_buffers => [128, 'MB'],
-      :effective_cache_size => [128, 'MB'],
-      :work_mem => [1, 'MB'],
-      :temp_buffers => [1, 'MB'],
-      :wal_buffers => [1, 'MB'],
-      :maintenance_work_mem => [30, 'MB'],
-      :checkpoint_segments => [16, nil],
-      :checkpoint_segments_max => [300, nil],
-      :max_prepared_transactions => [0, nil],
-      :port => ['$PORT', nil],
-    } %>
-    <% adjustable_configs.each do |config, default_value| %>
-    <% value = plan_conf && plan_conf.respond_to?(config) && plan_conf.send(config)? plan_conf.send(config) : default_value[0] %>
-    <% units = default_value[1] %>
-    <% config = config.to_s %>
-    sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=value%><%=units%>/" $DATA_DIR/postgresql.conf
-    <% end %>
-
-    # stop psql from adding timestamps to its log file names
-    sed -i "/log_filename/ {s/#log_filename/log_filename/;s/postgresql-%Y-%m-%d_%H%M%S.log/postgresql.log/}" $DATA_DIR/postgresql.conf
 
     echo "Starting PostgreSQL $version: "
     su - vcap -c "LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/pg_ctl -w start -D $DATA_DIR -l \"$LOG_DIR/startup.log\""
