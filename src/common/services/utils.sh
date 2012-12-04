@@ -8,6 +8,8 @@ ROOT_TGZ=/var/vcap/stemcell_base.tar.gz
 LOOP_DEVICE_COUNT=1024
 
 setup_warden() {
+  use_loop_device=$1
+
   mkdir -p $RUN_DIR
   mkdir -p $LOG_DIR
 
@@ -25,13 +27,16 @@ setup_warden() {
   fi
 
   # Create loop devices for disk quota
-  for i in $(seq 0 $(expr $LOOP_DEVICE_COUNT - 1)); do
-    file=/dev/loop${i}
-    if [ ! -b ${file} ]; then
-      mknod -m0660 ${file} b 7 ${i}
-      chown root.disk ${file}
-    fi
-  done
+  if [ ! -z ${use_loop_device} ] && [ ${use_loop_device} = 'true' ]
+  then
+    for i in $(seq 0 $(expr $LOOP_DEVICE_COUNT - 1)); do
+      file=/dev/loop${i}
+      if [ ! -b ${file} ]; then
+        mknod -m0660 ${file} b 7 ${i}
+        chown root.disk ${file}
+      fi
+    done
+  fi
 }
 
 start_warden() {
