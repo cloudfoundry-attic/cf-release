@@ -86,3 +86,15 @@ staging:
     password: <%= properties.ccng.staging_upload_password %>
 
 runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
+
+# TODO: templatize using Bosh V9/V10 that gives improved property templates
+quota_definitions:
+  free:
+    non_basic_services_allowed: false
+    total_services: 2
+  paid:
+    non_basic_services_allowed: true
+    total_services: 32
+  runaway:
+    non_basic_services_allowed: true
+    total_services: 500
