@@ -112,7 +112,8 @@ case $OP in
     ;;
 
   status)
-    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
+    BIN_DIR=$4
+    LD_LIBRARY_PATH=$BIN_DIR/lib:$LD_LIBRARY_PATH $BIN_DIR/bin/pg_ctl status -D $BASE_DIR > /dev/null
     ;;
 
   *)
