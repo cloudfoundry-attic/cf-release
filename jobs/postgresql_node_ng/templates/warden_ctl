@@ -32,20 +32,17 @@ case $1 in
       case "$version" in
         "9.0")
           PG_DIR=/var/vcap/packages/postgresql
+          SRC_CONF_FILE=$JOB_DIR/config/postgresql.conf
+
           ;;
         "9.1")
           PG_DIR=/var/vcap/packages/postgresql91
+          SRC_CONF_FILE=$JOB_DIR/config/postgresql91.conf
+
           ;;
       esac
 
-      INITDB_DIR=$ROOT_DIR/$PG_DIR/initdb
-
-      echo "Initialize the postgresql $version database cluster"
-      install -m 0755 -d $ROOT_DIR/$PG_DIR
-
-      echo "Sync binaries and initialized data"
-      rm -rf $INITDB_DIR
-      rsync -arl $PG_DIR/* $ROOT_DIR/$PG_DIR/
+      INITDB_DIR=$PG_DIR/initdb
 
       if test ! -d $INITDB_DIR/base
       then
@@ -54,9 +51,13 @@ case $1 in
       fi
 
       mkdir -p $INITDB_DIR/pg_log
+
+      # update postgresql.conf in initdb
+      rsync -arl $SRC_CONF_FILE $INITDB_DIR/postgresql.conf
       # initdb direcotry cloud not be modified by non-root users.
       chmod -R 755 $INITDB_DIR
     done
+
     chmod -R 755 $JOB_DIR/bin
 
     echo "Starting warden."
