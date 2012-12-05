@@ -13,6 +13,7 @@ fi
 
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+JOB_DIR=/var/vcap/jobs/vblob_node_ng
 RUN_DIR=/var/vcap/sys/run/vblob_node
 LOG_DIR=/var/vcap/sys/log/vblob_node
 PIDFILE=$RUN_DIR/vblob_node.pid
@@ -28,6 +29,8 @@ MT_EXPORT=<%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_n
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
+
+chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
