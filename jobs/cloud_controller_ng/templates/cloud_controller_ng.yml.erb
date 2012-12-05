@@ -77,6 +77,7 @@ uaa:
   url: http://uaa.<%= properties.domain %>
   resource_id: <%= properties.ccng.uaa_resource_id %>
   symmetric_secret: <%= properties.uaa.cc.token_secret %>
+  validation_key: <%= properties.uaa.jwt.validation_key %>
 
 # App staging parameters
 staging:
