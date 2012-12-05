@@ -15,7 +15,6 @@ source /var/vcap/packages/common/utils.sh
 exec 1>> $LOG_DIR/$SCRIPT.log
 exec 2>> $LOG_DIR/$SCRIPT.err.log
 
-INITDB_DIR=$PACKAGE_DIR/initdb
 FIRST_TIME=0
 
 case $OP in
@@ -36,11 +35,10 @@ case $OP in
         echo "ERROR: Unable to initialize PostgreSQL DB" >> $LOG_DIR/postgresql_ctl.log
         exit 1
       fi
-      # set listening address if supplied
-      sed -i "s/#listen_addresses\( *\)=\( *\)'localhost'/listen_addresses\1=\2'*'/" $BASE_DIR/postgresql.conf
     fi
 
     rsync -arl $BIN_DIR/initdb/pg_hba.conf $BASE_DIR/pg_hba.conf
+    rsync -arl $BIN_DIR/initdb/postgresql.conf $BASE_DIR/postgresql.conf
 
     chown -R vcap:vcap $BASE_DIR
     chmod -R 700 $BASE_DIR
@@ -56,33 +54,7 @@ case $OP in
       mkdir -p $LOG_DIR
       chown vcap:vcap $LOG_DIR
     fi
-    sed -i "/log_directory/ {s/#log_directory/log_directory/;s|pg_log|$LOG_DIR|}" $BASE_DIR/postgresql.conf
-
-    # set adjustable configurations per plan
-    <%
-    adjustable_configs = {
-      :max_connections => [500, nil],
-      :shared_buffers => [128, 'MB'],
-      :effective_cache_size => [128, 'MB'],
-      :work_mem => [1, 'MB'],
-      :temp_buffers => [1, 'MB'],
-      :wal_buffers => [1, 'MB'],
-      :maintenance_work_mem => [30, 'MB'],
-      :checkpoint_segments => [16, nil],
-      :checkpoint_segments_max => [300, nil],
-      :max_prepared_transactions => [0, nil],
-      :port => ['$PORT', nil],
-    } %>
-
-    <% adjustable_configs.each do |config, default_value| %>
-    <% value = plan_conf && plan_conf.respond_to?(config) && plan_conf.send(config)? plan_conf.send(config) : default_value[0] %>
-    <% units = default_value[1] %>
-    <% config = config.to_s %>
-    sed -i "s/^[\w|#]*<%=config%> = .*/<%=config%> = <%=value%><%=units%>/" $BASE_DIR/postgresql.conf
-    <% end %>
-
-    # stop psql from adding timestamps to its log file names
-    sed -i "/log_filename/ {s/#log_filename/log_filename/;s/postgresql-%Y-%m-%d_%H%M%S.log/postgresql.log/}" $BASE_DIR/postgresql.conf
+    sed -i "s&^[\w|#]*log_directory = .*&log_directory = '${LOG_DIR}'&" $BASE_DIR/postgresql.conf
 
     echo "Starting PostgreSQL `cat $BASE_DIR/PG_VERSION`: " >> $LOG_DIR/postgresql_ctl.log
     LD_LIBRARY_PATH=$BIN_DIR/lib:$LD_LIBRARY_PATH $BIN_DIR/bin/pg_ctl -w start -D $BASE_DIR -l "$LOG_DIR/startup.log"
