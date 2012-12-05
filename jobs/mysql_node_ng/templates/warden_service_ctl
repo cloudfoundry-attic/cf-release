@@ -14,7 +14,7 @@ case $OP in
     BIN_DIR=$4
     DATA_DIR=$5
     VERSION=$6
-    if test ! -d $BIN_DIR/data/mysql; then
+    if test ! -d $BASE_DIR/data/mysql; then
       rsync -arl $BIN_DIR/initdb$VERSION/* $DATA_DIR
     fi
     $BIN_DIR/libexec/mysql_warden.server start $BASE_DIR/my$VERSION.cnf
