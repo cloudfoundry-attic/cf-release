@@ -58,8 +58,6 @@ case $1 in
       chmod -R 755 $INITDB_DIR
     done
 
-    chmod -R 755 $JOB_DIR/bin
-
     echo "Starting warden."
     start_warden
     ;;
