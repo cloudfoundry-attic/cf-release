@@ -14,7 +14,6 @@ case $1 in
 
   start)
     setup_warden
-    chmod -R 755 $JOB_DIR/bin
     start_warden
     ;;
 

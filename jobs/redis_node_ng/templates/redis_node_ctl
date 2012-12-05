@@ -19,6 +19,8 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 
 source /var/vcap/packages/common/utils.sh
 
+chmod -R 755 $JOB_DIR/bin
+
 case $1 in
 
   start)
