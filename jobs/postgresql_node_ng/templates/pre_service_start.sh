@@ -15,3 +15,5 @@ sysctl -w 'kernel.shmall=<%=plan_conf.shmall%>'
 <%else%>
 sysctl -w 'kernel.shmall=2097152'
 <%end%>
+mkdir -p /var/vcap/sys/log/monit
+chown vcap:vcap /var/vcap/sys/log/monit
