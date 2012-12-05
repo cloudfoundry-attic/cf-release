@@ -12,10 +12,6 @@ case $1 in
   start)
     echo "Setup warden."
     setup_warden
-    chmod -R 755 $JOB_DIR/bin
-    chmod 755 $JOB_DIR/config
-    chmod a+r $JOB_DIR/config/*
-
     echo "Starting warden."
     start_warden
     ;;

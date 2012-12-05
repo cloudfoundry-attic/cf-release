@@ -12,7 +12,7 @@ MIG_DIR=<%= properties.service_migration && properties.service_migration.mount_p
 
 source /var/vcap/packages/common/utils.sh
 
-source /var/vcap/packages/common/utils.sh
+chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
