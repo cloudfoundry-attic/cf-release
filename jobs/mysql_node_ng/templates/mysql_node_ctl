@@ -1,7 +1,17 @@
 #!/bin/bash
 <%
+service = "mysql"
 migration = properties.service_migration
 lifecycle = properties.service_lifecycle
+
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+if plan_enabled
+  plan_conf = properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+  capacity = plan_conf.capacity || -1
+  warden = plan_conf.warden
+  use_warden = warden && warden.enable
+end
 %>
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
@@ -27,6 +37,21 @@ case $1 in
 
   start)
     pid_guard $PIDFILE "MySQL node"
+
+    <% if plan_enabled && capacity > 0 && use_warden %>
+    # enlarge aio-max-nr since the default value may
+    # not enough to start all mysql instances
+    capacity=<%= capacity %>
+    aio_nr_per_instance=2661
+    buffer=100
+    expected_nr=$((capacity * aio_nr_per_instance + buffer))
+    aio_max_file="/proc/sys/fs/aio-max-nr"
+
+    if [ -e $aio_max_file ] && [ "$expected_nr" -gt "$(cat $aio_max_file)" ]; then
+      echo $expected_nr > $aio_max_file
+      echo "Tuning aio-max-nr to $expected_nr"
+    fi
+    <% end %>
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
