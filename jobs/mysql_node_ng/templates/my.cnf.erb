@@ -6,6 +6,8 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 warden = plan_conf.warden
 use_warden = warden && warden.enable
 base_folder = '/var/vcap/sys/run/mysqld'
+innodb_open_files = plan_conf.innodb_tables_per_database
+innodb_open_files *= plan_conf.capacity if !use_warden && innodb_open_files
 %>
 [client]
 port      = 3306
@@ -49,6 +51,10 @@ myisam-recover          = BACKUP
 query_cache_limit       = 1M
 query_cache_size        = <%= plan_enabled && plan_conf.query_cache_size || '16' %>M
 expire_logs_days        = 10
+innodb_file_per_table   = 1
+<% if innodb_open_files %>
+innodb_open_files       = <%= innodb_open_files %>
+<% end %>
 
 [mysqldump]
 quick
