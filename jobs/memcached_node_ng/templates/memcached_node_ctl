@@ -10,6 +10,8 @@ JOB_DIR=/var/vcap/jobs/memcached_node_ng
 
 source /var/vcap/packages/common/utils.sh
 
+chmod -R 755 $JOB_DIR/bin
+
 case $1 in
 
   start)
