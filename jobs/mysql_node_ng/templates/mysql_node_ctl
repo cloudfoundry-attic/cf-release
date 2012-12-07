@@ -2,6 +2,12 @@
 <%
 migration = properties.service_migration
 lifecycle = properties.service_lifecycle
+service = "mysql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+warden = plan_conf.warden
+use_warden = warden && warden.enable
 %>
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
@@ -18,6 +24,7 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/mysql_node_ng/common/services/utils.sh
 
 chmod -R 755 $JOB_DIR/bin
 chmod 755 $JOB_DIR/config
@@ -26,6 +33,10 @@ chmod a+r $JOB_DIR/config/*
 case $1 in
 
   start)
+    <% if use_warden %>
+    wait_warden_start
+    <% end %>
+
     pid_guard $PIDFILE "MySQL node"
 
     mkdir -p $RUN_DIR

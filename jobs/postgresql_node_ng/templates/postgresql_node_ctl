@@ -13,6 +13,12 @@ PIDFILE=$RUN_DIR/postgresql_node.pid
 <%
 migration = properties.service_migration
 lifecycle = properties.service_lifecycle
+service = "postgresql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "free"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+warden = plan_conf.warden
+use_warden = warden && warden.enable
 %>
 
 MIG_DIR=<%= migration && migration.mount_point || "/var/vcap/services_migration" %>
@@ -23,12 +29,17 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/postgresql_node_ng/common/services/utils.sh
 
 chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
   start)
+    <% if use_warden %>
+    wait_warden_start
+    <% end %>
+
     pid_guard $PIDFILE "PostgreSQL node"
 
     mkdir -p $RUN_DIR
