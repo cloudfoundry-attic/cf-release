@@ -6,6 +6,8 @@ templates:
   mongodb_worker_ctl: bin/mongodb_worker_ctl
   mongodb_migration_util.erb: bin/mongodb_migration_util
 
+  create_mongodb_tmp_dir.erb: bin/create_mongodb_tmp_dir
+  remove_mongodb_tmp_dir.erb: bin/remove_mongodb_tmp_dir
   mongodb_node.yml.erb: config/mongodb_node.yml
   mongodb_worker.yml.erb: config/mongodb_worker.yml
   mongodb_backup.yml.erb: config/mongodb_backup.yml

@@ -1,0 +1,19 @@
+#!/bin/sh
+LOG_DIR=/var/vcap/sys/log/mongodb_node
+mkdir -p $LOG_DIR
+log_echo() {
+  echo "`date` $1" >> $LOG_DIR/mongodb_create_tmp_dir.log
+}
+mongodb_tmp_dir="/var/vcap/store/tmp_dir"
+
+ret=$(mountpoint "$mongodb_tmp_dir")
+if [ $? -eq "0" ]; then
+  ret=$(umount -d $mongodb_tmp_dir 2>&1)
+  if [ $? -eq "0" ]; then
+    log_echo "successfully umount $mongodb_tmp_dir"
+  else
+    log_echo "failed to umount $mongodb_tmp_dir: $ret"
+  fi
+fi
+
+exit 0
