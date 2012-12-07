@@ -23,12 +23,15 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/postgresql_node_ng/common/services/utils.sh
 
 chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
   start)
+    wait_warden_start
+
     pid_guard $PIDFILE "PostgreSQL node"
 
     mkdir -p $RUN_DIR

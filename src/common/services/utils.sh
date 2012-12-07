@@ -52,3 +52,14 @@ start_warden() {
        >>$LOG_DIR/warden.stdout.log \
        2>>$LOG_DIR/warden.stderr.log
 }
+
+wait_warden_start() {
+  while true
+  do
+    netstat -an | grep LISTENING | grep /tmp/warden\.sock
+    if [ $? -eq 0 ]
+    then
+      break
+    fi
+  done
+}

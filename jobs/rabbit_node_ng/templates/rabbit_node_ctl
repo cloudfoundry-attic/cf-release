@@ -11,13 +11,17 @@ JOB_DIR=/var/vcap/jobs/rabbit_node_ng
 MIG_DIR=<%= properties.service_migration && properties.service_migration.mount_point || "/var/vcap/services_migration" %>
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/rabbit_node_ng/common/services/utils.sh
 
 chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
   start)
+    wait_warden_start
+
     pid_guard $PIDFILE "Rabbit node"
+
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
     mkdir -p $SERV_LOG_DIR

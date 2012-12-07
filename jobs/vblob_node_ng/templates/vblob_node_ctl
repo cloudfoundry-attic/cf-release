@@ -29,12 +29,15 @@ MT_EXPORT=<%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_n
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/vblob_node_ng/common/services/utils.sh
 
 chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
   start)
+    wait_warden_start
+
     pid_guard $PIDFILE "vBlob node"
 
     sysctl -w net.ipv4.ip_local_port_range="30000 45000"

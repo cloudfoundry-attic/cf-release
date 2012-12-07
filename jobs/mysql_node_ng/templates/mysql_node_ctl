@@ -18,6 +18,7 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/mysql_node_ng/common/services/utils.sh
 
 chmod -R 755 $JOB_DIR/bin
 chmod 755 $JOB_DIR/config
@@ -26,6 +27,8 @@ chmod a+r $JOB_DIR/config/*
 case $1 in
 
   start)
+    wait_warden_start
+
     pid_guard $PIDFILE "MySQL node"
 
     mkdir -p $RUN_DIR
