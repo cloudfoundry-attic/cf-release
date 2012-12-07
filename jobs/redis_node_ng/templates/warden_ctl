@@ -7,7 +7,6 @@ REDIS22_BIN_DIR=/var/vcap/packages/redis22/bin
 REDIS24_BIN_DIR=/var/vcap/packages/redis24/bin
 REDIS26_BIN_DIR=/var/vcap/packages/redis26/bin
 
-
 source /var/vcap/packages/redis_node_ng/common/services/utils.sh
 
 case $1 in
@@ -18,7 +17,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE
+    kill_and_wait $WARDEN_PIDFILE
     ;;
 
   *)

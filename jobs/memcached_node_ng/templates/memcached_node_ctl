@@ -9,12 +9,15 @@ PIDFILE=$RUN_DIR/memcached_node.pid
 JOB_DIR=/var/vcap/jobs/memcached_node_ng
 
 source /var/vcap/packages/common/utils.sh
+source /var/vcap/packages/memcached_node_ng/common/services/utils.sh
 
 chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
   start)
+    wait_warden_start
+
     pid_guard $PIDFILE "memcached node"
 
     mkdir -p $RUN_DIR
