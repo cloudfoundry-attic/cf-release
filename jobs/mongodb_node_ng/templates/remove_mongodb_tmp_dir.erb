@@ -1,0 +1,24 @@
+#!/bin/sh
+
+mkdir -p /var/vcap/sys/log/mongodb
+
+log_echo() {
+  echo "`date` $1" >> /var/vcap/sys/log/mongodb/mongodb_create_tmp_dir.log
+}
+
+
+mongodb_tmp_in=/var/vcap/store
+mongodb_tmp_loop_file="$mongodb_tmp_in/mongodb_tmp_loop"
+mongodb_tmp_dir="/var/vcap/store/tmp_dir"
+
+
+if [ -d "$mongodb_tmp_dir" ]; then
+  umount -d $mongodb_tmp_dir
+  rm -rf $mongodb_tmp_dir
+fi
+
+if [ -f "$mongodb_tmp_loop_file" ]; then
+  rm -rf $mongodb_tmp_loop_file
+fi
+
+exit 0

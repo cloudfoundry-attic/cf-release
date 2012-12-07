@@ -39,6 +39,13 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
+    /var/vcap/jobs/mongodb_node_ng/bin/create_mongodb_tmp_dir
+    return_value=$?
+    if [ $return_value -ne 0 ]; then
+      echo "Failed to create mongodb tmp directory"
+      exit $return_value
+    fi
+
     mkdir -p $MIG_DIR
     <% if lifecycle %>
     mkdir -p $SNAPSHOT_DIR
@@ -68,6 +75,7 @@ case $1 in
     umount $SNAPSHOT_DIR
     <% end %>
 
+    /var/vcap/jobs/mongodb_node_ng/bin/remove_mongodb_tmp_dir
     ;;
 
   *)
