@@ -106,6 +106,16 @@ case $1 in
 
     # Run the migrations only on the first CC launch
     <% if spec.index.to_i == 0 %>
+      cd $CC_PACKAGE_DIR/cloud_controller_ng
+      chpst -u vcap:vcap bundle exec rake db:migrate >>$LOG_DIR/db_migrate.stdout.log 2>>$LOG_DIR/db_migrate.stderr.log
+      if [ $? != 0 ]; then
+        echo "Migrations failed"
+        exit 1
+      fi
+
+      # TODO: remove the -m when we have a stand alone utility for loading
+      # frameworks etc, and call those utilities here.  See corresponding
+      # comments in ccng runner.
       exec chpst -u vcap:vcap $CC_PACKAGE_DIR/cloud_controller_ng/bin/cloud_controller -m \
         -c $CLOUD_CONTROLLER_NG_CONFIG \
         >>$LOG_DIR/cloud_controller_ng.stdout.log \
