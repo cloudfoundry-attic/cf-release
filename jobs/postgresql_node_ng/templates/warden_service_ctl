@@ -44,7 +44,7 @@ case $OP in
     chmod -R 700 $BASE_DIR
 
     # host server could connect the container without password
-    host_ip=`cat /etc/hosts | grep " host$"| cut -d' ' -f1`
+    host_ip=`ip route | grep "^default" | cut -d' ' -f3`
     echo "host all all $host_ip/32 trust" >> $BASE_DIR/pg_hba.conf
     echo "host all all 0.0.0.0/0 md5" >> $BASE_DIR/pg_hba.conf
 
