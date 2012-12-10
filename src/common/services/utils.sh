@@ -44,11 +44,32 @@ start_warden() {
 
   export PATH=/var/vcap/packages/ruby/bin:$PATH
 
-  pid_guard $PIDFILE "Warden"
-  echo $$ > $PIDFILE
+  nohup /var/vcap/packages/ruby/bin/bundle exec \
+        rake warden:start[$JOB_DIR/config/warden.yml] \
+        >>$LOG_DIR/warden.stdout.log \
+        2>>$LOG_DIR/warden.stderr.log &
 
-  exec /var/vcap/packages/ruby/bin/bundle exec \
-       rake warden:start[$JOB_DIR/config/warden.yml] \
-       >>$LOG_DIR/warden.stdout.log \
-       2>>$LOG_DIR/warden.stderr.log
+  warden_start_flag=false
+  warden_start_timeout=20
+  countdown=$(( $warden_start_timeout * 2))
+
+  for i in `seq 1 $countdown`; do
+    warden_pid=`sudo netstat -pan | grep LISTENING | grep /tmp/warden\.sock | awk '{print $9}' | cut -d / -f 1`
+    if [ -z $warden_pid ]; then
+      sleep 0.5
+      echo -n .
+    else
+      warden_start_flag=true
+      echo "warden is ready"
+      break
+    fi
+  done
+
+  if [ $warden_start_flag=true ]; then
+    pid_guard $PIDFILE "Warden"
+    echo $warden_pid > $PIDFILE
+  else
+    echo "warden start timeout"
+    exit 1
+  fi
 }
