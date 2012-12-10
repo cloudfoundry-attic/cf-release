@@ -9,6 +9,8 @@ case $1 in
       echo "Failed to create mysql tmp directory"
       exit $return_value
     fi
+    mkdir -p /var/vcap/data/mysql_tmp/mysql
+    chown -R vcap /var/vcap/data/mysql_tmp/mysql
     /var/vcap/packages/mysql/libexec/mysql.server start /var/vcap/jobs/mysql_node_ng/config/my.cnf
 
     ;;
