@@ -26,7 +26,7 @@ socket		              = <%= "#{base_folder}/mysqld55.sock" %>
 port     	              = 3307
 basedir		              = /var/vcap/packages/mysql55
 datadir                 = /var/vcap/store/mysql55
-tmpdir                  = /var/vcap/data/mysql_tmp
+tmpdir                  = /var/vcap/data/mysql_tmp/mysql55
 lc-messages-dir         = /var/vcap/packages/mysql55/share
 skip-external-locking
 <% if properties.mysql_node.max_heap_table_size %>
