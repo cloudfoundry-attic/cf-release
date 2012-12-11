@@ -11,17 +11,21 @@ base_dir: /var/vcap/data/dea_next
 
 warden_socket: /var/vcap/data/warden/warden.sock
 
-directory_server_port: 12345
-
-directory_server_v2_port: 34567
-
-file_api_port: 23456
-
-<% if properties.dea_next && properties.dea_next.streaming_timeout %>
-streaming_timeout: <%= properties.dea_next.streaming_timeout %>
-<% else %>
-streaming_timeout: 60
-<% end %>
+directory_server:
+  v1_port: 12345
+  v2_port: 34567
+  file_api_port: 23456
+  <% if properties.dea_next && properties.dea_next.streaming_timeout %>
+  streaming_timeout: <%= properties.dea_next.streaming_timeout %>
+  <% else %>
+  streaming_timeout: 60
+  <% end %>
+  logging:
+    file: /var/vcap/sys/log/dea_next/dir_server.log
+    <% if properties.syslog_aggregator %>
+    syslog: vcap.directory_server
+    <% end %>
+    level: debug
 
 domain: <%= properties.domain %>
 
