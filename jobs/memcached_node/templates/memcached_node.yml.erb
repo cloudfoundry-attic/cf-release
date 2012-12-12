@@ -8,7 +8,7 @@ node = properties.memcached_node
 supported_versions = node.supported_versions
 default_version = node.default_version
 nats_props_name = properties.nats_props || "nats"
-nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 

@@ -11,7 +11,7 @@ packages = {}
 # convention, package contains mongodb 1.8 is mongodb18
 supported_versions.each{|v| packages[v] = v.sub(".","")}
 nats_props_name = properties.nats_props || "nats"
-nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
