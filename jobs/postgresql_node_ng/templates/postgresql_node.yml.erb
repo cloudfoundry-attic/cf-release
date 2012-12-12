@@ -21,7 +21,7 @@ version_configs = {
   }
 }
 nats_props_name = properties.nats_props || "nats"
-nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
