@@ -32,7 +32,7 @@ rabbit:
     config_template: ../../../resources/rabbitmq24.config.erb
   '2.8':
     config_template: ../../../resources/rabbitmq28.config.erb
-    disk_free_limit: <%= ((plan_enabled && plan_conf.max_disk || 128) * 1024 * 1024 * 0.1).to_i %>
+    disk_free_limit: <%= ((plan_enabled && plan_conf.max_disk || 128) * 1024 * 1024 * (plan_enabled && plan_conf.free_disk_low_water || 0.1).to_f).to_i %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 <% if node.ip_route %>
 ip_route: <%= node.ip_route %>
