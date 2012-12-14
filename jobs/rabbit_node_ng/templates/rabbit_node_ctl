@@ -3,6 +3,7 @@
 export ERLANG_HOME=/var/vcap/packages/erlang
 export PATH=/var/vcap/packages/erlang/bin:/var/vcap/packages/ruby/bin:$PATH
 export HOME=/home/vcap
+COMMON_DIR=/var/vcap/store/rabbitmq_common
 RUN_DIR=/var/vcap/sys/run/rabbit_node
 LOG_DIR=/var/vcap/sys/log/rabbit_node
 SERV_LOG_DIR=/var/vcap/sys/service-log/rabbit
@@ -11,8 +12,6 @@ JOB_DIR=/var/vcap/jobs/rabbit_node_ng
 MIG_DIR=<%= properties.service_migration && properties.service_migration.mount_point || "/var/vcap/services_migration" %>
 
 source /var/vcap/packages/common/utils.sh
-
-chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
@@ -35,6 +34,12 @@ case $1 in
     (crontab -l | sed /rabbit_logrotate/d; cat /var/vcap/jobs/rabbit_node_ng/config/rabbit_logrotate.cron) | sed /^$/d | crontab
 
     echo $$ > $PIDFILE
+
+    mkdir -p $COMMON_DIR/bin
+    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
+    chmod -R 755 $COMMON_DIR/bin
+
     exec /var/vcap/packages/rabbit_node_ng/services/ng/rabbit/bin/rabbit_node \
         -c $JOB_DIR/config/rabbit_node.yml \
         >>$LOG_DIR/rabbit_node.stdout.log \
