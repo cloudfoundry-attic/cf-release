@@ -5,6 +5,7 @@ lifecycle = properties.service_lifecycle
 %>
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+COMMON_DIR=/var/vcap/store/redis_common
 RUN_DIR=/var/vcap/sys/run/redis_node
 LOG_DIR=/var/vcap/sys/log/redis_node
 SERV_LOG_DIR=/var/vcap/sys/service-log/redis
@@ -18,8 +19,6 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
-
-chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
@@ -46,6 +45,11 @@ case $1 in
     $JOB_DIR/config/redis_backup start
 
     (crontab -l | sed /redis_logrotate/d; cat /var/vcap/jobs/redis_node_ng/config/redis_logrotate.cron) | sed /^$/d | crontab
+
+    mkdir -p $COMMON_DIR/bin
+    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
+    chmod -R 755 $COMMON_DIR/bin
 
     exec /var/vcap/packages/redis_node_ng/services/ng/redis/bin/redis_node \
          -c $JOB_DIR/config/redis_node.yml \

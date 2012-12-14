@@ -9,18 +9,18 @@ STOP_TIMEOUT=<%= properties.postgresql_node.instance_stop_timeout || 3 %>
 OP=$1
 BASE_DIR=$2
 LOG_DIR=$3
+COMMON_DIR=$4
 PIDFILE=$BASE_DIR/service.pid
 
-source /var/vcap/packages/common/utils.sh
-exec 1>> $LOG_DIR/$SCRIPT.log
-exec 2>> $LOG_DIR/$SCRIPT.err.log
+source $COMMON_DIR/bin/utils.sh
 
 FIRST_TIME=0
 
 case $OP in
   start)
-    BIN_DIR=$4
-    PORT=$5
+    BIN_DIR=$5
+    PORT=$6
+
     echo `date` >> $LOG_DIR/postgresql_ctl.log
 
     if [ ! -d $BASE_DIR -o ! -f $BASE_DIR/postgresql.conf ]; then
@@ -73,12 +73,12 @@ case $OP in
       echo `date` >> $LOG_DIR/postgresql_ctl.log
     else
       rm $PIDFILE
-      if [ -e $DATA_DIR/postmaster.pid ]; then
-        ps -p `head -n 1 $DATA_DIR/postmaster.pid` 1>/dev/null 2>/dev/null
+      if [ -e $BASE_DIR/postmaster.pid ]; then
+        ps -p `head -n 1 $BASE_DIR/postmaster.pid` 1>/dev/null 2>/dev/null
         if [ $? == 1 ]; then
           echo "There is a stale postmaster pid file, will remove it and kill possible orphan processes"
           # remove the stale postmaster pid file
-          rm $DATA_DIR/postmaster.pid
+          rm $BASE_DIR/postmaster.pid
           # remove the orphan processes in hack style
           ps -o pid,cmd --ppid=1 | grep 'postgres:' | cut -d' ' -f1 | xargs -r kill
         fi
@@ -89,13 +89,13 @@ case $OP in
     ;;
 
   stop)
-    BIN_DIR=$4
+    BIN_DIR=$5
     LD_LIBRARY_PATH=$BIN_DIR/lib:$LD_LIBRARY_PATH $BIN_DIR/bin/pg_ctl stop -m fast -w -D $BASE_DIR
     wait_pidfile $PIDFILE 0 $STOP_TIMEOUT
     ;;
 
   status)
-    BIN_DIR=$4
+    BIN_DIR=$5
     LD_LIBRARY_PATH=$BIN_DIR/lib:$LD_LIBRARY_PATH $BIN_DIR/bin/pg_ctl status -D $BASE_DIR > /dev/null
     ;;
 
