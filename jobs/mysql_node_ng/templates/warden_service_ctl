@@ -3,26 +3,27 @@ STOP_TIMEOUT=<%= properties.mysql_node.instance_stop_timeout || 3 %>
 OP=$1
 BASE_DIR=$2
 LOG_DIR=$3
+COMMON_DIR=$4
+BIN_DIR=$5
+DATA_DIR=$6
+VERSION=$7
 PIDFILE=$BASE_DIR/service.pid
 
-source /var/vcap/packages/common/utils.sh
+source $COMMON_DIR/bin/utils.sh
 exec 1>> $LOG_DIR/$SCRIPT.log
 exec 2>> $LOG_DIR/$SCRIPT.err.log
 
 case $OP in
   start)
-    BIN_DIR=$4
-    DATA_DIR=$5
-    VERSION=$6
     if test ! -d $BASE_DIR/data/mysql; then
       rsync -arl $BIN_DIR/initdb$VERSION/* $DATA_DIR
     fi
-    $BIN_DIR/libexec/mysql_warden.server start $BASE_DIR/my$VERSION.cnf
-    head -1 $BASE_DIR/mysqld$VERSION.pid > $PIDFILE
+    $BIN_DIR/libexec/mysql_warden.server start $COMMON_DIR/config/my$VERSION.cnf
+    head -1 $BASE_DIR/mysqld.pid > $PIDFILE
     ;;
 
   stop)
-    $BIN_DIR/libexec/mysql_warden.server stop $BASE_DIR/my$VERSION.cnf $STOP_TIMEOUT
+    $BIN_DIR/libexec/mysql_warden.server stop $COMMON_DIR/config/my$VERSION.cnf $STOP_TIMEOUT
     rm -f $PIDFILE
     ;;
 
