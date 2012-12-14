@@ -34,7 +34,7 @@ maximum-max_heap_table_size = <%= properties.mysql_node.max_heap_table_size %>
 max_heap_table_size         = <%= properties.mysql_node.max_heap_table_size %>
 <% end %>
 
-init-file = <%= use_warden ? '/var/vcap/sys/run/mysqld/warden_mysql_init' : '/var/vcap/jobs/mysql_node_ng/config/mysql_init' %>
+init-file = <%= use_warden ? '/var/vcap/store/common/config/warden_mysql_init' : '/var/vcap/jobs/mysql_node_ng/config/mysql_init' %>
 
 <% if properties.micro %>
 bind-address            = 127.0.0.1
