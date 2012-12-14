@@ -5,6 +5,7 @@ PG_ADMIN_USER=<%= properties.postgresql_node.admin_user || "pg_admin" %>
 PG_ADMIN_GROUP=<%= properties.postgresql_node.admin_group || "admin" %>
 PG_ADMIN_PASSWD_HASH=<%= properties.postgresql_node.admin_passwd_hash || "" %>
 
+COMMON_DIR=/var/vcap/store/postgresql_common
 RUN_DIR=/var/vcap/sys/run/postgresql_node
 LOG_DIR=/var/vcap/sys/log/postgresql_node
 JOB_DIR=/var/vcap/jobs/postgresql_node_ng
@@ -23,8 +24,6 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
-
-chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
@@ -58,6 +57,12 @@ case $1 in
     $JOB_DIR/config/postgresql_backup start
 
     (crontab -l | sed /postgresql_logrotate/d; cat $JOB_DIR/config/postgresql_logrotate.cron) | sed /^$/d | crontab
+
+    mkdir -p $COMMON_DIR/bin
+    mkdir -p $COMMON_DIR/config
+    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
+    chmod -R 755 $COMMON_DIR/bin
 
     exec /var/vcap/packages/postgresql_node_ng/services/ng/postgresql/bin/postgresql_node \
          -c $JOB_DIR/config/postgresql_node.yml \

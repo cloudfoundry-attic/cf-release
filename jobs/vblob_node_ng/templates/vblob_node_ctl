@@ -13,6 +13,7 @@ fi
 
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+COMMON_DIR=/var/vcap/store/vblob_common
 JOB_DIR=/var/vcap/jobs/vblob_node_ng
 RUN_DIR=/var/vcap/sys/run/vblob_node
 LOG_DIR=/var/vcap/sys/log/vblob_node
@@ -29,8 +30,6 @@ MT_EXPORT=<%= properties.vblob_node.nfs_server.address %>:<%= properties.vblob_n
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
-
-chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
@@ -62,6 +61,11 @@ case $1 in
     <% end %>
 
     (crontab -l | sed /vblob_logrotate/d; cat /var/vcap/jobs/vblob_node_ng/config/vblob_logrotate.cron) | sed /^$/d | crontab
+
+    mkdir -p $COMMON_DIR/bin
+    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
+    chmod -R 755 $COMMON_DIR/bin
 
     exec /var/vcap/packages/vblob_node_ng/services/ng/vblob/bin/vblob_node -c /var/vcap/jobs/vblob_node_ng/config/vblob_node.yml >>$LOG_DIR/vblob_node.stdout.log 2>>$LOG_DIR/vblob_node.stderr.log
     ;;

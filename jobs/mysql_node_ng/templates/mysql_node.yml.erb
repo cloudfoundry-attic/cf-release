@@ -77,12 +77,11 @@ max_disk: <%= plan_enabled && plan_conf.max_disk || 128 %>
 use_warden: true
 warden:
   service_log_dir: /var/vcap/sys/service-log/mysql
-  service_script_dir: /var/vcap/jobs/mysql_node_ng/bin
-  service_conf_dir: /var/vcap/jobs/mysql_node_ng/config
   service_bin_dir:
   <% for version in supported_versions %>
     '<%= version %>': <%= "#{version_configs[version]['service_dir']}" %>
   <% end %>
+  service_common_dir: /var/vcap/store/mysql_common
   image_dir: /var/vcap/store/mysql_image
   service_start_timeout: <%= warden.service_start_timeout || 3 %>
   filesystem_quota: <%= warden.filesystem_quota || false %>
