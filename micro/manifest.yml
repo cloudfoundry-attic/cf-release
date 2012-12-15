@@ -37,17 +37,12 @@ properties:
     databases:
     - tag: cc
       name: appcloud
-    - tag: acm
-      name: acm
     - tag: uaa
       name: uaa
     roles:
     - name: root
       password:
       tag: admin
-    - name: acm
-      password:
-      tag: acm
     - name: uaa
       password:
       tag: uaa
@@ -148,19 +143,6 @@ properties:
     ip_route: 127.0.0.1
     supported_versions: ["2.4"]
     default_version: "2.4"
-  acm:
-    user:
-    password:
-  acmdb:
-    address: 127.0.0.1
-    port: 2544
-    roles:
-    - tag: admin
-      name: acm
-      password:
-    databases:
-    - tag: acm
-      name: acm
   serialization_data_server:
     upload_token:
     use_nginx: false
