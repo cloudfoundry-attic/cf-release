@@ -6,7 +6,7 @@ sds_port = sds.port || 8080
 if lifecycle and lifecycle.resque
   snapshot_dir = lifecycle.mount_point || "/var/vcap/services_snapshot"
 nats_props_name = properties.nats_props || "nats"
-nats_props = properties.send(nats_props_name) || OpenStruct.new
+nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 serialization_base_dir: <%= snapshot_dir %>
