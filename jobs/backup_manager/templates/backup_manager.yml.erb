@@ -1,6 +1,6 @@
 ---
 <% nats_props_name = properties.nats_props || "nats" %>
-<% nats_props = properties.send(nats_props_name) || OpenStruct.new %>
+<% nats_props = properties.send(nats_props_name) %>
 mbus: nats://<%= nats_props.user %>:<%= nats_props.password %>@<%= nats_props.address %>:<%= nats_props.port %>
 z_interval: <%= properties.service_backup_manager && properties.service_backup_manager.z_interval || 30 %>
 logging:
