@@ -29,7 +29,6 @@ datadir		= /var/vcap/store/mysql
 tmpdir		= /var/vcap/data/mysql_tmp<%= '/mysql' unless use_warden %>
 language	= /var/vcap/packages/mysql/share/mysql/english
 skip-external-locking
-fast_index_creation = false
 <% if properties.mysql_node.max_heap_table_size %>
 maximum-max_heap_table_size = <%= properties.mysql_node.max_heap_table_size %>
 max_heap_table_size         = <%= properties.mysql_node.max_heap_table_size %>
