@@ -3,4 +3,5 @@ GRANT ALL ON *.* to 'root'@'localhost' IDENTIFIED BY '<%= properties.mysql_node.
 
 FLUSH PRIVILEGES;
 
+SET GLOBAL fast_index_creation=false;
 DROP DATABASE IF EXISTS test;
