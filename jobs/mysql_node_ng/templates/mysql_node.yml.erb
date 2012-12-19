@@ -63,6 +63,7 @@ mysql:
 connection_pool_size:
   min: <%= connection_pool_size && connection_pool_size.min || 5 %>
   max: <%= connection_pool_size && connection_pool_size.max || 10 %>
+connection_wait_timeout: <%= plan_enabled && plan_conf.connection_wait_timeout || 10 %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 gzip_bin: /bin/gzip
 <% if node.ip_route %>
