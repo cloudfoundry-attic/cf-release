@@ -6,11 +6,11 @@ BASE_DIR=$1
 shift
 LOG_DIR=$1
 shift
+COMMON_DIR=$1
+shift
 PIDFILE=$BASE_DIR/service.pid
 
-source /var/vcap/packages/common/utils.sh
-exec 1>> $LOG_DIR/$SCRIPT.log
-exec 2>> $LOG_DIR/$SCRIPT.err.log
+source $COMMON_DIR/bin/utils.sh
 
 case $OP in
   start)

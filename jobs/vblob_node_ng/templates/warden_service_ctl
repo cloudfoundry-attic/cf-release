@@ -3,16 +3,15 @@ STOP_TIMEOUT=<%= properties.vblob_node.instance_stop_timeout || 3 %>
 OP=$1
 BASE_DIR=$2
 LOG_DIR=$3
+COMMON_DIR=$4
 PIDFILE=$BASE_DIR/service.pid
 
-source /var/vcap/packages/common/utils.sh
-exec 1>> $LOG_DIR/$SCRIPT.log
-exec 2>> $LOG_DIR/$SCRIPT.err.log
+source $COMMON_DIR/bin/utils.sh
 
 case $OP in
   start)
-    BIN_DIR=$4
-    NODE_DIR=$5
+    BIN_DIR=$5
+    NODE_DIR=$6
     # start the instance
     touch $LOG_DIR/vblob.log
     echo $$ >> $PIDFILE

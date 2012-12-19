@@ -2,6 +2,7 @@
 
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+COMMON_DIR=/var/vcap/store/memcached_common
 RUN_DIR=/var/vcap/sys/run/memcached_node
 LOG_DIR=/var/vcap/sys/log/memcached_node
 SERV_LOG_DIR=/var/vcap/sys/service-log/memcached
@@ -9,8 +10,6 @@ PIDFILE=$RUN_DIR/memcached_node.pid
 JOB_DIR=/var/vcap/jobs/memcached_node_ng
 
 source /var/vcap/packages/common/utils.sh
-
-chmod -R 755 $JOB_DIR/bin
 
 case $1 in
 
@@ -28,6 +27,11 @@ case $1 in
     <% end %>
 
     (crontab -l | sed /memcached_logrotate/d; cat /var/vcap/jobs/memcached_node_ng/config/memcached_logrotate.cron) | sed /^$/d | crontab
+
+    mkdir -p $COMMON_DIR/bin
+    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
+    chmod -R 755 $COMMON_DIR/bin
 
     exec /var/vcap/packages/memcached_node_ng/services/ng/memcached/bin/memcached_node \
          -c $JOB_DIR/config/memcached_node.yml \

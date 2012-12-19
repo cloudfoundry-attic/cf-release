@@ -5,12 +5,12 @@ shift
 BASE_DIR=$1
 shift
 LOG_DIR=$1
+shift
+COMMON_DIR=$1
 PIDFILE=$BASE_DIR/service.pid
 PROXY_PIDFILE=${BASE_DIR}/proxy.pid
 
-source /var/vcap/packages/common/utils.sh
-exec 1>> $LOG_DIR/$SCRIPT.log
-exec 2>> $LOG_DIR/$SCRIPT.err.log
+source $COMMON_DIR/bin/utils.sh
 
 case $OP in
   start)
@@ -24,12 +24,12 @@ case $OP in
     ARGS=$*
     touch $LOG_DIR/mongodb.log
     mkdir -p $BASE_DIR/data
-    $PROXY_BIN_DIR/bin/proxyctl -c $BASE_DIR/mongodb_proxy.yml -p $ADMIN_PASS &
+    $PROXY_BIN_DIR/bin/proxyctl -c $COMMON_DIR/config/mongodb_proxy.yml -p $ADMIN_PASS &
     sleep 1
     proxy_pid=`pidof proxyctl`
     echo $proxy_pid > $PROXY_PIDFILE
     echo $$ >> $PIDFILE
-    exec $BIN_DIR/bin/mongod --config $BASE_DIR/mongodb.conf $ARGS
+    exec $BIN_DIR/bin/mongod --config $COMMON_DIR/config/mongodb.conf $ARGS
     ;;
 
   stop)

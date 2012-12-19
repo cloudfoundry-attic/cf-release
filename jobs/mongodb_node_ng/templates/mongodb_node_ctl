@@ -5,6 +5,7 @@ lifecycle = properties.service_lifecycle
 %>
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+COMMON_DIR=/var/vcap/store/mongodb_common
 RUN_DIR=/var/vcap/sys/run/mongodb_node
 LOG_DIR=/var/vcap/sys/log/mongodb_node
 SERV_LOG_DIR=/var/vcap/sys/service-log/mongodb
@@ -18,10 +19,6 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
-
-chmod -R 755 $JOB_DIR/bin
-chmod 755 $JOB_DIR/config
-chmod a+r $JOB_DIR/config/*
 
 case $1 in
 
@@ -56,6 +53,16 @@ case $1 in
     fi
 
     (crontab -l | sed /mongodb_logrotate/d; cat /var/vcap/jobs/mongodb_node_ng/config/mongodb_logrotate.cron) | sed /^$/d | crontab
+
+    mkdir -p $COMMON_DIR/bin
+    mkdir -p $COMMON_DIR/config
+    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
+    chmod -R 755 $COMMON_DIR/bin
+    rsync $JOB_DIR/config/mongodb.conf $COMMON_DIR/config
+    rsync $JOB_DIR/config/mongodb_proxy.yml $COMMON_DIR/config
+    chmod 755 $COMMON_DIR/config
+    chmod 644 $COMMON_DIR/config/*
 
     exec /var/vcap/packages/mongodb_node_ng/services/ng/mongodb/bin/mongodb_node \
          -c $JOB_DIR/config/mongodb_node.yml \
