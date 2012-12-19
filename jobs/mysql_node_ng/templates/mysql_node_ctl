@@ -15,6 +15,7 @@ end
 %>
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+COMMON_DIR=/var/vcap/store/mysql_common
 RUN_DIR=/var/vcap/sys/run/mysql_node
 LOG_DIR=/var/vcap/sys/log/mysql_node
 PIDFILE=$RUN_DIR/mysql_node.pid
@@ -28,10 +29,6 @@ MT_EXPORT=<%= lifecycle.nfs_server.address %>:<%= lifecycle.nfs_server.export_di
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
-
-chmod -R 755 $JOB_DIR/bin
-chmod 755 $JOB_DIR/config
-chmod a+r $JOB_DIR/config/*
 
 case $1 in
 
@@ -75,6 +72,16 @@ case $1 in
 
     chmod +x $JOB_DIR/config/mysql_backup
     $JOB_DIR/config/mysql_backup start
+
+    mkdir -p $COMMON_DIR/bin
+    mkdir -p $COMMON_DIR/config
+    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
+    chmod -R 755 $COMMON_DIR/bin
+    rsync $JOB_DIR/config/my*.cnf $COMMON_DIR/config
+    rsync $JOB_DIR/config/warden_mysql_init $COMMON_DIR/config
+    chmod 755 $COMMON_DIR/config
+    chmod 644 $COMMON_DIR/config/*
 
     exec /var/vcap/packages/mysql_node_ng/services/ng/mysql/bin/mysql_node \
          -c $JOB_DIR/config/mysql_node.yml \

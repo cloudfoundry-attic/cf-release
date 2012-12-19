@@ -3,15 +3,14 @@ STOP_TIMEOUT=<%= properties.redis_node.instance_stop_timeout || 3 %>
 OP=$1
 BASE_DIR=$2
 LOG_DIR=$3
+COMMON_DIR=$4
 PIDFILE=$BASE_DIR/service.pid
 
-source /var/vcap/packages/common/utils.sh
-exec 1>> $LOG_DIR/$SCRIPT.log
-exec 2>> $LOG_DIR/$SCRIPT.err.log
+source $COMMON_DIR/bin/utils.sh
 
 case $OP in
   start)
-    BIN_DIR=$4
+    BIN_DIR=$5
     echo $$ > $PIDFILE
     exec /sbin/start-stop-daemon --start --quiet --chuid vcap --exec $BIN_DIR/bin/redis-server -- $BASE_DIR/redis.conf
     ;;
