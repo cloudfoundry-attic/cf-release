@@ -6,6 +6,8 @@ templates:
   drain.rb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
+  platform.yml: config/platform.yml
+
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
 
