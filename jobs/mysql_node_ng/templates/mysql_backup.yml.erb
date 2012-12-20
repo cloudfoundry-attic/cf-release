@@ -28,5 +28,5 @@ timeout: <%= backup_enabled && plan_conf.backup.timeout || 600 %>
 node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
 pid: /var/vcap/sys/run/mysql_node/mysql_backup.pid
 <%if use_warden%>
-  use_warden: true
+use_warden: true
 <%end%>
