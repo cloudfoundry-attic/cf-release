@@ -1,0 +1,9 @@
+---
+name: "buildpack"
+runtimes:
+  - ruby19:
+      default: true
+detection:
+  - "Procfile": true
+
+# vim: filetype=yaml

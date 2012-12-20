@@ -5,6 +5,7 @@ RUN_DIR=/var/vcap/sys/run/dea_next
 LOG_DIR=/var/vcap/sys/log/dea_next
 PIDFILE=$RUN_DIR/dea_next.pid
 JOB_DIR=/var/vcap/jobs/dea_next
+export PLATFORM_CONFIG=$JOB_DIR/config/platform.yml
 
 source /var/vcap/packages/common/utils.sh
 
