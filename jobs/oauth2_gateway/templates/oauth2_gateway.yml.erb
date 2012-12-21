@@ -9,6 +9,7 @@
 <%
 service = "oauth2"
 gateway = eval("properties.#{service}_gateway") || {}.to_openstruct
+cc_api_version = properties.cc_api_version || "v1"
 %>
 index: <%= spec.index %>
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
@@ -19,7 +20,11 @@ service:
   name: oauth2
   version: "1.0"
   description: 'OAuth2 service'
-  plans: ['free']
+  plans:
+  <% for plan in plan_mgmt.fields.each %>
+    <% plan_description = plan_mgmt.send(plan.to_sym).description || "#{plan} plan" %>
+    <%= "'#{plan}': '#{plan_description}'" %>
+  <% end %>
   default_plan: 'free'
   tags: ['oauth2', 'uaa']
   timeout: 60
@@ -41,4 +46,18 @@ logging:
   syslog: vcap.oauth2_gateway
   <% end %>
 pid: /var/vcap/sys/run/oauth2_gateway/oauth2_gateway.pid
+
+cc_api_version: <%= cc_api_version %>
+
+<% if cc_api_version == "v2" %>
+gateway_name: "Mongodb (Core) Gateway"
+uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
+uaa_endpoint: <%= properties.uaa_endpoint %>
+uaa_client_auth_credentials:
+  username: <%= properties.uaa_client_auth_credentials.username %>
+  password: <%= properties.uaa_client_auth_credentials.password %>
+service_auth_tokens:
+  oauth2_core: <%= gateway.token ? gateway.token : 0xdeadbeef %>
+<% end %>
+
 token: <%= gateway.token ? gateway.token : 0xdeadbeef %>
