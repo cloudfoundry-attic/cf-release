@@ -56,7 +56,7 @@ case $1 in
 
     mkdir -p $COMMON_DIR/bin
     mkdir -p $COMMON_DIR/config
-    rsync -arl $JOB_DIR/bin/* $COMMON_DIR/bin
+    rsync -arl $JOB_DIR/bin/warden_service_ctl $COMMON_DIR/bin
     rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
     chmod -R 755 $COMMON_DIR/bin
     rsync $JOB_DIR/config/mongodb.conf $COMMON_DIR/config
