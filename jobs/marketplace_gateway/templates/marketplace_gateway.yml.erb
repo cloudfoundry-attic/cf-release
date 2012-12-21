@@ -34,9 +34,8 @@ marketplace: <%= props.marketplace %>
 cc_api_version: <%= cc_api_version %>
 
 <% if cc_api_version == "v2" %>
-
+uaa_client_id: <%= props.uaa_client_id || "vmc" %>
 uaa_endpoint: <%= props.uaa_endpoint %>
-
 uaa_client_auth_credentials:
   username: <%= props.uaa_client_auth_credentials.username %>
   password: <%= props.uaa_client_auth_credentials.password %>
@@ -49,6 +48,7 @@ service_auth_tokens:
 %>
   <%= offering %>: <%= token %>
 <% } %>
+token: unused
 <% else %>
 
 token: <%= props.token %>
