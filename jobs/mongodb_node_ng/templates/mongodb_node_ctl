@@ -37,7 +37,7 @@ case $1 in
     <% end %>
 
     mkdir -p $MIG_DIR
-    <% if lifecycle %>
+    <% if lifecycle && lifecycle.nfs_server %>
     mkdir -p $SNAPSHOT_DIR
     check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
     <% end %>
@@ -79,7 +79,7 @@ case $1 in
 
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup stop
-    <% if lifecycle %>
+    <% if lifecycle && lifecycle.nfs_server %>
     umount $SNAPSHOT_DIR
     <% end %>
 
