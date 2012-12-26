@@ -18,6 +18,7 @@ case "$version" in
     PIDFILE=$RUN_DIR/postgresql.pid
     LOG_DIR=/var/vcap/sys/log/postgresql
     SRC_CONF_FILE=$JOB_DIR/config/postgresql.conf
+    PORT=5432
 
     ;;
   "9.1")
@@ -27,6 +28,7 @@ case "$version" in
     PIDFILE=$RUN_DIR/postgresql91.pid
     LOG_DIR=/var/vcap/sys/log/postgresql91
     SRC_CONF_FILE=$JOB_DIR/config/postgresql91.conf
+    PORT=5433
 
     ;;
 esac
@@ -58,7 +60,7 @@ case "$1" in
       mkdir -p $DATA_DIR
       chown vcap:vcap $DATA_DIR
 
-      su - vcap -c "LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/initdb -E utf8 -D $DATA_DIR"
+      su - vcap -c "LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR"
 
       if [ $? != 0 ]; then
         echo "ERROR: Unable to initialize PostgreSQL DB"
@@ -90,7 +92,7 @@ case "$1" in
         for sqlf in citext.sql fuzzystrmatch.sql isn.sql ltree.sql pageinspect.sql pg_buffercache.sql pgcrypto.sql pg_freespacemap.sql sslinfo.sql tablefunc.sql uuid-ossp.sql
         do
           echo "Installing contrib package ${sqlf}"
-          ${PACKAGE_DIR}/bin/psql -U vcap -f ${PACKAGE_DIR}/share/${sqlf} -d postgres
+          ${PACKAGE_DIR}/bin/psql -U vcap -p $PORT -f ${PACKAGE_DIR}/share/${sqlf} -d postgres
         done
       fi
       # absolve postmaster from OOM killer
