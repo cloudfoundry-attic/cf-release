@@ -67,7 +67,7 @@ case $OP in
         for sqlf in citext.sql fuzzystrmatch.sql isn.sql ltree.sql pageinspect.sql pg_buffercache.sql pgcrypto.sql pg_freespacemap.sql sslinfo.sql tablefunc.sql uuid-ossp.sql
         do
           echo "Installing contrib package ${sqlf}" >> $LOG_DIR/postgresql_ctl.log
-          ${BIN_DIR}/bin/psql -U vcap -f ${BIN_DIR}/share/${sqlf} -d postgres >> $LOG_DIR/postgresql_ctl.log
+          ${BIN_DIR}/bin/psql -U vcap -p $PORT -f ${BIN_DIR}/share/${sqlf} -d postgres >> $LOG_DIR/postgresql_ctl.log
         done
       fi
       echo `date` >> $LOG_DIR/postgresql_ctl.log
