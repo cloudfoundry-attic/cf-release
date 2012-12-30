@@ -11,3 +11,10 @@ check process rabbit_node
   stop program "/var/vcap/jobs/rabbit_node_ng/bin/rabbit_node_ctl stop"
   group vcap
   depends on warden
+
+check process daylimit_ng
+  with pidfile /var/vcap/sys/run/daylimit_ng/daylimit_ng.pid
+  start program "/var/vcap/jobs/rabbit_node_ng/bin/daylimit_ng_ctl start"
+  stop program "/var/vcap/jobs/rabbit_node_ng/bin/daylimit_ng_ctl stop"
+  group vcap
+  depends on warden

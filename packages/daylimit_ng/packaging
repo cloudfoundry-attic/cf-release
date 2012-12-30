@@ -1,0 +1,11 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+mkdir -p ${BOSH_INSTALL_TARGET}/src
+cp -a services/tools/daylimit_ng ${BOSH_INSTALL_TARGET}/src/
+export GOROOT=`readlink -nf /var/vcap/packages/golang`
+export GOPATH=`readlink -nf ${BOSH_INSTALL_TARGET}`:`readlink -nf ./govendor`
+GOLANG_PATH=`readlink -nf /var/vcap/packages/golang`
+export PATH=$GOLANG_PATH/bin:$PATH
+go install daylimit_ng
+rm -rf ./govendor

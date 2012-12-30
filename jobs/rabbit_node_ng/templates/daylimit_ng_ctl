@@ -1,0 +1,31 @@
+#!/bin/bash
+
+DAYLIMIT_NG_BIN=/var/vcap/packages/daylimit_ng/bin/daylimit_ng
+RUN_DIR=/var/vcap/sys/run/daylimit_ng
+JOB_DIR=/var/vcap/jobs/rabbit_node_ng
+LOG_DIR=/var/vcap/sys/log/daylimit_ng
+PIDFILE=${RUN_DIR}/daylimit_ng.pid
+
+source /var/vcap/packages/common/utils.sh
+export PATH=/var/vcap/packages/ruby:$PATH
+# Used in warden client
+export HOME=/var/vcap
+
+case $1 in
+
+  start)
+    mkdir -p ${RUN_DIR}
+    mkdir -p ${LOG_DIR}
+    echo $$ > ${PIDFILE}
+    exec ${DAYLIMIT_NG_BIN} -c ${JOB_DIR}/config/daylimit_ng.yml >> ${LOG_DIR}/daylimit_ng.stdout.log 2>>${LOG_DIR}/daylimit_ng.stderr.log
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: daylimit_ng_ctl {start|stop}"
+    ;;
+
+esac
