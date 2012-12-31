@@ -1,14 +1,13 @@
+---
 <%
   # Fix this to https when SSL certs are working in dev and staging
   protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http"
-%>
-<%
-  redirect_uri = (properties.uaa.clients && properties.uaa.clients.oauth2service) ? properties.uaa.clients.oauth2service.marshal_dump['redirect-uri'.to_sym] : nil 
-%>
----
-<%
-service = "oauth2"
-gateway = eval("properties.#{service}_gateway") || {}.to_openstruct
+  service = 'oauth2'
+  plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+  plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
+  redirect_uri = (properties.uaa.clients && properties.uaa.clients.oauth2service) ? properties.uaa.clients.oauth2service.marshal_dump['redirect-uri'.to_sym] : nil
+  gateway = eval("properties.#{service}_gateway") || {}.to_openstruct
+  cc_api_version = gateway.cc_api_version || "v1"
 %>
 index: <%= spec.index %>
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>/
@@ -19,7 +18,15 @@ service:
   name: oauth2
   version: "1.0"
   description: 'OAuth2 service'
-  plans: ['free']
+  plans:
+  <% if plan_enabled %>
+    <% for plan in plan_mgmt.fields.each %>
+    <% plan_description = plan_mgmt.send(plan.to_sym).description || "#{plan} plan" %>
+    <%= "'#{plan}': '#{plan_description}'" %>
+    <% end %>
+  <% else %>
+    "free": "free plan"
+  <% end %>
   default_plan: 'free'
   tags: ['oauth2', 'uaa']
   timeout: 60
@@ -41,4 +48,18 @@ logging:
   syslog: vcap.oauth2_gateway
   <% end %>
 pid: /var/vcap/sys/run/oauth2_gateway/oauth2_gateway.pid
-token: <%= gateway.token ? gateway.token : 0xdeadbeef %>
+
+cc_api_version: <%= cc_api_version %>
+
+<% if cc_api_version == "v2" %>
+gateway_name: "OAuth2 (Core) Gateway"
+uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
+uaa_endpoint: <%= properties.uaa_endpoint %>
+uaa_client_auth_credentials:
+  username: <%= properties.uaa_client_auth_credentials.username %>
+  password: <%= properties.uaa_client_auth_credentials.password %>
+service_auth_tokens:
+  oauth2_core: <%= gateway.token %>
+<% end %>
+
+token: <%= gateway.token %>
