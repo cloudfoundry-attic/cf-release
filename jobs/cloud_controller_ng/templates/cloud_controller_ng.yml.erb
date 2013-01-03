@@ -92,11 +92,17 @@ quota_definitions:
   free:
     non_basic_services_allowed: false
     total_services: 2
+    free_memory_limit: 1024 # 1 GB
+    paid_memory_limit: 0
   paid:
     non_basic_services_allowed: true
     total_services: 32
+    free_memory_limit: 1024 # 1 GB
+    paid_memory_limit: 32768 # 32 GB
   runaway:
     non_basic_services_allowed: true
     total_services: 500
+    free_memory_limit: 1024 # 1 GB
+    paid_memory_limit: 204800 # 200 GB
 
 default_quota_definition: free
