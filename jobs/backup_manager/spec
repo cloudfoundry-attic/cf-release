@@ -7,6 +7,8 @@ templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   snapshot_manager_ctl.erb: bin/snapshot_manager_ctl
   snapshot_manager.yml.erb: config/snapshot_manager.yml
+  job_manager_ctl.erb: bin/job_manager_ctl
+  job_manager.yml.erb: config/job_manager.yml
 
 packages:
   - common
