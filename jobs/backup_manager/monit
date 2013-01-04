@@ -9,3 +9,9 @@ check process snapshot_manager
   start program "/var/vcap/jobs/backup_manager/bin/snapshot_manager_ctl start"
   stop program "/var/vcap/jobs/backup_manager/bin/snapshot_manager_ctl stop"
   group vcap
+
+check process job_manager
+  with pidfile /var/vcap/sys/run/backup_manager/job_manager.pid
+  start program "/var/vcap/jobs/backup_manager/bin/job_manager_ctl start"
+  stop program "/var/vcap/jobs/backup_manager/bin/job_manager_ctl stop"
+  group vcap

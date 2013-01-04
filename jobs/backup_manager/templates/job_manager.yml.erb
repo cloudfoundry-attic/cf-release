@@ -1,0 +1,24 @@
+---
+<%
+nats_props_name = properties.nats_props || "nats"
+nats_props = properties.send(nats_props_name)
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
+%>
+mbus: <%= nats %>
+z_interval: <%= properties.service_job_manager && properties.service_job_manager.z_interval || 30 %>
+logging:
+  level: debug
+  file: /var/vcap/sys/log/backup_manager/job_manager.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.job_manager
+  <% end %>
+job_cleanup:
+  max_days: <%= properties.service_job_manager && properties.service_job_manager.cleanup_max_days ? properties.service_job_manager.cleanup_max_days : 7 %>
+wakeup_interval: <%= properties.service_job_manager && properties.service_job_manager.cleanup_interval_secs ? properties.service_job_manager.cleanup_interval_secs : 43200 %>
+enable: <%= properties.service_job_manager && properties.service_job_manager.enable ? properties.service_job_manager.enable : "false" %>
+<% if properties.service_job_manager and properties.service_job_manager.resque %>
+services_redis:
+  host: <%= properties.service_job_manager.resque.host %>
+  port: <%= properties.service_job_manager.resque.port %>
+  password: <%= properties.service_job_manager.resque.password %>
+<% end %>
