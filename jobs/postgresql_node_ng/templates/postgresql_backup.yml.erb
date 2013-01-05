@@ -6,19 +6,37 @@ plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 backup_enabled = plan_enabled && plan_conf.backup && plan_conf.backup.enable
 use_warden = plan_enabled && plan_conf.warden && plan_conf.warden.enable
+node = properties.postgresql_node
+supported_versions = node.supported_versions
+version_configs = {
+  '9.0' => {
+    'port'        => 5432,
+    'binary_dir'  => '/var/vcap/packages/postgresql',
+  },
+  '9.1' => {
+    'port'        => 5433,
+    'binary_dir'  => '/var/vcap/packages/postgresql91',
+  }
+}
 %>
 service_name: postgresql
 local_db: sqlite3:/var/vcap/store/postgresql_node.db
 backup_base_dir: <%= properties.service_backup && properties.service_backup.mount_point || "/var/vcap/services_backup" %>
-backup_cmd: /var/vcap/packages/postgresql/bin/pg_dump -Fc --port=:port --host=:host --username=:user --file=:full_path/:name.dump :name
+backup_cmd: ":dump_bin -Fc --port=:port --host=:host --username=:user --file=:full_path/:name.dump :name"
 node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
 timeout: <%= backup_enabled && plan_conf.backup.timeout || 600 %>
 postgresql:
-  host: localhost
-  port: 5432
-  user: vcap
-  pass: vcap
-  database: postgres
+<% for version in supported_versions
+     config = version_configs[version]
+%>
+  '<%= version %>':
+    host: 127.0.0.1
+    user: vcap
+    pass: vcap
+    port: <%= config['port'] %>
+    database: postgres
+    dump_bin: <%= "#{config['binary_dir']}/bin/pg_dump" %>
+<% end %>
 logging:
   file: /var/vcap/sys/log/postgresql_node/postgresql_backup.log
   level: debug
