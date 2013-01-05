@@ -19,9 +19,9 @@ server:
   container_depot_path: /var/vcap/store/containers
   unix_domain_permissions: 0777
   <% if as_limit %>
-  container_limits_conf:
-    # the unit of as_limit is KB
-    as: <%= as_limit * 1024 %>
+  container_rlimits:
+    # the unit of as is Byte, while as_limit is MB
+    as: <%= as_limit * 1024 * 1024 %>
   <% end %>
 logging:
   file: /var/vcap/sys/log/warden/warden.log
