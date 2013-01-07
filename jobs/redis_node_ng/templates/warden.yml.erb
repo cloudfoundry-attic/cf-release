@@ -24,6 +24,8 @@ server:
     # the default limitation is 1024
     nproc: <%= nofile %>
   <% end %>
+  quota:
+    disk_quota_enabled: false
 logging:
   file: /var/vcap/sys/log/warden/warden.log
   <% if properties.syslog_aggregator %>
