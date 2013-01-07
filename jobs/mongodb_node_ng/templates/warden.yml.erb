@@ -23,6 +23,8 @@ server:
     # the unit of as is Byte, while as_limit is MB
     as: <%= as_limit * 1024 * 1024 %>
   <% end %>
+  quota:
+    disk_quota_enabled: false
 logging:
   file: /var/vcap/sys/log/warden/warden.log
   <% if properties.syslog_aggregator %>
