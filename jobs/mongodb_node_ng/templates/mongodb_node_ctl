@@ -72,7 +72,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE 400 0
+    kill_and_wait $PIDFILE 60
 
     crontab -l | sed /mongodb_logrotate/d | crontab
     /var/vcap/jobs/mongodb_node_ng/bin/remove_mongodb_tmp_dir

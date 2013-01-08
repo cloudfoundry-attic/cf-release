@@ -48,7 +48,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE 400 0
+    kill_and_wait $PIDFILE 60
 
     crontab -l | sed /rabbit_logrotate/d | crontab
 
