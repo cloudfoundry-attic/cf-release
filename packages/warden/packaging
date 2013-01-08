@@ -10,7 +10,7 @@ cp -a * ${BOSH_INSTALL_TARGET}
 
   cd ${BOSH_INSTALL_TARGET}/warden
 
-  bundle --local install --deployment --without=development test
+  bundle install --local --deployment --without=development test
 
   # Compile binaries
   bundle exec rake setup:bin
