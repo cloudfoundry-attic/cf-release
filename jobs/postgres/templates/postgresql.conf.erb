@@ -1,6 +1,21 @@
 <% db = properties.send(properties.db) %>
 
-listen_addresses = '<%= db.address %>'
+# Control the available listen_addresses via
+# deployment manifest - add networks to the job
+#
+# For example, to attach new networks:
+#
+# jobs:
+# - name: uuadb
+# - template: postgres
+# - networks:
+#   - name: apps
+#     static_ips:
+#     - 1.2.3.4
+#   - name: management
+#     static_ips:
+#     - 9.8.7.6
+listen_addresses = '0.0.0.0'
 port = <%= db.port %>
 max_connections = 500
 external_pid_file = '/var/vcap/sys/run/postgres/postgres.pid'
