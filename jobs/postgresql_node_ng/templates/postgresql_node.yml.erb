@@ -101,3 +101,6 @@ m_actions:
   - <%= act %>
 <% end %>
 <% end %>
+db_connect_timeout: <%= plan_enabled && plan_conf.db_connect_timeout || 3 %>
+db_query_timeout: <%= plan_enabled && plan_conf.db_query_timeout || 10 %>
+db_use_async_query: <%= plan_enabled && !plan_conf.db_use_async_query.nil? && plan_conf.db_use_async_query.to_s || "true" %>
