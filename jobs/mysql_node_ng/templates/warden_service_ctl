@@ -26,7 +26,7 @@ case $OP in
     ;;
 
   status)
-    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
+    $BIN_DIR/bin/mysqladmin ping --socket=$BASE_DIR/mysqld$VERSION.sock > /dev/null
     ;;
 
   *)
