@@ -75,7 +75,7 @@ case $1 in
     ;;
 
   stop)
-    kill_and_wait $PIDFILE 400 0
+    kill_and_wait $PIDFILE 60
 
     chmod +x $JOB_DIR/config/postgresql_backup
     $JOB_DIR/config/postgresql_backup stop
