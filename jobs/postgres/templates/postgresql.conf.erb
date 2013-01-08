@@ -1,6 +1,6 @@
 <% db = properties.send(properties.db) %>
 
-listen_addresses = '<%= db.address %>'
+listen_addresses = '<%= spec.networks.send(properties.networks.apps).ip %>'
 port = <%= db.port %>
 max_connections = 500
 external_pid_file = '/var/vcap/sys/run/postgres/postgres.pid'
