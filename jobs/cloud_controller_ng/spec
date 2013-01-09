@@ -31,3 +31,120 @@ packages:
   - dea_transition
   - dea_seed
   - syslog_aggregator
+properties:
+ name:
+  description:
+ build:
+  description:
+ version:
+  description:
+ support_address:
+  description:
+ description:
+  description:
+ domain:
+  description:
+ api_version:
+  description:
+ networks.apps:
+  description:
+ nats.user:
+  description:
+ nats.password:
+  description:
+ nats.address:
+  description:
+ nats.port:
+  description:
+ serialization_data_server.upload_token:
+  description:
+ serialization_data_server.upload_timeout:
+  description:
+ service_lifecycle.serialization_data_server:
+  description:
+ serialization_data_server.port:
+  description:
+ directories.droplets:
+  default: "/var/vcap/shared/droplets"
+ directories.resources:
+  default: "/var/vcap/shared/resources"
+ directories.staging_manifests:
+  default: "/var/vcap/jobs/cloud_controller_ng/config/staging"
+ directories.tmpdir:
+  default: "/var/vcap/data/cloud_controller_ng/tmp"
+ ccng.external_host:
+  description:
+ ccng.system_domains:
+  description:
+ ccng.cc_partition:
+  description:
+ ccng.bootstrap_admin_email:
+  description:
+ ccng.bulk_api_user:
+  description:
+ ccng.bulk_api_password:
+  description:
+ ccng.use_nginx:
+  description:
+ ccng.uaa_resource_id:
+  description:
+ ccng.db_logging_level:
+  description:
+ ccng.logging_level:
+  default: info
+ ccng.logging_max_retries:
+  default: 1
+ ccng.max_staging_runtime:
+  description:
+ ccng.staging_upload_user:
+  description:
+ ccng.staging_upload_password:
+  description:
+ ccng.quota_definitions.free.non_basic_services_allowed:
+  default: false
+ ccng.quota_definitions.free.total_services:
+  default: 2
+ ccng.quota_definitions.free.free_memory_limit:
+  default: 1024 # 1 GB
+ ccng.quota_definitions.free.paid_memory_limit:
+  default: 0
+ ccng.quota_definitions.paid.non_basic_services_allowed:
+  default: true
+ ccng.quota_definitions.paid.total_services:
+  default: 32
+ ccng.quota_definitions.paid.free_memory_limit:
+  default: 1024 # 1 GB
+ ccng.quota_definitions.paid.paid_memory_limit:
+  default: 32768 # 32 GB
+ ccng.quota_definitions.runaway.non_basic_services_allowed:
+  default: true
+ ccng.quota_definitions.runaway.total_services:
+  default: 500
+ ccng.quota_definitions.runaway.free_memory_limit:
+  default: 1024 # 1 GB
+ ccng.quota_definitions.runaway.paid_memory_limit:
+  default: 204800 # 200 GB
+ ccng.default_quota_definition:
+  default: free
+ ccdb_ng.databases:
+  description:
+ ccdb_ng.roles:
+  description:
+ ccdb_ng.address:
+  description:
+ ccdb_ng.port:
+  description:
+ ccdb_ng.max_connections:
+  description:
+ ccdb_ng.pool_timeout:
+  description:
+ uaa.cc.token_secret:
+  description:
+ vcap_redis.address:
+  description:
+ vcap_redis.port:
+  description:
+ vcap_redis.password:
+  description:
+ syslog_aggregator:
+  description:
