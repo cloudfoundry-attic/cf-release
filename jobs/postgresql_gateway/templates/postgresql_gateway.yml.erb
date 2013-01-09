@@ -18,6 +18,7 @@ nats_props_name = properties.nats_props || "nats"
 nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 lifecycle = properties.service_lifecycle
+cc_api_version = gateway.cc_api_version || "v1"
 %>
 mbus: <%= nats %>
 
@@ -29,7 +30,15 @@ service:
   name: postgresql
   version: "9.0"
   description: 'PostgreSQL database service (vFabric)'
-  plans: ['<%= plan_enabled && plan_mgmt.fields.join("', '") || 'free' %>']
+  plans:
+  <% if plan_enabled %>
+    <% for plan in plan_mgmt.fields.each %>
+    <% plan_description = plan_mgmt.send(plan.to_sym).description || "#{plan} plan" %>
+    <%= "'#{plan}': '#{plan_description}'" %>
+    <% end %>
+  <% else %>
+    "free": "free plan"
+  <% end %>
   default_plan: '<%= gateway.default_plan || 'free' %>'
   cf_plan_id:
 <% plan_mgmt.fields.each do |pf| %>
@@ -66,6 +75,20 @@ service:
 <% if gateway.ip_route %>
 ip_route: <%= gateway.ip_route %>
 <% end %>
+
+cc_api_version: <%= cc_api_version %>
+
+<% if cc_api_version == "v2" %>
+gateway_name: "PostgreSQL (Core) Gateway"
+uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
+uaa_endpoint: <%= properties.uaa_endpoint %>
+uaa_client_auth_credentials:
+  username: <%= properties.uaa_client_auth_credentials.username %>
+  password: <%= properties.uaa_client_auth_credentials.password %>
+service_auth_tokens:
+  postgresql_core: <%= gateway.token %>
+<% end %>
+
 token: <%= gateway.token %>
 logging:
   file: /var/vcap/sys/log/postgresql_gateway/postgresql_gateway.log
