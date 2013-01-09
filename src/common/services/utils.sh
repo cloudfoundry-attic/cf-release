@@ -55,13 +55,14 @@ start_warden() {
 
   for i in `seq 1 $countdown`; do
     warden_pid=`sudo netstat -pan | grep LISTENING | grep /tmp/warden\.sock | awk '{print $9}' | cut -d / -f 1`
-    if [ -z $warden_pid ]; then
-      sleep 0.5
-      echo -n .
-    else
+    if [ ! -z $warden_pid ] && [ -e /proc/$warden_pid ]
+    then
       warden_start_flag=true
       echo "warden is ready"
       break
+    else
+      sleep 0.5
+      echo -n .
     fi
   done
 
