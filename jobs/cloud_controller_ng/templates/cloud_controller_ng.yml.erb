@@ -2,107 +2,105 @@
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 port: 9022 # external CC port
 pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
-nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+nats_uri: nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>
 
-external_domain: <%= properties.ccng.external_host || "api2" %>.<%= properties.domain %>
+external_domain: <%= p("ccng.external_host", "api2") %>.<%= p("domain") %>
 
-<% system_domains = properties.ccng.system_domains || [ properties.domain ] %>
+<% system_domains = p("ccng.system_domains", [ p("domain") ]) %>
 system_domains: [ <%= system_domains.join(", ") %> ]
 
-cc_partition: <%= properties.ccng.cc_partition || "ng" %>
+cc_partition: <%= p("ccng.cc_partition", "ng") %>
 
-bootstrap_admin_email: <%= properties.ccng.bootstrap_admin_email || "sre@vmware.com" %>
+bootstrap_admin_email: <%= p("ccng.bootstrap_admin_email", "sre@vmware.com") %>
 
 bulk_api:
-  auth_user: <%= properties.ccng.bulk_api_user || "bulk_api" %>
-  auth_password: <%= properties.ccng.bulk_api_password %>
+  auth_user: <%= p("ccng.bulk_api_user", "bulk_api") %>
+  auth_password: <%= p("ccng.bulk_api_password") %>
 
 service_lifecycle:
   max_upload_size: 1
-  upload_token: <%= properties.serialization_data_server.upload_token %>
-  upload_timeout: <%= properties.serialization_data_server.upload_timeout %>
-  serialization_data_server: <%= properties.service_lifecycle.serialization_data_server.map {|ip| "http://#{ip}:#{properties.serialization_data_server.port}" } %>
+  upload_token: <%= p("serialization_data_server.upload_token") %>
+  upload_timeout: <%= p("serialization_data_server.upload_timeout") %>
+  <% sds_port = p("serialization_data_server.port") %>
+  serialization_data_server: <%= properties.service_lifecycle.serialization_data_server.map {|ip| "http://#{ip}:#{sds_port}" } %>
 
 nginx:
-  use_nginx: <%= properties.ccng.use_nginx || true %>
+  use_nginx: <%= p("ccng.use_nginx", true) %>
   instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
 
 info:
-  name: <%= properties.name || "vcap" %>
-  build: <%= properties.build || "\"2222\"" %>
-  version: <%= properties.version || 2 %>
-  support_address: <%= properties.support_address || "http://support.cloudfoundry.com" %>
-  description: <%= properties.description || "VMware's Cloud Application Platform" %>
-  api_version: <%= properties.api_version || "2.0.0" %>
+  name: <%= p("name", "vcap") %>
+  build: <%= p("build", "\"2222\"") %>
+  version: <%= p("version", 2) %>
+  support_address: <%= p("support_address", "http://support.cloudfoundry.com") %>
+  description: <%= p("description", "VMware's Cloud Application Platform") %>
+  api_version: <%= p("api_version", "2.0.0") %>
 # TODO: put back once json schema is sorted out
 # allow_debug: false
 
+<% if_p("directories.droplets",
+        "directories.resources",
+        "directories.staging_manifests",
+        "directories.tmpdir") do |droplets, resources, staging_manifests, tmpdir| %>
 directories:
-<% if properties.directories %>
-  droplets: <%= properties.directories.droplets %>
-  resources: <%= properties.directories.resources %>
-  staging_manifests: <%= properties.directories.staging_manifests %>
-  tmpdir: <%= properties.directories.tmpdir %>
-<% else %>
-  droplets: "/var/vcap/shared/droplets"
-  resources: "/var/vcap/shared/resources"
-  staging_manifests: "/var/vcap/jobs/cloud_controller_ng/config/staging"
-  tmpdir: "/var/vcap/data/cloud_controller_ng/tmp"
+ droplets: <%= droplets %>
+ resources: <%= resources %>
+ staging_manifests: <%= staging_manifests %>
+ tmpdir: <%= tmpdir %>
 <% end %>
 
 logging:
   file: /var/vcap/sys/log/cloud_controller_ng/cloud_controller_ng.log
-  <% if properties.syslog_aggregator %>
+  <% if_p("syslog_aggregator") do |syslog_aggregator| %>
   syslog: vcap.cloud_controller_ng
   <% end %>
-  level: <%= properties.ccng.logging_level || "info" %>
-  max_retries: <%= properties.ccng.logging_max_retries || 1 %>
+  level: <%= p("ccng.logging_level", "info") %>
+  max_retries: <%= p("ccng.logging_max_retries", 1) %>
 
-<% db = properties.ccdb_ng.databases.find { |db| db.tag == "cc" } %>
-<% db_role = properties.ccdb_ng.roles.find { |role| role.tag == "admin" } %>
+<% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
+<% db_role = p("ccdb_ng.roles").find { |role| role["tag"] == "admin" } %>
 db:
-  database: postgres://<%= db_role.name %>:<%= db_role.password %>@<%= properties.ccdb_ng.address %>:<%= properties.ccdb_ng.port %>/<%= db.name %>
-  max_connections: <%= properties.ccdb_ng.max_connections || 32 %>
-  pool_timeout: <%= properties.ccdb_ng.pool_timeout || 10 %>
-  log_level: <%= properties.ccng.db_logging_level || "debug2" %>
+  database: postgres://<%= db_role["name"] %>:<%= db_role["password"] %>@<%= p("ccdb_ng.address") %>:<%= p("ccdb_ng.port") %>/<%= db["name"] %>
+  max_connections: <%= p("ccdb_ng.max_connections", 32) %>
+  pool_timeout: <%= p("ccdb_ng.pool_timeout", 10) %>
+  log_level: <%= p("ccng.db_logging_level", "debug2") %>
 
-<% if properties.vcap_redis %>
+<% if_p("vcap_redis.address", "vcap_redis.port", "vcap_redis.password") do |address, port, password| %>
 redis:
-  host: <%= properties.vcap_redis.address %>
-  port: <%= properties.vcap_redis.port %>
-  password: <%= properties.vcap_redis.password %>
+  host: <%= address %>
+  port: <%= port %>
+  password: <%= password %>
 <% end %>
 
 uaa:
-  url: http://uaa.<%= properties.domain %>
-  resource_id: <%= properties.ccng.uaa_resource_id %>
-  symmetric_secret: <%= properties.uaa.cc.token_secret %>
+  url: http://uaa.<%= p("domain") %>
+  resource_id: <%= p("ccng.uaa_resource_id") %>
+  symmetric_secret: <%= p("uaa.cc.token_secret") %>
 
 # App staging parameters
 staging:
-  max_staging_runtime: <%= properties.ccng.max_staging_runtime || 300 %>
+  max_staging_runtime: <%= p("ccng.max_staging_runtime", 300) %>
   auth:
-    user: <%= properties.ccng.staging_upload_user %>
-    password: <%= properties.ccng.staging_upload_password %>
+    user: <%= p("ccng.staging_upload_user") %>
+    password: <%= p("ccng.staging_upload_password") %>
 
 runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
 
-# TODO: templatize using Bosh V9/V10 that gives improved property templates
 quota_definitions:
   free:
-    non_basic_services_allowed: false
-    total_services: 2
-    free_memory_limit: 1024 # 1 GB
-    paid_memory_limit: 0
+    non_basic_services_allowed: <%= p("ccng.quota_definitions.free.non_basic_services_allowed") %>
+    total_services: <%= p("ccng.quota_definitions.free.total_services") %>
+    free_memory_limit: <%= p("ccng.quota_definitions.free.free_memory_limit") %>
+    paid_memory_limit: <%= p("ccng.quota_definitions.free.paid_memory_limit") %>
   paid:
-    non_basic_services_allowed: true
-    total_services: 32
-    free_memory_limit: 1024 # 1 GB
-    paid_memory_limit: 32768 # 32 GB
+    non_basic_services_allowed: <%= p("ccng.quota_definitions.paid.non_basic_services_allowed") %>
+    total_services: <%= p("ccng.quota_definitions.paid.total_services") %>
+    free_memory_limit: <%= p("ccng.quota_definitions.paid.free_memory_limit") %>
+    paid_memory_limit: <%= p("ccng.quota_definitions.paid.paid_memory_limit") %>
   runaway:
-    non_basic_services_allowed: true
-    total_services: 500
-    free_memory_limit: 1024 # 1 GB
-    paid_memory_limit: 204800 # 200 GB
+    non_basic_services_allowed: <%= p("ccng.quota_definitions.runaway.non_basic_services_allowed") %>
+    total_services: <%= p("ccng.quota_definitions.runaway.total_services") %>
+    free_memory_limit: <%= p("ccng.quota_definitions.runaway.free_memory_limit") %>
+    runaway_memory_limit: <%= p("ccng.quota_definitions.runaway.paid_memory_limit") %>
 
-default_quota_definition: free
+default_quota_definition: <%= p("ccng.default_quota_definition") %>
