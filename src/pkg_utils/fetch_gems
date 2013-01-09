@@ -5,6 +5,7 @@ require 'bundler'
 require 'fileutils'
 require 'logger'
 require 'net/http'
+require 'httpclient'
 
 # Provides functionality similar to `bundle package`, but without needing
 # to install any gems.
@@ -50,13 +51,9 @@ if to_fetch.empty?
 end
 
 def download(uri, file)
-  Net::HTTP.start(uri.host,uri.port) do |http|
-    http.request_get(uri.path) do |res|
-      raise "HTTP GET failed with #{res.code} #{res.message}" unless res.is_a? Net::HTTPOK
-      res.read_body do |seg|
-        file << seg
-      end
-    end
+  client = HTTPClient.new
+  response = client.get(uri) do |block|
+    file.write(block)
   end
 end
 
