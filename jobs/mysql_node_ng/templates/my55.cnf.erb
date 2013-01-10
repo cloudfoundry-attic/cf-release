@@ -46,7 +46,7 @@ thread_stack            = 256K
 thread_cache_size       = <%= plan_enabled && plan_conf.thread_cache_size || 8 %>
 max_connections         = <%= plan_enabled && plan_conf.max_connections || 40 %>
 table_open_cache        = <%= plan_enabled && plan_conf.table_open_cache || 140 %>
-myisam-recover          = BACKUP
+myisam-recover          = BACKUP,FORCE
 query_cache_limit       = 1M
 query_cache_size        = <%= plan_enabled && plan_conf.query_cache_size || '16' %>M
 expire_logs_days        = 10
