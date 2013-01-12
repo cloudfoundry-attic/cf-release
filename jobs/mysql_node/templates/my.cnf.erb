@@ -38,7 +38,7 @@ thread_cache_size       = <%= properties.mysql_node.production ? 128 : 8 %>
 thread_concurrency      = <%= properties.mysql_node.production ? 8 : 2 %>
 max_connections         = <%= properties.mysql_node.production ? 512 : 16 %>
 table_cache             = <%= properties.mysql_node.production ? 2048 : 256 %>
-myisam-recover          = BACKUP
+myisam-recover          = BACKUP,FORCE
 query_cache_limit       = 1M
 query_cache_size        = <%= properties.mysql_node.production ? '128M' : '16M' %>
 expire_logs_days        = 10
