@@ -39,8 +39,10 @@ jwt:
 <% end %>
 
 oauth:
+  <% unless properties.uaa.no_ssl %>
   authorize:
     ssl: true
+  <% end %>
   client:
   <% if properties.uaa.autoapprove %>
     autoapprove: <% properties.uaa.autoapprove.each do |client_id| %>
