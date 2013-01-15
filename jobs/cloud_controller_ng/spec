@@ -56,6 +56,8 @@ properties:
   description:
  nats.port:
   description:
+ nfs_server:
+  description: "NFS share for droplets and apps"
  serialization_data_server.upload_token:
   description:
  serialization_data_server.upload_timeout:
