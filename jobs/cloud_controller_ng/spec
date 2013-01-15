@@ -124,6 +124,14 @@ properties:
   default: 1024 # 1 GB
  ccng.quota_definitions.runaway.paid_memory_limit:
   default: 204800 # 200 GB
+ ccng.quota_definitions.yeti.non_basic_services_allowed:
+  default: true
+ ccng.quota_definitions.yeti.total_services:
+  default: 500
+ ccng.quota_definitions.yeti.free_memory_limit:
+  default: 204800 # 200 GB
+ ccng.quota_definitions.yeti.paid_memory_limit:
+  default: 204800 # 200 GB
  ccng.default_quota_definition:
   default: free
  ccdb_ng.databases:
