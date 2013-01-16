@@ -1,0 +1,5 @@
+check process cloud_controller_ng
+  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
+  group vcap
