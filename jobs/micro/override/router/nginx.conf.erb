@@ -19,7 +19,8 @@ http {
   log_format main  '$host - [$time_local] '
                    '"$request" $status $bytes_sent '
                    '"$http_referer" "$http_user_agent" '
-                   '$remote_addr response_time:$upstream_response_time app_id:$app_id';
+                   '$remote_addr $proxy_add_x_forwarded_for response_time:$upstream_response_time app_id:$app_id';
+
 
   access_log  /var/vcap/sys/log/nginx/nginx.access.log  main;
 
@@ -42,7 +43,11 @@ http {
 
   upstream cloud_controller {
     #server  127.0.0.1:9025; #NOT SECURE -- for debugging use only!!!!!
+    <% if properties.cc_props == "ccng" %>
+    server unix:/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock;
+    <% else %>
     server unix:/var/vcap/sys/run/cloud_controller/cloud_controller.sock;
+    <% end %>
   }
 
   <% if properties.router.status %>
@@ -75,8 +80,8 @@ http {
       proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_redirect              off;
       proxy_connect_timeout       10;
-      proxy_send_timeout          <%= properties.router.client_inactivity_timeout || 300 %>;
-      proxy_read_timeout          <%= properties.router.app_inactivity_timeout || 300 %>;
+      proxy_send_timeout          <%= p("router.client_inactivity_timeout", 300) %>;
+      proxy_read_timeout          <%= p("router.app_inactivity_timeout", 300) %>;
 
       set $health_monitor '';
       set $app_id 0;
@@ -157,11 +162,11 @@ http {
       proxy_buffering             off;
       proxy_set_header            Host $host;
       proxy_set_header            X-Real_IP $remote_addr;
-      proxy_set_header            X-Forwarded_For $proxy_add_x_forwarded_for;
+      proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_redirect              off;
       proxy_connect_timeout       10;
-      proxy_send_timeout          <%= properties.router.client_inactivity_timeout || 300 %>;
-      proxy_read_timeout          <%= properties.router.app_inactivity_timeout || 300 %>;
+      proxy_send_timeout          <%= p("router.client_inactivity_timeout", 300) %>;
+      proxy_read_timeout          <%= p("router.app_inactivity_timeout", 300) %>;
       proxy_pass                 http://cloud_controller;
     }
 
@@ -172,13 +177,21 @@ http {
       root   /var/vcap/shared;
     }
 
+    <% if properties.cc_props == "ccng" %>
+    location ~ (/apps/.*/application|/v2/apps/.*/bits|/services/v\d+/configurations/.*/serialized/data) {
+    <% else %>
     location ~ (/apps/.*/application|/services/v\d+/configurations/.*/serialized/data) {
+    <% end %>
       # Pass altered request body to this location
       upload_pass   @cc_uploads;
       upload_pass_args on;
 
       # Store files to this directory
+      <% if properties.cc_props == "ccng" %>
+      upload_store /var/vcap/data/cloud_controller_ng/tmp/uploads;
+      <% else %>
       upload_store /var/vcap/data/cloud_controller/tmp/uploads;
+      <% end %>
 
       # No limit for output body forwarded to CC
       upload_max_output_body_len 0;
@@ -199,7 +212,11 @@ http {
     }
 
     # Droplet uploads from the stager should be authenticated
+    <% if properties.cc_props == "ccng" %>
+    location /staging/droplets/ {
+    <% else %>
     location ~ /staging/droplet/ {
+    <% end %>
       # Pass along auth header
       set $auth_header $upstream_http_x_auth;
       proxy_set_header Authorization $auth_header;
@@ -208,7 +225,11 @@ http {
       upload_pass   @cc_uploads;
 
       # Store files to this directory
+      <% if properties.cc_props == "ccng" %>
+      upload_store /var/vcap/data/cloud_controller_ng/tmp/staged_droplet_uploads;
+      <% else %>
       upload_store /var/vcap/data/cloud_controller/tmp/staged_droplet_uploads;
+      <% end %>
 
       # Allow uploaded files to be read only by user
       upload_store_access user:r;
@@ -223,7 +244,11 @@ http {
     # Pass altered request body to a backend
     location @cc_uploads {
       #proxy_pass   http://localhost:9025; #NOT SECURE - for debugging use only!!!!
+      <% if properties.cc_props == "ccng" %>
+      proxy_pass http://unix:/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock;
+      <% else %>
       proxy_pass http://unix:/var/vcap/sys/run/cloud_controller/cloud_controller.sock;
+      <% end %>
     }
 
     location ~ ^/internal_redirect/(.*){
