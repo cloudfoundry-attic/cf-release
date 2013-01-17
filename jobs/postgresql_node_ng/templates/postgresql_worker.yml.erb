@@ -54,6 +54,7 @@ postgresql:
   '<%= version %>':
    host: 127.0.0.1
    user: vcap
+   pass: <%= node.password %>
    port: <%= config['port'] %>
    database: postgres
    dump_bin: <%= "#{config['binary_dir']}/pg_dump" %>
