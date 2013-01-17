@@ -28,7 +28,7 @@ cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 service:
   name: redis
   version: "2.2"
-  description: 'Redis key-value store service'
+  description: 'Redis key-value store'
   plans:
   <% if plan_enabled %>
     <% for plan in plan_mgmt.fields.each %>

@@ -17,7 +17,7 @@ cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 service:
   name: oauth2
   version: "1.0"
-  description: 'OAuth2 service'
+  description: 'UAA identity provider'
   plans:
   <% if plan_enabled %>
     <% for plan in plan_mgmt.fields.each %>
@@ -33,7 +33,7 @@ service:
       free: true
   <% end %>
   default_plan: 'free'
-  tags: ['oauth2', 'uaa']
+  tags: ['uaa']
   timeout: 60
   supported_versions: ["1.0"]
   version_aliases:
