@@ -16,7 +16,7 @@ cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 service:
   name: filesystem
   version: "1.0"
-  description: 'Persistent filesystem service'
+  description: 'Persistent filesystem'
   plans:
   <% if plan_enabled %>
     <% for plan in plan_mgmt.fields.each %>
@@ -32,7 +32,7 @@ service:
       free: true
   <% end %>
   default_plan: '<%= gateway.default_plan || 'free' %>'
-  tags: ['Persistent filesystem service']
+  tags: []
   timeout: <%= properties.filesystem_gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
