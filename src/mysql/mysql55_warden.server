@@ -128,9 +128,6 @@ case "$mode" in
     ;;
 
   'stop')
-    # Stop daemon. We use a signal here to avoid having to know the
-    # root password.
-
     pid_file=$server_pid_file
 
     if test -s "$pid_file"
@@ -143,7 +140,7 @@ case "$mode" in
         defaultsdir=`dirname ${defaults}`
         if test -f $defaultsdir/../bin/my55.shutdown; then
           echo "Gracefully shutting down MySQL"
-          $defaultsdir/../bin/my55.shutdown; return_value=$?
+          $defaultsdir/../bin/my55.shutdown $other_args; return_value=$?
           if [ $return_value -ne 0 ]; then
             echo "Gracefully shut down MySQL failed, kill it"
             kill $mysqld_pid

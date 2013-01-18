@@ -13,6 +13,10 @@ properties:
     management: local
   dea:
     max_memory: 2048
+  dea_next:
+    memory_mb: 2048
+    disk_mb: 8192
+    num_instances: 16
   router:
     client_inactivity_timeout: 600
     app_inactivity_timeout: 600
