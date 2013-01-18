@@ -8,6 +8,6 @@ dependencies:
 files:
 - dea_next/Gemfile
 - dea_next/Gemfile.lock
-- dea_next/{bin,lib}/**/*
+- dea_next/{bin,lib,vendor}/**/*
 - dea_next/go/**/*
 - pkg_utils/*
