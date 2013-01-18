@@ -8,6 +8,13 @@ check process warden
 check process rabbit_node
   with pidfile /var/vcap/sys/run/rabbit_node/rabbit_node.pid
   start program "/var/vcap/jobs/rabbit_node_ng/bin/rabbit_node_ctl start"
-  stop program "/var/vcap/jobs/rabbit_node_ng/bin/rabbit_node_ctl stop"
+  stop program "/var/vcap/jobs/rabbit_node_ng/bin/rabbit_node_ctl stop" with timeout 60 seconds
+  group vcap
+  depends on warden
+
+check process daylimit
+  with pidfile /var/vcap/sys/run/daylimit/daylimit.pid
+  start program "/var/vcap/jobs/rabbit_node_ng/bin/daylimit_ctl start"
+  stop program "/var/vcap/jobs/rabbit_node_ng/bin/daylimit_ctl stop"
   group vcap
   depends on warden

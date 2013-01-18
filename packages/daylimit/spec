@@ -1,0 +1,7 @@
+---
+name: daylimit
+dependencies:
+- golang
+files:
+- services/tools/daylimit/**/*
+- services/govendor/**/*

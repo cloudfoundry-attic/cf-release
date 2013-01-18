@@ -8,6 +8,6 @@ check process warden
 check process vblob_node
   with pidfile /var/vcap/sys/run/vblob_node/vblob_node.pid
   start program "/var/vcap/jobs/vblob_node_ng/bin/vblob_node_ctl start"
-  stop program "/var/vcap/jobs/vblob_node_ng/bin/vblob_node_ctl stop"
+  stop program "/var/vcap/jobs/vblob_node_ng/bin/vblob_node_ctl stop" with timeout 60 seconds
   group vcap
   depends on warden
