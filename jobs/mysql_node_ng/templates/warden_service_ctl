@@ -7,6 +7,7 @@ COMMON_DIR=$4
 BIN_DIR=$5
 DATA_DIR=$6
 VERSION=$7
+PASSWORD=$8
 PIDFILE=$BASE_DIR/service.pid
 
 source $COMMON_DIR/bin/utils.sh
@@ -21,12 +22,12 @@ case $OP in
     ;;
 
   stop)
-    $BIN_DIR/libexec/mysql_warden.server stop $COMMON_DIR/config/my$VERSION.cnf $STOP_TIMEOUT
+    $BIN_DIR/libexec/mysql_warden.server stop $COMMON_DIR/config/my$VERSION.cnf $STOP_TIMEOUT $PASSWORD
     rm -f $PIDFILE
     ;;
 
   status)
-    [ -f $PIDFILE ] && [ -e /proc/`head -1 $PIDFILE` ]
+    $BIN_DIR/bin/mysqladmin ping --socket=$BASE_DIR/mysqld$VERSION.sock > /dev/null
     ;;
 
   *)
