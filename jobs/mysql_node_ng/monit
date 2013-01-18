@@ -42,7 +42,7 @@ check process <%= version_configs[version]['name'] %>
 check process mysql_node
   with pidfile /var/vcap/sys/run/mysql_node/mysql_node.pid
   start program "/var/vcap/jobs/mysql_node_ng/bin/mysql_node_ctl start"
-  stop program "/var/vcap/jobs/mysql_node_ng/bin/mysql_node_ctl stop"
+  stop program "/var/vcap/jobs/mysql_node_ng/bin/mysql_node_ctl stop" with timeout 60 seconds
   group vcap
 <%if use_warden %>
   depends on warden

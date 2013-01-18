@@ -14,11 +14,15 @@ templates:
   warden.yml.erb: config/warden.yml
   warden_service_ctl: bin/warden_service_ctl
 
+  daylimit_ctl: bin/daylimit_ctl
+  daylimit.yml.erb: config/daylimit.yml
+
 packages:
   - common
   - erlang
   - rabbitmq-2.4
   - rabbitmq-2.8
+  - daylimit
   - ruby
   - sqlite
   - rabbit_node_ng

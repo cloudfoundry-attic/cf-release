@@ -36,20 +36,26 @@ JOBS.each do |group, jobs|
 
   jobs.each do |job|
     # concatenate monit file
-    # FIXME: deal with monit.erb templates and get rid of the overrides
-    #        for mongodb_node, mysql_node & redis_node
+    # FIXME: get rid of the overrides for mongodb_node, mysql_node & redis_node
     override = File.join(OVERRIDE, "monit", job)
+    monit_erb_file = ''
     if File.exist?(override)
       monit_file = override
     else
+      monit_erb_file = "#{job_dir(job)}/templates/monit.erb"
       monit_file = "#{job_dir(job)}/monit"
     end
-    File.open(monit_file) do |file|
+
+    if File.exists? monit_erb_file
+      template = ERB.new(File.read(monit_erb_file))
+      monit += template.result.split("\n") # FIXME: no binding? So whats the point of an .erb?
+    elsif File.exists? monit_file
       File.open(monit_file) do |file|
         monit += file.readlines
-        monit << "\n"
       end
     end
+
+    monit << "\n"
 
     # copy templates
     Dir.glob("#{job_dir(job)}/templates/*").each do |file|

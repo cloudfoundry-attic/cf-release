@@ -5,5 +5,5 @@ cp -a router/* ${BOSH_INSTALL_TARGET}
 
 (
   cd ${BOSH_INSTALL_TARGET}
-  /var/vcap/packages/ruby/bin/bundle --local install --deployment
+  /var/vcap/packages/ruby/bin/bundle install --local --deployment
 )
