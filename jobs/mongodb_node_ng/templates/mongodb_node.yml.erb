@@ -66,6 +66,7 @@ max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
 op_time_limit: <%= node.op_time_limit || 6 %>
 service_start_timeout: <%= node.service_start_timeout || 4 %>
+tmp_dir_script: /var/vcap/jobs/mongodb_node_ng/bin/tmp_dir_ctl
 m_interval: <%= node.m_interval || 10 %>
 <% if node.m_actions %>
 m_actions:
