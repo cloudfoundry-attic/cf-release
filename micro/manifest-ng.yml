@@ -4,6 +4,29 @@ release:
   name: micro
   version: 13
 configuration_hash: {}
+jobs:
+- name: micro
+  template:
+  - postgres
+  - nats
+  - router
+  - dea_next
+  - health_manager_next
+  - cloud_controller_ng
+  - serialization_data_server
+  - stager
+  - uaa
+  - vcap_redis
+  - mongodb_node
+  - mongodb_gateway
+  - mysql_node
+  - mysql_gateway
+  - postgresql_node
+  - postgresql_gateway
+  - redis_node
+  - redis_gateway
+  - rabbit_node
+  - rabbit_gateway
 properties:
   micro: true
   domain: vcap.me
