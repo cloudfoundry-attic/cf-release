@@ -45,13 +45,6 @@ case $1 in
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup start
 
-    /var/vcap/jobs/mongodb_node_ng/bin/create_mongodb_tmp_dir
-    return_value=$?
-    if [ $return_value -ne 0 ]; then
-      echo "Failed to create mongodb tmp directory"
-      exit $return_value
-    fi
-
     (crontab -l | sed /mongodb_logrotate/d; cat /var/vcap/jobs/mongodb_node_ng/config/mongodb_logrotate.cron) | sed /^$/d | crontab
 
     mkdir -p $COMMON_DIR/bin
@@ -75,7 +68,6 @@ case $1 in
     kill_and_wait $PIDFILE 60
 
     crontab -l | sed /mongodb_logrotate/d | crontab
-    /var/vcap/jobs/mongodb_node_ng/bin/remove_mongodb_tmp_dir
 
     chmod +x $JOB_DIR/config/mongodb_backup
     $JOB_DIR/config/mongodb_backup stop
