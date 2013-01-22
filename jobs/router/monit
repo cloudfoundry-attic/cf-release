@@ -1,5 +1,5 @@
-check process nginx
-  with pidfile /var/vcap/sys/run/nginx/nginx.pid
+check process nginx_router
+  with pidfile /var/vcap/sys/run/nginx_router/nginx.pid
   start program "/var/vcap/jobs/router/bin/nginx_ctl start"
   stop program "/var/vcap/jobs/router/bin/nginx_ctl stop"
   group vcap
