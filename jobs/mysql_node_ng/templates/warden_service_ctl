@@ -12,6 +12,11 @@ PIDFILE=$BASE_DIR/service.pid
 
 source $COMMON_DIR/bin/utils.sh
 
+case $VERSION in
+  5.5) VERSION="55" ;;
+  5.1) VERSION=""   ;;
+esac
+
 case $OP in
   start)
     if test ! -d $BASE_DIR/data/mysql; then
