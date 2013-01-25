@@ -14,8 +14,8 @@ logging:
   <% end %>
 
 cleanup:
-  max_days: <%= properties.service_snapshot_manager ? properties.service_snapshot_manager.cleanup_max_days : 7 %>
-  greedy_mark: <%= properties.service_snapshot_manager ? properties.service_snapshot_manager.cleanup_greedy_mark : "false"%>
+  max_days: <%= properties.service_snapshot_manager && properties.service_snapshot_manager.cleanup_max_days || 7 %>
+  greedy_mark: <%= properties.service_snapshot_manager && properties.service_snapshot_manager.cleanup_greedy_mark || "false" %>
   cloud_controller_uri: <%= properties.cc.srv_api_uri %>
   services:
     mongodb:
@@ -30,6 +30,6 @@ cleanup:
     postgresql:
       version: "9.0"
       token: <%= properties.postgresql_gateway.token %>
-root: <%= properties.service_lifecycle && properties.service_lifecycle.mount_point ? properties.service_lifecycle.mount_point : "/var/vcap/services_snapshot" %>
-wakeup_interval: <%= properties.service_snapshot_manager ? properties.service_snapshot_manager.cleanup_interval_secs : 43200 %>
-enable: <%= properties.service_snapshot_manager && properties.service_lifecycle && properties.service_lifecycle.nfs_server ? properties.service_snapshot_manager.enable : "false" %>
+root: <%= properties.service_lifecycle && properties.service_lifecycle.mount_point || "/var/vcap/services_snapshot" %>
+wakeup_interval: <%= properties.service_snapshot_manager && properties.service_snapshot_manager.cleanup_interval_secs || 43200 %>
+enable: <%= properties.service_snapshot_manager && properties.service_lifecycle && properties.service_lifecycle.nfs_server && properties.service_snapshot_manager.enable || "false" %>
