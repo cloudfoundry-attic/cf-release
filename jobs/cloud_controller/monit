@@ -5,8 +5,8 @@ check process cloud_controller
   group vcap
 
 <% if properties.cc.use_nginx %>
-check process nginx
-  with pidfile /var/vcap/sys/run/nginx/nginx.pid
+check process nginx_cc
+  with pidfile /var/vcap/sys/run/nginx_cc/nginx.pid
   start program "/var/vcap/jobs/cloud_controller/bin/nginx_ctl start"
   stop program "/var/vcap/jobs/cloud_controller/bin/nginx_ctl stop"
   group vcap
