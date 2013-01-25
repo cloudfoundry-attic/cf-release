@@ -19,9 +19,9 @@ logging:
   syslog: vcap.job_manager
   <% end %>
 job_cleanup:
-  max_days: <%= max_days ? max_days : 7 %>
-wakeup_interval: <%= interval ? interval : 43200 %>
-enable: <%= enable ? enable : "false" %>
+  max_days: <%= max_days || 7 %>
+wakeup_interval: <%= interval || 43200 %>
+enable: <%= enable || "false" %>
 services_redis:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
