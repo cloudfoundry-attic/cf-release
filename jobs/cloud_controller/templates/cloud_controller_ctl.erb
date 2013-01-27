@@ -55,9 +55,10 @@ case $1 in
     echo $$ > $PIDFILE
     chown vcap:vcap $PIDFILE
 
+    mkdir -p $NFS_SHARE
+
     <% if properties.nfs_server %>
     modprobe nfs
-    mkdir -p $NFS_SHARE
 
     cp -f /etc/default/nfs-common /etc/default/nfs-common.orig
     cp -f $CC_JOB_DIR/config/nfs-common /etc/default/nfs-common
