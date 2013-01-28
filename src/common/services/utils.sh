@@ -44,6 +44,9 @@ start_warden() {
 
   export PATH=/var/vcap/packages/ruby/bin:$PATH
 
+  # Clear existing containers
+  find /var/vcap/store/containers -mindepth 1 -maxdepth 1 -type d | xargs -t -n1 root/linux/destroy.sh
+
   nohup /var/vcap/packages/ruby/bin/bundle exec \
         rake warden:start[$JOB_DIR/config/warden.yml] \
         >>$LOG_DIR/warden.stdout.log \
