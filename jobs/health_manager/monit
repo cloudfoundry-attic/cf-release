@@ -1,5 +1,0 @@
-check process health_manager
-  with pidfile /var/vcap/sys/run/health_manager/health_manager.pid
-  start program "/var/vcap/jobs/health_manager/bin/health_manager_ctl start"
-  stop program "/var/vcap/jobs/health_manager/bin/health_manager_ctl stop"
-  group vcap
