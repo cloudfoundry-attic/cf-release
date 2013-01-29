@@ -39,12 +39,10 @@ info:
 # allow_debug: false
 
 <% if_p("directories.droplets",
-        "directories.resources",
         "directories.staging_manifests",
-        "directories.tmpdir") do |droplets, resources, staging_manifests, tmpdir| %>
+        "directories.tmpdir") do |droplets, staging_manifests, tmpdir| %>
 directories:
  droplets: <%= droplets %>
- resources: <%= resources %>
  staging_manifests: <%= staging_manifests %>
  tmpdir: <%= tmpdir %>
 <% end %>
@@ -109,3 +107,42 @@ quota_definitions:
     paid_memory_limit: <%= p("ccng.quota_definitions.yeti.paid_memory_limit") %>
 
 default_quota_definition: <%= p("ccng.default_quota_definition") %>
+
+resource_pool:
+  resource_directory_key: <%= p("ccng.resource_pool.resource_directory_key") %>
+  fog_connection:
+<% if_p("ccng.resource_pool.fog_connection.provider") do |provider| %>
+    provider: <%= provider %>
+  <% if provider.downcase == "local" %>
+    local_root: <%= p("ccng.resource_pool.fog_connection.local_root") %>
+  <% else %>
+    aws_access_key_id: <%= p("ccng.resource_pool.fog_connection.aws_access_key_id") %>
+    aws_secret_access_key: <%= p("ccng.resource_pool.fog_connection.aws_secret_access_key") %>
+  <% end %>
+<% end %>
+
+packages:
+  app_package_directory_key: <%= p("ccng.packages.app_package_directory_key") %>
+  fog_connection:
+<% if_p("ccng.packages.fog_connection.provider") do |provider| %>
+    provider: <%= provider %>
+  <% if provider.downcase == "local" %>
+    local_root: <%= p("ccng.packages.fog_connection.local_root") %>
+  <% else %>
+    aws_access_key_id: <%= p("ccng.packages.fog_connection.aws_access_key_id") %>
+    aws_secret_access_key: <%= p("ccng.packages.fog_connection.aws_secret_access_key") %>
+  <% end %>
+<% end %>
+
+droplets:
+  droplet_directory_key: <%= p("ccng.droplets.droplet_directory_key") %>
+  fog_connection:
+<% if_p("ccng.droplets.fog_connection.provider") do |provider| %>
+    provider: <%= provider %>
+  <% if provider.downcase == "local" %>
+    local_root: <%= p("ccng.droplets.fog_connection.local_root") %>
+  <% else %>
+    aws_access_key_id: <%= p("ccng.droplets.fog_connection.aws_access_key_id") %>
+    aws_secret_access_key: <%= p("ccng.droplets.fog_connection.aws_secret_access_key") %>
+  <% end %>
+<% end %>
