@@ -59,6 +59,24 @@ http {
       root   /var/vcap/shared;
     }
 
+<% if p("ccng.packages.fog_connection.provider").downcase == "local" %>
+    # used for x-accel-redirect uri://location/foo.txt
+    # nginx will serve the file root || location || foo.txt
+    location <%= "/#{p('ccng.packages.app_package_directory_key')}/" %> {
+      internal;
+      root   /var/vcap/shared;
+    }
+<% end %>
+
+<% if p("ccng.droplets.fog_connection.provider").downcase == "local" %>
+    # used for x-accel-redirect uri://location/foo.txt
+    # nginx will serve the file root || location || foo.txt
+    location <%= "/#{p('ccng.droplets.droplet_directory_key')}/" %> {
+      internal;
+      root   /var/vcap/shared;
+    }
+<% end %>
+
     location ~ (/apps/.*/application|/v2/apps/.*/bits|/services/v\d+/configurations/.*/serialized/data) {
       # Pass altered request body to this location
       upload_pass   @cc_uploads;
