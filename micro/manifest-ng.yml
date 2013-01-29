@@ -265,6 +265,17 @@ properties:
       password:
     port: 8100
     catalina_opts: -Xmx128m -Xms30m -XX:MaxPermSize=128m
+    scim:
+      users:
+        - micro@vcap.me|micro|scim.write,scim.read,openid
+    clients:
+      vmc:
+        authorized-grant-types: implicit,password,refresh_token
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write
+        authorities: uaa.none
+        id: vmc
+        redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc,https://uaa.cloudfoundry.com/redirect/vmc
+        access-token-validity: 604800
   uaadb:
     address: 127.0.0.1
     port: 2544
