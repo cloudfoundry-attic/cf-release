@@ -109,6 +109,8 @@ quota_definitions:
 default_quota_definition: <%= p("ccng.default_quota_definition") %>
 
 resource_pool:
+  minimum_size: <%= p("ccng.resource_pool.minimum_size") %>
+  maximum_size: <%= p("ccng.resource_pool.maximum_size") %>
   resource_directory_key: <%= p("ccng.resource_pool.resource_directory_key") %>
   fog_connection:
 <% if_p("ccng.resource_pool.fog_connection.provider") do |provider| %>
