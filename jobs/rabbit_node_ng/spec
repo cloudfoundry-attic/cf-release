@@ -17,6 +17,8 @@ templates:
   daylimit_ctl: bin/daylimit_ctl
   daylimit.yml.erb: config/daylimit.yml
 
+  backup_or_restore.escript: bin/backup_or_restore.escript
+
 packages:
   - common
   - erlang
