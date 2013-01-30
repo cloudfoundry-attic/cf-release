@@ -116,6 +116,7 @@ properties:
     use_nginx: true
 
   ccng:
+    bootstrap_admin_email: micro@vcap.me
     srv_api_uri: http://ccng.vcap.me
     external_host: ccng
     uaa_resource_id: cloud_controller
