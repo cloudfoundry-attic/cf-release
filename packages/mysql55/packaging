@@ -1,7 +1,7 @@
 # abort script on any command that exit with a non zero value
 set -e
 
-VERSION=5.5.27-rel28.1-296.Linux.x86_64
+VERSION=5.5.29-rel29.4-401.Linux.x86_64
 # Percona binary Linux build
 tar zxvf mysql/server-$VERSION.tar.gz
 (
