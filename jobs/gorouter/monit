@@ -1,0 +1,5 @@
+check process gorouter
+  with pidfile /var/vcap/sys/run/gorouter/gorouter.pid
+  start program "/var/vcap/jobs/gorouter/bin/gorouter start"
+  stop program "/var/vcap/jobs/gorouter/bin/gorouter stop"
+  group vcap
