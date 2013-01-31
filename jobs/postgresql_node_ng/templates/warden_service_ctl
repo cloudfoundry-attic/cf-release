@@ -20,6 +20,13 @@ case $OP in
   start)
     BIN_DIR=$5
     PORT=$6
+    PASSWD=$7
+    HOST_IP=$8
+
+    if [ -z "$PASSWD" ]; then
+      echo "ERROR: require password"
+      exit 1
+    fi
 
     echo `date` >> $LOG_DIR/postgresql_ctl.log
 
@@ -38,14 +45,26 @@ case $OP in
     fi
 
     rsync -arl $BIN_DIR/initdb/pg_hba.conf $BASE_DIR/pg_hba.conf
-    rsync -arl $BIN_DIR/initdb/postgresql.conf $BASE_DIR/postgresql.conf
+    rsync -arl $BIN_DIR/initdb/postgresql.conf  $BASE_DIR/postgresql.conf
 
     chown -R vcap:vcap $BASE_DIR
     chmod -R 700 $BASE_DIR
 
+    # update the hba file
+    # By default, all access should provide password
+    # vcap (sys-user) in the container could login as vcap (pg super user) without password
+    # Login as vcap (pg super user)
+    #   Password should be provided
+    #   Source IP should be in the same VM (outside the container)
+    #   If source IP outside the VM, should be rejected.
+    sed -i /host[[:space:]]*all[[:space:]]*/d $BASE_DIR/pg_hba.conf
     # host server could connect the container without password
-    host_ip=`ip route | grep "^default" | cut -d' ' -f3`
-    echo "host all all $host_ip/32 trust" >> $BASE_DIR/pg_hba.conf
+    GW_IP=`ip route | grep "^default" | cut -d' ' -f3`
+    echo "host all vcap $GW_IP/32 md5" >> $BASE_DIR/pg_hba.conf
+    echo "host all vcap $HOST_IP/32 md5" >> $BASE_DIR/pg_hba.conf
+    echo "host all vcap 127.0.0.1/32 md5" >> $BASE_DIR/pg_hba.conf
+    echo "host all vcap ::1/128 md5" >> $BASE_DIR/pg_hba.conf
+    echo "host all vcap 0.0.0.0/0 reject" >> $BASE_DIR/pg_hba.conf
     echo "host all all 0.0.0.0/0 md5" >> $BASE_DIR/pg_hba.conf
 
     # since postgresql service is alive
@@ -60,6 +79,17 @@ case $OP in
     LD_LIBRARY_PATH=$BIN_DIR/lib:$LD_LIBRARY_PATH $BIN_DIR/bin/pg_ctl -w start -D $BASE_DIR -l "$LOG_DIR/startup.log"
 
     if [ $? == 0 ]; then
+      echo "PostgreSQL start to set password."
+      # This script is excuted by vcap which is the sys-user of postgres, so it could login without password.
+      # Other users or outside the container(even using vcap), you should also provide password to login
+      ${BIN_DIR}/bin/psql -U vcap -p $PORT -d postgres -c "alter role vcap password '$PASSWD'"
+      if [ $? == 0 ]; then
+        echo "PostgreSQL set password successfully."
+      else
+        echo "PostgreSQL failed to set password."
+        $0 stop
+        exit 1
+      fi
       echo "PostgreSQL `cat $BASE_DIR/PG_VERSION` started successfully" >> $LOG_DIR/postgresql_ctl.log
       head -1 $BASE_DIR/postmaster.pid > $PIDFILE
       if [ $FIRST_TIME -eq 1 ]; then
