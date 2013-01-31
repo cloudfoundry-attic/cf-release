@@ -91,6 +91,9 @@ case $1 in
       echo "Failed to start: cannot write to NFS"
       exit 1
     fi
+    <% else %>
+      mkdir -p $NFS_SHARE
+      chown vcap:vcap $NFS_SHARE
     <% end %>
 
     # Set up sudoers for cloud controller.
