@@ -118,35 +118,13 @@ properties:
   ccng:
     srv_api_uri: http://ccng.vcap.me
     external_host: ccng
-    logging_level: debug
-    bulk_api_password:
     uaa_resource_id: cloud_controller
-    staging_upload_user:
-    staging_upload_password:
     quota_definitions:
       free:
-        non_basic_services_allowed: false
         total_services: 10
         free_memory_limit: 256
         paid_memory_limit: 1024
-      paid:
-        non_basic_services_allowed: false
-        total_services: 10
-        free_memory_limit: 256
-        paid_memory_limit: 1024
-      runaway:
-        non_basic_services_allowed: false
-        total_services: 10
-        free_memory_limit: 256
-        paid_memory_limit: 1024
-    default_quota_definition: free
-    bootstrap_admin_email:
     admins:
-    directories:
-      droplets: /var/vcap/shared/droplets
-      resources: /var/vcap/shared/resources
-      staging_manifests: /var/vcap/jobs/cloud_controller_ng/config/staging
-      tmpdir: /var/vcap/data/cloud_controller_ng/tmp
   mysql_gateway:
     ip_route: 127.0.0.1
     token:
@@ -265,6 +243,17 @@ properties:
       password:
     port: 8100
     catalina_opts: -Xmx128m -Xms30m -XX:MaxPermSize=128m
+    scim:
+      users:
+        - micro@vcap.me|micro|scim.write,scim.read,openid
+    clients:
+      vmc:
+        authorized-grant-types: implicit,password,refresh_token
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write
+        authorities: uaa.none
+        id: vmc
+        redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc,https://uaa.cloudfoundry.com/redirect/vmc
+        access-token-validity: 604800
   uaadb:
     address: 127.0.0.1
     port: 2544

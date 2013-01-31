@@ -4,6 +4,7 @@ service = "postgresql"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.plan || "free"
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+abort unless properties.postgresql_node.password
 %>
 version=$1
 shift
@@ -66,9 +67,17 @@ case "$1" in
         echo "ERROR: Unable to initialize PostgreSQL DB"
         exit 1
       fi
-
-      echo "host all all 0.0.0.0/0 md5" >> $DATA_DIR/pg_hba.conf
     fi
+
+    # update the hba file in data directory
+    # By default, all access should provide password
+    # Only vcap (sys-user) in the same VM could login as vcap (pg super user) without password
+    pg_hba_conf_file=$DATA_DIR/pg_hba.conf
+    sed -i /host[[:space:]]*all[[:space:]]*/d $pg_hba_conf_file
+    echo "host all vcap 127.0.0.1/32 md5" >> $pg_hba_conf_file
+    echo "host all vcap ::1/128 md5" >> $pg_hba_conf_file
+    echo "host all vcap 0.0.0.0/0 reject" >> $pg_hba_conf_file
+    echo "host all all 0.0.0.0/0 md5" >> $pg_hba_conf_file
 
     # update the config file in data directory
     rsync -arl $SRC_CONF_FILE $DATA_DIR/postgresql.conf
@@ -84,6 +93,16 @@ case "$1" in
     su - vcap -c "LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/pg_ctl -w start -D $DATA_DIR -l \"$LOG_DIR/startup.log\""
 
     if [ $? == 0 ]; then
+      echo "PostgreSQL start to set password."
+      # This script is excuted by vcap which is the sys-user of postgres, so it could login without password
+      su - vcap -c "LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres -c \"alter role vcap password '<%= properties.postgresql_node.password %>'\""
+      if [ $? == 0 ]; then
+        echo "PostgreSQL set password successfully."
+      else
+        echo "PostgreSQL failed to set password."
+        $0 stop
+        exit 1
+      fi
       echo "PostgreSQL $version started successfully"
       master_pid=`head -n 1 $DATA_DIR/postmaster.pid`
       echo $master_pid > $PIDFILE

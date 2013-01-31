@@ -137,6 +137,52 @@ properties:
   default: 204800 # 200 GB
  ccng.default_quota_definition:
   default: free
+  description: "Local to use a local (NFS) file system.  AWS to use AWS."
+ ccng.resource_pool.minimum_size:
+  description: "Minimum size of a resource to add to the pool"
+  default: 0
+ ccng.resource_pool.maximum_size:
+  description: "Maximum size of a resource to add to the pool"
+  default: 536870912
+ ccng.resource_pool.resource_directory_key:
+  description: "Directory (bucket) used store app resources.  It does not have be pre-created."
+  default: "cc-resources"
+ ccng.resource_pool.fog_connection.provider:
+  description: "Local for shared resources on NFS.  AWS to place them in S3."
+  default: "Local"
+ ccng.resource_pool.fog_connection.aws_access_key_id:
+  description: "AWS access key used to access the resources bucket"
+ ccng.resource_pool.fog_connection.aws_secret_access_key:
+  description: "AWS secret key used to access the resources bucket"
+ ccng.resource_pool.fog_connection.local_root:
+  description: "The directory used as the root for the Local fog provider"
+  default: "/var/vcap/shared"
+ ccng.packages.app_package_directory_key:
+  description: "Directory (bucket) used store app packages.  It does not have be pre-created."
+  default: "cc-packages"
+ ccng.packages.fog_connection.provider:
+  description: "Local for shared resources on NFS. AWS to place them in S3."
+  default: "Local"
+ ccng.packages.fog_connection.aws_access_key_id:
+  description: "AWS access key used to access the packages bucket"
+ ccng.packages.fog_connection.aws_secret_access_key:
+  description: "AWS secret key used to access the packages bucket"
+ ccng.packages.fog_connection.local_root:
+  description: "The directory used as the root for the Local fog provider"
+  default: "/var/vcap/shared"
+ ccng.droplets.droplet_directory_key:
+  description: "Directory (bucket) used store droplets.  It does not have be pre-created."
+  default: "cc-droplets"
+ ccng.droplets.fog_connection.provider:
+  description: "Local for droplets on NFS. AWS to place them in S3."
+  default: "Local"
+ ccng.droplets.fog_connection.aws_access_key_id:
+  description: "AWS access key used to access the droplets bucket"
+ ccng.droplets.fog_connection.aws_secret_access_key:
+  description: "AWS secret key used to access the droplets bucket"
+ ccng.droplets.fog_connection.local_root:
+  description: "The directory used as the root for the Local fog provider"
+  default: "/var/vcap/shared"
  ccdb_ng.databases:
   description:
  ccdb_ng.roles:
