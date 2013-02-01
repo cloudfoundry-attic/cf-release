@@ -1,0 +1,13 @@
+set -e
+
+cp -a gorouter/* $BOSH_INSTALL_TARGET
+cp -a misc $BOSH_INSTALL_TARGET
+
+(
+  cd $BOSH_INSTALL_TARGET
+
+  export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+  export PATH=$GOROOT/bin:$PATH
+
+  bin/go install router/router
+)
