@@ -28,7 +28,7 @@ offering_mapping:
 <%
     gateway.service_mappings.each { |svc|
 %>
-  <%= svc.service %>:
+  <%= "#{svc.ad_name}_#{svc.ad_provider}" %>:
     cc_name: <%= svc.cc_name %>
     cc_provider: <%= svc.cc_provider %>
     ad_name: <%= svc.ad_name %>

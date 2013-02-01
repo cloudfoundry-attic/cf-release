@@ -1,0 +1,29 @@
+---
+<% if properties.router.status %>
+status:
+  port: <%= properties.router.status.port %>
+  user: <%= properties.router.status.user %>
+  pass: <%= properties.router.status.password %>
+<% end %>
+
+nats:
+  host: <%= properties.nats.address %>:<%= properties.nats.port %>
+  user: <%= properties.nats.user %>
+  pass: <%= properties.nats.password %>
+
+logging:
+  file: /var/vcap/sys/log/gorouter/gorouter.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.gorouter
+  <% end %>
+  level: info
+
+port: 80
+index: <%= properties.router.offset ? properties.router.offset + spec.index : spec.index %>
+
+go_max_procs: 8
+
+publish_start_message_interval: 30
+prune_stale_droplets_interval: 30
+droplet_stale_threshold: 120
+publish_active_apps_interval: 0 # 0 means disabled
