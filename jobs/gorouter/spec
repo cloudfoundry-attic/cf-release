@@ -1,0 +1,11 @@
+---
+name: gorouter
+templates:
+  gorouter.erb: bin/gorouter
+  gorouter.yml.erb: config/gorouter.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+packages:
+- common
+- golang
+- gorouter
+- syslog_aggregator

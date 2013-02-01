@@ -1,0 +1,7 @@
+---
+name: gorouter
+dependencies:
+- golang
+files:
+- gorouter/**/*
+- misc/libcap2-bin_1%3a2.17-2ubuntu1_amd64.deb
