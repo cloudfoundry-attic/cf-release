@@ -1,0 +1,17 @@
+#- p01
+deployment: jenkins_build.check http://cf-jenkins-private.local:8080 staging_deploy
+yeti: travis.check cloudfoundry vcap-yeti
+
+#- Ng
+cc: travis.check cloudfoundry cloud_controller_ng
+dea: travis.check cloudfoundry dea_ng
+health_manager: travis.check cloudfoundry health_manager
+gorouter: travis.check cloudfoundry gorouter
+warden: travis.check cloudfoundry warden
+
+#- Vmc
+vmc: travis.check cloudfoundry vmc
+vmc-lib: travis.check cloudfoundry vmc-lib
+
+#- Legacy
+router: travis.check cloudfoundry router
