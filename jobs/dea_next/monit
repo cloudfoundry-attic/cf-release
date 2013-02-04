@@ -11,7 +11,7 @@ check process warden
 check process dea_next
   with pidfile /var/vcap/sys/run/dea_next/dea_next.pid
   start program "/var/vcap/jobs/dea_next/bin/dea_ctl start"
-  stop program "/var/vcap/jobs/dea_next/bin/dea_ctl stop"
+  stop program "/var/vcap/jobs/dea_next/bin/dea_ctl stop" with timeout 45 seconds
   group vcap
   depends on warden
 
