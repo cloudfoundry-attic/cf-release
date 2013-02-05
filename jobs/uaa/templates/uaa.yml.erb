@@ -98,6 +98,7 @@ scim:
 scim:
   userids_enabled: false
 <% end %>
+  user.override: <% properties.uaa.scim.user.override || true %>
 <% if properties.uaa.scim && properties.uaa.scim.users then %>
   users: <% properties.uaa.scim.users.each do |user| %>
     - <%= user %><% end %>
