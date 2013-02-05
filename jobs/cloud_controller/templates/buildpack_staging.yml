@@ -1,8 +1,0 @@
----
-name: buildpack
-
-runtimes:
-  - ruby18:
-      default: true
-  - ruby19:
-      default: false

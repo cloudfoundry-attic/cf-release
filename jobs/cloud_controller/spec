@@ -18,7 +18,6 @@ templates:
   rack_staging.yml: config/staging/rack.yml
   standalone_staging.yml: config/staging/standalone.yml
   play_staging.yml: config/staging/play.yml
-  buildpack_staging.yml: config/staging/buildpack.yml
   runtimes.yml: config/runtimes.yml
   sudoers: config/sudoers
   blacklist.txt: config/blacklist.txt
