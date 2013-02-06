@@ -1,6 +1,6 @@
 #- p01
 deployment: jenkins_build.check http://cf-jenkins-private.local:8080 staging_deploy
-yeti: travis.check cloudfoundry vcap-yeti
+yeti: jenkins_build.check http://cf-jenkins-private.sf.pivotallabs.com:8080 staging_yeti
 
 #- Ng
 cc: travis.check cloudfoundry cloud_controller_ng
