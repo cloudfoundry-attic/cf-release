@@ -42,8 +42,8 @@ oauth:
   authorize:
     ssl: true
   client:
-  <% if properties.uaa.autoapprove %>
-    autoapprove: <% properties.uaa.autoapprove.each do |client_id| %>
+  <% if properties.uaa.client.autoapprove %>
+    autoapprove: <% properties.uaa.client.autoapprove.each do |client_id| %>
       - <%= client_id %><% end %>
   <% else %>
     autoapprove:
