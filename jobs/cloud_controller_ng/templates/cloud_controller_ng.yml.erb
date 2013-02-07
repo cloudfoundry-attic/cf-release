@@ -88,23 +88,15 @@ quota_definitions:
   free:
     non_basic_services_allowed: <%= p("ccng.quota_definitions.free.non_basic_services_allowed") %>
     total_services: <%= p("ccng.quota_definitions.free.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.free.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.free.paid_memory_limit") %>
+    memory_limit: <%= p("ccng.quota_definitions.free.memory_limit") %>
   paid:
     non_basic_services_allowed: <%= p("ccng.quota_definitions.paid.non_basic_services_allowed") %>
     total_services: <%= p("ccng.quota_definitions.paid.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.paid.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.paid.paid_memory_limit") %>
-  runaway:
-    non_basic_services_allowed: <%= p("ccng.quota_definitions.runaway.non_basic_services_allowed") %>
-    total_services: <%= p("ccng.quota_definitions.runaway.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.runaway.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.runaway.paid_memory_limit") %>
+    memory_limit: <%= p("ccng.quota_definitions.paid.memory_limit") %>
   yeti:
     non_basic_services_allowed: <%= p("ccng.quota_definitions.yeti.non_basic_services_allowed") %>
     total_services: <%= p("ccng.quota_definitions.yeti.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.yeti.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.yeti.paid_memory_limit") %>
+    memory_limit: <%= p("ccng.quota_definitions.yeti.memory_limit") %>
 
 default_quota_definition: <%= p("ccng.default_quota_definition") %>
 
