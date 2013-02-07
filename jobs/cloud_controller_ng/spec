@@ -27,6 +27,7 @@ packages:
   - cloud_controller_ng
   - nginx
   - libpq
+  - mysqlclient
   - sqlite
   - ruby_next
   - dea_transition
@@ -175,6 +176,9 @@ properties:
   description:
  ccdb_ng.roles:
   description:
+ ccdb_ng.db_scheme:
+  description:
+  default: postgres
  ccdb_ng.address:
   description:
  ccdb_ng.port:
