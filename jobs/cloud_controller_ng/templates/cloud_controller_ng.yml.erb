@@ -74,6 +74,7 @@ uaa:
   url: http://uaa.<%= p("domain") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
   symmetric_secret: <%= p("uaa.cc.token_secret") %>
+  verification_key: <%= p("uaa.jwt.verification_key") ? ("|\n      " + p("uaa.jwt.verification_key").gsub("\n", "\n      ")) : '~' %>
 
 # App staging parameters
 staging:

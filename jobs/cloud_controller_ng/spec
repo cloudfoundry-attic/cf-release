@@ -197,3 +197,5 @@ properties:
   description:
  syslog_aggregator:
   description:
+ uaa.jwt.verification_key:
+  default: false
