@@ -2,6 +2,7 @@
 name: cloud_controller_ng
 dependencies:
 - libpq
+- mysqlclient
 - sqlite
 - ruby
 files:
