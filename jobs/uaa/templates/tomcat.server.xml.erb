@@ -11,7 +11,7 @@
     <Connector class="org.apache.coyote.http11.Http11NioProtocol" port="<%= (properties.uaa && properties.uaa.port) ? properties.uaa.port : 8080 %>" protocol="HTTP/1.1" connectionTimeout="20000"/>
     <Engine name="Catalina" defaultHost="localhost">
 
-      <Host name="localhost" appBase="webapps" unpackWARs="true" >
+      <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="false">
         <Valve className="org.apache.catalina.valves.RemoteIpValve"
                remoteIpHeader="x-cluster-client-ip"
                protocolHeader="x-forwarded-proto" />
