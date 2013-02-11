@@ -7,4 +7,4 @@ runtimes:
   - java7:
       default: false
 detection:
-  - *.war: true
+  - "*.war": true
