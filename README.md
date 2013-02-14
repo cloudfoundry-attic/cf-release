@@ -34,7 +34,7 @@ Follow these steps to make a contribution to any of our open source repositories
 		git config --global user.name "Firstname Lastname"
 		git config --global user.email "your_email@youremail.com"
 
-Fork the BOSH repo
+Fork the repo
 
 Make your changes on a topic branch, commit, and push to github and open a pull request.
 
