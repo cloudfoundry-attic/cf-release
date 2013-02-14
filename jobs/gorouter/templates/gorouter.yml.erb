@@ -20,7 +20,7 @@ logging:
 
 port: 80
 index: <%= properties.router.offset ? properties.router.offset + spec.index : spec.index %>
-
+pidfile: /var/vcap/sys/run/gorouter/gorouter.pid
 go_max_procs: 8
 
 publish_start_message_interval: 30
