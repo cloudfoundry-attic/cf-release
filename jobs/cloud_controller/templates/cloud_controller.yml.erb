@@ -96,6 +96,8 @@ database_environment:
     template: template0 # Required for utf8 encoding
     adapter: postgresql
 
+login:
+  url: https://login.<%= properties.domain %>
 <% if cc_props.uaa && properties.uaa.cc %>
 uaa:
   enabled: <%= cc_props.uaa.enabled %>

@@ -70,6 +70,8 @@ redis:
   password: <%= password %>
 <% end %>
 
+login:
+  url: http://login.<%= p("domain") %>
 uaa:
   url: http://uaa.<%= p("domain") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
