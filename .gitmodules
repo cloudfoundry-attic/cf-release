@@ -7,9 +7,6 @@
 [submodule "src/vblob_src"]
 	path = src/vblob_src
 	url = git@github.com:cloudfoundry/vblob.git
-[submodule "src/acm"]
-	path = src/acm
-	url = git@github.com:cloudfoundry/acm.git
 [submodule "src/dea"]
 	path = src/dea
 	url = git@github.com:cloudfoundry/dea.git
