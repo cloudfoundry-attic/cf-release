@@ -98,8 +98,11 @@ database_environment:
 
 <% scheme = properties.uaa.no_ssl ? "http" : "https" %>
 
+<% login_enabled = p("login.enabled", true) %>
+<% if login_enabled %>
 login:
   url: <%= scheme %>://login.<%= properties.domain %>
+<% end %>
 <% if cc_props.uaa && properties.uaa.cc %>
 uaa:
   enabled: <%= cc_props.uaa.enabled %>
