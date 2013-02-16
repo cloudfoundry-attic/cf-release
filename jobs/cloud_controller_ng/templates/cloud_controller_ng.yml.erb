@@ -72,8 +72,11 @@ redis:
 
 <% scheme = properties.uaa.no_ssl ? "http" : "https" %>
 
+<% login_enabled = p("login.enabled", true) %>
+<% if login_enabled %>
 login:
   url: <%= scheme %>://login.<%= p("domain") %>
+<% end %>
 uaa:
   url: <%= scheme %>://uaa.<%= p("domain") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
