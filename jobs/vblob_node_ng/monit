@@ -2,7 +2,10 @@ check process warden
   with pidfile /var/vcap/sys/run/warden/warden.pid
   start program "/var/vcap/jobs/vblob_node_ng/bin/warden_ctl start"
   stop program "/var/vcap/jobs/vblob_node_ng/bin/warden_ctl stop"
-  if failed unixsocket /tmp/warden.sock with timeout 10 seconds then restart
+  if failed host 127.0.0.1 port 2345 protocol http
+    and request '/'
+    with timeout 5 seconds for 2 cycles
+  then restart
   group vcap
 
 check process vblob_node
