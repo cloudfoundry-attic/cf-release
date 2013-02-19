@@ -189,6 +189,9 @@ properties:
   description:
  uaa.cc.token_secret:
   description:
+ uaa.no_ssl:
+  description: "when true, uaa uses http, otherwise it uses https."
+  default: false
  vcap_redis.address:
   description:
  vcap_redis.port:
