@@ -70,7 +70,7 @@ redis:
   password: <%= password %>
 <% end %>
 
-<% scheme = properties.uaa.no_ssl ? "http" : "https" %>
+<% scheme = p("uaa.no_ssl") ? "http" : "https" %>
 
 <% login_enabled = p("login.enabled", true) %>
 <% if login_enabled %>
