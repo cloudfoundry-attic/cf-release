@@ -17,6 +17,7 @@ version_aliases.instance_eval("def fields; @table.keys; end;") if version_aliase
 nats_props_name = properties.nats_props || "nats"
 nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
+lifecycle = properties.service_lifecycle
 cc_api_version = gateway.cc_api_version || "v1"
 %>
 mbus: <%= nats %>
@@ -107,6 +108,15 @@ double_check_orphan_interval: <%= gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 node_timeout: <%= gateway.node_timeout || 10 %>
 
+<% if lifecycle and lifecycle.resque %>
+resque:
+  host: <%= lifecycle.resque.host %>
+  port: <%= lifecycle.resque.port %>
+  password: <%= lifecycle.resque.password %>
+  expire: <%= lifecycle.resque.expire %>
+download_url_template: "http://<%= lifecycle.download_url %>/serialized/%{service}/%{name}/snapshots/%{snapshot_id}?token=%{token}"
+<% end %>
+
 <% if plan_enabled %>
 plan_management:
   plans:
@@ -115,5 +125,17 @@ plan_management:
       high_water: <%= plan_mgmt.send(pf).job_management.high_water %>
       low_water: <%= plan_mgmt.send(pf).job_management.low_water %>
       allow_over_provisioning: <%= plan_mgmt.send(pf).configuration.allow_over_provisioning || "false" %>
+    <% opts = plan_mgmt.send(pf).configuration.lifecycle %>
+    <% if opts && opts.enable == true %>
+      lifecycle:
+        serialization: <%= opts.serialization || "disable" %>
+      <% if opts.snapshot %>
+        snapshot:
+          quota: <%= opts.snapshot.quota || 0 %>
+      <% end %>
+      <% if opts.serialization || opts.snapshot %>
+        job: enable
+      <% end %>
+    <% end %>
 <% end %>
 <% end %>
