@@ -73,6 +73,9 @@ def checkout(spec, path)
   Dir.chdir(path) do
     revision = spec.source.options["revision"]
     %x(git reset --hard #{revision})
+    if spec.source.submodules
+      %x(git submodule update --init --recursive)
+    end
   end
 end
 

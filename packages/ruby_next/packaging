@@ -4,13 +4,12 @@ set -e
 tar xzf ruby/ruby-1.9.3-p194.tar.gz
 (
   cd ruby-1.9.3-p194
-  ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc
+  ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=/var/vcap/packages/libyaml
   make
   make install
 )
 
 tar zxvf ruby/rubygems-1.8.24.tgz
-
 (
   cd rubygems-1.8.24
 

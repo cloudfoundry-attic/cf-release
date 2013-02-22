@@ -86,3 +86,17 @@ runtimes:
   - node08
   - java
   - java7
+
+staging:
+  enabled: true
+  max_staging_duration: 120
+  max_active_tasks: 10
+  staging_base_dir: /var/vcap/data/dea_next/staging
+  platform_config:
+    cache: /var/vcap/data/stager/package_cache/ruby
+    insight_agent: /var/vcap/packages/insight_agent/insight-agent.zip
+  environment:
+    C_INCLUDE_PATH: "/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include:/var/vcap/packages/imagemagick/include/ImageMagick"
+    LIBRARY_PATH: "/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib"
+    LD_LIBRARY_PATH: "/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib"
+    PATH: "/var/vcap/packages/dea_node08/bin:/var/vcap/packages/git/bin:/var/vcap/packages/imagemagick/bin"

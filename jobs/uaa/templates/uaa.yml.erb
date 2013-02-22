@@ -39,11 +39,13 @@ jwt:
 <% end %>
 
 oauth:
+  <% unless properties.uaa.no_ssl %>
   authorize:
     ssl: true
+  <% end %>
   client:
-  <% if properties.uaa.autoapprove %>
-    autoapprove: <% properties.uaa.autoapprove.each do |client_id| %>
+  <% if properties.uaa.client && properties.uaa.client.autoapprove %>
+    autoapprove: <% properties.uaa.client.autoapprove.each do |client_id| %>
       - <%= client_id %><% end %>
   <% else %>
     autoapprove:
@@ -100,7 +102,7 @@ scim:
 <% end %>
 <%
   override = true
-  if properties.uaa.scim.user && properties.uaa.scim.user.override
+  if properties.uaa.scim && properties.uaa.scim.user && !properties.uaa.scim.user.override.nil?
     override = properties.uaa.scim.user.override
   end
 %>
