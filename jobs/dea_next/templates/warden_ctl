@@ -17,8 +17,6 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
 
-    echo $$ > $PIDFILE
-
     # Configure the core file location
     mkdir -p /var/vcap/sys/cores
     chown vcap:vcap /var/vcap/sys/cores
@@ -59,6 +57,8 @@ case $1 in
     fi
 
     export PATH=/var/vcap/packages/ruby_next/bin:$PATH
+
+    echo $$ > $PIDFILE
 
     exec /var/vcap/packages/ruby_next/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
