@@ -75,17 +75,9 @@ bind_mounts:
   - src_path: /var/vcap/packages/
   - src_path: /var/vcap/data/packages
 
-# This is where the execution agent determines its available runtimes.
-# version flags are assumed to be '-v' unless noted below.
-
-runtimes:
-  - ruby18
-  - ruby19
-  - node
-  - node06
-  - node08
-  - java
-  - java7
+app_environment:
+   PATH: "/var/vcap/packages/imagemagick/bin:$PATH"
+   LD_LIBRARY_PATH: "/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib:$LD_LIBRARY_PATH"
 
 staging:
   enabled: true
