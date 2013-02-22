@@ -58,7 +58,7 @@ logging:
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = p("ccdb_ng.roles").find { |role| role["tag"] == "admin" } %>
 db:
-  database: postgres://<%= db_role["name"] %>:<%= db_role["password"] %>@<%= p("ccdb_ng.address") %>:<%= p("ccdb_ng.port") %>/<%= db["name"] %>
+  database: <%= p("ccdb_ng.db_scheme") %>://<%= db_role["name"] %>:<%= db_role["password"] %>@<%= p("ccdb_ng.address") %>:<%= p("ccdb_ng.port") %>/<%= db["name"] %>
   max_connections: <%= p("ccdb_ng.max_connections", 32) %>
   pool_timeout: <%= p("ccdb_ng.pool_timeout", 10) %>
   log_level: <%= p("ccng.db_logging_level", "debug2") %>
@@ -70,10 +70,18 @@ redis:
   password: <%= password %>
 <% end %>
 
+<% scheme = p("uaa.no_ssl") ? "http" : "https" %>
+
+<% login_enabled = p("login.enabled", true) %>
+<% if login_enabled %>
+login:
+  url: <%= scheme %>://login.<%= p("domain") %>
+<% end %>
 uaa:
-  url: http://uaa.<%= p("domain") %>
+  url: <%= scheme %>://uaa.<%= p("domain") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
   symmetric_secret: <%= p("uaa.cc.token_secret") %>
+  verification_key: <%= p("uaa.jwt.verification_key") ? ("|\n      " + p("uaa.jwt.verification_key").gsub("\n", "\n      ")) : '~' %>
 
 # App staging parameters
 staging:
@@ -88,23 +96,15 @@ quota_definitions:
   free:
     non_basic_services_allowed: <%= p("ccng.quota_definitions.free.non_basic_services_allowed") %>
     total_services: <%= p("ccng.quota_definitions.free.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.free.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.free.paid_memory_limit") %>
+    memory_limit: <%= p("ccng.quota_definitions.free.memory_limit") %>
   paid:
     non_basic_services_allowed: <%= p("ccng.quota_definitions.paid.non_basic_services_allowed") %>
     total_services: <%= p("ccng.quota_definitions.paid.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.paid.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.paid.paid_memory_limit") %>
-  runaway:
-    non_basic_services_allowed: <%= p("ccng.quota_definitions.runaway.non_basic_services_allowed") %>
-    total_services: <%= p("ccng.quota_definitions.runaway.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.runaway.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.runaway.paid_memory_limit") %>
+    memory_limit: <%= p("ccng.quota_definitions.paid.memory_limit") %>
   yeti:
     non_basic_services_allowed: <%= p("ccng.quota_definitions.yeti.non_basic_services_allowed") %>
     total_services: <%= p("ccng.quota_definitions.yeti.total_services") %>
-    free_memory_limit: <%= p("ccng.quota_definitions.yeti.free_memory_limit") %>
-    paid_memory_limit: <%= p("ccng.quota_definitions.yeti.paid_memory_limit") %>
+    memory_limit: <%= p("ccng.quota_definitions.yeti.memory_limit") %>
 
 default_quota_definition: <%= p("ccng.default_quota_definition") %>
 

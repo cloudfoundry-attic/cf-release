@@ -20,12 +20,14 @@ templates:
   rack_staging.yml: config/staging/rack.yml
   standalone_staging.yml: config/staging/standalone.yml
   play_staging.yml: config/staging/play.yml
+  buildpack_staging.yml: config/staging/buildpack.yml
   runtimes.yml: config/runtimes.yml
 packages:
   - common
   - cloud_controller_ng
   - nginx
   - libpq
+  - mysqlclient
   - sqlite
   - ruby_next
   - dea_transition
@@ -106,7 +108,7 @@ properties:
   default: false
  ccng.quota_definitions.free.total_services:
   default: 2
- ccng.quota_definitions.free.free_memory_limit:
+ ccng.quota_definitions.free.memory_limit:
   default: 1024 # 1 GB
  ccng.quota_definitions.free.paid_memory_limit:
   default: 0
@@ -114,25 +116,13 @@ properties:
   default: true
  ccng.quota_definitions.paid.total_services:
   default: 32
- ccng.quota_definitions.paid.free_memory_limit:
-  default: 1024 # 1 GB
- ccng.quota_definitions.paid.paid_memory_limit:
-  default: 32768 # 32 GB
- ccng.quota_definitions.runaway.non_basic_services_allowed:
-  default: true
- ccng.quota_definitions.runaway.total_services:
-  default: 500
- ccng.quota_definitions.runaway.free_memory_limit:
-  default: 1024 # 1 GB
- ccng.quota_definitions.runaway.paid_memory_limit:
+ ccng.quota_definitions.paid.memory_limit:
   default: 204800 # 200 GB
  ccng.quota_definitions.yeti.non_basic_services_allowed:
   default: true
  ccng.quota_definitions.yeti.total_services:
   default: 500
- ccng.quota_definitions.yeti.free_memory_limit:
-  default: 204800 # 200 GB
- ccng.quota_definitions.yeti.paid_memory_limit:
+ ccng.quota_definitions.yeti.memory_limit:
   default: 204800 # 200 GB
  ccng.default_quota_definition:
   default: free
@@ -186,6 +176,9 @@ properties:
   description:
  ccdb_ng.roles:
   description:
+ ccdb_ng.db_scheme:
+  description:
+  default: postgres
  ccdb_ng.address:
   description:
  ccdb_ng.port:
@@ -196,6 +189,9 @@ properties:
   description:
  uaa.cc.token_secret:
   description:
+ uaa.no_ssl:
+  description: "when true, uaa uses http, otherwise it uses https."
+  default: false
  vcap_redis.address:
   description:
  vcap_redis.port:
@@ -204,3 +200,5 @@ properties:
   description:
  syslog_aggregator:
   description:
+ uaa.jwt.verification_key:
+  default: false

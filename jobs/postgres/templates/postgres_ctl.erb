@@ -14,7 +14,7 @@ LOG_DIR=/var/vcap/sys/log/postgres
 # overwriting $PIDFILE with actual DB server pid
 PIDFILE=$RUN_DIR/postgres.pid
 
-HOST="<%= db.address %>"
+HOST='0.0.0.0'
 PORT="<%= db.port %>"
 LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH
 
@@ -56,7 +56,7 @@ case "$1" in
       chown vcap:vcap $DATA_DIR
 
       # initdb creates data directories
-      su - vcap -c "$PACKAGE_DIR/bin/initdb -E utf8 -D $DATA_DIR"
+      su - vcap -c "$PACKAGE_DIR/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR"
 
       mkdir -p $DATA_DIR/pg_log
       chown vcap:vcap $DATA_DIR/pg_log
