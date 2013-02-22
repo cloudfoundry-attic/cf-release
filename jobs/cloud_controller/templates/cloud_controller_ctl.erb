@@ -91,6 +91,12 @@ case $1 in
       echo "Failed to start: cannot write to NFS"
       exit 1
     fi
+    <% else %>
+    # no NFS server; ensure folders still exist
+    mkdir -p $NFS_SHARE/droplets
+    mkdir -p $NFS_SHARE/resources
+    chown vcap:vcap $NFS_SHARE/droplets
+    chown vcap:vcap $NFS_SHARE/resources
     <% end %>
 
     # Set up sudoers for cloud controller.

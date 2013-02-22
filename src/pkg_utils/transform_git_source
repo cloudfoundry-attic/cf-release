@@ -40,7 +40,10 @@ def fetch_into_cache(local_repo, spec)
   end
   Dir.chdir(local_repo) do
     cmd_rev_exist = "git cat-file -e #{spec.source.options["revision"]}"
-    cmd_fetch = "git fetch --quiet --force"
+    # Git 1.7.3 doesn't set a remote and / or fetch refspecs for bare clones,
+    # what a pleasant surprise!
+    refspecs = "+refs/heads/*:refs/remotes/origin/*"
+    cmd_fetch = "git fetch --quiet #{uri} #{refspecs}"
     %x(#{cmd_rev_exist} || #{cmd_fetch} )
   end
 end
