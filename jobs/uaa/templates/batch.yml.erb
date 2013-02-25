@@ -22,7 +22,7 @@ cloud_controller:
     password: <%= cc_role.password %>
 
 logging:
-  config: /var/vcap/jobs/uaa/config/log4j.properties
+  config: /var/vcap/jobs/uaa/config/batch.log4j.properties
 
 <% if properties.uaa.batch %>
 batch:

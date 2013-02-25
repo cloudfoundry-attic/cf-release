@@ -579,14 +579,6 @@ golang/go1.0.1.src.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEwMDRlNGU3ZDUxNzYxOGYwNTA2MGI5%0AODBjMDE4MiIsInNpZyI6Ik5HczVyeml3SDJxc2l4c3l4c2wrUVdUbFd5OD0i%0AfQ==%0A
   sha: fc8a6d6725f7f2bf7c94685c5fd0880c9b7f67f6
   size: 9617092
-login/cloudfoundry-login-server-1.1.0.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIyMDRlNGU5ODY0M2Q5YWUwNTA2YjRi%0AYWJkMzZmZSIsInNpZyI6IncyZnpicyszVlc3dWRWQjVjNmJqVlFUQU1DND0i%0AfQ==%0A
-  sha: 75c5b365c58a10b98cc2eaca441ae52a29aad40c
-  size: 8449305
-uaa/cloudfoundry-identity-batch-1.0.0.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTA2ZDhj%0AZmU1NWRjNCIsInNpZyI6InlJdHBnOFhHUWVjMDRYb2sySG5oY2VXMzdhVT0i%0AfQ==%0A
-  sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
-  size: 24049331
 uaa/apache-tomcat-7.0.32.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTA3ODZj%0AYjNjNzNlMSIsInNpZyI6IklUR0hRVmorU1paeVBaVkRPMVl3ODNMN2RkMD0i%0AfQ==%0A
   sha: 94d7efcb0d2797b196b1a7d9537e3ed53f7607f4
@@ -599,10 +591,6 @@ uaa/jdk1.6.0_35.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA3YzVk%0AODNlZDNlYSIsInNpZyI6IjJoU0Z3OXE0bHh1SzBaUmh6R1BkMnlscWJpaz0i%0AfQ==%0A
   sha: 47ead45c658f9c72577d202d8aa1675461ee3ad6
   size: 67126391
-uaa/cloudfoundry-identity-uaa-1.2.5.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIwMDRlNGU4ZWM2NDg0MzEwNTA4NzAx%0AMzgyMDVkMiIsInNpZyI6IjVmSEVRaFUvWjZLamRZNUo2TEVjcCt0d1Fndz0i%0AfQ==%0A
-  sha: f357c80c2febbfc5505e4d7c2e1edda0d29c3bf1
-  size: 17960086
 ruby/ruby-1.9.3-p194.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTA1N2M0%0AZDgyYjRkMyIsInNpZyI6Ii9rY212b3JDYmFtNEJ2S1pJaEV5bGk2Q2lyST0i%0AfQ==%0A
   sha: 31cf6bd981e4c929e5dc3bbdb341833eab1bd9f2
@@ -627,22 +615,10 @@ golang/goyaml.068c0b7271.src.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTA4ZjM3%0ANTJkNjZkNSIsInNpZyI6IjZHa2RxQy9kZG5pc1NYcEFEU21rSkZITjV5QT0i%0AfQ==%0A
   sha: 27ab03b103fb3586df9589ef142097efb5cf042a
   size: 147910
-uaa/cloudfoundry-identity-batch-1.0.1.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjIwMDRlNGU4ZWM2NWY2N2YwNTA3NTdj%0AODIxNDRhOCIsInNpZyI6ImRBTTUxekFINytnbnFxbXYramp5UnJDUkNHcz0i%0AfQ==%0A
-  sha: da17b032bfd33770676e5dd70c34c677315e8b32
-  size: 24050424
 uaa/cloudfoundry-identity-varz-1.0.2.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTA5Mjhi%0AYTU4ZjUyNyIsInNpZyI6InZLWlNDdURrQ3pCVjdoKy9zWVFUL2I1M0pibz0i%0AfQ==%0A
   sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
   size: 5727747
-login/cloudfoundry-login-server-1.1.2.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTA5ZDM3%0AODgxYmY4YiIsInNpZyI6ImVGZkorV2RtMlFWU2VhamV3Z2hDb09VRm13VT0i%0AfQ==%0A
-  sha: a5122090d2082b004fc068a3010e74ccbc0e55af
-  size: 7073828
-uaa/cloudfoundry-identity-uaa-1.2.6.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEyMDRlNGU4NmVlMzk2OTIwNTA5ZDM3%0AOTExOGJjNCIsInNpZyI6IlR1cDMzWjBtVFU1QVB5TGNrTmp0eUs4NllNWT0i%0AfQ==%0A
-  sha: df4825f7d1ba86d3019af50acbeaf828f91d7a63
-  size: 17960046
 dashboard/dashboard-1.0-SNAPSHOT-d7c8acf9.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTBiNDQz%0ANTkzMWUxNyIsInNpZyI6IlpGM1A1S2I4MW1QU2lyZnNjQ3JwQ0JwWUViaz0i%0AfQ==%0A
   sha: f736737151b0cb22c862a3eecd5f4af6b269bbce
@@ -695,3 +671,11 @@ libyaml/yaml-0.1.4.tgz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIwMDRlNGU4ZWM2ODQwNzcwNTExZDM1%0AZmZjOTFiZCIsInNpZyI6IlIwQk51U2ZSTVQ1czgzVHpPQkZBVVFxYjJWaz0i%0AfQ==%0A
   sha: e0e5e09192ab10a607e3da2970db492118f560f2
   size: 471759
+uaa/cloudfoundry-identity-uaa-1.4.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIwMDRlNGU4ZWM2NDZlMjEwNTEyZDIz%0ANzBiNGVhNyIsInNpZyI6IkJZK2F6MmRQZjl3bnNVNWlQTzNQRERmSkRGWT0i%0AfQ==%0A
+  sha: c18c74c78a0d56392c0814dff492a268e5554df3
+  size: 19967052
+login/cloudfoundry-login-server-1.2.0.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNTEyZTcz%0AMGQxMDVhMSIsInNpZyI6IjRsRTZLN005NGgxQ2dRMS9kWVczVGRzZVV2UT0i%0AfQ==%0A
+  sha: cbd728d670db9a7821e245ecaf0999d208e7fec8
+  size: 7276211

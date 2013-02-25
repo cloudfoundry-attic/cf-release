@@ -38,6 +38,8 @@ jwt:
     verification-key: <%= properties.uaa.cc.token_secret %>
 <% end %>
 
+issuer.uri: <%= "https://uaa." + properties.domain + "/oauth/token" %>
+
 oauth:
   <% unless properties.uaa.no_ssl %>
   authorize:

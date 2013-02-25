@@ -16,7 +16,7 @@ uaa:
   token:
     url: <%= uaa_base %>/oauth/token
   login:
-    url: <%= uaa_base %>/login.do
+    url: <%= uaa_base %>/authenticate
   clientinfo:
     url: <%= uaa_base %>/clientinfo
 <% if properties.login and properties.login.links then %>
