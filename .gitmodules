@@ -1,42 +1,42 @@
 [submodule "src/services"]
 	path = src/services
-	url = git@github.com:cloudfoundry/vcap-services.git
+	url = https://github.com/cloudfoundry/vcap-services.git
 [submodule "src/tools"]
 	path = src/tools
-	url = git@github.com:cloudfoundry/vcap-tools.git
+	url = https://github.com/cloudfoundry/vcap-tools.git
 [submodule "src/vblob_src"]
 	path = src/vblob_src
-	url = git@github.com:cloudfoundry/vblob.git
+	url = https://github.com/cloudfoundry/vblob.git
 [submodule "src/dea"]
 	path = src/dea
-	url = git@github.com:cloudfoundry/dea.git
+	url = https://github.com/cloudfoundry/dea.git
 [submodule "src/dea_next"]
 	path = src/dea_next
-	url = git@github.com:cloudfoundry/dea_ng.git
+	url = https://github.com/cloudfoundry/dea_ng.git
 [submodule "src/health_manager_next"]
 	path = src/health_manager_next
-	url = git://github.com/cloudfoundry/health_manager.git
+	url = https://github.com/cloudfoundry/health_manager.git
 [submodule "src/router"]
 	path = src/router
-	url = git@github.com:cloudfoundry/router.git
+	url = https://github.com/cloudfoundry/router.git
 [submodule "src/stager"]
 	path = src/stager
-	url = git@github.com:cloudfoundry/stager.git
+	url = https://github.com/cloudfoundry/stager.git
 [submodule "src/warden"]
 	path = src/warden
-	url = git@github.com:cloudfoundry/warden.git
+	url = https://github.com/cloudfoundry/warden.git
 [submodule "src/services_warden"]
 	path = src/services_warden
-	url = git@github.com:cloudfoundry/warden.git
+	url = https://github.com/cloudfoundry/warden.git
 [submodule "src/cloud_controller"]
 	path = src/cloud_controller
-	url = git@github.com:cloudfoundry/cloud_controller.git
+	url = https://github.com/cloudfoundry/cloud_controller.git
 [submodule "src/cloud_controller_ng"]
 	path = src/cloud_controller_ng
-	url = git@github.com:cloudfoundry/cloud_controller_ng.git
+	url = https://github.com/cloudfoundry/cloud_controller_ng.git
 [submodule "src/tests"]
 	path = src/tests
-	url = git@github.com:cloudfoundry/vcap-yeti.git
+	url = https://github.com/cloudfoundry/vcap-yeti.git
 [submodule "src/gorouter"]
 	path = src/gorouter
-	url = git@github.com:cloudfoundry/gorouter.git
+	url = https://github.com/cloudfoundry/gorouter.git
