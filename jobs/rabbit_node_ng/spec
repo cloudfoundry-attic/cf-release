@@ -4,7 +4,6 @@ name: rabbit_node_ng
 templates:
   rabbit_node_ctl: bin/rabbit_node_ctl
   rabbit_node.yml.erb: config/rabbit_node.yml
-  monit.erb: monit
   rabbit_migration_util.erb: bin/rabbit_migration_util
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.conf.erb: config/logrotate.conf
@@ -16,6 +15,9 @@ templates:
 
   daylimit_ctl: bin/daylimit_ctl
   daylimit.yml.erb: config/daylimit.yml
+
+  rabbit_worker.yml.erb: config/rabbit_worker.yml
+  rabbit_worker_ctl: bin/rabbit_worker_ctl
 
   backup_or_restore.escript: bin/backup_or_restore.escript
 
