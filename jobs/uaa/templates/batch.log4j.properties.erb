@@ -1,0 +1,19 @@
+log4j.rootCategory=INFO, FILE, SYSLOG
+
+PID=????
+LOG_PATH=/var/vcap/sys/log/uaa
+LOG_FILE=${LOG_PATH}/batch.log
+LOG_PATTERN=[%d{yyyy-MM-dd HH:mm:ss.SSS}] uaa%X{context} - ${PID} [%t] .... %5p --- %c{1}: %m%n
+
+log4j.appender.FILE=org.apache.log4j.RollingFileAppender
+log4j.appender.FILE.File=${LOG_FILE}
+log4j.appender.FILE.Threshold=ALL
+log4j.appender.FILE.MaxFileSize=10MB
+log4j.appender.FILE.MaxBackupIndex=5
+log4j.appender.FILE.layout = org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.ConversionPattern=${LOG_PATTERN}
+
+log4j.category.org.springframework.security=INFO
+log4j.category.org.springframework.web=INFO
+log4j.category.org.springframework.web.context.support.StandardServletEnvironment=INFO
+log4j.category.org.springframework.jdbc=INFO

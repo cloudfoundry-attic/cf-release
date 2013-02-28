@@ -10,6 +10,7 @@ templates:
   varz.yml.erb: config/varz.yml
   log4j.properties.erb: config/log4j.properties
   varz.log4j.properties.erb: config/varz.log4j.properties
+  batch.log4j.properties.erb: config/batch.log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
