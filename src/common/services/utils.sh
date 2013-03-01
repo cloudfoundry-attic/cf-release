@@ -42,7 +42,7 @@ setup_warden() {
 start_warden() {
   cd $PKG_DIR/warden
 
-  export PATH=/var/vcap/packages/ruby/bin:$PATH
+  export PATH=/var/vcap/packages/ruby_next/bin:$PATH
 
   nohup /var/vcap/packages/ruby/bin/bundle exec \
         rake warden:start[$JOB_DIR/config/warden.yml] \
