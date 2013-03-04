@@ -2,6 +2,7 @@
 name: dea_next
 dependencies:
 - ruby
+- buildpack_cache
 - warden
 - golang
 - insight_agent
