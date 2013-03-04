@@ -47,7 +47,7 @@ default_version: <%= "'#{default_version}'"%>
 max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
 max_long_query: <%= plan_enabled && plan_conf.max_long_query || 3 %>
 max_long_tx: <%= plan_enabled && plan_conf.max_long_tx || 0 %>
-kill_long_tx: <%= plan_enabled && !plan_conf.kill_long_tx.nil? ? plan_conf.kill_long_tx : 'true' %>
+kill_long_tx: <%= plan_enabled && plan_conf.kill_long_tx || false %>
 max_user_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
 mysql:
 <% for version in supported_versions %>
