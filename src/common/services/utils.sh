@@ -66,7 +66,7 @@ start_warden() {
     fi
   done
 
-  if [ $warden_start_flag=true ]; then
+  if [ $warden_start_flag = true ]; then
     pid_guard $PIDFILE "Warden"
     echo $warden_pid > $PIDFILE
   else
