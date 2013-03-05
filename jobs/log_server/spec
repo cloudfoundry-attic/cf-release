@@ -1,0 +1,10 @@
+---
+name: log_server
+
+templates:
+  log_server_ctl: bin/log_server_ctl
+  keys.sh: config/keys.sh
+
+packages:
+  - common
+  - erlang_r15
