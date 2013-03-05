@@ -4,9 +4,9 @@ name: login
 logging:
   config: /var/vcap/jobs/login/config/log4j.properties
 
+<% protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http" %>
 <% if !properties.login || !properties.login.uaa_base
   # Fix this to https when SSL certs are working in dev and staging
-  protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http"
   uaa_base = "#{protocol}://uaa.#{properties.domain}"
 else
   uaa_base = properties.login.uaa_base
@@ -36,3 +36,4 @@ require_https: <%= properties.uaa.require_https %>
 dump_requests: <%= properties.uaa.dump_requests %>
 <% end %>
 
+login.authorize.url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
