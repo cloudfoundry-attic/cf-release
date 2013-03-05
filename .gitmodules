@@ -40,3 +40,6 @@
 [submodule "src/gorouter"]
 	path = src/gorouter
 	url = git@github.com:cloudfoundry/gorouter.git
+[submodule "src/logplex"]
+	path = src/logplex
+	url = git@github.com:cloudfoundry/logplex.git
