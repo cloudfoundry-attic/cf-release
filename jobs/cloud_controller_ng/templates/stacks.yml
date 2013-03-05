@@ -1,0 +1,5 @@
+# lucid64 stack is just a default stack that was made
+# in the create_stacks_table migration
+default: "lucid64"
+
+stacks: []
