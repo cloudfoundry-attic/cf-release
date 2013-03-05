@@ -1,7 +1,7 @@
 # abort script on any command that exit with a non zero value
 set -e
 
-tar xzf erlang_r15/otp_src_R15B03.tar.gz
+tar xzf erlang/otp_src_R15B03.tar.gz
 
 export HOME=/home/vcap
 

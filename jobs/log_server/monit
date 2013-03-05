@@ -1,5 +1,0 @@
-check process log_server
-  with pidfile /var/vcap/sys/run/log_server/log_server.pid
-  start program "/var/vcap/jobs/log_server/bin/log_server_ctl start"
-  stop program "/var/vcap/jobs/log_server/bin/log_server_ctl stop"
-  group vcap
