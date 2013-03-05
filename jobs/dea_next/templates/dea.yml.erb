@@ -92,3 +92,5 @@ staging:
     LIBRARY_PATH: "/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib"
     LD_LIBRARY_PATH: "/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib"
     PATH: "/var/vcap/packages/libpq/bin:/var/vcap/packages/dea_node08/bin:/var/vcap/packages/git/bin:/var/vcap/packages/imagemagick/bin"
+
+stacks: <%= properties.dea_next && properties.dea_next.stacks || [] %>
