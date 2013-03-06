@@ -39,30 +39,33 @@ The components in a V2 deployment are:
 		<td>Component</td><td>Description</td><td>Build Status</td>
 	</tr>
 	<tr>
-		<td>**[Cloud Controller (ccng)](https://github.com/cloudfoundry/cloud_controller_ng)**</td>
+		<td><b><a href="https://github.com/cloudfoundry/cloud_controller_ng">Cloud Controller (ccng)</a></b></td>
 		<td>
 			The primary entry point for Cloud Foundry. When you use vmc to push an application to Cloud Foundry, you target it against the Cloud Controller.
 		</td>
-		<td>[![Build Status](https://travis-ci.org/cloudfoundry/cloud_controller_ng.png)](https://travis-ci.org/cloudfoundry/cloud_controller_ng)</td>
+		<td><a href="https://travis-ci.org/cloudfoundry/cloud_controller_ng"><img src="https://travis-ci.org/cloudfoundry/cloud_controller_ng.png" alt="Build Status"></a>
+        </td>
 	</tr>
 	<tr>
-		<td>**[gorouter](https://github.com/cloudfoundry/gorouter)**</td>
+		<td><b><a href="https://github.com/cloudfoundry/gorouter">gorouter</a></b></td>
 		<td>The central router that manages traffic to applications deployed on Cloud Foundry. Written in go, the v2 router represents a significant performance improvement over v1.</td>
-		<td>[![Build Status](https://travis-ci.org/cloudfoundry/gorouter.png)](https://travis-ci.org/cloudfoundry/gorouter)</td>
+		<td><a href="https://travis-ci.org/cloudfoundry/gorouter"><img src="https://travis-ci.org/cloudfoundry/gorouter.png" alt="Build Status"></a>
+		</td>
 	</tr>
 	<tr>
-		<td>**[DEA (dea_next)](https://github.com/cloudfoundry/dea_ng)**</td>
+		<td><b><a href="https://github.com/cloudfoundry/dea_ng">DEA (dea_next)</a></b></td>
 		<td>The droplet execution agent (DEA) performs two key activities in Cloud Foundry: staging and hosting applications.</td>
-		<td>[![Build Status](https://travis-ci.org/cloudfoundry/dea_ng.png)](https://travis-ci.org/cloudfoundry/dea_ng)</td>
+		<td><a href="https://travis-ci.org/cloudfoundry/dea_ng"><img src="https://travis-ci.org/cloudfoundry/dea_ng.png" alt="Build Status"></a></td>
 	</tr>
 	<tr>
-		<td>**[Health Manager](https://github.com/cloudfoundry/health_manager)**</td>
+		<td><b><a href="https://github.com/cloudfoundry/health_manager">Health Manager</a></b></td>
 		<td>The health manager monitors the state of the applications and ensures that started applications are indeed running, their versions and number of instances correct.</td>
-		<td>[![Build Status](https://travis-ci.org/cloudfoundry/health_manager.png)](https://travis-ci.org/cloudfoundry/health_manager)</td>
+		<td><a href="https://travis-ci.org/cloudfoundry/health_manager"><img src="https://travis-ci.org/cloudfoundry/health_manager.png" alt="Build Status"></a>
+        </td>
 	</tr>
 	<tr>
-		<td>*tbd*</td>
-		<td>*documentation in progress...more to come*</td>
+		<td></td>
+		<td><i>documentation in progress...more to come</i></td>
 		<td></td>
 	</tr>
 </table>
