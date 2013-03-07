@@ -19,6 +19,8 @@ uaa:
     url: <%= uaa_base %>/authenticate
   clientinfo:
     url: <%= uaa_base %>/clientinfo
+  approvals:
+    url: <%= uaa_base %>/approvals
 <% if properties.login and properties.login.links then %>
 links: <% properties.login.links.marshal_dump.each do |id,url| %>
   <%= id %>: <%= url %><% end %>
