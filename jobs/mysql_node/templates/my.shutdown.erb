@@ -1,5 +1,5 @@
 export LD_LIBRARY_PATH=/var/vcap/packages/mysql/lib/mysql
 
-password=<%= properties.mysql_node.password %>
+password="<%= properties.mysql_node.password %>"
 
 /var/vcap/packages/mysql/bin/mysqladmin --user=root --password="${password}" --socket=/var/vcap/sys/run/mysqld/mysqld.sock shutdown

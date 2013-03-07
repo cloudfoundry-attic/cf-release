@@ -16,7 +16,7 @@ local_route: <%= properties.router.local_route %>
 status:
   port: <%= properties.router.status.port %>
   user: <%= properties.router.status.user %>
-  password: <%= properties.router.status.password %>
+  password: "<%= properties.router.status.password %>"
 <% end %>
 
 enable_nonprod_apps: <%= properties.router.enable_nonprod_apps || false %>

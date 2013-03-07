@@ -38,7 +38,7 @@ uaa_client_id: <%= props.uaa_client_id || "vmc" %>
 uaa_endpoint: <%= props.uaa_endpoint %>
 uaa_client_auth_credentials:
   username: <%= props.uaa_client_auth_credentials.username %>
-  password: <%= props.uaa_client_auth_credentials.password %>
+  password: "<%= props.uaa_client_auth_credentials.password %>"
 
 service_auth_tokens:
 <%
@@ -51,7 +51,7 @@ service_auth_tokens:
 token: unused
 <% else %>
 
-token: <%= props.token %>
+token: "<%= props.token %>"
 <% end %>
 
 refresh_interval: <%= props.refresh_interval || 300 %>

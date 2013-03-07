@@ -56,7 +56,7 @@ mysql:
     port: <%= version_configs[version]['port'] %>
     socket: <%= version_configs[version]['socket'] %>
     user: root
-    pass: <%= node.password %>
+    pass: "<%= node.password %>"
     mysqldump_bin:  <%= "#{version_configs[version]['service_dir']}/bin/mysqldump" %>
     mysql_bin:  <%= "#{version_configs[version]['service_dir']}/bin/mysql" %>
 <% end %>
