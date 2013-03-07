@@ -47,7 +47,7 @@ logging:
 redis:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
-  password: <%= lifecycle.resque.password %>
+  password: "<%= lifecycle.resque.password %>"
   expire: <%= lifecycle.resque.expire %>
 index: <%= spec.index %>
 <% end %>

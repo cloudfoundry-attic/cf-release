@@ -23,7 +23,7 @@ tmp_dir: <%= lifecycle.tmp_dir || "/tmp" %>
 resque:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
-  password: <%= lifecycle.resque.password %>
+  password: "<%= lifecycle.resque.password %>"
   expire: <%= lifecycle.resque.expire %>
 logging:
   level: debug

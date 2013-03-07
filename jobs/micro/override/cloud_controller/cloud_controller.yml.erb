@@ -25,7 +25,7 @@ max_droplet_size: <%= cc_props.max_droplet_size %>
 bulk_api:
   auth:
     user: bulk_api
-    password: <%= cc_props.password %>
+    password: "<%= cc_props.password %>"
 
 nginx:
   use_nginx: <%= cc_props.use_nginx %>   #nginx proxy in front of CC?
@@ -66,8 +66,8 @@ event_logging:
   file: /var/vcap/sys/log/cloud_controller/events.log
 
 keys:
-  password: <%= cc_props.password %>
-  token: <%= cc_props.token %>
+  password: "<%= cc_props.password %>"
+  token: "<%= cc_props.token %>"
 
 pid: /var/vcap/sys/run/cloud_controller/cloud_controller.pid
 
@@ -90,7 +90,7 @@ database_environment:
     port: <%= ccdb.port %>
     encoding: utf8
     username: <%= db_role.name %>
-    password: <%= db_role.password %>
+    password: "<%= db_role.password %>"
     pool: <%= ccdb.pool_size %>
     timeout: 2000
     template: template0 # Required for utf8 encoding
@@ -101,7 +101,7 @@ uaa:
   enabled: <%= cc_props.uaa.enabled %>
   url: http://uaa.<%= properties.domain %>
   resource_id: <%= cc_props.uaa.resource_id %>
-  token_secret: <%= properties.uaa.cc.token_secret %>
+  token_secret: "<%= properties.uaa.cc.token_secret %>"
   client_secret: <%= properties.uaa.cc.client_secret %>
   token_creation_email_filter: <%= cc_props.uaa.token_creation_email_filter %>
 <% else %>
@@ -119,7 +119,7 @@ uaa:
 redis:
   host: <%= properties.vcap_redis.address %>
   port: <%= properties.vcap_redis.port %>
-  password: <%= properties.vcap_redis.password %>
+  password: "<%= properties.vcap_redis.password %>"
 <% end %>
 
 staging:
@@ -165,9 +165,9 @@ builtin_services:
   <% service = 'rabbitmq' if service == 'rabbit'
      service = 'blob' if service == 'vblob' %>
   <%= "#{service}:"%>
-    token: <%= properties.send(service_gateway.to_sym).token %>
+    token: "<%= properties.send(service_gateway.to_sym).token %>"
     <% if properties.send(service_gateway.to_sym).token_b %>
-    token_b: <%= properties.send(service_gateway.to_sym).token_b %>
+    token_b: "<%= properties.send(service_gateway.to_sym).token_b %>"
     <% end %>
   <% end %>
 <% end %>

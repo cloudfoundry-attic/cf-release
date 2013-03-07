@@ -29,7 +29,7 @@ uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
 uaa_endpoint: <%= properties.uaa_endpoint %>
 uaa_client_auth_credentials:
   username: <%= properties.uaa_client_auth_credentials.username %>
-  password: <%= properties.uaa_client_auth_credentials.password %>
+  password: "<%= properties.uaa_client_auth_credentials.password %>"
 service_auth_tokens:
 <%
   properties.service_auth_tokens.instance_eval("def fields; @table.keys; end;")
@@ -40,4 +40,4 @@ service_auth_tokens:
 <% } %>
 <% end %>
 
-token: <%= properties.service_broker.token %>
+token: "<%= properties.service_broker.token %>"

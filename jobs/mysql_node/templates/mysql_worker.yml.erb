@@ -16,7 +16,7 @@ tmp_dir: <%= lifecycle.tmp_dir || "/tmp" %>
 resque:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
-  password: <%= lifecycle.resque.password %>
+  password: "<%= lifecycle.resque.password %>"
   expire: <%= lifecycle.resque.expire %>
 logging:
   level: debug
@@ -36,7 +36,7 @@ mysql:
   port: 3306
   socket: /var/vcap/sys/run/mysqld/mysqld.sock
   user: root
-  pass: <%= properties.mysql_node.password %>
+  pass: "<%= properties.mysql_node.password %>"
 mysqldump_bin: /var/vcap/packages/mysql/bin/mysqldump
 mysql_bin: /var/vcap/packages/mysql/bin/mysql
 gzip_bin: /bin/gzip

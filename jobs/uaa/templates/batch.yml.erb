@@ -11,7 +11,7 @@ database:
   driverClassName: org.postgresql.Driver
   url: jdbc:postgresql://<%= properties.uaadb.address %>:<%= properties.uaadb.port %>/<%= uaa_db.name %>
   username: <%= uaa_role.name %>
-  password: <%= uaa_role.password %>
+  password: "<%= uaa_role.password %>"
 
 spring_profiles: postgresql
 
@@ -19,7 +19,7 @@ cloud_controller:
   database:
     url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
     username: <%= cc_role.name %>
-    password: <%= cc_role.password %>
+    password: "<%= cc_role.password %>"
 
 logging:
   config: /var/vcap/jobs/uaa/config/batch.log4j.properties
@@ -27,5 +27,5 @@ logging:
 <% if properties.uaa.batch %>
 batch:
   username: <%= properties.uaa.batch.username %>
-  password: <%= properties.uaa.batch.password %>
+  password: "<%= properties.uaa.batch.password %>"
 <% end %>

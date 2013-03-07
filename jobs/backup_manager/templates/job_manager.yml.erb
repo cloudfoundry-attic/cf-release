@@ -25,7 +25,7 @@ enable: <%= enable || "false" %>
 services_redis:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
-  password: <%= lifecycle.resque.password %>
+  password: "<%= lifecycle.resque.password %>"
 <%
 end
 %>

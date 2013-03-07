@@ -1,6 +1,6 @@
 export LD_LIBRARY_PATH=/var/vcap/packages/mysql55/lib/mysql
 export PATH=/var/vcap/packages/mysql55/bin
 
-password=<%= properties.mysql_node.password %>
+password="<%= properties.mysql_node.password %>"
 
 /var/vcap/packages/mysql55/bin/mysqladmin -u root password "${password}" -S /var/vcap/sys/run/mysqld/mysqld55.sock

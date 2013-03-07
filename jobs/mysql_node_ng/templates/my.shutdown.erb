@@ -9,6 +9,6 @@ use_warden = warden && warden.enable
 %>
 export LD_LIBRARY_PATH=/var/vcap/packages/mysql/lib/mysql
 
-password=<%= use_warden ? "$1" : properties.mysql_node.password %>
+password="<%= use_warden ? "$1" : properties.mysql_node.password %>"
 
 /var/vcap/packages/mysql/bin/mysqladmin --user=root --password="${password}" --socket=<%= "#{base_folder}/mysqld.sock" %> shutdown
