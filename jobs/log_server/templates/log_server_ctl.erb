@@ -1,0 +1,49 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/log_server
+LOG_DIR=/var/vcap/sys/log/log_server
+PIDFILE=$RUN_DIR/log_server.pid
+JOB_DIR=/var/vcap/jobs/log_server
+CONF_DIR=$JOB_DIR/config
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "LOG_SERVER"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    export PATH=$PATH:$(readlink -nf /var/vcap/packages/erlang_r15/bin)
+    export HOME=$(readlink -nf /var/vcap/packages/logplex/logplex)
+
+    export INSTANCE_NAME=`hostname` \
+      LOGPLEX_CONFIG_REDIS_URL="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
+      LOGPLEX_STATS_REDIS_URL="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
+      LOGPLEX_SHARD_URLS="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
+      REDIS_URL="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
+      LOCAL_IP="<%= properties.log_server.address %>" \
+      LOGPLEX_COOKIE=123 \
+      LOGPLEX_AUTH_KEY=123
+
+    exec /var/vcap/packages/logplex/logplex/bin/logplex \
+         >> $LOG_DIR/log_server.stdout.log \
+         2>> $LOG_DIR/log_server.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: log_server_ctl {start|stop}"
+
+    ;;
+
+esac

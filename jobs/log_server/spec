@@ -1,0 +1,10 @@
+---
+name: log_server
+
+templates:
+  log_server_ctl.erb: bin/log_server_ctl
+
+packages:
+ - common
+ - erlang_r15
+ - logplex
