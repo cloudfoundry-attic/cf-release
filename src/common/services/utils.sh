@@ -1,11 +1,19 @@
 source /var/vcap/packages/common/utils.sh
 
 RUN_DIR=/var/vcap/sys/run/warden
-LOG_DIR=/var/vcap/sys/log/warden
-PIDFILE=$RUN_DIR/warden.pid
-ROOT_DIR=/var/vcap/data/warden/rootfs
 ROOT_TGZ=/var/vcap/stemcell_base.tar.gz
 LOOP_DEVICE_COUNT=1024
+
+if [ -z $SERVICE_NAME ]
+then
+  LOG_DIR=/var/vcap/sys/log/warden
+  PIDFILE=$RUN_DIR/warden.pid
+  ROOT_DIR=/var/vcap/data/warden/rootfs
+else
+  LOG_DIR=/var/vcap/sys/log/${SERVICE_NAME}/warden
+  PIDFILE=$RUN_DIR/${SERVICE_NAME}_warden.pid
+  ROOT_DIR=/var/vcap/data/${SERVICE_NAME}/warden/rootfs
+fi
 
 setup_warden() {
   use_loop_device=$1
@@ -54,7 +62,7 @@ start_warden() {
   countdown=$(( $warden_start_timeout * 2))
 
   for i in `seq 1 $countdown`; do
-    warden_pid=`sudo netstat -pan | grep LISTENING | grep /tmp/warden\.sock | awk '{print $9}' | cut -d / -f 1`
+    warden_pid=`sudo netstat -pan | grep LISTENING | grep $SOCKET_FILE | awk '{print $9}' | cut -d / -f 1`
     if [ ! -z $warden_pid ] && [ -e /proc/$warden_pid ]
     then
       warden_start_flag=true

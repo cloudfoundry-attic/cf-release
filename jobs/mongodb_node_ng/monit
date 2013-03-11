@@ -1,19 +1,26 @@
-check process warden
-  with pidfile /var/vcap/sys/run/warden/warden.pid
+<%
+node = properties.mongodb_node
+health_check_port = node.health_check_port || 2345
+%>
+check process mongodb_warden
+  with pidfile /var/vcap/sys/run/warden/mongodb_warden.pid
   start program "/var/vcap/jobs/mongodb_node_ng/bin/warden_ctl start"
+    with timeout 120 seconds
   stop program "/var/vcap/jobs/mongodb_node_ng/bin/warden_ctl stop"
-  if failed host 127.0.0.1 port 2345 protocol http
+  if failed host 127.0.0.1 port <%= health_check_port %>  protocol http
     and request '/'
     with timeout 5 seconds for 2 cycles
   then restart
   group vcap
+  group warden
 
 check process mongodb_node
   with pidfile /var/vcap/sys/run/mongodb_node/mongodb_node.pid
   start program "/var/vcap/jobs/mongodb_node_ng/bin/mongodb_node_ctl start"
   stop program "/var/vcap/jobs/mongodb_node_ng/bin/mongodb_node_ctl stop" with timeout 60 seconds
   group vcap
-  depends on warden
+  group node
+  depends on mongodb_warden
 
 <%
 service = "mongodb"

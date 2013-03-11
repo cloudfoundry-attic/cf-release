@@ -9,13 +9,15 @@ max_clients = plan_enabled && plan_conf.max_clients || 200
 # is large enough to support connection quota,
 # the default limitation is 1024
 nofile = max_clients * 2 if max_clients * 2 > 1024
+node = properties.redis_node
 %>
 server:
   container_klass: Warden::Container::Linux
   container_grace_time: ~
-  container_rootfs_path: /var/vcap/data/warden/rootfs
-  container_depot_path: /var/vcap/store/containers
+  container_rootfs_path: /var/vcap/data/redis/warden/rootfs
+  container_depot_path: /var/vcap/store/redis/containers
   unix_domain_permissions: 0777
+  unix_domain_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>
   <% if nofile %>
   container_rlimits:
     nofile: <%= nofile %>
@@ -26,14 +28,16 @@ server:
   <% end %>
   quota:
     disk_quota_enabled: false
+health_check_server:
+  port: <%= node.health_check_port || 2345 %>
 logging:
-  file: /var/vcap/sys/log/warden/warden.log
+  file: /var/vcap/sys/log/redis/warden/warden.log
   <% if properties.syslog_aggregator %>
   syslog: vcap.services.redis.warden
   <% end %>
   level: debug
 network:
-  pool_start_address: 10.254.0.0
+  pool_start_address: 10.253.0.0
   pool_size: 4096
 user:
   pool_start_uid: 10000
