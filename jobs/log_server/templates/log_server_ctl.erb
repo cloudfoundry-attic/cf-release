@@ -22,10 +22,10 @@ case $1 in
     export HOME=$(readlink -nf /var/vcap/packages/logplex/logplex)
 
     export INSTANCE_NAME=`hostname` \
-      LOGPLEX_CONFIG_REDIS_URL="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
-      LOGPLEX_STATS_REDIS_URL="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
-      LOGPLEX_SHARD_URLS="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
-      REDIS_URL="redis://<%= properties.vcap_redis.password  %>@<%= properties.vcap_redis.address %>:<%= properties.vcap_redis.port %>" \
+      LOGPLEX_CONFIG_REDIS_URL="redis://<%= properties.log_server_redis.password  %>@<%= properties.log_server_redis.address %>:<%= properties.log_server_redis.port %>" \
+      LOGPLEX_STATS_REDIS_URL="redis://<%= properties.log_server_redis.password  %>@<%= properties.log_server_redis.address %>:<%= properties.log_server_redis.port %>" \
+      LOGPLEX_SHARD_URLS="redis://<%= properties.log_server_redis.password  %>@<%= properties.log_server_redis.address %>:<%= properties.log_server_redis.port %>" \
+      REDIS_URL="redis://<%= properties.log_server_redis.password  %>@<%= properties.log_server_redis.address %>:<%= properties.log_server_redis.port %>" \
       LOCAL_IP="<%= properties.log_server.address %>" \
       LOGPLEX_COOKIE=123 \
       LOGPLEX_AUTH_KEY=123
