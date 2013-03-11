@@ -11,13 +11,15 @@ quota_data_size = plan_enabled && plan_conf.quota_data_size || 240
 # consider overquota and the memory cost by mongod itself,
 # so we give 4 times here to make it large enough.
 as_limit = quota_data_size * 4 if quota_data_size * 4 > 4096
+node = properties.mongodb_node
 %>
 server:
   container_klass: Warden::Container::Linux
   container_grace_time: ~
-  container_rootfs_path: /var/vcap/data/warden/rootfs
-  container_depot_path: /var/vcap/store/containers
+  container_rootfs_path: /var/vcap/data/mongodb/warden/rootfs
+  container_depot_path: /var/vcap/store/mongodb/containers
   unix_domain_permissions: 0777
+  unix_domain_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>
   <% if as_limit %>
   container_rlimits:
     # the unit of as is Byte, while as_limit is MB
@@ -25,15 +27,17 @@ server:
   <% end %>
   quota:
     disk_quota_enabled: false
+health_check_server:
+  port: <%= node.health_check_port || 2345 %>
 logging:
-  file: /var/vcap/sys/log/warden/warden.log
+  file: /var/vcap/sys/log/mongodb/warden/warden.log
   <% if properties.syslog_aggregator %>
   syslog: vcap.services.mongodb.warden
   <% end %>
   level: debug
 network:
-  pool_start_address: 10.254.0.0
+  pool_start_address: 10.251.0.0
   pool_size: 4096
 user:
-  pool_start_uid: 10000
+  pool_start_uid: 20000
   pool_size: 4096

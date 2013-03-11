@@ -91,8 +91,8 @@ warden:
   clean_image_cache_interval: <%= warden.clean_image_cache_interval || 3 %>
 <% end %>
   port_range:
-    first: 15000
-    last: 25000
+    first: 25001
+    last: 30000
 <%end%>
 m_interval: <%= node.m_interval || 10 %>
 <% if node.m_actions %>
@@ -104,3 +104,4 @@ m_actions:
 db_connect_timeout: <%= plan_enabled && plan_conf.db_connect_timeout || 3 %>
 db_query_timeout: <%= plan_enabled && plan_conf.db_query_timeout || 10 %>
 db_use_async_query: <%= plan_enabled && !plan_conf.db_use_async_query.nil? && plan_conf.db_use_async_query.to_s || "true" %>
+warden_socket_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>

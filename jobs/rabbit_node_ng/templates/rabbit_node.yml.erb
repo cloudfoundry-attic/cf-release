@@ -41,11 +41,11 @@ z_interval: <%= node.z_interval || 30 %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
 max_nats_payload: <%= nats_props.max_payload || 1048577 %>
 port_range:
-  first: 10001
+  first: 15001
   last: 20000
 admin_port_range:
   first: 20001
-  last: 30000
+  last: 25000
 rabbitmq_server: /var/vcap/packages/rabbitmq/sbin/rabbitmq-server
 service_log_dir: /var/vcap/sys/service-log/rabbit
 service_start_timeout: <%= node.service_start_timeout || 5 %>
@@ -73,3 +73,4 @@ m_actions:
   - <%= act %>
 <% end %>
 <% end %>
+warden_socket_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>
