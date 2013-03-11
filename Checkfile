@@ -3,6 +3,7 @@ deployment: jenkins_build.check http://cf-jenkins-private.local:8080 staging_dep
 yeti: jenkins_build.check http://cf-jenkins-private.sf.pivotallabs.com:8080 staging_yeti
 
 #- p02
+deployment: jenkins_build.check http://cf-jenkins-private.local:8080 release_deploy
 yeti: jenkins_build.check http://cf-jenkins-private.sf.pivotallabs.com:8080 release_yeti
 
 #- Ng
