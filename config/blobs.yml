@@ -688,13 +688,13 @@ buildpack_cache/ruby-1.8.7.tgz:
   sha: d59f166a28a130c6b89665efed10a7273716e981
   size: 4398403
 buildpack_cache/ruby-1.9.2.tgz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIwMDRlNGU4ZWM2YjQ0YjYwNTEzNGZi%0AYjU3ZGI3NCIsInNpZyI6ImZPYU5jVGRZYUcwRVpvdXhQNlNxZGpnSElrQT0i%0AfQ==%0A
-  sha: 84134cbc0e3345244a039c8cb43fdbb056bc2d34
-  size: 10018815
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIyMDRlNGU5ODYzYjFiNzQwNTEzZjZi%0AMDc0MTE2MiIsInNpZyI6Ik9yZUJhbEVYNEQyTURYT2Rwb295blZrempUND0i%0AfQ==%0A
+  sha: bdbf21fd1a1f5a6a8549e0e9362813cccc002c93
+  size: 11308801
 buildpack_cache/ruby-1.9.3.tgz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIwMDRlNGU4ZWM2NDZlMjEwNTEzNGZi%0AYmQzYmM4YiIsInNpZyI6Ikp5Y2tmUGpxTnNuQnBPQ3ZGZU4vZkZYZHNQRT0i%0AfQ==%0A
-  sha: 9160b6a5b1e66ad9bcd0f200b8be15e91d16c7c7
-  size: 10741029
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIyMDRlNGU5ODYzOTI2YjEwNTEzZTQ2%0AYzhjYzZlZCIsInNpZyI6IlI3RGZDV3VMRXpSaGoxT3BCVERMbHo1N2Rhdz0i%0AfQ==%0A
+  sha: 24f21cec79a031fa3ecb279b3a2f6d9e620e7d14
+  size: 12040507
 buildpack_cache/ruby-build-1.8.7.tgz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEwMDRlNGU3ZDUxNzYxOGYwNTEzNGZi%0AYzI0ZWNhYSIsInNpZyI6Im5TWE9yYVppa1JmTjFMWitRa2wvRTh4Q21Icz0i%0AfQ==%0A
   sha: 70b291a400233d5076dd9fd7969570e164c6c484
@@ -719,3 +719,67 @@ buildpack_cache/openjdk7-latest.tar.gz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTEzNTQ1%0AMjQzYTE2OCIsInNpZyI6IkZab2xsaUJWaUlBc1NVQXZUSlM5bXpmMVQyMD0i%0AfQ==%0A
   sha: 650e9f70dd675d353bbb2368f003b83c625a3ea9
   size: 45116682
+buildpack_cache/ruby_versions.yml:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTEzN2Nk%0AOTZiM2VmZCIsInNpZyI6Ilpqcko1MUc0ay94cU91am5vQW1RSklDd2c3QT0i%0AfQ==%0A
+  sha: 8a548c5960afce5d1c5f40598df7e5b0081a4979
+  size: 43
+buildpack_cache/bundler-1.3.1.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTEzOGU2%0AMjZkN2ZkZSIsInNpZyI6IkVESE5zNlpxWkY2RzJUZEppNzU0dEdPQmd1az0i%0AfQ==%0A
+  sha: 6d2ca955af6a26341b3cc27266ec62a20d7d9a11
+  size: 231
+buildpack_cache/ruby-2.0.0.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIwMDRlNGU4ZWM2NDZlMjEwNTEzOGU2%0AMjc1NzI4YiIsInNpZyI6InNSTE1hR2dxa0NpUkdCRFVhcW04MFVpS1AwUT0i%0AfQ==%0A
+  sha: 6874cee597937042e19dad047a93f41301311ed0
+  size: 24847042
+buildpack_cache/apache-tomcat-7.0.37.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEyMDRlNGU4NmVlMTUyOTQwNTEzOTE5%0AMTJhYWJmYyIsInNpZyI6InVJU0MyMHBpVEZsVDh1K2VKakI2ODltOHB1Zz0i%0AfQ==%0A
+  sha: c720975d6ebefa071eb94fdb27f13f53e8884811
+  size: 7814288
+buildpack_cache/mysql-connector-java-5.1.12.jar:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIwMDRlNGU4ZWM2NDZlMjEwNTEzOTE5%0AMTc2YTIxYiIsInNpZyI6Ikx5K1dxcjE3VnEybnJWbnBaKzFSdTNaZVd6WT0i%0AfQ==%0A
+  sha: 14ae02cc2adb2aed677080a0c0356e7569e298ec
+  size: 732695
+buildpack_cache/openjdk6-u25-heroku-temaki.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTEzOTE5%0AMWM5MmMxZSIsInNpZyI6IlNzUW9MMFo1UWgyOTZid1B0ME4vQ0w2WnZYVT0i%0AfQ==%0A
+  sha: 97946cad1ef0dac181bc974a9b42353b298a2484
+  size: 42334868
+buildpack_cache/openjdk7-u7-heroku-temaki-b30.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEwMDRlNGU3ZDUxMWY1NTMwNTEzOTE5%0AMmY5YzNiZSIsInNpZyI6IkhoMlM5OFRyUzFTcFZSRVlCNDVCK3dGL0JzRT0i%0AfQ==%0A
+  sha: 60acd97375afc48eb87f64327e4f742e087ebb65
+  size: 45115775
+buildpack_cache/openjdk8-lambda-preview.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEyMDRlNGU4NmVlNTM5MjEwNTEzOTE5%0ANDMzOTI5MiIsInNpZyI6IkI4WUd1S3NLMnZHdzdEeW9JcmUyaWVMZTRxRT0i%0AfQ==%0A
+  sha: 01f6f74960017a9f8b410d6a47e2433f1057725e
+  size: 45829916
+buildpack_cache/postgresql-9.0-801.jdbc4.jar:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNTEzOTE5%0ANGViMDQ2ZSIsInNpZyI6Img4TitUZ0lQb3M5dDMyb2l3MVVSelc0aDQwST0i%0AfQ==%0A
+  sha: 153f2f92a786f12fc111d0111f709012df87c808
+  size: 539705
+buildpack_cache/rails3_serve_static_assets.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEyMDRlNGU4NmVlMTUyOTQwNTEzOTJk%0ANmZjNDU0MiIsInNpZyI6IjdzbHNhUVlwcW1WMWZoMUUwRzl6M3pKNCtqMD0i%0AfQ==%0A
+  sha: 4a6c61905cd342074d3e60773275f308a31ace64
+  size: 251
+buildpack_cache/rails_log_stdout.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIwMDRlNGU4ZWM2NDg0MzEwNTEzOTJk%0ANzQ4M2IwMSIsInNpZyI6ImN4KytmMkxLdTZ6dTc4R2I3cWtMeWwwQ1IxOD0i%0AfQ==%0A
+  sha: c7f6b3ca602628d438b6389e61b26e206e2e3727
+  size: 719
+ruby/bundler-1.3.2.gem:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIwMDRlNGU4ZWM2ODQwNzcwNTEzYTMy%0ANmE2ODI5ZSIsInNpZyI6IjdQTVpVS3ZJOThpeitTVnVveXdtQ1htZ3hPVT0i%0AfQ==%0A
+  sha: 7ea4bf5a163310c1756e3996c868cabbbf797867
+  size: 271360
+ruby/ruby-1.9.2-p320.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNTEzYTMy%0ANmRiNTZiYiIsInNpZyI6IldRcUdkMHgrWXpob20zd2JRQVFIU0NRSm9NVT0i%0AfQ==%0A
+  sha: ead282bf780eb671a627e5e071f96c2fa4c64c1a
+  size: 11338691
+ruby/ruby-1.9.3-p392.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEyMDRlNGU4NmVlYmU1OTEwNTEzYTMy%0ANzA5NjhmMyIsInNpZyI6IlRXUWlidzkzcDQyVG1STEtnR1dIKzg5UHlqYz0i%0AfQ==%0A
+  sha: ec75fcbd3b6b46ce6ec997ee4c86145b4abd5748
+  size: 12557294
+ruby/ruby-2.0.0-p0.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIwMDRlNGU4ZWM2YjQ0YjYwNTEzYTMy%0ANzRiZjY1ZiIsInNpZyI6Ii9saXJ4clV2Nkt6MFYybUV4WGlwZm5odUM1TT0i%0AfQ==%0A
+  sha: 5349078b65fdeea85c7217d0ca98e718d3612df4
+  size: 13608925
+ruby/rubygems-2.0.2.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIyMDRlNGU5ODYzOTI2YjEwNTEzYTMy%0AN2Q3ZjZlMSIsInNpZyI6Ilp5UEpzaXlIRTBNS2tIdC91bi9CeUlaWitmTT0i%0AfQ==%0A
+  sha: 571c44611eb6ea9ca5d9fe14fff0f3de3f89771e
+  size: 334489

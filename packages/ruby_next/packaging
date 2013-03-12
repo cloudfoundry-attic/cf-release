@@ -1,9 +1,9 @@
 # abort script on any command that exit with a non zero value
 set -e
 
-tar xzf ruby/ruby-1.9.3-p194.tar.gz
+tar xzf ruby/ruby-1.9.3-p392.tar.gz
 (
-  cd ruby-1.9.3-p194
+  cd ruby-1.9.3-p392
   ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=/var/vcap/packages/libyaml
   make
   make install
