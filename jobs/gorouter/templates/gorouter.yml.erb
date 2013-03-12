@@ -5,7 +5,7 @@
 status:
   port: <%= port %>
   user: <%= user %>
-  pass: <%= password %>
+  pass: "<%= password %>"
 <% end %>
 
 <% if_p("nats.address",
@@ -15,7 +15,7 @@ status:
 nats:
   host: <%= address %>:<%= port %>
   user: <%= user %>
-  pass: <%= password %>
+  pass: "<%= password %>"
 <% end %>
 
 logging:

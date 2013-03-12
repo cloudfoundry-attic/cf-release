@@ -110,7 +110,7 @@ uaa:
   resource_id: <%= cc_props.uaa.resource_id %>
   token_secret: "<%= properties.uaa.cc.token_secret %>"
   client_secret: "<%= properties.uaa.cc.client_secret %>"
-  token_creation_email_filter: <%= cc_props.uaa.token_creation_email_filter %>
+  token_creation_email_filter: "<%= cc_props.uaa.token_creation_email_filter %>"
 <% else %>
 uaa:
   enabled: false
@@ -133,7 +133,7 @@ staging:
   max_staging_runtime:    <%= cc_props.max_staging_runtime || 300 %>
   auth:
     user: <%= cc_props.staging_upload_user %>
-    password: <%= cc_props.staging_upload_password %>
+    password: "<%= cc_props.staging_upload_password %>"
 
 allow_debug: <%= cc_props.allow_debug || false %>
 
@@ -181,7 +181,7 @@ builtin_services:
 <% if properties.external_service_tokens %>
 <% properties.external_service_tokens.marshal_dump.each do |name,token| %>
   <%= name %>:
-    token: <%= token %>
+    token: "<%= token %>"
 <% end %>
 <% end %>
 
@@ -220,7 +220,7 @@ if cc_props.service_extension && cc_props.service_extension.service_lifecycle
 %>
 service_lifecycle:
   max_upload_size: <%= max_upload_size %>
-  upload_token: <%= upload_token %>
+  upload_token: "<%= upload_token %>"
   <% if upload_timeout %>
   upload_timeout: <%=upload_timeout%>
   <% end %>

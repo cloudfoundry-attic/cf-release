@@ -46,7 +46,7 @@ service_auth_tokens:
   props.service_auth_tokens.fields.each { |offering|
     token = props.service_auth_tokens.send(offering.to_sym)
 %>
-  <%= offering %>: <%= token %>
+  <%= offering %>: "<%= token %>"
 <% } %>
 token: unused
 <% else %>
