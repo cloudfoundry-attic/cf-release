@@ -66,6 +66,9 @@ case $1 in
     ;;
 
   stop)
+    if [ -f /var/vcap/sys/run/warden/warden.pid ]; then
+      PIDFILE=/var/vcap/sys/run/warden/warden.pid
+    fi
     kill_and_wait $PIDFILE
     ;;
 
