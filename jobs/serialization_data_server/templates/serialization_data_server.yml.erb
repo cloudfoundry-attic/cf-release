@@ -18,7 +18,7 @@ ip_route: <%= sds.ip_route %>
 cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 external_uri: <%= lifecycle.download_url %>
 <% if sds and sds.upload_token %>
-upload_token: <%=sds.upload_token %>
+upload_token: "<%=sds.upload_token %>"
 <% end %>
 <% if sds and sds.upload_file_expire_time %>
 expire_time: <%= sds.upload_file_expire_time %>

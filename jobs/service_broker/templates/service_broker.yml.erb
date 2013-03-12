@@ -36,7 +36,7 @@ service_auth_tokens:
   properties.service_auth_tokens.fields.each { |offering|
     token = properties.service_auth_tokens.send(offering.to_sym)
 %>
-  <%= offering %>: <%= token %>
+  <%= offering %>: "<%= token %>"
 <% } %>
 <% end %>
 

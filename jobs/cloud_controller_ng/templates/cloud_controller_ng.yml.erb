@@ -15,11 +15,11 @@ bootstrap_admin_email: <%= p("ccng.bootstrap_admin_email", "sre@vmware.com") %>
 
 bulk_api:
   auth_user: <%= p("ccng.bulk_api_user", "bulk_api") %>
-  auth_password: <%= p("ccng.bulk_api_password") %>
+  auth_password: "<%= p("ccng.bulk_api_password") %>"
 
 service_lifecycle:
   max_upload_size: 1
-  upload_token: <%= p("serialization_data_server.upload_token") %>
+  upload_token: "<%= p("serialization_data_server.upload_token") %>"
   upload_timeout: <%= p("serialization_data_server.upload_timeout") %>
   <% sds_port = p("serialization_data_server.port") %>
   serialization_data_server: <%= properties.service_lifecycle.serialization_data_server.map {|ip| "http://#{ip}:#{sds_port}" } %>
@@ -67,7 +67,7 @@ db:
 redis:
   host: <%= address %>
   port: <%= port %>
-  password: <%= password %>
+  password: "<%= password %>"
 <% end %>
 
 <% scheme = p("uaa.no_ssl") ? "http" : "https" %>
@@ -88,7 +88,7 @@ staging:
   max_staging_runtime: <%= p("ccng.max_staging_runtime", 300) %>
   auth:
     user: <%= p("ccng.staging_upload_user") %>
-    password: <%= p("ccng.staging_upload_password") %>
+    password: "<%= p("ccng.staging_upload_password") %>"
 
 runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
 stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
