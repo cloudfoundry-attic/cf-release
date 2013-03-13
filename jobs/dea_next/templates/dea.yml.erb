@@ -91,7 +91,7 @@ staging:
     C_INCLUDE_PATH: "/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include:/var/vcap/packages/imagemagick/include/ImageMagick"
     LIBRARY_PATH: "/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib"
     LD_LIBRARY_PATH: "/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib:/var/vcap/packages/imagemagick/lib"
-    PATH: "/var/vcap/packages/libpq/bin:/var/vcap/packages/dea_node08/bin:/var/vcap/packages/git/bin:/var/vcap/packages/imagemagick/bin"
+    PATH: "/var/vcap/packages/libpq/bin:/var/vcap/packages/dea_node08/bin:/var/vcap/packages/git/bin:/var/vcap/packages/imagemagick/bin:/var/vcap/packages/ruby_next/bin"
     BUILDPACK_CACHE: "/var/vcap/packages/buildpack_cache"
 
 stacks: <%= properties.dea_next && properties.dea_next.stacks || [] %>
