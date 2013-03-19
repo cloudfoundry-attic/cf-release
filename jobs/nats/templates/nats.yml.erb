@@ -10,4 +10,4 @@ log_file: /var/vcap/sys/log/nats/nats.log
 authorization:
   user: <%= nats_props.user %>
   password: "<%= nats_props.password %>"
-  timeout: 1
+  timeout: <%= nats_props.authorization_timeout || 1 %>
