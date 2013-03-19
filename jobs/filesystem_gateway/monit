@@ -1,5 +1,0 @@
-check process filesystem_gateway
-  with pidfile /var/vcap/sys/run/filesystem_gateway/filesystem_gateway.pid
-  start program "/var/vcap/jobs/filesystem_gateway/bin/filesystem_gateway_ctl start"
-  stop program "/var/vcap/jobs/filesystem_gateway/bin/filesystem_gateway_ctl stop"
-  group vcap
