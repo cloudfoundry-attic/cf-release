@@ -795,3 +795,47 @@ buildpack_cache/play-jpa-plugin-0.6.6.jar:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTE0MjA2%0ANDhjMDJhMCIsInNpZyI6IjBnSHZSNm00Q204cFgyTUsvOTJUaFFFTUx4OD0i%0AfQ==%0A
   sha: 3df7c473533d1ffe4e5f2d0360f8d412280f9627
   size: 4320
+buildpack_cache/manifest.nodejs:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEwMDRlNGU3ZDUxMWY4MjEwNTE0OGUw%0AZjI2M2EwZCIsInNpZyI6IlZ6REdMR3BnRTYrejdhNXBhRS9XTUprY3pMbz0i%0AfQ==%0A
+  sha: 37ca1b3b4d2e504bf8b2011c363731802576c109
+  size: 41
+buildpack_cache/manifest.npm:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEyMDRlNGU4NmVlMzk2OTIwNTE0OGUw%0AZjA2NDgzOCIsInNpZyI6Ik4rN0Jwd0dwRXFSSU5lWStnaG1tQ0ZCQ3AvZz0i%0AfQ==%0A
+  sha: f42221aa7962fade35b87345cb1419072e45c1d2
+  size: 22
+buildpack_cache/nodejs-0.10.0.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTE0OGUw%0AZWJjZDc4NCIsInNpZyI6Im1vUHZ5LzdzU0lubVRYUnZVc2hCK01vSy9aMD0i%0AfQ==%0A
+  sha: f39fcdda3abed4296fad5dd162055c04e15b1587
+  size: 4896720
+buildpack_cache/nodejs-0.4.10.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEyMDRlNGU4NmVlMTUxYmMwNTE0OGUw%0AZjU2N2Q3MSIsInNpZyI6IkdxVVdBbVQwOGVyTklJdGhERG13SSswY2czcz0i%0AfQ==%0A
+  sha: ae272f6d6d6fee1a9b006b29d5e5912b70c553d7
+  size: 3234771
+buildpack_cache/nodejs-0.4.12.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIwMDRlNGU4ZWM2YjQ0YjYwNTE0OGUw%0AZjQ4ZmZlMCIsInNpZyI6ImJFME1jYWhxb1psam5pNDBpRUtuTzNKUE1UWT0i%0AfQ==%0A
+  sha: 66a9075a94f4d3264313a6a95742851002c27c44
+  size: 3235729
+buildpack_cache/nodejs-0.4.7.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjIyMDRlNGU5ODY0M2Q5YWUwNTE0OGUx%0AMDE5OTE2MyIsInNpZyI6IlIyZXkrK1pYaFhMOEI2dE5RNHBtSnJPWXZLZz0i%0AfQ==%0A
+  sha: f503758881f305403ccb0ca21092f00b1bd03255
+  size: 3200836
+buildpack_cache/nodejs-0.6.20.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEwMDRlNGU3ZDUxMWY4MjEwNTE0OGUx%0AMDI2OWM5OSIsInNpZyI6InozT2dDM01Pb3daRXZ2M3EvbkNCUS83Wjdnbz0i%0AfQ==%0A
+  sha: 209e30ca62f08978e0ef32d7df1ad321b5ee482d
+  size: 4257237
+buildpack_cache/nodejs-0.8.21.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEyMDRlNGU4NmVlMzk2OTIwNTE0OGUx%0AMDM4MWMzYyIsInNpZyI6Im9tanRnL0ROWCtkemNxQUFkRmwvb3ljNVBmYz0i%0AfQ==%0A
+  sha: 53ad5b6a6fcbfcfc89263561ce7fc1534a7245ec
+  size: 4893789
+buildpack_cache/npm-1.0.106.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIwMDRlNGU4ZWM2NDg0MzEwNTE0OGUx%0AMDY1M2VkYSIsInNpZyI6IjFNblpwcmUyS252OW52TStGdjEyalg2L0tsWT0i%0AfQ==%0A
+  sha: 31502d402942f82e66119d123fe608eafba78fa3
+  size: 2046082
+buildpack_cache/npm-1.1.65.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIyMDRlNGU5ODYzYjFiNzQwNTE0OGUx%0AMDJiMDFlMSIsInNpZyI6IjFUcVR5ZWhkNk56S1VkTyt6aDY0TUNSU1doUT0i%0AfQ==%0A
+  sha: ef4ad68967c2b87341890dd1e30cbbcce50dd0df
+  size: 1544138
+buildpack_cache/npm-1.2.12.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNTE0OGUx%0AMGQ3MDgyOCIsInNpZyI6InJ0SlZibTZXd2E3cFcvek5WRURwTlRlV0RHYz0i%0AfQ==%0A
+  sha: 04d39968240e261cb524af75b77cdd537aca931e
+  size: 1830939
