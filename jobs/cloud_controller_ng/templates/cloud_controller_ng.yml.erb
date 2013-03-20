@@ -4,7 +4,9 @@ port: 9022 # external CC port
 pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 nats_uri: nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>
 
-external_domain: <%= p("ccng.external_host", "api2") %>.<%= p("domain") %>
+external_domain:
+  - <%= p("ccng.external_host", "ccng") %>.<%= p("domain") %>
+  - "api.<%= p("domain") %>"
 
 <% system_domains = p("ccng.system_domains", [ p("domain") ]) %>
 system_domains: [ <%= system_domains.join(", ") %> ]
