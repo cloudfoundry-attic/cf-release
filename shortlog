@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+
+diffs = `git diff --cached`.split('diff --git').select { |log| log =~ /Subproject/ }
+
+shortlogs = diffs.map do |diff|
+  /a\/(?<loc>.+?)\sb.*index\s(?<shas>\S+)/m.match diff do |matches|
+    shortlog = "Bump #{matches[:loc]}:\n\n"
+    shortlog += `cd #{matches[:loc]} && git shortlog #{matches[:shas]}`
+  end
+end.compact.join("\n")
+
+puts shortlogs
