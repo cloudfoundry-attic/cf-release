@@ -94,4 +94,4 @@ staging:
     PATH: "/var/vcap/packages/libpq/bin:/var/vcap/packages/dea_node08/bin:/var/vcap/packages/git/bin:/var/vcap/packages/imagemagick/bin:/var/vcap/packages/ruby_next/bin"
     BUILDPACK_CACHE: "/var/vcap/packages/buildpack_cache"
 
-stacks: <%= properties.dea_next && properties.dea_next.stacks || [] %>
+stacks: <%= properties.dea_next && properties.dea_next.stacks || [ "lucid64" ] %>
