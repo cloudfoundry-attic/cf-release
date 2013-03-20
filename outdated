@@ -1,7 +1,7 @@
-git submodule foreach '                                                                                   \
-  git fetch origin master &> /dev/null &&                                  # make sure we are up-to-date  \
-  GIT_PAGER= git log head...origin/master --oneline &&                     # new                          \
-            (git log head -1              --oneline | sed "s/^/-> /") &&   # current                      \
-            (git log head --skip=1 -2     --oneline | sed "s/^/   /") &&   # 2 commits before current     \
-  echo                                                                                                    \
+git submodule foreach '                                                                                \
+  git fetch origin master &> /dev/null &&                               # make sure we are up-to-date  \
+  GIT_PAGER= git log head...FETCH_HEAD --oneline &&                     # new                          \
+            (git log head -1           --oneline | sed "s/^/-> /") &&   # current                      \
+            (git log head --skip=1 -2  --oneline | sed "s/^/   /") &&   # 2 commits before current     \
+  echo                                                                                                 \
 '
