@@ -13,7 +13,7 @@ nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
-plan: <%= plan %>
+plan: <%= plan.to_s.inspect %>
 local_db: sqlite3:/var/vcap/store/vblob_node.db
 mbus: <%= nats %>
 index: <%= spec.index %>

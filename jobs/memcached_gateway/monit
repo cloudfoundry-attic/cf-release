@@ -1,5 +1,0 @@
-check process memcached_gateway
-  with pidfile /var/vcap/sys/run/memcached_gateway/memcached_gateway.pid
-  start program "/var/vcap/jobs/memcached_gateway/bin/memcached_gateway_ctl start"
-  stop program "/var/vcap/jobs/memcached_gateway/bin/memcached_gateway_ctl stop"
-  group vcap

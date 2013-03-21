@@ -4,7 +4,7 @@ dependencies:
 - sqlite
 - ruby
 files:
-- services/ng/vblob/**/*
+- services_contrib/ng/vblob/**/*
 - services_warden/warden/**/*
 - pkg_utils/*
 - common/services/utils.sh
