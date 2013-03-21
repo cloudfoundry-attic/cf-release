@@ -1,8 +1,0 @@
----
-name: filesystem_gateway
-dependencies:
-- ruby
-- sqlite
-files:
-- services/filesystem/**/*
-- pkg_utils/*

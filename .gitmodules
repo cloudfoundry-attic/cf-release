@@ -43,3 +43,6 @@
 [submodule "src/logplex"]
 	path = src/logplex
 	url = https://github.com/cloudfoundry/logplex.git
+[submodule "src/services_contrib"]
+	path = src/services_contrib
+	url = https://github.com/cloudfoundry/cf-services-contrib.git
