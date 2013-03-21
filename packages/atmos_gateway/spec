@@ -1,8 +1,0 @@
----
-name: atmos_gateway
-dependencies:
-- ruby
-- sqlite
-files:
-- services/atmos/**/*
-- pkg_utils/*

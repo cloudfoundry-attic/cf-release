@@ -2,6 +2,8 @@
 set -e
 
 cd ${BUILD_DIR}
+# hacky, maintain compatibility
+mv services_contrib services
 
 pkg_utils/vendor.sh services/ng/vblob
 mv services_warden warden_meta

@@ -1,8 +1,0 @@
----
-name: memcached_gateway
-dependencies:
-- ruby
-- sqlite
-files:
-- services/ng/memcached/**/*
-- pkg_utils/*

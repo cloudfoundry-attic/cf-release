@@ -1,4 +1,6 @@
 set -e
 
 cd ${BUILD_DIR}
+# hack, maintain backward compatibility of vblob scripts
+mv services_contrib services
 pkg_utils/vendor.sh services/ng/vblob
