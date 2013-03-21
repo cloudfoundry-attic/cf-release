@@ -1,8 +1,9 @@
 ---
 <% nats_props_name = properties.nats_props || "nats" %>
 <% nats_props = properties.send(nats_props_name) %>
+<% backup_manager = properties.service_backup_manager %>
 mbus: nats://<%= nats_props.user %>:<%= nats_props.password %>@<%= nats_props.address %>:<%= nats_props.port %>
-z_interval: <%= properties.service_backup_manager && properties.service_backup_manager.z_interval || 30 %>
+z_interval: <%= backup_manager && backup_manager.z_interval || 30 %>
 logging:
   level: debug
   file: /var/vcap/sys/log/backup_manager/backup_manager.log
@@ -11,9 +12,15 @@ logging:
   <% end %>
 
 rotation:
-  max_days: <%= properties.service_backup_manager && properties.service_backup_manager.rotation_max_days || 7 %>
-  unprovisioned_max_days: <%= properties.service_backup_manager && properties.service_backup_manager.rotation_unprovisioned_max_days || 10 %>
-  cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+  max_days: <%= backup_manager && backup_manager.rotation_max_days || 7 %>
+  unprovisioned_max_days: <%= backup_manager && backup_manager.rotation_unprovisioned_max_days || 10 %>
+  cc_api_uri: <%= properties.cc_api_uri %>
+  cc_api_version: <%= properties.cc_api_version || "v2" %>
+  uaa_client_id: <%= properties.uaa_client_id %>
+  uaa_endpoint: <%= properties.uaa_endpoint %>
+  uaa_client_auth_credentials:
+    username: <%= properties.uaa_client_auth_credentials && properties.uaa_client_auth_credentials.username %>
+    password: <%= properties.uaa_client_auth_credentials && properties.uaa_client_auth_credentials.password %>
   services:
     mongodb:
       version: "1.8"
@@ -28,5 +35,5 @@ rotation:
       version: "9.0"
       token: "<%= properties.postgresql_gateway.token %>"
 root: <%= properties.service_backup && properties.service_backup.mount_point || "/var/vcap/services_backup" %>
-wakeup_interval: <%= properties.service_backup_manager && properties.service_backup_manager.rotation_interval_secs || 43200 %>
-enable: <%= properties.service_backup_manager && properties.service_backup && properties.service_backup.nfs_server && properties.service_backup_manager.enable || "false" %>
+wakeup_interval: <%= backup_manager && backup_manager.rotation_interval_secs || 43200 %>
+enable: <%= backup_manager && properties.service_backup && properties.service_backup.nfs_server && backup_manager.enable || "false" %>
