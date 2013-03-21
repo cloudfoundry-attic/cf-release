@@ -203,3 +203,5 @@ properties:
   description:
  uaa.jwt.verification_key:
   default: false
+ login.enabled:
+  description: "whether use login as the authorization endpoint or not"
