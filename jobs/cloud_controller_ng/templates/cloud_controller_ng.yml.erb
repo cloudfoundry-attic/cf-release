@@ -82,7 +82,9 @@ login:
 uaa:
   url: <%= scheme %>://uaa.<%= p("domain") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
-  symmetric_secret: "<%= p("uaa.cc.token_secret") %>"
+<% if_p("uaa.cc.token_secret") do |token_secret| %>
+  symmetric_secret: "<%= token_secret %>"
+<% end %>
   verification_key: <%= p("uaa.jwt.verification_key") ? ("|\n      " + p("uaa.jwt.verification_key").gsub("\n", "\n      ")) : '~' %>
 
 # App staging parameters
