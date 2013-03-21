@@ -1,27 +1,35 @@
 ---
-<% if properties.router.status %>
+<% if_p("router.status.port",
+        "router.status.user",
+	"router.status.password") do |port, user, password| %>
 status:
-  port: <%= properties.router.status.port %>
-  user: <%= properties.router.status.user %>
-  pass: <%= properties.router.status.password %>
+  port: <%= port %>
+  user: <%= user %>
+  pass: "<%= password %>"
 <% end %>
 
+<% if_p("nats.address",
+        "nats.port",
+        "nats.user",
+        "nats.password") do |address, port, user, password| %>
 nats:
-  host: <%= properties.nats.address %>:<%= properties.nats.port %>
-  user: <%= properties.nats.user %>
-  pass: <%= properties.nats.password %>
+  host: <%= address %>:<%= port %>
+  user: <%= user %>
+  pass: "<%= password %>"
+<% end %>
 
 logging:
   file: /var/vcap/sys/log/gorouter/gorouter.log
-  <% if properties.syslog_aggregator %>
+  <% if_p("syslog_aggregator") do |_| %>
   syslog: vcap.gorouter
   <% end %>
   level: info
 
 port: 80
-index: <%= properties.router.offset ? properties.router.offset + spec.index : spec.index %>
+index: <%= p("router.offset") + spec.index %>
 pidfile: /var/vcap/sys/run/gorouter/gorouter.pid
 go_max_procs: 8
+trace_key: <%= p("router.trace_key") %>
 
 publish_start_message_interval: 30
 prune_stale_droplets_interval: 30

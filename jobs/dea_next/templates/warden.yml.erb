@@ -19,6 +19,12 @@ health_check_server:
 network:
   pool_start_address: 10.254.0.0
   pool_size: 256
+  <% if properties.dea_next && properties.dea_next.deny_networks %>
+  deny_networks: <%= properties.dea_next.deny_networks %>
+  <% end %>
+  <% if properties.dea_next && properties.dea_next.allow_networks %>
+  allow_networks: <%= properties.dea_next.allow_networks %>
+  <%end %>
 
 user:
   pool_start_uid: 20000

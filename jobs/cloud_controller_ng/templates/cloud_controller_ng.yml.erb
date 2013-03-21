@@ -4,7 +4,9 @@ port: 9022 # external CC port
 pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 nats_uri: nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>
 
-external_domain: <%= p("ccng.external_host", "api2") %>.<%= p("domain") %>
+external_domain:
+  - <%= p("ccng.external_host", "ccng") %>.<%= p("domain") %>
+  - "api.<%= p("domain") %>"
 
 <% system_domains = p("ccng.system_domains", [ p("domain") ]) %>
 system_domains: [ <%= system_domains.join(", ") %> ]
@@ -15,11 +17,11 @@ bootstrap_admin_email: <%= p("ccng.bootstrap_admin_email", "sre@vmware.com") %>
 
 bulk_api:
   auth_user: <%= p("ccng.bulk_api_user", "bulk_api") %>
-  auth_password: <%= p("ccng.bulk_api_password") %>
+  auth_password: "<%= p("ccng.bulk_api_password") %>"
 
 service_lifecycle:
   max_upload_size: 1
-  upload_token: <%= p("serialization_data_server.upload_token") %>
+  upload_token: "<%= p("serialization_data_server.upload_token") %>"
   upload_timeout: <%= p("serialization_data_server.upload_timeout") %>
   <% sds_port = p("serialization_data_server.port") %>
   serialization_data_server: <%= properties.service_lifecycle.serialization_data_server.map {|ip| "http://#{ip}:#{sds_port}" } %>
@@ -58,7 +60,7 @@ logging:
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = p("ccdb_ng.roles").find { |role| role["tag"] == "admin" } %>
 db:
-  database: <%= p("ccdb_ng.db_scheme") %>://<%= db_role["name"] %>:<%= db_role["password"] %>@<%= p("ccdb_ng.address") %>:<%= p("ccdb_ng.port") %>/<%= db["name"] %>
+  database: <%= p("ccdb_ng.db_scheme") == "mysql" ? "mysql2" : p("ccdb_ng.db_scheme") %>://<%= db_role["name"] %>:<%= db_role["password"] %>@<%= p("ccdb_ng.address") %>:<%= p("ccdb_ng.port") %>/<%= db["name"] %>
   max_connections: <%= p("ccdb_ng.max_connections", 32) %>
   pool_timeout: <%= p("ccdb_ng.pool_timeout", 10) %>
   log_level: <%= p("ccng.db_logging_level", "debug2") %>
@@ -67,7 +69,7 @@ db:
 redis:
   host: <%= address %>
   port: <%= port %>
-  password: <%= password %>
+  password: "<%= password %>"
 <% end %>
 
 <% scheme = p("uaa.no_ssl") ? "http" : "https" %>
@@ -80,7 +82,7 @@ login:
 uaa:
   url: <%= scheme %>://uaa.<%= p("domain") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
-  symmetric_secret: <%= p("uaa.cc.token_secret") %>
+  symmetric_secret: "<%= p("uaa.cc.token_secret") %>"
   verification_key: <%= p("uaa.jwt.verification_key") ? ("|\n      " + p("uaa.jwt.verification_key").gsub("\n", "\n      ")) : '~' %>
 
 # App staging parameters
@@ -88,9 +90,10 @@ staging:
   max_staging_runtime: <%= p("ccng.max_staging_runtime", 300) %>
   auth:
     user: <%= p("ccng.staging_upload_user") %>
-    password: <%= p("ccng.staging_upload_password") %>
+    password: "<%= p("ccng.staging_upload_password") %>"
 
 runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
+stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
 
 quota_definitions:
   free:

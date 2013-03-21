@@ -2,6 +2,7 @@
 name: dea_next
 dependencies:
 - ruby
+- buildpack_cache
 - warden
 - golang
 - insight_agent
@@ -10,4 +11,5 @@ files:
 - dea_next/Gemfile.lock
 - dea_next/{bin,lib,vendor}/**/*
 - dea_next/go/**/*
+- dea_next/buildpacks/**/*
 - pkg_utils/*

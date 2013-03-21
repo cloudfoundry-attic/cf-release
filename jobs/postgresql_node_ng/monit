@@ -6,6 +6,7 @@ plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(p
 use_warden= plan_conf.warden && plan_conf.warden.enable
 
 node = properties.postgresql_node
+health_check_port = node.health_check_port || 2345
 supported_versions = node.supported_versions
 version_configs = {
   '9.0' => {
@@ -20,15 +21,17 @@ version_configs = {
 }
 %>
 <% if use_warden %>
-check process warden
-  with pidfile /var/vcap/sys/run/warden/warden.pid
+check process postgresql_warden
+  with pidfile /var/vcap/sys/run/warden/postgresql_warden.pid
   start program "/var/vcap/jobs/postgresql_node_ng/bin/warden_ctl start"
+    with timeout 120 seconds
   stop program "/var/vcap/jobs/postgresql_node_ng/bin/warden_ctl stop"
-  if failed host 127.0.0.1 port 2345 protocol http
+  if failed host 127.0.0.1 port <%= health_check_port %>  protocol http
     and request '/'
     with timeout 5 seconds for 2 cycles
   then restart
   group vcap
+  group warden
 <% else %>
 <% supported_versions.each do |version| %>
 check process <%= version_configs[version]['name'] %>
@@ -44,8 +47,9 @@ check process postgresql_node
   start program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_node_ctl start"
   stop  program "/var/vcap/jobs/postgresql_node_ng/bin/postgresql_node_ctl stop" with timeout 60 seconds
   group vcap
+  group node
 <%if use_warden %>
-  depends on warden
+  depends on postgresql_warden
 <% else %>
   <% supported_versions.each do |version|  %>
   depends on <%= version_configs[version]['name'] %>
@@ -64,7 +68,7 @@ check process postgresql_worker_<%= ind %>
   group vcap
   depends on postgresql_node
 <% if use_warden %>
-  depends on warden
+  depends on postgresql_warden
 <% else %>
   <% supported_versions.each do |version|  %>
   depends on <%= version_configs[version]['name'] %>

@@ -47,7 +47,7 @@ default_version: <%= "'#{default_version}'"%>
 max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
 max_long_query: <%= plan_enabled && plan_conf.max_long_query || 3 %>
 max_long_tx: <%= plan_enabled && plan_conf.max_long_tx || 0 %>
-kill_long_tx: <%= plan_enabled && plan_conf.kill_long_tx || false %>
+kill_long_tx: <%= plan_enabled && !plan_conf.kill_long_tx.nil? ? plan_conf.kill_long_tx : 'true' %>
 max_user_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
 mysql:
 <% for version in supported_versions %>
@@ -56,7 +56,7 @@ mysql:
     port: <%= version_configs[version]['port'] %>
     socket: <%= version_configs[version]['socket'] %>
     user: root
-    pass: <%= node.password %>
+    pass: "<%= node.password %>"
     mysqldump_bin:  <%= "#{version_configs[version]['service_dir']}/bin/mysqldump" %>
     mysql_bin:  <%= "#{version_configs[version]['service_dir']}/bin/mysql" %>
 <% end %>
@@ -97,3 +97,4 @@ m_actions:
   - <%= act %>
 <% end %>
 <% end %>
+warden_socket_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>

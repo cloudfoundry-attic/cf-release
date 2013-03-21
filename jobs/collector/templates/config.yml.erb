@@ -5,9 +5,20 @@ logging:
   syslog: vcap.collector
   <% end %>
   level: info
+
+<% if properties.collector && properties.collector.use_tsdb %>
 tsdb:
   host: <%= properties.opentsdb.address %>
   port: <%= properties.opentsdb.port %>
+<% end %>
+
+<% if properties.collector && properties.collector.use_aws_cloudwatch %>
+aws_cloud_watch:
+  access_key_id: <%= properties.collector.aws_access_key_id %>
+  secret_access_key: <%= properties.collector.aws_secret_access_key %>
+  deployment_name: <%= properties.collector.deployment_name %>
+<% end %>
+
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 intervals:
   discover: 60

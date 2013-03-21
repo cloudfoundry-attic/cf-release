@@ -89,12 +89,12 @@ uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
 uaa_endpoint: <%= properties.uaa_endpoint %>
 uaa_client_auth_credentials:
   username: <%= properties.uaa_client_auth_credentials.username %>
-  password: <%= properties.uaa_client_auth_credentials.password %>
+  password: "<%= properties.uaa_client_auth_credentials.password %>"
 service_auth_tokens:
-  postgresql_core: <%= gateway.token %>
+  postgresql_core: "<%= gateway.token %>"
 <% end %>
 
-token: <%= gateway.token %>
+token: "<%= gateway.token %>"
 logging:
   file: /var/vcap/sys/log/postgresql_gateway/postgresql_gateway.log
   level: debug
@@ -114,7 +114,7 @@ max_nats_payload: <%= nats_props.max_payload || 1048576 %>
 resque:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
-  password: <%= lifecycle.resque.password %>
+  password: "<%= lifecycle.resque.password %>"
   expire: <%= lifecycle.resque.expire %>
 download_url_template: "http://<%= lifecycle.download_url %>/serialized/%{service}/%{name}/snapshots/%{snapshot_id}?token=%{token}"
 <% end %>

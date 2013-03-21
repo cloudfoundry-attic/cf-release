@@ -16,7 +16,7 @@ tmp_dir: <%= properties.service_lifecycle.tmp_dir || "/tmp" %>
 resque:
   host: <%= properties.service_lifecycle.resque.host %>
   port: <%= properties.service_lifecycle.resque.port %>
-  password: <%= properties.service_lifecycle.resque.password %>
+  password: "<%= properties.service_lifecycle.resque.password %>"
   expire: <%= properties.service_lifecycle.resque.expire %>
 logging:
   level: debug

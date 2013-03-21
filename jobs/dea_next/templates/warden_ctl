@@ -4,8 +4,8 @@ RUN_DIR=/var/vcap/sys/run/warden
 LOG_DIR=/var/vcap/sys/log/warden
 WARDEN_CONF_DIR=/var/vcap/jobs/dea_next/config
 FIRSTRUN_PATH=$RUN_DIR/firstrun
-QUOTA_FS=/var/vcap/data
 PIDFILE=$RUN_DIR/warden.pid
+DATA_DIR=/var/vcap/data/warden
 
 source /var/vcap/packages/common/utils.sh
 
@@ -24,12 +24,15 @@ case $1 in
 
     ulimit -c unlimited
 
-    rootfs_path=/var/vcap/data/warden/rootfs
+    rootfs_path=$DATA_DIR/rootfs
     rootfs_tgz=/var/vcap/stemcell_base.tar.gz
 
     # Extract rootfs if needed
     if [ ! -d $rootfs_path ]
     then
+      # Make sure its parent directory exists
+      mkdir -p $(dirname $rootfs_path)
+
       # Extract to temporary path, then rename to target path.
       # This makes sure that it is not possible that we end up with directory
       # that contains a partially extracted archive.
@@ -50,10 +53,12 @@ case $1 in
 
     cd /var/vcap/packages/warden/warden
 
+    depot=$DATA_DIR/depot
+
     # Clear existing containers if warden was not drained
-    if [ ! -f /var/vcap/data/warden/depot/drained ]
+    if [ -d $depot ] && [ ! -f $depot/drained ]
     then
-      find /var/vcap/data/warden/depot/ -mindepth 1 -maxdepth 1 -type d | xargs -t -n1 root/linux/destroy.sh
+      find $depot -mindepth 1 -maxdepth 1 -type d | xargs -t -n1 --no-run-if-empty root/linux/destroy.sh
     fi
 
     export PATH=/var/vcap/packages/ruby_next/bin:$PATH

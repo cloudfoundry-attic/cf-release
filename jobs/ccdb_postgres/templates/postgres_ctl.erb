@@ -9,7 +9,7 @@ PIDFILE=$RUN_DIR/postgres.pid
 HOST=<%= spec.networks.send(properties.networks.management).ip %>
 PORT=<%= properties.ccdb.port %>
 USER=<%= properties.ccdb.user %>
-PASSWORD=<%= properties.ccdb.password %>
+PASSWORD="<%= properties.ccdb.password %>"
 DBNAME=<%= properties.ccdb.dbname %>
 
 case "$1" in

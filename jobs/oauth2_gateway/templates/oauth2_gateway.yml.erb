@@ -62,9 +62,9 @@ uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
 uaa_endpoint: <%= properties.uaa_endpoint %>
 uaa_client_auth_credentials:
   username: <%= properties.uaa_client_auth_credentials.username %>
-  password: <%= properties.uaa_client_auth_credentials.password %>
+  password: "<%= properties.uaa_client_auth_credentials.password %>"
 service_auth_tokens:
-  oauth2_core: <%= gateway.token %>
+  oauth2_core: "<%= gateway.token %>"
 <% end %>
 
-token: <%= gateway.token %>
+token: "<%= gateway.token %>"

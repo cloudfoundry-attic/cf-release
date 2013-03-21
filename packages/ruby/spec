@@ -1,5 +1,7 @@
 ---
 name: ruby
+dependencies:
+  - libyaml
 files:
 - ruby/ruby-1.9.2-p180.tar.gz
 - ruby/rubygems-1.8.24.tgz

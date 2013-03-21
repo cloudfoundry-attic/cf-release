@@ -5,7 +5,32 @@ templates:
   gorouter.yml.erb: config/gorouter.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
-- common
-- golang
-- gorouter
-- syslog_aggregator
+  - common
+  - golang
+  - gorouter
+  - syslog_aggregator
+properties:
+  syslog_aggregator:
+    description:
+  router.status.port:
+    description:
+  router.status.user:
+    description:
+  router.status.password:
+    description:
+  nats.user:
+    description:
+  nats.password:
+    description:
+  nats.address:
+    description:
+  nats.port:
+    description:
+  router.offset:
+    description:
+    default: 0
+  router.trace_key:
+    description:
+      If the X-Vcap-Trace request header is set and has this value,
+      trace headers are added to the response.
+    default: 22
