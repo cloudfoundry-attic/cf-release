@@ -24,7 +24,7 @@ script_name: /var/vcap/store/rabbitmq_common/bin/backup_or_restore.escript
 resque:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
-  password: <%= lifecycle.resque.password %>
+  password: "<%= lifecycle.resque.password %>"
   expire: <%= lifecycle.resque.expire %>
 logging:
   level: debug

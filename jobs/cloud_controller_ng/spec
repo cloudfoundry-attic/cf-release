@@ -6,6 +6,7 @@ templates:
   mime.types    :   config/mime.types
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_ng_ctl.erb: bin/cloud_controller_ng_ctl
+  stacks.yml: config/stacks.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   iptables.conf.erb: config/iptables.conf
   nfs-common: config/nfs-common

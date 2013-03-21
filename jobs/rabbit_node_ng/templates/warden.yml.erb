@@ -1,14 +1,20 @@
 ---
+<%
+node = properties.rabbit_node
+%>
 server:
   container_klass: Warden::Container::Linux
   container_grace_time: ~
-  container_rootfs_path: /var/vcap/data/warden/rootfs
-  container_depot_path: /var/vcap/store/containers
+  container_rootfs_path: /var/vcap/data/rabbit/warden/rootfs
+  container_depot_path: /var/vcap/store/rabbit/containers
   unix_domain_permissions: 0777
+  unix_domain_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>
   quota:
     disk_quota_enabled: false
+health_check_server:
+  port: <%= node.health_check_port || 2345 %>
 logging:
-  file: /var/vcap/sys/log/warden/warden.log
+  file: /var/vcap/sys/log/rabbit/warden/warden.log
   <% if properties.syslog_aggregator %>
   syslog: vcap.services.rabbitmq.warden
   <% end %>

@@ -35,7 +35,7 @@ tmp_dir: <%= lifecycle.tmp_dir || "/tmp" %>
 resque:
   host: <%= lifecycle.resque.host %>
   port: <%= lifecycle.resque.port %>
-  password: <%= lifecycle.resque.password %>
+  password: "<%= lifecycle.resque.password %>"
   expire: <%= lifecycle.resque.expire %>
 logging:
   level: debug
@@ -57,7 +57,7 @@ mysql:
     port: <%= version_configs[version]['port'] %>
     socket: <%= version_configs[version]['socket'] %>
     user: root
-    pass: <%= node.password %>
+    pass: "<%= node.password %>"
     mysqldump_bin:  <%= "#{version_configs[version]['binary_dir']}/mysqldump" %>
     mysql_bin:  <%= "#{version_configs[version]['binary_dir']}/mysql" %>
 <% end %>

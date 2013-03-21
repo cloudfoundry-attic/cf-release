@@ -34,7 +34,7 @@ memory_overhead: <%= plan_enabled && plan_conf.memory_overhead || 20 %>
 max_clients: <%= plan_enabled && plan_conf.max_clients || 500 %>
 port_range:
   first: 5000
-  last: 25000
+  last: 10000
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 <% if node.ip_route %>
 ip_route: <%= node.ip_route %>
@@ -61,3 +61,4 @@ m_actions:
   - <%= act %>
 <% end %>
 <% end %>
+warden_socket_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>

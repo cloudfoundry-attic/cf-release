@@ -28,7 +28,7 @@ http {
 
   keepalive_timeout  75 20; #inherited from router
 
-  client_max_body_size 256M; #already enforced upstream/but doesn't hurt.
+  client_max_body_size 512M; #already enforced upstream/but doesn't hurt.
 
   upstream cloud_controller {
     #server  127.0.0.1:9025; #NOT SECURE -- for debugging use only!!!!!
@@ -62,6 +62,11 @@ http {
     }
 
     location ~ (/apps/.*/application|/services/v\d+/configurations/.*/serialized/data) {
+      # Bypass for GET requests
+      if ($request_method = GET) {
+        proxy_pass http://cloud_controller;
+      }
+      
       # Pass altered request body to this location
       upload_pass   @cc_uploads;
       upload_pass_args on;

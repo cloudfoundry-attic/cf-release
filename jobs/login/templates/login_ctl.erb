@@ -62,8 +62,8 @@ case $1 in
     <% end %>
 
     # Generate a random usernames and passwords
-    username=$RANDOM-$RANDOM-$RANDOM-$RANDOM
-    password=$RANDOM-$RANDOM-$RANDOM-$RANDOM
+    username="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
+    password="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
 
     sed -i "s/_random_username_replaced_by_a_script_/${username}/g" $JOB_DIR/config/varz.yml
     sed -i "s/_random_password_replaced_by_a_script_/${password}/g" $JOB_DIR/config/varz.yml

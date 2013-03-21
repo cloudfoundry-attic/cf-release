@@ -20,16 +20,16 @@ cleanup:
   services:
     mongodb:
       version: "1.8"
-      token: <%= properties.mongodb_gateway.token %>
+      token: "<%= properties.mongodb_gateway.token %>"
     redis:
       version: "2.2"
-      token: <%= properties.redis_gateway.token %>
+      token: "<%= properties.redis_gateway.token %>"
     mysql:
       version: "5.1"
-      token: <%= properties.mysql_gateway.token %>
+      token: "<%= properties.mysql_gateway.token %>"
     postgresql:
       version: "9.0"
-      token: <%= properties.postgresql_gateway.token %>
+      token: "<%= properties.postgresql_gateway.token %>"
 root: <%= properties.service_lifecycle && properties.service_lifecycle.mount_point || "/var/vcap/services_snapshot" %>
 wakeup_interval: <%= properties.service_snapshot_manager && properties.service_snapshot_manager.cleanup_interval_secs || 43200 %>
 enable: <%= properties.service_snapshot_manager && properties.service_lifecycle && properties.service_lifecycle.nfs_server && properties.service_snapshot_manager.enable || "false" %>

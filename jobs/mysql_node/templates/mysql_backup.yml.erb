@@ -20,7 +20,7 @@ mysql:
   host: localhost
   port: 3306
   user: root
-  pass: <%= properties.mysql_node.password %>
+  pass: "<%= properties.mysql_node.password %>"
   socket: /var/vcap/sys/run/mysqld/mysqld.sock
 timeout: <%= backup_enabled && plan_conf.backup.timeout || 600 %>
 node_id: <%= "#{service}_node#{'_' + plan if plan != 'free'}_#{spec.index.to_i + 1}" %>

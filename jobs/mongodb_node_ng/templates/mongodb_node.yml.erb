@@ -44,8 +44,8 @@ mongod_options:
   "2.2": <%= enable_journaling ? "": "--nojournal" %> --nopreallocj
 
 port_range:
-  first: 25001
-  last: 45000
+  first: 10001
+  last: 15000
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 mongorestore_path:
 <% for version in supported_versions %>
@@ -74,3 +74,4 @@ m_actions:
   - <%= act %>
 <% end %>
 <% end %>
+warden_socket_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>

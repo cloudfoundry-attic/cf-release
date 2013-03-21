@@ -64,12 +64,12 @@ uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
 uaa_endpoint: <%= properties.uaa_endpoint %>
 uaa_client_auth_credentials:
   username: <%= properties.uaa_client_auth_credentials.username %>
-  password: <%= properties.uaa_client_auth_credentials.password %>
+  password: "<%= properties.uaa_client_auth_credentials.password %>"
 service_auth_tokens:
-  filesystem_core: <%= gateway.token %>
+  filesystem_core: "<%= gateway.token %>"
 <% end %>
 
-token: <%= properties.filesystem_gateway.token %>
+token: "<%= properties.filesystem_gateway.token %>"
 
 logging:
   file: /var/vcap/sys/log/filesystem_gateway/filesystem_gateway.log

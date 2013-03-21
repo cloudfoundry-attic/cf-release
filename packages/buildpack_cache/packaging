@@ -1,0 +1,3 @@
+set -e
+
+cp buildpack_cache/* ${BOSH_INSTALL_TARGET}

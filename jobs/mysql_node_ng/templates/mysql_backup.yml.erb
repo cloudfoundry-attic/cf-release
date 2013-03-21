@@ -38,7 +38,7 @@ mysql:
     host: localhost
     port: <%= version_configs[version]['port'] %>
     user: root
-    pass: <%= properties.mysql_node.password %>
+    pass: "<%= properties.mysql_node.password %>"
     socket: <%= version_configs[version]['socket'] %>
     mysqldump_bin: <%= version_configs[version]['mysqldump_bin'] %>
 <% end %>

@@ -38,7 +38,7 @@ mysql:
   port: 3306
   socket: /var/vcap/sys/run/mysqld/mysqld.sock
   user: root
-  pass: <%= node.password %>
+  pass: "<%= node.password %>"
 connection_pool_size: <%= node.connection_pool_size || 5 %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 mysqldump_bin: /var/vcap/packages/mysql/bin/mysqldump
