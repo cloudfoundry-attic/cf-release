@@ -1,0 +1,6 @@
+git submodule --quiet foreach '                                                                                \
+  git fetch origin master &> /dev/null &&                               # make sure we are up-to-date  \
+  REPO=`echo $name | sed s/src\\\///g ` && \
+  GITCOUNT=`git log head...FETCH_HEAD --oneline | wc -l` && \
+  echo $REPO $GITCOUNT
+'
