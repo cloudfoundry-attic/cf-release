@@ -33,6 +33,9 @@ rabbit:
   '2.8':
     config_template: ../../../resources/rabbitmq28.config.erb
     disk_free_limit: <%= ((plan_enabled && plan_conf.max_disk || 128) * 1024 * 1024 * (plan_enabled && plan_conf.free_disk_low_water || 0.1).to_f).to_i %>
+  '3.0':
+    config_template: ../../../resources/rabbitmq30.config.erb
+    disk_free_limit: <%= ((plan_enabled && plan_conf.max_disk || 128) * 1024 * 1024 * (plan_enabled && plan_conf.free_disk_low_water || 0.1).to_f).to_i %>
 migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
 <% if node.ip_route %>
 ip_route: <%= node.ip_route %>
@@ -52,6 +55,7 @@ service_start_timeout: <%= node.service_start_timeout || 5 %>
 service_bin_dir:
   '2.4': /var/vcap/packages/rabbitmq-2.4
   '2.8': /var/vcap/packages/rabbitmq-2.8
+  '3.0': /var/vcap/packages/rabbitmq-3.0
   erlang: /var/vcap/packages/erlang
 service_common_dir: /var/vcap/store/rabbitmq_common
 fqdn_hosts: <%= properties.services && properties.services.fqdn_hosts || "false" %>
