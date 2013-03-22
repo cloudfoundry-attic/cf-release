@@ -1,4 +1,4 @@
-#!/var/vcap/packages/ruby/bin/ruby --disable-all
+#!/var/vcap/packages/ruby_next/bin/ruby --disable-all
 
 require "fileutils"
 
