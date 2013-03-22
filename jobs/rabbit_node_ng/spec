@@ -19,13 +19,15 @@ templates:
   rabbit_worker.yml.erb: config/rabbit_worker.yml
   rabbit_worker_ctl: bin/rabbit_worker_ctl
 
-  backup_or_restore.escript: bin/backup_or_restore.escript
+  backup_or_restore2.escript: bin/backup_or_restore2.escript
+  backup_or_restore3.escript: bin/backup_or_restore3.escript
 
 packages:
   - common
   - erlang
   - rabbitmq-2.4
   - rabbitmq-2.8
+  - rabbitmq-3.0
   - daylimit
   - ruby
   - ruby_next
