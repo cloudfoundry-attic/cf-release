@@ -1,9 +1,0 @@
----
-name: logplex
-dependencies:
-- git
-- erlang_r15
-files:
-- logplex/{rebar,public.rebar.config}
-- logplex/{bin,include,src,upgrades}/**/*
-- pkg_utils/*
