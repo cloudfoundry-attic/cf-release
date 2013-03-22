@@ -15,6 +15,7 @@ templates:
   postgresql_logrotate.cron.erb: config/postgresql_logrotate.cron
   postgresql.conf.erb: config/postgresql.conf
   postgresql91.conf.erb: config/postgresql91.conf
+  postgresql92.conf.erb: config/postgresql92.conf
 
   warden_ctl: bin/warden_ctl
   warden.yml: config/warden.yml
@@ -25,6 +26,7 @@ packages:
   - common
   - postgresql
   - postgresql91
+  - postgresql92
   - postgresql_node_ng
   - ruby
   - ruby_next

@@ -30,7 +30,7 @@ case $1 in
     sysctl -w 'kernel.shmall=<%=plan_conf.shmall%>'
     <%end%>
 
-    for version in "9.0" "9.1"
+    for version in "9.0" "9.1" "9.2"
     do
       case "$version" in
         "9.0")
@@ -41,6 +41,11 @@ case $1 in
         "9.1")
           PG_DIR=/var/vcap/packages/postgresql91
           SRC_CONF_FILE=$JOB_DIR/config/postgresql91.conf
+
+          ;;
+        "9.2")
+          PG_DIR=/var/vcap/packages/postgresql92
+          SRC_CONF_FILE=$JOB_DIR/config/postgresql92.conf
 
           ;;
       esac
