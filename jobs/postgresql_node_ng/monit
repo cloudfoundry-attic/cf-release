@@ -17,6 +17,11 @@ version_configs = {
   '9.1' => {
     'name'    => 'postgresql91',
     'pid'     => '/var/vcap/sys/run/postgresql/postgresql91.pid',
+  },
+
+   '9.2' => {
+    'name'    => 'postgresql92',
+    'pid'     => '/var/vcap/sys/run/postgresql/postgresql92.pid',
   }
 }
 %>
