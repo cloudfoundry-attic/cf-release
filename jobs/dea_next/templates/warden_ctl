@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 RUN_DIR=/var/vcap/sys/run/warden
 LOG_DIR=/var/vcap/sys/log/warden

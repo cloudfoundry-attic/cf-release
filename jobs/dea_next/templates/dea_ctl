@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 export PATH=/var/vcap/packages/ruby_next/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/dea_next
