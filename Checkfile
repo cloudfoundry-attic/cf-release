@@ -13,9 +13,5 @@ health_manager: travis.check cloudfoundry health_manager
 gorouter: travis.check cloudfoundry gorouter
 warden: travis.check cloudfoundry warden
 
-#- Vmc
-vmc: travis.check cloudfoundry vmc
-vmc-lib: travis.check cloudfoundry vmc-lib
-
 #- Legacy
 router: travis.check cloudfoundry router
