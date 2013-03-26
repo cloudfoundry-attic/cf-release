@@ -50,7 +50,7 @@ service:
     <%= "'#{pf}': #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
   tags: ['relational']
-  timeout: <%= properties.postgresql_gateway.service_timeout || 10 %>
+  timeout: <%= gateway.service_timeout || 10 %>
 <% if acls %>
   <% if acls.is_a? String %>
   acls: <%= acls %>
