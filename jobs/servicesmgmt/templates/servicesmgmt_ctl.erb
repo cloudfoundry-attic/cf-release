@@ -1,0 +1,47 @@
+#!/bin/bash
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/servicesmgmt
+LOG_DIR=/var/vcap/sys/log/servicesmgmt
+PIDFILE=$RUN_DIR/servicesmgmt.pid
+JOB_DIR=/var/vcap/jobs/servicesmgmt
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Services Mgmt"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    # Generate a random usernames and passwords
+    username=$RANDOM-$RANDOM-$RANDOM-$RANDOM
+    password=$RANDOM-$RANDOM-$RANDOM-$RANDOM
+
+    sed -i "s/_random_username_replaced_by_a_script_/${username}/g" $JOB_DIR/config/varz.yml
+    sed -i "s/_random_password_replaced_by_a_script_/${password}/g" $JOB_DIR/config/varz.yml
+
+    export CLOUD_FOUNDRY_CONFIG_PATH=$JOB_DIR/config/
+    export PIDFILE=$PIDFILE
+    export CONFIG_FILE=$JOB_DIR/config/servicesmgmt.yml
+
+    cd /var/vcap/packages/servicesmgmt/services/tools/servicesmgmt/
+    bundle exec rackup -D -p <%= p("servicesmgmt.port", "80") %> -P $PIDFILE \
+        >>$LOG_DIR/servicesmgmt.stdout.log \
+        2>>$LOG_DIR/servicesmgmt.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: servicesmgmt_ctl {start|stop}"
+
+    ;;
+
+esac
