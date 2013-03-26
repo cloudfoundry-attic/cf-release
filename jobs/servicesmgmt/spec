@@ -1,0 +1,16 @@
+---
+name: servicesmgmt
+templates:
+  servicesmgmt_ctl.erb: bin/servicesmgmt_ctl
+  vcap_registrar_ctl: bin/vcap_registrar_ctl
+
+  vcap_registrar.config.yml.erb: config/vcap_registrar/config.yml
+  servicesmgmt.yml.erb: config/servicesmgmt.yml
+  varz.yml.erb: config/varz.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+  - common
+  - ruby
+  - syslog_aggregator
+  - servicesmgmt
