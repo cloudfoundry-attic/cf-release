@@ -1,0 +1,11 @@
+check process servicesmgmt
+  with pidfile /var/vcap/sys/run/servicesmgmt/servicesmgmt.pid
+  start program "/var/vcap/jobs/servicesmgmt/bin/servicesmgmt_ctl start"
+  stop program "/var/vcap/jobs/servicesmgmt/bin/servicesmgmt_ctl stop"
+  group vcap
+
+check process vcap_registrar
+  with pidfile /var/vcap/sys/run/vcap_registrar/vcap_registrar.pid
+  start program "/var/vcap/jobs/servicesmgmt/bin/vcap_registrar_ctl start"
+  stop program "/var/vcap/jobs/servicesmgmt/bin/vcap_registrar_ctl stop"
+  group vcap
