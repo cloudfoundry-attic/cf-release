@@ -89,7 +89,7 @@ warden:
   <% end %>
   service_common_dir: /var/vcap/store/postgresql_common
   image_dir: /var/vcap/store/postgresql_image
-  service_start_timeout: <%= warden.servie_start_timeout || 3 %>
+  service_start_timeout: <%= warden.service_start_timeout || 3 %>
   filesystem_quota: <%= warden.filesystem_quota || "false" %>
 <% if warden.clean_image_cache %>
   clean_image_cache: true
