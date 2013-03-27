@@ -72,15 +72,16 @@ redis:
   password: "<%= password %>"
 <% end %>
 
-<% scheme = p("uaa.no_ssl") ? "http" : "https" %>
+<% scheme = p("uaa.no_ssl") ? "http" : "https"
+   domain = p("domain") %>
 
 <% login_enabled = p("login.enabled", true) %>
 <% if login_enabled %>
 login:
-  url: <%= scheme %>://login.<%= p("domain") %>
+  url: <%= p("login.url", "#{scheme}://login.#{domain}") %>
 <% end %>
 uaa:
-  url: <%= scheme %>://uaa.<%= p("domain") %>
+  url: <%= p("uaa.url", "#{scheme}://uaa.#{domain}") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
 <% if_p("uaa.cc.token_secret") do |token_secret| %>
   symmetric_secret: "<%= token_secret %>"
