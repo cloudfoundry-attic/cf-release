@@ -1,23 +1,24 @@
 ---
+<% uaa_db_scheme = properties.uaadb.db_scheme %>
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
 
+<% cc_db_scheme = properties.ccdb.db_scheme %>
 <% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
 <% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
 
 name: batch
 
 database:
-  driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://<%= properties.uaadb.address %>:<%= properties.uaadb.port %>/<%= uaa_db.name %>
+  url: jdbc:<%=uaa_db_scheme%>://<%= properties.uaadb.address %>:<%= properties.uaadb.port %>/<%= uaa_db.name %>
   username: <%= uaa_role.name %>
   password: "<%= uaa_role.password %>"
 
-spring_profiles: postgresql
+spring_profiles: <%=uaa_db_scheme %>
 
 cloud_controller:
   database:
-    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
+    url: jdbc:<%=cc_db_scheme%>://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
     username: <%= cc_role.name %>
     password: "<%= cc_role.password %>"
 
