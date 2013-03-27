@@ -5,8 +5,8 @@ if [[ `uname -a` =~ "x86_64" ]] ; then
   archive="java/jre1.6.0_x64.tgz"
   echo "Using 64-bit version"
 else
-  archive="java/jre-1.6.0_24.tar.gz"
-  echo "Using 32-bit version"
+  echo "Only 64-bit architectures are supported."
+  exit 1
 fi
 
 if [[ -f $archive ]] ; then
