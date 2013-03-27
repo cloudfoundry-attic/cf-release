@@ -2,24 +2,14 @@
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
 
-<% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
-
 name: uaa
 
 database:
-  driverClassName: org.postgresql.Driver
-  url: jdbc:postgresql://<%= properties.uaadb.address %>:<%= properties.uaadb.port %>/<%= uaa_db.name %>
+  url: jdbc:<%= properties.uaadb.db_scheme %>://<%= properties.uaadb.address %>:<%= properties.uaadb.port %>/<%= uaa_db.name %>
   username: <%= uaa_role.name %>
   password: "<%= uaa_role.password %>"
 
-spring_profiles: postgresql
-
-cloud_controller:
-  database:
-    url: jdbc:postgresql://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
-    username: <%= cc_role.name %>
-    password: "<%= cc_role.password %>"
+spring_profiles: <%= properties.uaa.spring_profiles ? properties.uaa.spring_profiles : properties.uaadb.db_scheme %>
 
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
