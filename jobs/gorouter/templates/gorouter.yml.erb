@@ -30,6 +30,7 @@ index: <%= p("router.offset") + spec.index %>
 pidfile: /var/vcap/sys/run/gorouter/gorouter.pid
 go_max_procs: 8
 trace_key: <%= p("router.trace_key") %>
+access_log: /var/vcap/sys/log/gorouter/access.log
 
 publish_start_message_interval: 30
 prune_stale_droplets_interval: 30
