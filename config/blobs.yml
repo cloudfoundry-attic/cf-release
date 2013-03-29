@@ -739,18 +739,6 @@ buildpack_cache/mysql-connector-java-5.1.12.jar:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIwMDRlNGU4ZWM2NDZlMjEwNTEzOTE5%0AMTc2YTIxYiIsInNpZyI6Ikx5K1dxcjE3VnEybnJWbnBaKzFSdTNaZVd6WT0i%0AfQ==%0A
   sha: 14ae02cc2adb2aed677080a0c0356e7569e298ec
   size: 732695
-buildpack_cache/openjdk6-u25-heroku-temaki.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIyMDRlNGU5ODYzZjI4ZjMwNTEzOTE5%0AMWM5MmMxZSIsInNpZyI6IlNzUW9MMFo1UWgyOTZid1B0ME4vQ0w2WnZYVT0i%0AfQ==%0A
-  sha: 97946cad1ef0dac181bc974a9b42353b298a2484
-  size: 42334868
-buildpack_cache/openjdk7-u7-heroku-temaki-b30.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjEwMDRlNGU3ZDUxMWY1NTMwNTEzOTE5%0AMmY5YzNiZSIsInNpZyI6IkhoMlM5OFRyUzFTcFZSRVlCNDVCK3dGL0JzRT0i%0AfQ==%0A
-  sha: 60acd97375afc48eb87f64327e4f742e087ebb65
-  size: 45115775
-buildpack_cache/openjdk8-lambda-preview.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2E0MWUxMjEyMDRlNGU4NmVlNTM5MjEwNTEzOTE5%0ANDMzOTI5MiIsInNpZyI6IkI4WUd1S3NLMnZHdzdEeW9JcmUyaWVMZTRxRT0i%0AfQ==%0A
-  sha: 01f6f74960017a9f8b410d6a47e2433f1057725e
-  size: 45829916
 buildpack_cache/postgresql-9.0-801.jdbc4.jar:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNTEzOTE5%0ANGViMDQ2ZSIsInNpZyI6Img4TitUZ0lQb3M5dDMyb2l3MVVSelc0aDQwST0i%0AfQ==%0A
   sha: 153f2f92a786f12fc111d0111f709012df87c808
@@ -855,3 +843,15 @@ java/jre1.6.0_x64.tgz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIyMDRlNGU5ODYzYjFiNzQwNTE1MzJl%0AY2IxODFjYyIsInNpZyI6IldsU1ZiWm50VGVQYUNMd1JjMDhERktEMko2dz0i%0AfQ==%0A
   sha: d5be7aa61a84c27c64451703404d7bddb60570fb
   size: 32071543
+buildpack_cache/openjdk6-jre-u25.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEwMDRlNGU3ZDUxNDc0NWYwNTE1NDhj%0ANTg2NWYxNyIsInNpZyI6InRweE9HckRDd1pvc2d1WXpMTXpKVjdTL3lDQT0i%0AfQ==%0A
+  sha: 338fd3f61181e4cef07ee229d3f10100af2c2f1f
+  size: 31099765
+buildpack_cache/openjdk7-jre-u7-b30.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEyMDRlNGU4NmVlMzk2OTIwNTE1NDhj%0ANWQ1NmI1MyIsInNpZyI6IldLbklySVFSaVRndDZiQTIzRHUxaURpUlJmYz0i%0AfQ==%0A
+  sha: 40a9cda90dd0ab3313f6dd52949582d1aaee518b
+  size: 33459081
+buildpack_cache/openjdk8-jre-lambda-preview.tar.gz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjIwMDRlNGU4ZWM2ODQwNzcwNTE1NDhj%0ANjY5Y2U3ZSIsInNpZyI6IjBXMEhGSElxWG1pTGMwc0xHVEpuWjRqVWFRZz0i%0AfQ==%0A
+  sha: 198d51abe2043cbebb0d82caa39ea9f8302f67b7
+  size: 34001909
