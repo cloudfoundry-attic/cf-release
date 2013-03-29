@@ -5,3 +5,4 @@ health_manager: github_issues.check cloudfoundry health_manager
 gorouter: github_issues.check cloudfoundry gorouter
 warden: github_issues.check cloudfoundry warden
 cf-release: github_issues.check cloudfoundry cf-release
+yeti: github_issues.check cloudfoundry vcap-yeti
