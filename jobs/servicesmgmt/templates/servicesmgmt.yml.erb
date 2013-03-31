@@ -1,0 +1,13 @@
+---
+id: servicesmgmt
+secret: <%= p("uaa.clients.servicesmgmt.secret") %>
+token_server: http://uaa.<%= properties.domain %>
+auth_server: http://login.<%= properties.domain %>
+index: <%= spec.index %>
+cloud_controller_uri: <%= properties.cc.srv_api_uri %>
+logging:
+  level: debug
+  file: /var/vcap/sys/log/servicesmgmt/servicesmgmt.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.servicesmgmt
+  <% end %>
