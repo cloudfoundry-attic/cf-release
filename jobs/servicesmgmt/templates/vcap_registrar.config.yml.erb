@@ -8,7 +8,7 @@ logging:
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 uri:
   - servicesmgmt.<%= properties.domain %>
-host: <%= spec.networks.send(properties.networks.apps).ip %>
+host: <%= spec.networks.send(properties.networks.services).ip %>
 index: <%= spec.index %>
 port: <%= p("servicesmgmt.port", "80") %>
 tags:
