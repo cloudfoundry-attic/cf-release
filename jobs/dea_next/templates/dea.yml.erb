@@ -1,5 +1,5 @@
 ---
-nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+nats_uri: nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>
 
 dea_ruby: /var/vcap/packages/ruby_next/bin/ruby
 
@@ -13,23 +13,19 @@ directory_server:
   v1_port: 12345
   v2_port: 34567
   file_api_port: 23456
-  <% if properties.dea_next && properties.dea_next.streaming_timeout %>
-  streaming_timeout: <%= properties.dea_next.streaming_timeout %>
-  <% else %>
-  streaming_timeout: 60
-  <% end %>
+  streaming_timeout: <% p("dea_next.streaming_timeout", 60) %>
   logging:
     file: /var/vcap/sys/log/dea_next/dir_server.log
-    <% if properties.syslog_aggregator %>
+    <% if_p("syslog_aggregator") do %>
     syslog: vcap.directory_server
     <% end %>
     level: debug
 
-domain: <%= properties.domain %>
+domain: <%= p("domain") %>
 
 logging:
   file: /var/vcap/sys/log/dea_next/dea_next.log
-  <% if properties.syslog_aggregator %>
+  <% if_p("syslog_aggregator") do %>
   syslog: vcap.dea_next
   <% end %>
   level: debug
@@ -41,35 +37,11 @@ intervals:
   advertise: 5
 
 resources:
-  <% if properties.dea_next && properties.dea_next.memory_mb %>
-  memory_mb: <%= properties.dea_next.memory_mb %>
-  <% else %>
-  memory_mb: 8000
-  <% end %>
-
-  <% if properties.dea_next && properties.dea_next.memory_overcommit_factor %>
-  memory_overcommit_factor: <%= properties.dea_next.memory_overcommit_factor %>
-  <% else %>
-  memory_overcommit_factor: 1
-  <% end %>
-
-  <% if properties.dea_next && properties.dea_next.disk_mb %>
-  disk_mb: <%= properties.dea_next.disk_mb %>
-  <% else %>
-  disk_mb: 32000
-  <% end %>
-
-  <% if properties.dea_next && properties.dea_next.disk_overcommit_factor %>
-  disk_overcommit_factor: <%= properties.dea_next.disk_overcommit_factor %>
-  <% else %>
-  disk_overcommit_factor: 1
-  <% end %>
-
-  <% if properties.dea_next && properties.dea_next.num_instances %>
-  num_instances: <%= properties.dea_next.num_instances %>
-  <% else %>
-  num_instances: 30
-  <% end %>
+  memory_mb: <%= p("dea_next.memory_mb", 8000) %>
+  memory_overcommit_factor: <%= p("dea_next.memory_overcommit_factor", 1) %>
+  disk_mb: <%= p("dea_next.disk_mb", 32000) %>
+  disk_overcommit_factor: <%= p("dea_next.disk_overcommit_factor", 1) %>
+  num_instances: <%= p("dea_next.num_instances", 30) %>
 
 bind_mounts:
   - src_path: /var/vcap/packages/
@@ -81,7 +53,7 @@ app_environment:
 
 staging:
   enabled: true
-  max_staging_duration: 120
+  max_staging_duration: <%= p("dea_next.max_staging_duration", 900) %>
   max_active_tasks: 10
   staging_base_dir: /var/vcap/data/dea_next/staging
   platform_config:
@@ -94,4 +66,4 @@ staging:
     PATH: "/var/vcap/packages/libpq/bin:/var/vcap/packages/dea_node08/bin:/var/vcap/packages/git/bin:/var/vcap/packages/imagemagick/bin:/var/vcap/packages/ruby_next/bin"
     BUILDPACK_CACHE: "/var/vcap/packages/buildpack_cache"
 
-stacks: <%= properties.dea_next && properties.dea_next.stacks || [ "lucid64" ] %>
+stacks: <%= p("dea_next.stacks", ["lucid64"]) %>
