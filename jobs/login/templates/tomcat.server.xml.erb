@@ -13,7 +13,7 @@
 
       <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="false">
         <Valve className="org.apache.catalina.valves.RemoteIpValve"
-               remoteIpHeader="x-cluster-client-ip"
+               remoteIpHeader="x-forwarded-for"
                protocolHeader="x-forwarded-proto" />
 
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="/var/vcap/sys/log/login"
