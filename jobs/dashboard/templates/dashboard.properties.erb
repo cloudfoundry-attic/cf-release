@@ -12,5 +12,10 @@ uaa.logout.url = <%= protocol%>://login.<%= properties.domain %>/logout.do
 uaa.accessToken.url = <%= protocol%>://uaa.<%= properties.domain %>/oauth/token
 uaa.userAuthorize.url = <%= protocol%>://login.<%= properties.domain %>/oauth/authorize
 uaa.checkToken.url = <%= protocol%>://uaa.<%= properties.domain %>/check_token
+<% if !properties.uaa.clients || !properties.uaa.clients.dashboard %>
 uaa.client.id = <%= properties.dashboard.uaa.client_id %>
 uaa.client.secret = <%= properties.dashboard.uaa.client_secret %>
+<% else %>
+uaa.client.id = <%= p("uaa.clients.dashboard.id", "dashboard") %>
+uaa.client.secret = <%= p("uaa.clients.dashboard.secret") %>
+<% end %>
