@@ -8,7 +8,7 @@
 <% db_role = ccdb.roles.find { |role| role.tag == "admin" } %>
 
 external_uri: <%= cc_props.external_uri || "api." + properties.domain %>
-description: <%= properties.description || "VMware's Cloud Application Platform" %>
+description: <%= properties.description || "Cloud Foundry sponsored by Pivotal" %>
 support_address: <%= properties.support_address || "http://support.cloudfoundry.com" %>
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 <% if cc_props.allow_registration || cc_props.allow_registration == nil %>
