@@ -3,7 +3,7 @@ set -e
 
 echo "Extracting PostgreSQL 9.0 archive ..."
 
-tar xzf postgresql/postgresql-9.0-x86_64.tar.gz
+tar xzf postgresql/postgresql-9.0.13-x86_64.tar.gz 
 
 cp -a * ${BOSH_INSTALL_TARGET}
 
