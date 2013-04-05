@@ -11,18 +11,6 @@ templates:
   iptables.conf.erb: config/iptables.conf
   nfs-common: config/nfs-common
   idmapd.conf.erb: config/idmapd.conf
-  node_staging.yml: config/staging/node.yml
-  sinatra_staging.yml: config/staging/sinatra.yml
-  java_web_staging.yml: config/staging/java_web.yml
-  spring_staging.yml: config/staging/spring.yml
-  rails3_staging.yml: config/staging/rails3.yml
-  grails_staging.yml: config/staging/grails.yml
-  lift_staging.yml: config/staging/lift.yml
-  rack_staging.yml: config/staging/rack.yml
-  standalone_staging.yml: config/staging/standalone.yml
-  play_staging.yml: config/staging/play.yml
-  buildpack_staging.yml: config/staging/buildpack.yml
-  runtimes.yml: config/runtimes.yml
 packages:
   - common
   - cloud_controller_ng
