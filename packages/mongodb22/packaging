@@ -1,16 +1,11 @@
 # abort script on any command that exit with a non zero value
 set -e
 
-version="2.2.1"
+version="2.2.4"
 echo "Package mongodb version: $version"
 
-if [[ `uname -a` =~ "x86_64" ]] ; then
-  name="mongodb-linux-x86_64-$version"
-  echo "Using 64-bit version"
-else
-  name="mongodb-linux-i686-$version"
-  echo "Using 32-bit version"
-fi
+name="mongodb-linux-x86_64-$version"
+echo "Using 64-bit version"
 
 archive=mongodb/$name.tgz
 
