@@ -2,7 +2,6 @@
 name: uaa
 dependencies:
 - ruby
-- dea_jvm
 files:
 - uaa/**/*
 - tools/vcap_registrar/**/*
