@@ -1,9 +1,9 @@
 # abort script on any command that exit with a non zero value
 set -e
 
-echo "Extracting PostgreSQL 9.2 archive ..."
+echo "Extracting PostgreSQL 9.2.4 archive ..."
 
-tar xzf postgresql/postgresql-9.2-x86_64.tar.gz
+tar xzf postgresql/postgresql-9.2.4-x86_64.tar.gz
 
 cp -a * ${BOSH_INSTALL_TARGET}
 
