@@ -9,5 +9,6 @@ cp -a * ${BOSH_INSTALL_TARGET}
   bundle_cmd=/var/vcap/packages/ruby/bin/bundle
   $bundle_cmd config build.do_sqlite3 --with-sqlite3-dir=/var/vcap/packages/sqlite
   $bundle_cmd config build.mysql2 --with-mysql-dir=/var/vcap/packages/mysqlclient --with-mysql-include=/var/vcap/packages/mysqlclient/include/mysql
+  $bundle_cmd config build.do_mysql --with-mysql-dir=/var/vcap/packages/mysqlclient --with-mysql-include=/var/vcap/packages/mysqlclient/include/mysql
   $bundle_cmd install --local --deployment --without=development test
 )

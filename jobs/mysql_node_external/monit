@@ -1,0 +1,16 @@
+<%
+service = "mysql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "100"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+
+node = properties.mysql_node
+supported_versions = node.supported_versions
+%>
+
+check process mysql_node
+  with pidfile /var/vcap/sys/run/mysql_node/mysql_node.pid
+  start program "/var/vcap/jobs/mysql_node_external/bin/mysql_node_ctl start"
+  stop program "/var/vcap/jobs/mysql_node_external/bin/mysql_node_ctl stop" with timeout 60 seconds
+  group vcap
+  group node
