@@ -7,6 +7,7 @@ cp -a * ${BOSH_INSTALL_TARGET}
   cd ${BOSH_INSTALL_TARGET}/services/ng/mysql
   /var/vcap/packages/ruby/bin/bundle config build.do_sqlite3 --with-sqlite3-dir=/var/vcap/packages/sqlite
   /var/vcap/packages/ruby/bin/bundle config build.mysql2 --with-mysql-dir=/var/vcap/packages/mysqlclient --with-mysql-include=/var/vcap/packages/mysqlclient/include/mysql
+  /var/vcap/packages/ruby/bin/bundle config build.do_mysql --with-mysql-dir=/var/vcap/packages/mysqlclient --with-mysql-include=/var/vcap/packages/mysqlclient/include/mysql
   /var/vcap/packages/ruby/bin/bundle install --local --deployment
 
   cd ${BOSH_INSTALL_TARGET}/warden

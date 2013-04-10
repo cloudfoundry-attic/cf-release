@@ -1,0 +1,15 @@
+---
+name: mysql_node_external
+
+templates:
+  mysql_node_ctl: bin/mysql_node_ctl
+  mysql_node.yml.erb: config/mysql_node.yml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+  - common
+  - mysql_node_ng
+  - mysqlclient
+  - ruby
+  - ruby_next
+  - syslog_aggregator

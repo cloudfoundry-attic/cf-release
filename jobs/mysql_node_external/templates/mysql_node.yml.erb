@@ -1,0 +1,52 @@
+---
+<%
+service = "mysql"
+plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
+plan = properties.plan || "100"
+plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
+connection_pool_size = plan_enabled && plan_conf.connection_pool_size
+node = properties.mysql_node
+nats_props = properties.send(properties.nats_props || "nats")
+nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
+external_db = node.external_db
+external_db.port ||= 3306
+%>
+capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
+plan: '<%= plan %>'
+local_db: mysql://<%= external_db.user %>:<%= external_db.password %>@<%= external_db.address %>:<%= external_db.port %>/mgmt
+base_dir: /var/vcap/store/mysql
+mbus: <%= nats %>
+index: <%= spec.index %>
+logging:
+  level: debug
+  file: /var/vcap/sys/log/mysql_node_external/mysql_node.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.mysql_node
+  <% end %>
+pid: /var/vcap/sys/run/mysql_node/mysql_node.pid
+node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
+default_version: "5.5"
+supported_versions: ["5.5"]
+
+max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
+max_long_query: <%= plan_enabled && plan_conf.max_long_query || 3 %>
+max_long_tx: <%= plan_enabled && plan_conf.max_long_tx || 0 %>
+kill_long_tx: <%= plan_enabled && !plan_conf.kill_long_tx.nil? ? plan_conf.kill_long_tx : 'true' %>
+max_user_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
+mysql:
+  "5.5":
+    host: "<%= external_db.address %>"
+    port: <%= external_db.port %>
+    user: "<%= external_db.user %>"
+    pass: "<%= external_db.password %>"
+    mysqldump_bin: "/var/vcap/packages/mysql55/bin/mysqldump"
+    mysql_bin: "/var/vcap/packages/mysql55/bin/mysql"
+connection_pool_size:
+  min: <%= connection_pool_size && connection_pool_size.min || 5 %>
+  max: <%= connection_pool_size && connection_pool_size.max || 10 %>
+connection_wait_timeout: <%= plan_enabled && plan_conf.connection_wait_timeout || 10 %>
+migration_nfs: <%= properties.service_migration && properties.service_migration.mount_point ? properties.service_migration.mount_point : "/var/vcap/services_migration" %>
+gzip_bin: /bin/gzip
+z_interval: <%= node.z_interval || 30 %>
+max_nats_payload: <%= nats_props.max_payload || 1048576 %>
+op_time_limit: <%= node.op_time_limit || 6 %>
