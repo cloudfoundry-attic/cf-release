@@ -1,0 +1,12 @@
+---
+domain: <%= p("domain") %>
+
+<% if_p("syslog_aggregator.log_email") do %>
+enabled: <%= p("syslog_aggregator.log_email.enabled") %>
+from_email: <%= p("syslog_aggregator.log_email.from_email") %>
+from_password: <%= p("syslog_aggregator.log_email.from_password") %>
+to_email: <%= p("syslog_aggregator.log_email.to_email") %>
+smtp_server: <%= p("syslog_aggregator.log_email.smtp_server") %>
+smtp_port: <%= p("syslog_aggregator.log_email.smtp_port") %>
+smtp_domain: <%= p("syslog_aggregator.log_email.smtp_domain") %>
+<% end %>

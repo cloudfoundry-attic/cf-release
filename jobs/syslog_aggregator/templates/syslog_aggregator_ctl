@@ -3,6 +3,7 @@
 RUN_DIR=/var/vcap/sys/run/syslog_aggregator
 LOG_DIR=/var/vcap/store/log
 JOB_DIR=/var/vcap/jobs/syslog_aggregator
+PACKAGE_DIR=/var/vcap/packages/syslog_aggregator
 BIN_DIR=$JOB_DIR/bin
 PIDFILE=$RUN_DIR/syslog_aggregator.pid
 
@@ -21,6 +22,7 @@ case $1 in
     cp -a $BIN_DIR/gzip_old_logs /etc/cron.daily
     cp -a $BIN_DIR/reap_old_logs /etc/cron.hourly
     cp -a $BIN_DIR/symlink_logs /etc/cron.hourly
+    cp -a $PACKAGE_DIR/send_error_mail /etc/cron.daily
 
     exec /usr/sbin/rsyslogd -f $JOB_DIR/config/rsyslogd.conf -i $PIDFILE -c 4 \
          >>$LOG_DIR/rsyslogd.stdout.log \

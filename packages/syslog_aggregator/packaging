@@ -1,4 +1,4 @@
 # abort script on any command that exit with a non zero value
 set -e
 
-cp syslog_aggregator/setup_syslog_forwarder.sh $BOSH_INSTALL_TARGET/setup_syslog_forwarder.sh
+cp -a syslog_aggregator/* ${BOSH_INSTALL_TARGET}

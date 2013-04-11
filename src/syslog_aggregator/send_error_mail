@@ -1,0 +1,95 @@
+#!/var/vcap/packages/ruby_next/bin/ruby
+# Send error log messages to operators
+
+# We are not using local smtp server, as the only solution right now
+# would be to install it as a bosh package. Which are planned to be
+# moved to stemcell packages
+# Please consider in future: http://www.rsyslog.com/doc/ommail.html
+require "net/smtp"
+require "fileutils"
+require "yaml"
+
+LOG_DIR = "/var/vcap/store/log"
+TMP_DIR = "/var/vcap/data/tmp/error_mail"
+
+CONFIG = YAML.load_file("/var/vcap/jobs/syslog_aggregator/config/syslog_aggregator.yml")
+
+unless CONFIG["enabled"]
+  warn("Syslog Aggregator digest emails are not enabled.")
+  exit(0)
+end
+
+def save_mail_log_files
+  Dir.chdir(LOG_DIR) do
+    log_files = `find . | grep #{yesterday_date}/.*.log`.split("\n")
+    log_files.each do |log_file|
+      dest = File.join(TMP_DIR, File.basename(log_file))
+      `grep -i "error" #{log_file} >> #{dest}`
+    end
+  end
+end
+
+def yesterday_date
+  (Time.now - (60 * 60 * 24)).strftime("%Y/%m/%d")
+end
+
+def errors_count
+  Dir.chdir(TMP_DIR) do
+    `wc -l * | sort -nr -k1`
+  end
+end
+
+def zip_mail_log_files
+  Dir.chdir(TMP_DIR) do
+    `zip #{TMP_DIR}/logs.zip *`
+  end
+end
+
+def send_mail(body)
+  from_email = CONFIG["from_email"]
+  from_password = CONFIG["from_password"]
+  to_email = CONFIG["to_email"]
+  boundary = "SYSLOGBOUNDARY"
+
+  filecontent = File.read(File.join(TMP_DIR, "logs.zip"))
+  encodedcontent = [filecontent].pack("m")
+
+  message = <<MESSAGE_END
+From: Cloud Foundry Syslog Aggregator <#{from_email}>
+To: CFPI Backend <#{to_email}>
+Subject: Syslog Aggregator Errors
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary=#{boundary}
+--#{boundary}
+Content-Type: text/plain
+Content-Transfer-Encoding:8bit
+
+Data for #{yesterday_date} from #{CONFIG["domain"]}:
+
+#{body}
+--#{boundary}
+Content-Type: multipart/mixed; name=\"logs.zip\"
+Content-Transfer-Encoding:base64
+Content-Disposition: attachment; filename="logs.zip"
+
+#{encodedcontent}
+--#{boundary}--
+MESSAGE_END
+
+  smtp = Net::SMTP.new(CONFIG["smtp_server"], CONFIG["smtp_port"])
+  smtp.enable_starttls
+
+  smtp.start(CONFIG["smtp_domain"], from_email, from_password, :login) do
+    smtp.send_message(message, from_email, to_email)
+  end
+end
+
+begin
+  FileUtils.mkdir_p(TMP_DIR)
+  save_mail_log_files
+  body = errors_count
+  zip_mail_log_files
+  send_mail(body)
+ensure
+  FileUtils.rm_rf(TMP_DIR)
+end
