@@ -57,7 +57,7 @@ def send_mail(body)
   message = <<MESSAGE_END
 From: Cloud Foundry Syslog Aggregator <#{from_email}>
 To: CFPI Backend <#{to_email}>
-Subject: Syslog Aggregator Errors
+Subject: Syslog Aggregator Errors (#{yesterday_date})
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary=#{boundary}
 --#{boundary}
