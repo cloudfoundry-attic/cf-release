@@ -2,11 +2,11 @@
 name: syslog_aggregator
 templates:
   rsyslogd.conf.erb: config/rsyslogd.conf
+  syslog_aggregator.yml.erb: config/syslog_aggregator.yml
   syslog_aggregator_ctl: bin/syslog_aggregator_ctl
   gzip_old_logs: bin/gzip_old_logs
   reap_old_logs: bin/reap_old_logs
   symlink_logs: bin/symlink_logs
 packages:
 - common
-
-
+- syslog_aggregator
