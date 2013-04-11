@@ -8,7 +8,7 @@ connection_pool_size = plan_enabled && plan_conf.connection_pool_size
 node = properties.mysql_node
 nats_props = properties.send(properties.nats_props || "nats")
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
-external_db = node.external_db
+external_db = node.external_dbs[spec.index]
 external_db.port ||= 3306
 %>
 capacity: <%= plan_enabled && plan_conf.capacity || 200 %>
