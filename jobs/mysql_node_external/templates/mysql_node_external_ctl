@@ -13,9 +13,9 @@ end
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
 COMMON_DIR=/var/vcap/store/mysql_common
-RUN_DIR=/var/vcap/sys/run/mysql_node
-LOG_DIR=/var/vcap/sys/log/mysql_node
-PIDFILE=$RUN_DIR/mysql_node.pid
+RUN_DIR=/var/vcap/sys/run/mysql_node_external
+LOG_DIR=/var/vcap/sys/log/mysql_node_external
+PIDFILE=$RUN_DIR/mysql_node_external.pid
 JOB_DIR=/var/vcap/jobs/mysql_node_external
 MY_LD_FILE=/etc/ld.so.conf.d/mysql.conf
 <% if lifecycle and lifecycle.nfs_server %>
@@ -41,7 +41,6 @@ case $1 in
     <% end %>
 
     echo "/var/vcap/packages/mysqlclient/lib/mysql" > $MY_LD_FILE
-    echo "/var/vcap/packages/mysql/lib/mysql" >> $MY_LD_FILE
 
     /sbin/ldconfig
 
@@ -50,24 +49,14 @@ case $1 in
     check_mount "$MT_OPTS" "$MT_EXPORT" "$SNAPSHOT_DIR"
     <% end %>
 
-    chmod +x $JOB_DIR/config/mysql_backup
-    $JOB_DIR/config/mysql_backup start
-
     mkdir -p $COMMON_DIR/bin
-    mkdir -p $COMMON_DIR/config
-    rsync -arl $JOB_DIR/bin/warden_service_ctl $COMMON_DIR/bin
-    rsync -arl $JOB_DIR/bin/my*.shutdown $COMMON_DIR/bin
     rsync -arl /var/vcap/packages/common/utils.sh $COMMON_DIR/bin
     chmod -R 755 $COMMON_DIR/bin
-    rsync $JOB_DIR/config/my*.cnf $COMMON_DIR/config
-    rsync $JOB_DIR/config/warden_mysql_init $COMMON_DIR/config
-    chmod 755 $COMMON_DIR/config
-    chmod 644 $COMMON_DIR/config/*
 
     exec /var/vcap/packages/mysql_node_ng/services/ng/mysql/bin/mysql_node \
-         -c $JOB_DIR/config/mysql_node.yml \
-         >>$LOG_DIR/mysql_node.stdout.log \
-         2>>$LOG_DIR/mysql_node.stderr.log
+         -c $JOB_DIR/config/mysql_node_external.yml \
+         >>$LOG_DIR/mysql_node_external.stdout.log \
+         2>>$LOG_DIR/mysql_node_external.stderr.log
 
     ;;
 
@@ -86,7 +75,7 @@ case $1 in
     ;;
 
   *)
-    echo "Usage: mysql_node_ctl {start|stop}"
+    echo "Usage: mysql_node_external_ctl {start|stop}"
 
     ;;
 

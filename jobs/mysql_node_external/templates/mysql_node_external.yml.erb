@@ -19,11 +19,11 @@ mbus: <%= nats %>
 index: <%= spec.index %>
 logging:
   level: debug
-  file: /var/vcap/sys/log/mysql_node_external/mysql_node.log
+  file: /var/vcap/sys/log/mysql_node_external/mysql_node_external.log
   <% if properties.syslog_aggregator %>
-  syslog: vcap.mysql_node
+  syslog: vcap.mysql_node_external
   <% end %>
-pid: /var/vcap/sys/run/mysql_node/mysql_node.pid
+pid: /var/vcap/sys/run/mysql_node_external/mysql_node_external.pid
 node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
 default_version: "5.5"
 supported_versions: ["5.5"]
