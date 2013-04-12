@@ -1,6 +1,6 @@
-check process mysql_node
-  with pidfile /var/vcap/sys/run/mysql_node/mysql_node.pid
-  start program "/var/vcap/jobs/mysql_node_external/bin/mysql_node_ctl start"
-  stop program "/var/vcap/jobs/mysql_node_external/bin/mysql_node_ctl stop" with timeout 60 seconds
+check process mysql_node_external
+  with pidfile /var/vcap/sys/run/mysql_node_external/mysql_node_external.pid
+  start program "/var/vcap/jobs/mysql_node_external/bin/mysql_node_external_ctl start"
+  stop program "/var/vcap/jobs/mysql_node_external/bin/mysql_node_external_ctl stop" with timeout 60 seconds
   group vcap
   group node

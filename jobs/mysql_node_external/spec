@@ -2,8 +2,8 @@
 name: mysql_node_external
 
 templates:
-  mysql_node_ctl: bin/mysql_node_ctl
-  mysql_node.yml.erb: config/mysql_node.yml
+  mysql_node_external_ctl: bin/mysql_node_external_ctl
+  mysql_node_external.yml.erb: config/mysql_node_external.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 packages:
