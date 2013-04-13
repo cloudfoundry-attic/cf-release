@@ -1,4 +1,12 @@
----
+--- <% # Add admin user with random password if it's not already there. -%>
+<% # block is require to keep existing ccdb admin  and services password, or make a unique one. -%>
+<% users = find("properties").fetch("uaa", {}).fetch("scim", {}).fetch("users", []) || [] -%>
+<% admin_user = users.detect { |u| u.match("^admin\\|") } -%>
+<% services_user = users.detect { |u| u.match("^services\\|") } -%>
+<% users.unshift "admin|#{random_string 12, :admin}|scim.write,scim.read,openid,cloud_controller.admin" unless admin_user -%>
+<% users << "services|#{random_string 12, :services}|scim.write,scim.read,openid,cloud_controller.admin" unless services_user -%>
+<% services_userid, services_password = services_user.split("\|")[0..1] if services_user -%>
+
 name: <%= find("name") %>
 director_uuid: <%= find("director_uuid") %>
 
@@ -58,7 +66,7 @@ networks:
 resource_pools:
 - name: common
   network: cf
-  size: 8
+  size: 7
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -136,16 +144,6 @@ jobs:
   - name: cf
     static_ips:
     - <%= ip( 2, 'cf.static') %>
-
-- name: vcap_redis
-  release: <%= find("releases")[0]["name"] %>
-  template: vcap_redis
-  instances: 1
-  resource_pool: common
-  networks:
-  - name: cf
-    static_ips:
-    - <%= ip( 4, 'cf.static') %>
 
 - name: uaa
   release: <%= find("releases")[0]["name"] %>
@@ -262,8 +260,8 @@ jobs:
     uaa_client_id: "cf"
     uaa_endpoint: http://uaa.<%= find("properties.domain") %>
     uaa_client_auth_credentials:
-      username: admin
-      password: the_admin_pw
+      username: <%= services_userid || "services" %>
+      password: <%= services_password || random_string(12, :services) %>
     mysql_gateway:
       token: mysql-token
       cc_api_version: v2
@@ -305,8 +303,8 @@ jobs:
       uaa_client_id: "cf"
       uaa_endpoint: http://uaa.<%= find("properties.domain") %>
       uaa_client_auth_credentials:
-        username: admin
-        password: the_admin_pw
+        username: <%= services_userid || "services" %>
+        password: <%= services_password || random_string(12, :services) %>
       service_auth_tokens:
         mongodb_mongolab-dev: ad_mongodb_mongolabdev_token
         smtp_sendgrid-dev: ad_smtp_sendgriddev_token
@@ -449,12 +447,6 @@ properties:
     cc_partition: default
 
   ccng: *cc
-
-  vcap_redis:
-    address: <%= ip( 4, 'cf.static') %>
-    port: 3456
-    password: "c1oudc0wc1oudc0w"
-    maxmemory: 500000000
 
   router:
     port: 8081
@@ -719,10 +711,12 @@ properties:
         redirect-uri: http://servicesmgmt.<%= find("properties.domain") %>/auth/cloudfoundry/callback
         override: true
         autoapprove: true
-
     scim:
       users:
-      - admin|the_admin_pw|scim.write,scim.read,openid,cloud_controller.admin
+<% users.each do |u| -%>
+      - <%= u %>
+<% end -%>
+
   collector:
     use_tsdb: false
     use_aws_cloudwatch: true
