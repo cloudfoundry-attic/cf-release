@@ -68,9 +68,9 @@ Data for #{yesterday_date} from #{CONFIG["domain"]}:
 
 #{body}
 --#{boundary}
-Content-Type: multipart/mixed; name=\"logs.zip\"
+Content-Type: application/zip; name=logs.zip
 Content-Transfer-Encoding:base64
-Content-Disposition: attachment; filename="logs.zip"
+Content-Disposition: attachment; filename=logs.zip
 
 #{encodedcontent}
 --#{boundary}--
