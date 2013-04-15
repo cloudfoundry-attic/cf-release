@@ -297,42 +297,6 @@ jobs:
       supported_versions: ["2.2"]
       version_aliases:
         current: "2.2"
-    marketplace_gateway:
-      marketplace: appdirect
-      cc_api_version: v2
-      uaa_client_id: "cf"
-      uaa_endpoint: http://uaa.<%= find("properties.domain") %>
-      uaa_client_auth_credentials:
-        username: <%= services_userid || "services" %>
-        password: <%= services_password || random_string(12, :services) %>
-      service_auth_tokens:
-        mongodb_mongolab-dev: ad_mongodb_mongolabdev_token
-        smtp_sendgrid-dev: ad_smtp_sendgriddev_token
-        redis_redistogo-dev: ad_redis_redistogodev_token
-      external_uri: http://appdirect-mpgw.<%= find("properties.domain") %>
-      refresh_interval: 300
-      node_timeout: 15
-      whitelist:
-      - mongodb_mongolab-dev
-      - smtp_sendgrid-dev
-      - redis_redistogo-dev
-      service_mappings:
-      - cc_name: mongodb
-        cc_provider: mongolab-dev
-        ad_name: mongodb
-        ad_provider: mongolab-dev
-      - cc_name: smtp
-        cc_provider: sendgrid-dev
-        ad_name: smtp
-        ad_provider: sendgrid-dev
-      - cc_name: redis
-        cc_provider: redistogo-dev
-        ad_name: redis
-        ad_provider: redistogo-dev
-      appdirect:
-        endpoint: "https://dev3cloudfoundry.appdirect.com"
-        key: "k"
-        secret: "s"
     oauth2_gateway:
       token: oauth2-token
 
