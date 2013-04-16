@@ -2,7 +2,7 @@
 <%
 service = "mysql"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
-plan = properties.plan || "100"
+plan = properties.mysql_node.plan
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
 connection_pool_size = plan_enabled && plan_conf.connection_pool_size
 node = properties.mysql_node
@@ -25,8 +25,8 @@ logging:
   <% end %>
 pid: /var/vcap/sys/run/mysql_node_external/mysql_node_external.pid
 node_id: <%= "#{service}_node_#{plan}_#{spec.index}" %>
-default_version: "5.5"
-supported_versions: ["5.5"]
+default_version: "n/a"
+supported_versions: ["n/a"]
 
 max_db_size: <%= plan_enabled && plan_conf.max_db_size || 128 %>
 max_long_query: <%= plan_enabled && plan_conf.max_long_query || 3 %>
@@ -34,7 +34,7 @@ max_long_tx: <%= plan_enabled && plan_conf.max_long_tx || 0 %>
 kill_long_tx: <%= plan_enabled && !plan_conf.kill_long_tx.nil? ? plan_conf.kill_long_tx : 'true' %>
 max_user_conns: <%= plan_enabled && plan_conf.max_clients || 20 %>
 mysql:
-  "5.5":
+  "n/a":
     host: "<%= external_db.address %>"
     port: <%= external_db.port %>
     user: "<%= external_db.user %>"

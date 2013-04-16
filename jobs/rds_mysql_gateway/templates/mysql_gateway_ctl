@@ -2,9 +2,9 @@
 
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
-RUN_DIR=/var/vcap/sys/run/mysql_gateway
-LOG_DIR=/var/vcap/sys/log/mysql_gateway
-JOB_DIR=/var/vcap/jobs/mysql_gateway
+RUN_DIR=/var/vcap/sys/run/rds_mysql_gateway
+LOG_DIR=/var/vcap/sys/log/rds_mysql_gateway
+JOB_DIR=/var/vcap/jobs/rds_mysql_gateway
 
 PIDFILE=$RUN_DIR/mysql_gateway.pid
 
@@ -13,7 +13,7 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
-    pid_guard $PIDFILE "MySQL gateway"
+    pid_guard $PIDFILE "RDS MySQL gateway"
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
@@ -37,7 +37,7 @@ case $1 in
     ;;
 
   *)
-    echo "Usage: mysql_gateway_ctl {start|stop}"
+    echo "Usage: rds_mysql_gateway_ctl {start|stop}"
 
     ;;
 
