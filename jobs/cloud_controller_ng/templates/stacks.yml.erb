@@ -2,4 +2,4 @@
 # in the create_stacks_table migration
 default: "lucid64"
 
-stacks: <%= p("ccng.stacks", []) %>
+stacks: <%= p("ccng.stacks", []).to_yaml.gsub("---", "") %>
