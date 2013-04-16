@@ -104,7 +104,7 @@ http {
     }
 
     # Droplet uploads from the stager should be authenticated
-    location /staging/droplets/ {
+    location ~ /staging/(buildpack_cache|droplets)/ {
       # Pass along auth header
       set $auth_header $upstream_http_x_auth;
       proxy_set_header Authorization $auth_header;
