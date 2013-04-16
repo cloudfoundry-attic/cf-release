@@ -89,6 +89,8 @@ properties:
   default: 1
  ccng.max_staging_runtime:
   description:
+ ccng.stacks:
+  description:
  ccng.staging_upload_user:
   description:
  ccng.staging_upload_password:
