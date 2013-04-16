@@ -2,7 +2,6 @@
 name: warden
 dependencies:
 - ruby_next
-- rootfs_lucid64
 files:
 - warden/warden/**/*
 - pkg_utils/*
