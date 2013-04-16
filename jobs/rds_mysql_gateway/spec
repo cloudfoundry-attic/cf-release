@@ -1,5 +1,5 @@
 ---
-name: mysql_gateway
+name: rds_mysql_gateway
 
 templates:
   mysql_gateway_ctl: bin/mysql_gateway_ctl

@@ -1,6 +1,6 @@
 ---
 <%
-service = "mysql"
+service = "rds_mysql"
 gateway = eval("properties.#{service}_gateway")
 acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
@@ -11,9 +11,6 @@ if supported_plans
 else
   plan_mgmt.instance_eval("def fields; @table.keys; end;") if plan_mgmt
 end
-supported_versions = gateway.supported_versions
-version_aliases = gateway.version_aliases
-version_aliases.instance_eval("def fields; @table.keys; end;") if version_aliases
 nats_props_name = properties.nats_props || "nats"
 nats_props = properties.send(nats_props_name)
 nats = "nats://#{nats_props.user}:#{nats_props.password}@#{nats_props.address}:#{nats_props.port}"
@@ -26,9 +23,10 @@ mbus: <%= nats %>
 cloud_controller_uri: <%= properties.cc.srv_api_uri %>
 
 service:
-  name: mysql
-  version: "5.1"
-  description: 'MySQL database'
+  name: 'mysql'
+  version: 'n/a'
+  description: 'RDS MySQL by Amazon'
+  provider: aws
   plans:
   <% if plan_enabled %>
     <% for plan in plan_mgmt.fields.each %>
@@ -38,10 +36,6 @@ service:
       description: <%= "'#{plan_description}'" %>
       free: <%= !plan_free_flag.nil? && plan_free_flag.to_s || "true" %>
     <% end %>
-  <% else %>
-    "free":
-      description: "free plan"
-      free: true
   <% end %>
   default_plan: '<%= gateway.default_plan || 'free' %>'
   cf_plan_id:
@@ -50,31 +44,7 @@ service:
 <% end if plan_mgmt %>
   tags: ['relational']
   timeout: <%= properties.mysql_gateway.service_timeout || 10 %>
-<% if acls %>
-  <% if acls.is_a? String %>
-  acls: <%= acls %>
-  <% else %>
-    <% acls.plans.instance_eval("def fields; @table.keys; end;") if acls && acls.plans %>
-  acls:
-    <%= "users: ['#{acls.users.join("', '")}']" if acls.users %>
-    <%= "wildcards: ['#{acls.wildcards.join("', '")}']" if acls.wildcards %>
-    <% if acls.plans %>
-    plans:
-      <% acls.plans.fields.each do |plan|%>
-      <%= "#{plan}:"%>
-        <%= "users: ['#{acls.plans.send(plan.to_sym).users.join("', '")}']" if acls.plans.send(plan.to_sym).users %>
-        <%= "wildcards: ['#{acls.plans.send(plan.to_sym).wildcards.join("', '")}']" if acls.plans.send(plan.to_sym).wildcards %>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-  supported_versions: <%= "['#{supported_versions.join("' , '")}']" %>
-<% if version_aliases && !version_aliases.fields.empty? %>
-  version_aliases:
-  <% for version_alias in version_aliases.fields.each %>
-    <%= "'#{version_alias}': '#{version_aliases.send(version_alias.to_sym)}'" %>
-  <% end %>
-<% end %>
+  version_aliases: {}
 
 <% if gateway.ip_route %>
 ip_route: <%= gateway.ip_route %>
@@ -82,42 +52,31 @@ ip_route: <%= gateway.ip_route %>
 
 cc_api_version: <%= cc_api_version %>
 
-<% if cc_api_version == "v2" %>
-gateway_name: "Mysql (Core) Gateway"
+gateway_name: "RDS Mysql Gateway"
 uaa_client_id: <%= properties.uaa_client_id || "vmc" %>
 uaa_endpoint: <%= properties.uaa_endpoint %>
 uaa_client_auth_credentials:
   username: <%= properties.uaa_client_auth_credentials.username %>
   password: "<%= properties.uaa_client_auth_credentials.password %>"
 service_auth_tokens:
-  mysql_core: "<%= gateway.token %>"
-<% end %>
+  mysql_aws: "<%= gateway.token %>"
 
 token: "<%= gateway.token %>"
 logging:
-  file: /var/vcap/sys/log/mysql_gateway/mysql_gateway.log
+  file: /var/vcap/sys/log/rds_mysql_gateway/mysql_gateway.log
   level: debug
   <% if properties.syslog_aggregator %>
-  syslog: vcap.mysql_gateway
+  syslog: vcap.rds_mysql_gateway
   <% end %>
 
 
 node_timeout: <%= gateway.node_timeout || 8 %>
 
-pid: /var/vcap/sys/run/mysql_gateway/mysql_gateway.pid
+pid: /var/vcap/sys/run/rds_mysql_gateway/mysql_gateway.pid
 z_interval: <%= gateway.z_interval || 30 %>
 check_orphan_interval: <%= gateway.check_orphan_interval || -1 %>
 double_check_orphan_interval: <%= gateway.double_check_orphan_interval || 300 %>
 max_nats_payload: <%= nats_props.max_payload || 1048576 %>
-<% if lifecycle and lifecycle.resque %>
-resque:
-  host: <%= lifecycle.resque.host %>
-  port: <%= lifecycle.resque.port %>
-  password: "<%= lifecycle.resque.password %>"
-  expire: <%= lifecycle.resque.expire %>
-download_url_template: "http://<%= lifecycle.download_url %>/serialized/%{service}/%{name}/snapshots/%{snapshot_id}?token=%{token}"
-<% end %>
-
 <% if plan_enabled %>
 plan_management:
   plans:

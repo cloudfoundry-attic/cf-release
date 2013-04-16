@@ -242,6 +242,7 @@ jobs:
   release: <%= find("releases")[0]["name"] %>
   template:
   - mysql_gateway
+  - rds_mysql_gateway
   - postgresql_gateway
   - redis_gateway
   - mongodb_gateway
@@ -261,6 +262,10 @@ jobs:
     uaa_client_auth_credentials:
       username: <%= services_userid || "services" %>
       password: <%= services_password || random_string(12, :services) %>
+    rds_mysql_gateway:
+      token: mysql-token
+      cc_api_version: v2
+      check_orphan_interval: 7200
     mysql_gateway:
       token: mysql-token
       cc_api_version: v2
