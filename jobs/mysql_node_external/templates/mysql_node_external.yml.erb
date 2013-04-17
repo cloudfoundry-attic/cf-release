@@ -1,6 +1,6 @@
 ---
 <%
-service = "mysql"
+service = "rds_mysql"
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan = properties.mysql_node.plan
 plan_conf = plan_enabled && properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
