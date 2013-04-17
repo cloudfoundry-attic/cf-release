@@ -2,7 +2,6 @@
 <%
 service = "rds_mysql"
 gateway = eval("properties.#{service}_gateway")
-acls = gateway.acls
 plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
 plan_mgmt = plan_enabled && properties.service_plans.send(service.to_sym)
 supported_plans = properties.supported_plans
