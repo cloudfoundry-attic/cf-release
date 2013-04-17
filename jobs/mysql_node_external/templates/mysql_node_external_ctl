@@ -1,14 +1,6 @@
 #!/bin/bash
 <%
-service = "rds_mysql"
 lifecycle = properties.service_lifecycle
-
-plan_enabled = properties.service_plans && properties.service_plans.send(service.to_sym)
-plan = properties.plan
-if plan_enabled
-  plan_conf = properties.service_plans.send(service.to_sym).send(plan.to_sym).configuration
-  capacity = plan_conf.capacity || -1
-end
 %>
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
