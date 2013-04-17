@@ -42,7 +42,7 @@ service:
     <%= "'#{pf}': #{plan_mgmt.send(pf).configuration.cf_plan_id}" %>
 <% end if plan_mgmt %>
   tags: ['relational']
-  timeout: <%= properties.mysql_gateway.service_timeout || 10 %>
+  timeout: <%= properties.rds_mysql_gateway.service_timeout || 10 %>
   version_aliases: {}
 
 <% if gateway.ip_route %>
