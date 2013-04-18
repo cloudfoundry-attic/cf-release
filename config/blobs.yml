@@ -788,9 +788,10 @@ buildpack_cache/manifest.nodejs:
   sha: 37ca1b3b4d2e504bf8b2011c363731802576c109
   size: 41
 buildpack_cache/manifest.npm:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjEyMDRlNGU4NmVlMzk2OTIwNTE0OGUw%0AZjA2NDgzOCIsInNpZyI6Ik4rN0Jwd0dwRXFSSU5lWStnaG1tQ0ZCQ3AvZz0i%0AfQ==%0A
-  sha: f42221aa7962fade35b87345cb1419072e45c1d2
-  size: 22
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E1MWUxMjEwMDRlNGU3ZDUxOTA2Y2QwNTE3MDYz%0AZWY1NzgyMCIsInNpZyI6InY4R2FwQ1RjVkpnaW51SGNWSWRSVmEzYkNDcz0i%0AfQ==%0A
+  sha: !binary |-
+    NGUwZGZiNGFiM2VhMTg2MThjYWJmZDY2ODdkMGQ0ZmM4Y2FlOWJlNQ==
+  size: 29
 buildpack_cache/nodejs-0.10.0.tgz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjIyMDRlNGU5ODYzOGI3NjMwNTE0OGUw%0AZWJjZDc4NCIsInNpZyI6Im1vUHZ5LzdzU0lubVRYUnZVc2hCK01vSy9aMD0i%0AfQ==%0A
   sha: f39fcdda3abed4296fad5dd162055c04e15b1587
@@ -885,3 +886,8 @@ rootfs/lucid64.tar.gz:
   sha: !binary |-
     ZGNjOWQ1NDg3M2FjY2YzNjQwODBiYWU2MTdiNmQzM2VmOTZmNGY1Yg==
   size: 188501771
+buildpack_cache/npm-1.2.18.tgz:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIyMDRlNGU5ODYzYjFiNzQwNTE3MDVl%0AM2Q1YjdjNiIsInNpZyI6InhIc3JrOHJkdW9Bc0ZjdDNzcTdBOSt0R0xYMD0i%0AfQ==%0A
+  sha: !binary |-
+    NmZlMDMyZTRkY2NjOTc4NjQzODM2NGYyYWM3MjEwNTNkZDFlMTIxZQ==
+  size: 2264377
