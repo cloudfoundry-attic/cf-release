@@ -46,22 +46,6 @@ networks:
       security_groups:
       - cf
       subnet: <%= find('properties.template_only.aws.subnet_ids.cf') %>
-- name: services
-  type: manual
-  subnets:
-  - range: 10.10.4.0/23
-    name: default_unused
-    reserved:
-    - 10.10.4.2 - 10.10.4.9
-    static:
-    - 10.10.4.10 - 10.10.4.30
-    gateway: 10.10.4.1
-    dns:
-    - 10.10.0.2  # amazon has only 1 DNS server for the whole VPC at x.x.0.2
-    cloud_properties:
-      security_groups:
-      - cf
-      subnet: <%= find('properties.template_only.aws.subnet_ids.services') %>
 
 resource_pools:
 - name: common
@@ -93,33 +77,6 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
     elbs:
     - cfrouter
-- name: services-small
-  network: services
-  size: 1
-  stemcell:
-    name: bosh-stemcell
-    version: latest
-  cloud_properties:
-    instance_type: m1.small
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
-- name: services-smallfast
-  network: services
-  size: 1
-  stemcell:
-    name: bosh-stemcell
-    version: latest
-  cloud_properties:
-    instance_type: c1.medium
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
-- name: services-large
-  network: services
-  size: 1
-  stemcell:
-    name: bosh-stemcell
-    version: latest
-  cloud_properties:
-    instance_type: m1.large
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 
 jobs:
 # ====================== BEGIN CF JOBS =========================
@@ -218,142 +175,6 @@ jobs:
   networks:
     - name: cf
 
-# ====================== BEGIN SERVICES JOBS =========================
-
-- name: services_redis
-  release: <%= find("releases")[0]["name"] %>
-  template: vcap_redis
-  instances: 1
-  resource_pool: services-small
-  persistent_disk: 1024
-  networks:
-  - name: services
-    static_ips:
-    - <%= ip( 1, 'services.static') %>
-  properties:
-    vcap_redis:
-      port: 3456
-      password: bt3FXngo
-      maxmemory: 2000000000
-      persistence:
-        dir: /var/vcap/store/vcap_redis
-
-- name: service_gateways
-  release: <%= find("releases")[0]["name"] %>
-  template:
-  - mysql_gateway
-  - rds_mysql_gateway
-  - postgresql_gateway
-  - redis_gateway
-  - mongodb_gateway
-  - rabbit_gateway
-  - oauth2_gateway
-  - servicesmgmt
-  instances: 1
-  resource_pool: services-smallfast
-  persistent_disk: 7168
-  networks:
-  - name: services
-    static_ips:
-    - <%= ip( 2, 'services.static') %>
-  properties:
-    uaa_client_id: "cf"
-    uaa_endpoint: http://uaa.<%= find("properties.domain") %>
-    uaa_client_auth_credentials:
-      username: <%= services_userid || "services" %>
-      password: <%= services_password || random_string(12, :services) %>
-    rds_mysql_gateway:
-      token: rds-mysql-token
-      cc_api_version: v2
-      check_orphan_interval: 7200
-    mysql_gateway:
-      token: mysql-token
-      cc_api_version: v2
-      check_orphan_interval: 7200
-      supported_versions: ["5.5"]
-      version_aliases:
-        current: "5.5"
-    postgresql_gateway:
-      token: postgresql-token
-      cc_api_version: v2
-      check_orphan_interval: 7200
-      supported_versions: ["9.2"]
-      version_aliases:
-        current: "9.2"
-    rabbit_gateway:
-      token: rabbitmq-token
-      cc_api_version: v2
-      default_plan: "100"
-      supported_versions: ["3.0"]
-      version_aliases:
-        current: "3.0"
-    redis_gateway:
-      token: redis-token
-      cc_api_version: v2
-      default_plan: "100"
-      supported_versions: ["2.6"]
-      version_aliases:
-        current: "2.6"
-    mongodb_gateway:
-      token: mongodb-token
-      cc_api_version: v2
-      default_plan: "100"
-      supported_versions: ["2.2"]
-      version_aliases:
-        current: "2.2"
-    oauth2_gateway:
-      token: oauth2-token
-
-- name: service_nodes
-  release: <%= find("releases")[0]["name"] %>
-  template:
-  - redis_node_ng
-  - mongodb_node_ng
-  - mysql_node_external
-  - postgresql_node_ng
-  - rabbit_node_ng
-  instances: 1
-  resource_pool: services-large
-  persistent_disk: 7168
-  networks:
-  - name: services
-    static_ips:
-    - <%= ip( 3, 'services.static') %>
-  properties:
-    plan: "100"
-    redis_node:
-      supported_versions: ["2.6"]
-      default_version: "2.6"
-      health_check_port: 2345
-      warden_socket_path: '/tmp/warden_redis.sock'
-    mongodb_node:
-      supported_versions: ["2.2"]
-      default_version: "2.2"
-      max_tmp: 900
-      health_check_port: 2346
-      warden_socket_path: '/tmp/warden_mongodb.sock'
-    rabbit_node:
-      supported_versions: ["3.0"]
-      default_version: "3.0"
-      health_check_port: 2347
-      warden_socket_path: '/tmp/warden_rabbit.sock'
-    mysql_node:
-      plan: "free"
-      external_dbs:
-      - address: "<%= find("properties.mysql-service-public.address") %>"
-        port: <%= find("properties.mysql-service-public.port") %>
-        <%- role = find("properties.mysql-service-public.roles").detect{|hash| hash['tag'] == 'admin'} -%>
-        user: "<%= role['name'] %>"
-        password: "<%= role['password'] %>"
-    postgresql_node:
-      supported_versions: ["9.2"]
-      default_version: "9.2"
-      health_check_port: 2349
-      warden_socket_path: '/tmp/warden_postgresql.sock'
-      production: true
-      password: F62a59vbcgQ4
-
-
 properties:
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
@@ -362,7 +183,6 @@ properties:
 
   networks:
     apps: cf
-    services: services
     management: cf
 
   nats:
@@ -379,10 +199,6 @@ properties:
 
   uaadb:
     <%= find("properties.uaadb").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
-
-  # this property is not directy used, but needs to be kept for future runs of bosh diff
-  mysql-service-public:
-    <%= find("properties.mysql-service-public").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 
   cc: &cc
     srv_api_uri: http://ccng.<%= find("properties.domain") %>
@@ -435,143 +251,8 @@ properties:
     num_instances: 256
 
   service_lifecycle:
-    download_url: service-serialization.<%= find("properties.domain") %>
-    mount_point: /var/vcap/service_lifecycle
-    tmp_dir: /var/vcap/service_lifecycle/tmp_dir
-    resque:
-      host: <%= ip( 1, 'services.static') %>
-      port: 3456
-      password: bt3FXngo
     serialization_data_server:
     - 0.serialization-data-server.default.<%= find("name") %>.bosh
-
-  service_plans:
-    rds_mysql:
-      "free":
-        description: "Shared service instance, 1MB memory, 10MB storage, 10 connections"
-        job_management:
-          high_water: 900
-          low_water: 100
-        configuration:
-          capacity: 100
-          max_db_size: 10
-          key_buffer: 128
-          innodb_buffer_pool_size: 128
-          max_allowed_packet: 16
-          thread_cache_size: 8
-          query_cache_size: 8
-          max_long_query: 3
-          max_long_tx: 30
-          max_clients: 10
-          max_connections: 100
-          table_open_cache: 200
-          innodb_tables_per_database: 100
-          connection_pool_size:
-            min: 5
-            max: 10
-          backup:
-            # enable: true
-          lifecycle:
-            # enable: true
-            serialization: enable
-            snapshot:
-              quota: 1
-          warden:
-            enable: false
-
-    redis:
-      "100":
-        description: "Dedicated server, shared VM, 20MB memory, 50 connections"
-        free: true
-        job_management:
-          high_water: 410
-          low_water: 40
-        configuration:
-          capacity: 220
-          max_memory: 20
-          memory_overhead: 5
-          max_clients: 50
-          persistent: true
-          backup:
-            enable: true
-          lifecycle:
-            enable: true
-            serialization: enable
-            snapshot:
-              quota: 1
-            worker_count: 1
-
-    mongodb:
-      "100":
-        description: "Dedicated server, shared VM, 20MB memory, 50 connections"
-        free: true
-        job_management:
-          high_water: 410
-          low_water: 40
-        configuration:
-          capacity: 125
-          max_clients: 10
-          quota_files: 4
-          quota_data_size: 240
-          enable_journaling: true
-          backup:
-            enable: true
-          lifecycle:
-            enable: true
-            serialization: enable
-            snapshot:
-              quota: 1
-            worker_count: 1
-
-    postgresql:
-      "100":
-        description: "Shared server, shared VM, 1MB memory, 10MB storage, 10 connections"
-        free: true
-        job_management:
-          high_water: 450
-          low_water: 50
-        configuration:
-          capacity: 500
-          max_db_size: 10
-          max_long_query: 3
-          max_long_tx: 10
-          max_clients: 10
-          max_connections: 1000
-          shared_buffers: 312
-          effective_cache_size: 1115
-          shmmax: 390070272
-          checkpoint_segments: 16
-          checkpoint_segments_max: 50
-          maintenance_work_mem: 30
-          backup:
-            enable: true
-          lifecycle:
-            enable: true
-            serialization: enable
-            snapshot:
-              quota: 1
-            worker_count: 1
-          warden:
-            enable: false
-
-    rabbit:
-      "100":
-        description: "Dedicated server, shared VM, 1MB messages/day, 10 connections"
-        free: true
-        job_management:
-          high_water: 130
-          low_water: 20
-        configuration:
-          capacity: 150
-          max_disk: 10
-          max_clients: 10
-          vm_memory_high_watermark: 0.00587
-          free_disk_low_water: 0.01832
-          bandwidth_quotas:
-            per_day: 1
-            per_second: 0.01
-          filesystem_quota: true
-
 
   syslog_aggregator:
     address: <%= ip( 1, 'cf.static') %>
@@ -584,7 +265,6 @@ properties:
     port: 8080
     upload_file_expire_time: 600
     purge_expired_interval: 30
-
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
