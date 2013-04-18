@@ -1,0 +1,12 @@
+<%
+  rotate = properties.router.logrotate && properties.router.logrotate.rotate
+  size = properties.router.logrotate && properties.router.logrotate.size
+%>
+/var/vcap/sys/log/gorouter/gorouter*.log {
+  missingok
+  rotate <%= rotate || 3 %>
+  compress
+  delaycompress
+  copytruncate
+  size=<%= size || "50k" %>
+}
