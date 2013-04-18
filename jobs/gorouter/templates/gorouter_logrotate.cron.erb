@@ -1,0 +1,2 @@
+<% freq_min=properties.router && properties.router.logrotate && properties.router.logrotate.freq_min || 5 %>
+*/<%= freq_min %> * * * * test -x /usr/sbin/logrotate && /usr/sbin/logrotate /var/vcap/jobs/gorouter/config/logrotate.conf >>/var/vcap/sys/log/gorouter/gorouter_logrotate_cron.log 2>&1

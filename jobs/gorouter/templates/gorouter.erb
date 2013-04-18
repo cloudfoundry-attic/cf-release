@@ -60,6 +60,8 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/gorouter/config
     <% end %>
 
+    (crontab -l | sed /gorouter.*logrotate/d; cat /var/vcap/jobs/gorouter/config/gorouter_logrotate.cron) | sed /^$/d | crontab
+
     setcap cap_net_bind_service=+ep /var/vcap/packages/gorouter/bin/router
 
     exec chpst -u vcap:vcap /var/vcap/packages/gorouter/bin/router \
