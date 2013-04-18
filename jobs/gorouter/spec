@@ -1,7 +1,7 @@
 ---
 name: gorouter
 templates:
-  gorouter.erb: bin/gorouter
+  gorouter_ctl.erb: bin/gorouter_ctl
   gorouter.yml.erb: config/gorouter.yml
 
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
