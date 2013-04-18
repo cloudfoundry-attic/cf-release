@@ -1,5 +1,0 @@
-check process rds_mysql_gateway
-  with pidfile /var/vcap/sys/run/rds_mysql_gateway/mysql_gateway.pid
-  start program "/var/vcap/jobs/rds_mysql_gateway/bin/mysql_gateway_ctl start"
-  stop program "/var/vcap/jobs/rds_mysql_gateway/bin/mysql_gateway_ctl stop"
-  group vcap
