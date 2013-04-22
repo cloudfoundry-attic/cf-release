@@ -1,8 +1,0 @@
----
-name: vblob_gateway
-dependencies:
-- ruby
-- sqlite
-files:
-- services_contrib/ng/vblob/**/*
-- pkg_utils/*

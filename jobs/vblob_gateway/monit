@@ -1,5 +1,0 @@
-check process vblob_gateway
-  with pidfile /var/vcap/sys/run/vblob_gateway/vblob_gateway.pid
-  start program "/var/vcap/jobs/vblob_gateway/bin/vblob_gateway_ctl start"
-  stop program "/var/vcap/jobs/vblob_gateway/bin/vblob_gateway_ctl stop"
-  group vcap
