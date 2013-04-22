@@ -35,3 +35,45 @@ packages:
 - buildpack_cache
 - insight_agent
 - libyaml
+
+properties:
+  dea_next.streaming_timeout:
+    description: Timeout for directory server streaming
+    default: 60
+  dea_next.memory_mb:
+    description: Memory (Mb) allocated to the DEA
+    default: 8000
+  dea_next.memory_overcommit_factor:
+    description:
+    default: 1
+  dea_next.disk_mb:
+    description:
+    default: 32000
+  dea_next.num_instances:
+    description: Number of DEA instances to run
+    default: 30
+  dea_next.max_staging_duration:
+    description: Maximum time allowed for attempting to stage a droplet
+    default: 900
+  dea_next.stacks:
+    description: Array of strings representing the supported stacks
+    default:
+      - lucid64
+  dea_next.deny_networks:
+    description: Networks for Warden to always deny
+  dea_next.allow_networks:
+    description: Networks for Warden to always allow
+  domain:
+    description: Base host for the directory server
+  syslog_aggregator.address:
+    description: Host of syslog_aggregator if it is running (optional)
+  syslog_aggregator.port:
+    description: Port of syslog_aggregator if it is running (optional)
+  nats.address:
+    description: Host address for NATS used by DEA
+  nats.port:
+    description: Port to access NATS
+  nats.user:
+    description: Credentials for connecting to NATS
+  nats.password:
+    description: Credentials for connecting to NATS
