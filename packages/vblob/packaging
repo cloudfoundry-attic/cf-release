@@ -1,4 +1,0 @@
-name="vblob_src"
-echo "Using vblob src package"
-
-cp -a $name/* ${BOSH_INSTALL_TARGET}

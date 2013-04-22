@@ -1,5 +1,0 @@
-check process stager
-  with pidfile /var/vcap/sys/run/stager/stager.pid
-  start program "/var/vcap/jobs/stager/bin/stager_ctl start"
-  stop program "/var/vcap/jobs/stager/bin/stager_ctl stop"
-  group vcap

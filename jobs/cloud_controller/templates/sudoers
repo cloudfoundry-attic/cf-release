@@ -1,7 +1,0 @@
-Defaults	!lecture,tty_tickets,!fqdn
-
-root	ALL=(ALL) ALL
-%admin ALL=(ALL) ALL
-
-vcap	ALL=(%vcap-dea) NOPASSWD: ALL
-vcap  ALL=(root) NOPASSWD: /bin/chown
