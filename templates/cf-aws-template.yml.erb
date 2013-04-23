@@ -266,6 +266,13 @@ properties:
     upload_file_expire_time: 600
     purge_expired_interval: 30
 
+  login:
+    protocol: https
+    links:
+      home: https://console.<%= find("properties.domain") %>
+      passwd: https://console.<%= find("properties.domain") %>/password_resets/new
+      signup: https://console.<%= find("properties.domain") %>/register
+
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     url: http://uaa.<%= find("properties.domain") %>
