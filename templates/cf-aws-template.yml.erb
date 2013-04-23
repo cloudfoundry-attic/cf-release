@@ -209,7 +209,7 @@ properties:
     staging_upload_user: zxsfhgjg
     staging_upload_password: ZNVfdase9
     resource_pool:
-      minimum_size: 1048576
+      minimum_size: 65536
       resource_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-resources
       fog_connection:
         provider: AWS
