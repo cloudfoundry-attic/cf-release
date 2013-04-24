@@ -1,0 +1,88 @@
+---
+nats_uri: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+
+dea_ruby: /var/vcap/packages/ruby/bin/ruby
+
+pid_filename: /var/vcap/sys/run/dea_next/dea_next.pid
+
+base_dir: /var/vcap/data/dea_next
+
+warden_socket: /var/vcap/data/warden/warden.sock
+
+directory_server:
+  v1_port: 12345
+  v2_port: 34567
+  file_api_port: 23456
+  <% if properties.dea_next && properties.dea_next.streaming_timeout %>
+  streaming_timeout: <%= properties.dea_next.streaming_timeout %>
+  <% else %>
+  streaming_timeout: 60
+  <% end %>
+  logging:
+    file: /var/vcap/sys/log/dea_next/dir_server.log
+    <% if properties.syslog_aggregator %>
+    syslog: vcap.directory_server
+    <% end %>
+    level: debug
+
+domain: <%= properties.domain %>
+
+logging:
+  file: /var/vcap/sys/log/dea_next/dea_next.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.dea_next
+  <% end %>
+  level: debug
+
+index: <%= spec.index %>
+
+intervals:
+  heartbeat: 10
+  advertise: 5
+
+resources:
+  <% if properties.dea_next && properties.dea_next.memory_mb %>
+  memory_mb: <%= properties.dea_next.memory_mb %>
+  <% else %>
+  memory_mb: 8000
+  <% end %>
+
+  <% if properties.dea_next && properties.dea_next.memory_overcommit_factor %>
+  memory_overcommit_factor: <%= properties.dea_next.memory_overcommit_factor %>
+  <% else %>
+  memory_overcommit_factor: 1
+  <% end %>
+
+  <% if properties.dea_next && properties.dea_next.disk_mb %>
+  disk_mb: <%= properties.dea_next.disk_mb %>
+  <% else %>
+  disk_mb: 32000
+  <% end %>
+
+  <% if properties.dea_next && properties.dea_next.disk_overcommit_factor %>
+  disk_overcommit_factor: <%= properties.dea_next.disk_overcommit_factor %>
+  <% else %>
+  disk_overcommit_factor: 1
+  <% end %>
+
+  <% if properties.dea_next && properties.dea_next.num_instances %>
+  num_instances: <%= properties.dea_next.num_instances %>
+  <% else %>
+  num_instances: 30
+  <% end %>
+
+bind_mounts:
+  - src_path: /var/vcap/packages/
+  - src_path: /var/vcap/data/packages
+
+# This is where the execution agent determines its available runtimes.
+# version flags are assumed to be '-v' unless noted below.
+
+runtimes:
+  - ruby18
+  - ruby19
+  - node
+  - node06
+  - node08
+  - java
+  - java7

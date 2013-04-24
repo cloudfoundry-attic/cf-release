@@ -1,0 +1,5 @@
+check process mongodb_node
+  with pidfile /var/vcap/sys/run/mongodb_node/mongodb_node.pid
+  start program "/var/vcap/jobs/mongodb_node/bin/mongodb_node_ctl start"
+  stop program "/var/vcap/jobs/mongodb_node/bin/mongodb_node_ctl stop"
+  group vcap
