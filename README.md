@@ -14,15 +14,20 @@ If you want a stable branch, we recommend that you use the **release-candidate**
 
 ## Repository Contents
 
-This repository is structures for use with BOSH, an open source tool for release engineering, deployment and lifecycle management of large scale distributed services. The directories are:
+This repository is structures for use with BOSH, an open source tool for release engineering, deployment and lifecycle management of large scale distributed services. The directories are for two purposes:
 
-- **.final_builds**
-- **config**: pointers to dependencies cached in the BOSH blobstore.
-- **git**
+Source:
+
 - **jobs**: start and stop commands for each of the jobs (processes) running on Cloud Foundry nodes.
 - **packages**: packaging instructions used by BOSH to build each of the dependencies.
-- **releases**: yml files containing the git commit shas for each package in a given release.
 - **src**: the source code for the components in Cloud Foundry. Note that each of the components is a submodule with a pointer to a specific sha. So even if you do not use BOSH to deploy Cloud Foundry, the list of submodule pointers
+
+Releases:
+
+- **releases**: yml files containing the references to blobs for each package in a given release; these are solved within **.final_builds**
+- **.final_builds**: references into the public blostore for final jobs & packages (each referenced by one or more **releases**)
+- **config**: URLs and access credentials to the bosh blobstore for storing final releases
+- **git**: Local git hooks
 
 See the [documentation for deploying Cloud Foundry](http://cloudfoundry.github.com/docs/running/deploying-cf/) for more information about using BOSH.
 
