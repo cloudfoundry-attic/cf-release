@@ -1,5 +1,0 @@
-check process redis_node
-  with pidfile /var/vcap/sys/run/redis_node/redis_node.pid
-  start program "/var/vcap/jobs/redis_node/bin/redis_node_ctl start"
-  stop program "/var/vcap/jobs/redis_node/bin/redis_node_ctl stop"
-  group vcap
