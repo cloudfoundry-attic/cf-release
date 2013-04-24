@@ -3,9 +3,9 @@
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
 
-<% cc_db_scheme = properties.ccdb.db_scheme %>
-<% cc_db = properties.ccdb.databases.find { |db| db.tag == "cc" } %>
-<% cc_role = properties.ccdb.roles.find { |role| role.tag == "admin" } %>
+<% cc_db_scheme = properties.ccdb_ng.db_scheme %>
+<% cc_db = properties.ccdb_ng.databases.find { |db| db.tag == "cc" } %>
+<% cc_role = properties.ccdb_ng.roles.find { |role| role.tag == "admin" } %>
 
 name: batch
 
@@ -18,7 +18,7 @@ spring_profiles: <%=uaa_db_scheme %>
 
 cloud_controller:
   database:
-    url: jdbc:<%=cc_db_scheme%>://<%= properties.ccdb.address %>:<%= properties.ccdb.port %>/<%= cc_db.name %>
+    url: jdbc:<%=cc_db_scheme%>://<%= properties.ccdb_ng.address %>:<%= properties.ccdb_ng.port %>/<%= cc_db.name %>
     username: <%= cc_role.name %>
     password: "<%= cc_role.password %>"
 
