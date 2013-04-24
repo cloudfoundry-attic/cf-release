@@ -679,10 +679,6 @@ uaa/cloudfoundry-identity-uaa-1.4.1.war:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIyMDRlNGU5ODYzOTI2YjEwNTE1MzQw%0ANGVmMmE2ZiIsInNpZyI6ImRZS1ZCMkVQeEd5MjM5ODNwTlhoamUybFc4OD0i%0AfQ==%0A
   sha: f5834992f993253e54d61d3c4f6ca4cc390b641a
   size: 21351766
-login/cloudfoundry-login-server-1.2.0.war:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2ExMWUxMjEwMDRlNGU3ZDUxMWY4MjEwNTEzNjYz%0AMTcwODgwYyIsInNpZyI6IkFCSitUZm1HanF1RGZlb1RuVVA0UTNUL0w1RT0i%0AfQ==%0A
-  sha: 696c1937cf2f2959f11e872d9ec8a6b66913c1eb
-  size: 7277498
 buildpack_cache/ruby-1.8.7.tgz:
   object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNTE0Nzlh%0AZTQwZmExMyIsInNpZyI6Ikg4YlpUb3JwTGxLNVBleGJNMWgzR1hha29uST0i%0AfQ==%0A
   sha: 14b819b7562e15724fc5cc96430dce643a87c1f7
@@ -882,12 +878,11 @@ postgresql/postgresql-9.2.4-x86_64.tar.gz:
     Y2YzNDBjYTUxZWNhYWZjMDRhYTlkM2M2NDkwZmI3ZDU3ZmQ1YTNiNw==
   size: 10519400
 rootfs/lucid64.tar.gz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIyMDRlNGU5ODYzYjFiNzQwNTE3MTg2%0ANjk2ZjNiNiIsInNpZyI6IjIySmdIRnZJUUJwWjhuZnQ3K2ZKQ0dkNC9YST0i%0AfQ==%0A
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2EyMWUxMjIwMDRlNGU4ZWM2NDdhNTQwNTE2YzMy%0ANjVjYjI4NiIsInNpZyI6IjRZUmYraXFZT29hNzdYVlUvRTFUVnN1UGF2ND0i%0AfQ==%0A
+  sha: e723aca31a17214dd60aaee84d0f56910c152478
+  size: 160081136
+login/cloudfoundry-login-server-1.2.1.war:
+  object_id: eyJvaWQiOiI0ZTRlNzhiY2E2MWUxMjEwMDRlNGU3ZDUxZDk1MGUwNTE3MThm%0AM2Y3NmY5MSIsInNpZyI6ImNqV0FFeFByckQ1cEFKOEhISDlVNTBjb3dYTT0i%0AfQ==%0A
   sha: !binary |-
-    Zjk4MzBjZTNhZjViZmNiYzc3M2UyMjc4MTU4YzIzYjE0NjA5ZjYyZg==
-  size: 220422769
-buildpack_cache/npm-1.2.18.tgz:
-  object_id: eyJvaWQiOiI0ZTRlNzhiY2EzMWUxMjIyMDRlNGU5ODYzYjFiNzQwNTE3MDVl%0AM2Q1YjdjNiIsInNpZyI6InhIc3JrOHJkdW9Bc0ZjdDNzcTdBOSt0R0xYMD0i%0AfQ==%0A
-  sha: !binary |-
-    NmZlMDMyZTRkY2NjOTc4NjQzODM2NGYyYWM3MjEwNTNkZDFlMTIxZQ==
-  size: 2264377
+    ODIyOGZkYWQxNDlmMzU0OTkzMjQzNzdhOGYwYTdlMDA5OTgxZjdmMQ==
+  size: 8014837
