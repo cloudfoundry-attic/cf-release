@@ -1,0 +1,27 @@
+---
+core:
+  - postgres
+  - nats
+  - router
+  - dea
+  - health_manager_next
+  - cloud_controller
+  - serialization_data_server
+  - stager
+  - uaa
+  - vcap_redis
+mongodb:
+  - mongodb_node
+  - mongodb_gateway
+mysql:
+  - mysql_node
+  - mysql_gateway
+postgres:
+  - postgresql_node
+  - postgresql_gateway
+redis:
+  - redis_node
+  - redis_gateway
+rabbitmq:
+  - rabbit_node
+  - rabbit_gateway

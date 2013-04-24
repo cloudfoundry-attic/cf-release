@@ -1,0 +1,123 @@
+#!/usr/bin/env ruby
+#
+require 'fileutils'
+require 'yaml'
+require 'erb'
+
+TEMPLATES = "templates"
+OVERRIDE = "override"
+
+
+def job_dir(job)
+  File.expand_path("../../#{job}", __FILE__)
+end
+
+JOBS = YAML.load_file("monit.yml")
+
+spec = {
+  "name" => "micro",
+  "templates" => {
+    "monit.yml" => "config/monit.yml",
+    "post_install" => "bin/post_install"
+  },
+  "packages" => []
+}
+
+
+# make sure we start with an empty directory, as it will stop if
+# there are any conflicts when populating the template dir
+FileUtils.rm_rf(TEMPLATES)
+FileUtils.mkdir(TEMPLATES)
+
+FileUtils.cp("monit.yml", "templates")
+
+JOBS.each do |group, jobs|
+  monit = []
+
+  jobs.each do |job|
+    # concatenate monit file
+    # FIXME: get rid of the overrides for mongodb_node, mysql_node & redis_node
+    override = File.join(OVERRIDE, "monit", job)
+    monit_erb_file = ''
+    if File.exist?(override)
+      monit_file = override
+    else
+      monit_erb_file = "#{job_dir(job)}/templates/monit.erb"
+      monit_file = "#{job_dir(job)}/monit"
+    end
+
+    if File.exists? monit_erb_file
+      template = ERB.new(File.read(monit_erb_file))
+      monit += template.result.split("\n") # FIXME: no binding? So whats the point of an .erb?
+    elsif File.exists? monit_file
+      File.open(monit_file) do |file|
+        monit += file.readlines
+      end
+    end
+
+    monit << "\n"
+
+    # copy templates
+    Dir.glob("#{job_dir(job)}/templates/*").each do |file|
+      name = File.basename(file)
+      override = File.join(OVERRIDE, job, name)
+      dest = File.join(TEMPLATES, job)
+      FileUtils.mkdir_p(dest) unless File.directory?(dest)
+
+      if File.exist?(File.join(dest, name))
+        puts "File conflict for job #{job}: #{name}"
+        exit 1
+      elsif File.exist?(override)
+        FileUtils.cp(override, dest)
+      else
+        FileUtils.cp(file, dest)
+      end
+    end
+
+    # build spec
+    s = YAML.load_file("#{job_dir(job)}/spec")
+    spec["packages"] += s["packages"]
+    s["templates"].each do |src, dst|
+      spec["templates"]["#{job}/#{src}"] = "#{job}/#{dst}"
+    end
+
+  end
+
+  # write out the concatenated monit file
+  File.open("#{group}.monit", "w") do |file|
+    file.puts monit.join
+  end
+
+end
+
+# write out spec file
+spec["packages"] = spec["packages"].uniq
+File.open("spec", "w") do |file|
+  file.puts spec.to_yaml
+end
+
+# generate post_install file with all jobs
+# it creates links from
+# jobs/micro/<job>/bin/foo to jobs/<job>/bin/foo
+# jobs/micro/<job>/config/bar to jobs/<job>/config/bar
+post_install = <<POST_INSTALL
+#!/bin/sh
+
+for DIR in /var/vcap/jobs /var/vcap/data/jobs; do
+  cd $DIR
+  for JOB in <%= JOBS.values.flatten.join(" ") %>; do
+    mkdir -p ${JOB}/bin ${JOB}/config
+    for FILE in micro/$JOB/bin/*; do
+      ln -nsf ../../$FILE $JOB/bin
+    done
+    for FILE in micro/$JOB/config/*; do
+      ln -nsf ../../$FILE $JOB/config
+    done
+  done
+done
+POST_INSTALL
+
+File.open("templates/post_install", "w") do |file|
+  template = ERB.new(post_install)
+  file.puts template.result
+end
