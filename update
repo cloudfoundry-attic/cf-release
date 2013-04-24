@@ -1,3 +1,29 @@
 #!/bin/bash -x
 
 git pull origin master && git submodule foreach --recursive git submodule sync && git submodule update --init --recursive
+
+set +x
+echo
+echo
+echo welcome to...
+echo "        ___ "
+echo "  _  __|_  |"
+echo " | |/ / __/ "
+echo " |___/____/ "
+echo
+if [[ -d jobs/micro || -d src/cloud_controller ]]; then
+  echo "For v1, please change to the v1 branch."
+  echo
+  echo
+  echo Cleaning out old v1 files that were not removed from a previous "git pull"
+  echo "Press 'y' & 'y' to delete each unnecessary folder"
+  if [[ -d jobs/micro ]]; then
+    rm -ri jobs/micro
+  fi
+  for src in cloud_controller dea router stager vblob_src
+  do
+    if [[ -d src/$src ]]; then
+      rm -ri src/$src
+    fi
+  done
+fi
