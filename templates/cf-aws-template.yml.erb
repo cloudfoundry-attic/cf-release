@@ -1,4 +1,5 @@
---- <% # Add admin user with random password if it's not already there. -%>
+---
+<% # Add admin user with random password if it's not already there. -%>
 <% # block is require to keep existing ccdb admin  and services password, or make a unique one. -%>
 <% users = find("properties").fetch("uaa", {}).fetch("scim", {}).fetch("users", []) || [] -%>
 <% admin_user = users.detect { |u| u.match("^admin\\|") } -%>
@@ -6,17 +7,15 @@
 <% users.unshift "admin|#{random_string 12, :admin}|scim.write,scim.read,openid,cloud_controller.admin" unless admin_user -%>
 <% users << "services|#{random_string 12, :services}|scim.write,scim.read,openid,cloud_controller.admin" unless services_user -%>
 <% services_userid, services_password = services_user.split("\|")[0..1] if services_user -%>
-
 name: <%= find("name") %>
 director_uuid: <%= find("director_uuid") %>
-
 releases:
-- name: <%= find("releases")[0]["name"] %>
-  version: <%= find("releases")[0]["version"] %>
+- name: cf-release
+  version: latest
 
 compilation:
   workers: 3
-  network: cf
+  network: cf1
   reuse_compilation_vms: true
   cloud_properties:
     instance_type: c1.medium
@@ -30,26 +29,27 @@ update:
   max_errors: 1
 
 networks:
-- name: cf
+- name: cf1
   type: manual
   subnets:
-  - range: 10.10.2.0/23
+  - range: 10.10.16.0/20
     name: default_unused
     reserved:
-    - 10.10.2.2 - 10.10.2.9
+    - 10.10.16.2 - 10.10.16.9
+    - 10.10.16.255 - 10.10.16.255
     static:
-    - 10.10.2.10 - 10.10.2.30
-    gateway: 10.10.2.1
+    - 10.10.16.10 - 10.10.16.254
+    gateway: 10.10.16.1
     dns:
     - 10.10.0.2  # amazon has only 1 DNS server for the whole VPC at x.x.0.2
     cloud_properties:
       security_groups:
       - cf
-      subnet: <%= find('properties.template_only.aws.subnet_ids.cf') %>
+      subnet: <%= find('properties.template_only.aws.subnet_ids.cf1') %>
 
 resource_pools:
 - name: common
-  network: cf
+  network: cf1
   size: 7
   stemcell:
     name: bosh-stemcell
@@ -58,7 +58,7 @@ resource_pools:
     instance_type: m1.small
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: dea
-  network: cf
+  network: cf1
   size: 1
   stemcell:
     name: bosh-stemcell
@@ -67,7 +67,7 @@ resource_pools:
     instance_type: m1.large
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: router
-  network: cf
+  network: cf1
   size: 1
   stemcell:
     name: bosh-stemcell
@@ -82,98 +82,88 @@ jobs:
 # ====================== BEGIN CF JOBS =========================
 
 - name: syslog_aggregator
-  release: <%= find("releases")[0]["name"] %>
   template: syslog_aggregator
   instances: 1
   resource_pool: common
   persistent_disk: 100000
   networks:
-  - name: cf
+  - name: cf1
     static_ips:
-    - <%= ip( 1, 'cf.static') %>
+    - <%= ip( 0, 'cf1.static') %>
 
 - name: nats
-  release: <%= find("releases")[0]["name"] %>
   template: nats
   instances: 1
   resource_pool: common
   networks:
-  - name: cf
+  - name: cf1
     static_ips:
-    - <%= ip( 2, 'cf.static') %>
+    - <%= ip( 1, 'cf1.static') %>
 
 - name: uaa
-  release: <%= find("releases")[0]["name"] %>
   template: uaa
   instances: 1
   resource_pool: common
   networks:
-  - name: cf
+  - name: cf1
     static_ips:
-    - <%= ip( 5, 'cf.static') %>
-
+    - <%= ip( 2, 'cf1.static') %>
 
 - name: login
-  release: <%= find("releases")[0]["name"] %>
   template: login
   instances: 1
   resource_pool: common
   networks:
-  - name: cf
+  - name: cf1
 
 - name: cloud_controller
-  release: <%= find("releases")[0]["name"] %>
   template: cloud_controller_ng
   instances: 1
   resource_pool: common
   networks:
-  - name: cf
+  - name: cf1
     static_ips:
-    - <%= ip( 6, 'cf.static') %>
+    - <%= ip( 3, 'cf1.static') %>
   properties:
     ccdb: ccdb
 
 - name: router
-  release: <%= find("releases")[0]["name"] %>
   template: gorouter
   instances: 1
   resource_pool: router
   networks:
-  - name: cf
+  - name: cf1
     default:
     - dns
     - gateway
     static_ips:
-    - <%= ip( 7, 'cf.static') %>
+    - <%= ip( 5, 'cf1.static') %>
 
 - name:  health_manager
-  release: <%= find("releases")[0]["name"] %>
   template: health_manager_next
   instances: 1
   resource_pool: common
   networks:
-  - name: cf
+  - name: cf1
 
 - name: dea_next
-  release: <%= find("releases")[0]["name"] %>
   template: dea_next
   instances: 1
   resource_pool: dea
   update:
     max_in_flight: 8
   networks:
-  - name: cf
+  - name: cf1
     default:
     - dns
     - gateway
 
 - name: collector
-  release: <%= find("releases")[0]["name"] %>
   template: collector
   instances: 1
   resource_pool: common
   networks:
-    - name: cf
+  - name: cf1
 
 properties:
   template_only:
@@ -188,7 +178,7 @@ properties:
   nats:
     user: nats
     password: "c1oudc0wc1oudc0w"
-    address: <%= ip( 2, 'cf.static') %>
+    address: 10.10.16.11  # <%#= ip( 1, 'cf1.static') %>
     port: 4222
     authorization_timeout: 5  # AWS is slow, use longer timeout
 
@@ -255,7 +245,7 @@ properties:
     - 0.serialization-data-server.default.<%= find("name") %>.bosh
 
   syslog_aggregator:
-    address: <%= ip( 1, 'cf.static') %>
+    address: 10.10.16.10
     port: 54321
 
   serialization_data_server:
@@ -267,11 +257,11 @@ properties:
     purge_expired_interval: 30
 
   login:
-    protocol: https
+    protocol: http
     links:
-      home: https://console.<%= find("properties.domain") %>
-      passwd: https://console.<%= find("properties.domain") %>/password_resets/new
-      signup: https://console.<%= find("properties.domain") %>/register
+      home: http://console.<%= find("properties.domain") %>
+      passwd: http://console.<%= find("properties.domain") %>/password_resets/new
+      signup: http://console.<%= find("properties.domain") %>/register
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
