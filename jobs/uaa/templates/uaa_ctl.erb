@@ -75,7 +75,7 @@ case $1 in
     cp -a /var/vcap/jobs/uaa/config/tomcat/* /var/vcap/data/uaa/tomcat/conf/
 
     export CLOUD_FOUNDRY_CONFIG_PATH=/var/vcap/jobs/uaa/config
-    export JAVA_OPTS="-DPID=$$ $HTTP_PROXY_JAVA_OPTIONS"
+    export JAVA_OPTS="-DPID=$$ -Dsun.net.inetaddr.ttl=60 -Dnetworkaddress.cache.ttl=60 $HTTP_PROXY_JAVA_OPTIONS"
     export CATALINA_OPTS="<%= properties.uaa.catalina_opts %>"
 
     cd /var/vcap/data/uaa
