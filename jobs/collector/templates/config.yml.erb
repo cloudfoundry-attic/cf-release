@@ -6,6 +6,8 @@ logging:
   <% end %>
   level: info
 
+deployment_name: <%= properties.collector.deployment_name %>
+
 <% if properties.collector && properties.collector.use_tsdb %>
 tsdb:
   host: <%= properties.opentsdb.address %>
@@ -16,7 +18,12 @@ tsdb:
 aws_cloud_watch:
   access_key_id: <%= properties.collector.aws_access_key_id %>
   secret_access_key: <%= properties.collector.aws_secret_access_key %>
-  deployment_name: <%= properties.collector.deployment_name %>
+<% end %>
+
+<% if properties.collector && properties.collector.use_datadog %>
+datadog:
+  api_key: <%= properties.collector.datadog_api_key %>
+  application_key: <%= properties.collector.datadog_application_key %>
 <% end %>
 
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
