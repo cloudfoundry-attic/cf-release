@@ -195,3 +195,5 @@ properties:
   default: false
  login.enabled:
   description: "whether use login as the authorization endpoint or not"
+ ccng.db_encryption_key:
+  description: "key for encrypting sensitive values in the CC database"
