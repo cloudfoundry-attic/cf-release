@@ -1,0 +1,278 @@
+---
+<% # Add admin user with random password if it's not already there. -%>
+<% # block is require to keep existing ccdb admin  and services password, or make a unique one. -%>
+<% users = find("properties").fetch("uaa", {}).fetch("scim", {}).fetch("users", []) || [] -%>
+<% admin_user = users.detect { |u| u.match("^admin\\|") } -%>
+<% services_user = users.detect { |u| u.match("^services\\|") } -%>
+<% users.unshift "admin|#{random_string 12, :admin}|scim.write,scim.read,openid,cloud_controller.admin" unless admin_user -%>
+<% users << "services|#{random_string 12, :services}|scim.write,scim.read,openid,cloud_controller.admin" unless services_user -%>
+<% services_userid, services_password = services_user.split("\|")[0..1] if services_user -%>
+<% name = find("name") %>
+
+# ENV variables for Yeti:
+# $ export SERVICE_BROKER_URL=http://service-broker.<%= find("properties.domain") %>
+# $ export SERVICE_BROKER_TOKEN=broker-token
+
+name: <%= name.end_with?("-services") ? name : "#{name}-services" %>
+director_uuid: <%= find("director_uuid") %>
+
+releases:
+- name: cf-services-release
+  version: latest
+
+compilation:
+  workers: 6
+  network: services1
+  reuse_compilation_vms: true
+  cloud_properties:
+    instance_type: c1.medium
+    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-600000
+  update_watch_time: 30000-600000
+  max_in_flight: 4
+  max_errors: 1
+
+networks:
+- name: services1
+  type: manual
+  subnets:
+  - range: 10.10.32.0/20
+    name: default_unused
+    reserved:
+    - 10.10.32.2 - 10.10.32.9
+    static:
+    - 10.10.32.10 - 10.10.32.255
+    gateway: 10.10.32.1
+    dns:
+    - 10.10.0.2  # amazon has only 1 DNS server for the whole VPC at x.x.0.2
+    cloud_properties:
+      security_groups:
+      - cf
+      subnet: <%= find('properties.template_only.aws.subnet_ids.services1') %>
+
+resource_pools:
+- name: services-small
+  network: services1
+  size: 4
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+  cloud_properties:
+    instance_type: m1.small
+    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+
+jobs:
+- name: rds_mysql_gateway
+  template:
+  - rds_mysql_gateway
+  instances: 1
+  resource_pool: services-small
+  networks:
+  - name: services1
+  properties:
+    uaa_client_id: "vmc"
+    uaa_endpoint: https://uaa.<%= find("properties.domain") %>
+    uaa_client_auth_credentials:
+      username: <%= services_userid || "services" %>
+      password: <%= services_password || random_string(12, :services) %>
+    rds_mysql_gateway:
+      token: <%= find("properties.rds_mysql_gateway.token") %>
+      cc_api_version: v2
+      check_orphan_interval: 7200
+      supported_versions: ["n/a"]
+      version_aliases:
+        current: "n/a"
+
+- name: marketplace_gateway
+  template:
+  - marketplace_gateway
+  instances: 1
+  resource_pool: services-small
+  networks:
+  - name: services1
+    static_ips:
+    - <%= ip( 0, 'services1.static') %>
+  properties:
+    uaa_client_id: "vmc"
+    uaa_endpoint: https://uaa.<%= find("properties.domain") %>
+    uaa_client_auth_credentials:
+      username: <%= services_userid || "services" %>
+      password: <%= services_password || random_string(12, :services) %>
+    marketplace_gateway:
+      marketplace: appdirect
+      cc_api_version: v2
+      logging_level: debug
+      uaa_client_id: "vmc"
+      uaa_endpoint: https://uaa.<%= find("properties.domain") %>
+      uaa_client_auth_credentials:
+        username: <%= services_userid || "services" %>
+        password: <%= services_password || random_string(12, :services) %>
+      service_auth_tokens:
+        mongolab-dev_objectlabs: <%= find("properties.marketplace_gateway.service_auth_tokens.mongolab-dev_objectlabs") %>
+        sendgrid-dev_sendgrid: <%= find("properties.marketplace_gateway.service_auth_tokens.sendgrid-dev_sendgrid") %>
+        sendgrid_sendgrid: <%= find("properties.marketplace_gateway.service_auth_tokens.sendgrid_sendgrid") %>
+        redistogo-dev_redistogo: <%= find("properties.marketplace_gateway.service_auth_tokens.redistogo-dev_redistogo") %>
+        dummy_dummy: <%= find("properties.marketplace_gateway.service_auth_tokens.dummy_dummy") %>
+        dummy-dev_dummy: <%= find("properties.marketplace_gateway.service_auth_tokens.dummy-dev_dummy") %>
+        newrelic_newrelic: <%= find("properties.marketplace_gateway.service_auth_tokens.newrelic_newrelic") %>
+        urbanairship_urbanairship: <%= find("properties.marketplace_gateway.service_auth_tokens.urbanairship_urbanairship") %>
+        treasuredata_treasuredata: <%= find("properties.marketplace_gateway.service_auth_tokens.treasuredata_treasuredata") %>
+        blazemeter_blazemeter: <%= find("properties.marketplace_gateway.service_auth_tokens.blazemeter_blazemeter") %>
+        searchify_searchify: <%= find("properties.marketplace_gateway.service_auth_tokens.searchify_searchify") %>
+        cloudamqp-dev_cloudamqp: <%= find("properties.marketplace_gateway.service_auth_tokens.cloudamqp-dev_cloudamqp") %>
+      external_uri: http://appdirect-mpgw.<%= find("properties.domain") %>
+      refresh_interval: 300
+      node_timeout: 15
+      whitelist:
+      - mongodb_mongolab-dev
+      - smtp_sendgrid-dev
+      - SendGrid_SendGrid
+      - redis_redistogo-dev
+      - dummy_dummy
+      - dummy_dummy-dev
+      - New Relic_New Relic
+      - Urban Airship_Urban Airship
+      - Treasure Data_Treasure Data
+      - BlazeMeter_BlazeMeter
+      - Searchify_Searchify
+      - rabbitmq_cloudamqp-dev
+      service_mappings:
+      - cc_name: searchify
+        cc_provider: searchify
+        ad_name: Searchify
+        ad_provider: Searchify
+      - cc_name: cloudamqp-dev
+        cc_provider: cloudamqp
+        ad_name: rabbitmq
+        ad_provider: cloudamqp-dev
+      - cc_name: mongolab-dev
+        cc_provider: objectlabs
+        ad_name: mongodb
+        ad_provider: mongolab-dev
+      - cc_name: sendgrid-dev
+        cc_provider: sendgrid
+        ad_name: smtp
+        ad_provider: sendgrid-dev
+      - cc_name: sendgrid
+        cc_provider: sendgrid
+        ad_name: SendGrid
+        ad_provider: SendGrid
+      - cc_name: redistogo-dev
+        cc_provider: redistogo
+        ad_name: redis
+        ad_provider: redistogo-dev
+      - cc_name: dummy
+        cc_provider: dummy
+        ad_name: dummy
+        ad_provider: dummy
+      - cc_name: dummy-dev
+        cc_provider: dummy
+        ad_name: dummy
+        ad_provider: dummy-dev
+      - cc_name: newrelic
+        cc_provider: newrelic
+        ad_name: New Relic
+        ad_provider: New Relic
+      - cc_name: urbanairship
+        cc_provider: urbanairship
+        ad_name: Urban Airship
+        ad_provider: Urban Airship
+      - cc_name: treasuredata
+        cc_provider: treasuredata
+        ad_name: Treasure Data
+        ad_provider: Treasure Data
+      - cc_name: blazemeter
+        cc_provider: blazemeter
+        ad_name: BlazeMeter
+        ad_provider: BlazeMeter
+      appdirect:
+        endpoint: "https://dev3cloudfoundry.appdirect.com"
+        key: <%= find("properties.marketplace_gateway.appdirect.key") %>
+        secret: <%= find("properties.marketplace_gateway.appdirect.secret") %>
+
+- name: mysql_node_10mb
+  template:
+  - mysql_node_external
+  instances: 1
+  resource_pool: services-small
+  networks:
+  - name: services1
+    static_ips:
+    - <%= ip( 1, 'services1.static') %>
+  properties:
+    mysql_node:
+      plan: "10mb"
+      external_dbs:
+      - address: "<%= find("properties.mysql-service-public.address") %>"
+        port: <%= find("properties.mysql-service-public.port") %>
+        <%- role = find("properties.mysql-service-public.roles").detect{|hash| hash['tag'] == 'admin'} -%>
+        user: "<%= role['name'] %>"
+        password: "<%= role['password'] %>"
+
+- name: mysql_node_cfinternal
+  template:
+  - mysql_node_external
+  instances: 1
+  resource_pool: services-small
+  networks:
+  - name: services1
+    static_ips:
+    - <%= ip( 2, 'services1.static') %>
+  properties:
+    mysql_node:
+      plan: "cfinternal"
+      external_dbs:
+      - address: "<%= find("properties.mysql-service-cf-internal.address") %>"
+        port: <%= find("properties.mysql-service-cf-internal.port") %>
+        <%- role = find("properties.mysql-service-cf-internal.roles").detect{|hash| hash['tag'] == 'admin'} -%>
+        user: "<%= role['name'] %>"
+        password: "<%= role['password'] %>"
+
+properties:
+  template_only:
+    <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
+
+  domain: <%= find("properties.domain") %>
+
+  nats:
+    user: <%= find("properties.nats.user") %>
+    password: <%= find("properties.nats.password") %>
+    address: 10.10.16.11  # <%#= ip( 1, 'cf1.static') %>
+    port: 4222
+    authorization_timeout: 5  # AWS is slow
+
+  networks:
+    services: services1
+
+  cc: &cc
+    srv_api_uri: https://ccng.<%= find("properties.domain") %>
+
+  syslog_aggregator:
+    address: 10.10.16.10
+    port: 54321
+
+  service_plans:
+    rds_mysql:
+      "10mb":
+        description: "Shared service instance, 10MB storage, 2 connections"
+        job_management:
+          high_water: 1500
+          low_water: 10
+        configuration:
+          capacity: 2000
+          max_db_size: 10
+          max_clients: 2   # largest RDS instance defaults to 5800 connections max total
+      "cfinternal":
+        description: "Shared CloudFoundry internal plan, 50GB storage, 50 connections"
+        job_management:
+          high_water: 10
+          low_water: 1
+        configuration:
+          capacity: 20
+          max_db_size: 50000
+          max_long_query: 60
+          max_clients: 50
+
