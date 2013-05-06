@@ -111,6 +111,11 @@ quota_definitions:
     non_basic_services_allowed: <%= p("ccng.quota_definitions.runaway.non_basic_services_allowed") %>
     total_services: <%= p("ccng.quota_definitions.runaway.total_services") %>
     memory_limit: <%= p("ccng.quota_definitions.runaway.memory_limit") %>
+  trial:
+    non_basic_services_allowed: false
+    total_services: 10
+    memory_limit: 512
+    free_rds: true
 
 default_quota_definition: <%= p("ccng.default_quota_definition") %>
 
