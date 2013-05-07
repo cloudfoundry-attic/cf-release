@@ -89,7 +89,11 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: dea
   network: cf1
+<% if production? -%>
   size: 4
+<% else -%>
+  size: 3
+<% end -%>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -184,9 +188,9 @@ jobs:
 - name: dea_next
   template: dea_next
 <% if production? -%>
-  instances: 3
-<% else -%>
   instances: 4
+<% else -%>
+  instances: 3
 <% end -%>
   resource_pool: dea
   update:
