@@ -94,7 +94,11 @@ resource_pools:
     name: bosh-stemcell
     version: latest
   cloud_properties:
+<% if production? -%>
     instance_type: m2.2xlarge
+<% else -%>
+    instance_type: m1.medium
+<% end -%>
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: router
   network: cf1
