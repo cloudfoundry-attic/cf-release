@@ -92,7 +92,7 @@ resource_pools:
 <% if production? -%>
   size: 4
 <% else -%>
-  size: 3
+  size: 4
 <% end -%>
   stemcell:
     name: bosh-stemcell
@@ -190,7 +190,7 @@ jobs:
 <% if production? -%>
   instances: 4
 <% else -%>
-  instances: 3
+  instances: 4
 <% end -%>
   resource_pool: dea
   update:
