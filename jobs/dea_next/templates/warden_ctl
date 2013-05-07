@@ -24,24 +24,6 @@ case $1 in
 
     ulimit -c unlimited
 
-    rootfs_path=$DATA_DIR/rootfs
-    rootfs_tgz=/var/vcap/stemcell_base.tar.gz
-
-    # Extract rootfs if needed
-    if [ ! -d $rootfs_path ]
-    then
-      # Make sure its parent directory exists
-      mkdir -p $(dirname $rootfs_path)
-
-      # Extract to temporary path, then rename to target path.
-      # This makes sure that it is not possible that we end up with directory
-      # that contains a partially extracted archive.
-      tmp_path=$(mktemp --tmpdir=$(dirname $rootfs_path) -d)
-      chmod 755 $tmp_path
-      tar -C $tmp_path -zxf $rootfs_tgz
-      mv $tmp_path $rootfs_path
-    fi
-
     # Use default local port range (higher ports are used for pooling)
     echo 32768 61000 > /proc/sys/net/ipv4/ip_local_port_range
 
