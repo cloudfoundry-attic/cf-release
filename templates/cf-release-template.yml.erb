@@ -28,7 +28,7 @@ name: <%= find("name") %>
 director_uuid: <%= find("director_uuid") %>
 
 releases:
-- name: bosh-release
+- name: <%= find("name") %>
   version: latest
 
 compilation:
