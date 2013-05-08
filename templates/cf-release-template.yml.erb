@@ -12,6 +12,12 @@
   def production?
     find("name") == "cf-cfapps-io"
   end
+
+  ec2_memory = {
+    "m1.medium" => 3_840,
+	"m1.large" => 7_680,
+	"m2.2xlarge" => 35_020
+  }
 -%>
 
 # ENV variables for Yeti:
@@ -92,7 +98,7 @@ resource_pools:
 <% if production? -%>
   size: 4
 <% else -%>
-  size: 4
+  size: 3
 <% end -%>
   stemcell:
     name: bosh-stemcell
@@ -101,7 +107,7 @@ resource_pools:
 <% if production? -%>
     instance_type: m2.2xlarge
 <% else -%>
-    instance_type: m1.medium
+    instance_type: m1.large
 <% end -%>
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: router
@@ -190,7 +196,7 @@ jobs:
 <% if production? -%>
   instances: 4
 <% else -%>
-  instances: 4
+  instances: 3
 <% end -%>
   resource_pool: dea
   update:
@@ -314,7 +320,11 @@ properties:
     max_memory: 4096
 
   dea_next:
-    memory_mb: 7500
+<% if production? -%>
+    memory_mb: <%= ec2_memory.fetch("m2.2xlarge") - 2_048 %>
+<% else -%>
+    memory_mb: <%= ec2_memory.fetch("m1.large") - 1_024 %>
+<% end -%>
     memory_overcommit_factor: 1
     disk_mb: 16384
     disk_overcommit_factor: 2
