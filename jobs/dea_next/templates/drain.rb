@@ -17,7 +17,8 @@ need_evacuation = (job_change  != "job_unchanged")  ||
 dea_pidfile = "/var/vcap/sys/run/dea_next/dea_next.pid"
 warden_pidfile = "/var/vcap/sys/run/warden/warden.pid"
 
-default_timeout = 33
+# give the DEAS a while to evacuate and restart apps
+default_timeout = 115
 
 if !File.exists?(dea_pidfile)
   puts 0
