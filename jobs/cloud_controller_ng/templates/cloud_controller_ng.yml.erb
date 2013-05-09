@@ -8,8 +8,9 @@ external_domain:
   - <%= p("ccng.external_host", "ccng") %>.<%= p("domain") %>
   - "api.<%= p("domain") %>"
 
-<% system_domains = p("ccng.system_domains", [ p("domain") ]) %>
-system_domains: [ <%= system_domains.join(", ") %> ]
+system_domain_organization: <%= p("system_domain_organization") %>
+system_domain: <%= p("system_domain") %>
+app_domains: [ <%= p("app_domains").join(", ") %> ]
 
 cc_partition: <%= p("ccng.cc_partition", "ng") %>
 
