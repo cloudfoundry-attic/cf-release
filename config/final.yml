@@ -2,9 +2,6 @@
 final_name: appcloud
 min_cli_version: 1.0.3
 blobstore:
-  provider: atmos
+  provider: s3
   options:
-    tag: BOSH
-    url: http://blob.cfblob.com
-    uid: bb6a0c89ef4048a8a0f814e25385d1c5/user1
-blobstore_options: deprecated
+    bucket_name: blob.cfblob.com
