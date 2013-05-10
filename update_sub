@@ -1,0 +1,13 @@
+#!/bin/sh
+
+repo=$1
+
+set -e
+
+cd src/$repo
+git co master
+git pull
+git submodule update --recursive --init
+cd ../..
+git add src/$repo
+./staged_shortlog
