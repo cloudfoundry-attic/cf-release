@@ -30,5 +30,5 @@ intervals:
   restart_timeout:       <%= intervals.restart_timeout       ||  20 %>
   min_restart_delay:     <%= intervals.min_restart_delay     ||  60 %>
   max_restart_delay:     <%= intervals.max_restart_delay     || 480 %>
-  giveup_crash_number:   <%= intervals.giveup_crash_number   ||   4 %>
+  giveup_crash_number:   <%= intervals.giveup_crash_number   ||  -1 %>
   stable_state:          <%= intervals.stable_state          ||  60 %>
