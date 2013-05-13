@@ -170,11 +170,11 @@ properties:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 
   domain: <%= find("properties.domain") %>
-  system_domain: <%= find("properties.system_domain") || find("properties.domain") %>
-  system_domain_organization: <%= find("properties.system_domain_organization") || "" %>
+  system_domain: <%= find("properties").fetch("system_domain", find("properties.domain")) %>
+  system_domain_organization: <%= find("properties").fetch("system_domain_organization", "") %>
   app_domains:
-<% app_domains = find("properties.app_domains") || find("properties.domain") -%>
-<% app_domains.each do |domain| -%>
+<% app_domains = find("properties").fetch("app_domains", find("properties.domain")) -%>
+<% Array(app_domains).each do |domain| -%>
   - <%= domain %>
 <% end -%>
 
