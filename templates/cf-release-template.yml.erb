@@ -95,12 +95,20 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: dea
   network: cf1
-  size: <%= find('resource_pools.dea.size') || 4 %>
+<% if production? -%>
+  size: <%= find('resource_pools.dea.size') %>
+<% else -%>
+  size: 4
+<% end -%>
   stemcell:
     name: bosh-stemcell
     version: latest
   cloud_properties:
-    instance_type: <%= find('resource_pools.dea.cloud_properties.instance_type') || m1.large %>
+<% if production? -%>
+    instance_type: <%= find('resource_pools.dea.cloud_properties.instance_type') %>
+<% else -%>
+    instance_type: m1.large
+<% end -%>
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: router
   network: cf1
@@ -185,7 +193,11 @@ jobs:
 
 - name: dea_next
   template: dea_next
-  instances: <%= find('jobs.dea_next.instances') || 4 %>
+<% if production? -%>
+  instances: <%= find('jobs.dea_next.instances') %>
+<% else -%>
+  instances: 4
+<% end -%>
   resource_pool: dea
   update:
     max_in_flight: 2
