@@ -98,7 +98,7 @@ resource_pools:
 <% if production? -%>
   size: <%= find('resource_pools.dea.size') %>
 <% else -%>
-  size: 4
+  size: 6
 <% end -%>
   stemcell:
     name: bosh-stemcell
@@ -196,7 +196,7 @@ jobs:
 <% if production? -%>
   instances: <%= find('jobs.dea_next.instances') %>
 <% else -%>
-  instances: 4
+  instances: 6
 <% end -%>
   resource_pool: dea
   update:
