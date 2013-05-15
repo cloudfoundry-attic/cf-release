@@ -1,5 +1,0 @@
-check process marketplace_gateway
-  with pidfile /var/vcap/sys/run/marketplace_gateway/marketplace_gateway.pid
-  start program "/var/vcap/jobs/marketplace_gateway/bin/marketplace_gateway_ctl start"
-  stop program "/var/vcap/jobs/marketplace_gateway/bin/marketplace_gateway_ctl stop"
-  group vcap
