@@ -120,7 +120,13 @@ resource_pools:
     instance_type: m1.small
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
     elbs:
+<% if production? -%>
+  <% find('resource_pools.router.cloud_properties.elbs').each do |elb|  -%>
+  - <%= elb %>
+  <% end -%>
+<% else -%>
     - cfrouter
+<% end -%>
 
 jobs:
 - name: syslog_aggregator
