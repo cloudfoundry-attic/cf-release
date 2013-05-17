@@ -13,7 +13,8 @@ status:
         "nats.user",
         "nats.password") do |address, port, user, password| %>
 nats:
-  host: <%= address %>:<%= port %>
+  host: <%= address %>
+  port: <%= port %>
   user: <%= user %>
   pass: "<%= password %>"
 <% end %>
