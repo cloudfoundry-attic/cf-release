@@ -71,7 +71,7 @@ resource_pools:
   size: 1
   stemcell:
     name: bosh-stemcell
-    version: latest
+    version: 644
   cloud_properties:
     instance_type: m1.small
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
@@ -80,7 +80,7 @@ resource_pools:
   size: 4
   stemcell:
     name: bosh-stemcell
-    version: latest
+    version: 644
   cloud_properties:
     instance_type: m1.medium
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
@@ -89,7 +89,7 @@ resource_pools:
   size: 3
   stemcell:
     name: bosh-stemcell
-    version: latest
+    version: 644
   cloud_properties:
     instance_type: m1.medium
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
@@ -102,7 +102,7 @@ resource_pools:
 <% end -%>
   stemcell:
     name: bosh-stemcell
-    version: latest
+    version: 644
   cloud_properties:
 <% if production? -%>
     instance_type: <%= find('resource_pools.dea.cloud_properties.instance_type') %>
@@ -115,7 +115,7 @@ resource_pools:
   size: 2
   stemcell:
     name: bosh-stemcell
-    version: latest
+    version: 644
   cloud_properties:
     instance_type: m1.small
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
