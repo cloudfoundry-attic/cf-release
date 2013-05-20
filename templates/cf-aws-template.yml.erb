@@ -171,7 +171,7 @@ properties:
 
   domain: <%= find("properties.domain") %>
   system_domain: <%= find("properties").fetch("system_domain", find("properties.domain")) %>
-  system_domain_organization: <%= (find("properties").fetch("system_domain_organization", "") || "").inspect %>
+  system_domain_organization: <%= find("properties").fetch("system_domain_organization", "''") %>
   app_domains:
 <% app_domains = find("properties").fetch("app_domains", find("properties.domain")) -%>
 <% Array(app_domains).each do |domain| -%>
