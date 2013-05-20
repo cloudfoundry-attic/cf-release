@@ -457,6 +457,13 @@ properties:
         redirect-uri: http://servicesmgmt.<%= find("properties.domain") %>/auth/cloudfoundry/callback
         override: true
         autoapprove: true
+      space-mail:
+        override: true
+        authorities: scim.read,scim.write,cloud_controller.admin
+        secret: <%= find("properties.uaa.clients.space-mail.secret") %>
+        authorized-grant-types: client_credentials
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
 
     scim:
       users:
