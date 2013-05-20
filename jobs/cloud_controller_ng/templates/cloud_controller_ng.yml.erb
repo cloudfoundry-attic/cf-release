@@ -31,6 +31,8 @@ nginx:
   use_nginx: <%= p("ccng.use_nginx", true) %>
   instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
 
+index: <%= spec.index %>
+
 info:
   name: <%= p("name", "vcap") %>
   build: <%= p("build", "\"2222\"") %>
