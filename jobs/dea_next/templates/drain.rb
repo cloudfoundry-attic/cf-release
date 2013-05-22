@@ -9,15 +9,14 @@ job_change, hash_change, *updated_packages = ARGV
 
 logger.info("Drain script invoked with #{ARGV.join(" ")}")
 
-dea_only       = (updated_packages == ["dea_next"])
-warden_only    = (updated_packages == ["warden"])
-dea_and_warden = (updated_packages.sort == ["dea_next", "warden"])
-
-# Must evacuate if job changes, stemcell changes, or a package other than
-# the dea or warden changes
-need_evacuation = (job_change  != "job_unchanged")  ||
-                  (hash_change != "hash_unchanged") ||
-                  !(dea_only || warden_only || dea_and_warden)
+# Must evacuate if packages other than the DEA were updated.
+#
+# The DEA itself can be kill -9'd, and apps won't go down. Warden is what's
+# actually running them, so if its package is changed, we need to evacuate.
+#
+# In general, if any package other than the DEA is updated, we'll want to
+# evacuate and start fresh. For example, if we upgrade Ruby.
+need_evacuation = updated_packages != ["dea_next"]
 
 logger.info("Need evacuation? #{need_evacuation}")
 
@@ -43,8 +42,8 @@ begin
     timeout = (ENV["DEA_DRAIN_TIMEOUT"] || default_timeout).to_i
     logger.info("Setting timeout as #{timeout}.")
     puts timeout
-    # XXX: The warden should be rolled after the DEA has exited. Unsure how to
-    # make that happen.
+    # XXX: Warden should be rolled after the DEA has exited. Unsure how to make
+    # that happen.
   else
     logger.info("Sending signal KILL to DEA.")
 
