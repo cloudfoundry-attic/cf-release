@@ -18,6 +18,11 @@
     "m1.large" => 7_680,
     "m2.2xlarge" => 35_020
   }
+  ec2_disk = {
+    "m1.medium" => 390_000,
+    "m1.large" => 400_000,
+    "m2.2xlarge" => 800_000
+  }
 -%>
 
 # ENV variables for Yeti:
@@ -334,13 +339,17 @@ properties:
   dea_next:
 <% if production? -%>
     memory_mb: <%= ec2_memory.fetch("m2.2xlarge") - 2_048 %>
+    memory_overcommit_factor: 1
+    disk_mb: <%= ec2_disk.fetch("m2.2xlarge") %>
+    disk_overcommit_factor: 1
+    num_instances: 256
 <% else -%>
     memory_mb: <%= ec2_memory.fetch("m1.large") - 1_024 %>
-<% end -%>
     memory_overcommit_factor: 1
-    disk_mb: 16384
+    disk_mb: <%= ec2_disk.fetch("m1.large") %>
     disk_overcommit_factor: 2
     num_instances: 256
+<% end -%>
 
   service_lifecycle:
     serialization_data_server:
