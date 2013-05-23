@@ -82,7 +82,7 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: medium
   network: cf1
-  size: 4
+  size: 5
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -91,7 +91,7 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: large
   network: cf1
-  size: 3
+  size: 4
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -142,7 +142,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 0, 'cf1.static') %>
+    - <%= ip(0, 'cf1.static') %>
 
 - name: nats
   template: nats
@@ -151,21 +151,22 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 1, 'cf1.static') %>
+    - <%= ip(1, 'cf1.static') %>
 
 - name: uaa
   template: uaa
-  instances: 1
+  instances: 2
   resource_pool: large
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 2, 'cf1.static') %>
+    - <%= ip(2, 'cf1.static') %>
+    - <%= ip(7, 'cf1.static') %>
 
 
 - name: login
   template: login
-  instances: 1
+  instances: 2
   resource_pool: medium
   networks:
   - name: cf1
@@ -177,8 +178,8 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 3, 'cf1.static') %>
-    - <%= ip( 4, 'cf1.static') %>
+    - <%= ip(3, 'cf1.static') %>
+    - <%= ip(4, 'cf1.static') %>
   properties:
     ccdb: ccdb
 
@@ -192,8 +193,8 @@ jobs:
     - dns
     - gateway
     static_ips:
-    - <%= ip( 5, 'cf1.static') %>
-    - <%= ip( 6, 'cf1.static') %>
+    - <%= ip(5, 'cf1.static') %>
+    - <%= ip(6, 'cf1.static') %>
 
 - name: health_manager
   template: health_manager_next
