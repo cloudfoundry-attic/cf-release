@@ -267,9 +267,9 @@ properties:
   login:
     protocol: http
     links:
-      home: http://console.<%= find("properties.domain") %>
-      passwd: http://console.<%= find("properties.domain") %>/password_resets/new
-      signup: http://console.<%= find("properties.domain") %>/register
+      home: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("home", nil) || "http://console.#{find("properties.domain")}" %>
+      passwd: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("passwd", nil) || "http://console.#{find("properties.domain")}/password_resets/new" %>
+      signup: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("signup", nil) || "http://console.#{find("properties.domain")}/register" %>
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
