@@ -14,7 +14,7 @@ node = properties.redis_node
 server:
   container_klass: Warden::Container::Linux
   container_grace_time: ~
-  container_rootfs_path: /var/vcap/data/redis/warden/rootfs
+  container_rootfs_path: /var/vcap/packages/rootfs_lucid64
   container_depot_path: /var/vcap/store/redis/containers
   unix_domain_permissions: 0777
   unix_domain_path: <%= node.warden_socket_path || "/tmp/warden.sock" %>
