@@ -380,9 +380,9 @@ properties:
   login:
     protocol: https
     links:
-      home: https://console.<%= find("properties.domain") %>
-      passwd: https://console.<%= find("properties.domain") %>/password_resets/new
-      signup: https://console.<%= find("properties.domain") %>/register
+      home: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("home", nil) || "https://console.#{find("properties.domain")}" %>
+      passwd: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("passwd", nil) || "https://console.#{find("properties.domain")}/password_resets/new" %>
+      signup: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("signup", nil) || "https://console.#{find("properties.domain")}/register" %>
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
@@ -439,7 +439,7 @@ properties:
         authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
         access-token-validity: 1209600
         refresh-token-validity: 1209600
-        redirect-uri: http://console.<%= find("properties.domain") %>
+        redirect-uri: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("home", nil) || "https://console.#{find("properties.domain")}" %>
       support-services:
         scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
         secret: <%= find("properties.uaa.clients.support-services.secret") %>
