@@ -12,7 +12,7 @@ logging:
   <% if properties.syslog_aggregator %>
   syslog: vcap.health_manager_next
   <% end %>
-  level: info
+  level: debug
 pid: /var/vcap/sys/run/health_manager_next/health_manager_next.pid
 index: <%= spec.index %>
 bulk_api:
