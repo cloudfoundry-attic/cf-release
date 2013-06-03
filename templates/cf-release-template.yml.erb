@@ -345,7 +345,7 @@ properties:
     num_instances: 256
 <% else -%>
     memory_mb: <%= ec2_memory.fetch("m1.large") - 1_024 %>
-    memory_overcommit_factor: 1
+    memory_overcommit_factor: 3
     disk_mb: <%= ec2_disk.fetch("m1.large") %>
     disk_overcommit_factor: 2
     num_instances: 256
