@@ -711,10 +711,6 @@ buildpack_cache/node-0.4.7.tgz:
   object_id: rest/objects/4e4e78bca21e121004e4e7d511f553051354520be66d
   sha: e24dd19e6bc2ede02ae00cc20e8baef78b4999bc
   size: 3030731
-buildpack_cache/openjdk7-latest.tar.gz:
-  object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc0513545243a168
-  sha: 650e9f70dd675d353bbb2368f003b83c625a3ea9
-  size: 45116682
 buildpack_cache/ruby_versions.yml:
   object_id: rest/objects/4e4e78bca11e122204e4e98638b76305137cd96b3efd
   sha: 8a548c5960afce5d1c5f40598df7e5b0081a4979
@@ -840,18 +836,6 @@ java/jre1.6.0_x64.tgz:
   object_id: rest/objects/4e4e78bca31e122204e4e9863b1b74051532ecb181cc
   sha: d5be7aa61a84c27c64451703404d7bddb60570fb
   size: 32071543
-buildpack_cache/openjdk6-jre-u25.tar.gz:
-  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f051548c5865f17
-  sha: 338fd3f61181e4cef07ee229d3f10100af2c2f1f
-  size: 31099765
-buildpack_cache/openjdk7-jre-u7-b30.tar.gz:
-  object_id: rest/objects/4e4e78bca31e121204e4e86ee39692051548c5d56b53
-  sha: 40a9cda90dd0ab3313f6dd52949582d1aaee518b
-  size: 33459081
-buildpack_cache/openjdk8-jre-lambda-preview.tar.gz:
-  object_id: rest/objects/4e4e78bca51e122004e4e8ec684077051548c669ce7e
-  sha: 198d51abe2043cbebb0d82caa39ea9f8302f67b7
-  size: 34001909
 mongodb/mongodb-linux-i686-2.0.9.tgz:
   object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e0515e06d724898
   sha: 3d24e0f8a5554747d4a6ed1e193a489d2c123074
@@ -887,3 +871,18 @@ rootfs/lucid64.tar.gz:
   sha: !binary |-
     YjI2MzNiMmFiNDk2NGY5MTQwMmJiMmQ4ODlmMmYxMjQ0OWE4YjgyOA==
   size: 199489185
+buildpack_cache/openjdk-1.6.0_27.tar.gz:
+  object_id: 08b45aa9-f99b-4abb-9369-257f47c791f8
+  sha: !binary |-
+    NjI0ZDQyNTRkY2RiNDUyM2RkNzQwOTk1ZDkwMzM1ZTJmYzA1MmUwZg==
+  size: 28798294
+buildpack_cache/openjdk-1.7.0_21.tar.gz:
+  object_id: 926b8235-dad9-4a49-9511-1cab0647e0e3
+  sha: !binary |-
+    YTMyM2M4ZTRkZmExMWZkY2YwNjBlODEyM2E4YjE5Mzk1ZjAzMjBkYw==
+  size: 104297591
+buildpack_cache/openjdk-1.8.0_M7.tar.gz:
+  object_id: 315760b8-6040-48d1-a6ff-491c72c8dca0
+  sha: !binary |-
+    ODYxMjFhZThkZjVkNjcwNjViNTNjZDJhMjM5YjQxMjFiYzFmN2MxMg==
+  size: 118327892
