@@ -247,10 +247,6 @@ properties:
     disk_mb: 16384
     disk_overcommit_factor: 4
     num_instances: 256
-    deny_networks:
-    - 169.254.0.0/16 # aws status endpoint
-    - 10.10.0.0/24 # bosh network
-    - 10.10.16.0/20 # cf network
 
   service_lifecycle:
     serialization_data_server:
