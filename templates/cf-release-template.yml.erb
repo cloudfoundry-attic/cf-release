@@ -209,6 +209,8 @@ jobs:
 <% else -%>
   instances: 8
 <% end -%>
+  update:
+    max_in_flight: <%= find('properties').fetch('dea', {}).fetch('update', {}).fetch('max_in_flight', 1) %>
   resource_pool: dea
   networks:
   - name: cf1
