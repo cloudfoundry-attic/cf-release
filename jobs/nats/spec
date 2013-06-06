@@ -7,3 +7,18 @@ packages:
   - common
   - nats
   - ruby
+properties:
+  nats_props:
+    description:
+    default: "nats"
+  networks.apps:
+    description:
+  nats.user:
+    description:
+  nats.password:
+    description:
+  nats.port:
+    description:
+  nats.authorization_timeout:
+    description:
+    default: 1

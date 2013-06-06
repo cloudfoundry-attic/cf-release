@@ -9,3 +9,39 @@ packages:
 - collector
 - ruby
 - syslog_aggregator
+properties:
+  collector.aws_access_key_id:
+    description:
+  collector.aws_secret_access_key:
+    description:
+  collector.datadog_api_key:
+    description:
+  collector.datadog_application_key:
+    description:
+  collector.deployment_name:
+    description:
+  collector.use_aws_cloudwatch:
+    description:
+    default: false
+  collector.use_datadog:
+    description:
+    default: false
+  collector.use_tsdb:
+    description:
+    default: false
+  nats.address:
+    description:
+  nats.password:
+    description:
+  nats.port:
+    description:
+  nats.user:
+    description:
+  opentsdb.address:
+    description:
+  opentsdb.port:
+    description:
+  syslog_aggregator.address:
+    description:
+  syslog_aggregator.port:
+    description:
