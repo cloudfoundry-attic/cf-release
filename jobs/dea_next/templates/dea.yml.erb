@@ -13,7 +13,7 @@ directory_server:
   v1_port: 12345
   v2_port: 34567
   file_api_port: 23456
-  streaming_timeout: <% p("dea_next.streaming_timeout", 60) %>
+  streaming_timeout: <% p("dea_next.streaming_timeout") %>
   logging:
     file: /var/vcap/sys/log/dea_next/dir_server.log
     <% if_p("syslog_aggregator") do %>
@@ -37,18 +37,18 @@ intervals:
   advertise: 5
 
 resources:
-  memory_mb: <%= p("dea_next.memory_mb", 8000) %>
-  memory_overcommit_factor: <%= p("dea_next.memory_overcommit_factor", 1) %>
-  disk_mb: <%= p("dea_next.disk_mb", 32000) %>
-  disk_overcommit_factor: <%= p("dea_next.disk_overcommit_factor", 1) %>
-  num_instances: <%= p("dea_next.num_instances", 30) %>
+  memory_mb: <%= p("dea_next.memory_mb") %>
+  memory_overcommit_factor: <%= p("dea_next.memory_overcommit_factor") %>
+  disk_mb: <%= p("dea_next.disk_mb") %>
+  disk_overcommit_factor: <%= p("dea_next.disk_overcommit_factor") %>
+  num_instances: <%= p("dea_next.num_instances") %>
 
 bind_mounts:
 - src_path: /var/vcap/packages/buildpack_cache
 
 staging:
   enabled: true
-  max_staging_duration: <%= p("dea_next.max_staging_duration", 900) %>
+  max_staging_duration: <%= p("dea_next.max_staging_duration") %>
   max_active_tasks: 10
   staging_base_dir: /var/vcap/data/dea_next/staging
   platform_config:
