@@ -300,21 +300,21 @@ properties:
     max_staging_runtime: 900
     resource_pool:
       minimum_size: 65536
-      resource_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-resources
+      resource_directory_key: <%= q("cc.resource_pool.resource_directory_key", "#{find("properties.domain").gsub(".", "-")}-cc-resources") %>
       fog_connection:
         provider: AWS
         aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
         aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
     packages:
       minimum_size: 1048576
-      app_package_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-packages
+      app_package_directory_key: <%= q("cc.packages.app_package_directory_key", "#{find("properties.domain").gsub(".", "-")}-cc-packages") %>
       fog_connection:
         provider: AWS
         aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
         aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
     droplets:
       minimum_size: 1048576
-      droplet_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-droplets
+      droplet_directory_key: <%= q("cc.droplets.droplet_directory_key", "#{find("properties.domain").gsub(".", "-")}-cc-droplets") %>
       fog_connection:
         provider: AWS
         aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
