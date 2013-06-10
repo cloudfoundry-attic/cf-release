@@ -23,7 +23,7 @@ mv apache-tomcat-7.0.32 tomcat
 
 cd tomcat
 rm -rf webapps/*
-cp -a ${BOSH_COMPILE_TARGET}/login/cloudfoundry-login-server-1.2.1.war webapps/ROOT.war
+cp -a ${BOSH_COMPILE_TARGET}/login/cloudfoundry-login-server-1.2.2.war webapps/ROOT.war
 cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-varz-1.0.2.war webapps/varz.war
 
 cd ${BOSH_INSTALL_TARGET}
