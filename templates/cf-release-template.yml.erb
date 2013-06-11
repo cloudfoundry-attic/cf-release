@@ -319,6 +319,10 @@ properties:
         provider: AWS
         aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
         aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
+      cdn:
+        uri: <%= q("cc.droplets.cdn.uri", "") %>
+        key_pair_id: <%= q("cc.droplets.cdn.key_pair_id", "") %>
+        private_key: <%= q("cc.droplets.cdn.private_key", "").inspect %>
     cc_partition: default
     quota_definitions:
       free:
