@@ -152,6 +152,12 @@ packages:
 
 droplets:
   droplet_directory_key: <%= p("ccng.droplets.droplet_directory_key") %>
+<% if_p("ccng.droplets.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.droplets.cdn.uri") %>
+    key_pair_id: <%= p("ccng.droplets.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.droplets.cdn.private_key").inspect %>
+<% end %>
   fog_connection:
 <% if_p("ccng.droplets.fog_connection.provider") do |provider| %>
     provider: <%= provider %>

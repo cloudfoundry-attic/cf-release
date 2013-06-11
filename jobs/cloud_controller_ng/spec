@@ -166,6 +166,15 @@ properties:
  ccng.droplets.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
   default: "/var/vcap/shared"
+ ccng.droplets.cdn.uri:
+  description: "URI for a CDN to used for droplet downloads"
+  default: ""
+ ccng.droplets.cdn.private_key:
+  description: "Private key for signing download URIs"
+  default: ""
+ ccng.droplets.cdn.key_pair_id:
+  description: "Key pair name for signed download URIs"
+  default: ""
  ccdb_ng.databases:
   description:
  ccdb_ng.roles:
