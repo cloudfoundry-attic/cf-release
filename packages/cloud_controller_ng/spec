@@ -10,4 +10,5 @@ files:
 - cloud_controller_ng/bin/cloud_controller
 - cloud_controller_ng/{db,lib}/**/*
 - cloud_controller_ng/vendor/errors/**/*
+- cloud_controller_ng/config/initializers/**/*
 - pkg_utils/*
