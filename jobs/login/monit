@@ -4,8 +4,8 @@ check process login
   stop program "/var/vcap/jobs/login/bin/login_ctl stop"
   group vcap
 
-check process vcap_registrar
-  with pidfile /var/vcap/sys/run/vcap_registrar/vcap_registrar.pid
+check process login_vcap_registrar
+  with pidfile /var/vcap/sys/run/login/vcap_registrar.pid
   start program "/var/vcap/jobs/login/bin/vcap_registrar_ctl start"
   stop program "/var/vcap/jobs/login/bin/vcap_registrar_ctl stop"
   group vcap
