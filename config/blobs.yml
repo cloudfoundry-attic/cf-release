@@ -861,11 +861,6 @@ postgresql/postgresql-9.2.4-x86_64.tar.gz:
   sha: !binary |-
     Y2YzNDBjYTUxZWNhYWZjMDRhYTlkM2M2NDkwZmI3ZDU3ZmQ1YTNiNw==
   size: 10519400
-login/cloudfoundry-login-server-1.2.1.war:
-  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e051718f3f76f91
-  sha: !binary |-
-    ODIyOGZkYWQxNDlmMzU0OTkzMjQzNzdhOGYwYTdlMDA5OTgxZjdmMQ==
-  size: 8014837
 rootfs/lucid64.tar.gz:
   object_id: rest/objects/4e4e78bca61e122204e4e98643d9ae051782c701f072
   sha: !binary |-
@@ -886,11 +881,6 @@ buildpack_cache/openjdk-1.8.0_M7.tar.gz:
   sha: !binary |-
     ZGZmZDhhYTA3NTA0NzU0ZTI1YWRmZjk1NDdkY2U2YTM2NmM0NWQxNA==
   size: 38150032
-login/cloudfoundry-login-server-1.2.2.war:
-  object_id: fa60f69d-8b77-4fd7-b65e-57ec1a6d60da
-  sha: !binary |-
-    MjNlM2EzM2E3NWVjN2RhNzljMzI2MDFlMmMzYmRjZjU0Nzg2MWJjOQ==
-  size: 8036238
 buildpack_cache/apache-tomcat-7.0.40.tar.gz:
   object_id: 3094e931-972d-4430-abd5-2da9700a0151
   sha: !binary |-
@@ -906,3 +896,8 @@ buildpack_cache/auto-reconfiguration-0.6.7.jar:
   sha: !binary |-
     NzI4MjI4ZjM2NDhkNjc5NzU5ZGYwNGZjZTYyMjBkNDQ2ZTVmZGQ5Zg==
   size: 708374
+login/cloudfoundry-login-server-1.2.3.war:
+  object_id: bea085f2-feca-411d-95f1-74284778bd59
+  sha: !binary |-
+    ZDU2MDAwYzc4Nzk3OTkyODMzNzE4MjkwZTdiMDRkYmQ3ZjMwYjQ0MA==
+  size: 8036310
