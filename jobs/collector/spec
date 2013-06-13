@@ -35,8 +35,8 @@ properties:
     description: "NATS password"
   nats.port:
     description: "NATS TCP port"
-  nats.user: 
-    description: "NATS user" 
+  nats.user:
+    description: "NATS user"
   opentsdb.address:
     description: "IP address of OpenTsdb"
   opentsdb.port:
