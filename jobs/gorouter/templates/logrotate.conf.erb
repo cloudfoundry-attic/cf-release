@@ -4,9 +4,9 @@
 %>
 /var/vcap/sys/log/gorouter/gorouter*.log {
   missingok
-  rotate <%= rotate || 3 %>
+  rotate <%= rotate || 7 %>
   compress
   delaycompress
   copytruncate
-  size=<%= size || "50k" %>
+  size=<%= size || "2M" %>
 }
