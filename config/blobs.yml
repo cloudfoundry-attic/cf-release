@@ -579,10 +579,6 @@ login/cloudfoundry-identity-batch-1.0.0.war:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd0504a22403f04d
   sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
   size: 24049331
-golang/go1.0.1.src.tar.gz:
-  object_id: rest/objects/4e4e78bca41e121004e4e7d517618f05060b980c0182
-  sha: fc8a6d6725f7f2bf7c94685c5fd0880c9b7f67f6
-  size: 9617092
 uaa/apache-tomcat-7.0.32.tar.gz:
   object_id: rest/objects/4e4e78bca11e122204e4e98638b763050786cb3c73e1
   sha: 94d7efcb0d2797b196b1a7d9537e3ed53f7607f4
@@ -901,3 +897,8 @@ login/cloudfoundry-login-server-1.2.3.war:
   sha: !binary |-
     ZDU2MDAwYzc4Nzk3OTkyODMzNzE4MjkwZTdiMDRkYmQ3ZjMwYjQ0MA==
   size: 8036310
+go1.1.1.src.tar.gz:
+  object_id: 668a3b49-03fd-4742-b5a8-f6a76b387106
+  sha: !binary |-
+    ZjM2NWFlZDgxODNlNDg3YTQ4YTY2YWNlN2JmMzZlNTk3NGRmZmJiMw==
+  size: 9045336
