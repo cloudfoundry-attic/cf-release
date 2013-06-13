@@ -46,3 +46,6 @@
 [submodule "src/services_contrib"]
 	path = src/services_contrib
 	url = https://github.com/cloudfoundry/cf-services-contrib.git
+[submodule "src/collector"]
+	path = src/collector
+	url = https://github.com/cloudfoundry/collector.git
