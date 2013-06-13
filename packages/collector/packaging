@@ -1,7 +1,7 @@
 # abort script on any command that exit with a non zero value
 set -e
 
-cp -a tools/collector/* ${BOSH_INSTALL_TARGET}
+cp -a collector/* ${BOSH_INSTALL_TARGET}
 
 cd ${BOSH_INSTALL_TARGET}
 
