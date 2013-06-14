@@ -31,17 +31,17 @@ packages:
 - libyaml
 properties:
   domain:
-    description:
+    description: "DNS domain name for this Cloud Foundry deployment"
   nats.address:
-    description:
+    description: "IP address of NATS server"
   nats.password:
-    description:
+    description: "password for NATS login"
   nats.port:
-    description:
+    description: "TCP port of NATS server"
   nats.user:
-    description:
+    description: "user name for NATS login"
   dea_next.allow_networks:
-    description:
+    description: 
   dea_next.deny_networks:
     description:
   dea_next.disk_mb:
