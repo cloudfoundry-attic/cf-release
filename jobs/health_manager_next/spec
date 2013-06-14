@@ -11,29 +11,27 @@ packages:
   - syslog_aggregator
 properties:
   cc_props:
-    description:
+    description: "BOSH job name of cloud controller"
     default: 'cc'
   cc.srv_api_uri:
-    description:
+    description: "API URI of cloud controller"
   hm_props:
-    description:
+    description: "BOSH job name of health manager"
     default: 'health_manager'
   networks.apps:
     description:
   nats.address:
-    description:
+    description: "IP address of NATS server"
   nats.password:
-    description:
+    description: "password for NATS login"
   nats.port:
-    description:
+    description: "TCP port of NATS server"
   nats.user:
-    description:
-  syslog_aggregator:
-    description:
+    description: "user name for NATS login"
   syslog_aggregator.address:
-    description:
+    description: "IP address of syslog aggregator"
   syslog_aggregator.port:
-    description:
+    description: "TCP port of syslog aggregator"
   health_manager.cc_partition:
     description:
     default: 'default'

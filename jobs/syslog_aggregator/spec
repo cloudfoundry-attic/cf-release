@@ -17,26 +17,26 @@ packages:
 - nats
 properties:
   domain:
-    description:
+    description: "DNS domain for this Cloud Foundry deployment"
   syslog_aggregator.log_email.enabled:
-    description:
+    description: "Enable Email log"
   syslog_aggregator.log_email.from_email:
-    description:
+    description: "From  email address"
   syslog_aggregator.log_email.from_password:
-    description:
+    description: "password for SMTP login"
   syslog_aggregator.log_email.to_email:
-    description:
+    description: "To email address"
   syslog_aggregator.log_email.smtp_server:
-    description:
+    description: "IP address of SMTP server"
   syslog_aggregator.log_email.smtp_port:
-    description:
+    description: "TCP port of SMTP server"
   syslog_aggregator.log_email.smtp_domain:
-    description:
+    description: "SMTP email domain"
   syslog_aggregator.relay_host:
     description:
   syslog_aggregator.relay_host_port:
     description:
   syslog_aggregator.address:
-    description:
+    description: "IP address for syslog aggregator"
   syslog_aggregator.port:
-    description:
+    description: "TCP port of syslog aggregator"
