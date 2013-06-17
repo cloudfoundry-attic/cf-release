@@ -57,47 +57,47 @@ properties:
   uaa.spring_profiles:
     description:
   ccdb.address:
-    description:
+    description: "The CloudController database IP address"
   ccdb.databases:
-    description:
+    description: "The list of databases used in CloudController database including tag/name"
   ccdb.db_scheme:
-    description:
+    description: "Database scheme for CloudController DB"
   ccdb.port:
-    description:
+    description: "The CloudController database Port"
   ccdb.roles:
-    description:
+    description: "The list of database Roles used in CloudController database including tag/name/password"
   domain:
-    description:
+    description: "The domain name for this CloudFoundry deploy"
   env.http_proxy:
-    description:
+    description: "The http_proxy accross the VMs"
   env.https_proxy:
-    description:
+    description: "The https_proxy accross the VMs"
   env.no_proxy:
-    description:
+    description: "Set No_Proxy accross the VMs"
   nats.address:
-    description:
+    description: "IP address of NATS server"
   nats.password:
-    description:
+    description: "Password for NATS login"
   nats.port:
-    description:
+    description: "TCP port of NATS server"
   nats.user:
-    description:
+    description: "User name for NATS login"
   networks.apps:
-    description:
+    description: "The App network name"
   syslog_aggregator.address:
-    description:
+    description: "IP address for syslog aggregator"
   syslog_aggregator.port:
-    description:
+    description: "Port of syslog aggregator"
   uaadb.address:
-    description:
+    description: "The UAA database IP address"
   uaadb.databases:
-    description:
+    description: "The list of databases used in UAA database including tag/name"
   uaadb.db_scheme:
-    description:
+    description: "Database scheme for UAA DB"
   uaadb.port:
-    description:
+    description: "The UAA database Port"
   uaadb.roles:
-    description:
+    description: "The list of database Roles used in UAA database including tag/name/password"
   uaa.no_ssl:
     description:
   uaa.url:
