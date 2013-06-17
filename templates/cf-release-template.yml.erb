@@ -102,7 +102,7 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: large
   network: cf1
-  size: 4
+  size: <%= find('jobs.cloud_controller.instances').to_i + find('jobs.uaa.instances').to_i %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -128,7 +128,7 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: router
   network: cf1
-  size: 2
+  size: <%= find('jobs.router.instances') %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -166,7 +166,7 @@ jobs:
 
 - name: uaa
   template: uaa
-  instances: 2
+  instances: <%= find('jobs.uaa.instances') %>
   resource_pool: large
   networks:
   - name: cf1
@@ -183,7 +183,7 @@ jobs:
 
 - name: cloud_controller
   template: cloud_controller_ng
-  instances: 2
+  instances: <%= find('jobs.cloud_controller.instances') %>
   resource_pool: large
   networks:
   - name: cf1
@@ -195,7 +195,7 @@ jobs:
 
 - name: router
   template: gorouter
-  instances: 2
+  instances: <%= find('jobs.router.instances') %>
   resource_pool: router
   networks:
   - name: cf1
