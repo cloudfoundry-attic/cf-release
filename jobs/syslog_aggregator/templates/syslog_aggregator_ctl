@@ -4,10 +4,18 @@ RUN_DIR=/var/vcap/sys/run/syslog_aggregator
 LOG_DIR=/var/vcap/store/log
 JOB_DIR=/var/vcap/jobs/syslog_aggregator
 PACKAGE_DIR=/var/vcap/packages/syslog_aggregator
+
 BIN_DIR=$JOB_DIR/bin
 PIDFILE=$RUN_DIR/syslog_aggregator.pid
 
+NATS_CAPTURE_DIR=$JOB_DIR/sv/nats_capture
+NATS_CAPTURE_LOG_DIR=/var/vcap/store/log/nats_capture
+
 source /var/vcap/packages/common/utils.sh
+
+function sv_ctl() {
+	[[ -p $NATS_CAPTURE_DIR/supervise/control ]] && echo $1 > $NATS_CAPTURE_DIR/supervise/control
+}
 
 case $1 in
 
@@ -24,6 +32,14 @@ case $1 in
     cp -a $BIN_DIR/symlink_logs /etc/cron.hourly
     cp -a $PACKAGE_DIR/send_error_mail /etc/cron.daily
 
+    if [[ -d "/etc/service" ]] ; then
+      mkdir -p "$NATS_CAPTURE_LOG_DIR"
+      cp -a "$JOB_DIR/config/nats_capture_config" "$NATS_CAPTURE_LOG_DIR/config"
+      find "$NATS_CAPTURE_DIR" -name run | xargs -I% chmod 755 %
+      [[ -L /etc/services/nats_capture ]] || ln -s "$NATS_CAPTURE_DIR" /etc/service
+      sv_ctl u
+    fi
+
     exec /usr/sbin/rsyslogd -f $JOB_DIR/config/rsyslogd.conf -i $PIDFILE -c 4 \
          >>$LOG_DIR/rsyslogd.stdout.log \
          2>>$LOG_DIR/rsyslogd.stderr.log
@@ -34,6 +50,7 @@ case $1 in
     kill_and_wait $PIDFILE
     rm /etc/cron.daily/gzip_old_logs
     rm /etc/cron.hourly/reap_old_logs
+	sv_ctl k
 
     ;;
 

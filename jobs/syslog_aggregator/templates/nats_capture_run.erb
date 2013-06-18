@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec /var/vcap/bosh/bin/nats-sub ">" -s nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+set -e
+exec svlogd -tt /var/vcap/store/log/nats_capture
