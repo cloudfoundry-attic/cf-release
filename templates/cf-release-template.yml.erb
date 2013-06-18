@@ -34,6 +34,19 @@
     "m1.large" => 400_000,
     "m2.2xlarge" => 800_000
   }
+
+  # reserving static_ip range for cloud_controller jobs
+  # saving each one so it is possible to grep the file for reserved ips
+  cloud_controller_static_ips = []
+  cloud_controller_static_ips << ip(3, 'cf1.static')
+  cloud_controller_static_ips << ip(4, 'cf1.static')
+  cloud_controller_static_ips << ip(8, 'cf1.static')
+  cloud_controller_static_ips << ip(9, 'cf1.static')
+  cloud_controller_static_ips << ip(10, 'cf1.static')
+  cloud_controller_static_ips << ip(11, 'cf1.static')
+  cloud_controller_static_ips << ip(12, 'cf1.static')
+  cloud_controller_static_ips << ip(13, 'cf1.static')
+  cloud_controller_static_ips << ip(14, 'cf1.static')
 -%>
 
 # ENV variables for Yeti:
@@ -188,8 +201,9 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - <%= ip(3, 'cf1.static') %>
-    - <%= ip(4, 'cf1.static') %>
+<% (0..(find('jobs.cloud_controller.instances').to_i - 1)).each do |i| -%>
+    - <%= cloud_controller_static_ips[i] %>
+<% end -%>
   properties:
     ccdb: ccdb
 
