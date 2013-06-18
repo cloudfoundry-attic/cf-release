@@ -7,6 +7,9 @@ templates:
   gzip_old_logs: bin/gzip_old_logs
   reap_old_logs: bin/reap_old_logs
   symlink_logs: bin/symlink_logs
+  nats_capture_run.erb: sv/nats_capture/run
+  nats_capture_log: sv/nats_capture/log/run
+  nats_capture_config: config/nats_capture_config
 packages:
 - common
 - syslog_aggregator
