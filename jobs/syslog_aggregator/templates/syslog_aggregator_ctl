@@ -17,6 +17,29 @@ function sv_ctl() {
 	[[ -p $NATS_CAPTURE_DIR/supervise/control ]] && echo $1 > $NATS_CAPTURE_DIR/supervise/control
 }
 
+function clean_up_nats_capture (){
+	sv stop nats_capture
+    sv stop nats_capture/log
+    sv status nats_capture
+    sv status nats_capture/log
+    [[ -L /etc/services/nats_capture ]] || {
+      cd /etc/service
+      rm -fv $(basename $NATS_CAPTURE_DIR)
+      cd -
+      }
+}
+
+function link_nats_capture() {
+    find "$NATS_CAPTURE_DIR" -name run | xargs -I% chmod 755 %
+    chown -R vcap:vcap $NATS_CAPTURE_LOG_DIR $NATS_CAPTURE_DIR
+    [[ -L /etc/services/nats_capture ]] || {
+      cd /etc/service
+      ln -sfv "$NATS_CAPTURE_DIR" .
+      cd -
+    }
+
+}
+
 case $1 in
 
   start)
@@ -33,11 +56,10 @@ case $1 in
     cp -a $PACKAGE_DIR/send_error_mail /etc/cron.daily
 
     if [[ -d "/etc/service" ]] ; then
-      mkdir -p "$NATS_CAPTURE_LOG_DIR"
-      cp -a "$JOB_DIR/config/nats_capture_config" "$NATS_CAPTURE_LOG_DIR/config"
-      find "$NATS_CAPTURE_DIR" -name run | xargs -I% chmod 755 %
-      [[ -L /etc/services/nats_capture ]] || ln -s "$NATS_CAPTURE_DIR" /etc/service
-      sv_ctl u
+      mkdir -vp "$NATS_CAPTURE_LOG_DIR"
+      cp -va "$JOB_DIR/config/nats_capture_config" "$NATS_CAPTURE_LOG_DIR/config"
+      clean_up_nats_capture
+      link_nats_capture
     fi
 
     exec /usr/sbin/rsyslogd -f $JOB_DIR/config/rsyslogd.conf -i $PIDFILE -c 4 \
@@ -50,7 +72,8 @@ case $1 in
     kill_and_wait $PIDFILE
     rm /etc/cron.daily/gzip_old_logs
     rm /etc/cron.hourly/reap_old_logs
-	sv_ctl k
+
+    clean_up_nats_capture
 
     ;;
 

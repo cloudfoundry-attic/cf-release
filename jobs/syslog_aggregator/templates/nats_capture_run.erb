@@ -1,3 +1,6 @@
 #!/bin/bash
 
-exec /var/vcap/bosh/bin/nats-sub ">" -s nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>
+export PKG_DIR=/var/vcap/packages
+exec chpst -u vcap:vcap \
+   $PKG_DIR/ruby_next/bin/ruby $PKG_DIR/nats/bin/nats-sub ">" \
+   -s nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>
