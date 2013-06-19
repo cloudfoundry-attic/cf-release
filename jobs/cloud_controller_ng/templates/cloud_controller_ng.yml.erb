@@ -126,6 +126,12 @@ resource_pool:
   minimum_size: <%= p("ccng.resource_pool.minimum_size") %>
   maximum_size: <%= p("ccng.resource_pool.maximum_size") %>
   resource_directory_key: <%= p("ccng.resource_pool.resource_directory_key") %>
+<% if_p("ccng.resource_pool.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.resource_pool.cdn.uri") %>
+    key_pair_id: <%= p("ccng.resource_pool.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.resource_pool.cdn.private_key").inspect %>
+<% end %>
   fog_connection:
 <% if_p("ccng.resource_pool.fog_connection.provider") do |provider| %>
     provider: <%= provider %>
@@ -139,6 +145,12 @@ resource_pool:
 
 packages:
   app_package_directory_key: <%= p("ccng.packages.app_package_directory_key") %>
+<% if_p("ccng.packages.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.packages.cdn.uri") %>
+    key_pair_id: <%= p("ccng.packages.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.packages.cdn.private_key").inspect %>
+<% end %>
   fog_connection:
 <% if_p("ccng.packages.fog_connection.provider") do |provider| %>
     provider: <%= provider %>
