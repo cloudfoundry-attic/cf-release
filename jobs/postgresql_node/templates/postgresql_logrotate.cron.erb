@@ -1,2 +1,0 @@
-<% freq_min=properties.postgresql_node && properties.postgresql_node.logrotate && properties.postgresql_node.logrotate.freq_min || 5 %>
-*/<%= freq_min %> * * * * test -x /usr/sbin/logrotate && /usr/sbin/logrotate /var/vcap/jobs/postgresql_node/config/logrotate.conf >>/var/vcap/sys/log/postgresql_node/postgresql_logrotate_cron.log 2>&1

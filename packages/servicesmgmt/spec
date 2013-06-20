@@ -1,9 +1,0 @@
----
-name: servicesmgmt
-dependencies:
-- ruby
-files:
-- services/tools/servicesmgmt/**/*
-- pkg_utils/*
-- common/services/utils.sh
-- tools/vcap_registrar/**/*

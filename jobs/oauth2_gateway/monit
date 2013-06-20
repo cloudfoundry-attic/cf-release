@@ -1,5 +1,0 @@
-check process oauth2_gateway
-  with pidfile /var/vcap/sys/run/oauth2_gateway/oauth2_gateway.pid
-  start program "/var/vcap/jobs/oauth2_gateway/bin/oauth2_gateway_ctl start"
-  stop program "/var/vcap/jobs/oauth2_gateway/bin/oauth2_gateway_ctl stop"
-  group vcap

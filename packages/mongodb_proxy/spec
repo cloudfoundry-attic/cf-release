@@ -1,7 +1,0 @@
----
-name: mongodb_proxy
-dependencies:
-- golang
-files:
-- services/tools/mongodb_proxy/**/*
-- services/govendor/**/*
