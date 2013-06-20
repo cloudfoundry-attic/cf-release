@@ -48,6 +48,10 @@
   cloud_controller_static_ips << ip(13, 'cf1.static')
   cloud_controller_static_ips << ip(14, 'cf1.static')
 
+  uaa_static_ips = []
+  uaa_static_ips << ip(2, 'cf1.static')
+  uaa_static_ips << ip(7, 'cf1.static')
+
   router_static_ips = []
   router_static_ips << ip(5, 'cf1.static')
   router_static_ips << ip(6, 'cf1.static')
@@ -191,8 +195,9 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - <%= ip(2, 'cf1.static') %>
-    - <%= ip(7, 'cf1.static') %>
+<% (0..(find('jobs.uaa.instances').to_i - 1)).each do |i| -%>
+    - <%= uaa_static_ips[i] %>
+<% end -%>
 
 - name: login
   template: login
