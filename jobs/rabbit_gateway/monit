@@ -1,5 +1,0 @@
-check process rabbit_gateway
-  with pidfile /var/vcap/sys/run/rabbit_gateway/rabbit_gateway.pid
-  start program "/var/vcap/jobs/rabbit_gateway/bin/rabbit_gateway_ctl start"
-  stop program "/var/vcap/jobs/rabbit_gateway/bin/rabbit_gateway_ctl stop"
-  group vcap

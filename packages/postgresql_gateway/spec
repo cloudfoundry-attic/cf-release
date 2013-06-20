@@ -1,9 +1,0 @@
----
-name: postgresql_gateway
-dependencies:
-- postgresql
-- sqlite
-- ruby
-files:
-- services/ng/postgresql/**/*
-- pkg_utils/*

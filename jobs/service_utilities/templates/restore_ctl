@@ -1,4 +1,0 @@
-#!/bin/bash
-
-export PATH=/var/vcap/packages/ruby/bin:$PATH
-ruby /var/vcap/jobs/service_utilities/packages/service_utilities/services/tools/restore/bin/restore $*

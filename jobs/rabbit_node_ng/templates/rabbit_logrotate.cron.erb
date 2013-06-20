@@ -1,2 +1,0 @@
-<% freq_min=properties.rabbit_node && properties.rabbit_node.logrotate && properties.rabbit_node.logrotate.freq_min || 5 %>
-*/<%= freq_min %> * * * * test -x /usr/sbin/logrotate && /usr/sbin/logrotate /var/vcap/jobs/rabbit_node_ng/config/logrotate.conf >>/var/vcap/sys/log/rabbit_node/rabbit_logrotate_cron.log 2>&1

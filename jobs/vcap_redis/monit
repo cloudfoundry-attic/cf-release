@@ -1,5 +1,0 @@
-check process vcap_redis
-  with pidfile /var/vcap/sys/run/vcap_redis/vcap_redis.pid
-  start program "/var/vcap/jobs/vcap_redis/bin/vcap_redis_ctl start"
-  stop program "/var/vcap/jobs/vcap_redis/bin/vcap_redis_ctl stop"
-  group vcap

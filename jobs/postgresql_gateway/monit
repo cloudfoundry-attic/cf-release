@@ -1,5 +1,0 @@
-check process postgresql_gateway
-  with pidfile /var/vcap/sys/run/postgresql_gateway/postgresql_gateway.pid
-  start program "/var/vcap/jobs/postgresql_gateway/bin/postgresql_gateway_ctl start"
-  stop program "/var/vcap/jobs/postgresql_gateway/bin/postgresql_gateway_ctl stop"
-  group vcap

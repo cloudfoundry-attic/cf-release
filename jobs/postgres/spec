@@ -1,9 +1,0 @@
----
-name: postgres
-templates:
-  postgres_ctl.erb: bin/postgres_ctl
-  postgresql.conf.erb: config/postgresql.conf
-  pg_hba.conf.erb: config/pg_hba.conf
-packages:
-  - common
-  - postgres
