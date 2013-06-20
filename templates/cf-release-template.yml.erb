@@ -47,6 +47,17 @@
   cloud_controller_static_ips << ip(12, 'cf1.static')
   cloud_controller_static_ips << ip(13, 'cf1.static')
   cloud_controller_static_ips << ip(14, 'cf1.static')
+
+  router_static_ips = []
+  router_static_ips << ip(5, 'cf1.static')
+  router_static_ips << ip(6, 'cf1.static')
+  router_static_ips << ip(15, 'cf1.static')
+  router_static_ips << ip(16, 'cf1.static')
+  router_static_ips << ip(17, 'cf1.static')
+  router_static_ips << ip(18, 'cf1.static')
+  router_static_ips << ip(19, 'cf1.static')
+  router_static_ips << ip(20, 'cf1.static')
+
 -%>
 
 # ENV variables for Yeti:
@@ -213,8 +224,9 @@ jobs:
     - dns
     - gateway
     static_ips:
-    - <%= ip(5, 'cf1.static') %>
-    - <%= ip(6, 'cf1.static') %>
+<% (0..(find('jobs.router.instances').to_i - 1)).each do |i| -%>
+    - <%= router_static_ips[i] %>
+<% end -%>
 
 - name: health_manager
   template: health_manager_next
