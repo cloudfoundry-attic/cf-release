@@ -1,8 +1,0 @@
----
-name: mongodb_gateway
-dependencies:
-- ruby
-- sqlite
-files:
-- services/ng/mongodb/**/*
-- pkg_utils/*

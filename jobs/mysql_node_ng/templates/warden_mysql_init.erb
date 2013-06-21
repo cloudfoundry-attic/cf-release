@@ -1,7 +1,0 @@
-GRANT ALL ON *.* to 'root'@'%' IDENTIFIED BY '<%= properties.mysql_node.password %>' WITH GRANT OPTION;
-GRANT ALL ON *.* to 'root'@'localhost' IDENTIFIED BY '<%= properties.mysql_node.password %>' WITH GRANT OPTION;
-
-FLUSH PRIVILEGES;
-
-SET GLOBAL fast_index_creation=false;
-DROP DATABASE IF EXISTS test;

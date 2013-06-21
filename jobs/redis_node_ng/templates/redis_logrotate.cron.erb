@@ -1,2 +1,0 @@
-<% freq_min=properties.redis_node && properties.redis_node.logrotate && properties.redis_node.logrotate.freq_min || 5 %>
-*/<%= freq_min %> * * * * test -x /usr/sbin/logrotate && /usr/sbin/logrotate /var/vcap/jobs/redis_node_ng/config/logrotate.conf >>/var/vcap/sys/log/redis_node/redis_logrotate_cron.log 2>&1

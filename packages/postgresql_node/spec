@@ -1,9 +1,0 @@
----
-name: postgresql_node
-dependencies:
-- postgresql
-- sqlite
-- ruby
-files:
-- services/postgresql/**/*
-- pkg_utils/*
