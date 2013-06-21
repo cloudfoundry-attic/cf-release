@@ -1,7 +1,0 @@
----
-name: serialization_data_server
-dependencies:
-- ruby
-files:
-- services/serialization_data_server/**/*
-- pkg_utils/*

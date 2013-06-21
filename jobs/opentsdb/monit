@@ -1,5 +1,0 @@
-check process opentsdb
-  with pidfile /var/vcap/sys/run/opentsdb/opentsdb.pid
-  start program "/var/vcap/jobs/opentsdb/bin/opentsdb_ctl start"
-  stop program "/var/vcap/jobs/opentsdb/bin/opentsdb_ctl stop"
-  group vcap

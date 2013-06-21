@@ -1,8 +1,0 @@
----
-name: rabbit_gateway
-dependencies:
-- sqlite
-- ruby
-files:
-- services/ng/rabbit/**/*
-- pkg_utils/*

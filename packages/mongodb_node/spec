@@ -1,8 +1,0 @@
----
-name: mongodb_node
-dependencies:
-- sqlite
-- ruby
-files:
-- services/mongodb/**/*
-- pkg_utils/*

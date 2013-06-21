@@ -1,8 +1,0 @@
----
-name: redis_gateway
-dependencies:
-- sqlite
-- ruby
-files:
-- services/ng/redis/**/*
-- pkg_utils/*
