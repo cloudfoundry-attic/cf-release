@@ -1,0 +1,5 @@
+check process mongodb_gateway
+  with pidfile /var/vcap/sys/run/mongodb_gateway/mongodb_gateway.pid
+  start program "/var/vcap/jobs/mongodb_gateway/bin/mongodb_gateway_ctl start"
+  stop program "/var/vcap/jobs/mongodb_gateway/bin/mongodb_gateway_ctl stop"
+  group vcap

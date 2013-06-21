@@ -1,0 +1,10 @@
+---
+name: backup_manager
+dependencies:
+- sqlite
+- ruby
+files:
+- services/tools/backup/**/*
+- services/tools/restore/**/*
+- pkg_utils/*
+

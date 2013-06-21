@@ -1,0 +1,9 @@
+---
+name: mysql_node
+dependencies:
+- mysqlclient
+- sqlite
+- ruby
+files:
+- services/mysql/**/*
+- pkg_utils/*

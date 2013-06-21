@@ -1,0 +1,5 @@
+check process ccdb_postgres
+  with pidfile /var/vcap/sys/run/postgres/postgres.pid
+  start program "/var/vcap/jobs/ccdb_postgres/bin/postgres_ctl start"
+  stop program "/var/vcap/jobs/ccdb_postgres/bin/postgres_ctl stop"
+  group vcap

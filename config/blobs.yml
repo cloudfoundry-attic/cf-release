@@ -1,4 +1,8 @@
 ---
+erlang/otp_src_R14B01.tar.gz:
+  object_id: rest/objects/4e4e78bca61e122204e4e98643d9ae04f305b2a6219e
+  sha: f0e0529ed73587c2c4aaeb3f3a01555bd6cfe05c
+  size: 64846537
 nginx/lbase64.tar.gz:
   object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f30681768835
   sha: 5692619dae780dbdf9edc994f9dcd7dce7b24646
@@ -51,6 +55,26 @@ node/node-v0.4.12.tar.gz:
   object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f3068760f67f
   sha: 1c6e34b90ad6b989658ee85e0d0cb16797b16460
   size: 12421469
+mongodb/mongodb-linux-x86_64-1.8.5.tgz:
+  size: 28156593
+  object_id: rest/objects/4e4e78bca51e121204e4e86ee8e2c904fc7f267775eb
+  sha: 235605f306b66584d2aa00b61d45b4605f87867e
+mongodb/mongodb-linux-i686-1.8.5.tgz:
+  size: 27749757
+  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04fc7f1f78d810
+  sha: f75d2fd7a4e0a7116ea612bb62b710a1ba0fa2b2
+mongodb/mongodb-linux-x86_64-2.0.6.tgz:
+  size: 38572579
+  object_id: rest/objects/4e4e78bca61e121204e4e86eebe59104ff233055512a
+  sha: 4ba3f2849653cb8f63410f9d901a3388b291d879
+mongodb/mongodb-linux-i686-2.0.6.tgz:
+  size: 38296132
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404ff2332440393
+  sha: b46ea3927388532ad1d5027fdaed1d37d6c00fa6
+opentsdb/opentsdb.36fe3cc1.tgz:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f3068b4186c1
+  sha: 825cb28918aa5e2c48942558e557d88ab2f34c44
+  size: 26494957
 java/jre-1.6.0_24-x86_64.tar.gz:
   object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f3068c227b32
   sha: 0511d833dfd9825a26c18e9d685de64ac0151e85
@@ -67,6 +91,14 @@ java/jre-7u4-linux-x64.tar.gz:
   object_id: rest/objects/4e4e78bca41e121204e4e86ee5392104fd5426616b81
   sha: 1108d1744baa73bf6caa2adf965d0f489ea1ef60
   size: 32771159
+hbase/native-lib.tar.gz:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f3068e4988c8
+  sha: 8d35c05ce07f0af4a19926fb1497ba101b4116ba
+  size: 546495
+postgresql/postgresql-9.0-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f3068fb712e4
+  sha: 1c777413ce355ebf79c5786e7dbc5a060883986f
+  size: 17345516
 ruby/rubygems-1.7.2.tgz:
   object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f30690769cd2
   sha: d878ae52f40eb71e59708afc57303172f0327fad
@@ -91,6 +123,290 @@ openjdk/openjdk6-jre-x86_64.tar.gz:
   object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f306950693ed
   sha: 367c1e336535b8dd65e08523144180a409e450e6
   size: 28330869
+dea_transition/gems/rspec-mocks-2.5.0.gem:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b604f30696e29eb6
+  sha: 7de6785760c370baeeb1c4f828682fb68c66f86a
+  size: 42496
+dea_transition/gems/daemons-1.1.2.gem:
+  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04f30697323f75
+  sha: 5da3eaa6ff22249073efd93f34c9ad8a4f064c30
+  size: 33280
+dea_transition/gems/rspec-expectations-2.5.0.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306978275d3
+  sha: 9073ba473a4286ab4a1d455df10edf66477af120
+  size: 58880
+dea_transition/gems/rspec-rails-2.5.0.gem:
+  object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f30697d0a187
+  sha: c2b9246282762ff5c83067f0f1ea6bd435cab3d4
+  size: 51712
+dea_transition/gems/activerecord-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca41e122004e4e8ec65f67f04f3069820e8c3
+  sha: f0ccada73a3230b2e31730952ba3d5a3a012c819
+  size: 341504
+dea_transition/gems/json_pure-1.5.1.gem:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f30698730165
+  sha: 22c388da99aebffc7c4979f3f652f469f5ba2965
+  size: 669696
+dea_transition/gems/activesupport-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f30698c6757f
+  sha: 175ba6286f7802edeeaab30f900d87a38f516728
+  size: 303616
+dea_transition/gems/thin-1.2.9.gem:
+  object_id: rest/objects/4e4e78bca41e121004e4e7d517618f04f3069917ffec
+  sha: 47ac2041a9fbc8ef90920a1b71771cd6703af309
+  size: 142848
+dea_transition/gems/activesupport-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b604f306996877da
+  sha: 195fa3f7fa044134703a655cdb906edb515286c4
+  size: 303104
+dea_transition/gems/will_paginate-2.3.15.gem:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f30699b921ea
+  sha: 50f6a1bb53512fdebd22ae3c78deafab85f1c7db
+  size: 36352
+dea_transition/gems/mysql-2.8.1.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f3069a09745b
+  sha: 3610dc7d7622dd29db35d42bef358d18c8a010d5
+  size: 38400
+dea_transition/gems/mongo-1.3.0.gem:
+  object_id: rest/objects/4e4e78bca41e121004e4e7d517618f04f3069a579b32
+  sha: ebdccda9fe237953770be480662728b6787e5db3
+  size: 115712
+dea_transition/gems/rack-1.2.2.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f3069aa8c184
+  sha: ebdbd0ee7440a60d37a088acc1b3a63bf8acd275
+  size: 140288
+dea_transition/gems/actionpack-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04f3069af95c78
+  sha: 76db91152586aaf8d201feda214eb7c09c08878e
+  size: 352256
+dea_transition/gems/actionmailer-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f3069b494f26
+  sha: b40ed8efe2122d80e7e96b3c12cf95fa75b0b2cc
+  size: 30720
+dea_transition/gems/actionpack-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f3069b9937eb
+  sha: e8fbefd5b0a46408dd557331700ea514a4c199ab
+  size: 353280
+dea_transition/gems/railties-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f3069bebedc9
+  sha: f2bfb3d792f47b3fca49fb83eedce1f2ff83716f
+  size: 1548288
+dea_transition/gems/activerecord-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f3069c49c5d7
+  sha: 3b392e811ba342a5bf430d89cf4f060d119aba64
+  size: 343040
+dea_transition/gems/activeresource-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca31e122004e4e8ec646e2104f3069c9bc368
+  sha: 9eea440bdf885e857ebfb5ff8e31119f76a18a4e
+  size: 34816
+dea_transition/gems/rake-0.8.7.gem:
+  object_id: rest/objects/4e4e78bca41e121004e4e7d517618f04f3069ceba8ab
+  sha: 91daad079d404b68a7dd179716b9fdd0c195144c
+  size: 104960
+dea_transition/gems/rails-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b604f3069d3bd84a
+  sha: f0319acc57067880ec6f73043b91a363cf894cf1
+  size: 3584
+dea_transition/gems/thin-1.2.11.gem:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04f3069d8a7290
+  sha: defa97b88678f1358380346734acefd346a78bd9
+  size: 142848
+dea_transition/gems/rails-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f3069ddc814c
+  sha: ebeea3c1f03db3309ea9a6640e1767ab144ff567
+  size: 3584
+dea_transition/gems/arel-2.0.9.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f3069e2d1f71
+  sha: 09daef2de2f80ca6a065b010c8430c36da5b4a87
+  size: 36864
+dea_transition/gems/mime-types-1.16.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f3069e7d7780
+  sha: dc9c8d0eca668c18c21302b439645c20327da3ab
+  size: 47104
+dea_transition/gems/activemodel-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04f3069ecd4128
+  sha: 1556900a7afa1cdcdf4641edbcdd2c24f98bb2de
+  size: 37888
+dea_transition/gems/fastercsv-1.5.4.gem:
+  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f3069f1d4b72
+  sha: 7b04d8dfd8ac37355ea1eeee32ccb0d57435f8fc
+  size: 125440
+dea_transition/gems/haml-3.0.25.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f3069f6e191d
+  sha: 71fba1c7deefc237af6712388b1240aeed5e2113
+  size: 273408
+dea_transition/gems/thin-1.2.7.gem:
+  object_id: rest/objects/4e4e78bca41e122004e4e8ec65f67f04f3069fc01066
+  sha: 92a10ca560e79b9841aecd08526daf14357b81a0
+  size: 140288
+dea_transition/gems/bson-1.3.0.gem:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f306a010894f
+  sha: bbf78718452ed5bd16ec4af4cb819d9609629265
+  size: 26624
+dea_transition/gems/actionmailer-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306a05e4018
+  sha: b25750c8126aa21db27d7b0ee829b2e94e525ebc
+  size: 30720
+dea_transition/gems/rails-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f306a0ae980a
+  sha: 32322bf9952d76c5fa0054c8533c0c58609f40aa
+  size: 3584
+dea_transition/gems/amqp-0.7.1.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f306a0fe9223
+  sha: 77f420676977bcbf2ce7d0e61361efa6af7dcdf2
+  size: 89600
+dea_transition/gems/sqlite3-1.3.3.gem:
+  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04f306a14d1059
+  sha: 8888ba7d755764486dd05cae7b95cf47ec2c3d0b
+  size: 55808
+dea_transition/gems/thin-1.2.8.gem:
+  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f306a19da283
+  sha: 1de49952501c429a2e5d4d30b46723dce43a488d
+  size: 150528
+dea_transition/gems/activemodel-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f306a1ec8892
+  sha: 8509520744ecd8e6712158311a16ba4782b454e2
+  size: 38400
+dea_transition/gems/actionmailer-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca41e122004e4e8ec65f67f04f306a23db37b
+  sha: fc7b0503bdf99d1ec08dc0dcee3677ca1dd29f0f
+  size: 30720
+dea_transition/gems/thor-0.14.6.gem:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04f306a28d4bc6
+  sha: cb09bba64959b0ea470d1b8c266c42858a8f7e11
+  size: 73216
+dea_transition/gems/json-1.5.1.gem:
+  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f306a2dbca4c
+  sha: 5be4aa27c73b9a0c6159b47fe58b6abc8f100a93
+  size: 669696
+dea_transition/gems/abstract-1.0.0.gem:
+  object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f306a3335efd
+  sha: 171f897e4d5c31063f18cebe5b417e21bf58b209
+  size: 12288
+dea_transition/gems/mysql2-0.2.7.gem:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b604f306a382dd16
+  sha: 5008b524050822007dfbe14b326707bbe409d0a9
+  size: 45056
+dea_transition/gems/rspec-2.5.0.gem:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04f306a3d14568
+  sha: aad7038a482c585b18578845b30a3e5a0319c554
+  size: 5632
+dea_transition/gems/nokogiri-1.4.4.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306a42163b8
+  sha: 15f5c381d98a4e53a879981b8fbc301d3561c675
+  size: 198656
+dea_transition/gems/rack-mount-0.6.14.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f306a471e516
+  sha: 075e967b6ff9b81025ef3acfbea515f96ce2f1d4
+  size: 30208
+dea_transition/gems/redis-2.2.0.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f306a4c16d14
+  sha: 66a90619769d1e2ee7ff6342b0e3f3725ce6bb4f
+  size: 40448
+dea_transition/gems/activesupport-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04f306a511df0f
+  sha: a164e327d87186218c94b98ea3ebb6a5305c1508
+  size: 303104
+dea_transition/gems/mail-2.2.15.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306a5656401
+  sha: 95b3f05773697ea97b211903c474192483ae8a98
+  size: 103424
+dea_transition/gems/thin-1.2.10.gem:
+  object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f306a5b3cc53
+  sha: f7a3e399813b1611080f8e6695ab7f21410c7180
+  size: 156672
+dea_transition/gems/railties-3.0.6.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f306a604b267
+  sha: 61e24f94ea87fc58175b2067f7f6a3a8c468bfe0
+  size: 1548800
+dea_transition/gems/polyglot-0.3.1.gem:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04f306a6681159
+  sha: 28c2d98d4151d25ee400e0fcc13c79ac456142b1
+  size: 6656
+dea_transition/gems/tilt-1.2.2.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306a6b6c9b6
+  sha: 2ed7f6a5ecdf9ec0108e1e8145e67cd26f82ebd3
+  size: 28672
+dea_transition/gems/builder-2.1.2.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f306a7070bc2
+  sha: d0ea89ea793c75853abd636ab86a79b7b57d6993
+  size: 22528
+dea_transition/gems/railties-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca41e122004e4e8ec65f67f04f306a75688d6
+  sha: 3dddf14736dec991c3dbbe2d89495613e72c19c7
+  size: 1548288
+dea_transition/gems/diff-lcs-1.1.2.gem:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04f306a7b25e51
+  sha: 05a1164be2de3555104af79791da2977e6419d59
+  size: 27136
+dea_transition/gems/rspec-core-2.5.1.gem:
+  object_id: rest/objects/4e4e78bca31e122004e4e8ec646e2104f306a802d829
+  sha: 4523e2fa8fab912230b04ddc1881f2aa5318005d
+  size: 98304
+dea_transition/gems/sinatra-1.2.0.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f306a8528ad9
+  sha: 045d48f9d34b7bc83fcb2383594709cec01db48e
+  size: 226304
+dea_transition/gems/activemodel-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f306a8a4fd92
+  sha: 0a9fd861741a8ab2848f465c61905b3b5dc4321e
+  size: 37888
+dea_transition/gems/actionpack-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04f306a8f3c7e3
+  sha: 0a6f7f9ac2960ff224c913877a2917e1bea80df3
+  size: 352256
+dea_transition/gems/sinatra-1.2.1.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306a94a0905
+  sha: 8ccc617d95938d672c64de7a614375f7b60024d1
+  size: 238592
+dea_transition/gems/erubis-2.6.6.gem:
+  object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f306a99e2970
+  sha: f044e9500a272d4fb2e40368c352350bf92f46f5
+  size: 163840
+dea_transition/gems/rack-test-0.5.7.gem:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f306a9f0f6a2
+  sha: 09fd7cc10fc7dfca87cb139cbf939f82d26f0c2e
+  size: 20992
+dea_transition/gems/treetop-1.4.9.gem:
+  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04f306aa42e4fe
+  sha: a3d96f639bad150ab4c2cb410859f6ef1cb5aae1
+  size: 179200
+dea_transition/gems/tzinfo-0.3.26.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306aa96e771
+  sha: a76735b3f8a945fa933a79db7f2741c41afad4a4
+  size: 310272
+dea_transition/gems/bson_ext-1.3.0.gem:
+  object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f306aaea2be4
+  sha: 688cad4480fd39b8aaafc6e2965be1a7b31d92ad
+  size: 15872
+dea_transition/gems/bundler-1.0.11.gem:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b604f306ab3a852f
+  sha: 6bcddff78524f14ce2ad668444f9ec1be72978c3
+  size: 160256
+dea_transition/gems/activeresource-3.0.4.gem:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f306ab8a715a
+  sha: 47bc18a77073dc1553224fbc1c974e1bae95a9dc
+  size: 34816
+dea_transition/gems/pg-0.11.0.gem:
+  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f306abdb4086
+  sha: d5aba27392dbfc0dd24ec39ce008b5c9daef3091
+  size: 115200
+dea_transition/gems/eventmachine-0.12.10.gem:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f306ac2b0d3e
+  sha: d9b3ec65e3e94e461ed2d53c01a2b9ab62fe6a07
+  size: 220672
+dea_transition/gems/i18n-0.5.0.gem:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b604f306ac7d6412
+  sha: 74ec4aeb2c46d6d59864e5fceecd3cd496963a3f
+  size: 60416
+dea_transition/gems/activeresource-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f306accc62c2
+  sha: 758f893cbb7ef945c857bf4ca044b94017bdc437
+  size: 34816
+dea_transition/gems/activerecord-3.0.5.gem:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f306ad1ba2b7
+  sha: 33dd05d7362931564f6f15ea7130cc27a5fc09e8
+  size: 342528
 insight_agent/insight-agent.zip:
   object_id: rest/objects/4e4e78bca41e121004e4e7d517618f04f306ad764f01
   sha: bdeeebb6853a7e7bea64ceb8b2c6cd1a5eb3df51
@@ -107,10 +423,26 @@ postgres/postgresql-9.0.3.tar.gz:
   object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f306b0ec246e
   sha: c8fb5d1d7930e78211e554bb5751183a8148d0ee
   size: 18335858
+debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
+  object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
+  sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
+  size: 169618
 ruby/ruby-1.8.7-p357.tar.bz2:
   object_id: rest/objects/4e4e78bca11e121204e4e86ee1529404f3071453daff
   sha: ba5ec0ab663976f00fb405be6cfef546bcf0e4e9
   size: 4208157
+rabbitmq/rabbitmq-server-with-plugins-generic-unix-2.4.1.tar.gz:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f44f1bdcbf45
+  sha: dfdfcf988a780af034c1568cae96e6a84e0c3668
+  size: 1780598
+rabbitmq/rabbitmq-server-with-plugins-generic-unix-2.8.7.tar.gz:
+  object_id: rest/objects/4e4e78bca21e122204e4e9863926b105090d6c534794
+  sha: 23db4c0fb8a43a0131f8e909c2821aaf85ea410b
+  size: 2894762
+rabbitmq/rabbitmq-server-with-plugins-generic-unix-3.0.4.tar.gz:
+  object_id: rest/objects/4e4e78bca11e121204e4e86ee1529405149156c9e5ff
+  sha: 70ea6912251056f49d7bf2a94f1ea5852d0518ca
+  size: 3570257
 nats/vendor/cache/json_pure-1.6.5.gem:
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f525f001b6d1
   sha: 739c40b6acebe9b7b3fdcaf3ff6bd4600ce3dcfb
@@ -171,6 +503,10 @@ mysql/client-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
   object_id: rest/objects/4e4e78bca21e122204e4e9863926b104fb68b259c9fc
   sha: 6e5a17195831688a5f14f20aa5d9cd5d5f4164db
   size: 4105211
+mysql/server-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04fb68b2898dd0
+  sha: 2bfd575545fe78729c56bb832aa69d8d9fc8630d
+  size: 34179263
 ruby/rubygems-1.8.24.tgz:
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304fa1cc28797a9
   sha: 30f27047e74f7943117736a0d3e224994fee0905
@@ -223,6 +559,22 @@ node/node-v0.8.2.tar.gz:
   object_id: rest/objects/4e4e78bca61e122204e4e98643d9ae04ffb5d9651ba0
   sha: 0e743d21b487151e67950f09198def058db19a1e
   size: 11727164
+redis/redis-2.2.15.tar.gz:
+  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f04fff4af61b69e
+  sha: aa6758590363556e73f8d36bdfccb429011da331
+  size: 456185
+redis/redis-2.4.17.tar.gz:
+  object_id: rest/objects/4e4e78bca11e122204e4e98638b763050787641a0474
+  sha: 3d540531b3d7103a511d29661c2ae666dac60522
+  size: 656155
+hadoop/hadoop-0.20.2-cdh3u4.tar.gz:
+  object_id: rest/objects/4e4e78bca51e122204e4e9863f28f304fbd018407f0b
+  sha: 1a9e6437b4b7f0bdbfdd3bd9170a33238e151f12
+  size: 70157279
+hbase/hbase-0.90.6-cdh3u4-vmware-patched.tar.gz:
+  object_id: rest/objects/4e4e78bca11e122204e4e98638b763050105ac5c5901
+  sha: 4290e2a35fc54d34d8ea4e0559e6de6e485322d4
+  size: 36978703
 login/cloudfoundry-identity-batch-1.0.0.war:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd0504a22403f04d
   sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
@@ -231,6 +583,10 @@ uaa/apache-tomcat-7.0.32.tar.gz:
   object_id: rest/objects/4e4e78bca11e122204e4e98638b763050786cb3c73e1
   sha: 94d7efcb0d2797b196b1a7d9537e3ed53f7607f4
   size: 7701019
+postgresql/postgresql-9.1-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca61e121204e4e86eebe59105074950835d80
+  sha: d6c44760c1e5eb055b6ac4a8080b061d6d04fa3c
+  size: 26556736
 uaa/jdk1.6.0_35.tar.gz:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd0507c5d83ed3ea
   sha: 47ead45c658f9c72577d202d8aa1675461ee3ad6
@@ -243,6 +599,10 @@ dashboard/dashboard-1.0-SNAPSHOT-2b7dcaa1.war:
   object_id: rest/objects/4e4e78bca21e122004e4e8ec647a540508acd42e228e
   sha: 08004df2a5b2a7a7e610da4ac1eaaa5a0c14ad25
   size: 17880958
+redis/redis-2.6.2.tar.gz:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b60508af9c8eab61
+  sha: 93e632ce88de07a9845aa5bcab67bdc16a7b574a
+  size: 1000600
 golang/log4go.1fa5d16681.src.tar.gz:
   object_id: rest/objects/4e4e78bca51e121204e4e86ee8e2c90508f374e9a519
   sha: 3c3729883e9fbe7429912a1bdf3c98a75ce59dc3
@@ -263,6 +623,26 @@ dashboard/dashboard-1.0-SNAPSHOT-d7c8acf9.war:
   object_id: rest/objects/4e4e78bca51e122204e4e9863f28f3050b4435931e17
   sha: f736737151b0cb22c862a3eecd5f4af6b269bbce
   size: 18251648
+mongodb/mongodb-linux-x86_64-2.2.1.tgz:
+  object_id: rest/objects/4e4e78bca41e121204e4e86ee53921050a0937105216
+  sha: 118dd2b5b049b10df2c6cdc9e92ec8f90cf508c0
+  size: 55748872
+mongodb/mongodb-linux-i686-2.2.1.tgz:
+  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a54050a0937ae6b7f
+  sha: f06a37c29504f6f92d8a59acf49d86512bc5a2ae
+  size: 54552128
+postgresql/postgresql-initdb-9.0-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca41e122204e4e9863d0763050b33e050c233
+  sha: 181900c6346f718ccd7cfbb8813e7c00f760bc55
+  size: 3467921
+postgresql/postgresql-initdb-9.1-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f821050b33e0805ff8
+  sha: c51a45f5a6011a6bb22407c164ea9b77f77cddad
+  size: 3911161
+mysql/mysql-initdb-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca31e122204e4e9863b1b74050ac8c6ab8fee
+  sha: 8122bcd96c3fa251ce6a4317570d01b4bf2b8420
+  size: 53356
 uaa/cloudfoundry-identity-batch-1.0.2.war:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd050afb827e0aaf
   sha: b716a10b3258a5c459625d2fb6cc0d673a834c98
@@ -275,6 +655,14 @@ misc/libcap2-bin_1%3a2.17-2ubuntu1_amd64.deb:
   object_id: rest/objects/4e4e78bca31e121204e4e86ee396920510ab8aca1ee0
   sha: 3b4ac577bfe581a0f687ece942379edefd2ec3c6
   size: 22076
+mysql/server-5.5.29-rel29.4-401.Linux.x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec6484310510b21c863a27
+  sha: 5e0ab03805732259935a4e45c163f66e2450df2b
+  size: 59624889
+mysql/mysql-initdb-5.5.29-rel29.4-401.Linux.x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca11e122204e4e98638b7630510b21d03bb63
+  sha: fb9485c21e1d8679987d1b60dfd7812e8b4b4c21
+  size: 421383
 mysql/client-5.5.29-rel29.4-401.Linux.x86_64.tar.gz:
   object_id: rest/objects/4e4e78bca41e121004e4e7d517618f0510b21d28a2bb
   sha: 8dad5b2d9fee7b0a98e419949c6f7d94c39443f2
@@ -428,6 +816,14 @@ buildpack_cache/npm-1.2.12.tgz:
   object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e05148e10d70828
   sha: 04d39968240e261cb524af75b77cdd537aca931e
   size: 1830939
+postgresql/postgresql-9.2-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b605139586deff32
+  sha: de2c5f6cb707b9fcb31ff841a9845e2acddfdbb2
+  size: 10516592
+postgresql/postgresql-initdb-9.2-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca11e122004e4e8ec6484310513946c1ccb48
+  sha: 6f46ff94648219840fa475eb95bfa23a5f4bf905
+  size: 4146878
 java/openjre1.6_64.tgz:
   object_id: rest/objects/4e4e78bca21e122204e4e9863926b10515240c1926df
   sha: 44017427ae3d543d625ed60f3edd560b01695071
@@ -436,10 +832,31 @@ java/jre1.6.0_x64.tgz:
   object_id: rest/objects/4e4e78bca31e122204e4e9863b1b74051532ecb181cc
   sha: d5be7aa61a84c27c64451703404d7bddb60570fb
   size: 32071543
+mongodb/mongodb-linux-i686-2.0.9.tgz:
+  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e0515e06d724898
+  sha: 3d24e0f8a5554747d4a6ed1e193a489d2c123074
+  size: 38415939
+mongodb/mongodb-linux-x86_64-2.0.9.tgz:
+  object_id: rest/objects/4e4e78bca41e121204e4e86ee539210515e06d6bf7b2
+  sha: 4176d3ba583235fddd403eb335f7b7353604fce8
+  size: 38649815
+postgresql/postgresql-9.0.13-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca11e121004e4e7d511f8210515f15afe0e84
+  sha: 04c9c94161552408eaa65b0a3fba312aec08aa1a
+  size: 24861255
 postgres/postgresql-9.0.13-x86_64.tar.gz:
   object_id: rest/objects/4e4e78bca51e121204e4e86ee8e2c90515f0bbc54d22
   sha: 4f57c0364065c7dc347ab1246e84e2fbfa11dfbc
   size: 12822460
+mongodb/mongodb-linux-x86_64-2.2.4.tgz:
+  object_id: rest/objects/4e4e78bca41e122204e4e9863d076305162f45e468fa
+  sha: c2ef30a7c7039b4d499e990454b00a2032e6f19f
+  size: 56410012
+postgresql/postgresql-9.2.4-x86_64.tar.gz:
+  object_id: rest/objects/4e4e78bca31e122204e4e9863b1b740516451dfdeda2
+  sha: !binary |-
+    Y2YzNDBjYTUxZWNhYWZjMDRhYTlkM2M2NDkwZmI3ZDU3ZmQ1YTNiNw==
+  size: 10519400
 rootfs/lucid64.tar.gz:
   object_id: rest/objects/4e4e78bca61e122204e4e98643d9ae051782c701f072
   sha: !binary |-

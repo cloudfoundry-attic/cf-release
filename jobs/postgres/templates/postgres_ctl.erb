@@ -1,0 +1,136 @@
+#!/bin/bash -e
+<% db = properties.send(properties.db) %>
+
+PACKAGE_DIR=/var/vcap/packages/postgres
+JOB_DIR=/var/vcap/jobs/postgres
+
+STORE_DIR=/var/vcap/store
+DATA_DIR=$STORE_DIR/postgres
+
+RUN_DIR=/var/vcap/sys/run/postgres
+LOG_DIR=/var/vcap/sys/log/postgres
+
+# external_pid_file in postgresql.conf takes care of
+# overwriting $PIDFILE with actual DB server pid
+PIDFILE=$RUN_DIR/postgres.pid
+
+HOST='0.0.0.0'
+PORT="<%= db.port %>"
+LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH
+
+source /var/vcap/packages/common/utils.sh
+
+case "$1" in
+  start)
+    pid_guard $PIDFILE "PostgreSQL"
+
+    # TODO: This script is responsible for both
+    # starting PostgreSQL and running some queries
+    # (create DBs, roles, applying grants). One problem
+    # that needs to be addressed in the future is that
+    # if some queries fail job is still considered running.
+    # Later we'll change it to use a more involved approach
+    # (i.e. script that brings DB to sync)
+
+    mkdir -p $RUN_DIR
+    chown vcap:vcap $RUN_DIR
+
+    echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
+
+    sysctl -w "kernel.shmmax=284934144"
+
+    if [ ! -d $STORE_DIR ]; then
+      echo "ERROR: storage directory doesn't exist"
+      echo "Please add persistent disk to this job"
+      exit 1
+    fi
+
+    if [ ! -d $LOG_DIR ]; then
+      mkdir -p $LOG_DIR
+      chown vcap:vcap $LOG_DIR
+    fi
+
+    if [ ! -d $DATA_DIR -o ! -f $DATA_DIR/postgresql.conf ]; then
+      mkdir -p $DATA_DIR
+      chown vcap:vcap $DATA_DIR
+
+      # initdb creates data directories
+      su - vcap -c "$PACKAGE_DIR/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR"
+
+      mkdir -p $DATA_DIR/pg_log
+      chown vcap:vcap $DATA_DIR/pg_log
+    fi
+
+    cp $JOB_DIR/config/{postgresql,pg_hba}.conf $DATA_DIR
+    chown vcap:vcap $DATA_DIR/{postgresql,pg_hba}.conf
+
+    echo "Starting PostgreSQL: "
+    su - vcap -c "$PACKAGE_DIR/bin/pg_ctl -o \"-h $HOST -p $PORT\" \
+                  -w start -D $DATA_DIR -l \"$DATA_DIR/pg_log/startup.log\""
+
+    echo "PostgreSQL started successfully"
+
+    echo "Creating roles..."
+    <% db.roles.each do |role| %>
+      echo "Trying to create role <%= role.name %>..."
+      set +e
+      # TODO remove unused roles automatically
+      # Default permissions are: nosuperuser nologin inherit nocreatedb.
+      # Will fail if role already exists, which is OK
+      $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
+                            -c "CREATE ROLE \"<%= role.name %>\""
+      set -e
+
+      echo "Setting password for role <%= role.name %>..."
+      $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
+                            -c "ALTER ROLE \"<%= role.name %>\" \
+                                WITH LOGIN PASSWORD '<%= role.password %>'"
+    <% end %>
+
+    echo "Creating databases..."
+    <% db.databases.each do |database| %>
+      echo "Trying to create database <%= database.name %>..."
+      set +e
+      su - vcap -c "$PACKAGE_DIR/bin/createdb \"<%= database.name %>\" -p $PORT"
+      set -e
+
+      <% if database.citext %>
+        echo "Trying to install citext..."
+        set +e
+        $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
+                              -d "<%= database.name %>" \
+                              -f $PACKAGE_DIR/share/postgresql/contrib/citext.sql
+        set -e
+      <% end %>
+
+      <% if database.run_on_every_startup %>
+        <% database.run_on_every_startup.each do |query| %>
+          $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
+                                -d "<%= database.name %>" \
+                                -c "<%= query %>"
+        <% end %>
+      <% end %>
+    <% end %>
+
+    ;;
+
+  stop)
+    echo "Stopping PostgreSQL: "
+    su - vcap -c "$PACKAGE_DIR/bin/pg_ctl stop -m fast -w -D $DATA_DIR"
+    wait_pidfile $PIDFILE
+
+    ;;
+
+  status)
+    su - vcap -c "$PACKAGE_DIR/bin/pg_ctl status -D $DATA_DIR"
+
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop|status}"
+    exit 1
+
+    ;;
+
+esac

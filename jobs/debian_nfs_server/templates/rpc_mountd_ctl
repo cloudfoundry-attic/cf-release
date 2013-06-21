@@ -1,0 +1,29 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run
+PIDFILE=$RUN_DIR/rpc_mountd.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "rpc.mountd"
+
+    /usr/sbin/rpc.mountd
+    pidof rpc.mountd > $PIDFILE
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: rpc_mountd_ctl {start|stop}"
+
+    ;;
+
+esac
+exit 0

@@ -1,0 +1,5 @@
+check process redis_gateway
+  with pidfile /var/vcap/sys/run/redis_gateway/redis_gateway.pid
+  start program "/var/vcap/jobs/redis_gateway/bin/redis_gateway_ctl start"
+  stop program "/var/vcap/jobs/redis_gateway/bin/redis_gateway_ctl stop"
+  group vcap

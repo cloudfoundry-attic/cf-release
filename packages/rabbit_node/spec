@@ -1,0 +1,8 @@
+---
+name: rabbit_node
+dependencies:
+- sqlite
+- ruby
+files:
+- services/rabbit/**/*
+- pkg_utils/*

@@ -1,0 +1,17 @@
+---
+logging:
+  file: /var/vcap/sys/log/vcap_registrar/vcap_registrar.log
+  <% if properties.syslog_aggregator %>
+  syslog: vcap.servicesmgmt_vcap_registrar
+  <% end %>
+  level: info
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+uri:
+  - servicesmgmt.<%= properties.domain %>
+host: <%= spec.networks.send(properties.networks.services).ip %>
+index: <%= spec.index %>
+port: <%= p("servicesmgmt.port", "80") %>
+tags:
+  component: servicesmgmt
+varz:
+  file: /var/vcap/jobs/servicesmgmt/config/varz.yml
