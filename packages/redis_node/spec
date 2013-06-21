@@ -1,0 +1,8 @@
+---
+name: redis_node
+dependencies:
+- sqlite
+- ruby
+files:
+- services/redis/**/*
+- pkg_utils/*
