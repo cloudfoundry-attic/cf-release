@@ -68,13 +68,6 @@ db:
   pool_timeout: <%= p("ccdb_ng.pool_timeout", 10) %>
   log_level: <%= p("ccng.db_logging_level", "debug2") %>
 
-<% if_p("vcap_redis.address", "vcap_redis.port", "vcap_redis.password") do |address, port, password| %>
-redis:
-  host: <%= address %>
-  port: <%= port %>
-  password: "<%= password %>"
-<% end %>
-
 <% scheme = p("uaa.no_ssl") ? "http" : "https"
    domain = p("domain") %>
 
