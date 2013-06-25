@@ -328,6 +328,10 @@ properties:
         provider: AWS
         aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
         aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
+      cdn:
+        uri: <%= q("cc.resource_pool.cdn.uri", "") %>
+        key_pair_id: <%= q("cc.resource_pool.cdn.key_pair_id", "") %>
+        private_key: <%= q("cc.resource_pool.cdn.private_key", "").inspect %>
     packages:
       minimum_size: 1048576
       app_package_directory_key: <%= q("cc.packages.app_package_directory_key", "#{find("properties.domain").gsub(".", "-")}-cc-packages") %>
@@ -335,6 +339,10 @@ properties:
         provider: AWS
         aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
         aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
+      cdn:
+        uri: <%= q("cc.packages.cdn.uri", "") %>
+        key_pair_id: <%= q("cc.packages.cdn.key_pair_id", "") %>
+        private_key: <%= q("cc.packages.cdn.private_key", "").inspect %>
     droplets:
       minimum_size: 1048576
       droplet_directory_key: <%= q("cc.droplets.droplet_directory_key", "#{find("properties.domain").gsub(".", "-")}-cc-droplets") %>
