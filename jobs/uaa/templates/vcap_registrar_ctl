@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 export PATH=/var/vcap/packages/ruby/bin:$PATH
+export PATH=/var/vcap/packages/git/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/uaa
 LOG_DIR=/var/vcap/sys/log/uaa
 PIDFILE=$RUN_DIR/vcap_registrar.pid
