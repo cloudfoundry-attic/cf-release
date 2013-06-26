@@ -29,4 +29,5 @@ cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-varz-1.0.2.war webapps/va
 cd ${BOSH_INSTALL_TARGET}
 cp -a ${BOSH_COMPILE_TARGET}/tools/vcap_registrar vcap_registrar
 cd vcap_registrar
+export PATH=/var/vcap/packages/git/bin:$PATH
 /var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test
