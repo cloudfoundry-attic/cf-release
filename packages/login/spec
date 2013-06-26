@@ -2,6 +2,7 @@
 name: login
 dependencies:
 - ruby
+- git
 files:
 - login/**/*
 - uaa/**/*

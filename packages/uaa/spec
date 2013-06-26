@@ -2,6 +2,7 @@
 name: uaa
 dependencies:
 - ruby
+- git
 files:
 - uaa/**/*
 - tools/vcap_registrar/**/*
