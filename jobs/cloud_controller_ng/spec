@@ -62,15 +62,6 @@ properties:
  nfs_server.nfsv4:
   description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
 
- serialization_data_server.upload_token:
-  description: "deprecated"
- serialization_data_server.upload_timeout:
-  description: "deprecated"
- service_lifecycle.serialization_data_server:
-  description: "deprecated"
- serialization_data_server.port:
-  description: "deprecated"
-
  directories.droplets: # obsolete?
   description: "If nfs_server defined, dir to store post-staged customer applications"
   default: "/var/vcap/shared/droplets"

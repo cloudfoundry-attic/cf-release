@@ -20,13 +20,6 @@ bulk_api:
   auth_user: <%= p("ccng.bulk_api_user", "bulk_api") %>
   auth_password: "<%= p("ccng.bulk_api_password") %>"
 
-service_lifecycle:
-  max_upload_size: 1
-  upload_token: "<%= p("serialization_data_server.upload_token") %>"
-  upload_timeout: <%= p("serialization_data_server.upload_timeout") %>
-  <% sds_port = p("serialization_data_server.port") %>
-  serialization_data_server: <%= properties.service_lifecycle.serialization_data_server.map {|ip| "http://#{ip}:#{sds_port}" } %>
-
 nginx:
   use_nginx: <%= p("ccng.use_nginx", true) %>
   instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
