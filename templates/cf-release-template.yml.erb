@@ -406,10 +406,6 @@ properties:
     - 10.10.0.2/32 # Amazon DNS server
     - 10.10.17.0/24 # DEAs
 
-  service_lifecycle:
-    serialization_data_server:
-    - 169.254.1.1   # fake, unused but needed by ccng job
-
   syslog_aggregator:
     address: 10.10.16.10
     port: 54321
@@ -423,14 +419,6 @@ properties:
       smtp_server: smtp.gmail.com
       smtp_port: 587
       smtp_domain: gmail.com
-
-  serialization_data_server:  # fake, unused but needed by ccng job
-    upload_token: <%= find("properties.serialization_data_server.upload_token") %>
-    use_nginx: true
-    upload_timeout: 10
-    port: 8080
-    upload_file_expire_time: 600
-    purge_expired_interval: 30
 
   login:
     protocol: https
