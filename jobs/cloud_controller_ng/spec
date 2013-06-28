@@ -128,7 +128,7 @@ properties:
 
  ccng.stacks:
   default:
-    name: "lucid64"
+  - name: "lucid64"
     description: "Ubuntu 10.04"
   description: "Tag used by the DEA to describe capabilities (i.e. 'Windows7', 'python-linux'). DEA and CC must agree."
 
