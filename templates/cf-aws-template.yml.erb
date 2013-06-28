@@ -127,18 +127,6 @@ jobs:
   properties:
     ccdb: ccdb
 
-- name: router
-  template: gorouter
-  instances: 1
-  resource_pool: router
-  networks:
-  - name: cf1
-    default:
-    - dns
-    - gateway
-    static_ips:
-    - <%= ip( 5, 'cf1.static') %>
-
 - name:  health_manager
   template: health_manager_next
   instances: 1
@@ -164,6 +152,18 @@ jobs:
   resource_pool: common
   networks:
   - name: cf1
+
+- name: router
+  template: gorouter
+  instances: 1
+  resource_pool: router
+  networks:
+  - name: cf1
+    default:
+    - dns
+    - gateway
+    static_ips:
+    - <%= ip( 5, 'cf1.static') %>
 
 properties:
   template_only:

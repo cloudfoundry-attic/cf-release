@@ -219,20 +219,6 @@ jobs:
   properties:
     ccdb: ccdb
 
-- name: router
-  template: gorouter
-  instances: <%= find('jobs.router.instances') %>
-  resource_pool: router
-  networks:
-  - name: cf1
-    default:
-    - dns
-    - gateway
-    static_ips:
-<% (0..(find('jobs.router.instances').to_i - 1)).each do |i| -%>
-    - <%= router_static_ips[i] %>
-<% end -%>
-
 - name: health_manager
   template: health_manager_next
   instances: 1
@@ -262,6 +248,20 @@ jobs:
   resource_pool: small
   networks:
   - name: cf1
+
+- name: router
+  template: gorouter
+  instances: <%= find('jobs.router.instances') %>
+  resource_pool: router
+  networks:
+  - name: cf1
+    default:
+    - dns
+    - gateway
+    static_ips:
+<% (0..(find('jobs.router.instances').to_i - 1)).each do |i| -%>
+    - <%= router_static_ips[i] %>
+<% end -%>
 
 properties:
   template_only:
