@@ -1,0 +1,9 @@
+---
+name: saml_login
+dependencies:
+- ruby
+files:
+- saml_login/**/*
+- uaa/**/*
+- tools/vcap_registrar/**/*
+
