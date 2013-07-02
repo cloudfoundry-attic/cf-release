@@ -43,3 +43,6 @@
 [submodule "src/collector"]
   path = src/collector
   url = https://github.com/cloudfoundry/collector.git
+[submodule "src/vcap-common"]
+	path = src/vcap-common
+	url = https://github.com/cloudfoundry/vcap-common.git
