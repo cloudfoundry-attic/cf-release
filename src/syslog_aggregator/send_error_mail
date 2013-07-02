@@ -24,7 +24,7 @@ def save_mail_log_files
     log_files = `find . | grep #{yesterday_date}/.*.log`.split("\n")
     log_files.each do |log_file|
       dest = File.join(TMP_DIR, File.basename(log_file))
-      `grep '\("log_level":"error"\|ERROR\)' #{log_file} >> #{dest}`
+      `grep '\\("log_level":"error"\\|ERROR\\)' #{log_file} >> #{dest}`
     end
   end
 end
