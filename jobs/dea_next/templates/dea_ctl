@@ -14,11 +14,12 @@ case $1 in
 
   start)
     pid_guard $PIDFILE "DEA"
-    echo $$ > $PIDFILE
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
     mkdir -p $DATA_DIR
+    
+    echo $$ > $PIDFILE
 
     chown vcap:vcap $PIDFILE
     chown vcap:vcap $RUN_DIR
