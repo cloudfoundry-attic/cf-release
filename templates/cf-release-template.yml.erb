@@ -173,7 +173,7 @@ jobs:
   template: syslog_aggregator
   instances: 1
   resource_pool: medium
-  persistent_disk: 100000
+  persistent_disk: <%= find("properties.syslog_aggregator.persistent_disk") %>
   networks:
   - name: cf1
     static_ips:
@@ -409,6 +409,7 @@ properties:
   syslog_aggregator:
     address: 10.10.16.10
     port: 54321
+    persistent_disk: 100000
     log_email:
       enabled: true
       from_email: <%= find("properties.syslog_aggregator.log_email.from_email") %>
