@@ -40,3 +40,11 @@ properties:
     description: "IP address for syslog aggregator"
   syslog_aggregator.port:
     description: "TCP port of syslog aggregator"
+  nats.address:
+    description: "NATS address"
+  nats.password:
+    description: "NATS password"
+  nats.port:
+    description: "NATS TCP port"
+  nats.user:
+    description: "NATS user"
