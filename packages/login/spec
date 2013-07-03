@@ -1,9 +1,8 @@
 ---
 name: login
 dependencies:
-- ruby
-- git
+- ruby_next
 files:
 - login/**/*
 - uaa/**/*
-- tools/vcap_registrar/**/*
+- vcap-common/**/*
