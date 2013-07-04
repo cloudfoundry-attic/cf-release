@@ -5,7 +5,7 @@ repo=$1
 set -e
 
 cd src/$repo
-git co master
+git checkout master
 git pull
 git submodule update --recursive --init
 cd ../..
