@@ -173,7 +173,12 @@ jobs:
   template: syslog_aggregator
   instances: 1
   resource_pool: medium
+<% if production? -%>
+  persistent_disk: 500000
+<% else -%>
   persistent_disk: 100000
+<% end -%>
+
   networks:
   - name: cf1
     static_ips:
