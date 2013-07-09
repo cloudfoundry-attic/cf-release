@@ -1,8 +1,8 @@
 ---
-<% cc_props_name = properties.cc_props || 'cc' %>
+<% cc_props_name = properties.cc_props %>
 <% cc_props = properties.send(cc_props_name) %>
 
-<% hm_props_name = properties.hm_props || 'health_manager' %>
+<% hm_props_name = properties.hm_props %>
 <% hm_props = properties.send(hm_props_name) || OpenStruct.new %>
 
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
@@ -18,17 +18,17 @@ index: <%= spec.index %>
 bulk_api:
   host: <%= cc_props.srv_api_uri %>
 
-cc_partition: <%= hm_props.cc_partition || "default" %>
+cc_partition: <%= hm_props.cc_partition %>
 
 intervals:
   <% intervals = hm_props.intervals || OpenStruct.new %>
-  expected_state_update: <%= intervals.expected_state_update ||  60 %>
-  droplet_lost:          <%= intervals.droplet_lost          ||  30 %>
-  droplets_analysis:     <%= intervals.droplets_analysis     ||  20 %>
-  flapping_death:        <%= intervals.flapping_death        ||   1 %>
-  flapping_timeout:      <%= intervals.flapping_timeout      || 500 %>
-  restart_timeout:       <%= intervals.restart_timeout       ||  20 %>
-  min_restart_delay:     <%= intervals.min_restart_delay     ||  60 %>
-  max_restart_delay:     <%= intervals.max_restart_delay     || 480 %>
-  giveup_crash_number:   <%= intervals.giveup_crash_number   ||  -1 %>
-  stable_state:          <%= intervals.stable_state          ||  60 %>
+  expected_state_update: <%= intervals.expected_state_update %>
+  droplet_lost:          <%= intervals.droplet_lost          %>
+  droplets_analysis:     <%= intervals.droplets_analysis     %>
+  flapping_death:        <%= intervals.flapping_death        %>
+  flapping_timeout:      <%= intervals.flapping_timeout      %>
+  restart_timeout:       <%= intervals.restart_timeout       %>
+  min_restart_delay:     <%= intervals.min_restart_delay     %>
+  max_restart_delay:     <%= intervals.max_restart_delay     %>
+  giveup_crash_number:   <%= intervals.giveup_crash_number   %>
+  stable_state:          <%= intervals.stable_state          %>

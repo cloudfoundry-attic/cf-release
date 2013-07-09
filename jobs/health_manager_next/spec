@@ -9,3 +9,59 @@ packages:
   - common
   - ruby_next
   - syslog_aggregator
+properties:
+  cc_props:
+    description: "BOSH job name of cloud controller"
+    default: 'cc'
+  cc.srv_api_uri:
+    description: "API URI of cloud controller"
+  hm_props:
+    description: "BOSH job name of health manager"
+    default: 'health_manager'
+  networks.apps:
+    description:
+  nats.address:
+    description: "IP address of NATS server"
+  nats.password:
+    description: "password for NATS login"
+  nats.port:
+    description: "TCP port of NATS server"
+  nats.user:
+    description: "user name for NATS login"
+  syslog_aggregator.address:
+    description: "IP address of syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  health_manager.cc_partition:
+    description:
+    default: 'default'
+  health_manager.intervals.expected_state_update:
+    description:
+    default: 60
+  health_manager.intervals.droplet_lost:
+    description:
+    default: 30
+  health_manager.intervals.droplets_analysis:
+    description:
+    default: 20
+  health_manager.intervals.flapping_death:
+    description:
+    default: 1
+  health_manager.intervals.flapping_timeout:
+    description:
+    default: 500
+  health_manager.intervals.restart_timeout:
+    description:
+    default: 20
+  health_manager.intervals.min_restart_delay:
+    description:
+    default: 60
+  health_manager.intervals.max_restart_delay:
+    description:
+    default: 480
+  health_manager.intervals.giveup_crash_number:
+    description:
+    default: -1
+  health_manager.intervals.stable_state:
+    description:
+    default: 60
