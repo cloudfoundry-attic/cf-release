@@ -86,7 +86,7 @@ oauth:
 <% end %>
 <% if properties.uaa.scim %>
 scim:
-  userids_enabled: <%= properties.uaa.scim.userids_enabled || false %>
+  userids_enabled: <%= properties.uaa.scim.userids_enabled %>
 <% else %>
 scim:
   userids_enabled: false

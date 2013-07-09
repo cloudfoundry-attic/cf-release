@@ -29,3 +29,42 @@ packages:
 - buildpack_cache
 - insight_agent
 - libyaml
+properties:
+  domain:
+    description: "DNS domain name for this Cloud Foundry deployment"
+  nats.address:
+    description: "IP address of NATS server"
+  nats.password:
+    description: "password for NATS login"
+  nats.port:
+    description: "TCP port of NATS server"
+  nats.user:
+    description: "user name for NATS login"
+  dea_next.allow_networks:
+    description: 
+  dea_next.deny_networks:
+    description:
+  dea_next.disk_mb:
+    description:
+    default: 32000
+  dea_next.disk_overcommit_factor:
+    description:
+    default: 1
+  dea_next.max_staging_duration:
+    description:
+    default: 900
+  dea_next.memory_mb:
+    description:
+    default: 8000
+  dea_next.memory_overcommit_factor:
+    description:
+    default: 1
+  dea_next.num_instances:
+    description:
+    default: 30
+  dea_next.stacks:
+    description:
+  dea_next.streaming_timeout:
+    description:
+    default: 60
+

@@ -9,3 +9,39 @@ packages:
 - collector
 - ruby
 - syslog_aggregator
+properties:
+  collector.aws_access_key_id:
+    description: "AWS access key for CloudWatch access"
+  collector.aws_secret_access_key:
+    description: "AWS secret for CloudWatch access"
+  collector.datadog_api_key:
+    description: "Datadog API key"
+  collector.datadog_application_key:
+    description: "Datadog application key"
+  collector.deployment_name:
+    description: "name for this bosh deployment. All metrics will be tagged with deployment:XXX when sending them to CloudWatch and Datadog"
+  collector.use_aws_cloudwatch:
+    description: "enable CloudWatch plugin"
+    default: false
+  collector.use_datadog:
+    description: "enable Datadog plugin"
+    default: false
+  collector.use_tsdb:
+    description: "enable OpenTsdb plugin"
+    default: false
+  nats.address:
+    description: "NATS address"
+  nats.password:
+    description: "NATS password"
+  nats.port:
+    description: "NATS TCP port"
+  nats.user:
+    description: "NATS user"
+  opentsdb.address:
+    description: "IP address of OpenTsdb"
+  opentsdb.port:
+    description: "TCP port of OpenTsdb"
+  syslog_aggregator.address:
+    description: "IP address of syslog aggregator"
+  syslog_aggregator.port:
+    description: "port of syslog aggregator"
