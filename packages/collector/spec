@@ -3,4 +3,7 @@ name: collector
 dependencies:
 - ruby
 files:
-- collector/**/*
+- collector/{Rakefile,Gemfile,Gemfile.lock}
+- collector/bin/collector
+- collector/lib/**/*
+- collector/vendor/**/*
