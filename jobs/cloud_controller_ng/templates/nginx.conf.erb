@@ -37,6 +37,8 @@ http {
     listen    9022;
     server_name  _;
     server_name_in_redirect off;
+    proxy_send_timeout          <%= p("router.client_inactivity_timeout", 300) %>;
+    proxy_read_timeout          <%= p("router.app_inactivity_timeout", 300) %>;
 
     # proxy and log all CC traffic
     location / {
@@ -47,8 +49,6 @@ http {
       proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_redirect              off;
       proxy_connect_timeout       10;
-      proxy_send_timeout          <%= p("router.client_inactivity_timeout", 300) %>;
-      proxy_read_timeout          <%= p("router.app_inactivity_timeout", 300) %>;
       proxy_pass                 http://cloud_controller;
     }
 
