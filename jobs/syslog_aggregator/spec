@@ -15,3 +15,36 @@ packages:
 - syslog_aggregator
 - ruby_next
 - nats
+properties:
+  domain:
+    description: "DNS domain for this Cloud Foundry deployment"
+  syslog_aggregator.log_email.enabled:
+    description: "Enable Email log"
+  syslog_aggregator.log_email.from_email:
+    description: "From  email address"
+  syslog_aggregator.log_email.from_password:
+    description: "password for SMTP login"
+  syslog_aggregator.log_email.to_email:
+    description: "To email address"
+  syslog_aggregator.log_email.smtp_server:
+    description: "IP address of SMTP server"
+  syslog_aggregator.log_email.smtp_port:
+    description: "TCP port of SMTP server"
+  syslog_aggregator.log_email.smtp_domain:
+    description: "SMTP email domain"
+  syslog_aggregator.relay_host:
+    description:
+  syslog_aggregator.relay_host_port:
+    description:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  nats.address:
+    description: "NATS address"
+  nats.password:
+    description: "NATS password"
+  nats.port:
+    description: "NATS TCP port"
+  nats.user:
+    description: "NATS user"

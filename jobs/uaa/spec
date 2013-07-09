@@ -21,3 +21,94 @@ packages:
   - syslog_aggregator
   - uaa
   - git
+
+properties:
+  uaa.admin.client_secret:
+    description:
+  uaa.batch.password:
+    description:
+  uaa.batch.username:
+    description:
+  uaa.catalina_opts:
+    description:
+  uaa.cc.client_secret:
+    description:
+  uaa.cc.token_secret:
+    description:
+  uaa.client.autoapprove:
+    description:
+  uaa.clients:
+    description:
+  uaa.jwt.signing_key:
+    description:
+  uaa.jwt.verification_key:
+    description:
+  uaa.port:
+    description:
+  uaa.scim.user:
+    description:
+  uaa.scim.user.override:
+    description:
+  uaa.scim.userids_enabled:
+    description:
+    default: false
+  uaa.scim.users:
+    description:
+  uaa.spring_profiles:
+    description:
+  ccdb.address:
+    description: "The CloudController database IP address"
+  ccdb.databases:
+    description: "The list of databases used in CloudController database including tag/name"
+  ccdb.db_scheme:
+    description: "Database scheme for CloudController DB"
+  ccdb.port:
+    description: "The CloudController database Port"
+  ccdb.roles:
+    description: "The list of database Roles used in CloudController database including tag/name/password"
+  domain:
+    description: "The domain name for this CloudFoundry deploy"
+  env.http_proxy:
+    description: "The http_proxy accross the VMs"
+  env.https_proxy:
+    description: "The https_proxy accross the VMs"
+  env.no_proxy:
+    description: "Set No_Proxy accross the VMs"
+  nats.address:
+    description: "IP address of NATS server"
+  nats.password:
+    description: "Password for NATS login"
+  nats.port:
+    description: "TCP port of NATS server"
+  nats.user:
+    description: "User name for NATS login"
+  networks.apps:
+    description: "The App network name"
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "Port of syslog aggregator"
+  uaadb.address:
+    description: "The UAA database IP address"
+  uaadb.databases:
+    description: "The list of databases used in UAA database including tag/name"
+  uaadb.db_scheme:
+    description: "Database scheme for UAA DB"
+  uaadb.port:
+    description: "The UAA database Port"
+  uaadb.roles:
+    description: "The list of database Roles used in UAA database including tag/name/password"
+  uaa.no_ssl:
+    description:
+  uaa.url:
+    description:
+  uaa.dump_requests:
+    description:
+  uaa.login.client_secret:
+    description:
+  uaa.require_https:
+    description:
+  uaa_client_auth_credentials.password:
+    description:
+  uaa_client_auth_credentials.username:
+    description:

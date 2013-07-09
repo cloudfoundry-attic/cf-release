@@ -18,3 +18,42 @@ packages:
   - syslog_aggregator
   - login
   - git
+properties:
+  login.catalina_opts:
+    description:
+  login.links:
+    description:
+  login.port:
+    description:
+  login.uaa_base:
+    description:
+  domain:
+    description: "The domain name for this CloudFoundry deploy"
+  env.http_proxy:
+    description: "The http_proxy accross the VMs"
+  env.https_proxy:
+    description: "The https_proxy accross the VMs"
+  env.no_proxy:
+    description: "Set No_Proxy accross the VMs"
+  nats.address:
+    description: "IP address of NATS server"
+  nats.password:
+    description: "Password for NATS login"
+  nats.port:
+    description: "TCP port of NATS server"
+  nats.user:
+    description: "User name for NATS login"
+  networks.apps:
+    description: "The App network name"
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "Port of syslog aggregator"
+  uaa.clients.login.secret:
+    description:
+  uaa.dump_requests:
+    description:
+  uaa.login.client_secret:
+    description:
+  uaa.require_https:
+    description:

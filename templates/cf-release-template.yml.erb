@@ -528,8 +528,6 @@ properties:
       - <%= u %>
 <% end -%>
   collector:
-    use_tsdb: false
-    use_aws_cloudwatch: false
     use_datadog: true
     datadog_api_key: <%= find('properties.template_only.datadog.datadog_api_key') %>
     datadog_application_key: <%= find('properties.template_only.datadog.datadog_application_key') %>
