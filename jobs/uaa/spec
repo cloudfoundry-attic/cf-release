@@ -17,10 +17,9 @@ templates:
 
 packages:
   - common
-  - ruby
+  - ruby_next
   - syslog_aggregator
   - uaa
-  - git
 
 properties:
   uaa.admin.client_secret:
