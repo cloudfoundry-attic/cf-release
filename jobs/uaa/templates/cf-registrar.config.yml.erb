@@ -1,8 +1,8 @@
 ---
 logging:
-  file: /var/vcap/sys/log/uaa/vcap_registrar.log
+  file: /var/vcap/sys/log/uaa/cf-registrar.log
   <% if properties.syslog_aggregator %>
-  syslog: vcap.uaa_vcap_registrar
+  syslog: vcap.uaa_cf-registrar
   <% end %>
   level: info
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
