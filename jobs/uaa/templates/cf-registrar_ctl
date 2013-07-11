@@ -4,7 +4,7 @@ export PATH=/var/vcap/packages/ruby_next/bin:$PATH
 export PATH=/var/vcap/packages/git/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/uaa
 LOG_DIR=/var/vcap/sys/log/uaa
-PIDFILE=$RUN_DIR/vcap_registrar.pid
+PIDFILE=$RUN_DIR/cf-registrar.pid
 VCAP_COMMON_PATH=/var/vcap/packages/uaa/vcap-common
 
 source /var/vcap/packages/common/utils.sh
@@ -19,15 +19,15 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    export CONFIG_FILE=/var/vcap/jobs/uaa/config/vcap_registrar/config.yml
+    export CONFIG_FILE=/var/vcap/jobs/uaa/config/cf-registrar/config.yml
 
     cd $VCAP_COMMON_PATH
     exec /var/vcap/packages/ruby_next/bin/bundle exec \
          $VCAP_COMMON_PATH/bin/cf-registrar \
          --register-with-router \
          --register-varz-credentials \
-         >>$LOG_DIR/vcap_registrar.stdout.log \
-         2>>$LOG_DIR/vcap_registrar.stderr.log
+         >>$LOG_DIR/cf-registrar.stdout.log \
+         2>>$LOG_DIR/cf-registrar.stderr.log
 
     ;;
 
@@ -37,7 +37,7 @@ case $1 in
     ;;
 
   *)
-    echo "Usage: vcap_registrar_ctl {start|stop}" ;;
+    echo "Usage: cf-registrar_ctl {start|stop}" ;;
 
 esac
 exit 0
