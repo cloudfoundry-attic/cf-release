@@ -1,8 +1,8 @@
 ---
 logging:
-  file: /var/vcap/sys/log/vcap_registrar/vcap_registrar.log
+  file: /var/vcap/sys/log/saml_login/cf-registrar.log
   <% if properties.syslog_aggregator %>
-  syslog: vcap.saml_login_vcap_registrar
+  syslog: vcap.saml_login_cf-registrar
   <% end %>
   level: info
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>

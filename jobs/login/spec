@@ -18,6 +18,7 @@ packages:
   - syslog_aggregator
   - login
   - git
+
 properties:
   login.catalina_opts:
     description:
