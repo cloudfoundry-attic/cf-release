@@ -1,0 +1,75 @@
+---
+name: saml_login
+
+<%
+  props = properties.saml_login
+  config_artifacts_path = "/var/vcap/jobs/saml_login/config/security"
+%>
+
+logging:
+  config: /var/vcap/jobs/saml_login/config/log4j.properties
+
+<% protocol = (props && props.protocol) ? props.protocol : "http" %>
+<% if !props || !props.uaa_base
+  # Fix this to https when SSL certs are working in dev and staging
+  uaa_base = "#{protocol}://uaa.#{properties.domain}"
+else
+  uaa_base = props.uaa_base
+end %>
+uaa:
+  url: <%= uaa_base %>
+  token:
+    url: <%= uaa_base %>/oauth/token
+  login:
+    url: <%= uaa_base %>/authenticate
+  clientinfo:
+    url: <%= uaa_base %>/clientinfo
+  approvals:
+    url: <%= uaa_base %>/approvals
+<% if props and props.links then %>
+links: <% props.links.marshal_dump.each do |id,url| %>
+  <%= id %>: <%= url %><% end %>
+<% end %>
+
+# The secret that this login server will use to authenticate to the uaa
+<% if !properties.uaa.clients || !properties.uaa.clients.login %>
+LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
+<% else %>
+LOGIN_SECRET: <%= properties.uaa.clients.login.secret %>
+<% end %>
+<% if !properties.uaa.require_https.nil? %>
+require_https: <%= properties.uaa.require_https %>
+<% end %>
+<% if !properties.uaa.dump_requests.nil? %>
+dump_requests: <%= properties.uaa.dump_requests %>
+<% end %>
+
+login:
+  url: <%= uaa_base %>
+  # The entity base url is the location of this application
+  # (The host and port of the application that will accept assertions)
+  entityBaseURL: <%= "#{protocol}://login.#{properties.domain}" %>
+  # The entityID of this SP
+  entityID: <%= (props && props.entityid) ? props.entityid : "login.#{properties.domain}" %>
+
+  # The location and credentials of the certificate for this SP
+  serviceProviderKey: !
+  <%= "    '" + p("saml_login.serviceProviderKey").gsub("\n", "\n\n    ") + "'" %>
+  serviceProviderCertificate: !
+  <%= "    '" + p("saml_login.serviceProviderCertificate").gsub("\n", "\n\n    ") + "'" %>
+
+  # The entity alias of the IDP
+  idpEntityAlias: <%= props.idp_entity_alias %>
+  <% if !properties.saml_login.idp_metadata_file.nil? %>
+  idpMetadataFile: /var/vcap/jobs/saml_login/<%= properties.saml_login.idp_metadata_file %>
+  <% end %>
+  <% if !properties.saml_login.idp_metadata_url.nil? %>
+  idpMetadataURL: <%= properties.saml_login.idp_metadata_url %>
+  <% end %>
+
+  authorize:
+    url: <%= uaa_base %>/login/oauth/authorize
+
+  saml:
+    assertionConsumerIndex: <%= (props && props.assertion_consumer_index) ? props.assertion_consumer_index : 1 %>
+    nameID: <%= (props && props.nameid_format) ? props.nameid_format : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
