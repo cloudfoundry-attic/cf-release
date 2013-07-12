@@ -1,0 +1,96 @@
+#!/bin/bash -e
+
+export PATH=/var/vcap/packages/saml_login/jre/bin:$PATH
+RUN_DIR=/var/vcap/sys/run/saml_login
+LOG_DIR=/var/vcap/sys/log/saml_login
+JOB_DIR=/var/vcap/jobs/saml_login
+PIDFILE=$RUN_DIR/saml_login.pid
+
+# Proxy configuration variable for the saml_login
+HTTP_PROXY_JAVA_OPTIONS=""
+
+<% if properties.env %>
+# Proxy configuration
+<% if properties.env.http_proxy %>
+export HTTP_PROXY='<%= properties.env.http_proxy %>'
+export http_proxy='<%= properties.env.http_proxy %>'
+proxy_conf=(`echo $HTTP_PROXY | tr ":" " " | tr "\/" " "`)
+HTTP_PROXY_JAVA_OPTIONS="$HTTP_PROXY_JAVA_OPTIONS -Dhttp.proxyHost=${proxy_conf[1]} -Dhttp.proxyPort=${proxy_conf[2]} "
+<% end %>
+<% if properties.env.https_proxy %>
+export HTTPS_PROXY='<%= properties.env.https_proxy %>'
+export https_proxy='<%= properties.env.https_proxy %>'
+proxy_conf=(`echo $HTTPS_PROXY | tr ":" " " | tr "\/" " "`)
+HTTP_PROXY_JAVA_OPTIONS="$HTTP_PROXY_JAVA_OPTIONS -Dhttps.proxyHost=${proxy_conf[1]} -Dhttps.proxyPort=${proxy_conf[2]} "
+<% end %>
+<% if properties.env.no_proxy %>
+export NO_PROXY='<%= properties.env.no_proxy %>'
+export no_proxy='<%= properties.env.no_proxy %>'
+if [ x != x"$NO_PROXY" ]; then
+  proxy_conf=`echo $NO_PROXY | sed -e 's/ //g'`
+
+  OIFS=$IFS
+  IFS=','
+  for host in $proxy_conf; do
+      if [[ $host == .* ]]; then
+        host="*"$host
+      fi
+      java_no_proxies=$java_no_proxies"|"$host
+  done
+  IFS=$OIFS
+
+  # Strip the leading '|'
+  java_no_proxies=${java_no_proxies:1}
+  HTTP_PROXY_JAVA_OPTIONS="$HTTP_PROXY_JAVA_OPTIONS -Dhttp.nonProxyHosts=\"$java_no_proxies\" "
+fi
+<% end %>
+<% end %>
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "SAML_LOGIN"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    echo $$ > $PIDFILE
+
+    <% if properties.syslog_aggregator %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
+    <% end %>
+
+    # Generate a random usernames and passwords
+    username="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
+    password="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
+
+    sed -i "s/_random_username_replaced_by_a_script_/${username}/g" $JOB_DIR/config/varz.yml
+    sed -i "s/_random_password_replaced_by_a_script_/${password}/g" $JOB_DIR/config/varz.yml
+
+    # We want to keep packages pristine, since tomcat is modified in place we stage it elsewhere.
+    rm -rf /var/vcap/data/saml_login
+    mkdir -p /var/vcap/data/saml_login
+    cp -a /var/vcap/packages/saml_login/tomcat /var/vcap/data/saml_login
+    cp -a /var/vcap/jobs/saml_login/config/tomcat/* /var/vcap/data/saml_login/tomcat/conf/
+
+    export CLOUD_FOUNDRY_CONFIG_PATH=/var/vcap/jobs/saml_login/config
+    export JAVA_OPTS="-DPID=$$ $HTTP_PROXY_JAVA_OPTIONS"
+    export CATALINA_OPTS="<% properties.saml_login ? properties.saml_login.catalina_opts : '' %>"
+
+    cd /var/vcap/data/saml_login
+    exec tomcat/bin/catalina.sh run
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: saml_login_ctl {start|stop}"
+
+    ;;
+
+esac
