@@ -1,13 +1,18 @@
 #!/bin/sh
 
 repo=$1
+release=`pwd`
 
 set -e
 
-cd src/$repo
-git checkout master
-git pull
-git submodule update --recursive --init
-cd ../..
-git add src/$repo
+# buckle up
+git submodule foreach \
+  "if (pwd | grep -q src/$repo); then" \
+  '  sub=`pwd`;' \
+  '  git checkout master;' \
+  '  git pull;' \
+  "  cd $release;" \
+  '  git add $sub;' \
+  'fi'
+
 ./staged_shortlog
