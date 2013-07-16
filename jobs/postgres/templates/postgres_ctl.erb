@@ -1,6 +1,6 @@
 #!/bin/bash -e
-<% db = properties.send(properties.db) %>
-
+<% db = p("db") %>
+<% if_p("#{db}.port", "#{db}.roles", "#{db}.databases") do |port, roles, databases| %>
 PACKAGE_DIR=/var/vcap/packages/postgres
 JOB_DIR=/var/vcap/jobs/postgres
 
@@ -15,7 +15,7 @@ LOG_DIR=/var/vcap/sys/log/postgres
 PIDFILE=$RUN_DIR/postgres.pid
 
 HOST='0.0.0.0'
-PORT="<%= db.port %>"
+PORT='<%= port %>'
 LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH
 
 source /var/vcap/packages/common/utils.sh
@@ -72,7 +72,7 @@ case "$1" in
     echo "PostgreSQL started successfully"
 
     echo "Creating roles..."
-    <% db.roles.each do |role| %>
+    <% roles.each do |role| %>
       echo "Trying to create role <%= role.name %>..."
       set +e
       # TODO remove unused roles automatically
@@ -89,7 +89,7 @@ case "$1" in
     <% end %>
 
     echo "Creating databases..."
-    <% db.databases.each do |database| %>
+    <% databases.each do |database| %>
       echo "Trying to create database <%= database.name %>..."
       set +e
       su - vcap -c "$PACKAGE_DIR/bin/createdb \"<%= database.name %>\" -p $PORT"
@@ -134,3 +134,4 @@ case "$1" in
     ;;
 
 esac
+<% end %>

@@ -7,3 +7,107 @@ templates:
 packages:
   - common
   - postgres
+
+# In each job that runs this postgres template, use the job specific properties:
+#   properties:
+#     db: databases
+#
+# or
+#
+#   properties:
+#     db: ccdb
+#
+# or
+#
+#   properties:
+#     db: uaadb
+#
+# or
+#
+#   properties:
+#     db: postgres
+#
+# In the communal properties of a deployment file, specify the description of the postgresql DB:
+#
+#   properties:
+#     databases: &databases
+#       db_scheme: postgres
+#       address: 0.postgres.default.deploymentname.microbosh
+#       port: 5524
+#       roles:
+#         - tag: admin
+#           name: ccadmin
+#           password: CC_PASSWORD
+#         - tag: admin
+#           name: uaaadmin
+#           password: UAA_PASSWORD
+#       databases:
+#         - tag: cc
+#           name: ccdb
+#           citext: true
+#         - tag: uaa
+#           name: uaadb
+#           citext: true
+#       
+properties:
+  db:
+    description: "Which shared properties.xyz contains the actual DB properties for this job template (options: postgres, ccdb, uaadb, databases)"
+  databases.db_scheme:
+    description: The db scheme to use
+  databases.address:
+    description: The IP or DNS host to find the postgres service
+  databases.port:
+    description: The port to bind or find the postgres service
+    default: 5432
+  databases.max_connections:
+    description: Max connections to postgres server
+    default: 500
+  databases.roles:
+    description: List of roles to create; contains {tag, name, password} properties
+  databases.databases:
+    description: List of databases to create; contains {tag, name, citext, run_on_every_startup} properties
+
+  postgres.db_scheme:
+    description: The db scheme to use
+  postgres.address:
+    description: The IP or DNS host to find the postgres service
+  postgres.port:
+    description: The port to bind or find the postgres service
+    default: 5432
+  postgres.max_connections:
+    description: Max connections to postgres server
+    default: 500
+  postgres.roles:
+    description: List of roles to create; contains {tag, name, password} properties
+  postgres.databases:
+    description: List of databases to create; contains {tag, name, citext, run_on_every_startup} properties
+
+  ccdb.db_scheme:
+    description: The db scheme to use
+  ccdb.address:
+    description: The IP or DNS host to find the postgres service
+  ccdb.port:
+    description: The port to bind or find the postgres service
+    default: 5432
+  ccdb.max_connections:
+    description: Max connections to postgres server
+    default: 500
+  ccdb.roles:
+    description: List of roles to create; contains {tag, name, password} properties
+  ccdb.databases:
+    description: List of databases to create; contains {tag, name, citext, run_on_every_startup} properties
+
+  uaadb.db_scheme:
+    description: The db scheme to use
+  uaadb.address:
+    description: The IP or DNS host to find the postgres service
+  uaadb.port:
+    description: The port to bind or find the postgres service
+    default: 5432
+  uaadb.max_connections:
+    description: Max connections to postgres server
+    default: 500
+  uaadb.roles:
+    description: List of roles to create; contains {tag, name, password} properties
+  uaadb.databases:
+    description: List of databases to create; contains {tag, name, citext, run_on_every_startup} properties
