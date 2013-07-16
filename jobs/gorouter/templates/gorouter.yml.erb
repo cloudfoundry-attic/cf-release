@@ -24,7 +24,7 @@ logging:
   <% if_p("syslog_aggregator") do |_| %>
   syslog: vcap.gorouter
   <% end %>
-  level: debug
+  level: info
 
 port: 80
 index: <%= p("router.offset") + spec.index %>
