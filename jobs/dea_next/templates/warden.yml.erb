@@ -26,6 +26,15 @@ network:
   allow_networks: <%= properties.dea_next.allow_networks %>
   <%end %>
 
+  # Interface MTU size (default: 1454 for OpenStack)
+  # With MTU 1500 you will get problems with rubygems with GRE tunneling
+  <% if properties.dea_next && properties.dea_next.mtu %>
+  mtu: <%= properties.dea_next.mtu %>
+  <%else%>
+  mtu: 1500
+  <%end %>
+
+
 user:
   pool_start_uid: 20000
   pool_size: 256
