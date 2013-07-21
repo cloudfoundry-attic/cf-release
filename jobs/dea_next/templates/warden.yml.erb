@@ -5,6 +5,8 @@ server:
   container_klass: Warden::Container::Linux
   container_rootfs_path: /var/vcap/packages/rootfs_lucid64
   container_depot_path: /var/vcap/data/warden/depot
+  quota:
+    disk_quota_enabled: <%= properties.disk_quota_enabled %>
 
 logging:
   file: /var/vcap/sys/log/warden/warden.log
