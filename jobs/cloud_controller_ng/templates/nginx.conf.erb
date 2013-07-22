@@ -104,6 +104,11 @@ http {
     }
 
     location ~ /staging/(buildpack_cache|droplets)/.*/upload {
+      # Allow download the droplets and buildpacks
+      if ($request_method = GET){
+        proxy_pass http://cloud_controller;
+      } 
+      
       # Pass along auth header
       set $auth_header $upstream_http_x_auth;
       proxy_set_header Authorization $auth_header;
