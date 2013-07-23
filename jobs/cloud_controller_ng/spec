@@ -268,9 +268,14 @@ properties:
  vcap_redis.password:
   description: "deprecated"
 
- syslog_aggregator:
-  default: vcap.cloud_controller_ng
-  description: "Tag for logging to syslog. If not defined, cc will not log to syslog"
+ # if syslog_aggregator job template is running, provide
+ # these properties to configure other job templates to
+ # send it syslog logs
+ syslog_aggregator.address:
+  description: "Host to send logs for aggregating"
+ syslog_aggregator.port:
+  description: "Port to send logs for aggregating"
+
  uaa.jwt.verification_key:
   default: ""
   description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"

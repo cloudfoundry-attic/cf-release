@@ -93,10 +93,15 @@ properties:
     description:
   env.no_proxy:
     description:
+
+  # if syslog_aggregator job template is running, provide
+  # these properties to configure other job templates to
+  # send it syslog logs
   syslog_aggregator.address:
-    description:
+    description: "Host to send logs for aggregating"
   syslog_aggregator.port:
-    description:
+    description: "Port to send logs for aggregating"
+
   login.port:
     description:
     default: 8080
