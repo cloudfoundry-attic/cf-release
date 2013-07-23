@@ -6,4 +6,4 @@ files:
 - collector/{Rakefile,Gemfile,Gemfile.lock}
 - collector/bin/collector
 - collector/lib/**/*
-- collector/vendor/**/*
+- pkg_utils/*
