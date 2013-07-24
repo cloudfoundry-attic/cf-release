@@ -66,4 +66,7 @@ properties:
   dea_next.streaming_timeout:
     description:
     default: 60
+  disk_quota_enabled:
+    description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
+    default: true
 
