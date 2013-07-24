@@ -179,7 +179,6 @@ jobs:
 properties:
   loggregator:
     server: <%= ip( 4, 'cf1.static') %>:3456
-    apiHost: <%= find("properties.cc.srv_api_uri") %>
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 
