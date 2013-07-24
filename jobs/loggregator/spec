@@ -7,3 +7,21 @@ templates:
 packages:
 - common
 - loggregator
+properties:
+  loggregator.debug:
+    description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)
+    default: false
+  cc.srv_api_uri:
+    description: "API URI of cloud controller"
+  nats.user:
+    description: "Username for cc client to connect to NATS"
+  nats.password:
+    description: "Password for cc client to connect to NATS"
+  nats.address:
+    description: "IP address of Cloud Foundry NATS server"
+  nats.port:
+    description: "IP port of Cloud Foundry NATS server"
+  system_domain:
+    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
+  uaa.jwt.verification_key:
+    description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"
