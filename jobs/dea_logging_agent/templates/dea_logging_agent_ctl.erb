@@ -16,7 +16,7 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    <% p("loggregator.debug", false) == true ? debug_string = "-v " : debug_string = "" %>
+    <% p("loggregator.debug") == true ? debug_string = "-v " : debug_string = "" %>
 
     exec chpst -u vcap:vcap /var/vcap/packages/dea_logging_agent/deaagent <%= debug_string %>--server <%= p("loggregator.server") %>\
          >>$LOG_DIR/dea_logging_agent.stdout.log \
