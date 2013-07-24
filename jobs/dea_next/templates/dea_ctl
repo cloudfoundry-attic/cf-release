@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export PATH=/var/vcap/packages/ruby_next/bin:$PATH
+export PATH=/var/vcap/packages/ruby/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/dea_next
 LOG_DIR=/var/vcap/sys/log/dea_next
 PIDFILE=$RUN_DIR/dea_next.pid
@@ -59,7 +59,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    exec chpst -u vcap:vcap /var/vcap/packages/ruby_next/bin/ruby /var/vcap/packages/dea_next/bin/dea \
+    exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/dea_next/bin/dea \
          $JOB_DIR/config/dea.yml \
          >>$LOG_DIR/dea.stdout.log \
          2>>$LOG_DIR/dea.stderr.log

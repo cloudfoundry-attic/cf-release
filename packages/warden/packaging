@@ -6,7 +6,7 @@ cp -a * ${BOSH_INSTALL_TARGET}
 (
   set -o errexit
 
-  export PATH=/var/vcap/packages/ruby_next/bin:$PATH
+  export PATH=/var/vcap/packages/ruby/bin:$PATH
 
   cd ${BOSH_INSTALL_TARGET}/warden
 

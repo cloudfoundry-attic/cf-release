@@ -14,4 +14,4 @@ cp -a ${BOSH_COMPILE_TARGET}/dashboard/dashboard-1.0-SNAPSHOT-d7c8acf9.war webap
 cd ${BOSH_INSTALL_TARGET}
 cp -a ${BOSH_COMPILE_TARGET}/tools/router_registrar router_registrar
 cd router_registrar
-/var/vcap/packages/ruby_next/bin/bundle install --local --deployment --without=development test
+/var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test

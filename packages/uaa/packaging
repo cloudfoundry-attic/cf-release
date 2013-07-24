@@ -30,4 +30,4 @@ cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-varz-1.0.2.war webapps/va
 cd ${BOSH_INSTALL_TARGET}
 cp -a ${BOSH_COMPILE_TARGET}/vcap-common vcap-common
 cd vcap-common
-/var/vcap/packages/ruby_next/bin/bundle install --local --deployment --without=development test
+/var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test

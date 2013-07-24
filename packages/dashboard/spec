@@ -1,7 +1,7 @@
 ---
 name: dashboard
 dependencies:
-- ruby_next
+- ruby
 - dea_jvm
 files:
 - dashboard/apache-tomcat-7.0.25.tar.gz
