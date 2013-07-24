@@ -50,7 +50,7 @@ networks:
 resource_pools:
 - name: common
   network: cf1
-  size: 7
+  size: 8
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -127,6 +127,15 @@ jobs:
   properties:
     ccdb: ccdb
 
+- name: loggregator
+  template: loggregator
+  instances: 1
+  resource_pool: common
+  networks:
+  - name: cf1
+    static_ips:
+    - <%= ip( 4, 'cf1.static') %>
+
 - name:  health_manager
   template: health_manager_next
   instances: 1
@@ -135,7 +144,9 @@ jobs:
   - name: cf1
 
 - name: dea_next
-  template: dea_next
+  template:
+  - dea_next
+  - dea_logging_agent
   instances: 1
   resource_pool: dea
   update:
@@ -166,6 +177,9 @@ jobs:
     - <%= ip( 5, 'cf1.static') %>
 
 properties:
+  loggregator:
+    server: <%= ip( 4, 'cf1.static') %>:3456
+    apiHost: <%= find("properties.cc.srv_api_uri") %>
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 
