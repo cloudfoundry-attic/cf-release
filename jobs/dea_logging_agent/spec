@@ -1,0 +1,8 @@
+---
+name: dea_logging_agent
+templates:
+  dea_logging_agent_ctl.erb: bin/dea_logging_agent_ctl
+
+packages:
+- common
+- dea_logging_agent

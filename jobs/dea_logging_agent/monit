@@ -1,0 +1,5 @@
+check process dea_logging_agent
+  with pidfile /var/vcap/sys/run/dea_logging_agent/dea_logging_agent.pid
+  start program "/var/vcap/jobs/dea_logging_agent/bin/dea_logging_agent_ctl start"
+  stop program "/var/vcap/jobs/dea_logging_agent/bin/dea_logging_agent_ctl stop"
+  group vcap

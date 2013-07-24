@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/dea_logging_agent
+LOG_DIR=/var/vcap/sys/log/dea_logging_agent
+PIDFILE=$RUN_DIR/dea_logging_agent.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "DeaLoggingAgent"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% p("loggregator.debug", false) == true ? debug_string = "-v " : debug_string = "" %>
+
+    exec chpst -u vcap:vcap /var/vcap/packages/dea_logging_agent/deaagent <%= debug_string %>--server <%= p("loggregator.server") %>\
+         >>$LOG_DIR/dea_logging_agent.stdout.log \
+         2>>$LOG_DIR/dea_logging_agent.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE 40
+
+    ;;
+
+  *)
+    echo "Usage: dea_logging_agent_ctl {start|stop}"
+
+    ;;
+
+esac
