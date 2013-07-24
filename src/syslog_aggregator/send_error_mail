@@ -1,4 +1,4 @@
-#!/var/vcap/packages/ruby_next/bin/ruby
+#!/var/vcap/packages/ruby/bin/ruby
 # Send error log messages to operators
 
 # We are not using local smtp server, as the only solution right now

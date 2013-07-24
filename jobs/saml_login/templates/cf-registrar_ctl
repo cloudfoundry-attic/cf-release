@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export PATH=/var/vcap/packages/ruby_next/bin:$PATH
+export PATH=/var/vcap/packages/ruby/bin:$PATH
 export PATH=/var/vcap/packages/git/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/saml_login
 LOG_DIR=/var/vcap/sys/log/saml_login
@@ -22,7 +22,7 @@ case $1 in
     export CONFIG_FILE=/var/vcap/jobs/saml_login/config/cf-registrar/config.yml
 
     cd $VCAP_COMMON_PATH
-    exec /var/vcap/packages/ruby_next/bin/bundle exec \
+    exec /var/vcap/packages/ruby/bin/bundle exec \
          $VCAP_COMMON_PATH/bin/cf-registrar \
          --register-with-router \
          --register-varz-credentials \

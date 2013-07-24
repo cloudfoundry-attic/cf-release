@@ -1,7 +1,7 @@
 ---
 name: saml_login
 dependencies:
-- ruby_next
+- ruby
 - git
 files:
 - saml_login/**/*

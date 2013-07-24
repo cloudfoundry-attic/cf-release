@@ -6,7 +6,7 @@ cp -a * ${BOSH_INSTALL_TARGET}
 (
   cd ${BOSH_INSTALL_TARGET}/cloud_controller_ng
 
-  bundle_cmd=/var/vcap/packages/ruby_next/bin/bundle
+  bundle_cmd=/var/vcap/packages/ruby/bin/bundle
   mysqlclient_dir=/var/vcap/packages/mysqlclient
   libpq_dir=/var/vcap/packages/libpq
 

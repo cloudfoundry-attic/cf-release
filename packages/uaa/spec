@@ -1,7 +1,7 @@
 ---
 name: uaa
 dependencies:
-- ruby_next
+- ruby
 files:
 - uaa/**/*
 - vcap-common/**/*

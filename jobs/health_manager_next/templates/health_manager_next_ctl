@@ -7,7 +7,7 @@ RUN_DIR=/var/vcap/sys/run/health_manager_next
 LOG_DIR=/var/vcap/sys/log/health_manager_next
 PIDFILE=$RUN_DIR/health_manager_next.pid
 
-export PATH=/var/vcap/packages/ruby_next/bin:$PATH
+export PATH=/var/vcap/packages/ruby/bin:$PATH
 
 source /var/vcap/packages/common/utils.sh
 

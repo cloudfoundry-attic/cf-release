@@ -1,7 +1,7 @@
 ---
 name: warden
 dependencies:
-- ruby_next
+- ruby
 files:
 - warden/warden/**/*
 - pkg_utils/*
