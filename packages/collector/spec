@@ -1,7 +1,7 @@
 ---
 name: collector
 dependencies:
-- ruby
+- ruby_next
 files:
 - collector/{Rakefile,Gemfile,Gemfile.lock}
 - collector/bin/collector

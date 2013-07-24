@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export PATH=/var/vcap/packages/ruby/bin:$PATH
+export PATH=/var/vcap/packages/ruby_next/bin:$PATH
 
 RUN_DIR=/var/vcap/sys/run/collector
 LOG_DIR=/var/vcap/sys/log/collector
@@ -28,7 +28,7 @@ case $1 in
 
     cd /var/vcap/packages/collector
 
-    exec /var/vcap/packages/ruby/bin/ruby \
+    exec /var/vcap/packages/ruby_next/bin/ruby \
          /var/vcap/packages/collector/bin/collector \
          >>$LOG_DIR/collector.stdout.log \
          2>>$LOG_DIR/collector.stderr.log

@@ -1,7 +1,7 @@
 ---
 name: dea_next
 dependencies:
-- ruby
+- ruby_next
 - buildpack_cache
 - warden
 - golang

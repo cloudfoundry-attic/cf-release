@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-export PATH=/var/vcap/packages/ruby/bin:$PATH
+export PATH=/var/vcap/packages/ruby_next/bin:$PATH
 RUN_DIR=/var/vcap/sys/run/router_registrar
 LOG_DIR=/var/vcap/sys/log/router_registrar
 JOB_DIR=/var/vcap/jobs/dashboard
@@ -25,7 +25,7 @@ case $1 in
 
     cd /var/vcap/packages/dashboard/router_registrar
 
-    exec /var/vcap/packages/ruby/bin/ruby \
+    exec /var/vcap/packages/ruby_next/bin/ruby \
          /var/vcap/packages/dashboard/router_registrar/bin/router_registrar \
          >>$LOG_DIR/router_registrar.stdout.log \
          2>>$LOG_DIR/router_registrar.stderr.log
