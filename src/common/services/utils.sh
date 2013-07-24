@@ -52,7 +52,7 @@ start_warden() {
 
   export PATH=/var/vcap/packages/ruby_next/bin:$PATH
 
-  nohup /var/vcap/packages/ruby/bin/bundle exec \
+  nohup /var/vcap/packages/ruby_next/bin/bundle exec \
         rake warden:start[$JOB_DIR/config/warden.yml] \
         >>$LOG_DIR/warden.stdout.log \
         2>>$LOG_DIR/warden.stderr.log &

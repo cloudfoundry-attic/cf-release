@@ -12,7 +12,7 @@ templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
 - common
-- ruby
+- ruby_next
 - dea_jvm
 - syslog_aggregator
 - dashboard
