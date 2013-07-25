@@ -58,3 +58,6 @@
 [submodule "src/gorouter/src/github.com/rcrowley/go-metrics"]
 	path = src/gorouter/src/github.com/rcrowley/go-metrics
 	url = https://github.com/rcrowley/go-metrics.git
+[submodule "src/cfop"]
+	path = src/cfop
+	url = https://github.com/cloudfoundry/cfop.git
