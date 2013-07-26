@@ -5,7 +5,7 @@ RUN_DIR=/var/vcap/sys/run/dea_next
 LOG_DIR=/var/vcap/sys/log/dea_next
 PIDFILE=$RUN_DIR/dea_next.pid
 JOB_DIR=/var/vcap/jobs/dea_next
-DATA_DIR=/var/vcap/data/dea_next 
+DATA_DIR=/var/vcap/data/dea_next
 export PLATFORM_CONFIG=$JOB_DIR/config/platform.yml
 
 source /var/vcap/packages/common/utils.sh
@@ -18,13 +18,8 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
     mkdir -p $DATA_DIR
-    
-    echo $$ > $PIDFILE
 
-    chown vcap:vcap $PIDFILE
-    chown -R vcap:vcap $RUN_DIR
-    chown -R vcap:vcap $LOG_DIR
-    chown -R vcap:vcap $DATA_DIR
+    echo $$ > $PIDFILE
 
     # Configure the core file location
     mkdir -p /var/vcap/sys/cores
@@ -59,7 +54,7 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
 
-    exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/dea_next/bin/dea \
+    exec /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/dea_next/bin/dea \
          $JOB_DIR/config/dea.yml \
          >>$LOG_DIR/dea.stdout.log \
          2>>$LOG_DIR/dea.stderr.log
