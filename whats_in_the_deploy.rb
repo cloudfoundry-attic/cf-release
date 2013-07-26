@@ -79,9 +79,8 @@ class WhatsInTheDeploy
 	end
 
 	def generate_html
-		file = "#{ENV["HOME"]}/Dropbox/product/WhatsInTheDeploy.html"
 		File.open(file, 'w') do |f|
-			f << %Q{<html><head><link rel="stylesheet" type="text/css" href="WhatsInTheDeploy.css" /></head><body>}
+			f << %Q{<html><head><style>#{DATA.read}</style></head><body>}
 
 			f << %Q{<h1>Changes in deploy from #{@sha1} to #{@sha2}</h1>}
 			@submodule_logs.each do |submodule_log|
@@ -121,3 +120,70 @@ puts "Generating HTML...."
 file = whats_in_the_deploy.generate_html
 puts "HTML Generated: #{file}"
 `open #{file}`
+
+
+__END__
+body {
+	font-family: "helvetica neue";
+	font-size:14px;
+}
+
+
+h2 {
+	margin-bottom:0;
+}
+
+h3 {
+	margin-top:0;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.no-changes {
+	margin:10px;
+	padding:10px;
+	background-color: #efe;
+}
+
+.commit {
+	margin:10px;
+	padding:10px;
+	background-color: #f5f5f5;
+}
+
+.commit:nth-child(odd) {
+	background-color: #ddd;
+}
+
+.sha {
+	margin-bottom:5px;
+	font-size:12px;
+}
+
+.sha a {
+	color:#777;
+}
+
+.subject {
+	font-weight:bold;
+}
+
+.body {
+	padding:10px;
+	font-size:;
+}
+
+.author {
+	font-style:italic;
+}
+
+.date {
+	color:#777;
+	font-size:12px;
+}
