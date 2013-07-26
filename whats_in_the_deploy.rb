@@ -74,11 +74,16 @@ class WhatsInTheDeploy
 		@submodules.each do |submodule, url|
 			sub_sha1 = get_submodule_commit(@sha1, submodule)
 			sub_sha2 = get_submodule_commit(@sha2, submodule)
-			@submodule_logs << SubmoduleLog.new(submodule, url, sub_sha1, sub_sha2)
+			if sub_sha1 && sub_sha2
+			  @submodule_logs << SubmoduleLog.new(submodule, url, sub_sha1, sub_sha2)
+			else
+			  p "Skipping #{submodule} (couldn't find one of the SHAs.  This is probably a new submodule in the release.)"
+		  end
 		end
 	end
 
 	def generate_html
+	  file = "#{ENV["HOME"]}/Dropbox/product/WhatsInTheDeploy.html"
 		File.open(file, 'w') do |f|
 			f << %Q{<html><head><style>#{DATA.read}</style></head><body>}
 
@@ -109,7 +114,7 @@ class WhatsInTheDeploy
 	def get_submodule_commit(tree_identifier, submodule)
 		ls_tree_output = `git ls-tree #{tree_identifier} #{submodule}`
 		matches = /commit (.+)\s+#{submodule}/.match(ls_tree_output)
-		matches[1]
+		matches[1] if matches
 	end
 end
 
