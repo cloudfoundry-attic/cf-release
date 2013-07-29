@@ -18,7 +18,7 @@ case $1 in
 
     <% p("loggregator.debug") == true ? debug_string = "-v " : debug_string = "" %>
 
-    exec chpst -u vcap:vcap /var/vcap/packages/dea_logging_agent/deaagent <%= debug_string %>--server <%= p("loggregator.server") %>\
+    exec /var/vcap/packages/dea_logging_agent/deaagent <%= debug_string %>--server <%= p("loggregator.server") %>\
          >>$LOG_DIR/dea_logging_agent.stdout.log \
          2>>$LOG_DIR/dea_logging_agent.stderr.log
 
