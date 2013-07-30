@@ -28,7 +28,7 @@ index: <%= spec.index %>
 
 info:
   name: <%= p("name", "vcap") %>
-  build: <%= p("build", "\"2222\"") %>
+  build: "<%= p("build", "2222") %>"
   version: <%= p("version", 2) %>
   support_address: <%= p("support_address", "http://support.cloudfoundry.com") %>
   description: <%= p("description", "Cloud Foundry sponsored by Pivotal") %>
