@@ -261,13 +261,6 @@ properties:
  login.url:
   description:
 
- vcap_redis.address:
-  description: "deprecated"
- vcap_redis.port:
-  description: "deprecated"
- vcap_redis.password:
-  description: "deprecated"
-
  syslog_aggregator:
   default: vcap.cloud_controller_ng
   description: "Tag for logging to syslog. If not defined, cc will not log to syslog"
