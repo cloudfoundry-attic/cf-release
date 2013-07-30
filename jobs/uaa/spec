@@ -83,10 +83,15 @@ properties:
     description: "User name for NATS login"
   networks.apps:
     description: "The App network name"
+
+  # if syslog_aggregator job template is running, provide
+  # these properties to configure other job templates to
+  # send it syslog logs
   syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
+    description: "Host to send logs for aggregating"
   syslog_aggregator.port:
-    description: "Port of syslog aggregator"
+    description: "Port to send logs for aggregating"
+
   uaadb.address:
     description: "The UAA database IP address"
   uaadb.databases:

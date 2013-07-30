@@ -28,10 +28,15 @@ properties:
     description: "TCP port of NATS server"
   nats.user:
     description: "user name for NATS login"
+
+  # if syslog_aggregator job template is running, provide
+  # these properties to configure other job templates to
+  # send it syslog logs
   syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
+    description: "Host to send logs for aggregating"
   syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
+    description: "Port to send logs for aggregating"
+
   health_manager.cc_partition:
     description:
     default: 'default'

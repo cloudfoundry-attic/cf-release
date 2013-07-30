@@ -13,8 +13,14 @@ packages:
   - gorouter
   - syslog_aggregator
 properties:
-  syslog_aggregator:
-    description:
+  # if syslog_aggregator job template is running, provide
+  # these properties to configure other job templates to
+  # send it syslog logs
+  syslog_aggregator.address:
+    description: "Host to send logs for aggregating"
+  syslog_aggregator.port:
+    description: "Port to send logs for aggregating"
+
   router.status.port:
     description:
   router.status.user:

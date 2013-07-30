@@ -41,7 +41,11 @@ properties:
     description: "IP address of OpenTsdb"
   opentsdb.port:
     description: "TCP port of OpenTsdb"
+
+  # if syslog_aggregator job template is running, provide
+  # these properties to configure other job templates to
+  # send it syslog logs
   syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
+    description: "Host to send logs for aggregating"
   syslog_aggregator.port:
-    description: "port of syslog aggregator"
+    description: "Port to send logs for aggregating"
