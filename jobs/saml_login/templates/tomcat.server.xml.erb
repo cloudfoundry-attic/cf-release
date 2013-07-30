@@ -8,7 +8,7 @@
 
   <Service name="Catalina">
 
-    <Connector class="org.apache.coyote.http11.Http11NioProtocol" port="<%= (properties.login && properties.login.port) ? properties.login.port : 8080 %>" protocol="HTTP/1.1" connectionTimeout="20000"/>
+    <Connector class="org.apache.coyote.http11.Http11NioProtocol" port="<%= (properties.saml_login && properties.saml_login.port) ? properties.saml_login.port : 8080 %>" protocol="HTTP/1.1" connectionTimeout="20000"/>
     <Engine name="Catalina" defaultHost="localhost">
 
       <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="false">
