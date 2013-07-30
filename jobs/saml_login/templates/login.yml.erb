@@ -45,7 +45,7 @@ dump_requests: <%= properties.uaa.dump_requests %>
 <% end %>
 
 login:
-  url: <%= uaa_base %>
+  url: <%= "#{protocol}://login.#{properties.domain}" %>
   # The entity base url is the location of this application
   # (The host and port of the application that will accept assertions)
   entityBaseURL: <%= "#{protocol}://login.#{properties.domain}" %>
