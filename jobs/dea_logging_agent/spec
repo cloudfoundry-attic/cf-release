@@ -2,6 +2,7 @@
 name: dea_logging_agent
 templates:
   dea_logging_agent_ctl.erb: bin/dea_logging_agent_ctl
+  dea_logging_agent.json.erb: config/dea_logging_agent.json
 
 packages:
 - common
@@ -12,3 +13,9 @@ properties:
     default: false
   loggregator.server:
     description: loggregator server in host:port format
+  loggregator.status.user:
+    description: username used to log into varz endpoint
+  loggregator.status.password:
+    description: password used to log into varz endpoint
+  loggregator.status.port:
+    description: port used to run the varz endpoint
