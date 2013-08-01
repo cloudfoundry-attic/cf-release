@@ -61,3 +61,6 @@
 [submodule "src/cfop"]
 	path = src/cfop
 	url = https://github.com/cloudfoundry/cfop.git
+[submodule "src/gorouter/src/github.com/nu7hatch/gouuid"]
+	path = src/gorouter/src/github.com/nu7hatch/gouuid
+	url = https://github.com/nu7hatch/gouuid.git
