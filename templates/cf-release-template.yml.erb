@@ -114,7 +114,7 @@ networks:
 resource_pools:
 - name: small
   network: cf1
-  size: <%= production? ? 1 : 2 # loggregator %>
+  size: <%= production? ? 1 : 2 %>
   stemcell:
     name: bosh-stemcell
     version: latest
