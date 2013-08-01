@@ -89,6 +89,21 @@ case $1 in
       echo "Failed to start: cannot write to NFS"
       exit 1
     fi
+    <% else %>
+    echo "Preparing local droplet directory"
+    <% if p("ccng.packages.fog_connection.provider").downcase == "local" %>
+    mkdir -p <%= properties.ccng.packages.fog_connection.local_root %>
+    chown vcap:vcap <%= properties.ccng.packages.fog_connection.local_root %>
+    <% end %>
+    <% if p("ccng.resource_pool.fog_connection.provider").downcase == "local" %>
+    mkdir -p <%= properties.ccng.resource_pool.fog_connection.local_root %>
+    chown vcap:vcap <%= properties.ccng.resource_pool.fog_connection.local_root %>
+    <% end %>
+    <% if p("ccng.droplets.fog_connection.provider").downcase == "local" %>
+    mkdir -p <%= properties.ccng.droplets.fog_connection.local_root %>
+    chown vcap:vcap <%= properties.ccng.droplets.fog_connection.local_root %>
+    <% end %>
+
     <% end %>
 
     # Configure the core file location
