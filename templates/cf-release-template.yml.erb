@@ -62,6 +62,8 @@
   router_static_ips << ip(19, 'cf1.static')
   router_static_ips << ip(20, 'cf1.static')
 
+  # TODO: this probably doesn't need its own static IP
+  loggregator_static_ip = ip(21, "cf1.static")
 -%>
 
 # ENV variables for Yeti:
@@ -112,7 +114,7 @@ networks:
 resource_pools:
 - name: small
   network: cf1
-  size: 1
+  size: <%= production? ? 1 : 2 # loggregator %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -232,7 +234,13 @@ jobs:
   - name: cf1
 
 - name: dea_next
+<% if production? -%>
   template: dea_next
+<% else -%>
+  template:
+  - dea_next
+  - dea_logging_agent
+<% end -%>
   instances: <%= find('jobs.dea_next.instances') %>
   update:
     max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
@@ -253,6 +261,17 @@ jobs:
   resource_pool: small
   networks:
   - name: cf1
+
+<% unless production? -%>
+- name: loggregator
+  template: loggregator
+  instances: 1
+  resource_pool: small
+  networks:
+  - name: cf1
+    static_ips:
+    - <%= loggregator_static_ip %>
+<% end -%>
 
 - name: router
   template: gorouter
@@ -424,6 +443,15 @@ properties:
       smtp_server: smtp.gmail.com
       smtp_port: 587
       smtp_domain: gmail.com
+
+<% unless production? -%>
+  loggregator:
+    server: <%= loggregator_static_ip %>:3456
+    status:
+      user: <%= find("properties.loggregator.status.user") %>
+      password: <%= find("properties.loggregator.status.password") %>
+      port: 5768
+<% end -%>
 
   login:
     protocol: https
