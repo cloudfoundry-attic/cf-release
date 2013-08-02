@@ -36,9 +36,14 @@ class SubmoduleLog
     %Q{<a href="#{@url}/commit/#{sha}" target="_blank">#{sha}</a>}
   end
 
+  def comparison_anchor
+    %Q{<a href="#{@url}/compare/#{@sha1}...#{@sha2}" target="_blank">View comparison for range</a>}
+  end
+
   def generate_html(f)
     f << "<H2>#{submodule_anchor}</H2>"
     f << "<H3>#{commit_anchor(@sha1[0..7])}..#{commit_anchor(@sha2[0..7])}</H3>"
+    f << "<H4>#{comparison_anchor}</H4>"
     f << %Q{<div class="no-changes">No Changes</div>} if @commits.count == 0
     @commits.each do |commit|
       f << %Q{<div class="commit">}
