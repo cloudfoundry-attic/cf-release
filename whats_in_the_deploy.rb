@@ -1,13 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Please provide the tag currently deployed to production:"
-production_tag = gets.chomp
-
-puts "Please provide the sha for the Release Candidate commit you'd like to compare to:"
-rc_sha = gets.chomp
-
-puts "#{production_tag}..#{rc_sha}"
-
 class SubmoduleLog
   def initialize(submodule, url, sha1, sha2)
     @submodule = submodule
@@ -82,9 +74,8 @@ class WhatsInTheDeploy
     end
   end
 
-  def generate_html
-    file = "#{ENV["HOME"]}/Dropbox/product/WhatsInTheDeploy.html"
-    File.open(file, 'w') do |f|
+  def generate_html(path)
+    File.open(path, 'w') do |f|
       f << %Q{<html><head><style>#{DATA.read}</style></head><body>}
 
       f << %Q{<h1>Changes in deploy from #{@sha1} to #{@sha2}</h1>}
@@ -93,7 +84,6 @@ class WhatsInTheDeploy
       end
       f << "</body></html>"
     end
-    file
   end
 
   private
@@ -118,14 +108,25 @@ class WhatsInTheDeploy
   end
 end
 
-whats_in_the_deploy = WhatsInTheDeploy.new(production_tag, rc_sha)
-puts "Comparing submodules...."
-whats_in_the_deploy.compare_submodules
-puts "Generating HTML...."
-file = whats_in_the_deploy.generate_html
-puts "HTML Generated: #{file}"
-`open #{file}`
+if __FILE__ == $0
+  puts "Please provide the tag currently deployed to production:"
+  production_tag = gets.chomp
 
+  puts "Please provide the sha for the Release Candidate commit you'd like to compare to:"
+  rc_sha = gets.chomp
+
+  puts "#{production_tag}..#{rc_sha}"
+
+  whats_in_the_deploy = WhatsInTheDeploy.new(production_tag, rc_sha)
+  puts "Comparing submodules...."
+  whats_in_the_deploy.compare_submodules
+  puts "Generating HTML...."
+
+  output_path = ENV.fetch("WITD_OUT", "#{ENV["HOME"]}/Dropbox/product/WhatsInTheDeploy.html")
+  whats_in_the_deploy.generate_html(output_path)
+  puts "HTML Generated: #{output_path}"
+  `open #{output_path}`
+end
 
 __END__
 body {
