@@ -74,7 +74,7 @@ class WhatsInTheDeploy
       if sub_sha1 && sub_sha2
         @submodule_logs << SubmoduleLog.new(submodule, url, sub_sha1, sub_sha2)
       else
-        p "Skipping #{submodule} (couldn't find one of the SHAs.  This is probably a new submodule in the release.)"
+        puts "Skipping #{submodule} (couldn't find one of the SHAs.  This is probably a new submodule in the release.)"
       end
     end
   end
