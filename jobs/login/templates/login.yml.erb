@@ -39,3 +39,9 @@ dump_requests: <%= properties.uaa.dump_requests %>
 <% end %>
 
 login.authorize.url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
+
+<% if properties.login.analytics && properties.login.analytics.code && properties.login.analytics.domain %>
+analytics:
+  code: <%= properties.login.analytics.code %>
+  domain: <%= properties.login.analytics.domain %>
+<% end %>
