@@ -56,7 +56,7 @@ http {
     # nginx will serve the file root || location || foo.txt
     location /droplets/ {
       internal;
-      root   /var/vcap/shared;
+      root   <%= p("ccng.droplets.fog_connection.local_root") %>;
     }
 
 <% if p("ccng.packages.fog_connection.provider").downcase == "local" %>
