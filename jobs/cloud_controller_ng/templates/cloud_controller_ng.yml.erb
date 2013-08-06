@@ -171,3 +171,11 @@ db_encryption_key: <%= p("ccng.db_encryption_key") %>
 
 trial_db:
   guid: "78ad16cf-3c22-4427-a982-b9d35d746914"
+
+buildpacks:
+  - name: java
+    url: https://github.com/cloudfoundry/java-buildpack.git
+  - name: ruby
+    url: https://github.com/cloudfoundry/heroku-buildpack-ruby.git
+  - name: node
+    url: https://github.com/cloudfoundry/heroku-buildpack-nodejs.git
