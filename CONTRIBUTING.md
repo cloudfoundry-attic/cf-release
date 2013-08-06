@@ -1,6 +1,7 @@
 # Contributing to cf-release
 
-The Cloud Foundry team uses GitHub and accepts contributions via [pull request](https://help.github.com/articles/using-pull-requests)
+The Cloud Foundry team uses GitHub and accepts contributions via
+[pull request](https://help.github.com/articles/using-pull-requests)
 
 The `cf-release` repository is a [BOSH](https://github.com/cloudfoundry/bosh)
 release for Cloud Foundry.
@@ -17,14 +18,14 @@ If you want to make changes to the `cf-release` itself, read on.
 
 Follow these steps to make a contribution to any of our open source repositories:
 
-1. Ensure that you have completed our CLA Agreement for [individuals](http://www.cloudfoundry.org/individualcontribution.pdf) or [corporations](http://www.cloudfoundry.org/corpcontribution.pdf).
+1. Ensure that you have completed our CLA Agreement for
+  [individuals](http://www.cloudfoundry.org/individualcontribution.pdf) or
+  [corporations](http://www.cloudfoundry.org/corpcontribution.pdf).
 
-1. Set your name and email
+1. Set your name and email (these should match the information on your submitted CLA)
 
-		git config --global user.name "Firstname Lastname"
-		git config --global user.email "your_email@example.com"
-
-	* These should match the information on your submitted CLA
+        git config --global user.name "Firstname Lastname"
+        git config --global user.email "your_email@example.com"
 
 ## General Workflow
 
