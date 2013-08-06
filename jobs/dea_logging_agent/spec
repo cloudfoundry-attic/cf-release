@@ -19,3 +19,11 @@ properties:
     description: password used to log into varz endpoint
   loggregator.status.port:
     description: port used to run the varz endpoint
+  nats.user:
+    description: "Username for cc client to connect to NATS"
+  nats.password:
+    description: "Password for cc client to connect to NATS"
+  nats.address:
+    description: "IP address of Cloud Foundry NATS server"
+  nats.port:
+    description: "IP port of Cloud Foundry NATS server"
