@@ -1,6 +1,0 @@
-# abort script on any command that exit with a non zero value
-set -e
-
-cp -a cfop/* ${BOSH_INSTALL_TARGET}
-mkdir -p ${BOSH_INSTALL_TARGET}/bin
-ln -s ${BOSH_INSTALL_TARGET}/libexec/cfop ${BOSH_INSTALL_TARGET}/bin/cfop
