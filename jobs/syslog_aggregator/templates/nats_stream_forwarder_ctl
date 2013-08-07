@@ -1,0 +1,32 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/syslog_aggregator
+JOB_DIR=/var/vcap/jobs/syslog_aggregator
+BIN_DIR=$JOB_DIR/bin
+PIDFILE=$RUN_DIR/nats_stream_forwarder.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+  start)
+    pid_guard $PIDFILE "NATS Stream Forwarder"
+
+    mkdir -p $RUN_DIR
+    PATH=/var/vcap/bosh/bin:$PATH
+
+    echo $$ > $PIDFILE
+    exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>'
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: nats_stream_forwarder_ctl {start|stop}"
+
+    ;;
+
+esac
