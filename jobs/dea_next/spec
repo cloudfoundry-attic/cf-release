@@ -69,4 +69,6 @@ properties:
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
+  syslog_aggregator:
+    description: "Syslog aggregator stuff"
 
