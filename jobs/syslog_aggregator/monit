@@ -3,3 +3,9 @@ check process syslog_aggregator
   start program "/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl start"
   stop program "/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl stop"
   group vcap
+
+check process nats_stream_forwarder
+  with pidfile /var/vcap/sys/run/syslog_aggregator/nats_stream_forwarder.pid
+  start program "/var/vcap/jobs/syslog_aggregator/bin/nats_stream_forwarder_ctl start"
+  stop program "/var/vcap/jobs/syslog_aggregator/bin/nats_stream_forwarder_ctl stop"
+  group vcap
