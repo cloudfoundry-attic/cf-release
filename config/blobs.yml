@@ -227,10 +227,6 @@ libyaml/yaml-0.1.4.tgz:
   object_id: rest/objects/4e4e78bca51e122004e4e8ec6840770511d35ffc91bd
   sha: e0e5e09192ab10a607e3da2970db492118f560f2
   size: 471759
-uaa/cloudfoundry-identity-uaa-1.4.1.war:
-  object_id: rest/objects/4e4e78bca21e122204e4e9863926b105153404ef2a6f
-  sha: f5834992f993253e54d61d3c4f6ca4cc390b641a
-  size: 21351766
 buildpack_cache/ruby-1.8.7.tgz:
   object_id: 0eb2f5a8-a840-4cda-a71c-d2d61ab5e8de
   sha: !binary |-
@@ -404,11 +400,6 @@ buildpack_cache/auto-reconfiguration-0.6.7.jar:
   sha: !binary |-
     NzI4MjI4ZjM2NDhkNjc5NzU5ZGYwNGZjZTYyMjBkNDQ2ZTVmZGQ5Zg==
   size: 708374
-login/cloudfoundry-login-server-1.2.3.war:
-  object_id: bea085f2-feca-411d-95f1-74284778bd59
-  sha: !binary |-
-    ZDU2MDAwYzc4Nzk3OTkyODMzNzE4MjkwZTdiMDRkYmQ3ZjMwYjQ0MA==
-  size: 8036310
 golang/go1.1.1.src.tar.gz:
   object_id: 668a3b49-03fd-4742-b5a8-f6a76b387106
   sha: !binary |-
