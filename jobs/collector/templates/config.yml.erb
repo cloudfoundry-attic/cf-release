@@ -1,7 +1,7 @@
 ---
 logging:
   file: /var/vcap/sys/log/collector/collector.log
-  <% if properties.syslog_aggregator %>
+  <% if properties.syslog_aggregator.address %>
   syslog: vcap.collector
   <% end %>
   level: info
