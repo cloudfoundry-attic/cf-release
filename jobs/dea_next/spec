@@ -66,6 +66,9 @@ properties:
   dea_next.streaming_timeout:
     description:
     default: 60
+  dea_next.kernel_network_tuning_enabled:
+    description: "with latest kernel version, no kernel network tunings allowed with in warden cpi containers"
+    default: true
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
