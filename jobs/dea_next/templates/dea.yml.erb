@@ -30,7 +30,7 @@ logging:
   <% end %>
   level: debug
 
-index: <%= spec.index %>
+index: <%= p("dea_next.offset") + spec.index %>
 
 intervals:
   heartbeat: 10
