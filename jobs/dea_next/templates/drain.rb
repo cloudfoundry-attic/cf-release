@@ -3,6 +3,7 @@
 require "logger"
 require "fileutils"
 
+FileUtils.mkdir_p("/var/vcap/sys/log/dea_next")
 logger = Logger.new("/var/vcap/sys/log/dea_next/drain.log")
 
 job_change, hash_change, *updated_packages = ARGV
