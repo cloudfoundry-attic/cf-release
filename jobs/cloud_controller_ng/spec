@@ -24,14 +24,22 @@ packages:
 
 properties:
  name:
+  default: "vcap"
   description:
  build:
+  default: "2222"
   description:
  version:
+  default: "2"
   description:
  support_address:
+  default: "http://support.cloudfoundry.com"
   description:
  description:
+  default: "Cloud Foundry sponsored by Pivotal"
+  description:
+ api_version:
+  default: "2.0.0"
   description:
  domain:
   description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
@@ -91,20 +99,20 @@ properties:
   default: "api"
   description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
  ccng.cc_partition:
-  default: "default"
+  default: "ng"
   description: "Deprecated. Defines a 'partition' for the health_manager job"
  ccng.bootstrap_admin_email:
   default: "admin@example.com"
   description: "Deprecated."
 
  ccng.bulk_api_user:
-  default: bulk_api
+  default: "bulk_api"
   description: "User used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
  ccng.bulk_api_password:
   description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
 
  ccng.use_nginx:
-  default: "true"
+  default: true
   description: "Use nginx in front of the CC"
 
  ccng.uaa_resource_id:
@@ -247,8 +255,10 @@ properties:
  ccdb_ng.port:
   description:
  ccdb_ng.max_connections:
+  default: 32
   description:
  ccdb_ng.pool_timeout:
+  default: 10
   description:
 
  uaa.cc.token_secret:
@@ -268,6 +278,7 @@ properties:
   default: ""
   description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"
  login.enabled:
+  default: true
   description: "whether use login as the authorization endpoint or not"
 
  ccng.db_encryption_key:
