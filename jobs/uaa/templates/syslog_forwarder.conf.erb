@@ -1,4 +1,4 @@
-<% if properties.syslog_aggregator %>
+<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
 $ModLoad imuxsock                       # local message reception (rsyslog uses a datagram socket)
 $MaxMessageSize 4k                      # default is 2k
 

@@ -56,7 +56,7 @@ case $1 in
     # Allowed number of open file descriptors
     ulimit -n 100000
 
-    <% if properties.syslog_aggregator %>
+    <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/gorouter/config
     <% end %>
 
