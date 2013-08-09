@@ -5,34 +5,34 @@ pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 message_bus_uri: nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>
 
 external_domain:
-  - <%= p("ccng.external_host", "ccng") %>.<%= p("domain") %>
+  - <%= p("ccng.external_host") %>.<%= p("domain") %>
   - "api.<%= p("domain") %>"
 
 system_domain_organization: <%= p("system_domain_organization") %>
 system_domain: <%= p("system_domain") %>
 app_domains: [ <%= p("app_domains").join(", ") %> ]
 
-cc_partition: <%= p("ccng.cc_partition", "ng") %>
+cc_partition: <%= p("ccng.cc_partition") %>
 
-bootstrap_admin_email: <%= p("ccng.bootstrap_admin_email", "sre@vmware.com") %>
+bootstrap_admin_email: <%= p("ccng.bootstrap_admin_email") %>
 
 bulk_api:
-  auth_user: <%= p("ccng.bulk_api_user", "bulk_api") %>
+  auth_user: <%= p("ccng.bulk_api_user") %>
   auth_password: "<%= p("ccng.bulk_api_password") %>"
 
 nginx:
-  use_nginx: <%= p("ccng.use_nginx", true) %>
+  use_nginx: <%= p("ccng.use_nginx") %>
   instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
 
 index: <%= spec.index %>
 
 info:
-  name: <%= p("name", "vcap") %>
-  build: "<%= p("build", "2222") %>"
-  version: <%= p("version", 2) %>
-  support_address: <%= p("support_address", "http://support.cloudfoundry.com") %>
-  description: <%= p("description", "Cloud Foundry sponsored by Pivotal") %>
-  api_version: <%= p("api_version", "2.0.0") %>
+  name: <%= p("name") %>
+  build: "<%= p("build") %>"
+  version: <%= p("version") %>
+  support_address: <%= p("support_address") %>
+  description: <%= p("description") %>
+  api_version: <%= p("api_version") %>
 # TODO: put back once json schema is sorted out
 # allow_debug: false
 
@@ -50,21 +50,21 @@ logging:
   <% if_p("syslog_aggregator") do |syslog_aggregator| %>
   syslog: vcap.cloud_controller_ng
   <% end %>
-  level: <%= p("ccng.logging_level", "info") %>
-  max_retries: <%= p("ccng.logging_max_retries", 1) %>
+  level: <%= p("ccng.logging_level") %>
+  max_retries: <%= p("ccng.logging_max_retries") %>
 
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = p("ccdb_ng.roles").find { |role| role["tag"] == "admin" } %>
 db:
   database: <%= p("ccdb_ng.db_scheme") == "mysql" ? "mysql2" : p("ccdb_ng.db_scheme") %>://<%= db_role["name"] %>:<%= db_role["password"] %>@<%= p("ccdb_ng.address") %>:<%= p("ccdb_ng.port") %>/<%= db["name"] %>
-  max_connections: <%= p("ccdb_ng.max_connections", 32) %>
-  pool_timeout: <%= p("ccdb_ng.pool_timeout", 10) %>
-  log_level: <%= p("ccng.db_logging_level", "debug2") %>
+  max_connections: <%= p("ccdb_ng.max_connections") %>
+  pool_timeout: <%= p("ccdb_ng.pool_timeout") %>
+  log_level: <%= p("ccng.db_logging_level") %>
 
 <% scheme = p("uaa.no_ssl") ? "http" : "https"
    domain = p("domain") %>
 
-<% login_enabled = p("login.enabled", true) %>
+<% login_enabled = p("login.enabled") %>
 <% if login_enabled %>
 login:
   url: <%= p("login.url", "#{scheme}://login.#{domain}") %>
@@ -79,7 +79,7 @@ uaa:
 
 # App staging parameters
 staging:
-  max_staging_runtime: <%= p("ccng.max_staging_runtime", 300) %>
+  max_staging_runtime: <%= p("ccng.max_staging_runtime") %>
   auth:
     user: <%= p("ccng.staging_upload_user") %>
     password: "<%= p("ccng.staging_upload_password") %>"
