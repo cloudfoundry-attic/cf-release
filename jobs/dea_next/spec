@@ -62,6 +62,8 @@ properties:
     description:
     default: 30
   dea_next.stacks:
+    default:
+    - "lucid64"
     description:
   dea_next.streaming_timeout:
     description:
