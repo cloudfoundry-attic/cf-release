@@ -1,5 +1,6 @@
 {
 	"Index": <%= spec.index %>,
+  "MaxRetainedLogMessages": <%= p("loggregator.maxRetainedLogMessages") %>,
 	"ApiHost": "<%= p("cc.srv_api_uri") %>",
 	"SystemDomain": "<%= p("system_domain") %>", 
 	"NatsHost": "<%= p("nats.address") %>",
