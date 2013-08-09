@@ -28,6 +28,7 @@ case $1 in
 
     ulimit -c unlimited
 
+    <% if p("dea_next.kernel_network_tuning_enabled") == true %>
     # TCP_FIN_TIMEOUT
     # This setting determines the time that must elapse before TCP/IP can release a closed connection and reuse
     # its resources. During this TIME_WAIT state, reopening the connection to the client costs less than establishing
@@ -49,6 +50,7 @@ case $1 in
     # Default value is 0 (disabled). It is generally a safer alternative to tcp_tw_recycle
 
     echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
+    <% end %>
 
     <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
