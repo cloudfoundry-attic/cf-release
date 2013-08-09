@@ -1,7 +1,7 @@
 ---
 logging:
   file: /var/vcap/sys/log/uaa/cf-registrar.log
-  <% if properties.syslog_aggregator %>
+  <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
   syslog: vcap.uaa_cf-registrar
   <% end %>
   level: info
