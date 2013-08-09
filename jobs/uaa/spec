@@ -107,6 +107,8 @@ properties:
     description:
   uaa.require_https:
     description:
+  uaa.scim.group_membership:
+    description: "support for setting default group membership in UAA.  Useful to give a set of users 'cloud_controller.admin', for example"
   uaa_client_auth_credentials.password:
     description:
   uaa_client_auth_credentials.username:
