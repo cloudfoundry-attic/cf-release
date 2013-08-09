@@ -10,7 +10,7 @@ server:
 
 logging:
   file: /var/vcap/sys/log/warden/warden.log
-  <% if properties.syslog_aggregator %>
+  <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
   syslog: vcap.warden
   <% end %>
   level: debug
