@@ -24,8 +24,10 @@ case $1 in
 
     ulimit -c unlimited
 
+    <% if p("dea_next.kernel_network_tuning_enabled") == true %>
     # Use default local port range (higher ports are used for pooling)
     echo 32768 61000 > /proc/sys/net/ipv4/ip_local_port_range
+    <% end %>
 
     # The kernel has a bug where network interfaces cannot be removed when a
     # network namespace is destroyed (NEW_NETNS) due to dangling references.
