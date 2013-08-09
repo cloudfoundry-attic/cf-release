@@ -9,7 +9,7 @@ local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 logging:
   file: /var/vcap/sys/log/health_manager_next/health_manager_next.log
-  <% if properties.syslog_aggregator %>
+  <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
   syslog: vcap.health_manager_next
   <% end %>
   level: debug
