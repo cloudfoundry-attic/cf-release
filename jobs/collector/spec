@@ -20,6 +20,24 @@ properties:
     description: "Datadog application key"
   collector.deployment_name:
     description: "name for this bosh deployment. All metrics will be tagged with deployment:XXX when sending them to CloudWatch and Datadog"
+  collector.intervals.discover:
+    description: "the interval in seconds that the collector attempts to discover components"
+    default: 60
+  collector.intervals.healthz:
+    description: "the interval in seconds that healthz is checked"
+    default: 30
+  collector.intervals.local_metrics:
+    description: "the interval in seconds that local_metrics are checked"
+    default: 30
+  collector.intervals.nats_ping:
+    description: "the interval in seconds that the collector pings nats to record latency"
+    default: 30
+  collector.intervals.prune:
+    description: "the interval in seconds that the collector attempts to prune unresponsive components"
+    default: 300
+  collector.intervals.varz:
+    description: "the interval in seconds that varz is checked"
+    default: 30
   collector.use_aws_cloudwatch:
     description: "enable CloudWatch plugin"
     default: false

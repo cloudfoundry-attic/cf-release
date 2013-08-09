@@ -28,9 +28,9 @@ datadog:
 
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 intervals:
-  discover: 60
-  varz: 30
-  healthz: 30
-  local_metrics: 30
-  prune: 300
-  nats_ping: 30
+  discover: <%= properties.collector.intervals.discover %>
+  varz: <%= properties.collector.intervals.varz %>
+  healthz: <%= properties.collector.intervals.healthz %>
+  local_metrics: <%= properties.collector.intervals.local_metrics %>
+  prune: <%= properties.collector.intervals.prune %>
+  nats_ping: <%= properties.collector.intervals.nats_ping %>
