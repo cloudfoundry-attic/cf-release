@@ -10,7 +10,7 @@ uri:
   - login.<%= properties.domain %>
 host: <%= spec.networks.send(properties.networks.apps).ip %>
 index: <%= spec.index %>
-port: <%= (properties.saml_login && properties.saml_login.port) ? properties.saml_login.port : 8080 %>
+port: <%= properties.saml_login.port %>
 tags:
   component: saml_login
 varz:

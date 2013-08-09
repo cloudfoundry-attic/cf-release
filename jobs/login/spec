@@ -25,6 +25,7 @@ properties:
   login.links:
     description:
   login.port:
+    default: 8080
     description:
   login.uaa_base:
     description:
