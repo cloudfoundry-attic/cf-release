@@ -61,6 +61,9 @@ properties:
   dea_next.num_instances:
     description:
     default: 30
+  dea_next.offset:
+    description: "allows for unique dea index spread accross deployments"
+    default: 0
   dea_next.stacks:
     default:
     - "lucid64"
