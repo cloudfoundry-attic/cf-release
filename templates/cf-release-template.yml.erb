@@ -185,10 +185,6 @@ jobs:
   - name: cf1
     static_ips:
     - <%= ip(0, 'cf1.static') %>
-<% if find('properties.syslog_aggregator.relay_host') -%>
-  relay_host: <%= find('properties.syslog_aggregator.relay_host') %>
-  relay_host_port: <%= find('properties.syslog_aggregator.relay_host_port') %>
-<% end -%>
 
 - name: nats
   template: nats
@@ -437,6 +433,10 @@ properties:
   syslog_aggregator:
     address: 10.10.16.10
     port: 54321
+<% if find('properties.syslog_aggregator.relay_host') -%>
+    relay_host: <%= find('properties.syslog_aggregator.relay_host') %>
+    relay_host_port: <%= find('properties.syslog_aggregator.relay_host_port') %>
+<% end -%>
     log_email:
       enabled: true
       from_email: <%= find("properties.syslog_aggregator.log_email.from_email") %>
