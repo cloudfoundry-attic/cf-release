@@ -13,6 +13,7 @@ end
 
 NATS.start(:uri => ARGV[0]) do
   NATS.subscribe(">") do |message, _, subject|
-    syslog.log(Syslog::LOG_INFO, "%f - [%s] %s", Time.now.to_f, subject, message)
+    json = %Q[{"timestamp": #{Time.now.to_f},"subject": #{subject},"message": #{message}}]
+    syslog.log(Syslog::LOG_INFO, json)
   end
 end
