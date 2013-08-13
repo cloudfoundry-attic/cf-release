@@ -64,17 +64,16 @@ db:
 <% scheme = p("uaa.no_ssl") ? "http" : "https"
    domain = p("domain") %>
 
-<% login_enabled = p("login.enabled") %>
-<% if login_enabled %>
+<% if login_enabled = p("login.enabled", true) %>
 login:
   url: <%= p("login.url", "#{scheme}://login.#{domain}") %>
 <% end %>
 uaa:
   url: <%= p("uaa.url", "#{scheme}://uaa.#{domain}") %>
   resource_id: <%= p("ccng.uaa_resource_id") %>
-<% if_p("uaa.cc.token_secret") do |token_secret| %>
+  <% if_p("uaa.cc.token_secret") do |token_secret| %>
   symmetric_secret: "<%= token_secret %>"
-<% end %>
+  <% end %>
   verification_key: <%= p("uaa.jwt.verification_key") ? ("|\n      " + p("uaa.jwt.verification_key").gsub("\n", "\n      ")) : '~' %>
 
 # App staging parameters
@@ -112,60 +111,60 @@ resource_pool:
   minimum_size: <%= p("ccng.resource_pool.minimum_size") %>
   maximum_size: <%= p("ccng.resource_pool.maximum_size") %>
   resource_directory_key: <%= p("ccng.resource_pool.resource_directory_key") %>
-<% if_p("ccng.resource_pool.cdn") do %>
+  <% if_p("ccng.resource_pool.cdn") do %>
   cdn:
     uri: <%= p("ccng.resource_pool.cdn.uri") %>
     key_pair_id: <%= p("ccng.resource_pool.cdn.key_pair_id") %>
     private_key: <%= p("ccng.resource_pool.cdn.private_key").inspect %>
-<% end %>
+  <% end %>
   fog_connection:
-<% if_p("ccng.resource_pool.fog_connection.provider") do |provider| %>
+  <% if_p("ccng.resource_pool.fog_connection.provider") do |provider| %>
     provider: <%= provider %>
-  <% if provider.downcase == "local" %>
+    <% if provider.downcase == "local" %>
     local_root: <%= p("ccng.resource_pool.fog_connection.local_root") %>
-  <% else %>
+    <% else %>
     aws_access_key_id: <%= p("ccng.resource_pool.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.resource_pool.fog_connection.aws_secret_access_key") %>
+    <% end %>
   <% end %>
-<% end %>
 
 packages:
   app_package_directory_key: <%= p("ccng.packages.app_package_directory_key") %>
-<% if_p("ccng.packages.cdn") do %>
+  <% if_p("ccng.packages.cdn") do %>
   cdn:
     uri: <%= p("ccng.packages.cdn.uri") %>
     key_pair_id: <%= p("ccng.packages.cdn.key_pair_id") %>
     private_key: <%= p("ccng.packages.cdn.private_key").inspect %>
-<% end %>
+  <% end %>
   fog_connection:
-<% if_p("ccng.packages.fog_connection.provider") do |provider| %>
+  <% if_p("ccng.packages.fog_connection.provider") do |provider| %>
     provider: <%= provider %>
-  <% if provider.downcase == "local" %>
+    <% if provider.downcase == "local" %>
     local_root: <%= p("ccng.packages.fog_connection.local_root") %>
-  <% else %>
+    <% else %>
     aws_access_key_id: <%= p("ccng.packages.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.packages.fog_connection.aws_secret_access_key") %>
+    <% end %>
   <% end %>
-<% end %>
 
 droplets:
   droplet_directory_key: <%= p("ccng.droplets.droplet_directory_key") %>
-<% if_p("ccng.droplets.cdn") do %>
+  <% if_p("ccng.droplets.cdn") do %>
   cdn:
     uri: <%= p("ccng.droplets.cdn.uri") %>
     key_pair_id: <%= p("ccng.droplets.cdn.key_pair_id") %>
     private_key: <%= p("ccng.droplets.cdn.private_key").inspect %>
-<% end %>
+  <% end %>
   fog_connection:
-<% if_p("ccng.droplets.fog_connection.provider") do |provider| %>
+  <% if_p("ccng.droplets.fog_connection.provider") do |provider| %>
     provider: <%= provider %>
-  <% if provider.downcase == "local" %>
+    <% if provider.downcase == "local" %>
     local_root: <%= p("ccng.droplets.fog_connection.local_root") %>
-  <% else %>
+    <% else %>
     aws_access_key_id: <%= p("ccng.droplets.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.droplets.fog_connection.aws_secret_access_key") %>
+    <% end %>
   <% end %>
-<% end %>
 
 db_encryption_key: <%= p("ccng.db_encryption_key") %>
 
