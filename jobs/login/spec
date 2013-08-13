@@ -59,3 +59,6 @@ properties:
     description:
   uaa.require_https:
     description:
+  login.protocol:
+    default: "http"
+    description: "The scheme in which login server should use to contact the UAA"
