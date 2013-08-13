@@ -433,9 +433,9 @@ properties:
   syslog_aggregator:
     address: 10.10.16.10
     port: 54321
-<% if find('properties.syslog_aggregator.relay_host') -%>
-    relay_host: <%= find('properties.syslog_aggregator.relay_host') %>
-    relay_host_port: <%= find('properties.syslog_aggregator.relay_host_port') %>
+<% if q('syslog_aggregator.relay_host', nil) -%>
+    relay_host: <%= q('syslog_aggregator.relay_host', ''.inspect) %>
+    relay_host_port: <%= q('syslog_aggregator.relay_host_port', ''.inspect) %>
 <% end -%>
     log_email:
       enabled: true
