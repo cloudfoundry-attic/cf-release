@@ -81,6 +81,15 @@ resource_pools:
 jobs:
 # ====================== BEGIN CF JOBS =========================
 
+- name: nats
+  template: nats
+  instances: 1
+  resource_pool: common
+  networks:
+  - name: cf1
+    static_ips:
+    - <%= ip( 1, 'cf1.static') %>
+
 - name: syslog_aggregator
   template: syslog_aggregator
   instances: 1
@@ -90,15 +99,6 @@ jobs:
   - name: cf1
     static_ips:
     - <%= ip( 0, 'cf1.static') %>
-
-- name: nats
-  template: nats
-  instances: 1
-  resource_pool: common
-  networks:
-  - name: cf1
-    static_ips:
-    - <%= ip( 1, 'cf1.static') %>
 
 - name: uaa
   template: uaa
