@@ -47,7 +47,7 @@ class TravisBuild
   end
 
   def travis?
-    @no_travis ||= json && json.any?
+    @travis ||= json && json.any?
   end
 
   def travis_status(sha)
