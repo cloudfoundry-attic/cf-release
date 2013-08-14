@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'json'
+
+class TravisBuild
+  TRAVIS_URL = "https://api.travis-ci.org/repos/%s/builds".freeze
+  YELLOW = "\e[0;33m".freeze
+  GREEN = "\e[0;32m".freeze
+  RED = "\e[0;31m".freeze
+  BLUE = "\e[0;34m".freeze
+  RESET_COLOR = "\e[0m".freeze
+
+  def initialize(git_short_log)
+    @git_short_log = git_short_log
+  end
+
+  def shortlog_with_travis_status
+    output = []
+    output << "#{BLUE}No Travis#{RESET_COLOR}\n" unless travis?
+
+    @git_short_log.split("\n").each do |commit|
+      sha, message = commit.split(" ", 2)
+
+      output << "#{YELLOW}#{sha}#{RESET_COLOR} #{message}"
+      output << travis_status(sha) if travis?
+      output << "\n"
+    end
+
+    puts output.join if output.any?
+  end
+
+  private
+
+  def json
+    @json ||= begin
+      repo = `git remote -v`.match(/github.com\/([^\s]+?).git/)[1]
+      uri = URI(TRAVIS_URL % repo)
+
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      response = http.request(Net::HTTP::Get.new(uri.path))
+
+      JSON.parse(response.body)
+    end
+  end
+
+  def travis?
+    @no_travis ||= json && json.any?
+  end
+
+  def travis_status(sha)
+    build = json.find { |build| build["commit"].start_with?(sha) }
+
+    message = case build && build["result"]
+      when 0; "#{GREEN}Travis Success"
+      when 1; "#{RED}Travis Failed"
+      else; "#{BLUE}Travis Unknown"
+    end
+
+    " (#{message}#{RESET_COLOR})"
+  end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  travis = TravisBuild.new(ARGF.read)
+  travis.shortlog_with_travis_status
+end
