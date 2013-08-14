@@ -81,8 +81,10 @@ oauth:
     login:
       id: login
       secret: <%= properties.uaa.login.client_secret %>
-      authorized-grant-types: client_credentials
+      authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
+      scope: openid,uaa.user
+      redirect-uri: http://login.<%= properties.domain %>/profile,https://login.<%= properties.domain %>/profile
 <% end %>
 <% if properties.uaa.scim %>
 scim:
