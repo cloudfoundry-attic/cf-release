@@ -284,3 +284,7 @@ properties:
  ccng.db_encryption_key:
   default: ""
   description: "key for encrypting sensitive values in the CC database"
+
+ ccng.tasks_disabled:
+  default: false
+  description: "Disable tasks endpoint"
