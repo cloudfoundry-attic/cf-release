@@ -395,6 +395,7 @@ properties:
     - name: lucid64custom
       description: "Fake Ubuntu 10.04"
     db_encryption_key: <%= find("properties.cc.db_encryption_key") %>
+    tasks_disabled: <%= production? ? true : false %>
 
   ccng: *cc
 
