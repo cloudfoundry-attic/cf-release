@@ -20,7 +20,7 @@ class TravisBuild
     output = []
 
     if travis?
-      output << "#{BLUE}https://travis-ci.org/#{@repo}#{RESET_COLOR}\n"
+      output << "#{YELLOW}https://travis-ci.org/#{@repo}#{RESET_COLOR}\n"
     else
       output << "#{BLUE}No Travis#{RESET_COLOR}\n"
     end
