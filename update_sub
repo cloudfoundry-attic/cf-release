@@ -15,4 +15,4 @@ git submodule foreach \
   '  git add $sub;' \
   'fi'
 
-./staged_shortlog
+./staged_shortlog -c
