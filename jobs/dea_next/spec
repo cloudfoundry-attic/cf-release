@@ -68,6 +68,9 @@ properties:
   dea_next.streaming_timeout:
     description:
     default: 60
+  dea_next.directory_server_protocol:
+    description: 'The protocol to use when communicating with the directory server ("http" or "https")'
+    default: 'https'
   dea_next.kernel_network_tuning_enabled:
     description: "with latest kernel version, no kernel network tunings allowed with in warden cpi containers"
     default: true
