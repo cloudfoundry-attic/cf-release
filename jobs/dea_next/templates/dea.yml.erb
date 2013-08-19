@@ -10,7 +10,7 @@ base_dir: /var/vcap/data/dea_next
 warden_socket: /var/vcap/data/warden/warden.sock
 
 directory_server:
-  protocol: "https"
+  protocol: '<%= p('dea_next.directory_server_protocol') %>'
   v1_port: 12345
   v2_port: 34567
   file_api_port: 23456
