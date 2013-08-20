@@ -272,7 +272,6 @@ properties:
   description:
 
  syslog_aggregator:
-  default: vcap.cloud_controller_ng
   description: "Tag for logging to syslog. If not defined, cc will not log to syslog"
  uaa.jwt.verification_key:
   default: ""
