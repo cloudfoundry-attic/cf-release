@@ -2,24 +2,21 @@
 set -e
 
 cd ${BOSH_INSTALL_TARGET}
-tar zxvf ${BOSH_COMPILE_TARGET}/uaa/jdk1.6.0_35.tar.gz
+mkdir jdk && tar zxvf ${BOSH_COMPILE_TARGET}/uaa/openjdk-1.6.0_27.tar.gz -C jdk
 if [[ $? != 0 ]] ; then
   echo "Cannot unpack JDK"
   exit 1
 fi
 
-mv jdk1.6.0_35 jdk
-ln -s jdk/jre
-
 cd ${BOSH_INSTALL_TARGET}
 
-tar zxvf ${BOSH_COMPILE_TARGET}/uaa/apache-tomcat-7.0.32.tar.gz
+tar zxvf ${BOSH_COMPILE_TARGET}/uaa/tomcat-7.0.42.tar.gz
 if [[ $? != 0 ]] ; then
   echo "Cannot unpack Tomcat"
   exit 1
 fi
 
-mv apache-tomcat-7.0.32 tomcat
+mv apache-tomcat-7.0.42 tomcat
 
 cd tomcat
 rm -rf webapps/*
