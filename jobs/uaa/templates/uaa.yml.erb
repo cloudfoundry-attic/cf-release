@@ -104,6 +104,10 @@ scim:
   users: <% properties.uaa.scim.users.each do |user| %>
     - <%= user %><% end %>
 <% end %>
+<% if properties.uaa.scim && properties.uaa.scim.group_membership then %>
+  group_membership: <% properties.uaa.scim.group_membership.each do |membership| %>
+    - <%= membership %><% end %>
+<% end %>
 <% if !properties.uaa.require_https.nil? %>
 require_https: <%= properties.uaa.require_https %>
 <% end %>
