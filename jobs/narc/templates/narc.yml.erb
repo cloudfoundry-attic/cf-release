@@ -1,0 +1,23 @@
+host: <%= spec.networks.send(properties.networks.apps).ip %>
+
+<% if_p("nats.address",
+        "nats.port",
+        "nats.user",
+        "nats.password") do |address, port, user, password| %>
+message_bus:
+  host: <%= address %>
+  port: <%= port %>
+  username: <%= user %>
+  password: <%= password %>
+<% end %>
+
+
+warden:
+  socket: /var/vcap/data/warden/warden.sock
+  containers: /var/vcap/data/warden/depot
+
+advertise_interval: 10
+
+capacity:
+  memory: 2047
+  disk: 16384

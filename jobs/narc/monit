@@ -1,0 +1,17 @@
+check process warden
+  with pidfile /var/vcap/sys/run/warden/warden.pid
+  start program "/var/vcap/jobs/narc/bin/warden_ctl start"
+      with timeout 120 seconds
+  stop program "/var/vcap/jobs/narc/bin/warden_ctl stop"
+  if failed host 127.0.0.1 port 2345 protocol http
+      and request '/'
+      with timeout 5 seconds for 5 cycles
+  then restart
+  group vcap
+
+check process narc
+  with pidfile /var/vcap/sys/run/narc/narc.pid
+  start program "/var/vcap/jobs/narc/bin/narc_ctl start"
+  stop program "/var/vcap/jobs/narc/bin/narc_ctl stop" with timeout 45 seconds
+  group vcap
+  depends on warden

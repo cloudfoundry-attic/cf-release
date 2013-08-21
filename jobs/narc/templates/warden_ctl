@@ -1,0 +1,69 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/warden
+LOG_DIR=/var/vcap/sys/log/warden
+WARDEN_CONF_DIR=/var/vcap/jobs/narc/config
+FIRSTRUN_PATH=$RUN_DIR/firstrun
+PIDFILE=$RUN_DIR/warden.pid
+DATA_DIR=/var/vcap/data/warden
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Warden"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    # Configure the core file location
+    mkdir -p /var/vcap/sys/cores
+    chown vcap:vcap /var/vcap/sys/cores
+    echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
+
+    ulimit -c unlimited
+
+    <% if p("dea_next.kernel_network_tuning_enabled") == true %>
+    # Use default local port range (higher ports are used for pooling)
+    echo 32768 61000 > /proc/sys/net/ipv4/ip_local_port_range
+    <% end %>
+
+    # The kernel has a bug where network interfaces cannot be removed when a
+    # network namespace is destroyed (NEW_NETNS) due to dangling references.
+    # It is not triggered when IPv6 is disabled.
+    sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
+    cd /var/vcap/packages/warden/warden
+
+    depot=$DATA_DIR/depot
+
+    # Clear existing containers if warden was not drained
+    if [ -d $depot ] && [ ! -f $depot/drained ]
+    then
+      find $depot -mindepth 1 -maxdepth 1 -type d | xargs -t -n1 --no-run-if-empty root/linux/destroy.sh
+    fi
+
+    export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+    echo $$ > $PIDFILE
+
+    exec /var/vcap/packages/ruby/bin/bundle exec \
+         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
+         1>>$LOG_DIR/warden.stdout.log \
+         2>>$LOG_DIR/warden.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: warden_ctl {start|stop}"
+
+    ;;
+
+esac
