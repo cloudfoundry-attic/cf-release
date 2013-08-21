@@ -1,0 +1,45 @@
+---
+name: narc
+templates:
+  warden_ctl: bin/warden_ctl
+  warden.yml.erb: config/warden.yml
+  narc_ctl.erb: bin/narc_ctl
+  narc.yml.erb: config/narc.yml
+
+packages:
+- common
+- narc
+- warden
+- rootfs_lucid64
+- ruby
+- golang
+- git
+- libyaml
+- sqlite
+- mysqlclient
+- libpq
+- insight_agent
+
+properties:
+  domain:
+    description: "DNS domain name for this Cloud Foundry deployment"
+  nats.address:
+    description: "IP address of NATS server"
+  nats.password:
+    description: "password for NATS login"
+  nats.port:
+    description: "TCP port of NATS server"
+  nats.user:
+    description: "user name for NATS login"
+  dea_next.allow_networks:
+    description: 
+  networks.apps:
+    description: The name of the subnet that contains this job
+  dea_next.deny_networks:
+    description:
+  dea_next.kernel_network_tuning_enabled:
+    description: "with latest kernel version, no kernel network tunings allowed with in warden cpi containers"
+    default: true
+  disk_quota_enabled:
+    description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
+    default: true

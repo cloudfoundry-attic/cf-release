@@ -1,0 +1,38 @@
+---
+server:
+  unix_domain_permissions: 0777
+  unix_domain_path: /var/vcap/data/warden/warden.sock
+  container_klass: Warden::Container::Linux
+  container_rootfs_path: /var/vcap/packages/rootfs_lucid64
+  container_depot_path: /var/vcap/data/warden/depot
+  quota:
+    disk_quota_enabled: <%= properties.disk_quota_enabled %>
+
+logging:
+  file: /var/vcap/sys/log/warden/warden.log
+  level: debug
+
+health_check_server:
+  port: 2345
+
+network:
+  pool_start_address: 10.254.0.0
+  pool_size: 256
+  <% if properties.dea_next && properties.dea_next.deny_networks %>
+  deny_networks: <%= properties.dea_next.deny_networks %>
+  <% end %>
+  <% if properties.dea_next && properties.dea_next.allow_networks %>
+  allow_networks: <%= properties.dea_next.allow_networks %>
+  <%end %>
+
+  # Interface MTU size
+  # (for OpenStack use 1454 to avoid problems with rubygems with GRE tunneling)
+  <% if properties.dea_next && properties.dea_next.mtu %>
+  mtu: <%= properties.dea_next.mtu %>
+  <%else%>
+  mtu: 1500
+  <%end %>
+
+user:
+  pool_start_uid: 20000
+  pool_size: 256

@@ -141,7 +141,7 @@ resource_pools:
     availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
 - name: dea
   network: cf1
-  size: <%= find('resource_pools.dea.size') %>
+  size: <%= find('jobs.dea_next.instances').to_i + find('jobs.narc.instances').to_i %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -254,6 +254,16 @@ jobs:
     dea_next:
       stacks:
       - lucid64
+
+- name: narc
+  template: narc
+  instances: <%= find("jobs.narc.instances") %>
+  resource_pool: dea
+  networks:
+  - name: cf1
+    default:
+    - dns
+    - gateway
 
 - name: collector
   template: collector
