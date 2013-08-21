@@ -175,14 +175,6 @@ login/cloudfoundry-identity-batch-1.0.0.war:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd0504a22403f04d
   sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
   size: 24049331
-uaa/apache-tomcat-7.0.32.tar.gz:
-  object_id: rest/objects/4e4e78bca11e122204e4e98638b763050786cb3c73e1
-  sha: 94d7efcb0d2797b196b1a7d9537e3ed53f7607f4
-  size: 7701019
-uaa/jdk1.6.0_35.tar.gz:
-  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd0507c5d83ed3ea
-  sha: 47ead45c658f9c72577d202d8aa1675461ee3ad6
-  size: 67126391
 dashboard/dashboard-1.0-SNAPSHOT-2b7dcaa1.war:
   object_id: rest/objects/4e4e78bca21e122004e4e8ec647a540508acd42e228e
   sha: 08004df2a5b2a7a7e610da4ac1eaaa5a0c14ad25
@@ -450,3 +442,13 @@ login/cloudfoundry-login-server-1.2.5.war:
   sha: !binary |-
     OWFjZjBhOTUyNGUyZTZjMDMzYzEwZWYyNDcxYTk5ZjEzMDFjZjZhYQ==
   size: 7489077
+uaa/openjdk-1.6.0_27.tar.gz:
+  object_id: d523e77d-9962-4233-bcdc-74a2bea30b7a
+  sha: !binary |-
+    YTQ1YjZmODliYTU0ZDIzMGNiNDc5OTJiZDgxNzdkMjExZjY0YmQ5Mw==
+  size: 28917046
+uaa/tomcat-7.0.42.tar.gz:
+  object_id: 5fbff3da-1f0d-4172-a05a-4030672ee6aa
+  sha: !binary |-
+    MDAxYTY0NjI5YTkzMTAzZDRmNTNhYzk1ZmFmM2U1MmE2MzY1N2I5NQ==
+  size: 7955948
