@@ -11,6 +11,7 @@ git submodule foreach \
   '  sub=`pwd`;' \
   '  git checkout master;' \
   '  git pull;' \
+  '  git submodule update --init --recursive;' \
   "  cd $release;" \
   '  git add $sub;' \
   'fi'
