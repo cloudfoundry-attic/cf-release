@@ -4604,4 +4604,18 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
+    <!-- Force SSL if saml_login.protocol == https -->
+
+    <% if p("saml_login.protocol") == "https" %>
+    <security-constraint>
+      <web-resource-collection>
+        <web-resource-name>Protected Context</web-resource-name>
+          <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+           <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+     </security-constraint>
+    <% end %>
+
 </web-app>
