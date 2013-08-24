@@ -6,6 +6,6 @@ check process saml_login
 
 check process saml_login_cf-registrar
   with pidfile /var/vcap/sys/run/saml_login/cf-registrar.pid
-  start program "/var/vcap/jobs/saml_login/bin/cf-registrar_ctl start"
-  stop program "/var/vcap/jobs/saml_login/bin/cf-registrar_ctl stop"
+  start program "/var/vcap/jobs/saml_login/bin/saml_login_cf-registrar_ctl start"
+  stop program "/var/vcap/jobs/saml_login/bin/saml_login_cf-registrar_ctl stop"
   group vcap
