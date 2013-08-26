@@ -82,3 +82,9 @@
 [submodule "src/narc/src/github.com/nu7hatch/gouuid"]
 	path = src/narc/src/github.com/nu7hatch/gouuid
 	url = https://github.com/nu7hatch/gouuid.git
+[submodule "src/gorouter/src/github.com/cloudfoundry/loggregatorlib"]
+	path = src/gorouter/src/github.com/cloudfoundry/loggregatorlib
+	url = https://github.com/cloudfoundry/loggregatorlib.git
+[submodule "src/gorouter/src/code.google.com/p/gogoprotobuf"]
+	path = src/gorouter/src/code.google.com/p/gogoprotobuf
+	url = https://code.google.com/p/gogoprotobuf/

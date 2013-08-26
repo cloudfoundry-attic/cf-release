@@ -26,6 +26,11 @@ logging:
   <% end %>
   level: info
 
+<% if_p("loggregator.router") do |router| %>
+loggregatorConfig:
+  url: <%= router %>
+<% end %>
+
 port: 80
 index: <%= p("router.offset") + spec.index %>
 pidfile: /var/vcap/sys/run/gorouter/gorouter.pid

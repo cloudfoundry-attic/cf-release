@@ -37,3 +37,5 @@ properties:
       If the X-Vcap-Trace request header is set and has this value,
       trace headers are added to the response.
     default: 22
+  loggregator.router:
+    description: The url used to emit messages to the Loggregator
