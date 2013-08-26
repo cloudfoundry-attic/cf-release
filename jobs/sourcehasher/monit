@@ -1,0 +1,5 @@
+check process sourcehasher
+  with pidfile /var/vcap/sys/run/sourcehasher/sourcehasher.pid
+  start program "/var/vcap/jobs/sourcehasher/bin/sourcehasher_ctl start"
+  stop program "/var/vcap/jobs/sourcehasher/bin/sourcehasher_ctl stop"
+  group vcap
