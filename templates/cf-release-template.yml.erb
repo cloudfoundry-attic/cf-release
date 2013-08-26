@@ -63,7 +63,10 @@
   router_static_ips << ip(20, 'cf1.static')
 
   # TODO: this probably doesn't need its own static IP
+  #loggregator_static_ip = []
   loggregator_static_ip = ip(21, "cf1.static")
+  #loggregator_static_ip << ip(22, "cf1.static")
+  #loggregator_router_static_ip = ip(23, "cf1.static")
 -%>
 
 # ENV variables for Yeti:
@@ -490,7 +493,9 @@ properties:
       smtp_domain: gmail.com
 
   loggregator:
-    server: <%= loggregator_static_ip %>:3456
+    router: <%= loggregator_static_ip %>:3456
+    servers: 
+    - <%= loggregator_static_ip %>:3456
     status:
       user: <%= find("properties.loggregator.status.user") %>
       password: <%= find("properties.loggregator.status.password") %>
