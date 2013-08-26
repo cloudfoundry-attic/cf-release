@@ -50,7 +50,7 @@ networks:
 resource_pools:
 - name: common
   network: cf1
-  size: 8
+  size: 9
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -136,6 +136,15 @@ jobs:
     static_ips:
     - <%= ip( 4, 'cf1.static') %>
 
+- name: loggregator-router
+  template: sourcehasher
+  instances: 1
+  resource_pool: common
+  networks:
+  - name: cf1
+    static_ips:
+    - <%= ip( 6, 'cf1.static') %>
+
 - name:  health_manager
   template: health_manager_next
   instances: 1
@@ -178,7 +187,9 @@ jobs:
 
 properties:
   loggregator:
-    server: <%= ip( 4, 'cf1.static') %>:3456
+    router: <%= ip( 6, 'cf1.static') %>:3456
+    servers: 
+    - <%= ip( 4, 'cf1.static') %>:3456
     status:
       user: sBNUxXlS0pc71wVef
       password: 7nTmaIf9vPV4mJyBe
