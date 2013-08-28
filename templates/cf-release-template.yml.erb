@@ -172,15 +172,33 @@ resource_pools:
   cloud_properties:
     instance_type: m1.small
     availability_zone: <%= az1 %>
+- name: small2
+  network: cf2
+  size: 0
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+  cloud_properties:
+    instance_type: m1.small
+    availability_zone: <%= az2 %>
 - name: medium
   network: cf1
-  size: 4
+  size: 3
   stemcell:
     name: bosh-stemcell
     version: latest
   cloud_properties:
     instance_type: m1.medium
     availability_zone: <%= az1 %>
+- name: medium2
+  network: cf2
+  size: 1
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+  cloud_properties:
+    instance_type: m1.medium
+    availability_zone: <%= az2 %>
 - name: large
   network: cf1
   size: <%= cc_instance_count  + uaa_instance_count %>
@@ -279,11 +297,11 @@ jobs:
 - name: nats
   template: nats
   instances: 1
-  resource_pool: medium
+  resource_pool: medium2
   networks:
-  - name: cf1
+  - name: cf2
     static_ips:
-    - <%= ip(1, 'cf1.static') %>
+    - <%= ip(1, 'cf2.static') %>
 
 - name: uaa2
   template: uaa
@@ -522,7 +540,7 @@ properties:
   nats:
     user: <%= find("properties.nats.user") %>
     password: <%= find("properties.nats.password") %>
-    address: 10.10.16.11  # <%#= ip( 1, 'cf1.static') %>
+    address: 10.10.80.11  # <%#= ip( 1, 'cf2.static') %>
     port: 4222
     authorization_timeout: 5  # AWS is slow
 
