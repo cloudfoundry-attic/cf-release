@@ -1,0 +1,51 @@
+#!/bin/bash
+
+export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
+
+RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
+LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
+PIDFILE=$RUN_DIR/cloud_controller_jobs.pid
+
+export CONFIG_DIR=$CC_JOB_DIR/config
+export CLOUD_CONTROLLER_NG_CONFIG=$CONFIG_DIR/cloud_controller_ng.yml
+export BUNDLE_GEMFILE=$CC_PACKAGE_DIR/cloud_controller_ng/Gemfile
+
+export C_INCLUDE_PATH=/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
+export LIBRARY_PATH=/var/vcap/packages/libpq/lib:$LIBRARY_PATH
+export LANG=en_US.UTF-8
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Cloud controller jobs"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown vcap:vcap $RUN_DIR
+    chown vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
+
+    cd $CC_PACKAGE_DIR/cloud_controller_ng
+    export QUEUE=cc<%= spec.index.to_i %>
+    exec chpst -u vcap:vcap bundle exec rake jobs:work \
+      >>$LOG_DIR/jobs_work.stdout.log 2>>$LOG_DIR/jobs_work.stderr.log
+
+  ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+  ;;
+
+  *)
+    echo "Usage: cloud_controller_jobs_ctl {start|stop}"
+  ;;
+
+esac
