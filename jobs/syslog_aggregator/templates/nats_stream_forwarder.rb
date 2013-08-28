@@ -8,6 +8,7 @@ require 'nats/client'
 %w[TERM INT].each do |sig|
   trap(sig) do
     NATS.stop
+    exit(0)
   end
 end
 
@@ -35,7 +36,7 @@ begin
       end
     end
   end
-rescue NATS::ServerError => e
-  log(:error, Time.now.to_f, "nats.error", %Q[{"exception_message": #{json_save e.message}}])
+rescue NATS::ConnectError, NATS::ServerError => e
+  log(:error, Time.now.to_f, "nats.error", %Q[{"exception_message": #{json_safe e.message}}])
   retry
 end
