@@ -137,7 +137,7 @@ jobs:
     - <%= ip( 4, 'cf1.static') %>
 
 - name: loggregator-router
-  template: sourcehasher
+  template: loggregatorrouter
   instances: 1
   resource_pool: common
   networks:
