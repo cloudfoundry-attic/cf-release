@@ -16,7 +16,7 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    <% p("loggregator.debug") == true ? debug_string = "-v " : debug_string = "" %>
+    <% p("loggregator.debug") == true ? debug_string = "--debug " : debug_string = "" %>
 
     exec /var/vcap/packages/dea_logging_agent/deaagent <%= debug_string %> \
          --config /var/vcap/jobs/dea_logging_agent/config/dea_logging_agent.json \

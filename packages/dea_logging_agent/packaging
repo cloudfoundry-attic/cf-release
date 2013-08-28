@@ -1,29 +1,33 @@
 # abort script on any command that exit with a non zero value
 set -e
 
+dir="loggregator"
+binary="deaagent"
+
 if [[ `uname -a` =~ "x86_64" ]] ; then
-  dir="loggregator"
-  archive=$dir/"deaagent.gz"
+
   echo "Using 64-bit version"
+  echo "Extracting archive..."
+  gzip -d $dir/"${binary}-linux-amd64.gz"
+  mv $dir/"${binary}-linux-amd64" $dir/$binary
 else
   echo "Only 64-bit architectures are supported."
   exit 1
 fi
 
-if [[ -f $archive ]] ; then
-  echo "Archive found"
+if [[ -f $dir/$binary ]] ; then
+  echo "Binary found"
 else
-  echo "Archive not found"
+  echo "Binary not found"
   exit 1
 fi
 
-echo "Extracting archive..."
-gzip -d $archive
-chmod 755 $dir/deaagent
 
-if [[ `./$dir/deaagent --version 2>&1` =~ "version:" && $? == 0 ]]; then
-  cp $dir/deaagent ${BOSH_INSTALL_TARGET}
+chmod 755 $dir/$binary
+
+if [[ `./$dir/$binary --version 2>&1` =~ "version:" && $? == 0 ]]; then
+  cp $dir/$binary ${BOSH_INSTALL_TARGET}
 else
-  echo "DEA Logging Agent is not properly packaged"
+  echo "${binary} is not properly packaged"
   exit 1
 fi
