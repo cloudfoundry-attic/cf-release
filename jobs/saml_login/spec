@@ -10,6 +10,8 @@ templates:
   log4j.properties.erb: config/log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml
+  # Updates to Tomcat must also check web.xml
+  web.xml.erb: config/tomcat/web.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 packages:
