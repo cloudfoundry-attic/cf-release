@@ -18,7 +18,6 @@
   services_user = users.detect { |u| u.match("^services\\|") }
   users.unshift "admin|#{random_string 12, :admin}|scim.write,scim.read,openid,cloud_controller.admin" unless admin_user
   users << "services|#{random_string 12, :services}|scim.write,scim.read,openid,cloud_controller.admin" unless services_user
-  services_userid, services_password = services_user.split("\|")[0..1] if services_user
 
   def production?
     find("name") == "cf-cfapps-io"
@@ -35,6 +34,15 @@
     "m2.2xlarge" => 800_000
   }
 
+  uaa_instance_count = find('jobs.uaa.instances').to_i
+  cc_instance_count = find('jobs.cloud_controller.instances').to_i
+  router_instance_count = find('jobs.router.instances').to_i
+  dea_instance_count = find('jobs.dea_next.instances').to_i
+  narc_instance_count = find('jobs.narc.instances').to_i
+
+  az1 = find('properties.template_only.aws.availability_zone')
+  az2 = find('properties.template_only.aws.availability_zone2')
+
   # reserving static_ip range for cloud_controller jobs
   # saving each one so it is possible to grep the file for reserved ips
   cloud_controller_static_ips = []
@@ -48,9 +56,24 @@
   cloud_controller_static_ips << ip(13, 'cf1.static')
   cloud_controller_static_ips << ip(14, 'cf1.static')
 
+  cloud_controller_static_ips2 = []
+  cloud_controller_static_ips2 << ip(3, 'cf2.static')
+  cloud_controller_static_ips2 << ip(4, 'cf2.static')
+  cloud_controller_static_ips2 << ip(8, 'cf2.static')
+  cloud_controller_static_ips2 << ip(9, 'cf2.static')
+  cloud_controller_static_ips2 << ip(10, 'cf2.static')
+  cloud_controller_static_ips2 << ip(11, 'cf2.static')
+  cloud_controller_static_ips2 << ip(12, 'cf2.static')
+  cloud_controller_static_ips2 << ip(13, 'cf2.static')
+  cloud_controller_static_ips2 << ip(14, 'cf2.static')
+
   uaa_static_ips = []
   uaa_static_ips << ip(2, 'cf1.static')
   uaa_static_ips << ip(7, 'cf1.static')
+
+  uaa_static_ips2 = []
+  uaa_static_ips2 << ip(2, 'cf2.static')
+  uaa_static_ips2 << ip(7, 'cf2.static')
 
   router_static_ips = []
   router_static_ips << ip(5, 'cf1.static')
@@ -61,6 +84,16 @@
   router_static_ips << ip(18, 'cf1.static')
   router_static_ips << ip(19, 'cf1.static')
   router_static_ips << ip(20, 'cf1.static')
+
+  router_static_ips2 = []
+  router_static_ips2 << ip(5, 'cf2.static')
+  router_static_ips2 << ip(6, 'cf2.static')
+  router_static_ips2 << ip(15, 'cf2.static')
+  router_static_ips2 << ip(16, 'cf2.static')
+  router_static_ips2 << ip(17, 'cf2.static')
+  router_static_ips2 << ip(18, 'cf2.static')
+  router_static_ips2 << ip(19, 'cf2.static')
+  router_static_ips2 << ip(20, 'cf2.static')
 
   # TODO: this probably doesn't need its own static IP
   #loggregator_static_ip = []
@@ -86,7 +119,7 @@ compilation:
   reuse_compilation_vms: true
   cloud_properties:
     instance_type: c1.medium
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+    availability_zone: <%= az1 %>
 
 update:
   canaries: 1
@@ -103,9 +136,8 @@ networks:
     name: default_unused
     reserved:
     - 10.10.16.2 - 10.10.16.9
-    - 10.10.16.255 - 10.10.16.255
     static:
-    - 10.10.16.10 - 10.10.16.254
+    - 10.10.16.10 - 10.10.16.255
     gateway: 10.10.16.1
     dns:
     - 10.10.0.2  # amazon has only 1 DNS server for the whole VPC at x.x.0.2
@@ -113,6 +145,22 @@ networks:
       security_groups:
       - cf
       subnet: <%= find('properties.template_only.aws.subnet_ids.cf1') %>
+- name: cf2
+  type: manual
+  subnets:
+  - range: 10.10.80.0/20
+    name: default_unused
+    reserved:
+    - 10.10.80.2 - 10.10.80.9
+    static:
+    - 10.10.80.10 - 10.10.80.255
+    gateway: 10.10.80.1
+    dns:
+    - 10.10.0.2  # amazon has only 1 DNS server for the whole VPC at x.x.0.2
+    cloud_properties:
+      security_groups:
+      - cf
+      subnet: <%= find('properties.template_only.aws.subnet_ids.cf2') %>
 
 resource_pools:
 - name: small
@@ -123,7 +171,7 @@ resource_pools:
     version: latest
   cloud_properties:
     instance_type: m1.small
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+    availability_zone: <%= az1 %>
 - name: medium
   network: cf1
   size: 4
@@ -132,19 +180,28 @@ resource_pools:
     version: latest
   cloud_properties:
     instance_type: m1.medium
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+    availability_zone: <%= az1 %>
 - name: large
   network: cf1
-  size: <%= find('jobs.cloud_controller.instances').to_i + find('jobs.uaa.instances').to_i %>
+  size: <%= cc_instance_count  + uaa_instance_count %>
   stemcell:
     name: bosh-stemcell
     version: latest
   cloud_properties:
     instance_type: m1.medium
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+    availability_zone: <%= az1 %>
+- name: large2
+  network: cf2
+  size: <%= cc_instance_count  + uaa_instance_count %>
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+  cloud_properties:
+    instance_type: m1.medium
+    availability_zone: <%= az2 %>
 - name: dea
   network: cf1
-  size: <%= find('jobs.dea_next.instances').to_i + find('jobs.narc.instances').to_i %>
+  size: <%= (dea_instance_count + narc_instance_count) %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -154,16 +211,46 @@ resource_pools:
 <% else -%>
     instance_type: m1.large
 <% end -%>
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+    availability_zone: <%= az1 %>
+- name: dea2
+  network: cf2
+  size: <%= (dea_instance_count + narc_instance_count) %>
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+  cloud_properties:
+<% if production? -%>
+    instance_type: <%= find('resource_pools.dea.cloud_properties.instance_type') %>
+<% else -%>
+    instance_type: m1.large
+<% end -%>
+    availability_zone: <%= az2 %>
 - name: router
   network: cf1
-  size: <%= find('jobs.router.instances') %>
+  size: <%= router_instance_count %>
   stemcell:
     name: bosh-stemcell
     version: latest
   cloud_properties:
     instance_type: m1.small
-    availability_zone: <%= find('properties.template_only.aws.availability_zone') %>
+    availability_zone: <%= az1 %>
+    elbs:
+<% if production? -%>
+  <% find('resource_pools.router.cloud_properties.elbs').each do |elb|  -%>
+  - <%= elb %>
+  <% end -%>
+<% else -%>
+    - cfrouter
+<% end -%>
+- name: router2
+  network: cf2
+  size: <%= router_instance_count %>
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+  cloud_properties:
+    instance_type: m1.small
+    availability_zone: <%= az2 %>
     elbs:
 <% if production? -%>
   <% find('resource_pools.router.cloud_properties.elbs').each do |elb|  -%>
@@ -198,15 +285,30 @@ jobs:
     static_ips:
     - <%= ip(1, 'cf1.static') %>
 
+- name: uaa2
+  template: uaa
+  instances: <%= uaa_instance_count %>
+  resource_pool: large2
+  networks:
+  - name: cf2
+    static_ips:
+<% uaa_static_ips2.first(uaa_instance_count).each do |ip| -%>
+    - <%= ip %>
+<% end -%>
+  properties:
+    networks:
+      apps: cf2
+      management: cf2
+
 - name: uaa
   template: uaa
-  instances: <%= find('jobs.uaa.instances') %>
+  instances: <%= uaa_instance_count %>
   resource_pool: large
   networks:
   - name: cf1
     static_ips:
-<% (0..(find('jobs.uaa.instances').to_i - 1)).each do |i| -%>
-    - <%= uaa_static_ips[i] %>
+<% uaa_static_ips.first(uaa_instance_count).each do |ip| -%>
+    - <%= ip %>
 <% end -%>
 
 - name: login
@@ -216,15 +318,31 @@ jobs:
   networks:
   - name: cf1
 
+- name: cloud_controller2
+  template: cloud_controller_ng
+  instances: <%= cc_instance_count %>
+  resource_pool: large2
+  networks:
+  - name: cf2
+    static_ips:
+<% cloud_controller_static_ips2.first(cc_instance_count).each do |ip| -%>
+    - <%= ip %>
+<% end -%>
+  properties:
+    ccdb: ccdb
+    networks:
+      apps: cf2
+      management: cf2
+
 - name: cloud_controller
   template: cloud_controller_ng
-  instances: <%= find('jobs.cloud_controller.instances') %>
+  instances: <%= cc_instance_count %>
   resource_pool: large
   networks:
   - name: cf1
     static_ips:
-<% (0..(find('jobs.cloud_controller.instances').to_i - 1)).each do |i| -%>
-    - <%= cloud_controller_static_ips[i] %>
+<% cloud_controller_static_ips.first(cc_instance_count).each do |ip| -%>
+    - <%= ip %>
 <% end -%>
   properties:
     ccdb: ccdb
@@ -237,14 +355,14 @@ jobs:
   - name: cf1
 
 <% if production? -%>
-- name: dea_next
+- name: dea_next2
   template: dea_next
-  instances: <%= find('jobs.dea_next.instances') - 1 %>
+  instances: <%= dea_instance_count %>
   update:
     max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
-  resource_pool: dea
+  resource_pool: dea2
   networks:
-  - name: cf1
+  - name: cf2
     default:
     - dns
     - gateway
@@ -252,12 +370,13 @@ jobs:
     dea_next:
       stacks:
       - lucid64
+    networks:
+      apps: cf2
+      management: cf2
 
-- name: dea_next_with_loggregator
-  template:
-  - dea_next
-  - dea_logging_agent
-  instances: 1
+- name: dea_next
+  template: dea_next
+  instances: <%= dea_instance_count %>
   update:
     max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
   resource_pool: dea
@@ -271,11 +390,32 @@ jobs:
       stacks:
       - lucid64
 <% else -%>
+- name: dea_next2
+  template:
+  - dea_next
+  - dea_logging_agent
+  instances: <%= dea_instance_count %>
+  update:
+    max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
+  resource_pool: dea2
+  networks:
+  - name: cf2
+    default:
+    - dns
+    - gateway
+  properties:
+    dea_next:
+      stacks:
+      - lucid64
+    networks:
+      apps: cf2
+      management: cf2
+
 - name: dea_next
   template:
   - dea_next
   - dea_logging_agent
-  instances: <%= find('jobs.dea_next.instances') %>
+  instances: <%= dea_instance_count %>
   update:
     max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
   resource_pool: dea
@@ -290,9 +430,23 @@ jobs:
       - lucid64
 <% end -%>
 
+- name: narc2
+  template: narc
+  instances: <%= narc_instance_count %>
+  resource_pool: dea2
+  networks:
+  - name: cf2
+    default:
+    - dns
+    - gateway
+  properties:
+    networks:
+      apps: cf2
+      management: cf2
+
 - name: narc
   template: narc
-  instances: <%= find("jobs.narc.instances") %>
+  instances: <%= narc_instance_count %>
   resource_pool: dea
   networks:
   - name: cf1
@@ -316,9 +470,27 @@ jobs:
     static_ips:
     - <%= loggregator_static_ip %>
 
+- name: router2
+  template: gorouter
+  instances: <%= router_instance_count %>
+  resource_pool: router2
+  networks:
+  - name: cf2
+    default:
+    - dns
+    - gateway
+    static_ips:
+<% router_static_ips2.first(router_instance_count).each do |ip| -%>
+    - <%= ip %>
+<% end -%>
+  properties:
+    networks:
+      apps: cf2
+      management: cf2
+
 - name: router
   template: gorouter
-  instances: <%= find('jobs.router.instances') %>
+  instances: <%= router_instance_count %>
   resource_pool: router
   networks:
   - name: cf1
@@ -326,8 +498,8 @@ jobs:
     - dns
     - gateway
     static_ips:
-<% (0..(find('jobs.router.instances').to_i - 1)).each do |i| -%>
-    - <%= router_static_ips[i] %>
+<% router_static_ips.first(router_instance_count).each do |ip| -%>
+    - <%= ip %>
 <% end -%>
 
 properties:
@@ -342,7 +514,6 @@ properties:
 <% Array(app_domains).each do |domain| -%>
   - <%= domain %>
 <% end -%>
-
 
   networks:
     apps: cf1
