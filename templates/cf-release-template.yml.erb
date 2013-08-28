@@ -302,6 +302,10 @@ jobs:
   - name: cf2
     static_ips:
     - <%= ip(1, 'cf2.static') %>
+  properties:
+    networks:
+      apps: cf2
+      management: cf2
 
 - name: uaa2
   template: uaa
