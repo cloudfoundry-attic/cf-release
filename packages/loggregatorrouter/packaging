@@ -3,7 +3,7 @@ set -e
 
 if [[ `uname -a` =~ "x86_64" ]] ; then
   dir="loggregator"
-  archive=$dir/"sourcehasher.gz"
+  archive=$dir/"loggregatorrouter.gz"
   echo "Using 64-bit version"
 else
   echo "Only 64-bit architectures are supported."
@@ -19,11 +19,11 @@ fi
 
 echo "Extracting archive..."
 gzip -d $archive
-chmod 755 $dir/sourcehasher
+chmod 755 $dir/loggregatorrouter
 
-if [[ `./$dir/sourcehasher --version 2>&1` =~ "version:" && $? == 0 ]]; then
-  cp $dir/sourcehasher ${BOSH_INSTALL_TARGET}
+if [[ `./$dir/loggregatorrouter --version 2>&1` =~ "version:" && $? == 0 ]]; then
+  cp $dir/loggregatorrouter ${BOSH_INSTALL_TARGET}
 else
-  echo "Loggregator Sourcehasher is not properly packaged"
+  echo "Loggregator Router is not properly packaged"
   exit 1
 fi

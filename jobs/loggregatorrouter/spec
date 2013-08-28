@@ -1,14 +1,14 @@
 ---
-name: sourcehasher
+name: loggregatorrouter
 templates:
-  sourcehasher_ctl.erb: bin/sourcehasher_ctl
+  loggregatorrouter_ctl.erb: bin/loggregatorrouter_ctl
   loggregator_router.json.erb: config/loggregator_router.json
 packages:
 - common
-- sourcehasher
+- loggregatorrouter
 properties:
   loggregator.router:
-    description: The host and port the sourcehasher should listen on
+    description: The host and port the loggregatorrouter should listen on
     default: 0.0.0.0:3456
   loggregator.debug:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)

@@ -1,0 +1,5 @@
+check process loggregatorrouter
+  with pidfile /var/vcap/sys/run/loggregatorrouter/loggregatorrouter.pid
+  start program "/var/vcap/jobs/loggregatorrouter/bin/loggregatorrouter_ctl start"
+  stop program "/var/vcap/jobs/loggregatorrouter/bin/loggregatorrouter_ctl stop"
+  group vcap
