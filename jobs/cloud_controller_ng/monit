@@ -4,6 +4,12 @@ check process cloud_controller_ng
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
   group vcap
 
+check process cloud_controller_jobs
+  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_jobs.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl stop"
+  group vcap
+
 <% if p("ccng.use_nginx", true) %>
 check process nginx_ccng
   with pidfile /var/vcap/sys/run/nginx_ccng/nginx.pid

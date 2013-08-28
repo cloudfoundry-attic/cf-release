@@ -6,6 +6,7 @@ templates:
   mime.types: config/mime.types
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_ng_ctl.erb: bin/cloud_controller_ng_ctl
+  cloud_controller_jobs_ctl.erb: bin/cloud_controller_jobs_ctl
   stacks.yml.erb: config/stacks.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   iptables.conf.erb: config/iptables.conf
@@ -255,8 +256,11 @@ properties:
  ccdb_ng.port:
   description:
  ccdb_ng.max_connections:
-  default: 32
-  description:
+  default: 25
+  description: "Maximum connections for Sequel"
+ ccdb_ng.max_ar_connections:
+  default: 5
+  description: "Maximum connections for ActiveRecord"
  ccdb_ng.pool_timeout:
   default: 10
   description:
