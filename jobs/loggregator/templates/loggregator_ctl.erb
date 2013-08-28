@@ -18,7 +18,7 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    <% p("loggregator.debug") == true ? debug_string = "-v " : debug_string = "" %>
+    <% p("loggregator.debug") == true ? debug_string = "--debug " : debug_string = "" %>
 
     exec chpst -u vcap:vcap /var/vcap/packages/loggregator/loggregator <%= debug_string %> \
          --config /var/vcap/jobs/loggregator/config/loggregator.json \
