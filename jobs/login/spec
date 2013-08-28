@@ -23,7 +23,13 @@ properties:
   login.catalina_opts:
     description:
   login.links:
-    description:
+    description: A hash of home/passwd/signup URLS (see commented examples below)
+  # login.links.home:
+  #   default: https://console.run.pivotal.io
+  # login.links.passwd:
+  #   default: https://console.run.pivotal.io/password_resets/new
+  # login.links.signup:
+  #   default: https://console.run.pivotal.io/register
   login.port:
     default: 8080
     description:
