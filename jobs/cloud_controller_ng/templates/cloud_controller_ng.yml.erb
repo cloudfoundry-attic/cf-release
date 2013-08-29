@@ -47,7 +47,7 @@ directories:
 
 logging:
   file: /var/vcap/sys/log/cloud_controller_ng/cloud_controller_ng.log
-  <% if_p("syslog_aggregator") do |syslog_aggregator| %>
+  <% if_p("syslog_aggregator") do %>
   syslog: vcap.cloud_controller_ng
   <% end %>
   level: <%= p("ccng.logging_level") %>

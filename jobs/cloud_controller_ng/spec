@@ -275,9 +275,10 @@ properties:
  login.url:
   description:
 
- syslog_aggregator:
-  default: vcap.cloud_controller_ng
-  description: "Tag for logging to syslog. If not defined, cc will not log to syslog"
+ syslog_aggregator.address:
+  description: "The address of the syslog_aggregator job."
+ syslog_aggregator.port:
+  description: "The port used by the syslog_aggregator job."
  uaa.jwt.verification_key:
   default: ""
   description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"

@@ -1,5 +1,5 @@
-<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+<% if_p("syslog_aggregator.address") do |address| %>
 *filter
--A OUTPUT -d <%=properties.syslog_aggregator.address %>/32 -m owner --gid-owner vcap-dea -j DROP
+-A OUTPUT -d <%=address %>/32 -m owner --gid-owner vcap-dea -j DROP
 COMMIT
 <% end %>
