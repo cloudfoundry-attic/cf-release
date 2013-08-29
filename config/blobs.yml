@@ -413,16 +413,6 @@ ruby/ruby-1.9.3-p448.tar.gz:
   sha: !binary |-
     YzdmNzM2ZTNiYzFjYTFlNjYxOWE5MTIxODM3ZGQwODQwYWFkNzdjZQ==
   size: 12559260
-loggregator/deaagent.gz:
-  object_id: 5a4d0c6c-4597-4d71-ace2-0f77fa736383
-  sha: !binary |-
-    NDk1YzZiNDUwMTFmMzdiMWQ0ZDkzYWM5MDFjMGEwZWI2YmIzMGFhMw==
-  size: 1654164
-loggregator/loggregator.gz:
-  object_id: da8faa3e-812a-49d0-8f7d-db820f8bb0b8
-  sha: !binary |-
-    MmJlZmFlNDViNWQ5MjMwYmFiMGQ2MmUzNmMxNTc3YTQ1NTRiN2RhNg==
-  size: 1742637
 insight_agent/insight-agent-1.9.2.SR1.tar.gz:
   object_id: f2ffcefa-c399-47cd-afbd-209b5556402a
   sha: !binary |-
@@ -453,13 +443,18 @@ postgres/postgresql-9.2.4-x86_64.tar.gz:
   sha: !binary |-
     Y2YzNDBjYTUxZWNhYWZjMDRhYTlkM2M2NDkwZmI3ZDU3ZmQ1YTNiNw==
   size: 10519400
-loggregator/sourcehasher.gz:
-  object_id: 6086e11c-6796-4074-9feb-3965dbf4ad45
+loggregator/deaagent-linux-amd64.gz:
+  object_id: c0f95020-52ef-462b-9647-631fe4874909
   sha: !binary |-
-    YzEyMjU0ZDFjZmNiZTExYjU1ZGY1YzA5ZWZkODUxMDhiODdhYzcxZg==
-  size: 1552664
-loggregator/loggregatorrouter.gz:
-  object_id: fb2f61cc-2072-496b-b15a-f942b8c4ec2d
+    YjUwYTA3MzU4YzJhMDAwMDA3YWViNDg4NmU4YmFiYjI3NDQ4NTYxYw==
+  size: 1654033
+loggregator/loggregator-linux-amd64.gz:
+  object_id: d05f7e1a-0c9f-4105-85b1-cb40cab08521
   sha: !binary |-
-    MDgxNDZjYmVjNTk1NGIzZjExNTlhZmJiZTA0OWI3MWI4ZTM0OTk2OA==
-  size: 1552571
+    ZGIxYWI4NzRhMWU1MDdlNjhkNjQzODJhNjBiNzM3NTNkOTFhOTIyMg==
+  size: 1743162
+loggregator/loggregatorrouter-linux-amd64.gz:
+  object_id: 9bd49f51-cbc2-46a4-b623-18d44b05e3c7
+  sha: !binary |-
+    M2RmMWI3MzRhYzIxOWJkYmFjMzU0OGRjODRhNTI0ZjY5YTZmZGEzMg==
+  size: 1553052
