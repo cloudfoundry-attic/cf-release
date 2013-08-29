@@ -114,7 +114,7 @@ case $1 in
 
     ulimit -c unlimited
 
-    <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+    <% if_p("syslog_aggregator") do %>
     # TODO(kowshik): Configure Steno to write to the correct files.
     # Log to syslog agg, Log rotation.
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
