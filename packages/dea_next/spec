@@ -11,6 +11,7 @@ files:
 - dea_next/Gemfile
 - dea_next/Gemfile.lock
 - dea_next/{bin,lib,vendor}/**/*
-- dea_next/go/**/*
-- dea_next/buildpacks/**/*
+- dea_next/go/{bin,src,vendor}/**/*
+- dea_next/buildpacks/{bin,lib}/**/*
+- dea_next/buildpacks/vendor/*/{bin,config,lib,resources,scripts,support,vendor}/**/*
 - pkg_utils/*
