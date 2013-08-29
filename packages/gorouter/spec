@@ -3,5 +3,8 @@ name: gorouter
 dependencies:
 - golang
 files:
-- gorouter/**/*
+- gorouter/src/code.google.com/p/gogoprotobuf/**/*.{go,golden,proto}
+- gorouter/src/code.google.com/p/gogoprotobuf/**/Makefile
+- gorouter/src/github.com/**/*.go
+- gorouter/src/launchpad.net/goyaml/**/*.{c,h,go}
 - misc/libcap2-bin_1%3a2.17-2ubuntu1_amd64.deb
