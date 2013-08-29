@@ -34,11 +34,17 @@
     "m2.2xlarge" => 800_000
   }
 
-  uaa_instance_count = find('jobs.uaa.instances').to_i
-  cc_instance_count = find('jobs.cloud_controller.instances').to_i
-  router_instance_count = find('jobs.router.instances').to_i
-  dea_instance_count = find('jobs.dea_next.instances').to_i
-  narc_instance_count = find('jobs.narc.instances').to_i
+  uaa_instance_count_z1 = find('jobs.uaa_z1.instances').to_i
+  api_instance_count_z1 = find('jobs.api_z1.instances').to_i
+  router_instance_count_z1 = find('jobs.router_z1.instances').to_i
+  runner_instance_count_z1 = find('jobs.runner_z1.instances').to_i
+  taskmaster_instance_count_z1 = find('jobs.taskmaster_z1.instances').to_i
+
+  uaa_instance_count_z2 = find('jobs.uaa_z2.instances').to_i
+  api_instance_count_z2 = find('jobs.api_z2.instances').to_i
+  router_instance_count_z2 = find('jobs.router_z2.instances').to_i
+  runner_instance_count_z2 = find('jobs.runner_z2.instances').to_i
+  taskmaster_instance_count_z2 = find('jobs.taskmaster_z2.instances').to_i
 
   az1 = find('properties.template_only.aws.availability_zone')
   az2 = find('properties.template_only.aws.availability_zone2')
@@ -163,7 +169,7 @@ networks:
       subnet: <%= find('properties.template_only.aws.subnet_ids.cf2') %>
 
 resource_pools:
-- name: small
+- name: small_z1
   network: cf1
   size: 2
   stemcell:
@@ -172,7 +178,7 @@ resource_pools:
   cloud_properties:
     instance_type: m1.small
     availability_zone: <%= az1 %>
-- name: small2
+- name: small_z2
   network: cf2
   size: 0
   stemcell:
@@ -181,7 +187,7 @@ resource_pools:
   cloud_properties:
     instance_type: m1.small
     availability_zone: <%= az2 %>
-- name: medium
+- name: medium_z1
   network: cf1
   size: 3
   stemcell:
@@ -190,7 +196,7 @@ resource_pools:
   cloud_properties:
     instance_type: m1.medium
     availability_zone: <%= az1 %>
-- name: medium2
+- name: medium_z2
   network: cf2
   size: 1
   stemcell:
@@ -199,27 +205,27 @@ resource_pools:
   cloud_properties:
     instance_type: m1.medium
     availability_zone: <%= az2 %>
-- name: large
+- name: large_z1
   network: cf1
-  size: <%= cc_instance_count  + uaa_instance_count %>
+  size: <%= api_instance_count_z1 + uaa_instance_count_z1 %>
   stemcell:
     name: bosh-stemcell
     version: latest
   cloud_properties:
     instance_type: m1.medium
     availability_zone: <%= az1 %>
-- name: large2
+- name: large_z2
   network: cf2
-  size: <%= cc_instance_count  + uaa_instance_count %>
+  size: <%= api_instance_count_z2 + uaa_instance_count_z2 %>
   stemcell:
     name: bosh-stemcell
     version: latest
   cloud_properties:
     instance_type: m1.medium
     availability_zone: <%= az2 %>
-- name: dea
+- name: runner_z1
   network: cf1
-  size: <%= (dea_instance_count + narc_instance_count) %>
+  size: <%= (runner_instance_count_z1 + taskmaster_instance_count_z2) %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -230,9 +236,9 @@ resource_pools:
     instance_type: m1.large
 <% end -%>
     availability_zone: <%= az1 %>
-- name: dea2
+- name: runner_z2
   network: cf2
-  size: <%= (dea_instance_count + narc_instance_count) %>
+  size: <%= (runner_instance_count_z1 + taskmaster_instance_count_z2) %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -243,9 +249,9 @@ resource_pools:
     instance_type: m1.large
 <% end -%>
     availability_zone: <%= az2 %>
-- name: router
+- name: router_z1
   network: cf1
-  size: <%= router_instance_count %>
+  size: <%= router_instance_count_z1 %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -260,9 +266,9 @@ resource_pools:
 <% else -%>
     - cfrouter
 <% end -%>
-- name: router2
+- name: router_z2
   network: cf2
-  size: <%= router_instance_count %>
+  size: <%= router_instance_count_z2 %>
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -279,25 +285,28 @@ resource_pools:
 <% end -%>
 
 jobs:
-- name: syslog_aggregator
+- name: logs_z1
   template: syslog_aggregator
   instances: 1
-  resource_pool: medium
+  resource_pool: medium_z1
 <% if production? -%>
   persistent_disk: 500000
 <% else -%>
   persistent_disk: 100000
 <% end -%>
-
   networks:
   - name: cf1
     static_ips:
     - <%= ip(0, 'cf1.static') %>
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
 
-- name: nats
+- name: nats_z2
   template: nats
   instances: 1
-  resource_pool: medium2
+  resource_pool: medium_z2
   networks:
   - name: cf2
     static_ips:
@@ -307,14 +316,29 @@ jobs:
       apps: cf2
       management: cf2
 
-- name: uaa2
+- name: uaa_z1
   template: uaa
-  instances: <%= uaa_instance_count %>
-  resource_pool: large2
+  instances: <%= uaa_instance_count_z1 %>
+  resource_pool: large_z1
+  networks:
+  - name: cf1
+    static_ips:
+<% uaa_static_ips.first(uaa_instance_count_z1).each do |ip| -%>
+    - <%= ip %>
+<% end -%>
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
+
+- name: uaa_z2
+  template: uaa
+  instances: <%= uaa_instance_count_z2 %>
+  resource_pool: large_z2
   networks:
   - name: cf2
     static_ips:
-<% uaa_static_ips2.first(uaa_instance_count).each do |ip| -%>
+<% uaa_static_ips2.first(uaa_instance_count_z2).each do |ip| -%>
     - <%= ip %>
 <% end -%>
   properties:
@@ -322,32 +346,41 @@ jobs:
       apps: cf2
       management: cf2
 
-- name: uaa
-  template: uaa
-  instances: <%= uaa_instance_count %>
-  resource_pool: large
-  networks:
-  - name: cf1
-    static_ips:
-<% uaa_static_ips.first(uaa_instance_count).each do |ip| -%>
-    - <%= ip %>
-<% end -%>
-
-- name: login
+- name: login_z1
   template: login
   instances: 1
-  resource_pool: medium
+  resource_pool: medium_z1
   networks:
   - name: cf1
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
 
-- name: cloud_controller2
+- name: api_z1
   template: cloud_controller_ng
-  instances: <%= cc_instance_count %>
-  resource_pool: large2
+  instances: <%= api_instance_count_z1 %>
+  resource_pool: large_z1
+  networks:
+  - name: cf1
+    static_ips:
+<% cloud_controller_static_ips.first(api_instance_count_z1).each do |ip| -%>
+    - <%= ip %>
+<% end -%>
+  properties:
+    ccdb: ccdb
+    networks:
+      apps: cf1
+      management: cf1
+
+- name: api_z2
+  template: cloud_controller_ng
+  instances: <%= api_instance_count_z2 %>
+  resource_pool: large_z2
   networks:
   - name: cf2
     static_ips:
-<% cloud_controller_static_ips2.first(cc_instance_count).each do |ip| -%>
+<% cloud_controller_static_ips2.first(api_instance_count_z2).each do |ip| -%>
     - <%= ip %>
 <% end -%>
   properties:
@@ -356,106 +389,105 @@ jobs:
       apps: cf2
       management: cf2
 
-- name: cloud_controller
-  template: cloud_controller_ng
-  instances: <%= cc_instance_count %>
-  resource_pool: large
-  networks:
-  - name: cf1
-    static_ips:
-<% cloud_controller_static_ips.first(cc_instance_count).each do |ip| -%>
-    - <%= ip %>
-<% end -%>
-  properties:
-    ccdb: ccdb
-
-- name: health_manager
+- name: hm_z1
   template: health_manager_next
   instances: 1
-  resource_pool: medium
+  resource_pool: medium_z1
   networks:
   - name: cf1
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
 
 <% if production? -%>
-- name: dea_next2
+- name: runner_z1
   template: dea_next
-  instances: <%= dea_instance_count %>
+  instances: <%= runner_instance_count_z1 %>
   update:
     max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
-  resource_pool: dea2
-  networks:
-  - name: cf2
-    default:
-    - dns
-    - gateway
-  properties:
-    dea_next:
-      stacks:
-      - lucid64
-    networks:
-      apps: cf2
-      management: cf2
-
-- name: dea_next
-  template: dea_next
-  instances: <%= dea_instance_count %>
-  update:
-    max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
-  resource_pool: dea
+  resource_pool: runner_z1
   networks:
   - name: cf1
     default:
     - dns
     - gateway
   properties:
-    dea_next:
-      stacks:
-      - lucid64
+    networks:
+      apps: cf1
+      management: cf1
+
+- name: runner_z2
+  template: dea_next
+  instances: <%= runner_instance_count_z2 %>
+  update:
+    max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
+  resource_pool: runner_z2
+  networks:
+  - name: cf2
+    default:
+    - dns
+    - gateway
+  properties:
+    networks:
+      apps: cf2
+      management: cf2
 <% else -%>
-- name: dea_next2
+- name: runner_z1
   template:
   - dea_next
   - dea_logging_agent
-  instances: <%= dea_instance_count %>
+  instances: <%= runner_instance_count_z1 %>
   update:
     max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
-  resource_pool: dea2
-  networks:
-  - name: cf2
-    default:
-    - dns
-    - gateway
-  properties:
-    dea_next:
-      stacks:
-      - lucid64
-    networks:
-      apps: cf2
-      management: cf2
-
-- name: dea_next
-  template:
-  - dea_next
-  - dea_logging_agent
-  instances: <%= dea_instance_count %>
-  update:
-    max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
-  resource_pool: dea
+  resource_pool: runner_z1
   networks:
   - name: cf1
     default:
     - dns
     - gateway
   properties:
-    dea_next:
-      stacks:
-      - lucid64
+    networks:
+      apps: cf1
+      management: cf1
+
+- name: runner_z2
+  template:
+  - dea_next
+  - dea_logging_agent
+  instances: <%= runner_instance_count_z2 %>
+  update:
+    max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
+  resource_pool: runner_z2
+  networks:
+  - name: cf2
+    default:
+    - dns
+    - gateway
+  properties:
+    networks:
+      apps: cf2
+      management: cf2
 <% end -%>
 
-- name: narc2
+- name: taskmaster_z1
   template: narc
-  instances: <%= narc_instance_count %>
-  resource_pool: dea2
+  instances: <%= taskmaster_instance_count_z1 %>
+  resource_pool: runner_z1
+  networks:
+  - name: cf1
+    default:
+    - dns
+    - gateway
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
+
+- name: taskmaster_z2
+  template: narc
+  instances: <%= taskmaster_instance_count_z2 %>
+  resource_pool: runner_z2
   networks:
   - name: cf2
     default:
@@ -466,63 +498,65 @@ jobs:
       apps: cf2
       management: cf2
 
-- name: narc
-  template: narc
-  instances: <%= narc_instance_count %>
-  resource_pool: dea
-  networks:
-  - name: cf1
-    default:
-    - dns
-    - gateway
-
-- name: collector
+- name: stats_z1
   template: collector
   instances: 1
-  resource_pool: small
+  resource_pool: small_z1
   networks:
   - name: cf1
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
 
-- name: loggregator
+- name: loggregator_z1
   template: loggregator
   instances: 1
-  resource_pool: small
+  resource_pool: small_z1
   networks:
   - name: cf1
     static_ips:
     - <%= loggregator_static_ip %>
-
-- name: router2
-  template: gorouter
-  instances: <%= router_instance_count %>
-  resource_pool: router2
-  networks:
-  - name: cf2
-    default:
-    - dns
-    - gateway
-    static_ips:
-<% router_static_ips2.first(router_instance_count).each do |ip| -%>
-    - <%= ip %>
-<% end -%>
   properties:
     networks:
-      apps: cf2
-      management: cf2
+      apps: cf1
+      management: cf1
 
-- name: router
+- name: router_z1
   template: gorouter
-  instances: <%= router_instance_count %>
-  resource_pool: router
+  instances: <%= router_instance_count_z1 %>
+  resource_pool: router_z1
   networks:
   - name: cf1
     default:
     - dns
     - gateway
     static_ips:
-<% router_static_ips.first(router_instance_count).each do |ip| -%>
+<% router_static_ips.first(router_instance_count_z1).each do |ip| -%>
     - <%= ip %>
 <% end -%>
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
+
+- name: router_z2
+  template: gorouter
+  instances: <%= router_instance_count_z2 %>
+  resource_pool: router_z2
+  networks:
+  - name: cf2
+    default:
+    - dns
+    - gateway
+    static_ips:
+<% router_static_ips2.first(router_instance_count_z2).each do |ip| -%>
+    - <%= ip %>
+<% end -%>
+  properties:
+    networks:
+      apps: cf2
+      management: cf2
 
 properties:
   template_only:
@@ -536,10 +570,6 @@ properties:
 <% Array(app_domains).each do |domain| -%>
   - <%= domain %>
 <% end -%>
-
-  networks:
-    apps: cf1
-    management: cf1
 
   nats:
     user: <%= find("properties.nats.user") %>
@@ -659,13 +689,17 @@ properties:
     disk_overcommit_factor: 2
     num_instances: 256
 <% end -%>
+    stacks:
+    - lucid64
     deny_networks:
     - 169.254.0.0/16 # aws status endpoint
     - 10.10.0.0/24 # bosh network
-    - 10.10.16.0/20 # cf network
+    - 10.10.16.0/20 # cf1
+    - 10.10.80.0/20 # cf2
     allow_networks:
     - 10.10.0.2/32 # Amazon DNS server
-    - 10.10.17.0/24 # DEAs
+    - 10.10.17.0/24 # runner_z1
+    - 10.10.81.0/24 # runner_z2
 
   syslog_aggregator:
     address: 10.10.16.10
@@ -687,7 +721,7 @@ properties:
 
   loggregator:
     router: <%= loggregator_static_ip %>:3456
-    servers: 
+    servers:
     - <%= loggregator_static_ip %>:3456
     status:
       user: <%= find("properties.loggregator.status.user") %>
