@@ -3,5 +3,8 @@ name: warden
 dependencies:
 - ruby
 files:
-- warden/warden/**/*
+- warden/warden/{bin,config,lib,root,src}/**/*
+- warden/warden/Gemfile
+- warden/warden/Gemfile.lock
+- warden/warden/Rakefile
 - pkg_utils/*
