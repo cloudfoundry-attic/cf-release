@@ -400,39 +400,6 @@ jobs:
       apps: cf1
       management: cf1
 
-<% if production? -%>
-- name: runner_z1
-  template: dea_next
-  instances: <%= runner_instance_count_z1 %>
-  update:
-    max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
-  resource_pool: runner_z1
-  networks:
-  - name: cf1
-    default:
-    - dns
-    - gateway
-  properties:
-    networks:
-      apps: cf1
-      management: cf1
-
-- name: runner_z2
-  template: dea_next
-  instances: <%= runner_instance_count_z2 %>
-  update:
-    max_in_flight: <%= q("dea.update.max_in_flight", 1) %>
-  resource_pool: runner_z2
-  networks:
-  - name: cf2
-    default:
-    - dns
-    - gateway
-  properties:
-    networks:
-      apps: cf2
-      management: cf2
-<% else -%>
 - name: runner_z1
   template:
   - dea_next
@@ -468,7 +435,6 @@ jobs:
     networks:
       apps: cf2
       management: cf2
-<% end -%>
 
 - name: taskmaster_z1
   template: narc
