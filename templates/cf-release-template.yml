@@ -1,0 +1,614 @@
+name: (( merge ))
+director_uuid: (( merge ))
+releases: (( merge ))
+
+meta:
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+
+  zones:
+    primary: (( properties.template_only.aws.availability_zone ))
+    secondary: (( properties.template_only.aws.availability_zone2 ))
+
+  networks:
+    z1:
+      apps: cf1
+      management: cf1
+
+    z2:
+      apps: cf2
+      management: cf2
+
+  syslog:
+    z1:
+      address: (( jobs.logs_z1.networks.cf1.static_ips.[0] ))
+      port: 54321
+    z2:
+      address: (( jobs.logs_z2.networks.cf2.static_ips.[0] ))
+      port: 54321
+
+  instance_sizes:
+    memory:
+      m1_medium: 3840
+      m1_large: 7680
+      m2_2xlarge: 35020
+    disk:
+      m1_medium: 390000
+      m1_large: 400000
+      m2_2xlarge: 800000
+
+compilation:
+  workers: 6
+  network: cf1
+  reuse_compilation_vms: true
+  cloud_properties:
+    instance_type: c1.medium
+    availability_zone: (( meta.zones.primary ))
+
+update:
+  canaries: 1
+  canary_watch_time: 30000-600000
+  update_watch_time: 30000-600000
+  max_in_flight: 1
+  max_errors: 1
+
+networks:
+  - name: cf1
+    type: manual
+    subnets:
+      - range: 10.10.16.0/20
+        name: default_unused
+        reserved:
+          - 10.10.16.2 - 10.10.16.9
+        static:
+          - 10.10.16.10 - 10.10.16.255
+        gateway: 10.10.16.1
+        dns:
+          - 10.10.0.2 # amazon has only 1 DNS server for the whole VPC at x.x.0.2
+        cloud_properties:
+          security_groups:
+            - cf
+          subnet: (( properties.template_only.aws.subnet_ids.cf1 ))
+  - name: cf2
+    type: manual
+    subnets:
+      - range: 10.10.80.0/20
+        name: default_unused
+        reserved:
+          - 10.10.80.2 - 10.10.80.9
+        static:
+          - 10.10.80.10 - 10.10.80.255
+        gateway: 10.10.80.1
+        dns:
+          - 10.10.0.2 # amazon has only 1 DNS server for the whole VPC at x.x.0.2
+        cloud_properties:
+          security_groups:
+            - cf
+          subnet: (( properties.template_only.aws.subnet_ids.cf2 ))
+
+resource_pools:
+  - name: small_z1
+    network: cf1
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.small
+      availability_zone: (( meta.zones.primary ))
+
+  - name: small_z2
+    network: cf2
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.small
+      availability_zone: (( meta.zones.secondary ))
+
+  - name: medium_z1
+    network: cf1
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.primary ))
+
+  - name: medium_z2
+    network: cf2
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.secondary ))
+
+  - name: large_z1
+    network: cf1
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.primary ))
+
+  - name: large_z2
+    network: cf2
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.secondary ))
+
+  - name: runner_z1
+    network: cf1
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: (( merge || "m1.large" ))
+      availability_zone: (( meta.zones.primary ))
+
+  - name: runner_z2
+    network: cf2
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: (( merge || "m1.large" ))
+      availability_zone: (( meta.zones.secondary ))
+
+  - name: router_z1
+    network: cf1
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.small
+      availability_zone: (( meta.zones.primary ))
+      elbs: (( merge || ["cfrouter"] ))
+
+  - name: router_z2
+    network: cf2
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties:
+      instance_type: m1.small
+      availability_zone: (( meta.zones.secondary ))
+      elbs: (( merge || ["cfrouter"] ))
+
+jobs:
+  - name: nats_z2
+    template: nats
+    instances: 1
+    resource_pool: medium_z2
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(1) ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: logs_z1
+    template: syslog_aggregator
+    instances: 1
+    resource_pool: medium_z1
+    persistent_disk: (( merge || 100000 ))
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(0) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: logs_z2
+    template: syslog_aggregator
+    instances: 1
+    resource_pool: medium_z2
+    persistent_disk: (( merge || 100000 ))
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(0) ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: uaa_z1
+    template: uaa
+    instances: (( merge || 1 ))
+    resource_pool: large_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: uaa_z2
+    template: uaa
+    instances: (( merge || 1 ))
+    resource_pool: large_z2
+    networks:
+      - name: cf2
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: login_z1
+    template: login
+    instances: (( merge || 1 ))
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: api_z1
+    template: cloud_controller_ng
+    instances: (( merge || 1 ))
+    resource_pool: large_z1
+    networks:
+      - name: cf1
+    properties:
+      ccdb: ccdb
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: api_z2
+    template: cloud_controller_ng
+    instances: (( merge || 1 ))
+    resource_pool: large_z2
+    networks:
+      - name: cf2
+    properties:
+      ccdb: ccdb
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: hm_z1
+    template: health_manager_next
+    instances: 1
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: runner_z1
+    template: (( merge || ["dea_next", "dea_logging_agent"] ))
+    instances: (( merge || 1 ))
+    resource_pool: runner_z1
+    networks:
+      - name: cf1
+        default:
+          - dns
+          - gateway
+    update:
+      max_in_flight: (( merge || 1 ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: runner_z2
+    template: (( merge || ["dea_next", "dea_logging_agent"] ))
+    instances: (( merge || 1 ))
+    resource_pool: runner_z2
+    networks:
+      - name: cf2
+        default:
+          - dns
+          - gateway
+    update:
+      max_in_flight: (( merge || 1 ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: taskmaster_z1
+    template: narc
+    instances: (( merge || 1 ))
+    resource_pool: runner_z1
+    networks:
+      - name: cf1
+        default:
+          - dns
+          - gateway
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: taskmaster_z2
+    template: narc
+    instances: (( merge || 1 ))
+    resource_pool: runner_z2
+    networks:
+      - name: cf2
+        default:
+          - dns
+          - gateway
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: stats_z1
+    template: collector
+    instances: 1
+    resource_pool: small_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: loggregator_z1
+    template: loggregator
+    instances: (( merge || 1 ))
+    resource_pool: small_z1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(21) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: router_z1
+    template: gorouter
+    instances: (( merge || 1 ))
+    resource_pool: router_z1
+    networks:
+      - name: cf1
+        default:
+          - dns
+          - gateway
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: router_z2
+    template: gorouter
+    instances: (( merge || 1 ))
+    resource_pool: router_z2
+    networks:
+      - name: cf2
+        default:
+          - dns
+          - gateway
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+properties:
+  template_only: (( merge ))
+
+  domain: (( merge ))
+  system_domain: (( merge || domain ))
+  system_domain_organization: (( merge || "" ))
+  app_domains: (( merge || [domain] ))
+
+  nats:
+    user: (( merge ))
+    password: (( merge ))
+    address: (( jobs.nats_z2.networks.cf2.static_ips.[0] ))
+    port: 4222
+    authorization_timeout: 5
+
+  cc:
+    srv_api_uri: (( merge || "https://api." domain ))
+    external_host: ccng
+    logging_level: debug
+    bulk_api_password: (( merge ))
+    uaa_resource_id: cloud_controller
+    staging_upload_user: (( merge ))
+    staging_upload_password: (( merge ))
+    max_staging_runtime: 900
+    resource_pool:
+      minimum_size: 65536
+      resource_directory_key: (( merge || domain "-cc-resources" ))
+      fog_connection:
+        provider: AWS
+        aws_access_key_id: (( template_only.aws.access_key_id ))
+        aws_secret_access_key: (( template_only.aws.secret_access_key ))
+      cdn:
+        uri: (( merge || "" ))
+        key_pair_id: (( merge || "" ))
+        private_key: (( merge || "" ))
+    packages:
+      minimum_size: 1048576
+      app_package_directory_key: (( merge || domain "-cc-packages" ))
+      fog_connection:
+        provider: AWS
+        aws_access_key_id: (( template_only.aws.access_key_id ))
+        aws_secret_access_key: (( template_only.aws.secret_access_key ))
+      cdn:
+        uri: (( merge || "" ))
+        key_pair_id: (( merge || "" ))
+        private_key: (( merge || "" ))
+    droplets:
+      minimum_size: 1048576
+      droplet_directory_key: (( merge || domain "-cc-droplets" ))
+      fog_connection:
+        provider: AWS
+        aws_access_key_id: (( template_only.aws.access_key_id ))
+        aws_secret_access_key: (( template_only.aws.secret_access_key ))
+      cdn:
+        uri: (( merge || "" ))
+        key_pair_id: (( merge || "" ))
+        private_key: (( merge || "" ))
+    cc_partition: default
+    quota_definitions:
+      free:
+        memory_limit: 0
+        total_services: 0
+      paid:
+        memory_limit: 10240
+        total_services: -1
+      runaway:
+        memory_limit: 102400
+        total_services: -1
+    stacks:
+      - name: lucid64
+        description: "Ubuntu 10.04"
+      - name: lucid64custom
+        description: "Fake Ubuntu 10.04"
+    db_encryption_key: (( merge ))
+    tasks_disabled: (( merge || false ))
+
+  ccng: (( cc ))
+
+  ccdb: (( merge ))
+  ccdb_ng: (( ccdb ))
+
+  uaadb:
+    db_scheme: mysql
+    address: (( merge ))
+    port: 3306
+    roles: (( merge ))
+    databases: (( merge ))
+
+  router:
+    port: 8081
+    status:
+      port: 8080
+      user: (( merge ))
+      password: (( merge ))
+
+  dea_next:
+    memory_mb: (( merge || meta.instance_sizes.memory.m2_2xlarge - 2048 ))
+    memory_overcommit_factor: (( merge || 3 ))
+    disk_mb: (( merge || meta.instance_sizes.disk.m2_2xlarge - 2048 ))
+    disk_overcommit_factor: (( merge || 2 ))
+    num_instances: 256
+    stacks:
+      - lucid64
+    deny_networks:
+      - 169.254.0.0/16 # AWS Status
+      - 10.10.0.0/24 # BOSH network
+      - (( networks.cf1.subnets.[0].range ))
+      - (( networks.cf2.subnets.[0].range ))
+    allow_networks:
+      - 10.10.0.2/32 # Amazon DNS
+
+  syslog_aggregator:
+    relay_host: (( merge || "" ))
+    relay_host_port: (( merge || "" ))
+    log_email:
+      enabled: true
+      from_email: (( merge || "" ))
+      from_password: (( merge || "" ))
+      to_email:
+        - cfpi-backend@googlegroups.com
+        - cfpi-services@googlegroups.com
+      smtp_server: smtp.gmail.com
+      smtp_port: 587
+      smtp_domain: gmail.com
+
+  loggregator:
+    router: (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
+    servers:
+    - (( router ))
+    status:
+      user: (( merge || "" ))
+      password: (( merge || "" ))
+      port: 5768
+
+  login:
+    protocol: (( merge || "https" ))
+    links:
+      home: (( merge || "https://console." domain ))
+      passwd: (( merge || "https://console." domain "/password_resets/new" ))
+      signup: (( merge || "https://console." domain "/register" ))
+
+  uaa:
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    url: (( "https://uaa." domain ))
+    resource_id: account_manager
+    no_ssl: false
+    jwt:
+      signing_key: (( merge ))
+      verification_key: (( merge ))
+    cc:
+      client_secret: (( merge ))
+    admin:
+      client_secret: (( merge ))
+    batch:
+      username: (( merge ))
+      password: (( merge ))
+    client:
+      autoapprove:
+        - cf
+        - vmc
+        - my
+        - portal
+        - micro
+        - support-signon
+        - login
+    clients:
+      login:
+        override: true
+        scope: openid
+        authorities: oauth.login
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials,refresh_token
+        redirect-uri: (( "https://login." domain ))
+      portal:
+        override: true
+        scope: openid,cloud_controller.read,cloud_controller.write,password.write
+        authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+      billing:
+        override: true
+        scope: uaa.none
+        authorities: cloud_controller.read,cloud_controller.write,cloud_controller.admin,uaa.resource,scim.read,scim.write
+        secret: (( merge ))
+        authorized-grant-types: client_credentials
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+      app-direct:
+        override: true
+        authorities: app_direct_invoice.write
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+        redirect-uri: (( properties.login.links.home ))
+      support-services:
+        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials
+        redirect-uri: (( "http://support-signon." domain ))
+        authorities: portal.users.read
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+      vmc:
+        override: true
+        authorized-grant-types: password,implicit
+        authorities: uaa.none
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write
+      cf:
+        override: true
+        authorized-grant-types: implicit,password,refresh_token
+        authorities: uaa.none
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write
+      servicesmgmt:
+        secret: (( merge ))
+        scope: openid,cloud_controller.read,cloud_controller.write
+        authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
+        authorized-grant-types: authorization_code,client_credentials,password,implicit
+        redirect-uri: (( "http://servicesmgmt." domain "/auth/cloudfoundry/callback" ))
+        override: true
+        autoapprove: true
+      space-mail:
+        override: true
+        authorities: scim.read,scim.write,cloud_controller.admin
+        secret: (( merge ))
+        authorized-grant-types: client_credentials
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+
+    scim:
+      users: (( merge ))
+
+  collector:
+    use_datadog: true
+    datadog_api_key: (( template_only.datadog.datadog_api_key || "" ))
+    datadog_application_key: (( template_only.datadog.datadog_application_key || "" ))
+    deployment_name: (( name ))
