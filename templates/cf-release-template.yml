@@ -503,8 +503,8 @@ properties:
     servers:
     - (( router ))
     status:
-      user: (( merge || "" ))
-      password: (( merge || "" ))
+      user: (( merge ))
+      password: (( merge ))
       port: 5768
 
   login:
