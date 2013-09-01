@@ -444,8 +444,6 @@ properties:
     memory_overcommit_factor: (( merge || 3 ))
     disk_mb: (( merge || meta.instance_sizes.disk.m2_2xlarge - 2048 ))
     disk_overcommit_factor: (( merge || 2 ))
-    stacks:
-      - lucid64
     deny_networks:
       - 169.254.0.0/16 # AWS Status
       - 10.10.0.0/24 # BOSH network
