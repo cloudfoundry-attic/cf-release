@@ -444,7 +444,6 @@ properties:
     memory_overcommit_factor: (( merge || 3 ))
     disk_mb: (( merge || meta.instance_sizes.disk.m2_2xlarge - 2048 ))
     disk_overcommit_factor: (( merge || 2 ))
-    num_instances: 256
     stacks:
       - lucid64
     deny_networks:
