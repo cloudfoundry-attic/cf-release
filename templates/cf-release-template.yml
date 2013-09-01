@@ -494,6 +494,9 @@ properties:
   uaa:
     url: (( "https://uaa." domain ))
 
+    scim:
+      users: (( merge ))
+
     jwt:
       signing_key: (( merge ))
       verification_key: (( merge ))
@@ -507,16 +510,6 @@ properties:
     batch:
       username: (( merge ))
       password: (( merge ))
-
-    client:
-      autoapprove:
-        - cf
-        - vmc
-        - my
-        - portal
-        - micro
-        - support-signon
-        - login
 
     clients:
       login:
@@ -583,6 +576,3 @@ properties:
         authorized-grant-types: client_credentials
         access-token-validity: 1209600
         refresh-token-validity: 1209600
-
-    scim:
-      users: (( merge ))
