@@ -34,9 +34,9 @@ meta:
       m1_large: 7680
       m2_2xlarge: 35020
     disk:
-      m1_medium: 390000
-      m1_large: 400000
-      m2_2xlarge: 800000
+      m1_medium: 410000
+      m1_large: 420000
+      m2_2xlarge: 850000
 
 compilation:
   workers: 6
@@ -48,9 +48,9 @@ compilation:
 
 update:
   canaries: 1
+  max_in_flight: 1
   canary_watch_time: 30000-600000
   update_watch_time: 30000-600000
-  max_in_flight: 1
 
 networks:
   - name: cf1
@@ -439,9 +439,9 @@ properties:
       password: (( merge ))
 
   dea_next:
-    memory_mb: (( merge || meta.instance_sizes.memory.m2_2xlarge - 2048 ))
+    memory_mb: (( merge || meta.instance_sizes.memory.m1_large - 1024 ))
     memory_overcommit_factor: (( merge || 3 ))
-    disk_mb: (( merge || meta.instance_sizes.disk.m2_2xlarge - 2048 ))
+    disk_mb: (( merge || meta.instance_sizes.disk.m1_large - 20000 ))
     disk_overcommit_factor: (( merge || 2 ))
     deny_networks:
       - 169.254.0.0/16 # AWS Status
