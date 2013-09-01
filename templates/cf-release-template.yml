@@ -70,6 +70,7 @@ networks:
           security_groups:
             - cf
           subnet: (( properties.template_only.aws.subnet_ids.cf1 ))
+
   - name: cf2
     type: manual
     subnets:
@@ -274,11 +275,6 @@ jobs:
     resource_pool: runner_z1
     networks:
       - name: cf1
-        default:
-          - dns
-          - gateway
-    update:
-      max_in_flight: (( merge || 1 ))
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
@@ -289,11 +285,6 @@ jobs:
     resource_pool: runner_z2
     networks:
       - name: cf2
-        default:
-          - dns
-          - gateway
-    update:
-      max_in_flight: (( merge || 1 ))
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
@@ -304,9 +295,6 @@ jobs:
     resource_pool: runner_z1
     networks:
       - name: cf1
-        default:
-          - dns
-          - gateway
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
@@ -317,9 +305,6 @@ jobs:
     resource_pool: runner_z2
     networks:
       - name: cf2
-        default:
-          - dns
-          - gateway
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
@@ -351,9 +336,6 @@ jobs:
     resource_pool: router_z1
     networks:
       - name: cf1
-        default:
-          - dns
-          - gateway
         static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
     properties:
       networks: (( meta.networks.z1 ))
@@ -365,9 +347,6 @@ jobs:
     resource_pool: router_z2
     networks:
       - name: cf2
-        default:
-          - dns
-          - gateway
         static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
     properties:
       networks: (( meta.networks.z2 ))
@@ -390,47 +369,46 @@ properties:
 
   cc:
     srv_api_uri: (( merge || "https://api." domain ))
-    external_host: ccng
-    logging_level: debug
+
     bulk_api_password: (( merge ))
-    uaa_resource_id: cloud_controller
+
     staging_upload_user: (( merge ))
     staging_upload_password: (( merge ))
-    max_staging_runtime: 900
+
+    db_encryption_key: (( merge ))
+
+    tasks_disabled: (( merge || false ))
+
     resource_pool:
       minimum_size: 65536
       resource_directory_key: (( merge || domain "-cc-resources" ))
-      fog_connection:
-        provider: AWS
-        aws_access_key_id: (( template_only.aws.access_key_id ))
-        aws_secret_access_key: (( template_only.aws.secret_access_key ))
+      fog_connection: (( fog_connection ))
       cdn:
         uri: (( merge || "" ))
         key_pair_id: (( merge || "" ))
         private_key: (( merge || "" ))
+
     packages:
-      minimum_size: 1048576
       app_package_directory_key: (( merge || domain "-cc-packages" ))
-      fog_connection:
-        provider: AWS
-        aws_access_key_id: (( template_only.aws.access_key_id ))
-        aws_secret_access_key: (( template_only.aws.secret_access_key ))
+      fog_connection: (( fog_connection ))
       cdn:
         uri: (( merge || "" ))
         key_pair_id: (( merge || "" ))
         private_key: (( merge || "" ))
+
     droplets:
-      minimum_size: 1048576
       droplet_directory_key: (( merge || domain "-cc-droplets" ))
-      fog_connection:
-        provider: AWS
-        aws_access_key_id: (( template_only.aws.access_key_id ))
-        aws_secret_access_key: (( template_only.aws.secret_access_key ))
+      fog_connection: (( fog_connection ))
       cdn:
         uri: (( merge || "" ))
         key_pair_id: (( merge || "" ))
         private_key: (( merge || "" ))
-    cc_partition: default
+
+    fog_connection:
+      provider: AWS
+      aws_access_key_id: (( template_only.aws.access_key_id ))
+      aws_secret_access_key: (( template_only.aws.secret_access_key ))
+
     quota_definitions:
       free:
         memory_limit: 0
@@ -441,13 +419,6 @@ properties:
       runaway:
         memory_limit: 102400
         total_services: -1
-    stacks:
-      - name: lucid64
-        description: "Ubuntu 10.04"
-      - name: lucid64custom
-        description: "Fake Ubuntu 10.04"
-    db_encryption_key: (( merge ))
-    tasks_disabled: (( merge || false ))
 
   ccng: (( cc ))
 
@@ -514,21 +485,29 @@ properties:
       passwd: (( merge || "https://console." domain "/password_resets/new" ))
       signup: (( merge || "https://console." domain "/register" ))
 
+  collector:
+    use_datadog: true
+    datadog_api_key: (( template_only.datadog.datadog_api_key || "" ))
+    datadog_application_key: (( template_only.datadog.datadog_application_key || "" ))
+    deployment_name: (( name ))
+
   uaa:
-    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     url: (( "https://uaa." domain ))
-    resource_id: account_manager
-    no_ssl: false
+
     jwt:
       signing_key: (( merge ))
       verification_key: (( merge ))
+
     cc:
       client_secret: (( merge ))
+
     admin:
       client_secret: (( merge ))
+
     batch:
       username: (( merge ))
       password: (( merge ))
+
     client:
       autoapprove:
         - cf
@@ -538,6 +517,7 @@ properties:
         - micro
         - support-signon
         - login
+
     clients:
       login:
         override: true
@@ -606,9 +586,3 @@ properties:
 
     scim:
       users: (( merge ))
-
-  collector:
-    use_datadog: true
-    datadog_api_key: (( template_only.datadog.datadog_api_key || "" ))
-    datadog_application_key: (( template_only.datadog.datadog_application_key || "" ))
-    deployment_name: (( name ))
