@@ -19,7 +19,6 @@ properties:
     description: "Password for server authentication."
   nats.port:
     description: "The port for the NATS server to listen on."
-    port: 4222
   nats.authorization_timeout:
     description: "After accepting a connection, wait up to this many seconds for credentials."
     default: 5
