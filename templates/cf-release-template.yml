@@ -363,8 +363,6 @@ properties:
     user: (( merge ))
     password: (( merge ))
     address: (( jobs.nats_z2.networks.cf2.static_ips.[0] ))
-    port: 4222
-    authorization_timeout: 5
 
   cc:
     srv_api_uri: (( merge || "https://api." domain ))
