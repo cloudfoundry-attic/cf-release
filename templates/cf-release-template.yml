@@ -49,8 +49,8 @@ compilation:
 update:
   canaries: 1
   max_in_flight: 1
-  canary_watch_time: 30000-600000
-  update_watch_time: 30000-600000
+  canary_watch_time: 5000-600000
+  update_watch_time: 5000-600000
 
 networks:
   - name: cf1
@@ -356,7 +356,7 @@ properties:
 
   domain: (( merge ))
   system_domain: (( merge || domain ))
-  system_domain_organization: (( merge || "" ))
+  system_domain_organization: (( merge || nil ))
   app_domains: (( merge || [domain] ))
 
   nats:
