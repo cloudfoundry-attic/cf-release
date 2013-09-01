@@ -382,7 +382,7 @@ properties:
     resource_pool:
       minimum_size: 65536
       resource_directory_key: (( merge || domain "-cc-resources" ))
-      fog_connection: (( fog_connection ))
+      fog_connection: (( fog_config ))
       cdn:
         uri: (( merge || "" ))
         key_pair_id: (( merge || "" ))
@@ -390,7 +390,7 @@ properties:
 
     packages:
       app_package_directory_key: (( merge || domain "-cc-packages" ))
-      fog_connection: (( fog_connection ))
+      fog_connection: (( fog_config ))
       cdn:
         uri: (( merge || "" ))
         key_pair_id: (( merge || "" ))
@@ -398,13 +398,13 @@ properties:
 
     droplets:
       droplet_directory_key: (( merge || domain "-cc-droplets" ))
-      fog_connection: (( fog_connection ))
+      fog_connection: (( fog_config ))
       cdn:
         uri: (( merge || "" ))
         key_pair_id: (( merge || "" ))
         private_key: (( merge || "" ))
 
-    fog_connection:
+    fog_config:
       provider: AWS
       aws_access_key_id: (( template_only.aws.access_key_id ))
       aws_secret_access_key: (( template_only.aws.secret_access_key ))
