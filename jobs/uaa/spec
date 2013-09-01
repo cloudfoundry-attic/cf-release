@@ -30,6 +30,7 @@ properties:
     description:
   uaa.catalina_opts:
     description:
+    default: -Xmx768m -XX:MaxPermSize=256m
   uaa.cc.client_secret:
     description:
   uaa.cc.token_secret:
@@ -98,7 +99,8 @@ properties:
   uaadb.roles:
     description: "The list of database Roles used in UAA database including tag/name/password"
   uaa.no_ssl:
-    description:
+    description: "when true, uaa uses http, otherwise it uses https"
+    default: false
   uaa.url:
     description:
   uaa.dump_requests:

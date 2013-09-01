@@ -132,7 +132,7 @@ properties:
   description: "Passthru value for Steno logger"
 
  ccng.max_staging_runtime:
-  default: 300
+  default: 900
   description: "Timeout for staging a droplet"
 
  ccng.stacks:
