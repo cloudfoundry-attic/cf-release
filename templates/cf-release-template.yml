@@ -379,26 +379,17 @@ properties:
     resource_pool:
       resource_directory_key: (( merge || domain "-cc-resources" ))
       fog_connection: (( fog_config ))
-      cdn:
-        uri: (( merge || "" ))
-        key_pair_id: (( merge || "" ))
-        private_key: (( merge || "" ))
+      cdn: (( merge || nil ))
 
     packages:
       app_package_directory_key: (( merge || domain "-cc-packages" ))
       fog_connection: (( fog_config ))
-      cdn:
-        uri: (( merge || "" ))
-        key_pair_id: (( merge || "" ))
-        private_key: (( merge || "" ))
+      cdn: (( merge || nil ))
 
     droplets:
       droplet_directory_key: (( merge || domain "-cc-droplets" ))
       fog_connection: (( fog_config ))
-      cdn:
-        uri: (( merge || "" ))
-        key_pair_id: (( merge || "" ))
-        private_key: (( merge || "" ))
+      cdn: (( merge || nil )
 
     fog_config:
       provider: AWS
@@ -429,9 +420,7 @@ properties:
     databases: (( merge ))
 
   router:
-    port: 8081
     status:
-      port: 8080
       user: (( merge ))
       password: (( merge ))
 

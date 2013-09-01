@@ -16,11 +16,12 @@ properties:
   syslog_aggregator:
     description:
   router.status.port:
-    description:
+    description: "Port for the Router varz/status endpoint."
+    default: 8080
   router.status.user:
-    description:
+    description: "Username for HTTP basic auth to the varz/status endpoint."
   router.status.password:
-    description:
+    description: "Password for HTTP basic auth to the varz/status endpoint."
   nats.user:
     description:
   nats.password:
