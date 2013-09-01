@@ -389,7 +389,7 @@ properties:
     droplets:
       droplet_directory_key: (( merge || domain "-cc-droplets" ))
       fog_connection: (( fog_config ))
-      cdn: (( merge || nil )
+      cdn: (( merge || nil ))
 
     fog_config:
       provider: AWS
