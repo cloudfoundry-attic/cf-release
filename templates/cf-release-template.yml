@@ -451,19 +451,7 @@ properties:
     allow_networks:
       - 10.10.0.2/32 # Amazon DNS
 
-  syslog_aggregator:
-    relay_host: (( merge || "" ))
-    relay_host_port: (( merge || "" ))
-    log_email:
-      enabled: true
-      from_email: (( merge || "" ))
-      from_password: (( merge || "" ))
-      to_email:
-        - cfpi-backend@googlegroups.com
-        - cfpi-services@googlegroups.com
-      smtp_server: smtp.gmail.com
-      smtp_port: 587
-      smtp_domain: gmail.com
+  syslog_aggregator: (( merge || nil ))
 
   loggregator:
     router: (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
