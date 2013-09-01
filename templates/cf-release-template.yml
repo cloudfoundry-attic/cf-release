@@ -377,7 +377,6 @@ properties:
     tasks_disabled: (( merge || false ))
 
     resource_pool:
-      minimum_size: 65536
       resource_directory_key: (( merge || domain "-cc-resources" ))
       fog_connection: (( fog_config ))
       cdn:
