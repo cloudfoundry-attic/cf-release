@@ -1,0 +1,130 @@
+properties:
+  template_only: (( merge ))
+
+  domain: (( merge ))
+
+  cc:
+    srv_api_uri: (( merge || "https://api." domain ))
+
+    bulk_api_password: (( merge ))
+
+    staging_upload_user: (( merge ))
+    staging_upload_password: (( merge ))
+
+    db_encryption_key: (( merge ))
+
+    tasks_disabled: (( merge || false ))
+
+    resource_pool:
+      resource_directory_key: (( merge || domain "-cc-resources" ))
+      fog_connection: (( fog_config ))
+      cdn: (( merge || nil ))
+
+    packages:
+      app_package_directory_key: (( merge || domain "-cc-packages" ))
+      fog_connection: (( fog_config ))
+      cdn: (( merge || nil ))
+
+    droplets:
+      droplet_directory_key: (( merge || domain "-cc-droplets" ))
+      fog_connection: (( fog_config ))
+      cdn: (( merge || nil ))
+
+    fog_config:
+      provider: AWS
+      aws_access_key_id: (( template_only.aws.access_key_id ))
+      aws_secret_access_key: (( template_only.aws.secret_access_key ))
+
+    quota_definitions:
+      free:
+        memory_limit: 0
+        total_services: 0
+      paid:
+        memory_limit: 10240
+        total_services: -1
+      runaway:
+        memory_limit: 102400
+        total_services: -1
+
+  login:
+    protocol: (( merge || "https" ))
+    links:
+      home: (( merge || "https://console." domain ))
+      passwd: (( merge || "https://console." domain "/password_resets/new" ))
+      signup: (( merge || "https://console." domain "/register" ))
+
+  uaa:
+    url: (( "https://uaa." domain ))
+
+    scim:
+      users: (( merge ))
+
+    jwt:
+      signing_key: (( merge ))
+      verification_key: (( merge ))
+
+    cc:
+      client_secret: (( merge ))
+
+    admin:
+      client_secret: (( merge ))
+
+    batch:
+      username: (( merge ))
+      password: (( merge ))
+
+    clients:
+      portal:
+        override: true
+        scope: openid,cloud_controller.read,cloud_controller.write,password.write
+        authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+      billing:
+        override: true
+        scope: uaa.none
+        authorities: cloud_controller.read,cloud_controller.write,cloud_controller.admin,uaa.resource,scim.read,scim.write
+        secret: (( merge ))
+        authorized-grant-types: client_credentials
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+      app-direct:
+        override: true
+        authorities: app_direct_invoice.write
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+        redirect-uri: (( properties.login.links.home ))
+      support-services:
+        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials
+        redirect-uri: (( "http://support-signon." domain ))
+        authorities: portal.users.read
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+      servicesmgmt:
+        secret: (( merge ))
+        scope: openid,cloud_controller.read,cloud_controller.write
+        authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
+        authorized-grant-types: authorization_code,client_credentials,password,implicit
+        redirect-uri: (( "http://servicesmgmt." domain "/auth/cloudfoundry/callback" ))
+        override: true
+        autoapprove: true
+      space-mail:
+        override: true
+        authorities: scim.read,scim.write,cloud_controller.admin
+        secret: (( merge ))
+        authorized-grant-types: client_credentials
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+
+  uaadb:
+    db_scheme: mysql
+    address: (( merge ))
+    port: 3306
+    roles: (( merge ))
+    databases: (( merge ))
