@@ -37,8 +37,8 @@ info:
 # allow_debug: false
 
 <% if_p("directories.droplets",
-        "directories.staging_manifests",
-        "directories.tmpdir") do |droplets, staging_manifests, tmpdir| %>
+        "ccng.directories.staging_manifests",
+        "ccng.directories.tmpdir") do |droplets, staging_manifests, tmpdir| %>
 directories:
  droplets: <%= droplets %>
  staging_manifests: <%= staging_manifests %>
@@ -56,7 +56,7 @@ logging:
 <% if_p("loggregator.router") do |router| %>
 loggregator:
   router: <%= router %>
-<% end %>  
+<% end %>
 
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = p("ccdb_ng.roles").find { |role| role["tag"] == "admin" } %>
