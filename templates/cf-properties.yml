@@ -74,6 +74,13 @@ properties:
       password: (( merge ))
 
     clients:
+      login:
+        override: true
+        scope: openid
+        authorities: oauth.login
+        secret: (( merge ))
+        authorized-grant-types: authorization_code,client_credentials,refresh_token
+        redirect-uri: (( "https://login." domain ))
       portal:
         override: true
         scope: openid,cloud_controller.read,cloud_controller.write,password.write

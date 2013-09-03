@@ -49,7 +49,7 @@ compilation:
 update:
   canaries: 1
   max_in_flight: 1
-  canary_watch_time: 5000-600000
+  canary_watch_time: 30000-600000
   update_watch_time: 5000-600000
 
 networks: (( merge ))
@@ -374,6 +374,6 @@ properties:
 
   collector:
     use_datadog: true
-    datadog_api_key: (( template_only.datadog.datadog_api_key || "" ))
-    datadog_application_key: (( template_only.datadog.datadog_application_key || "" ))
+    datadog_api_key: (( merge || "" ))
+    datadog_application_key: (( merge || "" ))
     deployment_name: (( name ))
