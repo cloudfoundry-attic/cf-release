@@ -41,12 +41,10 @@ oauth:
       - <%= client_id %><% end %>
   <% else %>
     autoapprove:
-      - vmc
-      - my
-      - support-signon
-      - appdirect
-      - dashboard
+      - cf
+      - login
       - portal
+      - support-signon
   <% end %>
   clients:
 <% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
@@ -68,14 +66,15 @@ oauth:
       secret: <%= properties.uaa.cc.client_secret %>
       access-token-validity: 604800
 <% end %>
-<% if !properties.uaa.clients || !properties.uaa.clients.vmc %>
-    vmc:
-      authorized-grant-types: implicit
-      scope: cloud_controller.read,cloud_controller.write,openid,password.write
+<% if !properties.uaa.clients || !properties.uaa.clients.cf %>
+    cf:
+      id: cf
+      override: true
+      authorized-grant-types: implicit,password,refresh_token
+      scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write
       authorities: uaa.none
-      id: vmc
-      redirect-uri: http://uaa.cloudfoundry.com/redirect/vmc,https://uaa.cloudfoundry.com/redirect/vmc
-      access-token-validity: 604800
+      access-token-validity: 300
+      refresh-token-validity: 2592000
 <% end %>
 <% if !properties.uaa.clients || !properties.uaa.clients.login %>
     login:
