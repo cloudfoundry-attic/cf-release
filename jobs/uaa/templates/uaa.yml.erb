@@ -79,11 +79,12 @@ oauth:
 <% if !properties.uaa.clients || !properties.uaa.clients.login %>
     login:
       id: login
+      override: true
       secret: <%= properties.uaa.login.client_secret %>
       authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
-      scope: openid,uaa.user
-      redirect-uri: http://login.<%= properties.domain %>/profile,https://login.<%= properties.domain %>/profile
+      scope: openid
+      redirect-uri: https://login.<%= properties.domain %>
 <% end %>
 <% if properties.uaa.scim %>
 scim:
