@@ -53,6 +53,11 @@ logging:
   level: <%= p("ccng.logging_level") %>
   max_retries: <%= p("ccng.logging_max_retries") %>
 
+<% if_p("loggregator.router") do |router| %>
+loggregator:
+  router: <%= router %>
+<% end %>  
+
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
 <% db_role = p("ccdb_ng.roles").find { |role| role["tag"] == "admin" } %>
 db: &db
