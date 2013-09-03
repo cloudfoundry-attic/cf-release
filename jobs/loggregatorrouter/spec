@@ -21,6 +21,8 @@ properties:
     description: password used to log into varz endpoint
   loggregator.status.port:
     description: port used to run the varz endpoint
+  system_domain:
+    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
   nats.user:
     description: "Username for cc client to connect to NATS"
   nats.password:
