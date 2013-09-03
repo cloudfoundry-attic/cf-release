@@ -132,7 +132,7 @@ properties:
   description: "Passthru value for Steno logger"
 
  ccng.max_staging_runtime:
-  default: 300
+  default: 900
   description: "Timeout for staging a droplet"
 
  ccng.stacks:
@@ -171,7 +171,7 @@ properties:
 
  ccng.resource_pool.minimum_size:
   description: "Minimum size of a resource to add to the pool"
-  default: 0
+  default: 65536
  ccng.resource_pool.maximum_size:
   description: "Maximum size of a resource to add to the pool"
   default: 536870912

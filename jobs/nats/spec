@@ -14,11 +14,11 @@ properties:
   networks.apps:
     description:
   nats.user:
-    description:
+    description: "Username for server authentication."
   nats.password:
-    description:
+    description: "Password for server authentication."
   nats.port:
-    description:
+    description: "The port for the NATS server to listen on."
   nats.authorization_timeout:
-    description:
-    default: 1
+    description: "After accepting a connection, wait up to this many seconds for credentials."
+    default: 5
