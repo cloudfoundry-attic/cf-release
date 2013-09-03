@@ -31,6 +31,11 @@ logging:
   <% end %>
   level: debug
 
+<% if_p("loggregator.router") do |router| %>
+loggregator:
+  router: <%= router %>
+<% end %>
+
 index: <%= spec.index %>
 
 intervals:
