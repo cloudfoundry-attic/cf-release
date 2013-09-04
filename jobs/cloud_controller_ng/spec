@@ -100,7 +100,7 @@ properties:
   default: "api"
   description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
  ccng.cc_partition:
-  default: "ng"
+  default: "default"
   description: "Deprecated. Defines a 'partition' for the health_manager job"
  ccng.bootstrap_admin_email:
   default: "admin@example.com"
