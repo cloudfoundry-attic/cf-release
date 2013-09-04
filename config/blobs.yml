@@ -543,3 +543,13 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     MDAxYTY0NjI5YTkzMTAzZDRmNTNhYzk1ZmFmM2U1MmE2MzY1N2I5NQ==
   size: 7955948
+buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Ftomcat-buildpack-support%2Findex.yml.cached:
+  object_id: 67008d42-7ce5-4336-abf7-9291fc583412
+  sha: !binary |-
+    N2UxODgyYjM5NDJmN2NlNmVjNzBjOWRlZTZjNWQ1MmRmYWIzMDYzZg==
+  size: 333
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Ftomcat-buildpack-support%2Ftomcat-buildpack-support-1.1.1.jar.cached
+: object_id: 47839f53-6eb5-4ad0-8c08-e410034a6af2
+  sha: !binary |-
+    MjhhZWQ1Y2I3ZmQ0MzQ3YmRlYTJiNGEyMDIyOGJlOTIzMjI2MzExYQ==
+  size: 2884
