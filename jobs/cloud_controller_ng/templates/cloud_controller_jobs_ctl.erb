@@ -34,7 +34,7 @@ case $1 in
     chown vcap:vcap $PIDFILE
 
     cd $CC_PACKAGE_DIR/cloud_controller_ng
-    export QUEUE=cc<%= spec.index.to_i %>
+    export QUEUE=cc-<%= name %>-<%= spec.index.to_i %>
     exec chpst -u vcap:vcap bundle exec rake jobs:work \
       >>$LOG_DIR/jobs_work.stdout.log 2>>$LOG_DIR/jobs_work.stderr.log
 
