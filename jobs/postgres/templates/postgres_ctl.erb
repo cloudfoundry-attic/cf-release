@@ -100,7 +100,7 @@ case "$1" in
         set +e
         $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
                               -d "<%= database.name %>" \
-                              -c "CREATE EXTENSION citext"
+                              -f $PACKAGE_DIR/share/postgresql/contrib/citext.sql
         set -e
       <% end %>
 
