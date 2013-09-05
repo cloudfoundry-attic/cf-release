@@ -83,6 +83,10 @@ insight_agent/insight-agent.zip:
   object_id: rest/objects/4e4e78bca41e121004e4e7d517618f04f306ad764f01
   sha: bdeeebb6853a7e7bea64ceb8b2c6cd1a5eb3df51
   size: 10968004
+postgres/postgres-9.0.3-1.amd64.tar.gz:
+  object_id: rest/objects/4e4e78bca31e122004e4e8ec646e2104f306af917d30
+  sha: e47ee9c841ecde4df121f44df282aeb3c50a48d2
+  size: 16203511
 postgres/postgres-9.0.3-1.i386.tar.gz:
   object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f306b0371f99
   sha: b2bde31e720eb219bfdc9f1b784f985ecca2cbfb
@@ -433,11 +437,6 @@ uaa/tomcat-7.0.42.tar.gz:
   sha: !binary |-
     MDAxYTY0NjI5YTkzMTAzZDRmNTNhYzk1ZmFmM2U1MmE2MzY1N2I5NQ==
   size: 7955948
-postgres/postgresql-9.2.4-x86_64.tar.gz:
-  object_id: abd8f341-0c8d-41fa-b935-bfa39efa874b
-  sha: !binary |-
-    Y2YzNDBjYTUxZWNhYWZjMDRhYTlkM2M2NDkwZmI3ZDU3ZmQ1YTNiNw==
-  size: 10519400
 loggregator/deaagent-linux-amd64.gz:
   object_id: b6525d2c-c34b-4ec2-9e4c-10190ece2fa7
   sha: !binary |-
