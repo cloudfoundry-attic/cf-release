@@ -41,21 +41,21 @@ class SubmoduleLog
   end
 
   def generate_html(f)
-    f << "<H2>#{submodule_anchor}</H2>"
-    f << "<H3>#{commit_anchor(@sha1[0..7])}..#{commit_anchor(@sha2[0..7])}</H3>"
-    f << "<H4>#{comparison_anchor}</H4>"
+    f << "<details>"
+    f << "<summary><h2>#{submodule_anchor} (#{@commits.count} changes)</h2></summary>"
+    f << "<H3>#{commit_anchor(@sha1[0..7])}..#{commit_anchor(@sha2[0..7])} (#{comparison_anchor})</H3>"
     f << %Q{<div class="no-changes">No Changes</div>} if @commits.count == 0
     @commits.each do |commit|
-      f << %Q{<div class="commit">}
-
+      f << %Q{<details class="commit">}
+      f << %Q{<summary class="subject">#{commit[:subject]}</summary>}
+      
       f << %Q{<div class="sha">#{commit_anchor(commit[:sha])}</div>}
-      f << %Q{<div class="subject">#{commit[:subject]}</div>}
       f << %Q{<div class="body">#{commit[:body]}</div>}
-
       f << %Q{<div class="author">#{commit[:author]}</div>}
       f << %Q{<div class="date">#{commit[:date]}</div>}
-      f << %Q{</div>}
+      f << %Q{</details>}
     end
+    f << "</details>"    
   end
 end
 
@@ -141,7 +141,7 @@ body {
 
 
 h2 {
-	margin-bottom:0;
+  display:inline;
 }
 
 h3 {
