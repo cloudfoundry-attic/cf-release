@@ -49,7 +49,7 @@ properties:
     default: 1
   health_manager.intervals.flapping_timeout:
     description:
-    default: 500
+    default: 1920
   health_manager.intervals.restart_timeout:
     description:
     default: 20
@@ -58,7 +58,7 @@ properties:
     default: 60
   health_manager.intervals.max_restart_delay:
     description:
-    default: 480
+    default: 960
   health_manager.intervals.giveup_crash_number:
     description:
     default: -1
