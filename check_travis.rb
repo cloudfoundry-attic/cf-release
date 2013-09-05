@@ -20,7 +20,8 @@ class TravisBuild
 
   def initialize(shas, color = true)
     @shas = shas
-    @repo = `git remote -v`.match(/github.com[\/:]([^\s]+?).git/)[1]
+    remote = `git remote -v`.match(/github.com[\/:]([^\s]+?).git/)
+    @repo = remote && remote[1]
     String.color = color
   end
 
@@ -62,7 +63,7 @@ class TravisBuild
   end
 
   def travis?
-    @travis ||= travis_json && travis_json.any?
+    @travis ||= @repo && travis_json && travis_json.any?
   end
 
   def travis_status(sha)
