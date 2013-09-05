@@ -102,10 +102,10 @@
   router_static_ips2 << ip(20, 'cf2.static')
 
   # TODO: this probably doesn't need its own static IP
-  #loggregator_static_ip = []
-  loggregator_static_ip = ip(21, "cf1.static")
-  #loggregator_static_ip << ip(22, "cf1.static")
-  #loggregator_router_static_ip = ip(23, "cf1.static")
+  loggregator_static_ip = []
+  loggregator_static_ip << ip(21, "cf1.static")
+  loggregator_static_ip << ip(22, "cf1.static")
+  loggregator_router_static_ip = ip(23, "cf1.static")
 -%>
 
 # ENV variables for Yeti:
@@ -171,7 +171,7 @@ networks:
 resource_pools:
 - name: small_z1
   network: cf1
-  size: 2
+  size: 4
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -477,12 +477,26 @@ jobs:
 
 - name: loggregator_z1
   template: loggregator
+  instances: 2
+  resource_pool: small_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - <%= loggregator_static_ip[0] %>
+    - <%= loggregator_static_ip[1] %>
+  properties:
+    networks:
+      apps: cf1
+      management: cf1
+
+- name: loggregator-router_z1
+  template: loggregatorrouter
   instances: 1
   resource_pool: small_z1
   networks:
   - name: cf1
     static_ips:
-    - <%= loggregator_static_ip %>
+    - <%= loggregator_router_static_ip %>
   properties:
     networks:
       apps: cf1
@@ -686,9 +700,10 @@ properties:
       smtp_domain: gmail.com
 
   loggregator:
-    router: <%= loggregator_static_ip %>:3456
+    router: <%= loggregator_router_static_ip %>:3456
     servers:
-    - <%= loggregator_static_ip %>:3456
+    - <%= loggregator_static_ip[0] %>:3456
+    - <%= loggregator_static_ip[1] %>:3456
     status:
       user: <%= find("properties.loggregator.status.user") %>
       password: <%= find("properties.loggregator.status.password") %>
