@@ -1,6 +1,9 @@
 #!/bin/bash -x
 
-git pull && git submodule foreach --recursive git submodule sync && git submodule update --init --recursive
+git pull && \
+  git submodule foreach --recursive git submodule sync && \
+  git submodule update --init --recursive && \
+  bosh sync blobs
 
 set +x
 echo
