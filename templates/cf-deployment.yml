@@ -287,11 +287,22 @@ jobs:
 
   - name: loggregator_z1
     template: loggregator
+    instances: (( merge || 2 ))
+    resource_pool: small_z1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(21, 22) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: loggregator_router_z1
+    template: loggregatorrouter
     instances: (( merge || 1 ))
     resource_pool: small_z1
     networks:
       - name: cf1
-        static_ips: (( static_ips(21) ))
+        static_ips: (( static_ips(23) ))
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
@@ -346,9 +357,11 @@ properties:
       - 10.10.0.2/32 # Amazon DNS
 
   loggregator:
-    router: (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
+    router:
+    - (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
     servers:
-    - (( router ))
+    - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
+    - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
     status:
       user: (( merge ))
       password: (( merge ))
