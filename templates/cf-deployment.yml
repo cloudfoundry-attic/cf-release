@@ -357,8 +357,7 @@ properties:
       - 10.10.0.2/32 # Amazon DNS
 
   loggregator:
-    router:
-    - (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
+    router: (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
     servers:
     - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
     - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
