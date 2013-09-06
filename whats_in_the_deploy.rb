@@ -51,12 +51,42 @@ class SubmoduleLog
       f << %Q{<summary class="subject">#{commit[:subject]}</summary>}
       
       f << %Q{<div class="sha">#{commit_anchor(commit[:sha])}</div>}
-      f << %Q{<div class="body">#{commit[:body]}</div>}
+      f << %Q{<div class="body">#{linkify(commit[:body])}</div>}
       f << %Q{<div class="author">#{commit[:author]}</div>}
       f << %Q{<div class="date">#{commit[:date]}</div>}
       f << %Q{</details>}
     end
     f << "</details>"    
+  end
+  
+  private
+  
+  AUTO_LINK_RE = %r{
+      (?: ([\w+.:-]+:)// | www\. )
+      [^\s<]+
+    }x
+    
+    BRACKETS = { ']' => '[', ')' => '(', '}' => '{' }
+    
+  
+  def linkify(text)    
+    text.gsub(AUTO_LINK_RE) do
+      scheme, href = $1, $&
+      punctuation = []
+
+        # don't include trailing punctuation character as part of the URL
+        while href.sub!(/[^\w\/-]$/, '')
+          punctuation.push $&
+          if opening = BRACKETS[punctuation.last] and href.scan(opening).size > href.scan(punctuation.last).size
+            href << punctuation.pop
+            break
+          end
+        end
+
+        href = 'http://' + href unless scheme
+
+        %Q{<a href="#{href}">#{href}</a>}
+    end
   end
 end
 
@@ -145,7 +175,6 @@ body {
 	font-family: "helvetica neue";
 	font-size:14px;
 }
-
 
 h2 {
   display:inline;
