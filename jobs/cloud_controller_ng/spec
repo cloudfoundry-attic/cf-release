@@ -244,6 +244,29 @@ properties:
   description: "Key pair name for signed download URIs"
   default: ""
 
+ ccng.buildpacks.buildpack_directory_key:
+  description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
+  default: "cc-buildpacks"
+ ccng.buildpacks.fog_connection.provider:
+  description: "Local for buildpacks on NFS. AWS to place them in S3."
+  default: "Local"
+ ccng.buildpacks.fog_connection.aws_access_key_id:
+  description: "AWS access key used to access the buildpacks bucket"
+ ccng.buildpacks.fog_connection.aws_secret_access_key:
+  description: "AWS secret key used to access the buildpacks bucket"
+ ccng.buildpacks.fog_connection.local_root:
+  description: "The directory used as the root for the Local fog provider"
+  default: "/var/vcap/shared"
+ ccng.buildpacks.cdn.uri:
+  description: "URI for a CDN to used for buildpack downloads"
+  default: ""
+ ccng.buildpacks.cdn.private_key:
+  description: "Private key for signing download URIs"
+  default: ""
+ ccng.buildpacks.cdn.key_pair_id:
+  description: "Key pair name for signed download URIs"
+  default: ""
+
  ccdb_ng.databases:
   description:
  ccdb_ng.roles:
