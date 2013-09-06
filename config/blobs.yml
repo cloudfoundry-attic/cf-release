@@ -392,11 +392,6 @@ buildpack_cache/auto-reconfiguration-0.6.7.jar:
   sha: !binary |-
     NzI4MjI4ZjM2NDhkNjc5NzU5ZGYwNGZjZTYyMjBkNDQ2ZTVmZGQ5Zg==
   size: 708374
-golang/go1.1.1.src.tar.gz:
-  object_id: 668a3b49-03fd-4742-b5a8-f6a76b387106
-  sha: !binary |-
-    ZjM2NWFlZDgxODNlNDg3YTQ4YTY2YWNlN2JmMzZlNTk3NGRmZmJiMw==
-  size: 9045336
 buildpack_cache/openjdk-1.7.0_25.tar.gz:
   object_id: 3e47e45f-2f65-42f6-ac29-bc9782c3714e
   sha: !binary |-
@@ -552,3 +547,8 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     MjhhZWQ1Y2I3ZmQ0MzQ3YmRlYTJiNGEyMDIyOGJlOTIzMjI2MzExYQ==
   size: 2884
+golang/go1.1.2.linux-amd64-yacc-shaved.tar.gz:
+  object_id: 12274b09-fe06-4990-a2fe-1b6e04616009
+  sha: !binary |-
+    MDJhYTlmNDdiOTVjZTAxMmI1NzAyZGFmNDFkM2ZmNGI3ODFhYzMwZQ==
+  size: 41768327
