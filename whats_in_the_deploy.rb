@@ -6,7 +6,7 @@ class SubmoduleLog
     @url = url
     @sha1 = sha1
     @sha2 = sha2
-    @commits = get_commits
+    @commits = get_commits    
   end
 
   def get_commits
@@ -17,6 +17,7 @@ class SubmoduleLog
     commits = []
     commit_chunks.each do |chunk|
       segments = chunk.split("|||")
+      next if segments.size < 3
       commits << {
         sha: segments[0],
         author: segments[1],
@@ -37,7 +38,7 @@ class SubmoduleLog
   end
 
   def comparison_anchor
-    %Q{<a href="#{@url}/compare/#{@sha1}...#{@sha2}" target="_blank">View comparison for range</a>}
+    %Q{<a href="#{@url}/compare/#{@sha1}...#{@sha2}" target="_blank">compare</a>}
   end
 
   def generate_html(f)
@@ -68,6 +69,8 @@ class WhatsInTheDeploy
   end
 
   def compare_submodules
+    @submodule_logs << SubmoduleLog.new(".", "http://github.com/cloudfoundry/cf-release", @sha1, @sha2)
+    
     @submodules.each do |submodule, url|
       sub_sha1 = get_submodule_commit(@sha1, submodule)
       sub_sha2 = get_submodule_commit(@sha2, submodule)
@@ -109,17 +112,21 @@ class WhatsInTheDeploy
   def get_submodule_commit(tree_identifier, submodule)
     ls_tree_output = `git ls-tree #{tree_identifier} #{submodule}`
     matches = /commit (.+)\s+#{submodule}/.match(ls_tree_output)
-      matches[1] if matches
+    matches[1] if matches
   end
 end
 
 if __FILE__ == $0
-  puts "Please provide the tag currently deployed to production:"
-  production_tag = gets.chomp
+  if ARGV
+    production_tag, rc_sha = ARGV
+  else
+    puts "Please provide the tag currently deployed to production:"
+    production_tag = gets.chomp
 
-  puts "Please provide the sha for the Release Candidate commit you'd like to compare to:"
-  rc_sha = gets.chomp
-
+    puts "Please provide the sha for the Release Candidate commit you'd like to compare to:"
+    rc_sha = gets.chomp
+  end
+  
   puts "#{production_tag}..#{rc_sha}"
 
   whats_in_the_deploy = WhatsInTheDeploy.new(production_tag, rc_sha)
@@ -142,10 +149,6 @@ body {
 
 h2 {
   display:inline;
-}
-
-h3 {
-	margin-top:0;
 }
 
 a {
