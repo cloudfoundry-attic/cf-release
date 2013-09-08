@@ -1,0 +1,272 @@
+name: (( merge ))
+
+networks: (( merge ))
+
+meta:
+  networks:
+    z1:
+      apps: cf1
+      management: cf1
+
+    z2:
+      apps: cf2
+      management: cf2
+
+  syslog:
+    z1:
+      address: (( jobs.logs_z1.networks.cf1.static_ips.[0] ))
+      port: 54321
+    z2:
+      address: (( jobs.logs_z2.networks.cf2.static_ips.[0] ))
+      port: 54321
+
+jobs:
+  - name: nats_z2
+    template: nats
+    instances: 1
+    resource_pool: medium_z2
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(1) ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: logs_z1
+    template: syslog_aggregator
+    instances: 1
+    resource_pool: medium_z1
+    persistent_disk: (( merge || 100000 ))
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(0) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: logs_z2
+    template: syslog_aggregator
+    instances: 1
+    resource_pool: medium_z2
+    persistent_disk: (( merge || 100000 ))
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(0) ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: stats_z1
+    template: collector
+    instances: 1
+    resource_pool: small_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: uaa_z1
+    template: uaa
+    instances: (( merge || 1 ))
+    resource_pool: large_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: uaa_z2
+    template: uaa
+    instances: (( merge || 1 ))
+    resource_pool: large_z2
+    networks:
+      - name: cf2
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: login_z1
+    template: login
+    instances: (( merge || 1 ))
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: api_z1
+    template: cloud_controller_ng
+    instances: (( merge || 1 ))
+    resource_pool: large_z1
+    networks:
+      - name: cf1
+    properties:
+      ccdb: ccdb
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: api_z2
+    template: cloud_controller_ng
+    instances: (( merge || 1 ))
+    resource_pool: large_z2
+    networks:
+      - name: cf2
+    properties:
+      ccdb: ccdb
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: hm_z1
+    template: health_manager_next
+    instances: 1
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: runner_z1
+    template:
+      - dea_next
+      - dea_logging_agent
+    instances: (( merge || 1 ))
+    resource_pool: runner_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: runner_z2
+    template:
+      - dea_next
+      - dea_logging_agent
+    instances: (( merge || 1 ))
+    resource_pool: runner_z2
+    networks:
+      - name: cf2
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: taskmaster_z1
+    template: narc
+    instances: (( merge || 1 ))
+    resource_pool: runner_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: taskmaster_z2
+    template: narc
+    instances: (( merge || 1 ))
+    resource_pool: runner_z2
+    networks:
+      - name: cf2
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+  - name: loggregator_z1
+    template: loggregator
+    instances: (( merge || 2 ))
+    resource_pool: small_z1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(21, 22) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: loggregator_router_z1
+    template: loggregatorrouter
+    instances: (( merge || 1 ))
+    resource_pool: small_z1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(23) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: router_z1
+    template: gorouter
+    instances: (( merge || 1 ))
+    resource_pool: router_z1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: router_z2
+    template: gorouter
+    instances: (( merge || 1 ))
+    resource_pool: router_z2
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
+
+properties:
+  domain: (( merge ))
+  system_domain: (( merge || domain ))
+  system_domain_organization: (( merge || nil ))
+  app_domains: (( merge || [domain] ))
+
+  nats:
+    user: (( merge ))
+    password: (( merge ))
+    address: (( jobs.nats_z2.networks.cf2.static_ips.[0] ))
+    port: 4222
+
+  dea_next:
+    memory_mb: (( merge ))
+    memory_overcommit_factor: (( merge || 3 ))
+    disk_mb: (( merge ))
+    disk_overcommit_factor: (( merge || 2 ))
+    deny_networks: (( merge || [] ))
+    allow_networks: (( merge || [] ))
+
+  loggregator:
+    router: (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
+    servers:
+    - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
+    - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
+    status:
+      user: (( merge ))
+      password: (( merge ))
+      port: 5768
+
+  cc: (( merge ))
+  ccdb: (( merge ))
+
+  ccng: (( cc ))
+  ccdb_ng: (( ccdb ))
+
+  uaa: (( merge ))
+  uaadb: (( merge ))
+
+  login: (( merge ))
+
+  router:
+    status:
+      user: (( merge ))
+      password: (( merge ))
+
+  syslog_aggregator: (( merge || nil ))
+
+  collector:
+    use_datadog: true
+    datadog_api_key: (( merge || "" ))
+    datadog_application_key: (( merge || "" ))
+    deployment_name: (( name ))

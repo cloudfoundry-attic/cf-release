@@ -1,0 +1,128 @@
+meta:
+  zones:
+    z1: (( properties.template_only.aws.availability_zone ))
+    z2: (( properties.template_only.aws.availability_zone2 ))
+
+  fog_config:
+    provider: AWS
+    aws_access_key_id: (( properties.template_only.aws.access_key_id ))
+    aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
+
+
+properties:
+  template_only: (( merge ))
+
+  cc:
+    resource_pool:
+      fog_connection: (( meta.fog_config ))
+    packages:
+      fog_connection: (( meta.fog_config ))
+    droplets:
+      fog_connection: (( meta.fog_config ))
+
+  dea_next:
+    deny_networks:
+      - 169.254.0.0/16 # AWS Status
+      - 10.10.0.0/24 # BOSH network
+      - (( networks.cf1.subnets.[0].range ))
+      - (( networks.cf2.subnets.[0].range ))
+
+    allow_networks:
+      - 10.10.0.2/32 # Amazon DNS
+
+
+compilation:
+  cloud_properties:
+    instance_type: c1.medium
+    availability_zone: (( meta.zones.z1 ))
+
+
+networks:
+  - name: cf1
+    type: manual
+    subnets:
+      - range: 10.10.16.0/20
+        name: default_unused
+        reserved:
+          - 10.10.16.2 - 10.10.16.9
+        static:
+          - 10.10.16.10 - 10.10.16.255
+        gateway: 10.10.16.1
+        dns:
+          - 10.10.0.2 # amazon has only 1 DNS server for the whole VPC at x.x.0.2
+        cloud_properties:
+          security_groups:
+            - cf
+          subnet: (( properties.template_only.aws.subnet_ids.cf1 ))
+
+  - name: cf2
+    type: manual
+    subnets:
+      - range: 10.10.80.0/20
+        name: default_unused
+        reserved:
+          - 10.10.80.2 - 10.10.80.9
+        static:
+          - 10.10.80.10 - 10.10.80.255
+        gateway: 10.10.80.1
+        dns:
+          - 10.10.0.2 # amazon has only 1 DNS server for the whole VPC at x.x.0.2
+        cloud_properties:
+          security_groups:
+            - cf
+          subnet: (( properties.template_only.aws.subnet_ids.cf2 ))
+
+
+resource_pools:
+  - name: small_z1
+    cloud_properties:
+      instance_type: m1.small
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: small_z2
+    cloud_properties:
+      instance_type: m1.small
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: medium_z1
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: medium_z2
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: large_z1
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: large_z2
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: runner_z1
+    cloud_properties:
+      instance_type: (( merge || "m1.large" ))
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: runner_z2
+    cloud_properties:
+      instance_type: (( merge || "m1.large" ))
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: router_z1
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.z1 ))
+      elbs: (( merge || ["cfrouter"] ))
+
+  - name: router_z2
+    cloud_properties:
+      instance_type: m1.medium
+      availability_zone: (( meta.zones.z2 ))
+      elbs: (( merge || ["cfrouter"] ))
+
