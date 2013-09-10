@@ -77,7 +77,7 @@ http {
     }
 <% end %>
 
-    location ~ (/apps/.*/application|/v2/apps/.*/bits|/services/v\d+/configurations/.*/serialized/data) {
+    location ~ (/apps/.*/application|/v2/apps/.*/bits|/services/v\d+/configurations/.*/serialized/data|/v2/custom_buildpacks/.*/bits) {
       # Pass altered request body to this location
       upload_pass   @cc_uploads;
       upload_pass_args on;

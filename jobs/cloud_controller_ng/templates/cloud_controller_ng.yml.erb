@@ -176,6 +176,26 @@ droplets:
     <% end %>
   <% end %>
 
+buildpacks:
+  buildpack_directory_key: <%= p("ccng.buildpacks.buildpack_directory_key") %>
+  <% if_p("ccng.buildpacks.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.buildpacks.cdn.uri") %>
+    key_pair_id: <%= p("ccng.buildpacks.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.buildpacks.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection:
+  <% if_p("ccng.buildpacks.fog_connection.provider") do |provider| %>
+    provider: <%= provider %>
+    <% if provider.downcase == "local" %>
+    local_root: <%= p("ccng.buildpacks.fog_connection.local_root") %>
+    <% else %>
+    aws_access_key_id: <%= p("ccng.buildpacks.fog_connection.aws_access_key_id") %>
+    aws_secret_access_key: <%= p("ccng.buildpacks.fog_connection.aws_secret_access_key") %>
+    <% end %>
+  <% end %>
+
+
 db_encryption_key: <%= p("ccng.db_encryption_key") %>
 
 trial_db:
