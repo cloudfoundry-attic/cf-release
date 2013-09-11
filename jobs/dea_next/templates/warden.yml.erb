@@ -10,10 +10,10 @@ server:
 
 logging:
   file: /var/vcap/sys/log/warden/warden.log
-  <% if_p("syslog_aggregator") do |syslog_aggregator| %>
+  level: debug
+  <% if_p("syslog_aggregator.address") do |syslog_aggregator| %>
   syslog: vcap.warden
   <% end %>
-  level: debug
 
 health_check_server:
   port: 2345
