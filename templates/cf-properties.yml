@@ -28,6 +28,11 @@ properties:
       fog_connection: (( merge ))
       cdn: (( merge || nil ))
 
+    buildpacks:
+      buildpack_directory_key: (( merge || domain "-cc-buildpacks" ))
+      fog_connection: (( merge ))
+      cdn: (( merge || nil ))
+
     quota_definitions:
       free:
         memory_limit: 0
