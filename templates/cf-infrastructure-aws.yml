@@ -19,6 +19,8 @@ properties:
       fog_connection: (( meta.fog_config ))
     droplets:
       fog_connection: (( meta.fog_config ))
+    buildpacks:
+      fog_connection: (( meta.fog_config ))
 
   dea_next:
     deny_networks:
