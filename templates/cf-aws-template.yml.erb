@@ -235,24 +235,21 @@ properties:
     resource_pool:
       minimum_size: 65536
       resource_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-resources
-      fog_connection:
+      fog_connection: &fog_connection
         provider: AWS
         aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
         aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
     packages:
       minimum_size: 1048576
       app_package_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-packages
-      fog_connection:
-        provider: AWS
-        aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
-        aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
+      fog_connection: *fog_connection
     droplets:
       minimum_size: 1048576
       droplet_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-droplets
-      fog_connection:
-        provider: AWS
-        aws_access_key_id: <%= find("properties.template_only.aws.access_key_id") %>
-        aws_secret_access_key: <%= find("properties.template_only.aws.secret_access_key") %>
+      fog_connection: *fog_connection
+    buildpacks:
+      buildpack_directory_key: <%= find("properties.domain").gsub(".", "-") %>-cc-buildpacks
+      fog_connection: *fog_connection
     cc_partition: default
     db_encryption_key: "b9631492f433579"
     tasks_disabled: false
@@ -279,6 +276,10 @@ properties:
   syslog_aggregator:
     address: 10.10.16.10
     port: 54321
+<% if find('properties.syslog_aggregator.relay_host') -%>
+    relay_host: <%= find("properties.syslog_aggregator.relay_host") %>
+    relay_host_port: <%= find("properties.syslog_aggregator.relay_host_port") %>
+<% end -%>
 
   login:
     protocol: http
