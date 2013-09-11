@@ -1,4 +1,16 @@
 ---
+<%
+  # query a path in properties, with a fallback
+-  def q(path, default)
+-    here = find("properties")
+-    path.split(".").each do |step|
+-      return default unless here.key?(step)
+-      here = here[step]
+-    end
+-
+-    here
+-  end
+%>
 <% # Add admin user with random password if it's not already there. -%>
 <% # block is require to keep existing ccdb admin  and services password, or make a unique one. -%>
 <% users = find("properties").fetch("uaa", {}).fetch("scim", {}).fetch("users", []) || [] -%>
@@ -276,7 +288,7 @@ properties:
   syslog_aggregator:
     address: 10.10.16.10
     port: 54321
-<% if find('properties.syslog_aggregator.relay_host') -%>
+<% if q('syslog_aggregator.relay_host', nil) -%>
     relay_host: <%= find("properties.syslog_aggregator.relay_host") %>
     relay_host_port: <%= find("properties.syslog_aggregator.relay_host_port") %>
 <% end -%>
