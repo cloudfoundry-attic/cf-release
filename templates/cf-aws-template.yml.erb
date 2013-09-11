@@ -1,15 +1,15 @@
 ---
 <%
   # query a path in properties, with a fallback
--  def q(path, default)
--    here = find("properties")
--    path.split(".").each do |step|
--      return default unless here.key?(step)
--      here = here[step]
--    end
--
--    here
--  end
+  def q(path, default)
+    here = find("properties")
+    path.split(".").each do |step|
+      return default unless here.key?(step)
+      here = here[step]
+    end
+
+    here
+  end
 %>
 <% # Add admin user with random password if it's not already there. -%>
 <% # block is require to keep existing ccdb admin  and services password, or make a unique one. -%>
