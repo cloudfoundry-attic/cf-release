@@ -81,7 +81,7 @@ properties:
         redirect-uri: (( "https://login." domain ))
       portal:
         override: true
-        scope: openid,cloud_controller.read,cloud_controller.write,password.write
+        scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials
