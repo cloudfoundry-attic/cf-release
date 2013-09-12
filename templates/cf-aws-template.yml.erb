@@ -354,7 +354,7 @@ properties:
         redirect-uri: http://login.<%= find("properties.domain") %>
       portal:
         id: portal
-        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
+        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write,console.admin,console.support
         authorities: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write,password.write,uaa.admin
         secret: portalsecret
         authorized-grant-types: authorization_code,client_credentials,password,implicit
