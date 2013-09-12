@@ -6,14 +6,14 @@ server:
   container_rootfs_path: /var/vcap/packages/rootfs_lucid64
   container_depot_path: /var/vcap/data/warden/depot
   quota:
-    disk_quota_enabled: <%= properties.disk_quota_enabled %>
+    disk_quota_enabled: <%= p("disk_quota_enabled") %>
 
 logging:
   file: /var/vcap/sys/log/warden/warden.log
-  <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+  level: debug
+  <% if_p("syslog_aggregator.address") do |syslog_aggregator| %>
   syslog: vcap.warden
   <% end %>
-  level: debug
 
 health_check_server:
   port: 2345
@@ -21,20 +21,16 @@ health_check_server:
 network:
   pool_start_address: 10.254.0.0
   pool_size: 256
-  <% if properties.dea_next && properties.dea_next.deny_networks %>
-  deny_networks: <%= properties.dea_next.deny_networks %>
+  <% if_p("dea_next.deny_networks") do |deny_networks| %>
+  deny_networks: <%= deny_networks %>
   <% end %>
-  <% if properties.dea_next && properties.dea_next.allow_networks %>
-  allow_networks: <%= properties.dea_next.allow_networks %>
-  <%end %>
+  <% if_p("dea_next.allow_networks") do |allow_networks| %>
+  allow_networks: <%= allow_networks %>
+  <% end %>
 
   # Interface MTU size
   # (for OpenStack use 1454 to avoid problems with rubygems with GRE tunneling)
-  <% if properties.dea_next && properties.dea_next.mtu %>
-  mtu: <%= properties.dea_next.mtu %>
-  <%else%>
-  mtu: 1500
-  <%end %>
+  mtu: <%= p("dea_next.mtu") %>
 
 user:
   pool_start_uid: 20000

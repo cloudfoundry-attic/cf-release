@@ -71,6 +71,9 @@ properties:
   dea_next.kernel_network_tuning_enabled:
     description: "with latest kernel version, no kernel network tunings allowed with in warden cpi containers"
     default: true
+  dea_next.mtu:
+    description: "Interface MTU size"
+    default: 1500
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true

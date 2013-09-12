@@ -26,10 +26,10 @@ domain: <%= p("domain") %>
 
 logging:
   file: /var/vcap/sys/log/dea_next/dea_next.log
-  <% if_p("syslog_aggregator") do %>
+  level: debug
+  <% if_p("syslog_aggregator.address") do %>
   syslog: vcap.dea_next
   <% end %>
-  level: debug
 
 <% if_p("loggregator.router") do |router| %>
 loggregator:
