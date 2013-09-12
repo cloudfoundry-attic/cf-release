@@ -259,6 +259,7 @@ properties:
   login: (( merge ))
 
   router:
+    endpoint_timeout: (( merge || 60 ))
     status:
       user: (( merge ))
       password: (( merge ))
