@@ -20,6 +20,9 @@ properties:
   loggregator.maxRetainedLogMessages:
     description: number of log messages to retain per application
     default: 10
+  loggregator.disableEmailDomainAuthorization:
+    description: "Disable authorization based on email domains"
+    default: false
   cc.srv_api_uri:
     description: "API URI of cloud controller"
   nats.user:
