@@ -10,6 +10,8 @@ properties:
   disk_quota_enabled: false
 
   dea_next:
+    memory_mb: (( merge || 2048 ))
+    disk_mb: (( merge || 16384 ))
     directory_server_protocol: http
     kernel_network_tuning_enabled: false
 
