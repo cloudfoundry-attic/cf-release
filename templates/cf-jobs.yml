@@ -111,7 +111,7 @@ jobs:
     template: cloud_controller_ng
     instances: (( merge || 1 ))
     resource_pool: large_z1
-    persistent_disk: (( merge || nil ))
+    persistent_disk: (( merge || 0 ))
     networks:
       - name: cf1
     properties:
@@ -123,7 +123,7 @@ jobs:
     template: cloud_controller_ng
     instances: (( merge || 1 ))
     resource_pool: large_z2
-    persistent_disk: (( merge || nil ))
+    persistent_disk: (( merge || 0 ))
     networks:
       - name: cf2
     properties:
