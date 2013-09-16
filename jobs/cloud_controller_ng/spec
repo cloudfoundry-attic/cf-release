@@ -125,7 +125,7 @@ properties:
   description: "Log level for cc database operations"
 
  ccng.logging_level:
-  default: "info"
+  default: "debug2"
   description: "Log level for cc"
  ccng.logging_max_retries:
   default: 1

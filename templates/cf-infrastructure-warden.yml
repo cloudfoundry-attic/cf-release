@@ -1,0 +1,508 @@
+meta:
+  fog_config:
+    provider: Local
+    local_root: /var/vcap/store
+
+
+properties:
+  domain: (( jobs.router_z1.networks.cf1.static_ips.[0] ".xip.io" ))
+
+  disk_quota_enabled: false
+
+  dea_next:
+    drain_timeout: 0
+    memory_mb: (( merge || 2048 ))
+    disk_mb: (( merge || 16384 ))
+    directory_server_protocol: http
+    kernel_network_tuning_enabled: false
+
+  nats:
+    user: nats
+    password: nats
+
+  cc:
+    srv_api_uri: (( "http://api." domain ))
+
+    bulk_api_password: bulk-password
+    staging_upload_user: upload-user
+    staging_upload_password: upload-password
+    db_encryption_key: db-encryption-key
+
+    resource_pool:
+      fog_connection: (( meta.fog_config ))
+    packages:
+      fog_connection: (( meta.fog_config ))
+    droplets:
+      fog_connection: (( meta.fog_config ))
+    buildpacks:
+      fog_connection: (( meta.fog_config ))
+
+  uaa:
+    url: (( "http://uaa." domain ))
+    no_ssl: true
+    catalina_opts: -Xmx384m -XX:MaxPermSize=128m
+    jwt:
+      signing_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIICXAIBAAKBgQDHFr+KICms+tuT1OXJwhCUmR2dKVy7psa8xzElSyzqx7oJyfJ1
+        JZyOzToj9T5SfTIq396agbHJWVfYphNahvZ/7uMXqHxf+ZH9BL1gk9Y6kCnbM5R6
+        0gfwjyW1/dQPjOzn9N394zd2FJoFHwdq9Qs0wBugspULZVNRxq7veq/fzwIDAQAB
+        AoGBAJ8dRTQFhIllbHx4GLbpTQsWXJ6w4hZvskJKCLM/o8R4n+0W45pQ1xEiYKdA
+        Z/DRcnjltylRImBD8XuLL8iYOQSZXNMb1h3g5/UGbUXLmCgQLOUUlnYt34QOQm+0
+        KvUqfMSFBbKMsYBAoQmNdTHBaz3dZa8ON9hh/f5TT8u0OWNRAkEA5opzsIXv+52J
+        duc1VGyX3SwlxiE2dStW8wZqGiuLH142n6MKnkLU4ctNLiclw6BZePXFZYIK+AkE
+        xQ+k16je5QJBAN0TIKMPWIbbHVr5rkdUqOyezlFFWYOwnMmw/BKa1d3zp54VP/P8
+        +5aQ2d4sMoKEOfdWH7UqMe3FszfYFvSu5KMCQFMYeFaaEEP7Jn8rGzfQ5HQd44ek
+        lQJqmq6CE2BXbY/i34FuvPcKU70HEEygY6Y9d8J3o6zQ0K9SYNu+pcXt4lkCQA3h
+        jJQQe5uEGJTExqed7jllQ0khFJzLMx0K6tj0NeeIzAaGCQz13oo2sCdeGRHO4aDh
+        HH6Qlq/6UOV5wP8+GAcCQFgRCcB+hrje8hfEEefHcFpyKH+5g1Eu1k0mLrxK2zd+
+        4SlotYRHgPCEubokb2S1zfZDWIXW3HmggnGgM949TlY=
+        -----END RSA PRIVATE KEY-----
+      verification_key: |
+        -----BEGIN PUBLIC KEY-----
+        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHFr+KICms+tuT1OXJwhCUmR2d
+        KVy7psa8xzElSyzqx7oJyfJ1JZyOzToj9T5SfTIq396agbHJWVfYphNahvZ/7uMX
+        qHxf+ZH9BL1gk9Y6kCnbM5R60gfwjyW1/dQPjOzn9N394zd2FJoFHwdq9Qs0wBug
+        spULZVNRxq7veq/fzwIDAQAB
+        -----END PUBLIC KEY-----
+    cc:
+      client_secret: cc-secret
+    admin:
+      client_secret: admin-secret
+    batch:
+      username: batch-username
+      password: batch-password
+    clients:
+      login:
+        secret: login-secret
+      portal:
+        secret: portal-secret
+      billing:
+        secret: billing-secret
+      app-direct:
+        secret: app-direct-secret
+      support-services:
+        secret: support-services-secret
+      servicesmgmt:
+        secret: servicesmgmt-secret
+      space-mail:
+        secret: space-mail-secret
+    scim:
+      users:
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin
+
+  login:
+    catalina_opts: -Xmx384m -XX:MaxPermSize=128m
+    protocol: http
+
+  router:
+    status:
+      user: router
+      password: router
+
+  loggregator:
+    status:
+      user: loggregator
+      password: loggregator
+
+  ccdb:
+    db_scheme: postgres
+    address: (( properties.databases.address ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: admin
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+
+  uaadb:
+    db_scheme: postgresql
+    address: (( properties.databases.address ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: uaaadmin
+        password: admin
+    databases:
+      - tag: uaa
+        name: uaadb
+        citext: true
+
+  databases:
+    db_scheme: postgres
+    address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: admin
+      - tag: admin
+        name: uaaadmin
+        password: admin
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+      - tag: uaa
+        name: uaadb
+        citext: true
+
+jobs:
+  # specify nats static IP
+  - name: nats_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(1) ))
+
+  # set up static IP for loggregator router
+  - name: loggregator_router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(2) ))
+
+  # set up static IP for loggregator
+  - name: loggregator_z1
+    instances: 2
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(3, 4) ))
+
+  # only need one router, and set up static IPs
+  - name: router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(5) ))
+  - name: router_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(5) ))
+
+  # set up static IP for postgres
+  - name: postgres_z1
+    instances: 1
+    networks:
+    - name: cf1
+      static_ips: (( static_ips(7) ))
+
+  # only need one runner
+  - name: runner_z1
+    instances: 1
+  - name: runner_z2
+    instances: 0
+
+  # only need one taskmaster
+  - name: taskmaster_z1
+    instances: 1
+  - name: taskmaster_z2
+    instances: 0
+
+  # only need one uaa
+  - name: uaa_z1
+    instances: 1
+  - name: uaa_z2
+    instances: 0
+
+  # add a persistent disk to the CC, and only need one
+  - name: api_z1
+    persistent_disk: 4096
+  - name: api_z2
+    persistent_disk: 4096
+    instances: 0
+
+  # smaller persistent disk for logs, and set up static IPs
+  - name: logs_z1
+    instances: 1
+    persistent_disk: 4096
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(0) ))
+  - name: logs_z2
+    instances: 1
+    persistent_disk: 4096
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(0) ))
+
+  # no collector
+  - name: stats_z1
+    instances: 0
+  - name: stats_z2
+    instances: 0
+
+
+compilation:
+  cloud_properties:
+    name: random
+
+
+resource_pools:
+  - name: small_z1
+    cloud_properties:
+      name: random
+
+  - name: small_z2
+    cloud_properties:
+      name: random
+
+  - name: medium_z1
+    cloud_properties:
+      name: random
+
+  - name: medium_z2
+    cloud_properties:
+      name: random
+
+  - name: large_z1
+    cloud_properties:
+      name: random
+
+  - name: large_z2
+    cloud_properties:
+      name: random
+
+  - name: runner_z1
+    cloud_properties:
+      name: random
+
+  - name: runner_z2
+    cloud_properties:
+      name: random
+
+  - name: router_z1
+    cloud_properties:
+      name: random
+
+  - name: router_z2
+    cloud_properties:
+      name: random
+
+networks:
+- name: cf1
+  subnets:
+  - cloud_properties:
+      name: random
+    range: 10.244.0.0/24
+    reserved:
+    - 10.244.0.128 - 10.244.0.254
+    - 10.244.0.1
+    - 10.244.0.3
+    - 10.244.0.4
+    - 10.244.0.5
+    - 10.244.0.7
+    - 10.244.0.8
+    - 10.244.0.9
+    - 10.244.0.11
+    - 10.244.0.12
+    - 10.244.0.13
+    - 10.244.0.15
+    - 10.244.0.16
+    - 10.244.0.17
+    - 10.244.0.19
+    - 10.244.0.20
+    - 10.244.0.21
+    - 10.244.0.23
+    - 10.244.0.24
+    - 10.244.0.25
+    - 10.244.0.27
+    - 10.244.0.28
+    - 10.244.0.29
+    - 10.244.0.31
+    - 10.244.0.32
+    - 10.244.0.33
+    - 10.244.0.35
+    - 10.244.0.36
+    - 10.244.0.37
+    - 10.244.0.39
+    - 10.244.0.40
+    - 10.244.0.41
+    - 10.244.0.43
+    - 10.244.0.44
+    - 10.244.0.45
+    - 10.244.0.47
+    - 10.244.0.48
+    - 10.244.0.49
+    - 10.244.0.51
+    - 10.244.0.52
+    - 10.244.0.53
+    - 10.244.0.55
+    - 10.244.0.56
+    - 10.244.0.57
+    - 10.244.0.59
+    - 10.244.0.60
+    - 10.244.0.61
+    - 10.244.0.63
+    - 10.244.0.64
+    - 10.244.0.65
+    - 10.244.0.67
+    - 10.244.0.68
+    - 10.244.0.69
+    - 10.244.0.71
+    - 10.244.0.72
+    - 10.244.0.73
+    - 10.244.0.75
+    - 10.244.0.76
+    - 10.244.0.77
+    - 10.244.0.79
+    - 10.244.0.80
+    - 10.244.0.81
+    - 10.244.0.83
+    - 10.244.0.84
+    - 10.244.0.85
+    - 10.244.0.87
+    - 10.244.0.88
+    - 10.244.0.89
+    - 10.244.0.91
+    - 10.244.0.92
+    - 10.244.0.93
+    - 10.244.0.95
+    - 10.244.0.96
+    - 10.244.0.97
+    - 10.244.0.99
+    - 10.244.0.100
+    - 10.244.0.101
+    - 10.244.0.103
+    - 10.244.0.104
+    - 10.244.0.105
+    - 10.244.0.107
+    - 10.244.0.108
+    - 10.244.0.109
+    - 10.244.0.111
+    - 10.244.0.112
+    - 10.244.0.113
+    - 10.244.0.115
+    - 10.244.0.116
+    - 10.244.0.117
+    - 10.244.0.119
+    - 10.244.0.120
+    - 10.244.0.121
+    - 10.244.0.123
+    - 10.244.0.124
+    - 10.244.0.125
+    - 10.244.0.127
+    static:
+    - 10.244.0.2
+    - 10.244.0.6
+    - 10.244.0.10
+    - 10.244.0.14
+    - 10.244.0.18
+    - 10.244.0.22
+    - 10.244.0.26
+    - 10.244.0.30
+- name: cf2
+  subnets:
+  - cloud_properties:
+      name: random
+    range: 10.244.0.0/24
+    reserved:
+    - 10.244.0.1 - 10.244.0.127
+    - 10.244.0.128
+    - 10.244.0.129
+    - 10.244.0.131
+    - 10.244.0.132
+    - 10.244.0.133
+    - 10.244.0.135
+    - 10.244.0.136
+    - 10.244.0.137
+    - 10.244.0.139
+    - 10.244.0.140
+    - 10.244.0.141
+    - 10.244.0.143
+    - 10.244.0.144
+    - 10.244.0.145
+    - 10.244.0.147
+    - 10.244.0.148
+    - 10.244.0.149
+    - 10.244.0.151
+    - 10.244.0.152
+    - 10.244.0.153
+    - 10.244.0.155
+    - 10.244.0.156
+    - 10.244.0.157
+    - 10.244.0.159
+    - 10.244.0.160
+    - 10.244.0.161
+    - 10.244.0.163
+    - 10.244.0.164
+    - 10.244.0.165
+    - 10.244.0.167
+    - 10.244.0.168
+    - 10.244.0.169
+    - 10.244.0.171
+    - 10.244.0.172
+    - 10.244.0.173
+    - 10.244.0.175
+    - 10.244.0.176
+    - 10.244.0.177
+    - 10.244.0.179
+    - 10.244.0.180
+    - 10.244.0.181
+    - 10.244.0.183
+    - 10.244.0.184
+    - 10.244.0.185
+    - 10.244.0.187
+    - 10.244.0.188
+    - 10.244.0.189
+    - 10.244.0.191
+    - 10.244.0.192
+    - 10.244.0.193
+    - 10.244.0.195
+    - 10.244.0.196
+    - 10.244.0.197
+    - 10.244.0.199
+    - 10.244.0.200
+    - 10.244.0.201
+    - 10.244.0.203
+    - 10.244.0.204
+    - 10.244.0.205
+    - 10.244.0.207
+    - 10.244.0.208
+    - 10.244.0.209
+    - 10.244.0.211
+    - 10.244.0.212
+    - 10.244.0.213
+    - 10.244.0.215
+    - 10.244.0.216
+    - 10.244.0.217
+    - 10.244.0.219
+    - 10.244.0.220
+    - 10.244.0.221
+    - 10.244.0.223
+    - 10.244.0.224
+    - 10.244.0.225
+    - 10.244.0.227
+    - 10.244.0.228
+    - 10.244.0.229
+    - 10.244.0.231
+    - 10.244.0.232
+    - 10.244.0.233
+    - 10.244.0.235
+    - 10.244.0.236
+    - 10.244.0.237
+    - 10.244.0.239
+    - 10.244.0.240
+    - 10.244.0.241
+    - 10.244.0.243
+    - 10.244.0.244
+    - 10.244.0.245
+    - 10.244.0.247
+    - 10.244.0.248
+    - 10.244.0.249
+    - 10.244.0.251
+    - 10.244.0.252
+    - 10.244.0.253
+    static:
+    - 10.244.0.130
+    - 10.244.0.134
+    - 10.244.0.138
+    - 10.244.0.142
+    - 10.244.0.146
+    - 10.244.0.150
+    - 10.244.0.154
+    - 10.244.0.158

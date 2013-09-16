@@ -22,6 +22,12 @@ properties:
     buildpacks:
       fog_connection: (( meta.fog_config ))
 
+  uaa:
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+
+  login:
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+
   dea_next:
     deny_networks:
       - 169.254.0.0/16 # AWS Status
@@ -128,3 +134,47 @@ resource_pools:
       availability_zone: (( meta.zones.z2 ))
       elbs: (( merge || ["cfrouter"] ))
 
+
+# set up static IPs
+jobs:
+  - name: logs_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(0) ))
+
+  - name: logs_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(0) ))
+
+  - name: nats_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(1) ))
+
+  - name: router_z1
+    instances: (( merge || 1 ))
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+
+  - name: router_z2
+    instances: (( merge || 1 ))
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+
+  - name: loggregator_z1
+    instances: 2
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(21, 22) ))
+
+  - name: loggregator_router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(23) ))
