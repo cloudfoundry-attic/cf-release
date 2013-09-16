@@ -3,7 +3,7 @@ name: dea_next
 templates:
   dea.yml.erb: config/dea.yml
   dea_ctl: bin/dea_ctl
-  drain.rb: bin/drain
+  drain.erb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
   platform.yml: config/platform.yml
@@ -74,6 +74,9 @@ properties:
   dea_next.mtu:
     description: "Interface MTU size"
     default: 1500
+  dea_next.drain_timeout:
+    description: "Duration to wait before shutting down, in seconds."
+    default: 115
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
