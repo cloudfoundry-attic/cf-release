@@ -16,8 +16,17 @@ properties:
     directory_server_protocol: http
     kernel_network_tuning_enabled: false
 
+  nats:
+    user: nats
+    password: nats
+
   cc:
     srv_api_uri: (( "http://api." domain ))
+
+    bulk_api_password: bulk-password
+    staging_upload_user: upload-user
+    staging_upload_password: upload-password
+    db_encryption_key: db-encryption-key
 
     resource_pool:
       fog_connection: (( meta.fog_config ))
@@ -56,11 +65,45 @@ properties:
         qHxf+ZH9BL1gk9Y6kCnbM5R60gfwjyW1/dQPjOzn9N394zd2FJoFHwdq9Qs0wBug
         spULZVNRxq7veq/fzwIDAQAB
         -----END PUBLIC KEY-----
-      
+    cc:
+      client_secret: cc-secret
+    admin:
+      client_secret: admin-secret
+    batch:
+      username: batch-username
+      password: batch-password
+    clients:
+      login:
+        secret: login-secret
+      portal:
+        secret: portal-secret
+      billing:
+        secret: billing-secret
+      app-direct:
+        secret: app-direct-secret
+      support-services:
+        secret: support-services-secret
+      servicesmgmt:
+        secret: servicesmgmt-secret
+      space-mail:
+        secret: space-mail-secret
+    scim:
+      users:
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin
 
   login:
     catalina_opts: -Xmx384m -XX:MaxPermSize=128m
     protocol: http
+
+  router:
+    status:
+      user: router
+      password: router
+
+  loggregator:
+    status:
+      user: loggregator
+      password: loggregator
 
   ccdb:
     db_scheme: postgres
