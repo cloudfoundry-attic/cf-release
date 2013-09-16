@@ -45,14 +45,21 @@ properties:
         total_services: -1
 
   login:
+    catalina_opts: (( merge ))
+
     protocol: (( merge || "https" ))
+
     links:
       home: (( merge || "https://console." domain ))
       passwd: (( merge || "https://console." domain "/password_resets/new" ))
       signup: (( merge || "https://console." domain "/register" ))
 
   uaa:
-    url: (( "https://uaa." domain ))
+    catalina_opts: (( merge ))
+
+    url: (( merge || "https://uaa." domain ))
+
+    no_ssl: (( merge || false ))
 
     scim:
       users: (( merge ))
@@ -126,10 +133,3 @@ properties:
         authorized-grant-types: client_credentials
         access-token-validity: 1209600
         refresh-token-validity: 1209600
-
-  uaadb:
-    db_scheme: mysql
-    address: (( merge ))
-    port: 3306
-    roles: (( merge ))
-    databases: (( merge ))

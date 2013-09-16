@@ -27,7 +27,7 @@ jobs:
     resource_pool: medium_z2
     networks:
       - name: cf2
-        static_ips: (( static_ips(1) ))
+        static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
@@ -39,7 +39,7 @@ jobs:
     persistent_disk: (( merge || 100000 ))
     networks:
       - name: cf1
-        static_ips: (( static_ips(0) ))
+        static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
@@ -51,20 +51,31 @@ jobs:
     persistent_disk: (( merge || 100000 ))
     networks:
       - name: cf2
-        static_ips: (( static_ips(0) ))
+        static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: stats_z1
     template: collector
-    instances: 1
+    instances: (( merge || 1 ))
     resource_pool: small_z1
     networks:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: postgres_z1
+    template: postgres
+    instances: (( merge || 0 ))
+    resource_pool: large_z1
+    persistent_disk: (( merge || 4096 ))
+    networks:
+    - name: cf1
+      static_ips: (( merge || [] ))
+    properties:
+      db: databases
 
   - name: uaa_z1
     template: uaa
@@ -100,6 +111,7 @@ jobs:
     template: cloud_controller_ng
     instances: (( merge || 1 ))
     resource_pool: large_z1
+    persistent_disk: (( merge || nil ))
     networks:
       - name: cf1
     properties:
@@ -111,6 +123,7 @@ jobs:
     template: cloud_controller_ng
     instances: (( merge || 1 ))
     resource_pool: large_z2
+    persistent_disk: (( merge || nil ))
     networks:
       - name: cf2
     properties:
@@ -174,11 +187,11 @@ jobs:
 
   - name: loggregator_z1
     template: loggregator
-    instances: (( merge || 2 ))
+    instances: 2
     resource_pool: small_z1
     networks:
       - name: cf1
-        static_ips: (( static_ips(21, 22) ))
+        static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
@@ -189,7 +202,7 @@ jobs:
     resource_pool: small_z1
     networks:
       - name: cf1
-        static_ips: (( static_ips(23) ))
+        static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
@@ -200,7 +213,7 @@ jobs:
     resource_pool: router_z1
     networks:
       - name: cf1
-        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+        static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
@@ -211,11 +224,10 @@ jobs:
     resource_pool: router_z2
     networks:
       - name: cf2
-        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+        static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
-
 
 properties:
   domain: (( merge ))
@@ -223,19 +235,15 @@ properties:
   system_domain_organization: (( merge || nil ))
   app_domains: (( merge || [domain] ))
 
+  disk_quota_enabled: (( merge || true ))
+
   nats:
     user: (( merge ))
     password: (( merge ))
     address: (( jobs.nats_z2.networks.cf2.static_ips.[0] ))
     port: 4222
 
-  dea_next:
-    memory_mb: (( merge ))
-    memory_overcommit_factor: (( merge || 3 ))
-    disk_mb: (( merge ))
-    disk_overcommit_factor: (( merge || 2 ))
-    deny_networks: (( merge || [] ))
-    allow_networks: (( merge || [] ))
+  dea_next: (( merge ))
 
   loggregator:
     router: (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
@@ -255,6 +263,8 @@ properties:
 
   uaa: (( merge ))
   uaadb: (( merge ))
+
+  databases: (( merge || nil ))
 
   login: (( merge ))
 

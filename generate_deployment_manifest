@@ -2,9 +2,18 @@
 
 templates=$(dirname $0)/templates
 
+infrastructure=$1
+
+shift
+
+if [ "$infrastructure" != "aws" ] && [ "$infrastructure" != "warden" ]; then
+  echo "usage: ./generate_deployment_manifest <aws|warden> [stubs...]"
+  exit 1
+fi
+
 spiff merge \
   $templates/cf-deployment.yml \
   $templates/cf-jobs.yml \
   $templates/cf-properties.yml \
-  $templates/cf-infrastructure-aws.yml \
+  $templates/cf-infrastructure-${infrastructure}.yml \
   $*

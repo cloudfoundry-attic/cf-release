@@ -14,7 +14,7 @@ dea_pidfile = "/var/vcap/sys/run/dea_next/dea_next.pid"
 warden_pidfile = "/var/vcap/sys/run/warden/warden.pid"
 
 # give the DEAS a while to evacuate and restart apps
-default_timeout = 115
+default_timeout = <%= p("dea_next.drain_timeout") %>
 
 if !File.exists?(dea_pidfile)
   logger.info("DEA not running")
@@ -26,7 +26,7 @@ begin
   dea_pid = File.read(dea_pidfile).to_i
   warden_pid = File.read(warden_pidfile).to_i
 
-  logger.info("Sending signal USR1 to DEA.")
+  logger.info("Sending signal USR2 to DEA.")
   Process.kill("USR2", dea_pid)
   timeout = (ENV["DEA_DRAIN_TIMEOUT"] || default_timeout).to_i
   logger.info("Setting timeout as #{timeout}.")
