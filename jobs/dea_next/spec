@@ -74,7 +74,7 @@ properties:
   dea_next.mtu:
     description: "Interface MTU size"
     default: 1500
-  dea_next.drain_timeout:
+  dea_next.evacuation_delay:
     description: "Duration to wait before shutting down, in seconds."
     default: 115
   disk_quota_enabled:
