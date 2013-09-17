@@ -80,10 +80,6 @@ The components in a V2 deployment are:
 Building a CF-Release later than 99be208f requires BOSH version 1.5.0 or later.
 The latest version of BOSH CLI can be found here: https://github.com/cloudfoundry/bosh/tree/master/bosh_cli
 
-## Cloud Foundry V1 Legacy
-
-This repository also contains v1 legacy components. These components are not under active development and will eventually not be linked in this repository.
-
 ## Ask Questions
 
 Questions about the Cloud Foundry Open Source Project can be directed to our Google Groups.
