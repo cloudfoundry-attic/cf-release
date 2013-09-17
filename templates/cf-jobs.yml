@@ -243,7 +243,15 @@ properties:
     address: (( jobs.nats_z2.networks.cf2.static_ips.[0] ))
     port: 4222
 
-  dea_next: (( merge ))
+  dea_next:
+    memory_mb: (( merge ))
+    memory_overcommit_factor: (( merge || 3 ))
+    disk_mb: (( merge ))
+    disk_overcommit_factor: (( merge || 2 ))
+    deny_networks: (( merge || [] ))
+    allow_networks: (( merge || [] ))
+    kernel_network_tuning_enabled: (( merge || true ))
+    directory_server_protocol: (( merge || "https" ))
 
   loggregator:
     router: (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
