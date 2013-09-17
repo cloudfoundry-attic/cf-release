@@ -2,7 +2,7 @@
 name: login
 templates:
   login_ctl.erb: bin/login_ctl
-  cf-registrar_ctl: bin/cf-registrar_ctl
+  cf-registrar_ctl: bin/login_cf-registrar_ctl
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   login.yml.erb: config/login.yml

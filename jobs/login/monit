@@ -6,6 +6,6 @@ check process login
 
 check process login_cf-registrar
   with pidfile /var/vcap/sys/run/login/cf-registrar.pid
-  start program "/var/vcap/jobs/login/bin/cf-registrar_ctl start"
-  stop program "/var/vcap/jobs/login/bin/cf-registrar_ctl stop"
+  start program "/var/vcap/jobs/login/bin/login_cf-registrar_ctl start"
+  stop program "/var/vcap/jobs/login/bin/login_cf-registrar_ctl stop"
   group vcap
