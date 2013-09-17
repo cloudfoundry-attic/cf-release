@@ -2,7 +2,7 @@
 name: uaa
 templates:
   uaa_ctl.erb: bin/uaa_ctl
-  cf-registrar_ctl: bin/cf-registrar_ctl
+  cf-registrar_ctl: bin/uaa_cf-registrar_ctl
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   uaa.yml.erb: config/uaa.yml
