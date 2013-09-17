@@ -14,7 +14,7 @@ dea_pidfile = "/var/vcap/sys/run/dea_next/dea_next.pid"
 warden_pidfile = "/var/vcap/sys/run/warden/warden.pid"
 
 # give the DEAS a while to evacuate and restart apps
-default_timeout = <%= p("dea_next.drain_timeout") %>
+default_timeout = <%= p("dea_next.evacuation_delay") %>
 
 if !File.exists?(dea_pidfile)
   logger.info("DEA not running")

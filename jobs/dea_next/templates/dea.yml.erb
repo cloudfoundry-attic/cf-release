@@ -9,6 +9,8 @@ base_dir: /var/vcap/data/dea_next
 
 warden_socket: /var/vcap/data/warden/warden.sock
 
+evacuation_delay_secs: <%= p("dea_next.evacuation_delay") %>
+
 directory_server:
   protocol: '<%= p('dea_next.directory_server_protocol') %>'
   v1_port: 12345
