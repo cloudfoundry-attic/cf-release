@@ -184,18 +184,23 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(5) ))
 
+  # only need one runner
+  #
+  # also give it a static IP to make testing easier
+  - name: runner_z1
+    instances: 1
+    networks:
+    - name: cf1
+      static_ips: (( static_ips(6) ))
+  - name: runner_z2
+    instances: 0
+
   # set up static IP for postgres
   - name: postgres_z1
     instances: 1
     networks:
     - name: cf1
       static_ips: (( static_ips(7) ))
-
-  # only need one runner
-  - name: runner_z1
-    instances: 1
-  - name: runner_z2
-    instances: 0
 
   # only need one taskmaster
   - name: taskmaster_z1
