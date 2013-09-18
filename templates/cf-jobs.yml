@@ -36,7 +36,7 @@ jobs:
     template: syslog_aggregator
     instances: 1
     resource_pool: medium_z1
-    persistent_disk: (( merge || 100000 ))
+    persistent_disk: 100000
     networks:
       - name: cf1
         static_ips: (( merge ))
@@ -48,7 +48,7 @@ jobs:
     template: syslog_aggregator
     instances: 1
     resource_pool: medium_z2
-    persistent_disk: (( merge || 100000 ))
+    persistent_disk: 100000
     networks:
       - name: cf2
         static_ips: (( merge ))
@@ -58,7 +58,7 @@ jobs:
 
   - name: stats_z1
     template: collector
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: small_z1
     networks:
       - name: cf1
@@ -68,9 +68,9 @@ jobs:
 
   - name: postgres_z1
     template: postgres
-    instances: (( merge || 0 ))
+    instances: 0
     resource_pool: large_z1
-    persistent_disk: (( merge || 4096 ))
+    persistent_disk: 4096
     networks:
     - name: cf1
       static_ips: (( merge || [] ))
@@ -79,7 +79,7 @@ jobs:
 
   - name: uaa_z1
     template: uaa
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: large_z1
     networks:
       - name: cf1
@@ -89,7 +89,7 @@ jobs:
 
   - name: uaa_z2
     template: uaa
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: large_z2
     networks:
       - name: cf2
@@ -99,7 +99,7 @@ jobs:
 
   - name: login_z1
     template: login
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: medium_z1
     networks:
       - name: cf1
@@ -109,9 +109,9 @@ jobs:
 
   - name: api_z1
     template: cloud_controller_ng
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: large_z1
-    persistent_disk: (( merge || 0 ))
+    persistent_disk: 0
     networks:
       - name: cf1
     properties:
@@ -121,9 +121,9 @@ jobs:
 
   - name: api_z2
     template: cloud_controller_ng
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: large_z2
-    persistent_disk: (( merge || 0 ))
+    persistent_disk: 0
     networks:
       - name: cf2
     properties:
@@ -145,7 +145,7 @@ jobs:
     template:
       - dea_next
       - dea_logging_agent
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: runner_z1
     networks:
       - name: cf1
@@ -157,7 +157,7 @@ jobs:
     template:
       - dea_next
       - dea_logging_agent
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: runner_z2
     networks:
       - name: cf2
@@ -167,7 +167,7 @@ jobs:
 
   - name: taskmaster_z1
     template: narc
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: runner_z1
     networks:
       - name: cf1
@@ -177,7 +177,7 @@ jobs:
 
   - name: taskmaster_z2
     template: narc
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: runner_z2
     networks:
       - name: cf2
@@ -198,7 +198,7 @@ jobs:
 
   - name: loggregator_router_z1
     template: loggregatorrouter
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: small_z1
     networks:
       - name: cf1
@@ -209,7 +209,7 @@ jobs:
 
   - name: router_z1
     template: gorouter
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: router_z1
     networks:
       - name: cf1
@@ -220,7 +220,7 @@ jobs:
 
   - name: router_z2
     template: gorouter
-    instances: (( merge || 1 ))
+    instances: 1
     resource_pool: router_z2
     networks:
       - name: cf2
@@ -231,11 +231,11 @@ jobs:
 
 properties:
   domain: (( merge ))
-  system_domain: (( merge || domain ))
-  system_domain_organization: (( merge || nil ))
-  app_domains: (( merge || [domain] ))
+  system_domain: (( domain ))
+  system_domain_organization: ~
+  app_domains: (( [domain] ))
 
-  disk_quota_enabled: (( merge || true ))
+  disk_quota_enabled: true
 
   nats:
     user: (( merge ))
@@ -245,13 +245,14 @@ properties:
 
   dea_next:
     memory_mb: (( merge ))
-    memory_overcommit_factor: (( merge || 3 ))
+    memory_overcommit_factor: 3
     disk_mb: (( merge ))
-    disk_overcommit_factor: (( merge || 2 ))
+    disk_overcommit_factor: 2
     deny_networks: (( merge || [] ))
     allow_networks: (( merge || [] ))
-    kernel_network_tuning_enabled: (( merge || true ))
-    directory_server_protocol: (( merge || "https" ))
+    kernel_network_tuning_enabled: true
+    directory_server_protocol: https
+    evacuation_delay: 115
 
   loggregator:
     router: (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
@@ -272,20 +273,20 @@ properties:
   uaa: (( merge ))
   uaadb: (( merge ))
 
-  databases: (( merge || nil ))
+  databases: ~
 
   login: (( merge ))
 
   router:
-    endpoint_timeout: (( merge || 60 ))
+    endpoint_timeout: 60
     status:
       user: (( merge ))
       password: (( merge ))
 
-  syslog_aggregator: (( merge || nil ))
+  syslog_aggregator: ~
 
   collector:
     use_datadog: true
-    datadog_api_key: (( merge || "" ))
-    datadog_application_key: (( merge || "" ))
+    datadog_api_key: ""
+    datadog_application_key: ""
     deployment_name: (( name ))

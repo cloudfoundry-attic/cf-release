@@ -114,12 +114,12 @@ resource_pools:
 
   - name: runner_z1
     cloud_properties:
-      instance_type: (( merge || "m1.large" ))
+      instance_type: m1.large
       availability_zone: (( meta.zones.z1 ))
 
   - name: runner_z2
     cloud_properties:
-      instance_type: (( merge || "m1.large" ))
+      instance_type: m1.large
       availability_zone: (( meta.zones.z2 ))
 
   - name: router_z1
@@ -156,13 +156,13 @@ jobs:
         static_ips: (( static_ips(1) ))
 
   - name: router_z1
-    instances: (( merge || 1 ))
+    instances: 1
     networks:
       - name: cf1
         static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
 
   - name: router_z2
-    instances: (( merge || 1 ))
+    instances: 1
     networks:
       - name: cf2
         static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))

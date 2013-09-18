@@ -2,7 +2,7 @@ properties:
   domain: (( merge ))
 
   cc:
-    srv_api_uri: (( merge || "https://api." domain ))
+    srv_api_uri: (( "https://api." domain ))
 
     bulk_api_password: (( merge ))
 
@@ -11,27 +11,27 @@ properties:
 
     db_encryption_key: (( merge ))
 
-    tasks_disabled: (( merge || false ))
+    tasks_disabled: false
 
     resource_pool:
-      resource_directory_key: (( merge || domain "-cc-resources" ))
+      resource_directory_key: (( domain "-cc-resources" ))
       fog_connection: (( merge ))
-      cdn: (( merge || nil ))
+      cdn: ~
 
     packages:
-      app_package_directory_key: (( merge || domain "-cc-packages" ))
+      app_package_directory_key: (( domain "-cc-packages" ))
       fog_connection: (( merge ))
-      cdn: (( merge || nil ))
+      cdn: ~
 
     droplets:
-      droplet_directory_key: (( merge || domain "-cc-droplets" ))
+      droplet_directory_key: (( domain "-cc-droplets" ))
       fog_connection: (( merge ))
-      cdn: (( merge || nil ))
+      cdn: ~
 
     buildpacks:
-      buildpack_directory_key: (( merge || domain "-cc-buildpacks" ))
+      buildpack_directory_key: (( domain "-cc-buildpacks" ))
       fog_connection: (( merge ))
-      cdn: (( merge || nil ))
+      cdn: ~
 
     quota_definitions:
       free:
@@ -47,19 +47,19 @@ properties:
   login:
     catalina_opts: (( merge ))
 
-    protocol: (( merge || "https" ))
+    protocol: https
 
     links:
-      home: (( merge || "https://console." domain ))
-      passwd: (( merge || "https://console." domain "/password_resets/new" ))
-      signup: (( merge || "https://console." domain "/register" ))
+      home: (( "https://console." domain ))
+      passwd: (( "https://console." domain "/password_resets/new" ))
+      signup: (( "https://console." domain "/register" ))
 
   uaa:
     catalina_opts: (( merge ))
 
-    url: (( merge || "https://uaa." domain ))
+    url: (( "https://uaa." domain ))
 
-    no_ssl: (( merge || false ))
+    no_ssl: false
 
     scim:
       users: (( merge ))
