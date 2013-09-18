@@ -11,8 +11,8 @@ properties:
 
   dea_next:
     evacuation_delay: 0
-    memory_mb: (( merge || 2048 ))
-    disk_mb: (( merge || 16384 ))
+    memory_mb: 2048
+    disk_mb: 16384
     directory_server_protocol: http
     kernel_network_tuning_enabled: false
 
