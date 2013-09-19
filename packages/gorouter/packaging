@@ -7,7 +7,5 @@ export GOROOT=$(readlink -nf /var/vcap/packages/golang)
 export GOPATH=$BOSH_INSTALL_TARGET
 export PATH=$GOROOT/bin:$PATH
 
-(
-  cd $GOPATH
-  go install github.com/cloudfoundry/gorouter/router
-)
+cd $GOPATH
+go install github.com/cloudfoundry/gorouter/router
