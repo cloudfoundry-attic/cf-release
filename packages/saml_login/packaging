@@ -20,7 +20,7 @@ mv apache-tomcat-7.0.42 tomcat
 
 cd tomcat
 rm -rf webapps/*
-cp -a ${BOSH_COMPILE_TARGET}/saml_login/cloudfoundry-saml-login-server-1.3.0-SNAPSHOT.war webapps/ROOT.war
+cp -a ${BOSH_COMPILE_TARGET}/saml_login/cloudfoundry-saml-login-server-1.2.6.war webapps/ROOT.war
 cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-varz-1.0.2.war webapps/varz.war
 
 cd ${BOSH_INSTALL_TARGET}
