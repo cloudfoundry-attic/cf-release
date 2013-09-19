@@ -3,14 +3,12 @@ set -e
 
 cp -a dea_next/* ${BOSH_INSTALL_TARGET}
 
-(
-  cd ${BOSH_INSTALL_TARGET}
-  /var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test
+cd ${BOSH_INSTALL_TARGET}
+/var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test
 
-  GOLANG_PATH=`readlink -nf /var/vcap/packages/golang`
-  PATH=$GOLANG_PATH/bin:$PATH
-  export GOROOT=`readlink -nf /var/vcap/packages/golang`
+GOLANG_PATH=`readlink -nf /var/vcap/packages/golang`
+PATH=$GOLANG_PATH/bin:$PATH
+export GOROOT=`readlink -nf /var/vcap/packages/golang`
 
-  cd ${BOSH_INSTALL_TARGET}/go
-  bin/go install runner
-)
+cd ${BOSH_INSTALL_TARGET}/go
+bin/go install runner
