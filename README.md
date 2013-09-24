@@ -80,6 +80,18 @@ The components in a V2 deployment are:
 Building a CF-Release later than 99be208f requires BOSH version 1.5.0 or later.
 The latest version of BOSH CLI can be found here: https://github.com/cloudfoundry/bosh/tree/master/bosh_cli
 
+## Useful scripts
+
+* `./update` pulls cf-release and updates all submodules (recursively) to the correct commit.
+This is useful after:
+  * You've first cloned the repo
+  * Before you make changes to the directory, to avoid a rebase
+* `./update_sub` takes an argument of the name of a submodule (partial matches okay), pulls that submodule to master, and stages that change in cf-release.
+Typically, only people developing Cloud Foundry should use `update_sub`.
+This script is useful after:
+  * You've made changes to a submodule and you need those changes made available for deployment
+* `./commit_with_shortlog` commits changes you've made using `update_sub`.
+
 ## Ask Questions
 
 Questions about the Cloud Foundry Open Source Project can be directed to our Google Groups.
