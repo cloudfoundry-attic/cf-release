@@ -15,9 +15,6 @@ properties:
     default: 'cc'
   cc.srv_api_uri:
     description: "API URI of cloud controller"
-  hm_props:
-    description: "BOSH job name of health manager"
-    default: 'health_manager'
   networks.apps:
     description:
   nats.address:
