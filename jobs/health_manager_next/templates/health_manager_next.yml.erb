@@ -2,33 +2,31 @@
 <% cc_props_name = properties.cc_props %>
 <% cc_props = properties.send(cc_props_name) %>
 
-<% hm_props_name = properties.hm_props %>
-<% hm_props = properties.send(hm_props_name) || OpenStruct.new %>
-
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
 logging:
   file: /var/vcap/sys/log/health_manager_next/health_manager_next.log
-  <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+  level: debug
+  <% if_p("syslog_aggregator.address") do %>
   syslog: vcap.health_manager_next
   <% end %>
-  level: debug
 pid: /var/vcap/sys/run/health_manager_next/health_manager_next.pid
 index: <%= spec.index %>
 bulk_api:
   host: <%= cc_props.srv_api_uri %>
 
-cc_partition: <%= hm_props.cc_partition %>
+cc_partition: <%= p("health_manager.cc_partition") %>
 
+<% if_p("health_manager.intervals") do |intervals| %>
 intervals:
-  <% intervals = hm_props.intervals || OpenStruct.new %>
-  expected_state_update: <%= intervals.expected_state_update %>
-  droplet_lost:          <%= intervals.droplet_lost          %>
-  droplets_analysis:     <%= intervals.droplets_analysis     %>
-  flapping_death:        <%= intervals.flapping_death        %>
-  flapping_timeout:      <%= intervals.flapping_timeout      %>
-  restart_timeout:       <%= intervals.restart_timeout       %>
-  min_restart_delay:     <%= intervals.min_restart_delay     %>
-  max_restart_delay:     <%= intervals.max_restart_delay     %>
-  giveup_crash_number:   <%= intervals.giveup_crash_number   %>
-  stable_state:          <%= intervals.stable_state          %>
+  expected_state_update: <%= intervals["expected_state_update"] %>
+  droplet_lost:          <%= intervals["droplet_lost"]          %>
+  droplets_analysis:     <%= intervals["droplets_analysis"]     %>
+  flapping_death:        <%= intervals["flapping_death"]        %>
+  flapping_timeout:      <%= intervals["flapping_timeout"]      %>
+  restart_timeout:       <%= intervals["restart_timeout"]       %>
+  min_restart_delay:     <%= intervals["min_restart_delay"]     %>
+  max_restart_delay:     <%= intervals["max_restart_delay"]     %>
+  giveup_crash_number:   <%= intervals["giveup_crash_number"]   %>
+  stable_state:          <%= intervals["stable_state"]          %>
+<% end %>

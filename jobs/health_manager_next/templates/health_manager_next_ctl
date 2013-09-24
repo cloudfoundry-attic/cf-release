@@ -24,7 +24,7 @@ case $1 in
     echo $$ > $PIDFILE
     chown vcap:vcap $PIDFILE
 
-    <% if properties.syslog_aggregator %>
+    <% if_p("syslog_aggregator") do %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONF_DIR
     <% end %>
 
