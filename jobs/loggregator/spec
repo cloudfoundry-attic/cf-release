@@ -19,7 +19,7 @@ properties:
     description: port used to run the varz endpoint
   loggregator.maxRetainedLogMessages:
     description: number of log messages to retain per application
-    default: 10
+    default: 1000
   loggregator.disableEmailDomainAuthorization:
     description: "Disable authorization based on email domains"
     default: false
