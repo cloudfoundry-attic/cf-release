@@ -88,3 +88,6 @@
 [submodule "src/gorouter/src/code.google.com/p/gogoprotobuf"]
 	path = src/gorouter/src/code.google.com/p/gogoprotobuf
 	url = https://code.google.com/p/gogoprotobuf/
+[submodule "shared"]
+	path = shared
+	url = https://github.com/cloudfoundry/shared-release-packages.git
