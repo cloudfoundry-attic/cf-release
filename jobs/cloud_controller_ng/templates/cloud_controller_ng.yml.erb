@@ -74,7 +74,7 @@ active_record_db:
 <% scheme = p("uaa.no_ssl") ? "http" : "https"
    domain = p("domain") %>
 
-<% if_p("login.enabled") do %>
+<% if p("login.enabled") %>
 login:
   url: <%= p("login.url", "#{scheme}://login.#{domain}") %>
 <% end %>
