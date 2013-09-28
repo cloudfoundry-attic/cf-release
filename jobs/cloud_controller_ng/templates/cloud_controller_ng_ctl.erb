@@ -50,9 +50,6 @@ case $1 in
     chown vcap:vcap $LOG_DIR
     chown vcap:vcap $TMPDIR
 
-    echo $$ > $PIDFILE
-    chown vcap:vcap $PIDFILE
-
     <% if properties.nfs_server.address %>
     modprobe nfs
     mkdir -p $NFS_SHARE
