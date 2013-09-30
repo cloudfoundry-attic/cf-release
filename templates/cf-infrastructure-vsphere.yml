@@ -177,8 +177,8 @@ properties:
         citext: true
 
   uaa:
-    no_ssl: true
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    no_ssl: true
 
   login:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
