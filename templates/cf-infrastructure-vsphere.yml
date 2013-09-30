@@ -1,0 +1,186 @@
+compilation:
+  cloud_properties:
+    ram: 1024
+    disk: 4096
+    cpu: 2
+
+networks: (( merge ))
+
+resource_pools:
+  - name: small_z1
+    cloud_properties:
+      ram: 1024
+      disk: 2048
+      cpu: 1
+
+  - name: small_z2
+    cloud_properties:
+      ram: 1024
+      disk: 2048
+      cpu: 1
+
+  - name: medium_z1
+    cloud_properties:
+      ram: 1024
+      disk: 2048
+      cpu: 1
+
+  - name: medium_z2
+    cloud_properties:
+      ram: 1024
+      disk: 2048
+      cpu: 1
+
+  - name: large_z1
+    cloud_properties:
+      ram: 1024
+      disk: 10240
+      cpu: 1
+
+  - name: large_z2
+    cloud_properties:
+      ram: 1024
+      disk: 10240
+      cpu: 1
+
+  - name: runner_z1
+    cloud_properties:
+      ram: 16384
+      disk: 32768
+      cpu: 2
+
+  - name: runner_z2
+    cloud_properties:
+      ram: 16384
+      disk: 32768
+      cpu: 2
+
+  - name: router_z1
+    cloud_properties:
+      ram: 1024
+      disk: 2048
+      cpu: 1
+
+  - name: router_z2
+    cloud_properties:
+      ram: 1024
+      disk: 2048
+      cpu: 1
+
+
+jobs:
+  - name: logs_z1
+    instances: 1
+    persistent_disk: 8192
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(0) ))
+
+  - name: logs_z2
+    instances: 1
+    persistent_disk: 8192
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(0) ))
+
+  - name: nats_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(1) ))
+
+  - name: nfs_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(2) ))
+
+  - name: postgres_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(32) ))
+
+  - name: router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(5, 6) ))
+
+  - name: router_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(5, 6) ))
+
+  - name: loggregator_z1
+    instances: 2
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(21, 22) ))
+
+  - name: loggregator_router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(23) ))
+
+
+properties:
+  domain: (( jobs.router_z1.networks.cf1.static_ips.[0] ".xip.io" ))
+  system_domain: (( domain ))
+  system_domain_organization: pivotal
+
+  ccdb:
+    db_scheme: postgres
+    address: (( properties.databases.address ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: admin
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+
+  uaadb:
+    db_scheme: postgresql
+    address: (( properties.databases.address ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: uaaadmin
+        password: admin
+    databases:
+      - tag: uaa
+        name: uaadb
+        citext: true
+
+  databases:
+    db_scheme: postgres
+    address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: admin
+      - tag: admin
+        name: uaaadmin
+        password: admin
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+      - tag: uaa
+        name: uaadb
+        citext: true
+
+  uaa:
+    no_ssl: true
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+
+  login:
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    protocol: http
+
