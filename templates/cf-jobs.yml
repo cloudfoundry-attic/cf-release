@@ -66,6 +66,15 @@ jobs:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
 
+  - name: nfs_z1
+    template: debian_nfs_server
+    instances: 0
+    resource_pool: medium_z1
+    persistent_disk: 102400
+    networks:
+      - name: cf1
+        static_ips: (( merge ))
+
   - name: postgres_z1
     template: postgres
     instances: 0
@@ -286,6 +295,10 @@ properties:
       password: (( merge ))
 
   syslog_aggregator: ~
+
+  nfs_server:
+    address: (( jobs.nfs_z1.networks.cf1.static_ips.[0] || nil ))
+    network: (( networks.cf1.subnets.[0].range ))
 
   collector:
     use_datadog: true

@@ -15,22 +15,22 @@ properties:
 
     resource_pool:
       resource_directory_key: (( domain "-cc-resources" ))
-      fog_connection: (( merge ))
+      fog_connection: ~
       cdn: ~
 
     packages:
       app_package_directory_key: (( domain "-cc-packages" ))
-      fog_connection: (( merge ))
+      fog_connection: ~
       cdn: ~
 
     droplets:
       droplet_directory_key: (( domain "-cc-droplets" ))
-      fog_connection: (( merge ))
+      fog_connection: ~
       cdn: ~
 
     buildpacks:
       buildpack_directory_key: (( domain "-cc-buildpacks" ))
-      fog_connection: (( merge ))
+      fog_connection: ~
       cdn: ~
 
     quota_definitions:
