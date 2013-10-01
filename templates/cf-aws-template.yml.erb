@@ -201,10 +201,7 @@ properties:
     router: <%= ip( 6, 'cf1.static') %>:3456
     servers: 
     - <%= ip( 4, 'cf1.static') %>:3456
-    status:
-      user: sBNUxXlS0pc71wVef
-      password: 7nTmaIf9vPV4mJyBe
-      port: 5768
+    
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 

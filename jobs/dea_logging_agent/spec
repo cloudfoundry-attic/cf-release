@@ -15,10 +15,13 @@ properties:
     description: loggregator router in host:port format
   loggregator.status.user:
     description: username used to log into varz endpoint
+    default: "" 
   loggregator.status.password:
     description: password used to log into varz endpoint
+    default: ""
   loggregator.status.port:
     description: port used to run the varz endpoint
+    default: 0
   nats.user:
     description: "Username for cc client to connect to NATS"
   nats.password:

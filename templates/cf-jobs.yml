@@ -270,10 +270,6 @@ properties:
     servers:
     - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
     - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
-    status:
-      user: (( merge ))
-      password: (( merge ))
-      port: 5768
 
   cc: (( merge ))
   ccdb: (( merge ))

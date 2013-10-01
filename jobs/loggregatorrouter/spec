@@ -17,10 +17,13 @@ properties:
     description: an array of host and port of the loggregator servers
   loggregator.status.user:
     description: username used to log into varz endpoint
+    default: ""
   loggregator.status.password:
     description: password used to log into varz endpoint
+    default: ""
   loggregator.status.port:
     description: port used to run the varz endpoint
+    default: 0
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
   nats.user:
