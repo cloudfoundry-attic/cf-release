@@ -99,7 +99,7 @@ jobs:
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(32) ))
+        static_ips: (( static_ips(12) ))
 
   - name: router_z1
     instances: 1
@@ -117,13 +117,13 @@ jobs:
     instances: 2
     networks:
       - name: cf1
-        static_ips: (( static_ips(21, 22) ))
+        static_ips: (( static_ips(10, 11) ))
 
   - name: loggregator_router_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(23) ))
+        static_ips: (( static_ips(9) ))
 
 
 properties:
