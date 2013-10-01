@@ -13,10 +13,13 @@ properties:
     default: false
   loggregator.status.user:
     description: username used to log into varz endpoint
+    default: ""
   loggregator.status.password:
     description: password used to log into varz endpoint
+    default: ""
   loggregator.status.port:
     description: port used to run the varz endpoint
+    default: 0
   loggregator.maxRetainedLogMessages:
     description: number of log messages to retain per application
     default: 1000
