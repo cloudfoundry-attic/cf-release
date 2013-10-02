@@ -1,4 +1,11 @@
-name: (( merge ))
+meta:
+  # override this in your stub to set the environment name,
+  # which is used for the deployment name
+  #
+  # i.e. cf-tabasco
+  environment: ~
+
+name: (( meta.environment ))
 
 director_uuid: (( merge ))
 
