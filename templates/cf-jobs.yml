@@ -1,8 +1,8 @@
-name: (( merge ))
-
 networks: (( merge ))
 
 meta:
+  environment: ~
+
   networks:
     z1:
       apps: cf1
@@ -300,4 +300,4 @@ properties:
     use_datadog: true
     datadog_api_key: ""
     datadog_application_key: ""
-    deployment_name: (( name ))
+    deployment_name: (( meta.environment ))
