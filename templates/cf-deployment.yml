@@ -5,6 +5,10 @@ meta:
   # i.e. cf-tabasco
   environment: ~
 
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+
 name: (( meta.environment ))
 
 director_uuid: (( merge ))
@@ -16,11 +20,6 @@ networks: (( merge ))
 jobs: (( merge ))
 
 properties: (( merge ))
-
-meta:
-  stemcell:
-    name: bosh-stemcell
-    version: latest
 
 compilation:
   workers: 6
