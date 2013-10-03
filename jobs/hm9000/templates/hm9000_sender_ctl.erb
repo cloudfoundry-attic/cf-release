@@ -1,0 +1,42 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/hm9000
+LOG_DIR=/var/vcap/sys/log/hm9000
+PIDFILE=$RUN_DIR/hm9000_sender.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "hm9000_sender"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown -R vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    exec chpst -u vcap:vcap /var/vcap/packages/hm9000/hm9000 \
+        send \
+        --config=/var/vcap/jobs/hm9000/config/hm9000.json \
+        --poll \
+        --noop \
+         1>>$LOG_DIR/hm9000_sender.stdout.log \
+         2>>$LOG_DIR/hm9000_sender.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: hm9000_sender_ctl {start|stop}"
+
+    ;;
+
+esac

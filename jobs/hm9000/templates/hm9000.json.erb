@@ -1,0 +1,31 @@
+{
+    "heartbeat_period_in_seconds": 10,
+    "heartbeat_ttl_in_heartbeats": 3,
+    "actual_freshness_ttl_in_heartbeats": 3,
+    "grace_period_in_heartbeats": 3,
+    "desired_state_ttl_in_heartbeats": 60,
+    "desired_freshness_ttl_in_heartbeats": 12,
+    "desired_state_batch_size": 500,
+    "actual_freshness_key": "/actual-fresh",
+    "desired_freshness_key": "/desired-fresh",
+    "cc_auth_message_bus_subject": "cloudcontroller.bulk.credentials.<%= p("cc.cc_partition") %>",
+    "cc_base_url": "<%= p("cc.srv_api_uri") %>",
+    "store_urls": ["http://127.0.0.1:4001"],
+    "store_max_concurrent_requests": 100,
+    "sender_nats_start_subject": "hm9000.start",
+    "sender_nats_stop_subject": "hm9000.stop",
+    "sender_message_limit_per_dea": 4,
+    "number_of_deas": 10,
+    "sender_polling_interval_in_heartbeats": 1,
+    "sender_timeout_in_heartbeats": 10,
+    "fetcher_polling_interval_in_heartbeats": 6,
+    "fetcher_timeout_in_heartbeats": 60,        
+    "analyzer_polling_interval_in_heartbeats": 1,
+    "analyzer_timeout_in_heartbeats": 10,
+    "nats": {
+        "host": "<%= p("nats.address") %>",
+        "port": <%= p("nats.port") %>,
+        "user": "<%= p("nats.user") %>",
+        "password": "<%= p("nats.password") %>"
+    }
+}

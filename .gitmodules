@@ -91,3 +91,6 @@
 [submodule "shared"]
 	path = shared
 	url = https://github.com/cloudfoundry/shared-release-packages.git
+[submodule "src/hm9000"]
+	path = src/hm9000
+	url = https://github.com/cloudfoundry/hm-workspace.git
