@@ -1,0 +1,27 @@
+---
+name: hm9000
+templates:
+  hm9000_listener_ctl.erb: bin/hm9000_listener_ctl
+  hm9000_fetcher_ctl.erb: bin/hm9000_fetcher_ctl
+  hm9000_analyzer_ctl.erb: bin/hm9000_analyzer_ctl
+  hm9000_sender_ctl.erb: bin/hm9000_sender_ctl
+  hm9000.json.erb: config/hm9000.json
+  etcd_ctl.erb: bin/etcd_ctl
+
+packages:
+  - common
+  - golang
+  - hm9000
+properties:
+  nats.user:
+    description:
+  nats.password:
+    description:
+  nats.address:
+    description:
+  nats.port:
+    description:
+  cc.cc_partition:
+    description:
+  cc.srv_api_uri:
+    description:

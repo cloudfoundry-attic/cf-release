@@ -1,0 +1,9 @@
+---
+name: hm9000
+dependencies:
+- golang
+- git
+files:
+- hm9000/src/bitbucket.org/**/*
+- hm9000/src/code.google.com/p/**/*
+- hm9000/src/github.com/**/*
