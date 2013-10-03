@@ -11,7 +11,7 @@ properties:
 
   dea_next:
     evacuation_delay: 0
-    memory_mb: 2048
+    memory_mb: 4096
     disk_mb: 16384
     directory_server_protocol: http
     kernel_network_tuning_enabled: false
