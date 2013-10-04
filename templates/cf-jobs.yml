@@ -243,6 +243,7 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
+      zone: z1
 
   - name: loggregator_trafficcontroller_z2
     template: loggregator_trafficcontroller
@@ -254,6 +255,7 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
+      zone: z2
 
   - name: router_z1
     template: gorouter
