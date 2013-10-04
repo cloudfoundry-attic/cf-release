@@ -11,7 +11,7 @@ properties:
 
   dea_next:
     evacuation_delay: 0
-    memory_mb: 4096
+    memory_mb: 8192
     disk_mb: 16384
     directory_server_protocol: http
     kernel_network_tuning_enabled: false
@@ -165,11 +165,24 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(2) ))
 
+  - name: loggregator_trafficcontroller_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(2) ))
+
   # set up static IP for loggregator
   - name: loggregator_z1
     instances: 2
     networks:
       - name: cf1
+        static_ips: (( static_ips(3, 4) ))
+
+      # set up static IP for loggregator
+  - name: loggregator_z2
+    instances: 2
+    networks:
+      - name: cf2
         static_ips: (( static_ips(3, 4) ))
 
   # only need one router, and set up static IPs
