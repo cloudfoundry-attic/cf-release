@@ -176,7 +176,7 @@ jobs:
   - name: loggregator_z2
     instances: 2
     networks:
-      - name: cf1
+      - name: cf2
         static_ips: (( static_ips(21, 22) ))
 
   - name: loggregator_trafficcontroller_z1
@@ -188,5 +188,5 @@ jobs:
   - name: loggregator_trafficcontroller_z2
     instances: 1
     networks:
-      - name: cf1
-        static_ips: (( static_ips(24) ))
+      - name: cf2
+        static_ips: (( static_ips(23) ))
