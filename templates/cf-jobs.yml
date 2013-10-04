@@ -222,6 +222,17 @@ jobs:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
 
+  - name: loggregator_z2
+    template: loggregator
+    instances: 2
+    resource_pool: small_z2
+    networks:
+      - name: cf2
+        static_ips: (( merge ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
+
   - name: loggregator_trafficcontroller_z1
     template: loggregator_trafficcontroller
     instances: 1
@@ -232,6 +243,17 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
+
+  - name: loggregator_trafficcontroller_z2
+    template: loggregator_trafficcontroller
+    instances: 1
+    resource_pool: small_z2
+    networks:
+      - name: cf2
+        static_ips: (( merge ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: router_z1
     template: gorouter
