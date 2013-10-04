@@ -21,7 +21,10 @@ properties:
     description:
   nats.port:
     description:
-  cc.cc_partition:
-    description:
   cc.srv_api_uri:
     description:
+  ccng.bulk_api_user:
+    default: "bulk_api"
+    description: "User used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
+  ccng.bulk_api_password:
+    description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
