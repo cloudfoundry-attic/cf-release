@@ -1,3 +1,10 @@
+check process etcd
+  with pidfile /var/vcap/sys/run/hm9000/etcd.pid
+  start program "/var/vcap/jobs/hm9000/bin/etcd_ctl start"
+    with timeout 60 seconds
+  stop program "/var/vcap/jobs/hm9000/bin/etcd_ctl stop"
+  group vcap
+
 check process hm9000_listener
   with pidfile /var/vcap/sys/run/hm9000/hm9000_listener.pid
   start program "/var/vcap/jobs/hm9000/bin/hm9000_listener_ctl start"
@@ -24,11 +31,4 @@ check process hm9000_sender
   start program "/var/vcap/jobs/hm9000/bin/hm9000_sender_ctl start"
     with timeout 60 seconds
   stop program "/var/vcap/jobs/hm9000/bin/hm9000_sender_ctl stop"
-  group vcap
-
-check process etcd
-  with pidfile /var/vcap/sys/run/hm9000/etcd.pid
-  start program "/var/vcap/jobs/hm9000/bin/etcd_ctl start"
-    with timeout 60 seconds
-  stop program "/var/vcap/jobs/hm9000/bin/etcd_ctl stop"
   group vcap
