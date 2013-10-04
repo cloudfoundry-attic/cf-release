@@ -20,6 +20,13 @@ meta:
       address: (( jobs.logs_z2.networks.cf2.static_ips.[0] ))
       port: 54321
 
+  loggregator:
+    z1:
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] ":3456" ))
+    z2:
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] ":3456" ))
+
+
 jobs:
   - name: nats_z2
     template: nats
@@ -127,6 +134,8 @@ jobs:
       ccdb: ccdb
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z1.trafficcontroller ))
 
   - name: api_z2
     template: cloud_controller_ng
@@ -139,6 +148,8 @@ jobs:
       ccdb: ccdb
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z2.trafficcontroller ))
 
   - name: hm_z1
     template: health_manager_next
@@ -162,6 +173,8 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z1.trafficcontroller ))
 
   - name: runner_z2
     template:
@@ -175,6 +188,8 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z2.trafficcontroller ))
 
   - name: taskmaster_z1
     template: narc
@@ -228,6 +243,8 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z1.trafficcontroller ))
 
   - name: router_z2
     template: gorouter
@@ -239,6 +256,8 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z2.trafficcontroller ))
 
 properties:
   domain: (( merge ))
@@ -266,14 +285,15 @@ properties:
     evacuation_delay: 115
 
   loggregator:
-    router: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] ":3456" ))
     servers:
       z1:
-      - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
-      - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
+      - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ))
+      - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ))
       z2:
-      - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
-      - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
+      - (( jobs.loggregator_z2.networks.cf2.static_ips.[0] ))
+      - (( jobs.loggregator_z2.networks.cf2.static_ips.[1] ))
+    incoming_port: 3456
+    outgoing_port: 8080
 
   cc: (( merge ))
   ccdb: (( merge ))
