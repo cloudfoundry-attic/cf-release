@@ -1,4 +1,6 @@
 {
+  "IncomingPort": <%= p("loggregator.incoming_port") %>,
+  "OutgoingPort": <%= p("loggregator.outgoing_port") %>,
   "Index": <%= spec.index %>,
   "MaxRetainedLogMessages": <%= p("loggregator.maxRetainedLogMessages") %>,
   "ApiHost": "<%= p("cc.srv_api_uri") %>",

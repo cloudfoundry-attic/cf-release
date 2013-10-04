@@ -61,7 +61,7 @@ networks:
 resource_pools:
 - name: common
   network: cf1
-  size: 9
+  size: 11
   stemcell:
     name: bosh-stemcell
     version: latest
@@ -137,24 +137,48 @@ jobs:
     - <%= ip( 3, 'cf1.static') %>
   properties:
     ccdb: ccdb
+    loggregator:
+      trafficcontroller: <%= ip( 16, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
 
-- name: loggregator
+- name: loggregator_z1
   template: loggregator
   instances: 1
   resource_pool: common
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 4, 'cf1.static') %>
+    - <%= ip( 18, 'cf1.static') %>
 
-- name: loggregator-router
-  template: loggregatorrouter
+- name: loggregator_z2
+  template: loggregator
   instances: 1
   resource_pool: common
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 6, 'cf1.static') %>
+    - <%= ip( 19, 'cf1.static') %>
+
+- name: loggregator-trafficcontroller_z1
+  template: loggregator_trafficcontroller
+  instances: 1
+  resource_pool: common
+  networks:
+  - name: cf1
+    static_ips:
+    - <%= ip( 16, 'cf1.static') %>
+  properties:
+    zone: z1
+
+- name: loggregator-trafficcontroller_z2
+  template: loggregator_trafficcontroller
+  instances: 1
+  resource_pool: common
+  networks:
+  - name: cf1
+    static_ips:
+    - <%= ip( 14, 'cf1.static') %>
+  properties:
+    zone: z2
 
 - name:  health_manager
   template: health_manager_next
@@ -176,6 +200,9 @@ jobs:
     default:
     - dns
     - gateway
+  properties:
+    loggregator:
+      trafficcontroller: <%= ip( 14, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
 
 - name: collector
   template: collector
@@ -195,13 +222,19 @@ jobs:
     - gateway
     static_ips:
     - <%= ip( 5, 'cf1.static') %>
+  properties:
+    loggregator:
+      trafficcontroller: <%= ip( 16, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
 
 properties:
   loggregator:
-    router: <%= ip( 6, 'cf1.static') %>:3456
-    servers: 
-    - <%= ip( 4, 'cf1.static') %>:3456
-    
+    servers:
+      z1:
+      - <%= ip( 18, 'cf1.static') %>
+      z2:
+      - <%= ip( 19, 'cf1.static') %>
+    incoming_port: 3456
+    outgoing_port: 8080
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 

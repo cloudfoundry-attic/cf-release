@@ -207,8 +207,8 @@ jobs:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
 
-  - name: loggregator_router_z1
-    template: loggregatorrouter
+  - name: loggregator_trafficcontroller_z1
+    template: loggregator_trafficcontroller
     instances: 1
     resource_pool: small_z1
     networks:
@@ -266,10 +266,14 @@ properties:
     evacuation_delay: 115
 
   loggregator:
-    router: (( jobs.loggregator_router_z1.networks.cf1.static_ips.[0] ":3456" ))
+    router: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] ":3456" ))
     servers:
-    - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
-    - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
+      z1:
+      - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
+      - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
+      z2:
+      - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ":3456" ))
+      - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ":3456" ))
 
   cc: (( merge ))
   ccdb: (( merge ))

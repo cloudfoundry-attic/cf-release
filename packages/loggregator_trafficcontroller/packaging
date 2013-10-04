@@ -2,7 +2,7 @@
 set -e
 
 dir="loggregator"
-binary="loggregatorrouter"
+binary="trafficcontroller"
 
 if [[ `uname -a` =~ "x86_64" ]] ; then
 

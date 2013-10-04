@@ -1,0 +1,39 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/loggregator_trafficcontroller
+LOG_DIR=/var/vcap/sys/log/loggregator_trafficcontroller
+PIDFILE=$RUN_DIR/loggregator_trafficcontroller.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "LoggregatorTrafficController"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    <% p("loggregator.debug") == true ? debug_string = "--debug " : debug_string = "" %>
+
+    exec chpst -u vcap:vcap /var/vcap/packages/loggregator_trafficcontroller/trafficcontroller <%= debug_string %> \
+         --config /var/vcap/jobs/loggregator_trafficcontroller/config/loggregator_trafficcontroller.json \
+         >>$LOG_DIR/loggregator_trafficcontroller.stdout.log \
+         2>>$LOG_DIR/loggregator_trafficcontroller.stderr.log
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE 40
+
+    ;;
+
+  *)
+    echo "Usage: loggregator_trafficcontroller {start|stop}"
+
+    ;;
+
+esac
