@@ -22,6 +22,10 @@ case $1 in
 
     echo $$ > $PIDFILE
 
+    <% if_p("syslog_aggregator") do %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/hm9000/config
+    <% end %>
+
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/etcd \
         -d $WORK_DIR \
          1>>$LOG_DIR/etcd.stdout.log \

@@ -7,11 +7,13 @@ templates:
   hm9000_sender_ctl.erb: bin/hm9000_sender_ctl
   hm9000.json.erb: config/hm9000.json
   etcd_ctl.erb: bin/etcd_ctl
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 packages:
   - common
   - golang
   - hm9000
+  - syslog_aggregator
 properties:
   nats.user:
     description:
@@ -21,6 +23,10 @@ properties:
     description:
   nats.port:
     description:
+  syslog_aggregator.address:
+    description: "IP address of syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
   cc.srv_api_uri:
     description:
   ccng.bulk_api_user:
