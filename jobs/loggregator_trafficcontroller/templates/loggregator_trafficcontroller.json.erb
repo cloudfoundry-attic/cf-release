@@ -1,6 +1,9 @@
 {
-    "Loggregators": <%= p("loggregator.servers") %>,
-    "Host": "<%= p("loggregator.router") %>",
+    "Loggregators": <%= p("loggregator.servers").to_json %>,
+    "IncomingPort": <%= p("loggregator.incoming_port") %>,
+    "OutgoingPort": <%= p("loggregator.outgoing_port") %>,
+    "Zone": "<%= p("zone") %>",
+    "Host": "<%= p("loggregator.trafficcontroller") %>",
     "SystemDomain": "<%= p("system_domain") %>",
     "NatsHost": "<%= p("nats.address") %>",
     "NatsPort": <%= p("nats.port") %>,

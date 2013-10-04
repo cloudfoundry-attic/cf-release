@@ -26,6 +26,10 @@ properties:
   loggregator.disableEmailDomainAuthorization:
     description: "Disable authorization based on email domains"
     default: false
+  loggregator.incoming_port:
+    description: Port for incoming log messages
+  loggregator.outgoing_port:
+    description: Port for outgoing log messages
   cc.srv_api_uri:
     description: "API URI of cloud controller"
   nats.user:

@@ -309,7 +309,7 @@ properties:
   default: true
   description: "whether use login as the authorization endpoint or not"
 
- loggregator.router:
+ loggregator.trafficcontroller:
   description: The url used to emit messages to the Loggregator  
 
  ccng.db_encryption_key:

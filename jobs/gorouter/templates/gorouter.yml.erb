@@ -26,9 +26,9 @@ logging:
   <% end %>
   level: info
 
-<% if_p("loggregator.router") do |router| %>
+<% if_p("loggregator.trafficcontroller") do |trafficcontroller| %>
 loggregatorConfig:
-  url: <%= router %>
+  url: <%= trafficcontroller %>
 <% end %>
 
 port: 80

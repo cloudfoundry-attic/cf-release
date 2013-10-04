@@ -33,9 +33,9 @@ logging:
   syslog: vcap.dea_next
   <% end %>
 
-<% if_p("loggregator.router") do |router| %>
+<% if_p("loggregator.trafficcontroller") do |trafficcontroller| %>
 loggregator:
-  router: <%= router %>
+  trafficcontroller: <%= trafficcontroller %>
 <% end %>
 
 index: <%= spec.index %>

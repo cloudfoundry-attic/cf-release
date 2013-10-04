@@ -1,0 +1,5 @@
+check process loggregator_trafficcontroller
+  with pidfile /var/vcap/sys/run/loggregator_trafficcontroller/loggregator_trafficcontroller.pid
+  start program "/var/vcap/jobs/loggregator_trafficcontroller/bin/loggregator_trafficcontroller_ctl start"
+  stop program "/var/vcap/jobs/loggregator_trafficcontroller/bin/loggregator_trafficcontroller_ctl stop"
+  group vcap

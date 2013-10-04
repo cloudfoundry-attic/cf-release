@@ -9,10 +9,10 @@ packages:
 - dea_logging_agent
 properties:
   loggregator.debug:
-    description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator router)
+    description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator trafficcontroller)
     default: false
-  loggregator.router:
-    description: loggregator router in host:port format
+  loggregator.trafficcontroller:
+    description: loggregator trafficcontroller in host:port format
   loggregator.status.user:
     description: username used to log into varz endpoint
     default: "" 

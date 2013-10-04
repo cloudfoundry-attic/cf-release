@@ -119,7 +119,7 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(10, 11) ))
 
-  - name: loggregator_router_z1
+  - name: loggregator_trafficcontroller_z1
     instances: 1
     networks:
       - name: cf1

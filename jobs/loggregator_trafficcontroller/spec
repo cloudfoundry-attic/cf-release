@@ -1,20 +1,26 @@
 ---
-name: loggregatorrouter
+name: loggregator_trafficcontroller
 templates:
-  loggregatorrouter_ctl.erb: bin/loggregatorrouter_ctl
-  loggregator_router.json.erb: config/loggregator_router.json
+  loggregator_trafficcontroller_ctl.erb: bin/loggregator_trafficcontroller_ctl
+  loggregator_trafficcontroller.json.erb: config/loggregator_trafficcontroller.json
 packages:
 - common
-- loggregatorrouter
+- loggregator_trafficcontroller
 properties:
-  loggregator.router:
-    description: The host and port the loggregatorrouter should listen on
-    default: 0.0.0.0:3456
+  zone:
+    description: Zone of the loggregator_trafficcontroller
+  loggregator.trafficcontroller:
+    description: The host the loggregator_trafficcontroller should listen on
+    default: 0.0.0.0
   loggregator.debug:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)
     default: false
   loggregator.servers:
-    description: an array of host and port of the loggregator servers
+    description: a map of zones to loggregatorservers (hosts and ports)
+  loggregator.incoming_port:
+    description: Port for incoming log messages
+  loggregator.outgoing_port:
+    description: Port for outgoing log messages
   loggregator.status.user:
     description: username used to log into varz endpoint
     default: ""

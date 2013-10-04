@@ -82,5 +82,5 @@ properties:
     default: true
   syslog_aggregator:
     description: "Syslog aggregator stuff"
-  loggregator.router:
+  loggregator.trafficcontroller:
     description: The url used to emit messages to the Loggregator

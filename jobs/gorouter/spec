@@ -41,5 +41,5 @@ properties:
   router.endpoint_timeout:
     description: "Timeout in seconds for Router -> Endpoint roundtrip."
     default: 60
-  loggregator.router:
+  loggregator.trafficcontroller:
     description: The url used to emit messages to the Loggregator

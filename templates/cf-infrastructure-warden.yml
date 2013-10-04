@@ -158,8 +158,8 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(1) ))
 
-  # set up static IP for loggregator router
-  - name: loggregator_router_z1
+  # set up static IP for loggregator trafficcontroller
+  - name: loggregator_trafficcontroller_z1
     instances: 1
     networks:
       - name: cf1
