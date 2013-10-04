@@ -35,7 +35,7 @@ logging:
 
 <% if_p("loggregator.trafficcontroller") do |trafficcontroller| %>
 loggregator:
-  trafficcontroller: <%= trafficcontroller %>
+  router: <%= trafficcontroller %>
 <% end %>
 
 index: <%= spec.index %>

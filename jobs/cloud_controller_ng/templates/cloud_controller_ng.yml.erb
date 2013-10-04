@@ -56,7 +56,7 @@ logging:
 
 <% if_p("loggregator.trafficcontroller") do |trafficcontroller| %>
 loggregator:
-  trafficcontroller: <%= trafficcontroller %>
+  router: <%= trafficcontroller %>
 <% end %>
 
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
