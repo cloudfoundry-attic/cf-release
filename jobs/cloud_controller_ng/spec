@@ -319,3 +319,7 @@ properties:
  ccng.tasks_disabled:
   default: false
   description: "Disable tasks endpoint"
+
+ ccng.hm9000_noop:
+  default: true
+  description: "Disable processing HM9000 messages"
