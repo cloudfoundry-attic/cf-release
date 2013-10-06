@@ -34,6 +34,12 @@ update:
   update_watch_time: 5000-600000
 
 resource_pools:
+  - name: ha_proxy_z1
+    network: cf1
+    size: (( auto ))
+    stemcell: (( meta.stemcell ))
+    cloud_properties: (( merge ))
+
   - name: small_z1
     network: cf1
     size: (( auto ))
