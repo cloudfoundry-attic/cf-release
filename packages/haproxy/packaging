@@ -1,0 +1,17 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+echo "Extracting pcre..."
+tar xzf haproxy/pcre-8.33.tar.gz
+cd pcre-8.33
+./configure
+make
+make install
+cd ..
+
+tar xzf haproxy/haproxy-1.5-dev19.tar.gz
+cd haproxy-1.5-dev19
+make TARGET=linux2628 USE_OPENSSL=1 USE_STATIC_PCRE=1
+mkdir ${BOSH_INSTALL_TARGET}/bin
+cp haproxy ${BOSH_INSTALL_TARGET}/bin/
+chmod 755 ${BOSH_INSTALL_TARGET}/bin/haproxy

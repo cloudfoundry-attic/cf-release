@@ -1,0 +1,9 @@
+---
+name: haproxy
+packages:
+- haproxy
+templates:
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  haproxy.config.erb:        config/haproxy.config
+  haproxy.init.erb:          bin/haproxy.init
+  cert.pem.erb:              config/cert.pem
