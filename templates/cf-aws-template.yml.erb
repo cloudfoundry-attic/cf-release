@@ -315,6 +315,9 @@ properties:
     disk_overcommit_factor: 4
     num_instances: 256
 
+    deny_networks:
+    - <%= find("networks.cf1.subnets")[0]["range"] %>
+
   syslog_aggregator:
     address: 10.10.16.10
     port: 54321
