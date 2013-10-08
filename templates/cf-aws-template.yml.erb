@@ -138,7 +138,7 @@ jobs:
   properties:
     ccdb: ccdb
     loggregator:
-      trafficcontroller: <%= ip( 16, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
+      trafficcontroller: <%= ip( 20, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
 
 - name: loggregator_z1
   template: loggregator
@@ -165,7 +165,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 16, 'cf1.static') %>
+    - <%= ip( 20, 'cf1.static') %>
   properties:
     zone: z1
 
@@ -176,7 +176,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - <%= ip( 14, 'cf1.static') %>
+    - <%= ip( 21, 'cf1.static') %>
   properties:
     zone: z2
 
@@ -202,7 +202,7 @@ jobs:
     - gateway
   properties:
     loggregator:
-      trafficcontroller: <%= ip( 14, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
+      trafficcontroller: <%= ip( 21, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
 
 - name: collector
   template: collector
@@ -224,7 +224,7 @@ jobs:
     - <%= ip( 5, 'cf1.static') %>
   properties:
     loggregator:
-      trafficcontroller: <%= ip( 16, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
+      trafficcontroller: <%= ip( 20, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
 
 properties:
   loggregator:
