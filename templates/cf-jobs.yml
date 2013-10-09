@@ -176,6 +176,8 @@ jobs:
       - dea_next
       - dea_logging_agent
     instances: 1
+    update:
+      max_in_flight: 1
     resource_pool: runner_z1
     networks:
       - name: cf1
@@ -191,6 +193,8 @@ jobs:
       - dea_next
       - dea_logging_agent
     instances: 1
+    update:
+      max_in_flight: 1
     resource_pool: runner_z2
     networks:
       - name: cf2
