@@ -310,12 +310,8 @@ properties:
 
   loggregator:
     servers:
-      z1:
-      - (( jobs.loggregator_z1.networks.cf1.static_ips.[0] ))
-      - (( jobs.loggregator_z1.networks.cf1.static_ips.[1] ))
-      z2:
-      - (( jobs.loggregator_z2.networks.cf2.static_ips.[0] ))
-      - (( jobs.loggregator_z2.networks.cf2.static_ips.[1] ))
+      z1: (( jobs.loggregator_z1.networks.cf1.static_ips ))
+      z2: (( jobs.loggregator_z2.networks.cf2.static_ips ))
     incoming_port: 3456
     outgoing_port: 8080
 
