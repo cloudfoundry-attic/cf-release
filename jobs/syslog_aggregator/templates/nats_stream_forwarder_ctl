@@ -5,6 +5,7 @@ LOG_DIR=/var/vcap/store/log
 JOB_DIR=/var/vcap/jobs/syslog_aggregator
 BIN_DIR=$JOB_DIR/bin
 PIDFILE=$RUN_DIR/nats_stream_forwarder.pid
+export BUNDLE_GEMFILE=/var/vcap/packages/syslog_aggregator/Gemfile
 
 source /var/vcap/packages/common/utils.sh
 
@@ -16,7 +17,7 @@ case $1 in
     PATH=/var/vcap/bosh/bin:$PATH
 
     echo $$ > $PIDFILE
-    exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>' \
+    exec bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>' \
       >>$LOG_DIR/nats_stream_forwarder.stdout.log \
       2>>$LOG_DIR/nats_stream_forwarder.stderr.log
 
