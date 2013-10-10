@@ -6,7 +6,6 @@ JOB_DIR=/var/vcap/jobs/syslog_aggregator
 BIN_DIR=$JOB_DIR/bin
 PIDFILE=$RUN_DIR/nats_stream_forwarder.pid
 export BUNDLE_GEMFILE=/var/vcap/packages/syslog_aggregator/Gemfile
-export PATH=/var/vcap/packages/ruby/bin:$PATH
 
 source /var/vcap/packages/common/utils.sh
 
@@ -15,19 +14,12 @@ case $1 in
     pid_guard $PIDFILE "NATS Stream Forwarder"
 
     mkdir -p $RUN_DIR
-    mkdir -p $LOG_DIR
-
-    chown vcap:vcap $RUN_DIR
-    chown vcap:vcap $LOG_DIR
-    chown vcap:vcap $TMPDIR
+    PATH=/var/vcap/bosh/bin:$PATH
 
     echo $$ > $PIDFILE
-    chown vcap:vcap $PIDFILE
-
-    exec chpst -u vcap:vcap bundle exec $BIN_DIR/nats_stream_forwarder.rb \
-        'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>' \
-        >>$LOG_DIR/nats_stream_forwarder.stdout.log \
-        2>>$LOG_DIR/nats_stream_forwarder.stderr.log
+    exec bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>' \
+      >>$LOG_DIR/nats_stream_forwarder.stdout.log \
+      2>>$LOG_DIR/nats_stream_forwarder.stderr.log
 
     ;;
 
