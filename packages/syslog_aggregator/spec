@@ -3,4 +3,6 @@ name: syslog_aggregator
 dependencies:
 - ruby
 files:
-- syslog_aggregator/**/*
+- syslog_aggregator/setup_syslog_forwarder.sh
+- syslog_aggregator/send_error_mail
+- syslog_aggregator/Gemfile
