@@ -37,14 +37,6 @@ case $1 in
 
     cd /var/vcap/packages/warden/warden
 
-    depot=$DATA_DIR/depot
-
-    # Clear existing containers if warden was not drained
-    if [ -d $depot ] && [ ! -f $depot/drained ]
-    then
-      find $depot -mindepth 1 -maxdepth 1 -type d | xargs -t -n1 --no-run-if-empty root/linux/destroy.sh
-    fi
-
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
