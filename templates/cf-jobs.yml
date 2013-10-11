@@ -161,6 +161,16 @@ jobs:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
 
+  - name: hm9000_z1
+    template: hm9000
+    instances: 1
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+    
   - name: runner_z1
     template:
       - dea_next
