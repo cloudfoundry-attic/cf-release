@@ -5,6 +5,7 @@ server:
   container_klass: Warden::Container::Linux
   container_rootfs_path: /var/vcap/packages/rootfs_lucid64
   container_depot_path: /var/vcap/data/warden/depot
+  pidfile: /var/vcap/sys/run/warden/warden.pid
   quota:
     disk_quota_enabled: <%= p("disk_quota_enabled") %>
 
