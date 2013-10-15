@@ -1,7 +1,0 @@
-<% if properties.dashboard && properties.dashboard.users %>
-<% properties.dashboard.users.each do |username, password| %>
-<%= username %>=<%= password %>,ROLE_USER,enabled
-<% end %>
-<% else %>
-admin=admin,ROLE_USER,enabled
-<% end %>
