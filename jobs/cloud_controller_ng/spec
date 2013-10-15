@@ -178,7 +178,7 @@ properties:
   description: "Directory (bucket) used store app resources.  It does not have be pre-created."
   default: "cc-resources"
  ccng.resource_pool.fog_connection.provider:
-  description: "Local for shared resources on NFS.  AWS to place them in S3."
+  description: "Local for shared resources on NFS.  AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.resource_pool.fog_connection.aws_access_key_id:
   description: "AWS access key used to access the resources bucket"
@@ -187,6 +187,14 @@ properties:
  ccng.resource_pool.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
   default: "/var/vcap/nfs/shared"
+ ccng.resource_pool.fog_connection.openstack_username:
+  description: "OpenStack username to assess the resource container"
+ ccng.resource_pool.fog_connection.openstack_api_key:
+  description: "OpenStack secret key to assess the resource container"
+ ccng.resource_pool.fog_connection.openstack_auth_url:
+  description: "OpenStack authorization link"
+ ccng.resource_pool.fog_connection.openstack_tenant:
+  description: "OpenStack tenant name"
  ccng.resource_pool.cdn.uri:
   description: "URI for a CDN to used for resource pool downloads"
   default: ""
@@ -201,7 +209,7 @@ properties:
   description: "Directory (bucket) used store app packages.  It does not have be pre-created."
   default: "cc-packages"
  ccng.packages.fog_connection.provider:
-  description: "Local for shared resources on NFS. AWS to place them in S3."
+  description: "Local for shared resources on NFS. AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.packages.fog_connection.aws_access_key_id:
   description: "AWS access key used to access the packages bucket"
@@ -210,6 +218,14 @@ properties:
  ccng.packages.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
   default: "/var/vcap/nfs/shared"
+ ccng.packages.fog_connection.openstack_username:
+  description: "OpenStack username to assess the packages container"
+ ccng.packages.fog_connection.openstack_api_key:
+  description: "OpenStack secret key to assess the packages container"
+ ccng.packages.fog_connection.openstack_auth_url:
+  description: "OpenStack authorization link"
+ ccng.packages.fog_connection.openstack_tenant:
+  description: "OpenStack tenant name"
  ccng.packages.cdn.uri:
   description: "URI for a CDN to used for app package downloads"
   default: ""
@@ -224,7 +240,7 @@ properties:
   description: "Directory (bucket) used store droplets.  It does not have be pre-created."
   default: "cc-droplets"
  ccng.droplets.fog_connection.provider:
-  description: "Local for droplets on NFS. AWS to place them in S3."
+  description: "Local for droplets on NFS. AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.droplets.fog_connection.aws_access_key_id:
   description: "AWS access key used to access the droplets bucket"
@@ -233,6 +249,14 @@ properties:
  ccng.droplets.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
   default: "/var/vcap/nfs/shared"
+ ccng.droplets.fog_connection.openstack_username:
+  description: "OpenStack username to assess the droplet container"
+ ccng.droplets.fog_connection.openstack_api_key:
+  description: "OpenStack secret key to assess the droplet container"
+ ccng.droplets.fog_connection.openstack_auth_url:
+  description: "OpenStack authorization link"
+ ccng.droplets.fog_connection.openstack_tenant:
+  description: "OpenStack tenant name"
  ccng.droplets.cdn.uri:
   description: "URI for a CDN to used for droplet downloads"
   default: ""
@@ -247,7 +271,7 @@ properties:
   description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
   default: "cc-buildpacks"
  ccng.buildpacks.fog_connection.provider:
-  description: "Local for buildpacks on NFS. AWS to place them in S3."
+  description: "Local for buildpacks on NFS. AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.buildpacks.fog_connection.aws_access_key_id:
   description: "AWS access key used to access the buildpacks bucket"
@@ -256,6 +280,14 @@ properties:
  ccng.buildpacks.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
   default: "/var/vcap/nfs/shared"
+ ccng.buildpacks.fog_connection.openstack_username:
+  description: "OpenStack username to assess the buildpack container"
+ ccng.buildpacks.fog_connection.openstack_api_key:
+  description: "OpenStack secret key to assess the buildpack container"
+ ccng.buildpacks.fog_connection.openstack_auth_url:
+  description: "OpenStack authorization link"
+ ccng.buildpacks.fog_connection.openstack_tenant:
+  description: "OpenStack tenant name"
  ccng.buildpacks.cdn.uri:
   description: "URI for a CDN to used for buildpack downloads"
   default: ""
