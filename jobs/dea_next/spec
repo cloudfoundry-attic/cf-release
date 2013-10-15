@@ -6,8 +6,6 @@ templates:
   drain.erb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
-  platform.yml: config/platform.yml
-
   warden_ctl: bin/warden_ctl
   warden.yml.erb: config/warden.yml
 
@@ -20,14 +18,8 @@ packages:
 - rootfs_lucid64
 - ruby
 - golang
-- sqlite
-- mysqlclient
 - syslog_aggregator
-- libpq
-- git
 - buildpack_cache
-- insight_agent
-- libyaml
 properties:
   domain:
     description: "DNS domain name for this Cloud Foundry deployment"
