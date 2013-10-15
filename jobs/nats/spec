@@ -3,10 +3,14 @@ name: nats
 templates:
   nats_ctl.erb: bin/nats_ctl
   nats.yml.erb: config/nats.yml
+  nats_stream_forwarder.rb: bin/nats_stream_forwarder.rb
+  nats_stream_forwarder_ctl: bin/nats_stream_forwarder_ctl
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
   - common
   - nats
   - ruby
+  - syslog_aggregator
 properties:
   nats_props:
     description:
@@ -17,8 +21,14 @@ properties:
     description: "Username for server authentication."
   nats.password:
     description: "Password for server authentication."
+  nats.address:
+    description: "NATS address"
   nats.port:
     description: "The port for the NATS server to listen on."
   nats.authorization_timeout:
     description: "After accepting a connection, wait up to this many seconds for credentials."
     default: 5
+  syslog_aggregator.address:
+    description: "The address of the syslog_aggregator job."
+  syslog_aggregator.port:
+    description: "The port used by the syslog_aggregator job."
