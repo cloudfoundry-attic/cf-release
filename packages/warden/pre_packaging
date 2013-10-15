@@ -1,12 +1,13 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 cd ${BUILD_DIR}
 
-mv warden warden_meta
-mv warden_meta/* .
-rmdir warden_meta
+# move the warden server bits into the root of the package
+#
+# this turns warden/warden/* into warden/*
+mv warden tmp_warden
+mv tmp_warden/warden .
+rmdir tmp_warden
 
-pkg_utils/vendor.sh warden
-
-rm -rf pkg_utils
+cd warden
+bundle package --all

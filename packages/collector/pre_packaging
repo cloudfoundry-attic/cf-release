@@ -1,8 +1,5 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
-cd ${BUILD_DIR}
+cd ${BUILD_DIR}/collector
+bundle package --all
 
-pkg_utils/vendor.sh collector
-
-rm -rf pkg_utils
