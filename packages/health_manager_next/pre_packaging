@@ -1,8 +1,4 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
-cd ${BUILD_DIR}
-
-pkg_utils/vendor.sh health_manager_next
-
-rm -rf pkg_utils
+cd ${BUILD_DIR}/health_manager_next
+bundle package --all
