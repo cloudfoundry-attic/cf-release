@@ -1,4 +1,0 @@
-# abort script on any command that exit with a non zero value
-set -e
-
-cp -a insight_agent/* ${BOSH_INSTALL_TARGET}
