@@ -6,7 +6,6 @@ message_bus_uri: nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("n
 
 external_domain:
   - <%= p("ccng.external_host") %>.<%= p("domain") %>
-  - "api.<%= p("domain") %>"
 
 system_domain_organization: <%= p("system_domain_organization") %>
 system_domain: <%= p("system_domain") %>
@@ -34,8 +33,6 @@ info:
   support_address: <%= p("support_address") %>
   description: <%= p("description") %>
   api_version: <%= p("api_version") %>
-# TODO: put back once json schema is sorted out
-# allow_debug: false
 
 <% if_p("directories.droplets",
         "ccng.directories.staging_manifests",
@@ -66,10 +63,6 @@ db: &db
   max_connections: <%= p("ccdb_ng.max_connections") %>
   pool_timeout: <%= p("ccdb_ng.pool_timeout") %>
   log_level: <%= p("ccng.db_logging_level") %>
-
-active_record_db:
-  << : *db
-  pool: <%= p("ccdb_ng.max_ar_connections") %>
 
 <% scheme = p("uaa.no_ssl") ? "http" : "https"
    domain = p("domain") %>
