@@ -11,9 +11,6 @@ case $1 in
   start)
     pid_guard $PIDFILE "gorouter"
 
-    # Install libcap2-bin. This can be removed once libcap2-bin is available in the stemcell itself.
-    dpkg -i /var/vcap/packages/gorouter/misc/libcap2-bin_1%3a2.17-2ubuntu1_amd64.deb
-
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
 
