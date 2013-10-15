@@ -7,13 +7,9 @@ templates:
   gzip_old_logs: bin/gzip_old_logs
   reap_old_logs: bin/reap_old_logs
   symlink_logs: bin/symlink_logs
-  nats_stream_forwarder.rb: bin/nats_stream_forwarder.rb
-  nats_stream_forwarder_ctl: bin/nats_stream_forwarder_ctl
 packages:
 - common
 - syslog_aggregator
-- ruby
-- nats
 properties:
   domain:
     description: "DNS domain for this Cloud Foundry deployment"
@@ -39,11 +35,3 @@ properties:
     description: "IP address for syslog aggregator"
   syslog_aggregator.port:
     description: "TCP port of syslog aggregator"
-  nats.address:
-    description: "NATS address"
-  nats.password:
-    description: "NATS password"
-  nats.port:
-    description: "NATS TCP port"
-  nats.user:
-    description: "NATS user"

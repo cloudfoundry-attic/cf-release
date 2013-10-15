@@ -5,3 +5,9 @@ check process nats
   group vcap
   if totalmem > 500 Mb for 2 cycles then alert
   if totalmem > 3000 Mb then restart
+
+check process nats_stream_forwarder
+  with pidfile /var/vcap/sys/run/nats_stream_forwarder/nats_stream_forwarder.pid
+  start program "/var/vcap/jobs/nats/bin/nats_stream_forwarder_ctl start"
+  stop program "/var/vcap/jobs/nats/bin/nats_stream_forwarder_ctl stop"
+  group vcap
