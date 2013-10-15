@@ -2,3 +2,7 @@
 set -e
 
 cp -a syslog_aggregator/* ${BOSH_INSTALL_TARGET}
+(
+  cd ${BOSH_INSTALL_TARGET}
+  /var/vcap/packages/ruby/bin/bundle install --binstubs --local --deployment
+)
