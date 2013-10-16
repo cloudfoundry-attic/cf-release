@@ -9,7 +9,6 @@ templates:
   gorouter_logrotate.cron.erb: config/gorouter_logrotate.cron
 packages:
   - common
-  - golang
   - gorouter
   - syslog_aggregator
 properties:
