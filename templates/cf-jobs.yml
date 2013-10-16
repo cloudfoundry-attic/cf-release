@@ -318,6 +318,7 @@ properties:
       z2: (( jobs.loggregator_z2.networks.cf2.static_ips ))
     incoming_port: 3456
     outgoing_port: 8080
+    maxRetainedLogMessages: 1000
 
   cc: (( merge ))
   ccdb: (( merge ))
