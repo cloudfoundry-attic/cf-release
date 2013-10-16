@@ -3,7 +3,7 @@ name: health_manager_next
 templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   health_manager_next.yml.erb: config/health_manager_next.yml
-  health_manager_next_ctl: bin/health_manager_next_ctl
+  health_manager_next_ctl.erb: bin/health_manager_next_ctl
 packages:
   - health_manager_next
   - common

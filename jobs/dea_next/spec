@@ -2,14 +2,14 @@
 name: dea_next
 templates:
   dea.yml.erb: config/dea.yml
-  dea_ctl: bin/dea_ctl
+  dea_ctl.erb: bin/dea_ctl
   drain.erb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
-  warden_ctl: bin/warden_ctl
+  warden_ctl.erb: bin/warden_ctl
   warden.yml.erb: config/warden.yml
 
-  dir_server_ctl: bin/dir_server_ctl
+  dir_server_ctl.erb: bin/dir_server_ctl
 
 packages:
 - common
@@ -32,7 +32,7 @@ properties:
   nats.user:
     description: "user name for NATS login"
   dea_next.allow_networks:
-    description: 
+    description:
   dea_next.deny_networks:
     description:
   dea_next.disk_mb:
