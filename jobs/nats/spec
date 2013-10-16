@@ -4,7 +4,7 @@ templates:
   nats_ctl.erb: bin/nats_ctl
   nats.yml.erb: config/nats.yml
   nats_stream_forwarder.rb: bin/nats_stream_forwarder.rb
-  nats_stream_forwarder_ctl: bin/nats_stream_forwarder_ctl
+  nats_stream_forwarder_ctl.erb: bin/nats_stream_forwarder_ctl
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
   - common

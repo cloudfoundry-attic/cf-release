@@ -1,7 +1,7 @@
 ---
 name: narc
 templates:
-  warden_ctl: bin/warden_ctl
+  warden_ctl.erb: bin/warden_ctl
   warden.yml.erb: config/warden.yml
   narc_ctl.erb: bin/narc_ctl
   narc.yml.erb: config/narc.yml

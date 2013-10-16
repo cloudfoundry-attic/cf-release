@@ -1,7 +1,7 @@
 ---
 name: collector
 templates:
-  collector_ctl: bin/collector_ctl
+  collector_ctl.erb: bin/collector_ctl
   config.yml.erb: config/config.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
