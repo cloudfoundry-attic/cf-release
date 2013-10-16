@@ -413,11 +413,6 @@ loggregator/trafficcontroller-linux-amd64.gz:
   sha: !binary |-
     NzYwZDgyM2VjZjExZGUxMDQ4ZTdkNmU5YzdjYjk5YjI1ZTQxN2ZmNQ==
   size: 1742408
-uaa/cloudfoundry-identity-uaa-1.4.5.war:
-  object_id: e92c6500-1460-4eac-b4a0-ec3d6f4bed3b
-  sha: !binary |-
-    ZDk0OTZmMmY3NTE3NDVkMzFkOGNmN2IxNTA3M2E5NzRjMGJlZTMyYQ==
-  size: 20775830
 ? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fauto-reconfiguration%2Fauto-reconfiguration-0.7.0.jar.cached
 : object_id: d47b75b6-30ac-41f9-a235-25c005f04e5c
   sha: !binary |-
@@ -538,3 +533,8 @@ loggregator/trafficcontroller-linux-amd64.gz.1:
   sha: !binary |-
     NzYwZDgyM2VjZjExZGUxMDQ4ZTdkNmU5YzdjYjk5YjI1ZTQxN2ZmNQ==
   size: 1742408
+uaa/cloudfoundry-identity-uaa-1.4.6.war:
+  object_id: 7e311146-628a-4b40-be57-4dd04d15d1f6
+  sha: !binary |-
+    NzI3ZmUyNDBmMjllZGVjMDgxZGQ5ZWFlMTA1ZDNjN2JlYWRkZTUzMA==
+  size: 20776012
