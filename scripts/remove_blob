@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require "yaml"
+
+BLOB_PATH = ARGV[0] || abort("usage: remove_blob BLOB_PATH")
+
+blobs = YAML.load_file("config/blobs.yml")
+
+blob = blobs.delete(BLOB_PATH)
+
+File.open("config/blobs.yml", "w") do |io|
+  YAML.dump(blobs, io)
+end
+
+puts "removed #{BLOB_PATH}, was #{blob["size"]} bytes"

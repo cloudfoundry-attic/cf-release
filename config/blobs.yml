@@ -43,38 +43,6 @@ sqlite/sqlite-autoconf-3070500.tar.gz:
   object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f3068661ccfa
   sha: 4e1338497b8da50b84307191bb3418e9ec5715d7
   size: 1551070
-node/node-v0.6.8.tar.gz:
-  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f30686c66543
-  sha: c3f755b5dfd0de3f306d06573fa9433d845623dd
-  size: 10488841
-node/node-v0.4.12.tar.gz:
-  object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e04f3068760f67f
-  sha: 1c6e34b90ad6b989658ee85e0d0cb16797b16460
-  size: 12421469
-java/jre-1.6.0_24-x86_64.tar.gz:
-  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f3068c227b32
-  sha: 0511d833dfd9825a26c18e9d685de64ac0151e85
-  size: 34453414
-java/jre-1.6.0_24.tar.gz:
-  object_id: rest/objects/4e4e78bca51e122004e4e8ec68407704f3068d4334a7
-  sha: 20c6f2cd888b0b01eafdd8f1d6285569ecdca904
-  size: 36132629
-java/jre-7u4-linux-i586.tar.gz:
-  object_id: rest/objects/4e4e78bca31e122004e4e8ec646e2104fd5645fec144
-  sha: b8eee3f910083f5b7f490df75dcae9544da1f964
-  size: 34239229
-java/jre-7u4-linux-x64.tar.gz:
-  object_id: rest/objects/4e4e78bca41e121204e4e86ee5392104fd5426616b81
-  sha: 1108d1744baa73bf6caa2adf965d0f489ea1ef60
-  size: 32771159
-openjdk/openjdk6-jre.tar.gz:
-  object_id: rest/objects/4e4e78bca61e122004e4e8ec6b44b604f30693b35554
-  sha: 73ac394b42d57ca178afee45cd61d07c6a3a7844
-  size: 30238544
-openjdk/openjdk6-jre-x86_64.tar.gz:
-  object_id: rest/objects/4e4e78bca11e121004e4e7d511f82104f306950693ed
-  sha: 367c1e336535b8dd65e08523144180a409e450e6
-  size: 28330869
 postgres/postgres-9.0.3-1.amd64.tar.gz:
   object_id: rest/objects/4e4e78bca31e122004e4e8ec646e2104f306af917d30
   sha: e47ee9c841ecde4df121f44df282aeb3c50a48d2
@@ -119,30 +87,6 @@ nats/vendor/cache/yajl-ruby-0.7.8.gem:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04f671802ebaad
   sha: d9a29e4321fd26dfa15cc17befccdb9442e42310
   size: 555008
-node/npm-v1.0.106.tgz:
-  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104f66ac07c67bd
-  sha: ef1830b68a1537a606dae3bdee71fd1153d7e71e
-nginx/nginx-1.1.17.tar.gz:
-  object_id: rest/objects/4e4e78bca11e122204e4e98638b76304f6ce206b5246
-  sha: 60c02ddc7e742d8aa959531f5a63684380e798e8
-nginx/nginx-lua.v0.4.1.tar.gz:
-  object_id: rest/objects/4e4e78bca61e121204e4e86eebe59104f6ce210166ea
-  sha: fd37ffa48a618b2e521ea9797d13f523640fad4f
-nginx/pcre-8.21.tar.gz:
-  object_id: rest/objects/4e4e78bca21e122204e4e9863926b104f6ce219ee638
-  sha: dffb43eff9729c0999843a86ef97961b8c4f6ac8
-nginx/nginx-1.2.0.tar.gz:
-  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104fa0a8d6112f2
-  sha: 15cec8d1b8dbf2007f9f99594a08a2f45814034e
-  size: 716067
-memcached/libevent-2.0.19-stable.tar.gz:
-  object_id: rest/objects/4e4e78bca11e122004e4e8ec64843104fb6d6243ebfc
-  sha: 28c109190345ce5469add8cf3f45c5dd57fe2a85
-  size: 842961
-memcached/memcached-1.4.13.tar.gz:
-  object_id: rest/objects/4e4e78bca11e122204e4e98638b76304fb6d628d28cb
-  size: 320751
-  sha: d9a48d222de53a2603fbab6156d48d0e8936ee92
 mysql/client-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
   object_id: rest/objects/4e4e78bca21e122204e4e9863926b104fb68b259c9fc
   sha: 6e5a17195831688a5f14f20aa5d9cd5d5f4164db
@@ -155,26 +99,10 @@ git/git-1.7.11.2.tar.gz:
   object_id: rest/objects/4e4e78bca61e121204e4e86eebe59104fff12d7e49c6
   sha: f67b4f6c0277250411c6872ae7b8a872ae11d313
   size: 4015780
-node/node-v0.8.2.tar.gz:
-  object_id: rest/objects/4e4e78bca61e122204e4e98643d9ae04ffb5d9651ba0
-  sha: 0e743d21b487151e67950f09198def058db19a1e
-  size: 11727164
 login/cloudfoundry-identity-batch-1.0.0.war:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd0504a22403f04d
   sha: 33c619ccfa300967f7f7bdac1cf732ff57306035
   size: 24049331
-golang/log4go.1fa5d16681.src.tar.gz:
-  object_id: rest/objects/4e4e78bca51e121204e4e86ee8e2c90508f374e9a519
-  sha: 3c3729883e9fbe7429912a1bdf3c98a75ce59dc3
-  size: 304467
-golang/mgo.57414de697.src.tar.gz:
-  object_id: rest/objects/4e4e78bca51e122004e4e8ec6840770508f375139b80
-  sha: efe756e1c1d3f6c7b4e2791dcb83c5685fb9b89f
-  size: 102833
-golang/goyaml.068c0b7271.src.tar.gz:
-  object_id: rest/objects/4e4e78bca11e122204e4e98638b7630508f3752d66d5
-  sha: 27ab03b103fb3586df9589ef142097efb5cf042a
-  size: 147910
 uaa/cloudfoundry-identity-varz-1.0.2.war:
   object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc050928ba58f527
   sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
@@ -187,10 +115,6 @@ ruby/bundler-1.2.1.gem:
   object_id: rest/objects/4e4e78bca31e121204e4e86ee39692050a16252f052f
   sha: 0cbe6ad7a41f064d6c11c1058465fffb1bd58069
   size: 226816
-mysql/client-5.5.29-rel29.4-401.Linux.x86_64.tar.gz:
-  object_id: rest/objects/4e4e78bca41e121004e4e7d517618f0510b21d28a2bb
-  sha: 8dad5b2d9fee7b0a98e419949c6f7d94c39443f2
-  size: 4564276
 libyaml/yaml-0.1.4.tgz:
   object_id: rest/objects/4e4e78bca51e122004e4e8ec6840770511d35ffc91bd
   sha: e0e5e09192ab10a607e3da2970db492118f560f2
@@ -321,18 +245,10 @@ buildpack_cache/npm-1.2.12.tgz:
   object_id: rest/objects/4e4e78bca61e121004e4e7d51d950e05148e10d70828
   sha: 04d39968240e261cb524af75b77cdd537aca931e
   size: 1830939
-java/openjre1.6_64.tgz:
-  object_id: rest/objects/4e4e78bca21e122204e4e9863926b10515240c1926df
-  sha: 44017427ae3d543d625ed60f3edd560b01695071
-  size: 25414767
 java/jre1.6.0_x64.tgz:
   object_id: rest/objects/4e4e78bca31e122204e4e9863b1b74051532ecb181cc
   sha: d5be7aa61a84c27c64451703404d7bddb60570fb
   size: 32071543
-postgres/postgresql-9.0.13-x86_64.tar.gz:
-  object_id: rest/objects/4e4e78bca51e121204e4e86ee8e2c90515f0bbc54d22
-  sha: 4f57c0364065c7dc347ab1246e84e2fbfa11dfbc
-  size: 12822460
 rootfs/lucid64.tar.gz:
   object_id: rest/objects/4e4e78bca61e122204e4e98643d9ae051782c701f072
   sha: !binary |-
@@ -523,18 +439,3 @@ saml_login/cloudfoundry-saml-login-server-1.2.6.war:
   sha: !binary |-
     Yzc1MzhmYjdmNzdjZTM5ZGE4ZjExN2M5YWY0MmE2YjY2MGUyZmZkNQ==
   size: 21491455
-loggregator/deaagent-linux-amd64.gz.1:
-  object_id: 5e99b3f8-fe83-4dc9-8dea-2f65abd4a9bd
-  sha: !binary |-
-    NDBlNzA3M2IwNmUzMmMxMmM2N2RkZmVhMjgwMDVlNDYwMDViMmJiMA==
-  size: 1663547
-loggregator/loggregator-linux-amd64.gz.1:
-  object_id: 32674fa9-7b12-4561-a9e6-19781d806d5b
-  sha: !binary |-
-    NTdiNTY2NjBjYTY5ZmIxN2MyMDY4NjMxNDM5MWNlOWViYzI5N2IwNw==
-  size: 1751623
-loggregator/trafficcontroller-linux-amd64.gz.1:
-  object_id: 76f64065-d652-4ff8-8e35-d5ef45f83097
-  sha: !binary |-
-    NzYwZDgyM2VjZjExZGUxMDQ4ZTdkNmU5YzdjYjk5YjI1ZTQxN2ZmNQ==
-  size: 1742408
