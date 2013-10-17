@@ -26,8 +26,13 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/hm9000/config
     <% end %>
 
+    if [ -f $WORK_DIR/info ]; then
+      rm $WORK_DIR/info
+    fi
+
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/etcd \
         -d $WORK_DIR \
+        -snapshot \
          1>>$LOG_DIR/etcd.stdout.log \
          2>>$LOG_DIR/etcd.stderr.log
 
