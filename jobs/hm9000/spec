@@ -1,11 +1,12 @@
 ---
 name: hm9000
 templates:
-  hm9000_listener_ctl: bin/hm9000_listener_ctl
-  hm9000_fetcher_ctl: bin/hm9000_fetcher_ctl
-  hm9000_analyzer_ctl: bin/hm9000_analyzer_ctl
-  hm9000_sender_ctl: bin/hm9000_sender_ctl
-  hm9000_metrics_server_ctl: bin/hm9000_metrics_server_ctl
+  hm9000_listener_ctl.erb: bin/hm9000_listener_ctl
+  hm9000_fetcher_ctl.erb: bin/hm9000_fetcher_ctl
+  hm9000_analyzer_ctl.erb: bin/hm9000_analyzer_ctl
+  hm9000_sender_ctl.erb: bin/hm9000_sender_ctl
+  hm9000_metrics_server_ctl.erb: bin/hm9000_metrics_server_ctl
+  hm9000_api_server_ctl.erb: bin/hm9000_api_server_ctl
   hm9000.json.erb: config/hm9000.json
   etcd_ctl.erb: bin/etcd_ctl
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf

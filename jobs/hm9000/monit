@@ -39,3 +39,10 @@ check process hm9000_metrics_server
     with timeout 60 seconds
   stop program "/var/vcap/jobs/hm9000/bin/hm9000_metrics_server_ctl stop"
   group vcap
+
+check process hm9000_api_server
+  with pidfile /var/vcap/sys/run/hm9000/hm9000_api_server.pid
+  start program "/var/vcap/jobs/hm9000/bin/hm9000_api_server_ctl start"
+    with timeout 60 seconds
+  stop program "/var/vcap/jobs/hm9000/bin/hm9000_api_server_ctl stop"
+  group vcap
