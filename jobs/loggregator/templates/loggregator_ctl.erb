@@ -22,7 +22,6 @@ case $1 in
 
     exec chpst -u vcap:vcap /var/vcap/packages/loggregator/loggregator <%= debug_string %> \
          --config /var/vcap/jobs/loggregator/config/loggregator.json \
-         --tokenFile /var/vcap/jobs/loggregator/config/uaa_token.pub \
          >>$LOG_DIR/loggregator.stdout.log \
          2>>$LOG_DIR/loggregator.stderr.log
     ;;

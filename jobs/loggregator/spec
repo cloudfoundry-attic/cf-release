@@ -3,7 +3,6 @@ name: loggregator
 templates:
   loggregator_ctl.erb: bin/loggregator_ctl
   loggregator.json.erb: config/loggregator.json
-  uaa_token.pub.erb: config/uaa_token.pub
 packages:
 - common
 - loggregator
@@ -22,10 +21,7 @@ properties:
     default: 0
   loggregator.maxRetainedLogMessages:
     description: number of log messages to retain per application
-    default: 1000
-  loggregator.disableEmailDomainAuthorization:
-    description: "Disable authorization based on email domains"
-    default: false
+    default: 10
   loggregator.incoming_port:
     description: Port for incoming log messages
   loggregator.outgoing_port:
@@ -42,5 +38,3 @@ properties:
     description: "IP port of Cloud Foundry NATS server"
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
-  uaa.jwt.verification_key:
-    description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"

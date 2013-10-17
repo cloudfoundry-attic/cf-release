@@ -3,6 +3,7 @@ name: loggregator_trafficcontroller
 templates:
   loggregator_trafficcontroller_ctl.erb: bin/loggregator_trafficcontroller_ctl
   loggregator_trafficcontroller.json.erb: config/loggregator_trafficcontroller.json
+  uaa_token.pub.erb: config/uaa_token.pub
 packages:
 - common
 - loggregator_trafficcontroller
@@ -30,6 +31,9 @@ properties:
   loggregator.status.port:
     description: port used to run the varz endpoint
     default: 0
+  loggregator.disableEmailDomainAuthorization:
+    description: "Disable authorization based on email domains"
+    default: false
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
   nats.user:
@@ -40,3 +44,8 @@ properties:
     description: "IP address of Cloud Foundry NATS server"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
+  uaa.jwt.verification_key:
+    description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"
+  cc.srv_api_uri:
+    description: "API URI of cloud controller"
+
