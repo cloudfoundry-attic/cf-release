@@ -1,5 +1,4 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 cp -a collector/* ${BOSH_INSTALL_TARGET}
 

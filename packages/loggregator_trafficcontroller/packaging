@@ -1,11 +1,9 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 dir="loggregator"
 binary="trafficcontroller"
 
 if [[ `uname -a` =~ "x86_64" ]] ; then
-
   echo "Using 64-bit version"
   echo "Extracting archive..."
   gzip -d $dir/"${binary}-linux-amd64.gz"
@@ -21,7 +19,6 @@ else
   echo "Binary not found"
   exit 1
 fi
-
 
 chmod 755 $dir/$binary
 

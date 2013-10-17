@@ -1,9 +1,6 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 cp -a * ${BOSH_INSTALL_TARGET}
 
-(
-  cd ${BOSH_INSTALL_TARGET}/health_manager_next
-  /var/vcap/packages/ruby/bin/bundle install --local --deployment
-)
+cd ${BOSH_INSTALL_TARGET}/health_manager_next
+/var/vcap/packages/ruby/bin/bundle install --local --deployment

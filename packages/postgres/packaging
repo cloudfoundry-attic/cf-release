@@ -1,5 +1,4 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 if [[ `uname -a` =~ "x86_64" ]] ; then
   archive="postgres-9.0.3-1.amd64.tar.gz"
@@ -17,11 +16,4 @@ else
 fi
 
 echo "Extracting archive..."
-mkdir unpacked
-
-(
-  cd unpacked
-  tar xzf ../postgres/$archive
-)
-
-cp -a unpacked/* ${BOSH_INSTALL_TARGET}
+tar xzf postgres/$archive -C ${BOSH_INSTALL_TARGET}
