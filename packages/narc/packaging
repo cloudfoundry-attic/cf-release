@@ -1,12 +1,10 @@
-set -e
+set -e -x
 
-cp -a narc/* $BOSH_INSTALL_TARGET
+cp -a narc/* ${BOSH_INSTALL_TARGET}
 
 export GOROOT=$(readlink -nf /var/vcap/packages/golang)
-export GOPATH=$BOSH_INSTALL_TARGET
+export GOPATH=${BOSH_INSTALL_TARGET}
 export PATH=$GOROOT/bin:$PATH
 
-(
-  cd $GOPATH
-  go install github.com/cloudfoundry/narc/narc
-)
+cd $GOPATH
+go install github.com/cloudfoundry/narc/narc

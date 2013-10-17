@@ -1,5 +1,4 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 cd ${BOSH_INSTALL_TARGET}
 mkdir jdk && tar zxvf ${BOSH_COMPILE_TARGET}/uaa/openjdk-1.6.0_27.tar.gz -C jdk

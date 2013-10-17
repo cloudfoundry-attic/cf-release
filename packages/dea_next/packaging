@@ -1,5 +1,4 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 cp -a dea_next/* ${BOSH_INSTALL_TARGET}
 
@@ -9,7 +8,7 @@ cd ${BOSH_INSTALL_TARGET}
 export GOROOT=$(readlink -nf /var/vcap/packages/golang)
 export PATH=$GOROOT/bin:$PATH
 
-export GOPATH=$BOSH_INSTALL_TARGET/go
+export GOPATH=${BOSH_INSTALL_TARGET}/go
 
 cd $GOPATH
 go install runner

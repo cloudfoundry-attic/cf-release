@@ -1,2 +1,4 @@
+set -e -x
+
 echo "Extracting rootfs"
-tar xzf rootfs/lucid64.tar.gz -C $BOSH_INSTALL_TARGET
+tar xzf rootfs/lucid64.tar.gz -C ${BOSH_INSTALL_TARGET}

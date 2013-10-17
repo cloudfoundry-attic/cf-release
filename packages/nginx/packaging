@@ -1,5 +1,4 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 echo "Extracting lua..."
 tar xzvf nginx/lua-5.1.4.tar.gz
@@ -29,55 +28,48 @@ echo "Extracting nginx_upload module..."
 tar xzvf nginx/nginx_upload_module-2.2.0.tar.gz
 
 echo "Patching upload module"
-cd nginx_upload_module-2.2.0
-patch < ../nginx/upload_module_put_support.patch
-cd ..
+pushd nginx_upload_module-2.2.0
+  patch < ../nginx/upload_module_put_support.patch
+popd
 
 echo "Extracting nginx..."
 tar xzvf nginx/nginx-0.8.54.tar.gz
 
 echo "Patching nginx..."
-cd nginx-0.8.54
-patch -p0 < ../nginx/zero_byte_in_cstr_20120315.patch
-cd ..
+pushd nginx-0.8.54
+  patch -p0 < ../nginx/zero_byte_in_cstr_20120315.patch
+popd
 
 echo "Building lua..."
-(
-  set -e
-
-  cd lua-5.1.4
+pushd lua-5.1.4
   make linux install INSTALL_TOP=${BOSH_INSTALL_TARGET}/lua
-  cd ..
+popd
 
-  cd zhaozg-lua-openssl-5ecb647
+pushd zhaozg-lua-openssl-5ecb647
   sed 's!^PREFIX=.*!PREFIX='${BOSH_INSTALL_TARGET}/lua'!' config > tmp
   sed 's!^CC=.*!CC= gcc $(CFLAGS)!' tmp > config
   make
   make install
-  cd ..
+popd
 
-  cd lua-cjson-1.0.3
+pushd lua-cjson-1.0.3
   sed 's!^PREFIX ?=.*!PREFIX ?='${BOSH_INSTALL_TARGET}/lua'!' Makefile > tmp
   mv tmp Makefile
   make
   make install
-  cd ..
+popd
 
-  cd base64
+pushd base64
   sed 's!^LUAINC=.*!LUAINC='${BOSH_INSTALL_TARGET}/lua/include'!' Makefile > tmp
   sed 's!^LUABIN=.*!LUABIN='${BOSH_INSTALL_TARGET}/lua/bin'!' tmp > Makefile
   sed 's!^CFLAGS=.*!CFLAGS= $(INCS) $(WARN) -fPIC -O2 $G!' Makefile > tmp
   mv tmp Makefile
   make
   cp base64.so ${BOSH_INSTALL_TARGET}/lua/lib/lua/5.1
-  cd ..
-)
+popd
 
 echo "Building nginx..."
-(
-  set -e
-
-  cd nginx-0.8.54
+pushd nginx-0.8.54
   export LUA_LIB=${BOSH_INSTALL_TARGET}/lua/lib
   export LUA_INC=${BOSH_INSTALL_TARGET}/lua/include
   ./configure \
@@ -94,4 +86,4 @@ echo "Building nginx..."
 
   mkdir -p ${BOSH_INSTALL_TARGET}/lib
   cp ${BOSH_INSTALL_TARGET}/lua/lib/lua/5.1/* ${BOSH_INSTALL_TARGET}/lib
-)
+popd

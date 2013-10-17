@@ -1,18 +1,19 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 tar xzf postgres/postgresql-9.0.3.tar.gz
 
-(
-  cd postgresql-9.0.3
-  ./configure --prefix=$BOSH_INSTALL_TARGET
-  (
-    cd src/bin/pg_config
-    make
-    make install
-  )
-  cp -LR src/include $BOSH_INSTALL_TARGET
-  cd src/interfaces/libpq
+cd postgresql-9.0.3
+
+./configure --prefix=${BOSH_INSTALL_TARGET}
+
+pushd src/bin/pg_config
   make
   make install
-)
+popd
+
+cp -LR src/include ${BOSH_INSTALL_TARGET}
+
+pushd src/interfaces/libpq
+  make
+  make install
+popd

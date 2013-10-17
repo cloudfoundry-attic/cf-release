@@ -1,4 +1,3 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 cp -v debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb ${BOSH_INSTALL_TARGET}/

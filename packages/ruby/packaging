@@ -1,19 +1,15 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 tar xzf ruby/ruby-1.9.3-p448.tar.gz
-(
-  cd ruby-1.9.3-p448
+pushd ruby-1.9.3-p448
   ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=/var/vcap/packages/libyaml
   make
   make install
-)
+popd
 
 tar zxvf ruby/rubygems-1.8.24.tgz
-(
-  cd rubygems-1.8.24
-
+pushd rubygems-1.8.24
   ${BOSH_INSTALL_TARGET}/bin/ruby setup.rb
-)
+popd
 
 ${BOSH_INSTALL_TARGET}/bin/gem install ruby/bundler-1.2.1.gem --no-ri --no-rdoc

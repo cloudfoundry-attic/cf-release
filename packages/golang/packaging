@@ -1,5 +1,4 @@
-# abort script on any command that exit with a non zero value
-set -e
+set -e -x
 
 tar xzf golang/go1.1.2.linux-amd64-yacc-shaved.tar.gz
 cp -R go/* ${BOSH_INSTALL_TARGET}
