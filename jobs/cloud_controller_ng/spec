@@ -72,10 +72,10 @@ properties:
 
  directories.droplets: # obsolete?
   description: "If nfs_server defined, dir to store post-staged customer applications"
-  default: "/var/vcap/shared/droplets"
+  default: "/var/vcap/nfs/shared/droplets"
  directories.resources: # obsolete?
   description: "If nfs_server defined, used pre-staging, uploaded files for users apps"
-  default: "/var/vcap/shared/resources"
+  default: "/var/vcap/nfs/shared/resources"
 
  ccng.info.name:
   description: "name attribute in the /info endpoint"
@@ -186,7 +186,7 @@ properties:
   description: "AWS secret key used to access the resources bucket"
  ccng.resource_pool.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/shared"
+  default: "/var/vcap/nfs/shared"
  ccng.resource_pool.cdn.uri:
   description: "URI for a CDN to used for resource pool downloads"
   default: ""
@@ -209,7 +209,7 @@ properties:
   description: "AWS secret key used to access the packages bucket"
  ccng.packages.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/shared"
+  default: "/var/vcap/nfs/shared"
  ccng.packages.cdn.uri:
   description: "URI for a CDN to used for app package downloads"
   default: ""
@@ -232,7 +232,7 @@ properties:
   description: "AWS secret key used to access the droplets bucket"
  ccng.droplets.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/shared"
+  default: "/var/vcap/nfs/shared"
  ccng.droplets.cdn.uri:
   description: "URI for a CDN to used for droplet downloads"
   default: ""
@@ -255,7 +255,7 @@ properties:
   description: "AWS secret key used to access the buildpacks bucket"
  ccng.buildpacks.fog_connection.local_root:
   description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/shared"
+  default: "/var/vcap/nfs/shared"
  ccng.buildpacks.cdn.uri:
   description: "URI for a CDN to used for buildpack downloads"
   default: ""

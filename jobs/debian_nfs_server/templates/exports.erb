@@ -1,2 +1,2 @@
 <% no_root_squash = (properties.debian_nfs_server && properties.debian_nfs_server.no_root_squash) ? ',no_root_squash' : '' %>
-/var/vcap/store/shared        <%= properties.nfs_server.network %>(rw,fsid=0,no_subtree_check,sync<%= no_root_squash %>)
+/var/vcap/store       <%= properties.nfs_server.network %>(rw,fsid=0,no_subtree_check,sync<%= no_root_squash %>)
