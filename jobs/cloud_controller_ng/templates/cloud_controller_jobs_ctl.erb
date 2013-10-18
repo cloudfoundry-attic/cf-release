@@ -17,6 +17,8 @@ export C_INCLUDE_PATH=/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=/var/vcap/packages/libpq/lib:$LIBRARY_PATH
 export LANG=en_US.UTF-8
 
+export GENERIC_QUEUE=cc-generic
+
 source /var/vcap/packages/common/utils.sh
 
 case $1 in
@@ -34,10 +36,9 @@ case $1 in
     chown vcap:vcap $PIDFILE
 
     cd $CC_PACKAGE_DIR/cloud_controller_ng
-    export QUEUE=cc-<%= name %>-<%= spec.index.to_i %>
+    export QUEUES=cc-<%= name %>-<%= spec.index.to_i %>,$GENERIC_QUEUE
     exec chpst -u vcap:vcap bundle exec rake jobs:work \
       >>$LOG_DIR/jobs_work.stdout.log 2>>$LOG_DIR/jobs_work.stderr.log
-
   ;;
 
   stop)
