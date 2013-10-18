@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 REPO_NAME"
+  exit 1
+fi
+
 repo=$1
 release=`pwd`
 
