@@ -1,71 +1,53 @@
-# Each Warden container gets a network with this layout:
+# Each Warden container is a /30 in Warden's network range, which is
+# configured as 10.244.0.0/22. There are 256 available entries.
 #
-#   10.244.0.(n + 0): container host broadcast IP
-#   10.244.0.(n + 1): container host IP
-#   10.244.0.(n + 2): container IP that we care about in the CF network
-#   10.244.0.(n + 3): container broadcast IP
+# We want two subnets, so I've arbitrarily divided this in half for each.
 #
-# Thus, we want to reserved (n + 0) and (n + 3) for everything in the range,
-# and allocate a few static IPs for (n + 1).
+# cf1 will be 10.244.0.0/23
+# cf2 will be 10.244.2.0/23
+#
+# Each network will have 128 subnets, and the first half of each subnet will
+# be given static IPs.
 
 require "yaml"
+require "netaddr"
 
-base = "10.244.0"
+cf1_subnets = []
+cf1_start = NetAddr::CIDR.create("10.244.0.0/30")
 
-cf1_host_networks = (128 / 4).times.collect { |x| x * 4 }
-cf2_host_networks = (128 / 4).times.collect { |x| 128 + x * 4 }
+cf2_subnets = []
+cf2_start = NetAddr::CIDR.create("10.244.2.0/30")
 
-cf1_container_host_ips = cf1_host_networks.collect { |x| x + 1 }
-cf2_container_host_ips = cf2_host_networks.collect { |x| x + 1 }
+128.times do
+  cf1_subnets << cf1_start
+  cf1_start = NetAddr::CIDR.create(cf1_start.next_subnet)
 
-cf1_container_ips = cf1_host_networks.collect { |x| x + 2 }
-cf2_container_ips = cf2_host_networks.collect { |x| x + 2 }
-
-cf1_container_bcasts = cf1_host_networks.collect { |x| x + 3 }
-cf2_container_bcasts = cf2_host_networks.collect { |x| x + 3 }
-
-cf1_reserved =
-  (
-    cf1_host_networks +
-    cf1_container_host_ips +
-    cf1_container_bcasts
-  ).sort.collect { |x| "#{base}.#{x}" }
-
-cf2_reserved =
-  (
-    cf2_host_networks +
-    cf2_container_host_ips +
-    cf2_container_bcasts
-  ).sort.collect { |x| "#{base}.#{x}" }
-
-cf1_static_ip_count = cf1_host_networks.size / 4
-cf2_static_ip_count = cf2_host_networks.size / 4
-
-cf1_static = cf1_container_ips[0...cf1_static_ip_count].collect { |x| "#{base}.#{x}" }
-cf2_static = cf2_container_ips[0...cf2_static_ip_count].collect { |x| "#{base}.#{x}" }
+  cf2_subnets << cf2_start
+  cf2_start = NetAddr::CIDR.create(cf2_start.next_subnet)
+end
 
 puts YAML.dump(
   "networks" => [
     { "name" => "cf1",
-      "subnets" => [
+      "subnets" => cf1_subnets.collect.with_index do |subnet, idx|
         { "cloud_properties" => {
             "name" => "random",
           },
-          "range" => "#{base}.0/24",
-          "reserved" => ["#{base}.128 - #{base}.254"] + cf1_reserved[1..-1], # 0 is out of range
-          "static" => cf1_static,
-        },
-      ],
+          "range" => subnet.to_s,
+          "reserved" => [subnet[1].ip],
+          "static" => idx < 64 ? [subnet[2].ip] : [],
+        }
+      end
     },
     { "name" => "cf2",
-      "subnets" => [
+      "subnets" => cf2_subnets.collect.with_index do |subnet, idx|
         { "cloud_properties" => {
             "name" => "random",
           },
-          "range" => "#{base}.0/24",
-          "reserved" => ["#{base}.1 - #{base}.127"] + cf2_reserved[0..-2], # 255 is out of range
-          "static" => cf2_static,
-        },
-      ],
+          "range" => subnet.to_s,
+          "reserved" => [subnet[1].ip],
+          "static" => idx < 64 ? [subnet[2].ip] : [],
+        }
+      end
     },
   ])
