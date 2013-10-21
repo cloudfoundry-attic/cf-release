@@ -8,6 +8,9 @@ check process cloud_controller_jobs
   with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_jobs.pid
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl stop"
+<% if spec.index.to_i == 0 %>
+  depends on cloud_controller_ng
+<% end %>
   group vcap
 
 <% if p("ccng.use_nginx", true) %>
