@@ -138,7 +138,7 @@ jobs:
   properties:
     ccdb: ccdb
     loggregator:
-      trafficcontroller: <%= ip( 20, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
+      trafficcontroller: <%= ip( 20, 'cf1.static') %>
 
 - name: loggregator_z1
   template: loggregator
@@ -202,7 +202,7 @@ jobs:
     - gateway
   properties:
     loggregator:
-      trafficcontroller: <%= ip( 21, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
+      trafficcontroller: <%= ip( 21, 'cf1.static') %>
 
 - name: collector
   template: collector
@@ -224,7 +224,7 @@ jobs:
     - <%= ip( 5, 'cf1.static') %>
   properties:
     loggregator:
-      trafficcontroller: <%= ip( 20, 'cf1.static') %>:<%= find('properties.loggregator.incoming_port') %>
+      trafficcontroller: <%= ip( 20, 'cf1.static') %>
 
 properties:
   loggregator:
@@ -233,8 +233,6 @@ properties:
       - <%= ip( 18, 'cf1.static') %>
       z2:
       - <%= ip( 19, 'cf1.static') %>
-    incoming_port: 3456
-    outgoing_port: 8080
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 

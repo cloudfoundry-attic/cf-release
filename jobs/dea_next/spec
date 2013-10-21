@@ -75,4 +75,7 @@ properties:
   syslog_aggregator:
     description: "Syslog aggregator stuff"
   loggregator.trafficcontroller:
-    description: The url used to emit messages to the Loggregator
+    description: The host used to emit messages to the Loggregator
+  loggregator.incoming_port:
+    description: The port used to emit messages to the Loggregator
+    default: 3456
