@@ -24,8 +24,10 @@ properties:
     default: 10
   loggregator.incoming_port:
     description: Port for incoming log messages
+    default: 3456
   loggregator.outgoing_port:
     description: Port for outgoing log messages
+    default: 8080
   cc.srv_api_uri:
     description: "API URI of cloud controller"
   nats.user:

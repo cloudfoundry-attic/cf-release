@@ -1,6 +1,6 @@
 {
 	"Index": <%= spec.index %>,
-	"LoggregatorAddress": "<%= p("loggregator.trafficcontroller") %>",
+	"LoggregatorAddress": "<%= p("loggregator.trafficcontroller") %>:<%= p("loggregator.incoming_port") %>",
 	"NatsHost": "<%= p("nats.address") %>",
   	"NatsPort": <%= p("nats.port") %>,
   	"NatsUser": "<%= p("nats.user") %>",

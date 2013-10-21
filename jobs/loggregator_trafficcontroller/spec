@@ -17,11 +17,13 @@ properties:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)
     default: false
   loggregator.servers:
-    description: a map of zones to loggregatorservers (hosts and ports)
+    description: a map of zones to loggregator servers (hostname/IP only, no port)
   loggregator.incoming_port:
     description: Port for incoming log messages
+    default: 3456
   loggregator.outgoing_port:
     description: Port for outgoing log messages
+    default: 8080
   loggregator.status.user:
     description: username used to log into varz endpoint
     default: ""

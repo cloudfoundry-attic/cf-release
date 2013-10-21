@@ -22,9 +22,9 @@ meta:
 
   loggregator:
     z1:
-      trafficcontroller: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] ":3456" ))
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] ))
     z2:
-      trafficcontroller: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] ":3456" ))
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] ))
 
 
 jobs:
