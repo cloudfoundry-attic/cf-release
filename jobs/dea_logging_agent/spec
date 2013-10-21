@@ -12,7 +12,10 @@ properties:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator trafficcontroller)
     default: false
   loggregator.trafficcontroller:
-    description: loggregator trafficcontroller in host:port format
+    description: The host used to emit messages to the Loggregator
+  loggregator.incoming_port:
+    description: The port used to emit messages to the Loggregator
+    default: 3456
   loggregator.status.user:
     description: username used to log into varz endpoint
     default: "" 
