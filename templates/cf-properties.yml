@@ -2,6 +2,8 @@ properties:
   domain: (( merge ))
 
   cc:
+    hm9000_noop: true
+
     srv_api_uri: (( "https://api." domain ))
 
     bulk_api_password: (( merge ))
