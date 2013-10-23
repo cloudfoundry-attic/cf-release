@@ -31,7 +31,7 @@ jobs:
   - name: ha_proxy_z1
     template: haproxy
     instances: 0
-    resource_pool: ha_proxy_z1
+    resource_pool: router_z1
     networks:
       - name: cf1
         static_ips: (( merge ))

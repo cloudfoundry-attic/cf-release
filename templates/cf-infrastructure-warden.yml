@@ -334,11 +334,6 @@ resource_pools:
     cloud_properties:
       name: random
 
-  - name: ha_proxy_z1
-    cloud_properties:
-      name: random
-
-
 networks:
 - name: cf1
   subnets:
