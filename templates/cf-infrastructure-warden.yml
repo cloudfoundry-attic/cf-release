@@ -97,6 +97,7 @@ properties:
       password: router
 
   loggregator:
+    shared_secret: loggregator-secret
     status:
       user: loggregator
       password: loggregator
