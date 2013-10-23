@@ -233,7 +233,12 @@ properties:
       - <%= ip( 18, 'cf1.static') %>
       z2:
       - <%= ip( 19, 'cf1.static') %>
+<<<<<<< HEAD
+=======
+    incoming_port: 3456
+    outgoing_port: 8080
     shared_secret: <%= random_string(30) %>
+>>>>>>> Adding the shared secret to trafficcontroller
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
 

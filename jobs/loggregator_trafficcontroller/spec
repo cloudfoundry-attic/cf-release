@@ -36,6 +36,8 @@ properties:
   loggregator.disableEmailDomainAuthorization:
     description: "Disable authorization based on email domains"
     default: false
+  loggregator.shared_secret:
+    description: "Shared secret used to generate signature for messages"
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
   nats.user:
