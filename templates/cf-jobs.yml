@@ -28,6 +28,23 @@ meta:
 
 
 jobs:
+  - name: ha_proxy_z1
+    template: haproxy
+    instances: 0
+    resource_pool: router_z1
+    networks:
+      - name: cf1
+        static_ips: (( merge ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      syslog_aggregator: (( meta.syslog.z1 ))
+      ha_proxy:
+        ssl_pem: ~
+      router:
+        servers:
+          z1: (( jobs.router_z1.networks.cf1.static_ips ))
+          z2: (( jobs.router_z2.networks.cf2.static_ips ))
+
   - name: nats_z2
     template: nats
     instances: 1

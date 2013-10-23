@@ -5,7 +5,7 @@ meta:
 
 
 properties:
-  domain: (( jobs.router_z1.networks.cf1.static_ips.[0] ".xip.io" ))
+  domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
 
   disk_quota_enabled: false
 
@@ -13,7 +13,6 @@ properties:
     evacuation_delay: 0
     memory_mb: 8192
     disk_mb: 16384
-    directory_server_protocol: http
     kernel_network_tuning_enabled: false
 
   nats:
@@ -21,8 +20,6 @@ properties:
     password: nats
 
   cc:
-    srv_api_uri: (( "http://api." domain ))
-
     bulk_api_password: bulk-password
     staging_upload_user: upload-user
     staging_upload_password: upload-password
@@ -38,8 +35,6 @@ properties:
       fog_connection: (( meta.fog_config ))
 
   uaa:
-    url: (( "http://uaa." domain ))
-    no_ssl: true
     catalina_opts: -Xmx384m -XX:MaxPermSize=128m
     jwt:
       signing_key: |
@@ -90,6 +85,7 @@ properties:
     scim:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin
+    no_ssl: true
 
   login:
     catalina_opts: -Xmx384m -XX:MaxPermSize=128m
@@ -192,7 +188,7 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(5) ))
   - name: router_z2
-    instances: 0
+    instances: 1
     networks:
       - name: cf2
         static_ips: (( static_ips(5) ))
@@ -254,6 +250,43 @@ jobs:
   - name: stats_z2
     instances: 0
 
+  - name: ha_proxy_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(8) ))
+    properties:
+      ha_proxy:
+        ssl_pem: |
+          -----BEGIN CERTIFICATE-----
+          MIICLzCCAZgCCQCSoIG3LoeSMTANBgkqhkiG9w0BAQUFADBcMQswCQYDVQQGEwJV
+          UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xEDAOBgNVBAoT
+          B1Bpdm90YWwxFjAUBgNVBAsTDUNsb3VkIEZvdW5kcnkwHhcNMTMxMDE3MjMxNzM5
+          WhcNMTQxMDE3MjMxNzM5WjBcMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAU
+          BgNVBAcTDVNhbiBGcmFuY2lzY28xEDAOBgNVBAoTB1Bpdm90YWwxFjAUBgNVBAsT
+          DUNsb3VkIEZvdW5kcnkwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANqyjJMH
+          FDbJ4XM2vLRxz6i82Gd2Y2dnAKYgu67FgheHGQJSv38lvn8JrAOBXu2QJgP8sJa+
+          XqUWUTMo9BWvhvedQLojtcpLdULc0FhlIXn8bThGlTQyrSg9QJobhQZGziFVrdQM
+          UZy4X+s6A2Szb9iOg3TYibnnfnuvdZli83eRAgMBAAEwDQYJKoZIhvcNAQEFBQAD
+          gYEAbFu65WT+czpiJqHhNz5AnGYA8kieVlV7KhcljLtsU4Sxut5Vq9uXFBE09KCg
+          YkyZ9KfzXArTeRCfcbm5xq12I+1nf6q0QjT1y3P6ztax0rpyb0i+4GWvA+ruMhfx
+          n4QM1MkiJVYBGKkXFZDd1zsdR3pY4vm1uiMY75IvJQfgb08=
+          -----END CERTIFICATE-----
+          -----BEGIN RSA PRIVATE KEY-----
+          MIICXQIBAAKBgQDasoyTBxQ2yeFzNry0cc+ovNhndmNnZwCmILuuxYIXhxkCUr9/
+          Jb5/CawDgV7tkCYD/LCWvl6lFlEzKPQVr4b3nUC6I7XKS3VC3NBYZSF5/G04RpU0
+          Mq0oPUCaG4UGRs4hVa3UDFGcuF/rOgNks2/YjoN02Im55357r3WZYvN3kQIDAQAB
+          AoGAa88G81fTBCtDA1vhbIaKWuE1QNOgrxGcxUhvnPlqZxTHJFkMY66EmPV4oYW9
+          +RhNVTvVBYq092boAnNW1/Xebvrk1SnBDkrLntnGPmExkatOkPTFFlNXfePu6qOJ
+          ULwYg8rKRwpvLoQXxbzMDXApPBifBNWGHVneGuHLpwPEQgECQQD0IJOecEyorrCR
+          6+wmJBS/IwqQO0Ooj7kZEg65MHi9exVe+XFvP0lW2NAUsDuBLz79hjslSqIJjRG8
+          c6q36oqhAkEA5VVeEip+T4DV12I5A5maGexVMeC92K7EGU/H8YhltxVZ/RtNngdT
+          3r19WeDbDF7R5CJy2f7AYullk3S6fkk28QJBALdEiW1k4rezRMyW7tYHOifvN2vl
+          gbpWAt/GRZVSxSGB+B4vZq/cM8NlynftgQ5PGJucnGQ3bgN7irgNoTimc2ECQFMX
+          QBMy5DroAhKcmu2r/IKB90gwFnjosVI+bsIbWkcgbE9hUhj8rK2aWE11Q8hSnpea
+          x6QmQgxUZiIr+9n/qvECQQDiDIeSmo2mRYsaqr4CQ3Ak+EDjsm9XTpXHuqm+xgFO
+          iDIeQCWd3/twqdDTR7FaDE7Q0i559u7A1yLumUn8caLF
+          -----END RSA PRIVATE KEY-----
 
 compilation:
   cloud_properties:
@@ -413,6 +446,7 @@ networks:
     - 10.244.0.22
     - 10.244.0.26
     - 10.244.0.30
+    - 10.244.0.34
 - name: cf2
   subnets:
   - cloud_properties:
@@ -524,3 +558,4 @@ networks:
     - 10.244.0.150
     - 10.244.0.154
     - 10.244.0.158
+    - 10.244.0.162
