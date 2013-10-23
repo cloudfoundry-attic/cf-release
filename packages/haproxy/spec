@@ -1,0 +1,7 @@
+---
+name: haproxy
+files:
+- haproxy/haproxy-1.5-dev19.tar.gz
+- haproxy/pcre-8.33.tar.gz
+dependencies:
+- syslog_aggregator
