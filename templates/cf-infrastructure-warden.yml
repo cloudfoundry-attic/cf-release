@@ -3,6 +3,11 @@ meta:
     provider: Local
     local_root: /var/vcap/store
 
+update:
+  canaries: 1
+  max_in_flight: 50
+  canary_watch_time: 1000-180000
+  update_watch_time: 1000-180000
 
 properties:
   domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
