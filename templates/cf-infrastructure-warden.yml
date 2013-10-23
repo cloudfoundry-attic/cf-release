@@ -175,14 +175,14 @@ jobs:
 
   # set up static IP for loggregator
   - name: loggregator_z1
-    instances: 2
+    instances: 1
     networks:
       - name: cf1
         static_ips: (( static_ips(3, 4) ))
 
-      # set up static IP for loggregator
+  # set up static IP for loggregator
   - name: loggregator_z2
-    instances: 2
+    instances: 1
     networks:
       - name: cf2
         static_ips: (( static_ips(3, 4) ))
