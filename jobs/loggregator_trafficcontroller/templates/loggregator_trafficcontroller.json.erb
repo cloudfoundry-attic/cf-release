@@ -2,6 +2,7 @@
     "Loggregators": <%= p("loggregator.servers").to_json %>,
     "IncomingPort": <%= p("loggregator.incoming_port") %>,
     "OutgoingPort": <%= p("loggregator.outgoing_port") %>,
+    "SharedSecret": "<%= p("loggregator.shared_secret") %>",
     "Zone": "<%= p("zone") %>",
     "Host": "<%= p("loggregator.trafficcontroller") %>",
     "ApiHost": "<%= p("cc.srv_api_uri") %>",
