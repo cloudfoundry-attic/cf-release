@@ -335,7 +335,6 @@ resource_pools:
     cloud_properties:
       name: random
 
----
 networks:
 - name: cf1
   subnets:
