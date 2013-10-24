@@ -331,9 +331,9 @@ loggregator/trafficcontroller-linux-amd64.gz:
     MDM5MDk0MjgyMjM1NjRlNmViNjQ5ZTc2ZDNlNzk5ZjFmY2I0ZDY2Nw==
   size: 709783
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fauto-reconfiguration%2Findex.yml.cached:
-  object_id: fa201cf9-e1f9-4635-a0d9-b83b92ef4b2f
+  object_id: 0a46febb-f88b-4bd7-8332-412141bb3d70
   sha: !binary |-
-    YzhkMzdkODA5ZWRjYTc0MDgyNDc2ZTdkNTkzZGIxYTZlMDA5Mjk2Mg==
+    NmIwYTg3YjMzMDhiZDdlZTFiMjJkZGJiZjZlZjhjNTk5YmE1MmRiYQ==
   size: 107
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fgroovy%2Fgroovy-2.1.6.zip.cached:
   object_id: 09c39dfd-66d3-4ff0-b116-1c52e86738bb
@@ -341,25 +341,25 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
     OWY1NjVlNzM2MmJkMjhmZmU3YzY2MTYzNTZhNmE5ZmI1YjQyYTNiMg==
   size: 28572728
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fgroovy%2Findex.yml.cached:
-  object_id: 60c0fa67-952f-436a-b3cf-a4ba9963661a
+  object_id: 58ba88e5-33fa-4388-8e7d-843e71f584dc
   sha: !binary |-
-    ZWEwZDU2MjEyYmMwMjliZjg5NzFhZmYxZDM0NmU1ZmFiMGZlYjkyMA==
+    NzMyOTYwYjRkZWY3MTUzMjVjNjA0OWFiOGM2OGNlOGZhNDhmYWQ0Yw==
   size: 79
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fnew-relic%2Findex.yml.cached:
-  object_id: d56fbe13-f0cc-408b-a5b8-a4b969d6eb55
+  object_id: ebb1dcb5-5c68-40df-957c-1f135b8f4b25
   sha: !binary |-
-    YmFkZTNmMzY0MTRlNjgxZjQzZjE5OTc2NDliYjRlNjQ5NjY3ZmVmNQ==
-  size: 87
+    ZGMzNDczY2EzM2JlYmYxZjRhNWU4MDkyNzcwZWYyY2M2ZGVhY2I0OQ==
+  size: 88
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fnew-relic%2Fnew-relic-2.21.3.jar.cached:
   object_id: e2a8d00e-1534-4155-b603-a0c165805029
   sha: !binary |-
     MDkxOTk4MWJmOTBlODk0MjI0YTVmYWMwOWM2OTQ4MWU2MGYzYTY5Zg==
   size: 3111406
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Flucid%2Fx86_64%2Findex.yml.cached:
-  object_id: 043353c2-7cff-4cc3-aceb-8a4cc24c2331
+  object_id: 0b5ec1a7-a432-4b0e-ad9e-2fac583b6757
   sha: !binary |-
-    ZjQxNWQ2NzFkMjllZDQwYmQ2OTAwMGEyYWY1M2MwYmZmZDk2YTczZA==
-  size: 301
+    MTg1Mjc3ZGNmYTQ4ZDljNGYyYTQwN2IwZDI3MjMzMmExNWI5OTZlMA==
+  size: 400
 ? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Flucid%2Fx86_64%2Fopenjdk-1.6.0_27.tar.gz.cached
 : object_id: 9f5e5c16-cb4e-4d00-b363-3c7e05552e63
   sha: !binary |-
@@ -376,9 +376,9 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
     MmNmZmMwMzQ1OTM5MTE1OWU0NTQyMWNmYTQzYWVlZTg3NzA5ZDViOQ==
   size: 38322232
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fplay-jpa-plugin%2Findex.yml.cached:
-  object_id: 95087b21-9c39-446d-b4b9-1b04f09a3cb2
+  object_id: 7709ab36-03a7-4e3e-9a36-d138aa51385a
   sha: !binary |-
-    MTUwM2E5YzFkMTBmZWQwMGVmZmJjZjcwN2Y2ZjUxN2M0YTYzZDViNQ==
+    MGJlMjIzODU4NjhhMjI3NjhlZjU4ZjI3YmMxZmEwZmU0YzE3NDZlNA==
   size: 97
 ? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fplay-jpa-plugin%2Fplay-jpa-plugin-0.7.1.jar.cached
 : object_id: 78f21cfb-8c75-4e07-a792-0ee33a9d1e6b
@@ -386,9 +386,9 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
     ZmU0NjY2NzE3ZWIxNzMxMmI0YjA5Zjc3YTQ4YjU1NmNkNTRkYTUwZg==
   size: 4618
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fspring-boot-cli%2Findex.yml.cached:
-  object_id: 6c3c2c90-fd00-48d5-a35d-ffa799849fda
+  object_id: 81b7c687-3d3e-4bd7-af85-c16f1c182dc9
   sha: !binary |-
-    ODI4MWMyNGQ1YTg3NmZiYjlkYjNkZWJiYzcwN2NmZTg5MTQ3MTg4OA==
+    YzhlMjE1MDJhZDQ0OWE3YmJkZDA5OTI1MjdhYjEyODZkMDRiOTkyMg==
   size: 106
 ? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fspring-boot-cli%2Fspring-boot-cli-0.5.0_M2.tar.gz.cached
 : object_id: 12d8e078-70c6-4471-b12b-bc543c956a6b
@@ -445,3 +445,63 @@ haproxy/pcre-8.33.tar.gz:
   sha: !binary |-
     YmNlYWZiNTM1NTMyMTlkYWQyNTkzYmI4YWYwNmRhNGQwN2ZkMzgyOA==
   size: 1889401
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fauto-reconfiguration%2Fauto-reconfiguration-0.7.2.jar.cached
+: object_id: 1ff81190-e204-4a25-a82e-15ac488326fa
+  sha: !binary |-
+    NDVlOWQ5YWNlZjc2ZTAzYzk3ZDBlMzc1NGRjZGZhMmE2YmZkNmUyZg==
+  size: 710121
+buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fgroovy%2Fgroovy-2.1.8.zip.cached:
+  object_id: e7f4eb13-75ee-4135-95bd-1a6f8d2505eb
+  sha: !binary |-
+    NjUyNWQ5ODY2ZDUyOTAxZWU2NmFlNGVkZGM1MDRkYzIyNjVkYTk0OA==
+  size: 28581075
+buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fnew-relic%2Fnew-relic-2.21.4.jar.cached:
+  object_id: 0078f328-db18-4a82-b6b4-1cbad1522acd
+  sha: !binary |-
+    MDVlNmE0N2Q5ZWQzODQ3MGI1ZjViZjNmMjM3ZTg2YWE2YjBkMDMwZQ==
+  size: 3165361
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Flucid%2Fx86_64%2Fopenjdk-1.7.0_25.tar.gz.cached
+: object_id: f2a4ac05-487e-43c2-a951-e49d45025363
+  sha: !binary |-
+    MzdiNGNiYjJlODgyZjhkYTk5NDQ3MjllOWYzMTFmOGY3MWNjN2ZkZg==
+  size: 31516851
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Flucid%2Fx86_64%2Fopenjdk-1.7.0_40.tar.gz.cached
+: object_id: c0709163-6078-40a4-ab0f-a4927ea38c86
+  sha: !binary |-
+    MjI3ZTEyNTgwNTdlOTNjMGVjYTgwNjRlMDY2NzcyMDg1NGUzY2JkNA==
+  size: 31074865
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Flucid%2Fx86_64%2Fopenjdk-1.8.0_M8.tar.gz.cached
+: object_id: 284d8255-37e6-42dd-8fea-7d2c883a5b24
+  sha: !binary |-
+    ZjMxZjUxYTg2YWYzN2Q0M2M3OGQ5MWU2NzA1MjU2OTM3OTJjNzExZg==
+  size: 43586316
+buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Fprecise%2Fx86_64%2Findex.yml.cached:
+  object_id: 14adb4f2-d498-4f05-b9bc-407cf95f450e
+  sha: !binary |-
+    YTE4MzI5ZmY3YjI5MzdjOTkxMjRjMmUzNjgxYWNlNjNmNzZiMGU0Zg==
+  size: 307
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Fprecise%2Fx86_64%2Fopenjdk-1.7.0_25.tar.gz.cached
+: object_id: 62373fbd-4996-4b9a-b421-fced13aeed2a
+  sha: !binary |-
+    ZmUwZTYwYTkxYmZkNjk3NjU5ZTY5NTM0YWJlYmViOTNkNGQyYzZjYQ==
+  size: 31035681
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Fprecise%2Fx86_64%2Fopenjdk-1.7.0_40.tar.gz.cached
+: object_id: 67009006-a2c7-41ce-9b9d-315ece529b96
+  sha: !binary |-
+    ZjNhZDczMzFkODAxMjIwZDEzMGE3MjcwZmYwMzZhZDUzZTY2MTVmZg==
+  size: 31340576
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fopenjdk%2Fprecise%2Fx86_64%2Fopenjdk-1.8.0_M8.tar.gz.cached
+: object_id: c0ab1d6f-a6d0-4f09-861b-40374ae32b38
+  sha: !binary |-
+    NmZiODNiYjA4MGNlZWQzYWYzMGU5NTAzYjFjNTEyY2QwMDlmNzYxZA==
+  size: 38392467
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fplay-jpa-plugin%2Fplay-jpa-plugin-0.7.2.jar.cached
+: object_id: 9e8f779e-e1ee-480a-a022-2f7a2241ac67
+  sha: !binary |-
+    ZTQ2ZjJlN2JiOWY0MDg0YWFmODMxOTY5ZWJiNzI2MGRjZjU5NTgxYg==
+  size: 4618
+? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fspring-boot-cli%2Fspring-boot-cli-0.5.0_M5.tar.gz.cached
+: object_id: 05539211-c652-496c-9169-ffb90ca642e2
+  sha: !binary |-
+    NWYyYjZlZGRiZWQ1OWJiYjU0YmQ4MzkwYjcxNTg2ZjFkOWE5NTE1Zg==
+  size: 5040017
