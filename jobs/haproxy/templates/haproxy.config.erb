@@ -20,6 +20,7 @@ frontend http-in
     reqadd X-Forwarded-Proto:\ http
     default_backend http-routers
 
+<% if p("ha_proxy.ssl_pem") %>
 frontend https-in
     bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem
     reqadd X-Forwarded-Proto:\ https
@@ -29,6 +30,7 @@ frontend ssl-in
     mode tcp
     bind :4443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem
     default_backend http-routers
+<% end %>
 
 backend http-routers
     balance roundrobin
