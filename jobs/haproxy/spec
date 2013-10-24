@@ -5,5 +5,15 @@ packages:
 templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   haproxy.config.erb:        config/haproxy.config
-  haproxy.init.erb:          bin/haproxy.init
+  haproxy.init:              bin/haproxy.init
   cert.pem.erb:              config/cert.pem
+properties:
+  ha_proxy.ssl_pem:
+    default:
+    description: "SSL certificate (PEM file)"
+  syslog_aggregator.address:
+    default:
+    description:
+  syslog_aggregator.port:
+    default:
+    description:
