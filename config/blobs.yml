@@ -295,11 +295,6 @@ ruby/ruby-1.9.3-p448.tar.gz:
   sha: !binary |-
     YzdmNzM2ZTNiYzFjYTFlNjYxOWE5MTIxODM3ZGQwODQwYWFkNzdjZQ==
   size: 12559260
-login/cloudfoundry-login-server-1.2.5.war:
-  object_id: 59a541e4-f79a-42af-82ac-efd575268f44
-  sha: !binary |-
-    OWFjZjBhOTUyNGUyZTZjMDMzYzEwZWYyNDcxYTk5ZjEzMDFjZjZhYQ==
-  size: 7489077
 uaa/openjdk-1.6.0_27.tar.gz:
   object_id: d523e77d-9962-4233-bcdc-74a2bea30b7a
   sha: !binary |-
@@ -425,11 +420,6 @@ golang/go1.1.2.linux-amd64-yacc-shaved.tar.gz:
   sha: !binary |-
     MDJhYTlmNDdiOTVjZTAxMmI1NzAyZGFmNDFkM2ZmNGI3ODFhYzMwZQ==
   size: 41768327
-saml_login/cloudfoundry-saml-login-server-1.2.6.war:
-  object_id: f4e7bb56-5ae9-436e-a5ad-cc0d79dd5660
-  sha: !binary |-
-    Yzc1MzhmYjdmNzdjZTM5ZGE4ZjExN2M5YWY0MmE2YjY2MGUyZmZkNQ==
-  size: 21491455
 uaa/cloudfoundry-identity-uaa-1.4.6.war:
   object_id: 7e311146-628a-4b40-be57-4dd04d15d1f6
   sha: !binary |-
@@ -505,3 +495,13 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     NWYyYjZlZGRiZWQ1OWJiYjU0YmQ4MzkwYjcxNTg2ZjFkOWE5NTE1Zg==
   size: 5040017
+login/cloudfoundry-login-server-1.2.7.war:
+  object_id: c614400e-2adf-4076-aeea-e295ec19b1ef
+  sha: !binary |-
+    YTRmNjU3OWRmZTBmMzhkNTU1OGI0ODQ1Mzg0MzRmMGZhODAzZGJjYQ==
+  size: 7489471
+saml_login/cloudfoundry-saml-login-server-1.2.7.war:
+  object_id: a5966360-905e-459b-9b9f-3656d5e5ea0d
+  sha: !binary |-
+    NWRlNDM0ZGEyZjZmODYxMTI0NGI2ZDZmMzIyZDM3OGQ2YzlkM2E4Mg==
+  size: 21491434
