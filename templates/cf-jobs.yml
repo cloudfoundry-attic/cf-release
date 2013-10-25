@@ -14,17 +14,17 @@ meta:
 
   syslog:
     z1:
-      address: (( jobs.logs_z1.networks.cf1.static_ips.[0] ))
+      address: (( jobs.logs_z1.networks.cf1.static_ips.[0] || nil ))
       port: 54321
     z2:
-      address: (( jobs.logs_z2.networks.cf2.static_ips.[0] ))
+      address: (( jobs.logs_z2.networks.cf2.static_ips.[0] || nil ))
       port: 54321
 
   loggregator:
     z1:
-      trafficcontroller: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] ))
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] || nil ))
     z2:
-      trafficcontroller: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] ))
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] || nil ))
 
 
 jobs:
@@ -189,9 +189,7 @@ jobs:
       syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: runner_z1
-    template:
-      - dea_next
-      - dea_logging_agent
+    template: (( merge || ["dea_next", "dea_logging_agent"] ))
     instances: 1
     update:
       max_in_flight: 1
@@ -206,9 +204,7 @@ jobs:
         trafficcontroller: (( meta.loggregator.z1.trafficcontroller ))
 
   - name: runner_z2
-    template:
-      - dea_next
-      - dea_logging_agent
+    template: (( merge || ["dea_next", "dea_logging_agent"] ))
     instances: 1
     update:
       max_in_flight: 1
