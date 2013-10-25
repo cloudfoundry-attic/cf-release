@@ -35,7 +35,7 @@ properties:
     default: 0
   loggregator.disableEmailDomainAuthorization:
     description: "Disable authorization based on email domains"
-    default: false
+    default: true
   loggregator.shared_secret:
     description: "Shared secret used to generate signature for messages"
   system_domain:
