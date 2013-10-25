@@ -378,6 +378,3 @@ properties:
     datadog_api_key: ""
     datadog_application_key: ""
     deployment_name: (( meta.environment ))
-    use_tsdb: (( merge || false ))
-
-  opentsdb: (( merge || false ))
