@@ -177,7 +177,7 @@ properties:
  ccng.resource_pool.resource_directory_key:
   description: "Directory (bucket) used store app resources.  It does not have be pre-created."
   default: "cc-resources"
- ccng.resource_pool.fog_connection.provider:
+ ccng.resource_pool.fog_connection:
   description: "Local for shared resources on NFS.  AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.resource_pool.fog_connection.aws_access_key_id:
@@ -208,7 +208,7 @@ properties:
  ccng.packages.app_package_directory_key:
   description: "Directory (bucket) used store app packages.  It does not have be pre-created."
   default: "cc-packages"
- ccng.packages.fog_connection.provider:
+ ccng.packages.fog_connection:
   description: "Local for shared resources on NFS. AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.packages.fog_connection.aws_access_key_id:
@@ -239,7 +239,7 @@ properties:
  ccng.droplets.droplet_directory_key:
   description: "Directory (bucket) used store droplets.  It does not have be pre-created."
   default: "cc-droplets"
- ccng.droplets.fog_connection.provider:
+ ccng.droplets.fog_connection:
   description: "Local for droplets on NFS. AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.droplets.fog_connection.aws_access_key_id:
@@ -270,7 +270,7 @@ properties:
  ccng.buildpacks.buildpack_directory_key:
   description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
   default: "cc-buildpacks"
- ccng.buildpacks.fog_connection.provider:
+ ccng.buildpacks.fog_connection:
   description: "Local for buildpacks on NFS. AWS to place them in S3. OpenStack to place them in swift"
   default: "Local"
  ccng.buildpacks.fog_connection.aws_access_key_id:
