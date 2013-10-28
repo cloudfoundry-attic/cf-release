@@ -8,31 +8,47 @@ global
 
 defaults
     log global
-    mode    http
-    option  httplog
-    option forwardfor
     timeout connect 30000ms
     timeout client 30000ms
     timeout server 30000ms
 
 frontend http-in
+    mode http
     bind :80
+    option httplog
+    option forwardfor
     reqadd X-Forwarded-Proto:\ http
     default_backend http-routers
 
 <% if p("ha_proxy.ssl_pem", false) %>
 frontend https-in
+    mode http
     bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem
+    option httplog
+    option forwardfor
     reqadd X-Forwarded-Proto:\ https
     default_backend http-routers
 
 frontend ssl-in
     mode tcp
     bind :4443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem
-    default_backend http-routers
+    default_backend tcp-routers
 <% end %>
 
 backend http-routers
+    mode http
+    balance roundrobin
+    <% size = p("router.servers.z1").size %>
+
+    <% p("router.servers.z1").each_with_index do |ip, index| %>
+        server node<%= index %> <%= ip %>:80 check inter 1000
+    <% end %>
+    <% p("router.servers.z2").each_with_index do |ip, index| %>
+        server node<%= index + size %> <%= ip %>:80 check inter 1000
+    <% end %>
+
+backend tcp-routers
+    mode tcp
     balance roundrobin
     <% size = p("router.servers.z1").size %>
 
