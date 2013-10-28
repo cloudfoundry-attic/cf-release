@@ -51,9 +51,9 @@ logging:
   level: <%= p("ccng.logging_level") %>
   max_retries: <%= p("ccng.logging_max_retries") %>
 
-<% if_p("loggregator.trafficcontroller", "loggregator.incoming_port") do |trafficcontroller, incoming_port| %>
+<% if_p("loggregator_endpoint.host", "loggregator_endpoint.port") do |traffic_controller, incoming_port| %>
 loggregator:
-  router: <%= trafficcontroller %>:<%= incoming_port %>
+  router: <%= traffic_controller %>:<%= incoming_port %>
 <% end %>
 
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
