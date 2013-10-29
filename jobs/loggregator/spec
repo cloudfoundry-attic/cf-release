@@ -28,6 +28,9 @@ properties:
   loggregator.outgoing_port:
     description: Port for outgoing log messages
     default: 8080
+  loggregator_endpoint.shared_secret:
+    description: "Shared secret used to verify cryptographically signed loggregator messages"
+    default: ""
   nats.user:
     description: "Username for cc client to connect to NATS"
   nats.password:
