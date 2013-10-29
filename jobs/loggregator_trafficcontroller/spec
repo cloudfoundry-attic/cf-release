@@ -3,7 +3,6 @@ name: loggregator_trafficcontroller
 templates:
   loggregator_trafficcontroller_ctl.erb: bin/loggregator_trafficcontroller_ctl
   loggregator_trafficcontroller.json.erb: config/loggregator_trafficcontroller.json
-  uaa_token.pub.erb: config/uaa_token.pub
 packages:
 - common
 - loggregator_trafficcontroller
@@ -33,9 +32,6 @@ properties:
   traffic_controller.status.port:
     description: port used to run the varz endpoint
     default: 0
-  loggregator.disableEmailDomainAuthorization:
-    description: "Disable authorization based on email domains"
-    default: true
   loggregator_endpoint.shared_secret:
     description: "Shared secret used to generate signature for messages"
   system_domain:
