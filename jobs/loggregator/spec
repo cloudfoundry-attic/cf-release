@@ -28,8 +28,6 @@ properties:
   loggregator.outgoing_port:
     description: Port for outgoing log messages
     default: 8080
-  cc.srv_api_uri:
-    description: "API URI of cloud controller"
   nats.user:
     description: "Username for cc client to connect to NATS"
   nats.password:
@@ -38,5 +36,3 @@ properties:
     description: "IP address of Cloud Foundry NATS server"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
-  system_domain:
-    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
