@@ -32,8 +32,6 @@ properties:
   traffic_controller.status.port:
     description: port used to run the varz endpoint
     default: 0
-  loggregator_endpoint.shared_secret:
-    description: "Shared secret used to generate signature for messages"
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
   nats.user:
