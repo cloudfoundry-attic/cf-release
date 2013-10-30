@@ -1,8 +1,9 @@
 ---
 name: loggregator_trafficcontroller
 templates:
-  loggregator_trafficcontroller_ctl.erb: bin/loggregator_trafficcontroller_ctl
   loggregator_trafficcontroller.json.erb: config/loggregator_trafficcontroller.json
+  loggregator_trafficcontroller_ctl.erb: bin/loggregator_trafficcontroller_ctl
+
   uaa_token.pub.erb: config/uaa_token.pub
 packages:
 - common
