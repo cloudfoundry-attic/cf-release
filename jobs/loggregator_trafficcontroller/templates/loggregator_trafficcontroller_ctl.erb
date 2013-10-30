@@ -18,11 +18,10 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    <% p("loggregator.debug") == true ? debug_string = "--debug " : debug_string = "" %>
+    <% p("traffic_controller.debug") == true ? debug_string = "--debug " : debug_string = "" %>
 
     exec chpst -u vcap:vcap /var/vcap/packages/loggregator_trafficcontroller/trafficcontroller <%= debug_string %> \
          --config /var/vcap/jobs/loggregator_trafficcontroller/config/loggregator_trafficcontroller.json \
-         --tokenFile /var/vcap/jobs/loggregator_trafficcontroller/config/uaa_token.pub \
          >>$LOG_DIR/loggregator_trafficcontroller.stdout.log \
          2>>$LOG_DIR/loggregator_trafficcontroller.stderr.log
     ;;
