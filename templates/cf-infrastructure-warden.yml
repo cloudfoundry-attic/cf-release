@@ -3,9 +3,9 @@ meta:
     provider: Local
     local_root: /var/vcap/store
 
-   stemcell:
-      name: bosh-stemcell
-      version: latest
+  stemcell:
+    name: bosh-stemcell
+    version: latest
 
 update:
   canaries: 1
@@ -23,6 +23,9 @@ properties:
     memory_mb: 8192
     disk_mb: 16384
     kernel_network_tuning_enabled: false
+
+  loggregator_endpoint:
+    shared_secret: loggregator-secret
 
   nats:
     user: nats
