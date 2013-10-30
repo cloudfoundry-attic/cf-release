@@ -3,6 +3,10 @@ meta:
     provider: Local
     local_root: /var/vcap/store
 
+   stemcell:
+      name: bosh-stemcell
+      version: latest
+
 update:
   canaries: 1
   max_in_flight: 50

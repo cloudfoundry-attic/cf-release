@@ -1,3 +1,9 @@
+meta:
+
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+
 compilation:
   cloud_properties:
     ram: 1024
