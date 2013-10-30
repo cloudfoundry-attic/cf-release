@@ -6,8 +6,9 @@ templates:
   drain.erb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
-  warden_ctl.erb: bin/warden_ctl
+
   warden.yml.erb: config/warden.yml
+  warden_ctl.erb: bin/warden_ctl
 
   dir_server_ctl.erb: bin/dir_server_ctl
 
