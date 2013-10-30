@@ -1,11 +1,12 @@
 {
 	"Index": <%= spec.index %>,
-	"LoggregatorAddress": "<%= p("loggregator.trafficcontroller") %>:<%= p("loggregator.incoming_port") %>",
+	"LoggregatorAddress": "<%= p("loggregator_endpoint.host") %>:<%= p("loggregator_endpoint.port") %>",
+    "SharedSecret": "<%= p("loggregator_endpoint.shared_secret") %>",
 	"NatsHost": "<%= p("nats.address") %>",
   	"NatsPort": <%= p("nats.port") %>,
   	"NatsUser": "<%= p("nats.user") %>",
   	"NatsPass": "<%= p("nats.password") %>",
-  	"VarzUser": "<%= p("loggregator.status.user") %>",
-  	"VarzPass": "<%= p("loggregator.status.password") %>",
-  	"VarzPort": <%= p("loggregator.status.port") %>
+  	"VarzUser": "<%= p("dea_logging_agent.status.user") %>",
+  	"VarzPass": "<%= p("dea_logging_agent.status.password") %>",
+  	"VarzPort": <%= p("dea_logging_agent.status.port") %>
 }  

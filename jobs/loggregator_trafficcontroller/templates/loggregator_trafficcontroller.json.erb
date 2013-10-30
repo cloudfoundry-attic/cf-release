@@ -2,17 +2,15 @@
     "Loggregators": <%= p("loggregator.servers").to_json %>,
     "IncomingPort": <%= p("loggregator.incoming_port") %>,
     "OutgoingPort": <%= p("loggregator.outgoing_port") %>,
-    "SharedSecret": "<%= p("loggregator.shared_secret") %>",
-    "Zone": "<%= p("zone") %>",
-    "Host": "<%= p("loggregator.trafficcontroller") %>",
+    "Zone": "<%= p("traffic_controller.zone") %>",
+    "Host": "<%= p("traffic_controller.host") %>",
     "ApiHost": "<%= p("cc.srv_api_uri") %>",
     "SystemDomain": "<%= p("system_domain") %>",
     "NatsHost": "<%= p("nats.address") %>",
     "NatsPort": <%= p("nats.port") %>,
     "NatsUser": "<%= p("nats.user") %>",
     "NatsPass": "<%= p("nats.password") %>",
-    "VarzUser": "<%= p("loggregator.status.user") %>",
-    "VarzPass": "<%= p("loggregator.status.password") %>",
-    "VarzPort": <%= p("loggregator.status.port") %>,
-    "DisableEmailDomainAuthorization": <%= p("loggregator.disableEmailDomainAuthorization") %>
+    "VarzUser": "<%= p("traffic_controller.status.user") %>",
+    "VarzPass": "<%= p("traffic_controller.status.password") %>",
+    "VarzPort": <%= p("traffic_controller.status.port") %>
 }
