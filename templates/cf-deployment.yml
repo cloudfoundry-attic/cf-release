@@ -5,6 +5,10 @@ meta:
   # i.e. cf-tabasco
   environment: ~
 
+  stemcell:
+    name: bosh-stemcell
+    version: latest
+
 name: (( meta.environment ))
 
 director_uuid: (( merge ))
