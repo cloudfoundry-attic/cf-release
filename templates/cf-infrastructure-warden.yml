@@ -110,6 +110,12 @@ properties:
       user: router
       password: router
 
+  loggregator:
+    shared_secret: loggregator-secret
+    status:
+      user: loggregator
+      password: loggregator
+
   ccdb:
     db_scheme: postgres
     address: (( properties.databases.address ))
@@ -171,7 +177,7 @@ jobs:
         static_ips: (( static_ips(2) ))
 
   - name: loggregator_trafficcontroller_z2
-    instances: 0
+    instances: 1
     networks:
       - name: cf2
         static_ips: (( static_ips(2) ))
@@ -185,7 +191,7 @@ jobs:
 
   # set up static IP for loggregator
   - name: loggregator_z2
-    instances: 0
+    instances: 1
     networks:
       - name: cf2
         static_ips: (( static_ips(3, 4) ))

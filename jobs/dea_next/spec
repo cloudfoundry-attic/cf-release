@@ -73,11 +73,8 @@ properties:
     default: true
   syslog_aggregator:
     description: "Syslog aggregator stuff"
-  loggregator_endpoint.host:
+  loggregator.trafficcontroller:
     description: The host used to emit messages to the Loggregator
-  loggregator_endpoint.port:
+  loggregator.incoming_port:
     description: The port used to emit messages to the Loggregator
     default: 3456
-  loggregator_endpoint.shared_secret:
-    description: "Shared secret used to cryptographically sign loggregator messages"
-    default: ""

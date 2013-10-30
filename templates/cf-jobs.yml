@@ -22,9 +22,9 @@ meta:
 
   loggregator:
     z1:
-      endpoint: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] || nil ))
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] || nil ))
     z2:
-      endpoint: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] || nil ))
+      trafficcontroller: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] || nil ))
 
 
 jobs:
@@ -151,8 +151,8 @@ jobs:
       ccdb: ccdb
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator.z1.endpoint ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z1.trafficcontroller ))
 
   - name: api_z2
     template: cloud_controller_ng
@@ -165,8 +165,8 @@ jobs:
       ccdb: ccdb
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator.z2.endpoint ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z2.trafficcontroller ))
 
   - name: hm_z1
     template: health_manager_next
@@ -200,8 +200,8 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator.z1.endpoint ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z1.trafficcontroller ))
 
   - name: runner_z2
     template: (( merge || ["dea_next", "dea_logging_agent"] ))
@@ -215,8 +215,8 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator.z2.endpoint ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z2.trafficcontroller ))
 
   - name: taskmaster_z1
     template: narc
@@ -270,8 +270,7 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
-      traffic_controller:
-        zone: z1
+      zone: z1
 
   - name: loggregator_trafficcontroller_z2
     template: loggregator_trafficcontroller
@@ -283,8 +282,7 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
-      traffic_controller:
-        zone: z2
+      zone: z2
 
   - name: router_z1
     template: gorouter
@@ -296,8 +294,8 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       syslog_aggregator: (( meta.syslog.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator.z1.endpoint ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z1.trafficcontroller ))
 
   - name: router_z2
     template: gorouter
@@ -309,8 +307,8 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator.z2.endpoint ))
+      loggregator:
+        trafficcontroller: (( meta.loggregator.z2.trafficcontroller ))
 
 properties:
   domain: (( merge ))
@@ -343,10 +341,8 @@ properties:
       z2: (( jobs.loggregator_z2.networks.cf2.static_ips ))
     incoming_port: 3456
     outgoing_port: 8080
-    maxRetainedLogMessages: 1000
-
-  loggregator_endpoint:
     shared_secret: (( merge ))
+    maxRetainedLogMessages: 1000
 
   cc: (( merge ))
   ccdb: (( merge ))
