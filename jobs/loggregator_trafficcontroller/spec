@@ -3,16 +3,17 @@ name: loggregator_trafficcontroller
 templates:
   loggregator_trafficcontroller_ctl.erb: bin/loggregator_trafficcontroller_ctl
   loggregator_trafficcontroller.json.erb: config/loggregator_trafficcontroller.json
+  uaa_token.pub.erb: config/uaa_token.pub
 packages:
 - common
 - loggregator_trafficcontroller
 properties:
-  traffic_controller.zone:
+  zone:
     description: Zone of the loggregator_trafficcontroller
-  traffic_controller.host:
+  loggregator.trafficcontroller:
     description: The host the loggregator_trafficcontroller should listen on
     default: 0.0.0.0
-  traffic_controller.debug:
+  loggregator.debug:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)
     default: false
   loggregator.servers:
@@ -23,15 +24,20 @@ properties:
   loggregator.outgoing_port:
     description: Port for outgoing log messages
     default: 8080
-  traffic_controller.status.user:
+  loggregator.status.user:
     description: username used to log into varz endpoint
     default: ""
-  traffic_controller.status.password:
+  loggregator.status.password:
     description: password used to log into varz endpoint
     default: ""
-  traffic_controller.status.port:
+  loggregator.status.port:
     description: port used to run the varz endpoint
     default: 0
+  loggregator.disableEmailDomainAuthorization:
+    description: "Disable authorization based on email domains"
+    default: true
+  loggregator.shared_secret:
+    description: "Shared secret used to generate signature for messages"
   system_domain:
     description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
   nats.user:
