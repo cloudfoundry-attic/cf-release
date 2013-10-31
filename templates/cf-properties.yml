@@ -1,6 +1,8 @@
 properties:
   domain: (( merge ))
 
+  loggregator:
+    shared_secret: (( merge )) 
   cc:
     hm9000_noop: true
 
