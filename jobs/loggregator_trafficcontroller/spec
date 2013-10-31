@@ -51,6 +51,8 @@ properties:
     description: "IP port of Cloud Foundry NATS server"
   uaa.jwt.verification_key:
     description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"
+  ssl.skip_cert_verify:
+    description: "when connecting over https, ignore bad ssl certificates"
   cc.srv_api_uri:
     description: "API URI of cloud controller"
 
