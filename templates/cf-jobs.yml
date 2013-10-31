@@ -312,6 +312,8 @@ jobs:
 
 properties:
   domain: (( merge ))
+  ssl:
+    skip_cert_verify: (( merge || false ))
   system_domain: (( domain ))
   system_domain_organization: ~
   app_domains: (( [domain] ))
