@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-git pull && git submodule foreach --recursive git submodule sync && git submodule update --init --recursive
+git pull && git submodule sync --recursive && git submodule foreach --recursive git submodule sync  && git submodule update --init --recursive
 
 set +x
 echo
