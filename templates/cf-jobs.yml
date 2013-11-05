@@ -177,7 +177,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       syslog_aggregator: (( meta.syslog.z2 ))
       loggregator_endpoint:
-        trafficcontroller: (( meta.loggregator_endpoint.z2.host ))
+        host: (( meta.loggregator_endpoint.z2.host ))
 
   - name: hm_z1
     template: health_manager_next
