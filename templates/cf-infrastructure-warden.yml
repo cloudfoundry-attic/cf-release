@@ -7,6 +7,10 @@ meta:
     name: bosh-stemcell
     version: latest
 
+  loggregator_endpoint:
+    z2:
+      host: "unused"
+
 update:
   canaries: 1
   max_in_flight: 50
@@ -30,6 +34,7 @@ properties:
   nats:
     user: nats
     password: nats
+    address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
 
   cc:
     default_quota_definition: runaway
@@ -163,8 +168,14 @@ properties:
 
 jobs:
   # specify nats static IP
-  - name: nats_z2
+  - name: nats_z1
     instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(1) ))
+
+  - name: nats_z2
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(1) ))
@@ -177,7 +188,7 @@ jobs:
         static_ips: (( static_ips(2) ))
 
   - name: loggregator_trafficcontroller_z2
-    instances: 1
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(2) ))
@@ -191,7 +202,7 @@ jobs:
 
   # set up static IP for loggregator
   - name: loggregator_z2
-    instances: 1
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(3, 4) ))
@@ -203,7 +214,7 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(5) ))
   - name: router_z2
-    instances: 1
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(5) ))
@@ -253,7 +264,7 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(0) ))
   - name: logs_z2
-    instances: 1
+    instances: 0
     persistent_disk: 4096
     networks:
       - name: cf2
