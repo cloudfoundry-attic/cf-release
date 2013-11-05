@@ -33,9 +33,10 @@ logging:
   syslog: vcap.dea_next
   <% end %>
 
-<% if_p("loggregator_endpoint.host", "loggregator_endpoint.port") do |host, port| %>
+<% if_p("loggregator_endpoint.host", "loggregator_endpoint.port", "loggregator_endpoint.shared_secret") do |host, port, shared_secret| %>
 loggregator:
   router: <%= host %>:<%= port %>
+  shared_secret: <%= shared_secret %>
 <% end %>
 
 index: <%= spec.index %>
