@@ -1,0 +1,75 @@
+---
+name: pivotal_login
+templates:
+  pivotal_login_ctl.erb: bin/pivotal_login_ctl
+  cf-registrar_ctl: bin/pivotal_login_cf-registrar_ctl
+
+  cf-registrar.config.yml.erb: config/cf-registrar/config.yml
+  login.yml.erb: config/login.yml
+  varz.yml.erb: config/varz.yml
+  log4j.properties.erb: config/log4j.properties
+  tomcat.logging.properties: config/tomcat/logging.properties
+  tomcat.server.xml.erb: config/tomcat/server.xml
+  # Updates to Tomcat must also check web.xml
+  web.xml.erb: config/tomcat/web.xml
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
+packages:
+  - common
+  - ruby
+  - syslog_aggregator
+  - pivotal_login
+  - git
+
+properties:
+  pivotal_login.catalina_opts:
+    description:
+  pivotal_login.links:
+    description: A hash of home/passwd/signup URLS (see commented examples below)
+  pivotal_login.links.home:
+    description: URL for primary console/dashboard for users
+    default: https://console.run.pivotal.io
+  pivotal_login.links.passwd:
+    description: URL for requesting password reset
+    default: https://console.run.pivotal.io/password_resets/new
+  pivotal_login.links.signup:
+    description: URL for requesting to signup/register for an account
+    default: https://console.run.pivotal.io/register
+  pivotal_login.port:
+    default: 8080
+    description:
+  pivotal_login.uaa_base:
+    description:
+  domain:
+    description: "The domain name for this CloudFoundry deploy"
+  env.http_proxy:
+    description: "The http_proxy accross the VMs"
+  env.https_proxy:
+    description: "The https_proxy accross the VMs"
+  env.no_proxy:
+    description: "Set No_Proxy accross the VMs"
+  nats.address:
+    description: "IP address of NATS server"
+  nats.password:
+    description: "Password for NATS login"
+  nats.port:
+    description: "TCP port of NATS server"
+  nats.user:
+    description: "User name for NATS login"
+  networks.apps:
+    description: "The App network name"
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "Port of syslog aggregator"
+  uaa.clients.login.secret:
+    description:
+  uaa.dump_requests:
+    description:
+  uaa.login.client_secret:
+    description:
+  uaa.require_https:
+    description:
+  pivotal_login.protocol:
+    default: "http"
+    description: "The scheme in which login server should use to contact the UAA"

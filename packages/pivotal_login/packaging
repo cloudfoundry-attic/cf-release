@@ -1,0 +1,28 @@
+set -e -x
+
+cd ${BOSH_INSTALL_TARGET}
+mkdir jdk && tar zxvf ${BOSH_COMPILE_TARGET}/uaa/openjdk-1.6.0_27.tar.gz -C jdk
+if [[ $? != 0 ]] ; then
+  echo "Cannot unpack JDK"
+  exit 1
+fi
+
+cd ${BOSH_INSTALL_TARGET}
+
+tar zxvf ${BOSH_COMPILE_TARGET}/uaa/tomcat-7.0.42.tar.gz
+if [[ $? != 0 ]] ; then
+  echo "Cannot unpack Tomcat"
+  exit 1
+fi
+
+mv apache-tomcat-7.0.42 tomcat
+
+cd tomcat
+rm -rf webapps/*
+cp -a ${BOSH_COMPILE_TARGET}/pivotal_login/pivotal-login-server-1.2.8.war webapps/ROOT.war
+cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-varz-1.0.2.war webapps/varz.war
+
+cd ${BOSH_INSTALL_TARGET}
+cp -a ${BOSH_COMPILE_TARGET}/vcap-common vcap-common
+cd vcap-common
+/var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test
