@@ -253,7 +253,7 @@ jobs:
   - name: loggregator_z1
     template: loggregator
     instances: 2
-    resource_pool: small_z1
+    resource_pool: large_z1
     networks:
       - name: cf1
         static_ips: (( merge ))
@@ -264,7 +264,7 @@ jobs:
   - name: loggregator_z2
     template: loggregator
     instances: 2
-    resource_pool: small_z2
+    resource_pool: large_z2
     networks:
       - name: cf2
         static_ips: (( merge ))
@@ -360,7 +360,7 @@ properties:
       z2: (( jobs.loggregator_z2.networks.cf2.static_ips ))
     incoming_port: 3456
     outgoing_port: 8080
-    maxRetainedLogMessages: 1000
+    maxRetainedLogMessages: 100
 
   cc: (( merge ))
   ccdb: (( merge ))
