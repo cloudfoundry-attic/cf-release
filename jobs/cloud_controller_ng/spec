@@ -328,3 +328,6 @@ properties:
  ccng.hm9000_noop:
   default: true
   description: "Disable processing HM9000 messages"
+ ccng.flapping_crash_count_threshold:
+  default: 3
+  description: "The threshold of crashes after which the app is marked as flapping"
