@@ -192,6 +192,7 @@ jobs:
   - name: hm9000_z1
     template: hm9000
     instances: 0
+    persistent_disk: 1024
     resource_pool: medium_z1
     networks:
       - name: cf1
