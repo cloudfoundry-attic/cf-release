@@ -14,6 +14,8 @@ case $1 in
 
   start)
 
+    apt-get -y install rsyslog-relp
+
     pid_guard $PIDFILE "Syslog aggregator"
 
     mkdir -p $RUN_DIR

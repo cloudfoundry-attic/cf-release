@@ -51,9 +51,10 @@ logging:
   level: <%= p("ccng.logging_level") %>
   max_retries: <%= p("ccng.logging_max_retries") %>
 
-<% if_p("loggregator.trafficcontroller", "loggregator.incoming_port") do |trafficcontroller, incoming_port| %>
+<% if_p("loggregator_endpoint.host", "loggregator_endpoint.port", "loggregator_endpoint.shared_secret") do |host, port, shared_secret| %>
 loggregator:
-  router: <%= trafficcontroller %>:<%= incoming_port %>
+  router: <%= host %>:<%= port %>
+  shared_secret: <%= shared_secret %>
 <% end %>
 
 <% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
@@ -196,4 +197,5 @@ trial_db:
 
 tasks_disabled: <%= p("ccng.tasks_disabled") %>
 hm9000_noop: <%= p("ccng.hm9000_noop") %>
+flapping_crash_count_threshold: <%= p("ccng.flapping_crash_count_threshold") %>
 
