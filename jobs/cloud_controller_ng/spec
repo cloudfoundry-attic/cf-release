@@ -308,11 +308,14 @@ properties:
   default: true
   description: "whether use login as the authorization endpoint or not"
 
- loggregator.trafficcontroller:
-  description: The host used to emit messages to the Loggregator
- loggregator.incoming_port:
-  description: The port used to emit messages to the Loggregator
+
+ loggregator_endpoint.host:
+  description: "The host used to emit messages to the Loggregator"
+ loggregator_endpoint.port:
+  description: "The port used to emit messages to the Loggregator"
   default: 3456
+ loggregator_endpoint.shared_secret:
+  description: "The key used to sign log messages"
 
  ccng.db_encryption_key:
   default: ""
@@ -325,3 +328,6 @@ properties:
  ccng.hm9000_noop:
   default: true
   description: "Disable processing HM9000 messages"
+ ccng.flapping_crash_count_threshold:
+  default: 3
+  description: "The threshold of crashes after which the app is marked as flapping"

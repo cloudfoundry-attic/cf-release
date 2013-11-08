@@ -89,6 +89,12 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(0) ))
 
+  - name: nats_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(1) ))
+
   - name: nats_z2
     instances: 1
     networks:
