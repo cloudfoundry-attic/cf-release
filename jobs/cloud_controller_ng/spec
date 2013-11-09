@@ -195,6 +195,9 @@ properties:
   description: "OpenStack authorization link"
  ccng.resource_pool.fog_connection.openstack_tenant:
   description: "OpenStack tenant name"
+ ccng.resource_pool.fog_connection.openstack_temp_url_key:
+  description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+  default: cc-temp-url-key
  ccng.resource_pool.cdn.uri:
   description: "URI for a CDN to used for resource pool downloads"
   default: ""
