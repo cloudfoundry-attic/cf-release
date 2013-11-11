@@ -57,6 +57,10 @@ case $1 in
     mkdir -p $LOG_DIR
     echo $$ > $PIDFILE
 
+    <% if properties.saml_login && properties.saml_login.uaa_certificate %>
+    /var/vcap/jobs/saml_login/bin/install_crt
+    <% end %>
+
     <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
     <% end %>
