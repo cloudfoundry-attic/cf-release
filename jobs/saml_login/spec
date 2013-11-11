@@ -3,6 +3,7 @@ name: saml_login
 templates:
   saml_login_ctl.erb: bin/saml_login_ctl
   cf-registrar_ctl: bin/saml_login_cf-registrar_ctl
+  install_crt.erb: bin/install_crt
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   login.yml.erb: config/login.yml
@@ -13,6 +14,7 @@ templates:
   # Updates to Tomcat must also check web.xml
   web.xml.erb: config/tomcat/web.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  uaa.crt.erb: config/uaa.crt
 
 packages:
   - common
@@ -40,6 +42,8 @@ properties:
   uaa.dump_requests:
     description: "Boolean value to configure whether the login server will log requests."
     default: false
+  saml_login.uaa_certificate:
+    description: "Certificate to import if the UAA is using self-signed certificates"
   saml_login.idp_metadata_url:
     description: "URL location of the IDP Metadata."
   saml_login.idp_metadata_file:
