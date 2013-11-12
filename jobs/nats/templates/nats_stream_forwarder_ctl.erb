@@ -17,7 +17,7 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
 
-    PATH=/var/vcap/bosh/bin:$PATH
+    PATH=/var/vcap/packages/ruby/bin:$PATH
 
     <% if_p("syslog_aggregator") do %>
         /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
