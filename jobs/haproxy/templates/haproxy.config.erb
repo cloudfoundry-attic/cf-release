@@ -26,6 +26,7 @@ frontend https-in
     bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem
     option httplog
     option forwardfor
+    option http-server-close
     reqadd X-Forwarded-Proto:\ https
     default_backend http-routers
 
