@@ -364,3 +364,6 @@ properties:
     default: 3
     description: "The threshold of crashes after which the app is marked as flapping"
 
+  ccng.disable_custom_buildpacks:
+    default: false
+    description: "Disable external (i.e. git) buildpacks? (Admin buildpacks and system buildpacks only.)"
