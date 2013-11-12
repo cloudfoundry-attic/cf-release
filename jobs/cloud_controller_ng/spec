@@ -217,7 +217,7 @@ properties:
     description: "AWS secret key used to access the packages bucket"
   ccng.packages.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
-    default: "/var/vcap/nfs/shar
+    default: "/var/vcap/nfs/shared"
   ccng.packages.fog_connection.openstack_username:
     description: "OpenStack username to assess the packages container"
   ccng.packages.fog_connection.openstack_api_key:
@@ -225,7 +225,7 @@ properties:
   ccng.packages.fog_connection.openstack_auth_url:
     description: "OpenStack authorization link"
   ccng.packages.fog_connection.openstack_tenant:
-    description: "OpenStack tenant name"ed"
+    description: "OpenStack tenant name"
   ccng.packages.cdn.uri:
     description: "URI for a CDN to used for app package downloads"
     default: ""
