@@ -2,10 +2,10 @@
 
 ## BEGIN CERTIFICATE INSTALLATION
 #define JDK_HOME
-JDK_HOME=/var/vcap/packages/login/jdk
+JDK_HOME=/var/vcap/packages/saml_login/jdk
 
 #define the certificate to import
-CERT_FILE=/var/vcap/jobs/login/config/uaa.crt
+CERT_FILE=/var/vcap/jobs/saml_login/config/uaa.crt
 
 #define the trust store
 TRUST_STORE_FILE=$JDK_HOME/lib/security/cacerts
