@@ -530,3 +530,8 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     ZWE1NDg4MTUzNWZjY2IzZGZkN2RhMTIyMzU4ZDk4MzI5N2Q2OTE5Ng==
   size: 8234674
+pivotal_login/pivotal-login-server-1.2.8.war:
+  object_id: e59c462d-1577-4af8-b5cb-6ee55c9013c8
+  sha: !binary |-
+    NWI5YzdmMGJhMzhjNjdjN2JmOWNlOGUzM2UwZmYxYjJkZTkyMTA3Mw==
+  size: 7538494
