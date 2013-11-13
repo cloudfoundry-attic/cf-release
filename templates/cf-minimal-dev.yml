@@ -16,16 +16,16 @@ jobs:
     template: dea_next
 
   - name: loggregator_z1
-    instances: 0
+    instances: 1
 
   - name: loggregator_z2
-    instances: 0
+    instances: 1
 
   - name: loggregator_trafficcontroller_z1
-    instances: 0
+    instances: 1
 
   - name: loggregator_trafficcontroller_z2
-    instances: 0
+    instances: 1
 
   - name: logs_z1
     instances: 0
@@ -35,3 +35,7 @@ jobs:
 
   - name: router_z2
     instances: 0
+
+properties:
+  ssl:
+    skip_cert_verify: true
