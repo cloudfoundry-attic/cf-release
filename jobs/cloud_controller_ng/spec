@@ -70,21 +70,21 @@ properties:
   nfs_server.nfsv4:
     description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
 
- ccng.info.name:
-  description: "name attribute in the /info endpoint"
- ccng.info.build:
-  description: "build attribute in the /info endpoint"
- ccng.info.version:
-  description: "version attribute in the /info endpoint"
- ccng.info.support_address:
-  description: "URL for the support attribute in the /info endpoint"
- ccng.info.description:
-  description: "free form description for attribute in the /info endpoint"
- ccng.api_version:
-  description: "API version for cloud_controller. Tells clienets what version to speak to this cloud_controller"
+  ccng.info.name:
+    description: "name attribute in the /info endpoint"
+  ccng.info.build:
+    description: "build attribute in the /info endpoint"
+  ccng.info.version:
+    description: "version attribute in the /info endpoint"
+  ccng.info.support_address:
+    description: "URL for the support attribute in the /info endpoint"
+  ccng.info.description:
+    description: "free form description for attribute in the /info endpoint"
+  ccng.api_version:
+    description: "API version for cloud_controller. Tells clienets what version to speak to this cloud_controller"
 
- ccng.directories.tmpdir:
-  default: "/var/vcap/data/cloud_controller_ng/tmp"
+  ccng.directories.tmpdir:
+    default: "/var/vcap/data/cloud_controller_ng/tmp"
 
   ccng.external_host:
     default: "api"
