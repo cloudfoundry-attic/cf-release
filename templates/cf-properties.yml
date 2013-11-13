@@ -2,7 +2,7 @@ properties:
   domain: (( merge ))
 
   loggregator_endpoint:
-    shared_secret: (( merge )) 
+    shared_secret: (( merge ))
   cc:
     hm9000_noop: true
 
@@ -18,6 +18,8 @@ properties:
     db_encryption_key: (( merge ))
 
     tasks_disabled: false
+
+    disable_custom_buildpacks: false
 
     resource_pool:
       resource_directory_key: (( domain "-cc-resources" ))
@@ -52,7 +54,7 @@ properties:
 
   login:
     catalina_opts: (( merge ))
-
+    uaa_certificate: ~
     protocol: https
 
     links:
