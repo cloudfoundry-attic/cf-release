@@ -46,7 +46,9 @@ jobs:
           z2: (( jobs.router_z2.networks.cf2.static_ips ))
 
   - name: nats_z1
-    template: nats
+    template:
+      - nats
+      - nats_stream_forwarder
     instances: 0
     resource_pool: medium_z1
     networks:
