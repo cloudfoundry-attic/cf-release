@@ -1,0 +1,5 @@
+check process nats_stream_forwarder
+  with pidfile /var/vcap/sys/run/nats_stream_forwarder/nats_stream_forwarder.pid
+  start program "/var/vcap/jobs/nats_stream_forwarder/bin/nats_stream_forwarder_ctl start"
+  stop program "/var/vcap/jobs/nats_stream_forwarder/bin/nats_stream_forwarder_ctl stop"
+  group vcap
