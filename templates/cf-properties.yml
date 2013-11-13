@@ -54,7 +54,7 @@ properties:
 
   login:
     catalina_opts: (( merge ))
-
+    uaa_certificate: ~
     protocol: https
 
     links:
