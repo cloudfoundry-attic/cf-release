@@ -34,12 +34,8 @@ info:
   description: <%= p("description") %>
   api_version: <%= p("api_version") %>
 
-<% if_p("directories.droplets",
-        "ccng.directories.staging_manifests",
-        "ccng.directories.tmpdir") do |droplets, staging_manifests, tmpdir| %>
+<% if_p("ccng.directories.tmpdir") do |tmpdir| %>
 directories:
- droplets: <%= droplets %>
- staging_manifests: <%= staging_manifests %>
  tmpdir: <%= tmpdir %>
 <% end %>
 

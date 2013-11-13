@@ -70,13 +70,6 @@ properties:
  nfs_server.nfsv4:
   description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
 
- directories.droplets: # obsolete?
-  description: "If nfs_server defined, dir to store post-staged customer applications"
-  default: "/var/vcap/nfs/shared/droplets"
- directories.resources: # obsolete?
-  description: "If nfs_server defined, used pre-staging, uploaded files for users apps"
-  default: "/var/vcap/nfs/shared/resources"
-
  ccng.info.name:
   description: "name attribute in the /info endpoint"
  ccng.info.build:
@@ -90,8 +83,6 @@ properties:
  ccng.api_version:
   description: "API version for cloud_controller. Tells clienets what version to speak to this cloud_controller"
 
- ccng.directories.staging_manifests: # obsolete?
-  default: "/var/vcap/jobs/cloud_controller_ng/config/staging"
  ccng.directories.tmpdir:
   default: "/var/vcap/data/cloud_controller_ng/tmp"
 
