@@ -1,0 +1,44 @@
+#!/bin/bash
+
+## BEGIN CERTIFICATE INSTALLATION
+#define JDK_HOME
+JDK_HOME=/var/vcap/packages/saml_login/jdk
+
+#define the certificate to import
+CERT_FILE=/var/vcap/jobs/saml_login/config/uaa.crt
+
+#define the trust store
+TRUST_STORE_FILE=$JDK_HOME/lib/security/cacerts
+
+#define the alias
+CERT_ALIAS=uaacert
+
+#check if the cert file exists, readable and that the trust store exists and is writeable
+if test -r "$CERT_FILE" -a -f "$CERT_FILE" -a -f $TRUST_STORE_FILE -a -w $TRUST_STORE_FILE
+then
+  #check to see if the alias exists
+  $JDK_HOME/bin/keytool -list -file $CERT_FILE -keystore $TRUST_STORE_FILE -storepass changeit -noprompt -alias $CERT_ALIAS >/dev/null 2>&1
+  if [ $? != 0 ]; then
+    echo "Installing $CERT_FILE with alias $CERT_ALIAS"
+    $JDK_HOME/bin/keytool -importcert -file $CERT_FILE -keystore $TRUST_STORE_FILE -storepass changeit -noprompt -alias $CERT_ALIAS >/dev/null 2>&1
+    if [ $? != 0 ]; then
+      # implement import error logic
+      echo "Failed to install certificate[1]." 
+    fi      
+  else
+    echo "Certificate already installed. Replacing it"
+    $JDK_HOME/bin/keytool -delete -file $CERT_FILE -keystore $TRUST_STORE_FILE -storepass changeit -noprompt -alias $CERT_ALIAS >/dev/null 2>&1
+    if [ $? != 0 ]; then
+      # implement import error logic
+      echo "Failed to delete existing alias, will attempt to reinstall it"
+    fi
+    $JDK_HOME/bin/keytool -importcert -file $CERT_FILE -keystore $TRUST_STORE_FILE -storepass changeit -noprompt -alias $CERT_ALIAS >/dev/null 2>&1
+    if [ $? != 0 ]; then
+      # implement import error logic
+      echo "Failed to install certificate[2]."
+    fi
+  fi
+else
+  echo "Unable to read certificate file: $CERT_FILE or write to trust file:$TRUST_STORE_FILE"
+fi
+## END CERTIFICATE INSTALLATION
