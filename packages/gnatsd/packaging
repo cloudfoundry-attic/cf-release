@@ -1,0 +1,10 @@
+set -e
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export GOPATH=$BOSH_INSTALL_TARGET
+export PATH=$GOROOT/bin:$PATH
+
+mkdir -p $GOPATH/src/github.com/apcera/
+mv gnatsd/ $GOPATH/src/github.com/apcera/gnatsd
+
+go install github.com/apcera/gnatsd

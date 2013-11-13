@@ -91,3 +91,6 @@
 [submodule "src/hm9000"]
 	path = src/hm9000
 	url = https://github.com/cloudfoundry/hm-workspace.git
+[submodule "src/gnatsd"]
+	path = src/gnatsd
+	url = https://github.com/apcera/gnatsd.git

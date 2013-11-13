@@ -2,17 +2,13 @@
 name: nats
 templates:
   nats_ctl.erb: bin/nats_ctl
-  nats.yml.erb: config/nats.yml
+  nats.conf.erb: config/nats.conf
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
   - common
-  - nats
-  - ruby
+  - gnatsd
   - syslog_aggregator
 properties:
-  nats_props:
-    description:
-    default: "nats"
   networks.apps:
     description:
   nats.user:
