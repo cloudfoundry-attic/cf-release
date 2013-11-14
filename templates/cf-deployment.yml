@@ -6,7 +6,7 @@ meta:
   environment: ~
 
   stemcell:
-    name: bosh-stemcell
+    name: bosh-aws-xen-ubuntu
     version: latest
 
 name: (( meta.environment ))

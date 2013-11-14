@@ -3,6 +3,7 @@ name: login
 templates:
   login_ctl.erb: bin/login_ctl
   cf-registrar_ctl: bin/login_cf-registrar_ctl
+  install_crt.erb: bin/install_crt
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   login.yml.erb: config/login.yml
@@ -13,6 +14,7 @@ templates:
   # Updates to Tomcat must also check web.xml
   web.xml.erb: config/tomcat/web.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  uaa.crt.erb: config/uaa.crt
 
 packages:
   - common
@@ -22,6 +24,8 @@ packages:
   - git
 
 properties:
+  login.uaa_certificate:
+    description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
     description:
   login.links:

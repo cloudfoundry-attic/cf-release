@@ -26,9 +26,10 @@ logging:
   <% end %>
   level: info
 
-<% if_p("loggregator.trafficcontroller", "loggregator.incoming_port") do |trafficcontroller, incoming_port| %>
+<% if_p("loggregator_endpoint.host", "loggregator_endpoint.port", "loggregator_endpoint.shared_secret") do |host, port, shared_secret| %>
 loggregatorConfig:
-  url: <%= trafficcontroller %>:<%= incoming_port %>
+  url: <%= host %>:<%= port %>
+  shared_secret: <%= shared_secret %>
 <% end %>
 
 port: 80

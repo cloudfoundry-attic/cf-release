@@ -1,0 +1,17 @@
+---
+logging:
+  file: /var/vcap/sys/log/pivotal_login/cf-registrar.log
+  <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+  syslog: vcap.pivotal_login_cf-registrar
+  <% end %>
+  level: info
+mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+uri:
+  - login.<%= properties.domain %>
+host: <%= spec.networks.send(properties.networks.apps).ip %>
+index: <%= spec.index %>
+port: <%= properties.pivotal_login.port %>
+tags:
+  component: login
+varz:
+  file: /var/vcap/jobs/pivotal_login/config/varz.yml

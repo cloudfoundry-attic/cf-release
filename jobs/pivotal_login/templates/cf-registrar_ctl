@@ -1,0 +1,43 @@
+#!/bin/bash -e
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+export PATH=/var/vcap/packages/git/bin:$PATH
+RUN_DIR=/var/vcap/sys/run/pivotal_login
+LOG_DIR=/var/vcap/sys/log/pivotal_login
+PIDFILE=$RUN_DIR/cf-registrar.pid
+VCAP_COMMON_PATH=/var/vcap/packages/pivotal_login/vcap-common
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "VCAP registrar"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    export CONFIG_FILE=/var/vcap/jobs/pivotal_login/config/cf-registrar/config.yml
+
+    cd $VCAP_COMMON_PATH
+    exec /var/vcap/packages/ruby/bin/bundle exec \
+         $VCAP_COMMON_PATH/bin/cf-registrar \
+         --register-with-router \
+         --register-varz-credentials \
+         >>$LOG_DIR/cf-registrar.stdout.log \
+         2>>$LOG_DIR/cf-registrar.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: cf-registrar_ctl {start|stop}" ;;
+
+esac
+exit 0

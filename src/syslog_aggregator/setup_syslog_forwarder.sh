@@ -8,6 +8,10 @@ fi
 
 CONFIG_DIR=$1
 
+
+# Install relp support 
+apt-get -y install rsyslog-relp
+
 # Place to spool logs if the upstream server is down
 mkdir -p /var/vcap/sys/rsyslog/buffered
 chown -R syslog:adm /var/vcap/sys/rsyslog/buffered

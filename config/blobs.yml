@@ -306,20 +306,20 @@ uaa/tomcat-7.0.42.tar.gz:
     MDAxYTY0NjI5YTkzMTAzZDRmNTNhYzk1ZmFmM2U1MmE2MzY1N2I5NQ==
   size: 7955948
 loggregator/deaagent-linux-amd64.gz:
-  object_id: 55f246c7-bdb0-4281-b9d5-50f0bac45259
+  object_id: 98e0ef78-9bb1-44cf-87bc-8e5dc258ec8c
   sha: !binary |-
-    N2I4MzRmZjIzYjI4NGQ1NjU4MmViNzQ2YWE4MzM1NjhkMjhmMGM3ZA==
-  size: 1664454
+    ZmRiNGYxOGUxODU1YmQwNTgzYjQ4NDBkMzk3YjRiZmYwZjQxZTk1Ng==
+  size: 1685670
 loggregator/loggregator-linux-amd64.gz:
-  object_id: 85c2718d-5eb5-4f28-84d5-ad612bf52c54
+  object_id: fefb4528-e233-479f-96c9-d006384f325c
   sha: !binary |-
-    ODhmMzk1NDRhYmM1YmJlMGZmZjNmODQ2NTVhYTRlNGQ2MzRiNzY4ZQ==
-  size: 1735791
+    ZDJkYzk5MDg2OTQzODIyZWI2ZTA1MTdiMzUwN2Q0MWYzZjEzOTc1NQ==
+  size: 1753375
 loggregator/trafficcontroller-linux-amd64.gz:
-  object_id: 01819076-e530-447e-be20-1be12edad946
+  object_id: c41b17cb-13fa-40c1-b8b3-2f41776cff2b
   sha: !binary |-
-    NTlkNTg3ZjQ4MDdmYjIzYmM5MDk2MGY2NjQ5OWYxN2NhNDdlZGY0OA==
-  size: 1758450
+    MWQ4YmYyNTMwMGIwZjc4MGEzNmRhNDkyNDAxOTJkYzAxMGNmZjFkNg==
+  size: 1767534
 ? buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fauto-reconfiguration%2Fauto-reconfiguration-0.7.0.jar.cached
 : object_id: d47b75b6-30ac-41f9-a235-25c005f04e5c
   sha: !binary |-
@@ -530,3 +530,8 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     ZWE1NDg4MTUzNWZjY2IzZGZkN2RhMTIyMzU4ZDk4MzI5N2Q2OTE5Ng==
   size: 8234674
+pivotal_login/pivotal-login-server-1.2.8.war:
+  object_id: e59c462d-1577-4af8-b5cb-6ee55c9013c8
+  sha: !binary |-
+    NWI5YzdmMGJhMzhjNjdjN2JmOWNlOGUzM2UwZmYxYjJkZTkyMTA3Mw==
+  size: 7538494
