@@ -341,10 +341,10 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
     NzMyOTYwYjRkZWY3MTUzMjVjNjA0OWFiOGM2OGNlOGZhNDhmYWQ0Yw==
   size: 79
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fnew-relic%2Findex.yml.cached:
-  object_id: 763a0b5a-f7e0-4c8e-9b97-df5539a49121
+  object_id: 81dae2f6-241b-4e6c-99de-62e348727cd8
   sha: !binary |-
-    Mjk1Zjc5ZmVjODYxNjA3MTI4MDQwMjQzZGY2Y2U1N2Y1ZDYxNjUwMg==
-  size: 87
+    ODJhMzVmN2Q4YjE1YjMyOWY3MTM2Njc3MWI3Mzk1ODNlYWY1NmRlMg==
+  size: 168
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fnew-relic%2Fnew-relic-2.21.3.jar.cached:
   object_id: e2a8d00e-1534-4155-b603-a0c165805029
   sha: !binary |-
@@ -535,3 +535,8 @@ pivotal_login/pivotal-login-server-1.2.8.war:
   sha: !binary |-
     NWI5YzdmMGJhMzhjNjdjN2JmOWNlOGUzM2UwZmYxYjJkZTkyMTA3Mw==
   size: 7538494
+buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fnew-relic%2Fnew-relic-3.1.1.jar.cached:
+  object_id: 54f52dcf-d66d-418f-886a-df2c06bdfc71
+  sha: !binary |-
+    OWU0YjQxMWViZmNhMzE1NzFhNzA4ODkyNjA4YzhiNzU0NjhkMGRlNQ==
+  size: 5674548
