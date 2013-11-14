@@ -21,6 +21,8 @@ properties:
 
     disable_custom_buildpacks: false
 
+    broker_client_timeout_seconds: 60
+
     resource_pool:
       resource_directory_key: (( domain "-cc-resources" ))
       fog_connection: ~
