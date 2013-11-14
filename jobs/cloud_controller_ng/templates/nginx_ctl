@@ -28,10 +28,19 @@ case $1 in
       chpst -u vcap:vcap mkdir -p $STAGED_UPLOADS_DIR
     fi
 
+    <% if_p("syslog_aggregator") do %>
+    # TODO(kowshik): Configure Steno to write to the correct files.
+    # Log to syslog agg, Log rotation.
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
+    <% end %>
+
     exec /var/vcap/packages/nginx/sbin/nginx \
-         -c $CC_JOB_DIR/config/nginx.conf \
-         >>$LOG_DIR/nginx.stdout.log \
-         2>>$LOG_DIR/nginx.stderr.log
+         -c $CC_JOB_DIR/config/nginx.conf \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+	      > >(tee -a >(logger -p user.info -t vcap.nginx.stdout) $LOG_DIR/nginx.stdout.log) \
+	      2> >(tee -a >(logger -p user.error -t vcap.nginx.stderr) $LOG_DIR/nginx.stderr.log)<% else %>
+	      >>$LOG_DIR/nginx.stdout.log \
+	      2>>$LOG_DIR/nginx.stderr.log
+	      <% end %>
     ;;
 
   stop)

@@ -14,7 +14,8 @@ $ActionQueueLowWaterMark 2000           # Num messages. Assuming avg size of 512
 $ActionQueueHighWaterMark 8000          # Num messages. Assuming avg size of 512B, this is 4MiB. (If this is reached, messages will spill to disk until the low watermark is reached).
 $ActionQueueTimeoutEnqueue 0            # Discard messages if the queue + disk is full
 $ActionQueueSaveOnShutdown on           # Save in-memory data to disk if rsyslog shuts down
-:programname, startswith, "vcap." :omrelp:<%= address %>:<%= port %>
+$template LongTagForwardFormat, "<%%PRI%>%TIMESTAMP:::date-rfc3339% %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg%" #Eliminate 32 character tag limit
+:programname, startswith, "vcap." :omrelp:<%= address %>:<%= port %>;LongTagForwardFormat
 
 # Log vcap messages locally, too
 #$template VcapComponentLogFile, "/var/log/%programname:6:$%/%programname:6:$%.log"
