@@ -63,7 +63,7 @@ resource_pools:
   network: cf1
   size: 11
   stemcell:
-    name: bosh-stemcell
+    name: bosh-aws-xen-ubuntu
     version: latest
   cloud_properties:
     instance_type: m1.small
@@ -72,7 +72,7 @@ resource_pools:
   network: cf1
   size: 1
   stemcell:
-    name: bosh-stemcell
+    name: bosh-aws-xen-ubuntu
     version: latest
   cloud_properties:
     instance_type: m1.large
@@ -81,7 +81,7 @@ resource_pools:
   network: cf1
   size: 1
   stemcell:
-    name: bosh-stemcell
+    name: bosh-aws-xen-ubuntu 
     version: latest
   cloud_properties:
     instance_type: m1.small
@@ -121,7 +121,7 @@ jobs:
     - <%= ip( 2, 'cf1.static') %>
 
 - name: login
-  template: login
+  template: pivotal_login
   instances: 1
   resource_pool: common
   networks:
@@ -137,8 +137,8 @@ jobs:
     - <%= ip( 3, 'cf1.static') %>
   properties:
     ccdb: ccdb
-    loggregator:
-      trafficcontroller: <%= ip( 20, 'cf1.static') %>
+    loggregator_endpoint:
+      host: <%= ip( 20, 'cf1.static') %>
 
 - name: loggregator_z1
   template: loggregator
@@ -167,7 +167,8 @@ jobs:
     static_ips:
     - <%= ip( 20, 'cf1.static') %>
   properties:
-    zone: z1
+    traffic_controller:
+      zone: z1
 
 - name: loggregator-trafficcontroller_z2
   template: loggregator_trafficcontroller
@@ -178,7 +179,8 @@ jobs:
     static_ips:
     - <%= ip( 21, 'cf1.static') %>
   properties:
-    zone: z2
+    traffic_controller:
+      zone: z2
 
 - name:  health_manager
   template: health_manager_next
@@ -201,8 +203,8 @@ jobs:
     - dns
     - gateway
   properties:
-    loggregator:
-      trafficcontroller: <%= ip( 21, 'cf1.static') %>
+    loggregator_endpoint:
+      host: <%= ip( 21, 'cf1.static') %>
 
 - name: collector
   template: collector
@@ -223,8 +225,8 @@ jobs:
     static_ips:
     - <%= ip( 5, 'cf1.static') %>
   properties:
-    loggregator:
-      trafficcontroller: <%= ip( 20, 'cf1.static') %>
+    loggregator_endpoint:
+      host: <%= ip( 20, 'cf1.static') %>
 
 properties:
   loggregator:
@@ -233,6 +235,7 @@ properties:
       - <%= ip( 18, 'cf1.static') %>
       z2:
       - <%= ip( 19, 'cf1.static') %>
+  loggregator_endpoint:
     shared_secret: <%= random_string(30) %>
   template_only:
     <%= find("properties.template_only").to_yaml.split("\n")[1..-1].map{|line| " " * 4 + line}.join("\n").gsub(/\A\s{4}/, "") %>
@@ -325,12 +328,12 @@ properties:
     relay_host_port: <%= find("properties.syslog_aggregator.relay_host_port") %>
 <% end -%>
 
-  login:
+  pivotal_login:
     protocol: http
     links:
-      home: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("home", nil) || "http://console.#{find("properties.domain")}" %>
-      passwd: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("passwd", nil) || "http://console.#{find("properties.domain")}/password_resets/new" %>
-      signup: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("signup", nil) || "http://console.#{find("properties.domain")}/register" %>
+      home: <%= find("properties").fetch("pivotal_login", {}).fetch("links", {}).fetch("home", nil) || "http://console.#{find("properties.domain")}" %>
+      passwd: <%= find("properties").fetch("pivotal_login", {}).fetch("links", {}).fetch("passwd", nil) || "http://console.#{find("properties.domain")}/password_resets/new" %>
+      signup: <%= find("properties").fetch("pivotal_login", {}).fetch("links", {}).fetch("signup", nil) || "http://console.#{find("properties.domain")}/register" %>
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m

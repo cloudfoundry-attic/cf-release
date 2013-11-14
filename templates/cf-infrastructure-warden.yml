@@ -7,6 +7,10 @@ meta:
     name: bosh-stemcell
     version: latest
 
+  loggregator_endpoint:
+    z2:
+      host: "unused"
+
 update:
   canaries: 1
   max_in_flight: 50
@@ -14,6 +18,9 @@ update:
   update_watch_time: 1000-180000
 
 properties:
+  ssl:
+    skip_cert_verify: true
+
   domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
 
   disk_quota_enabled: false
@@ -30,6 +37,7 @@ properties:
   nats:
     user: nats
     password: nats
+    address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
 
   cc:
     default_quota_definition: runaway
@@ -110,12 +118,6 @@ properties:
       user: router
       password: router
 
-  loggregator:
-    shared_secret: loggregator-secret
-    status:
-      user: loggregator
-      password: loggregator
-
   ccdb:
     db_scheme: postgres
     address: (( properties.databases.address ))
@@ -163,8 +165,14 @@ properties:
 
 jobs:
   # specify nats static IP
-  - name: nats_z2
+  - name: nats_z1
     instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(1) ))
+
+  - name: nats_z2
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(1) ))
@@ -177,7 +185,7 @@ jobs:
         static_ips: (( static_ips(2) ))
 
   - name: loggregator_trafficcontroller_z2
-    instances: 1
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(2) ))
@@ -191,7 +199,7 @@ jobs:
 
   # set up static IP for loggregator
   - name: loggregator_z2
-    instances: 1
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(3, 4) ))
@@ -203,7 +211,7 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(5) ))
   - name: router_z2
-    instances: 1
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(5) ))
@@ -253,7 +261,7 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(0) ))
   - name: logs_z2
-    instances: 1
+    instances: 0
     persistent_disk: 4096
     networks:
       - name: cf2
@@ -302,6 +310,10 @@ jobs:
           x6QmQgxUZiIr+9n/qvECQQDiDIeSmo2mRYsaqr4CQ3Ak+EDjsm9XTpXHuqm+xgFO
           iDIeQCWd3/twqdDTR7FaDE7Q0i559u7A1yLumUn8caLF
           -----END RSA PRIVATE KEY-----
+
+  # using login template, that supports self-signed certs
+  - name: login_z1
+    template: login
 
 compilation:
   cloud_properties:

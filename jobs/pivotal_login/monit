@@ -1,0 +1,11 @@
+check process pivotal_login
+  with pidfile /var/vcap/sys/run/pivotal_login/pivotal_login.pid
+  start program "/var/vcap/jobs/pivotal_login/bin/pivotal_login_ctl start"
+  stop program "/var/vcap/jobs/pivotal_login/bin/pivotal_login_ctl stop"
+  group vcap
+
+check process pivotal_login_cf-registrar
+  with pidfile /var/vcap/sys/run/pivotal_login/cf-registrar.pid
+  start program "/var/vcap/jobs/pivotal_login/bin/pivotal_login_cf-registrar_ctl start"
+  stop program "/var/vcap/jobs/pivotal_login/bin/pivotal_login_cf-registrar_ctl stop"
+  group vcap

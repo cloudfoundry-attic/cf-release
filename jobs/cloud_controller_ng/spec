@@ -23,305 +23,354 @@ packages:
   - syslog_aggregator
 
 properties:
- name:
-  default: "vcap"
+  name:
+    default: "vcap"
+    description:
+  build:
+    default: "2222"
+    description:
+  version:
+    default: "2"
+    description:
+  support_address:
+    default: "http://support.cloudfoundry.com"
+    description:
   description:
- build:
-  default: "2222"
-  description:
- version:
-  default: "2"
-  description:
- support_address:
-  default: "http://support.cloudfoundry.com"
-  description:
- description:
-  default: "Cloud Foundry sponsored by Pivotal"
-  description:
- api_version:
-  default: "2.0.0"
-  description:
- domain:
-  description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
- system_domain:
-  description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
- system_domain_organization:
-  description: "The User Org that owns the system_domain, required if system_domain is defined"
-  default: ""
- app_domains:
-  description: "Array of domains for user apps (example: 'user.app.space.foo', a user app called 'neat' will listen at 'http://neat.user.app.space.foo')"
+    default: "Cloud Foundry sponsored by Pivotal"
+    description:
+  api_version:
+    default: "2.0.0"
+    description:
+  domain:
+    description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
+  system_domain:
+    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
+  system_domain_organization:
+    description: "The User Org that owns the system_domain, required if system_domain is defined"
+    default: ""
+  app_domains:
+    description: "Array of domains for user apps (example: 'user.app.space.foo', a user app called 'neat' will listen at 'http://neat.user.app.space.foo')"
 
- networks.apps:
-  description: "TODO"
+  networks.apps:
+    description: "TODO"
 
- nats.user:
-  description: "Username for cc client to connect to NATS"
- nats.password:
-  description: "Password for cc client to connect to NATS"
- nats.address:
-  description: "IP address of Cloud Foundry NATS server"
- nats.port:
-  description: "IP port of Cloud Foundry NATS server"
+  nats.user:
+    description: "Username for cc client to connect to NATS"
+  nats.password:
+    description: "Password for cc client to connect to NATS"
+  nats.address:
+    description: "IP address of Cloud Foundry NATS server"
+  nats.port:
+    description: "IP port of Cloud Foundry NATS server"
 
- nfs_server.address:
-  description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
- nfs_server.share:
-  description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
- nfs_server.nfsv4:
-  description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
+  nfs_server.address:
+    description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
+  nfs_server.share:
+    description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
+  nfs_server.nfsv4:
+    description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
 
- directories.droplets: # obsolete?
-  description: "If nfs_server defined, dir to store post-staged customer applications"
-  default: "/var/vcap/nfs/shared/droplets"
- directories.resources: # obsolete?
-  description: "If nfs_server defined, used pre-staging, uploaded files for users apps"
-  default: "/var/vcap/nfs/shared/resources"
+  ccng.info.name:
+    description: "name attribute in the /info endpoint"
+  ccng.info.build:
+    description: "build attribute in the /info endpoint"
+  ccng.info.version:
+    description: "version attribute in the /info endpoint"
+  ccng.info.support_address:
+    description: "URL for the support attribute in the /info endpoint"
+  ccng.info.description:
+    description: "free form description for attribute in the /info endpoint"
+  ccng.api_version:
+    description: "API version for cloud_controller. Tells clienets what version to speak to this cloud_controller"
 
- ccng.info.name:
-  description: "name attribute in the /info endpoint"
- ccng.info.build:
-  description: "build attribute in the /info endpoint"
- ccng.info.version:
-  description: "version attribute in the /info endpoint"
- ccng.info.support_address:
-  description: "URL for the support attribute in the /info endpoint"
- ccng.info.description:
-  description: "free form description for attribute in the /info endpoint"
- ccng.api_version:
-  description: "API version for cloud_controller. Tells clienets what version to speak to this cloud_controller"
+  ccng.directories.tmpdir:
+    default: "/var/vcap/data/cloud_controller_ng/tmp"
 
- ccng.directories.staging_manifests: # obsolete?
-  default: "/var/vcap/jobs/cloud_controller_ng/config/staging"
- ccng.directories.tmpdir:
-  default: "/var/vcap/data/cloud_controller_ng/tmp"
+  ccng.external_host:
+    default: "api"
+    description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
+  ccng.cc_partition:
+    default: "default"
+    description: "Deprecated. Defines a 'partition' for the health_manager job"
+  ccng.bootstrap_admin_email:
+    default: "admin@example.com"
+    description: "Deprecated."
 
- ccng.external_host:
-  default: "api"
-  description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
- ccng.cc_partition:
-  default: "default"
-  description: "Deprecated. Defines a 'partition' for the health_manager job"
- ccng.bootstrap_admin_email:
-  default: "admin@example.com"
-  description: "Deprecated."
+  ccng.bulk_api_user:
+    default: "bulk_api"
+    description: "User used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
+  ccng.bulk_api_password:
+    description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
 
- ccng.bulk_api_user:
-  default: "bulk_api"
-  description: "User used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
- ccng.bulk_api_password:
-  description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
+  ccng.use_nginx:
+    default: true
+    description: "Use nginx in front of the CC"
 
- ccng.use_nginx:
-  default: true
-  description: "Use nginx in front of the CC"
+  ccng.uaa_resource_id:
+    default: "cloud_controller"
+    description: "Name of service to register to UAA"
 
- ccng.uaa_resource_id:
-  default: "cloud_controller"
-  description: "Name of service to register to UAA"
+  ccng.db_logging_level:
+    default: "debug2"
+    description: "Log level for cc database operations"
 
- ccng.db_logging_level:
-  default: "debug2"
-  description: "Log level for cc database operations"
+  ccng.logging_level:
+    default: "debug2"
+    description: "Log level for cc"
+  ccng.logging_max_retries:
+    default: 1
+    description: "Passthru value for Steno logger"
 
- ccng.logging_level:
-  default: "debug2"
-  description: "Log level for cc"
- ccng.logging_max_retries:
-  default: 1
-  description: "Passthru value for Steno logger"
+  ccng.max_staging_runtime:
+    default: 900
+    description: "Timeout for staging a droplet"
 
- ccng.max_staging_runtime:
-  default: 900
-  description: "Timeout for staging a droplet"
+  ccng.stacks:
+    default:
+      - name: "lucid64"
+        description: "Ubuntu 10.04"
+    description: "Tag used by the DEA to describe capabilities (i.e. 'Windows7', 'python-linux'). DEA and CC must agree."
 
- ccng.stacks:
-  default:
-  - name: "lucid64"
-    description: "Ubuntu 10.04"
-  description: "Tag used by the DEA to describe capabilities (i.e. 'Windows7', 'python-linux'). DEA and CC must agree."
+  ccng.staging_upload_user:
+    default: ""
+    description: "S3 Access key for staging droplets on AWS installs; Blobstore user for other IaaSs"
+  ccng.staging_upload_password:
+    description: "S3 Secure Access Key for staging droplets on AWS installs; Blobstore password for other IaaSs"
 
- ccng.staging_upload_user:
-  default: ""
-  description: "S3 Access key for staging droplets on AWS installs; Blobstore user for other IaaSs"
- ccng.staging_upload_password:
-  description: "S3 Secure Access Key for staging droplets on AWS installs; Blobstore password for other IaaSs"
+  ccng.quota_definitions.free.non_basic_services_allowed:
+    default: false
+  ccng.quota_definitions.free.total_services:
+    default: 2
+  ccng.quota_definitions.free.memory_limit:
+    default: 1024 # 1 GB
+  ccng.quota_definitions.paid.non_basic_services_allowed:
+    default: true
+  ccng.quota_definitions.paid.total_services:
+    default: 32
+  ccng.quota_definitions.paid.memory_limit:
+    default: 204800 # 200 GB
+  ccng.quota_definitions.runaway.non_basic_services_allowed:
+    default: true
+  ccng.quota_definitions.runaway.total_services:
+    default: 500
+  ccng.quota_definitions.runaway.memory_limit:
+    default: 204800 # 200 GB
+  ccng.default_quota_definition:
+    default: free
+    description: "Local to use a local (NFS) file system.  AWS to use AWS."
 
- ccng.quota_definitions.free.non_basic_services_allowed:
-  default: false
- ccng.quota_definitions.free.total_services:
-  default: 2
- ccng.quota_definitions.free.memory_limit:
-  default: 1024 # 1 GB
- ccng.quota_definitions.paid.non_basic_services_allowed:
-  default: true
- ccng.quota_definitions.paid.total_services:
-  default: 32
- ccng.quota_definitions.paid.memory_limit:
-  default: 204800 # 200 GB
- ccng.quota_definitions.runaway.non_basic_services_allowed:
-  default: true
- ccng.quota_definitions.runaway.total_services:
-  default: 500
- ccng.quota_definitions.runaway.memory_limit:
-  default: 204800 # 200 GB
- ccng.default_quota_definition:
-  default: free
-  description: "Local to use a local (NFS) file system.  AWS to use AWS."
+  ccng.resource_pool.minimum_size:
+    description: "Minimum size of a resource to add to the pool"
+    default: 65536
+  ccng.resource_pool.maximum_size:
+    description: "Maximum size of a resource to add to the pool"
+    default: 536870912
+  ccng.resource_pool.resource_directory_key:
+    description: "Directory (bucket) used store app resources.  It does not have be pre-created."
+    default: "cc-resources"
+  ccng.resource_pool.fog_connection.provider:
+    description: "Local for shared resources on NFS. AWS to place them in S3. OpenStack to place them in swift."
+    default: "Local"
+  ccng.resource_pool.fog_connection.aws_access_key_id:
+    description: "AWS access key used to access the resources bucket"
+  ccng.resource_pool.fog_connection.aws_secret_access_key:
+    description: "AWS secret key used to access the resources bucket"
+  ccng.resource_pool.fog_connection.local_root:
+    description: "The directory used as the root for the Local fog provider"
+    default: "/var/vcap/nfs/shared"
+  ccng.resource_pool.fog_connection.openstack_username:
+    description: "OpenStack username to assess the resource container"
+  ccng.resource_pool.fog_connection.openstack_api_key:
+    description: "OpenStack secret key to assess the resource container"
+  ccng.resource_pool.fog_connection.openstack_auth_url:
+    description: "OpenStack authorization link"
+  ccng.resource_pool.fog_connection.openstack_tenant:
+    description: "OpenStack tenant name"
+  ccng.resource_pool.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-resource-pool-key
+  ccng.resource_pool.cdn.uri:
+    description: "URI for a CDN to used for resource pool downloads"
+    default: ""
+  ccng.resource_pool.cdn.private_key:
+    description: "Private key for signing download URIs"
+    default: ""
+  ccng.resource_pool.cdn.key_pair_id:
+    description: "Key pair name for signed download URIs"
+    default: ""
 
- ccng.resource_pool.minimum_size:
-  description: "Minimum size of a resource to add to the pool"
-  default: 65536
- ccng.resource_pool.maximum_size:
-  description: "Maximum size of a resource to add to the pool"
-  default: 536870912
- ccng.resource_pool.resource_directory_key:
-  description: "Directory (bucket) used store app resources.  It does not have be pre-created."
-  default: "cc-resources"
- ccng.resource_pool.fog_connection.provider:
-  description: "Local for shared resources on NFS.  AWS to place them in S3."
-  default: "Local"
- ccng.resource_pool.fog_connection.aws_access_key_id:
-  description: "AWS access key used to access the resources bucket"
- ccng.resource_pool.fog_connection.aws_secret_access_key:
-  description: "AWS secret key used to access the resources bucket"
- ccng.resource_pool.fog_connection.local_root:
-  description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/nfs/shared"
- ccng.resource_pool.cdn.uri:
-  description: "URI for a CDN to used for resource pool downloads"
-  default: ""
- ccng.resource_pool.cdn.private_key:
-  description: "Private key for signing download URIs"
-  default: ""
- ccng.resource_pool.cdn.key_pair_id:
-  description: "Key pair name for signed download URIs"
-  default: ""
+  ccng.packages.app_package_directory_key:
+    description: "Directory (bucket) used store app packages.  It does not have be pre-created."
+    default: "cc-packages"
+  ccng.packages.fog_connection.provider:
+    description: "Local for shared resources on NFS. AWS to place them in S3. OpenStack to place them in swift."
+    default: "Local"
+  ccng.packages.fog_connection.aws_access_key_id:
+    description: "AWS access key used to access the packages bucket"
+  ccng.packages.fog_connection.aws_secret_access_key:
+    description: "AWS secret key used to access the packages bucket"
+  ccng.packages.fog_connection.local_root:
+    description: "The directory used as the root for the Local fog provider"
+    default: "/var/vcap/nfs/shared"
+  ccng.packages.fog_connection.openstack_username:
+    description: "OpenStack username to assess the packages container"
+  ccng.packages.fog_connection.openstack_api_key:
+    description: "OpenStack secret key to assess the packages container"
+  ccng.packages.fog_connection.openstack_auth_url:
+    description: "OpenStack authorization link"
+  ccng.packages.fog_connection.openstack_tenant:
+    description: "OpenStack tenant name"
+  ccng.packages.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-packages-key
+  ccng.packages.cdn.uri:
+    description: "URI for a CDN to used for app package downloads"
+    default: ""
+  ccng.packages.cdn.private_key:
+    description: "Private key for signing download URIs"
+    default: ""
+  ccng.packages.cdn.key_pair_id:
+    description: "Key pair name for signed download URIs"
+    default: ""
 
- ccng.packages.app_package_directory_key:
-  description: "Directory (bucket) used store app packages.  It does not have be pre-created."
-  default: "cc-packages"
- ccng.packages.fog_connection.provider:
-  description: "Local for shared resources on NFS. AWS to place them in S3."
-  default: "Local"
- ccng.packages.fog_connection.aws_access_key_id:
-  description: "AWS access key used to access the packages bucket"
- ccng.packages.fog_connection.aws_secret_access_key:
-  description: "AWS secret key used to access the packages bucket"
- ccng.packages.fog_connection.local_root:
-  description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/nfs/shared"
- ccng.packages.cdn.uri:
-  description: "URI for a CDN to used for app package downloads"
-  default: ""
- ccng.packages.cdn.private_key:
-  description: "Private key for signing download URIs"
-  default: ""
- ccng.packages.cdn.key_pair_id:
-  description: "Key pair name for signed download URIs"
-  default: ""
+  ccng.droplets.droplet_directory_key:
+    description: "Directory (bucket) used store droplets.  It does not have be pre-created."
+    default: "cc-droplets"
+  ccng.droplets.fog_connection.provider:
+    description: "Local for droplets on NFS. AWS to place them in S3. OpenStack to place them in swift."
+    default: "Local"
+  ccng.droplets.fog_connection.aws_access_key_id:
+    description: "AWS access key used to access the droplets bucket"
+  ccng.droplets.fog_connection.aws_secret_access_key:
+    description: "AWS secret key used to access the droplets bucket"
+  ccng.droplets.fog_connection.local_root:
+    description: "The directory used as the root for the Local fog provider"
+    default: "/var/vcap/nfs/shared"
+  ccng.droplets.fog_connection.openstack_username:
+    description: "OpenStack username to assess the droplet container"
+  ccng.droplets.fog_connection.openstack_api_key:
+    description: "OpenStack secret key to assess the droplet container"
+  ccng.droplets.fog_connection.openstack_auth_url:
+    description: "OpenStack authorization link"
+  ccng.droplets.fog_connection.openstack_tenant:
+    description: "OpenStack tenant name"
+  ccng.droplets.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-droplets-key
+  ccng.droplets.cdn.uri:
+    description: "URI for a CDN to used for droplet downloads"
+    default: ""
+  ccng.droplets.cdn.private_key:
+    description: "Private key for signing download URIs"
+    default: ""
+  ccng.droplets.cdn.key_pair_id:
+    description: "Key pair name for signed download URIs"
+    default: ""
 
- ccng.droplets.droplet_directory_key:
-  description: "Directory (bucket) used store droplets.  It does not have be pre-created."
-  default: "cc-droplets"
- ccng.droplets.fog_connection.provider:
-  description: "Local for droplets on NFS. AWS to place them in S3."
-  default: "Local"
- ccng.droplets.fog_connection.aws_access_key_id:
-  description: "AWS access key used to access the droplets bucket"
- ccng.droplets.fog_connection.aws_secret_access_key:
-  description: "AWS secret key used to access the droplets bucket"
- ccng.droplets.fog_connection.local_root:
-  description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/nfs/shared"
- ccng.droplets.cdn.uri:
-  description: "URI for a CDN to used for droplet downloads"
-  default: ""
- ccng.droplets.cdn.private_key:
-  description: "Private key for signing download URIs"
-  default: ""
- ccng.droplets.cdn.key_pair_id:
-  description: "Key pair name for signed download URIs"
-  default: ""
+  ccng.buildpacks.buildpack_directory_key:
+    description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
+    default: "cc-buildpacks"
+  ccng.buildpacks.fog_connection.provider:
+    description: "Local for buildpacks on NFS. AWS to place them in S3. OpenStack to place them in swift."
+    default: "Local"
+  ccng.buildpacks.fog_connection.aws_access_key_id:
+    description: "AWS access key used to access the buildpacks bucket"
+  ccng.buildpacks.fog_connection.aws_secret_access_key:
+    description: "AWS secret key used to access the buildpacks bucket"
+  ccng.buildpacks.fog_connection.local_root:
+    description: "The directory used as the root for the Local fog provider"
+    default: "/var/vcap/nfs/shared"
+  ccng.buildpacks.fog_connection.openstack_username:
+    description: "OpenStack username to assess the buildpack container"
+  ccng.buildpacks.fog_connection.openstack_api_key:
+    description: "OpenStack secret key to assess the buildpack container"
+  ccng.buildpacks.fog_connection.openstack_auth_url:
+    description: "OpenStack authorization link"
+  ccng.buildpacks.fog_connection.openstack_tenant:
+    description: "OpenStack tenant name"
+  ccng.buildpacks.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-buildpacks-key
+  ccng.buildpacks.cdn.uri:
+    description: "URI for a CDN to used for buildpack downloads"
+    default: ""
+  ccng.buildpacks.cdn.private_key:
+    description: "Private key for signing download URIs"
+    default: ""
+  ccng.buildpacks.cdn.key_pair_id:
+    description: "Key pair name for signed download URIs"
+    default: ""
 
- ccng.buildpacks.buildpack_directory_key:
-  description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
-  default: "cc-buildpacks"
- ccng.buildpacks.fog_connection.provider:
-  description: "Local for buildpacks on NFS. AWS to place them in S3."
-  default: "Local"
- ccng.buildpacks.fog_connection.aws_access_key_id:
-  description: "AWS access key used to access the buildpacks bucket"
- ccng.buildpacks.fog_connection.aws_secret_access_key:
-  description: "AWS secret key used to access the buildpacks bucket"
- ccng.buildpacks.fog_connection.local_root:
-  description: "The directory used as the root for the Local fog provider"
-  default: "/var/vcap/nfs/shared"
- ccng.buildpacks.cdn.uri:
-  description: "URI for a CDN to used for buildpack downloads"
-  default: ""
- ccng.buildpacks.cdn.private_key:
-  description: "Private key for signing download URIs"
-  default: ""
- ccng.buildpacks.cdn.key_pair_id:
-  description: "Key pair name for signed download URIs"
-  default: ""
+  ccdb_ng.databases:
+    description:
+  ccdb_ng.roles:
+    description:
+  ccdb_ng.db_scheme:
+    description:
+    default: postgres
+  ccdb_ng.address:
+    description:
+  ccdb_ng.port:
+    description:
+  ccdb_ng.max_connections:
+    default: 25
+    description: "Maximum connections for Sequel"
+  ccdb_ng.max_ar_connections:
+    default: 5
+    description: "Maximum connections for ActiveRecord"
+  ccdb_ng.pool_timeout:
+    default: 10
+    description:
 
- ccdb_ng.databases:
-  description:
- ccdb_ng.roles:
-  description:
- ccdb_ng.db_scheme:
-  description:
-  default: postgres
- ccdb_ng.address:
-  description:
- ccdb_ng.port:
-  description:
- ccdb_ng.max_connections:
-  default: 25
-  description: "Maximum connections for Sequel"
- ccdb_ng.max_ar_connections:
-  default: 5
-  description: "Maximum connections for ActiveRecord"
- ccdb_ng.pool_timeout:
-  default: 10
-  description:
+  uaa.cc.token_secret:
+    description:
+  uaa.no_ssl:
+    description: "when true, uaa uses http, otherwise it uses https"
+    default: false
+  uaa.url:
+    description:
+  login.url:
+    description:
 
- uaa.cc.token_secret:
-  description:
- uaa.no_ssl:
-  description: "when true, uaa uses http, otherwise it uses https"
-  default: false
- uaa.url:
-  description:
- login.url:
-  description:
+  syslog_aggregator.address:
+    description: "The address of the syslog_aggregator job."
+  syslog_aggregator.port:
+    description: "The port used by the syslog_aggregator job."
+  uaa.jwt.verification_key:
+    default: ""
+    description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"
+  login.enabled:
+    default: true
+    description: "whether use login as the authorization endpoint or not"
 
- syslog_aggregator.address:
-  description: "The address of the syslog_aggregator job."
- syslog_aggregator.port:
-  description: "The port used by the syslog_aggregator job."
- uaa.jwt.verification_key:
-  default: ""
-  description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"
- login.enabled:
-  default: true
-  description: "whether use login as the authorization endpoint or not"
 
- loggregator.trafficcontroller:
-  description: The host used to emit messages to the Loggregator
- loggregator.incoming_port:
-  description: The port used to emit messages to the Loggregator
-  default: 3456
+  loggregator_endpoint.host:
+    description: "The host used to emit messages to the Loggregator"
+  loggregator_endpoint.port:
+    description: "The port used to emit messages to the Loggregator"
+    default: 3456
+  loggregator_endpoint.shared_secret:
+    description: "The key used to sign log messages"
 
- ccng.db_encryption_key:
-  default: ""
-  description: "key for encrypting sensitive values in the CC database"
+  ccng.db_encryption_key:
+    default: ""
+    description: "key for encrypting sensitive values in the CC database"
 
- ccng.tasks_disabled:
-  default: false
-  description: "Disable tasks endpoint"
+  ccng.tasks_disabled:
+    default: false
+    description: "Disable tasks endpoint"
 
- ccng.hm9000_noop:
-  default: true
-  description: "Disable processing HM9000 messages"
+  ccng.hm9000_noop:
+    default: true
+    description: "Disable processing HM9000 messages"
+  ccng.flapping_crash_count_threshold:
+    default: 3
+    description: "The threshold of crashes after which the app is marked as flapping"
+
+  ccng.disable_custom_buildpacks:
+    default: false
+    description: "Disable external (i.e. git) buildpacks? (Admin buildpacks and system buildpacks only.)"
+
+  ccng.broker_client_timeout_seconds:
+    default: 60
+    description: "For requests to service brokers, this is the HTTP (open and read) timeout setting."
