@@ -3,10 +3,15 @@ name: loggregator
 templates:
   loggregator_ctl.erb: bin/loggregator_ctl
   loggregator.json.erb: config/loggregator.json
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+
 packages:
 - common
 - loggregator
+- syslog_aggregator
 properties:
+  syslog_aggregator:
+    description:
   loggregator.debug:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)
     default: false
@@ -28,8 +33,10 @@ properties:
   loggregator.outgoing_port:
     description: Port for outgoing log messages
     default: 8080
-  cc.srv_api_uri:
-    description: "API URI of cloud controller"
+  loggregator.servers:
+    description: "This property is not used by the job itself, but has the desired effect of restarting the loggregator jobs when the property changes on bosh deployment. See loggregator_trafficcontroller job spec for a description."
+  loggregator_endpoint.shared_secret:
+    description: "Shared secret used to verify cryptographically signed loggregator messages"
   nats.user:
     description: "Username for cc client to connect to NATS"
   nats.password:
@@ -38,5 +45,3 @@ properties:
     description: "IP address of Cloud Foundry NATS server"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
-  system_domain:
-    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"

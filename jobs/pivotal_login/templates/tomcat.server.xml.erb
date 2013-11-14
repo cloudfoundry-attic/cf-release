@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Server port="-1">
+  <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
+  <Listener className="org.apache.catalina.core.JasperListener" />
+  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+
+  <Service name="Catalina">
+
+    <Connector class="org.apache.coyote.http11.Http11NioProtocol" port="<%= (properties.pivotal_login && properties.pivotal_login.port) ? properties.pivotal_login.port : 8080 %>" protocol="HTTP/1.1" connectionTimeout="20000"/>
+    <Engine name="Catalina" defaultHost="localhost">
+
+      <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="false">
+        <Valve className="org.apache.catalina.valves.RemoteIpValve"
+               remoteIpHeader="x-forwarded-for"
+               protocolHeader="x-forwarded-proto" />
+
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="/var/vcap/sys/log/pivotal_login"
+               prefix="localhost_access." suffix=".log" rotatable="true" pattern="%h %l %u %t &quot;%r&quot; %s %b"/>
+
+      </Host>
+    </Engine>
+  </Service>
+</Server>

@@ -16,7 +16,11 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    <% p("loggregator.debug") == true ? debug_string = "--debug " : debug_string = "" %>
+    <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+        /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/dea_logging_agent/config
+    <% end %>
+
+    <% p("dea_logging_agent.debug") == true ? debug_string = "--debug " : debug_string = "" %>
 
     exec /var/vcap/packages/dea_logging_agent/deaagent <%= debug_string %> \
          --config /var/vcap/jobs/dea_logging_agent/config/dea_logging_agent.json \

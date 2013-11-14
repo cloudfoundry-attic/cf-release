@@ -6,8 +6,9 @@ templates:
   drain.erb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
-  warden_ctl.erb: bin/warden_ctl
+
   warden.yml.erb: config/warden.yml
+  warden_ctl.erb: bin/warden_ctl
 
   dir_server_ctl.erb: bin/dir_server_ctl
 
@@ -17,7 +18,6 @@ packages:
 - warden
 - rootfs_lucid64
 - ruby
-- golang
 - syslog_aggregator
 - buildpack_cache
 properties:
@@ -74,8 +74,11 @@ properties:
     default: true
   syslog_aggregator:
     description: "Syslog aggregator stuff"
-  loggregator.trafficcontroller:
-    description: The host used to emit messages to the Loggregator
-  loggregator.incoming_port:
-    description: The port used to emit messages to the Loggregator
+  loggregator_endpoint.host:
+    description: "The host used to emit messages to the Loggregator"
+  loggregator_endpoint.port:
+    description: "The port used to emit messages to the Loggregator"
     default: 3456
+  loggregator_endpoint.shared_secret:
+    description: "The key used to sign log messages"
+

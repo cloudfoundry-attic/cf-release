@@ -18,6 +18,10 @@ case $1 in
 
     echo $$ > $PIDFILE
 
+    <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+        /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/loggregator/config
+    <% end %>
+
     <% p("loggregator.debug") == true ? debug_string = "--debug " : debug_string = "" %>
 
     exec chpst -u vcap:vcap /var/vcap/packages/loggregator/loggregator <%= debug_string %> \
@@ -37,3 +41,7 @@ case $1 in
     ;;
 
 esac
+<% if_p('loggregator.servers') do |servers| %>
+<%= "# The property below is unused, but emitting it changes this file,\n# which causes BOSH to restart the loggregator servers." %>
+<%= "#   loggregator.servers: #{servers}" %>
+<% end %>

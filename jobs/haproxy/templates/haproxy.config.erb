@@ -9,8 +9,8 @@ global
 defaults
     log global
     timeout connect 30000ms
-    timeout client 30000ms
-    timeout server 30000ms
+    timeout client <%= p("ha_proxy.timeout").to_i * 1000 %>ms
+    timeout server <%= p("ha_proxy.timeout").to_i * 1000 %>ms
 
 frontend http-in
     mode http
@@ -26,6 +26,7 @@ frontend https-in
     bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem
     option httplog
     option forwardfor
+    option http-server-close
     reqadd X-Forwarded-Proto:\ https
     default_backend http-routers
 

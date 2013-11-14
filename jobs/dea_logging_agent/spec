@@ -3,26 +3,32 @@ name: dea_logging_agent
 templates:
   dea_logging_agent_ctl.erb: bin/dea_logging_agent_ctl
   dea_logging_agent.json.erb: config/dea_logging_agent.json
+  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 packages:
 - common
 - dea_logging_agent
+- syslog_aggregator
 properties:
-  loggregator.debug:
-    description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator trafficcontroller)
+  syslog_aggregator:
+    description:
+  dea_logging_agent.debug:
+    description: boolean value to turn on verbose mode
     default: false
-  loggregator.trafficcontroller:
-    description: The host used to emit messages to the Loggregator
-  loggregator.incoming_port:
-    description: The port used to emit messages to the Loggregator
+  loggregator_endpoint.host:
+    description: "The host used to emit messages to the Loggregator"
+  loggregator_endpoint.port:
+    description: "The port used to emit messages to the Loggregator"
     default: 3456
-  loggregator.status.user:
+  loggregator_endpoint.shared_secret:
+    description: "The key used to sign log messages"
+  dea_logging_agent.status.user:
     description: username used to log into varz endpoint
-    default: "" 
-  loggregator.status.password:
+    default: ""
+  dea_logging_agent.status.password:
     description: password used to log into varz endpoint
     default: ""
-  loggregator.status.port:
+  dea_logging_agent.status.port:
     description: port used to run the varz endpoint
     default: 0
   nats.user:

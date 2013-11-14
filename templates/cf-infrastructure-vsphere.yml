@@ -1,3 +1,9 @@
+meta:
+
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+
 compilation:
   cloud_properties:
     ram: 1024
@@ -83,6 +89,12 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(0) ))
 
+  - name: nats_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(1) ))
+
   - name: nats_z2
     instances: 1
     networks:
@@ -143,6 +155,9 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(3) ))
 
+  # using login template, that supports self-signed certs
+  - name: login_z1
+    template: login
 
 properties:
   domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
@@ -195,7 +210,6 @@ properties:
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
-    no_ssl: true
 
   login:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m

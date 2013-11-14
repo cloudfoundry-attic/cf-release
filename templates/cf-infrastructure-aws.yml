@@ -8,6 +8,10 @@ meta:
     aws_access_key_id: (( properties.template_only.aws.access_key_id ))
     aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
 
+  stemcell:
+    name: bosh-aws-xen-ubuntu
+    version: latest
+
 
 properties:
   template_only: (( merge ))
@@ -148,6 +152,12 @@ jobs:
     networks:
       - name: cf2
         static_ips: (( static_ips(0) ))
+
+  - name: nats_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(1) ))
 
   - name: nats_z2
     instances: 1

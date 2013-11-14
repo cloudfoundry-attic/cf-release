@@ -4,9 +4,10 @@ templates:
   gorouter_ctl.erb: bin/gorouter_ctl
   gorouter.yml.erb: config/gorouter.yml
 
+
+  gorouter_logrotate.cron.erb: config/gorouter_logrotate.cron
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.conf.erb: config/logrotate.conf
-  gorouter_logrotate.cron.erb: config/gorouter_logrotate.cron
 packages:
   - common
   - golang
@@ -41,8 +42,10 @@ properties:
   router.endpoint_timeout:
     description: "Timeout in seconds for Router -> Endpoint roundtrip."
     default: 60
-  loggregator.trafficcontroller:
-    description: The host used to emit messages to the Loggregator
-  loggregator.incoming_port:
-    description: The port used to emit messages to the Loggregator
+  loggregator_endpoint.host:
+    description: "The host used to emit messages to the Loggregator"
+  loggregator_endpoint.port:
+    description: "The port used to emit messages to the Loggregator"
     default: 3456
+  loggregator_endpoint.shared_secret:
+    description: "The key used to sign log messages"
