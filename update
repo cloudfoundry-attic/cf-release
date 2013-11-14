@@ -1,6 +1,10 @@
 #!/bin/bash -x
 
-git pull && git submodule sync --recursive && git submodule foreach --recursive git submodule sync  && git submodule update --init --recursive
+if [[ "$(git --version | grep 'version 1.7')x" != "x" ]]; then
+  git pull && git submodule foreach --recursive git submodule sync && git submodule update --init --recursive
+else
+  git pull && git submodule sync --recursive && git submodule foreach --recursive git submodule sync  && git submodule update --init --recursive
+fi
 
 set +x
 echo
