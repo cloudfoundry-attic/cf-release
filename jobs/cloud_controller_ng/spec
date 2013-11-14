@@ -186,6 +186,9 @@ properties:
     description: "OpenStack authorization link"
   ccng.resource_pool.fog_connection.openstack_tenant:
     description: "OpenStack tenant name"
+  ccng.resource_pool.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-resource-pool-key
   ccng.resource_pool.cdn.uri:
     description: "URI for a CDN to used for resource pool downloads"
     default: ""
@@ -217,6 +220,9 @@ properties:
     description: "OpenStack authorization link"
   ccng.packages.fog_connection.openstack_tenant:
     description: "OpenStack tenant name"
+  ccng.packages.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-packages-key
   ccng.packages.cdn.uri:
     description: "URI for a CDN to used for app package downloads"
     default: ""
@@ -248,6 +254,9 @@ properties:
     description: "OpenStack authorization link"
   ccng.droplets.fog_connection.openstack_tenant:
     description: "OpenStack tenant name"
+  ccng.droplets.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-droplets-key
   ccng.droplets.cdn.uri:
     description: "URI for a CDN to used for droplet downloads"
     default: ""
@@ -279,6 +288,9 @@ properties:
     description: "OpenStack authorization link"
   ccng.buildpacks.fog_connection.openstack_tenant:
     description: "OpenStack tenant name"
+  ccng.buildpacks.fog_connection.openstack_temp_url_key:
+    description: "OpenStack temporary URL key used to create temporary URLs to blobs"
+    default: cc-buildpacks-key
   ccng.buildpacks.cdn.uri:
     description: "URI for a CDN to used for buildpack downloads"
     default: ""
