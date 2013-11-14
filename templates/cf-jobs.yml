@@ -142,7 +142,7 @@ jobs:
       syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: login_z1
-    template: login
+    template: (( merge || "pivotal_login" ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -374,6 +374,7 @@ properties:
   databases: ~
 
   login: (( merge ))
+  pivotal_login: (( login ))
 
   router:
     endpoint_timeout: 60
