@@ -155,6 +155,9 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(3) ))
 
+  # using login template, that supports self-signed certs
+  - name: login_z1
+    template: login
 
 properties:
   domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))

@@ -121,7 +121,7 @@ jobs:
     - <%= ip( 2, 'cf1.static') %>
 
 - name: login
-  template: login
+  template: pivotal_login
   instances: 1
   resource_pool: common
   networks:
@@ -328,12 +328,12 @@ properties:
     relay_host_port: <%= find("properties.syslog_aggregator.relay_host_port") %>
 <% end -%>
 
-  login:
+  pivotal_login:
     protocol: http
     links:
-      home: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("home", nil) || "http://console.#{find("properties.domain")}" %>
-      passwd: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("passwd", nil) || "http://console.#{find("properties.domain")}/password_resets/new" %>
-      signup: <%= find("properties").fetch("login", {}).fetch("links", {}).fetch("signup", nil) || "http://console.#{find("properties.domain")}/register" %>
+      home: <%= find("properties").fetch("pivotal_login", {}).fetch("links", {}).fetch("home", nil) || "http://console.#{find("properties.domain")}" %>
+      passwd: <%= find("properties").fetch("pivotal_login", {}).fetch("links", {}).fetch("passwd", nil) || "http://console.#{find("properties.domain")}/password_resets/new" %>
+      signup: <%= find("properties").fetch("pivotal_login", {}).fetch("links", {}).fetch("signup", nil) || "http://console.#{find("properties.domain")}/register" %>
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
