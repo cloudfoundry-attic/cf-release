@@ -358,3 +358,7 @@ properties:
   ccng.disable_custom_buildpacks:
     default: false
     description: "Disable external (i.e. git) buildpacks? (Admin buildpacks and system buildpacks only.)"
+
+  ccng.broker_client_timeout_seconds:
+    default: 60
+    description: "For requests to service brokers, this is the HTTP (open and read) timeout setting."
