@@ -8,15 +8,12 @@ status:
   pass: "<%= password %>"
 <% end %>
 
-<% if_p("nats.address",
-        "nats.port",
-        "nats.user",
-        "nats.password") do |address, port, user, password| %>
 nats:
-  host: <%= address %>
-  port: <%= port %>
-  user: <%= user %>
-  pass: "<%= password %>"
+<% p("nats.machines").each do |ip| %>
+  - host: <%= ip %>
+    port: <%= p("nats.port") %>
+    user: <%= p("nats.user") %>
+    pass: "<%= p("nats.password") %>"
 <% end %>
 
 logging:
