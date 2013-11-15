@@ -62,6 +62,8 @@ properties:
     description: "IP address of Cloud Foundry NATS server"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
+  nats.machines:
+    description: "IP of each NATS cluster member."
 
   nfs_server.address:
     description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"

@@ -1,4 +1,5 @@
-net: "<%= spec.networks.send(properties.networks.apps).ip %>"
+<% self_ip = spec.networks.send(properties.networks.apps).ip %>
+net: "<%= self_ip %>"
 port: <%= p("nats.port") %>
 
 pid_file: "/var/vcap/sys/run/nats/nats.pid"
@@ -8,4 +9,21 @@ authorization {
   user: "<%= p("nats.user") %>"
   password: "<%= p("nats.password") %>"
   timeout: <%= p("nats.authorization_timeout") %>
+}
+
+cluster {
+  host: "<%= self_ip %>"
+  port: <%= p("nats.port") + 1 %>
+
+  authorization {
+    user: "<%= p("nats.user") %>"
+    password: "<%= p("nats.password") %>"
+    timeout: <%= p("nats.authorization_timeout") %>
+  }
+
+  routes = [
+    <% (p("nats.machines") - [self_ip]).each do |ip| %>
+    nats-route://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= ip %>:<%= p("nats.port") + 1 %>
+    <% end %>
+  ]
 }

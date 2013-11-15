@@ -31,6 +31,8 @@ properties:
     description: "TCP port of NATS server"
   nats.user:
     description: "user name for NATS login"
+  nats.machines:
+    description: "IP of each NATS cluster member."
   dea_next.allow_networks:
     description:
   dea_next.deny_networks:
