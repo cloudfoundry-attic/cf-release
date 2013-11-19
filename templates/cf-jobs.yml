@@ -12,14 +12,6 @@ meta:
       apps: cf2
       management: cf2
 
-  syslog:
-    z1:
-      address: (( jobs.logs_z1.networks.cf1.static_ips.[0] || nil ))
-      port: 54321
-    z2:
-      address: (( jobs.logs_z2.networks.cf2.static_ips.[0] || nil ))
-      port: 54321
-
   loggregator_endpoint:
     z1:
       host: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] || nil ))
@@ -37,7 +29,6 @@ jobs:
         static_ips: ~
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
       ha_proxy:
         ssl_pem: ~
       router:
@@ -56,7 +47,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: nats_z2
     template:
@@ -69,11 +59,10 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: logs_z1
     template: syslog_aggregator
-    instances: 1
+    instances: 0
     resource_pool: medium_z1
     persistent_disk: 100000
     networks:
@@ -81,11 +70,10 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: logs_z2
     template: syslog_aggregator
-    instances: 1
+    instances: 0
     resource_pool: medium_z2
     persistent_disk: 100000
     networks:
@@ -93,7 +81,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: stats_z1
     template: collector
@@ -103,7 +90,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: nfs_z1
     template: debian_nfs_server
@@ -133,7 +119,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: uaa_z2
     template: uaa
@@ -143,7 +128,6 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: login_z1
     template: (( merge || "pivotal_login" ))
@@ -153,7 +137,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: api_z1
     template: cloud_controller_ng
@@ -165,7 +148,6 @@ jobs:
     properties:
       ccdb: ccdb
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
 
@@ -179,7 +161,6 @@ jobs:
     properties:
       ccdb: ccdb
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
 
@@ -191,7 +172,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: hm9000_z1
     template: hm9000
@@ -202,7 +182,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: runner_z1
     template: (( merge || ["dea_next", "dea_logging_agent"] ))
@@ -215,7 +194,6 @@ jobs:
         static_ips: ~
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
 
@@ -230,7 +208,6 @@ jobs:
         static_ips: ~
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
 
@@ -242,7 +219,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: taskmaster_z2
     template: narc
@@ -252,7 +228,6 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: loggregator_z1
     template: loggregator
@@ -263,7 +238,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
 
   - name: loggregator_z2
     template: loggregator
@@ -274,7 +248,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
 
   - name: loggregator_trafficcontroller_z1
     template: loggregator_trafficcontroller
@@ -285,7 +258,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
       traffic_controller:
         zone: z1
 
@@ -298,7 +270,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
       traffic_controller:
         zone: z2
 
@@ -311,7 +282,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      syslog_aggregator: (( meta.syslog.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
 
@@ -324,7 +294,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      syslog_aggregator: (( meta.syslog.z2 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
 
