@@ -1,4 +1,4 @@
 set -e -x
 
 cd ${BUILD_DIR}/health_manager_next
-bundle package --all
+BUNDLE_WITHOUT=development:test bundle package --all

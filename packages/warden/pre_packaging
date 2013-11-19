@@ -10,4 +10,4 @@ mv tmp_warden/warden .
 rmdir tmp_warden
 
 cd warden
-bundle package --all
+BUNDLE_WITHOUT=development:test bundle package --all
