@@ -19,6 +19,12 @@ export LANG=en_US.UTF-8
 
 export GENERIC_QUEUE=cc-generic
 
+<% if_p("ccng.newrelic.license_key") do %>
+export NRCONFIG=$CONFIG_DIR/newrelic.yml
+export RAILS_ENV=<%= properties.ccng.newrelic.environment_name %>_background # used by NewRelic
+export NEW_RELIC_DISPATCHER=deplayed_job
+<% end %>
+
 source /var/vcap/packages/common/utils.sh
 
 case $1 in

@@ -1,0 +1,33 @@
+<%= properties.ccng.newrelic.environment_name %>: &common_settings
+  license_key: '<%= properties.ccng.newrelic.license_key %>'
+  app_name: 'Cloud Controller (<%= properties.ccng.newrelic.environment_name %>)'
+  developer_mode: <%= properties.ccng.newrelic.developer_mode %>
+  monitor_mode: <%= properties.ccng.newrelic.monitor_mode %>
+  log_level: info
+  log_file_path: '<%= properties.ccng.newrelic.log_file_path %>'
+  log_file_name: <%= properties.ccng.newrelic.environment_name %>.log
+
+  browser_monitoring:
+    auto_instrument: false
+
+  audit_log:
+    enabled: false
+
+  capture_params: false
+
+  transaction_tracer:
+    enabled: true
+    transaction_threshold: apdex_f
+    record_sql: obfuscated
+    stack_trace_threshold: 0.500
+
+  error_collector:
+    enabled: true
+    capture_source: true
+    ignore_errors: "VCAP::Errors::NotStaged"
+
+<%= properties.ccng.newrelic.environment_name %>_background:
+  <<: *common_settings
+  log_file_name: <%= properties.ccng.newrelic.environment_name %>_background.log
+  transaction_tracer:
+    enabled: false
