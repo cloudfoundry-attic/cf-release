@@ -56,14 +56,14 @@ oauth:
       authorized-grant-types: client_credentials
       authorities: clients.read,clients.write,clients.secret,uaa.admin,scim.read,password.write
       id: admin
-      secret: <%= properties.uaa.admin.client_secret %>
+      secret: "<%= properties.uaa.admin.client_secret %>"
 <% end %>
 <% if !properties.uaa.clients || !properties.uaa.clients.cloud_controller %>
     cloud_controller:
       authorized-grant-types: client_credentials
       authorities: scim.read,scim.write,password.write
       id: cloud_controller
-      secret: <%= properties.uaa.cc.client_secret %>
+      secret: "<%= properties.uaa.cc.client_secret %>"
       access-token-validity: 604800
 <% end %>
 <% if !properties.uaa.clients || !properties.uaa.clients.cf %>
@@ -80,7 +80,7 @@ oauth:
     login:
       id: login
       override: true
-      secret: <%= properties.uaa.login.client_secret %>
+      secret: "<%= properties.uaa.login.client_secret %>"
       authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
       scope: openid
