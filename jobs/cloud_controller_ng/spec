@@ -11,6 +11,7 @@ templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   nfs-common: config/nfs-common
   idmapd.conf.erb: config/idmapd.conf
+  newrelic.yml.erb: config/newrelic.yml
 
 packages:
   - common
@@ -376,3 +377,19 @@ properties:
   ccng.broker_client_timeout_seconds:
     default: 60
     description: "For requests to service brokers, this is the HTTP (open and read) timeout setting."
+
+  ccng.newrelic.license_key:
+    default: ~
+    description: "The api key for NewRelic. Setting this value will activate NewRelic monitoring."
+  ccng.newrelic.environment_name:
+    default: "development"
+    description: "The environment name used by NewRelic"
+  ccng.newrelic.developer_mode:
+    default: false
+    description: "Activate NewRelic developer mode"
+  ccng.newrelic.monitor_mode:
+    default: false
+    description: "Activate NewRelic monitoring"
+  ccng.newrelic.log_file_path:
+    default: "/var/vcap/sys/log/cloud_controller_ng/newrelic"
+    description: "The location for NewRelic to log to"
