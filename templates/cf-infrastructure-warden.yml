@@ -1,4 +1,6 @@
 meta:
+  environment: cf-warden
+
   fog_config:
     provider: Local
     local_root: /var/vcap/store

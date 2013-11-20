@@ -1,3 +1,6 @@
+meta:
+  environment: ~
+
 properties:
   domain: (( merge ))
 
@@ -37,6 +40,12 @@ properties:
       droplet_directory_key: (( domain "-cc-droplets" ))
       fog_connection: ~
       cdn: ~
+
+    newrelic:
+      license_key: ~
+      environment_name: (( meta.environment ))
+      monitor_mode: false
+      developer_mode: false
 
     buildpacks:
       buildpack_directory_key: (( domain "-cc-buildpacks" ))
