@@ -24,7 +24,7 @@ properties:
     description: "The port for the NATS server to listen on."
   nats.authorization_timeout:
     description: "After accepting a connection, wait up to this many seconds for credentials."
-    default: 5
+    default: 15
   nats.machines:
     description: "IP of each NATS cluster member."
   syslog_aggregator.address:
