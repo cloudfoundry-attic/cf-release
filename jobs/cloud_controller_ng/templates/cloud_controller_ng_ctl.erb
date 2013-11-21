@@ -131,7 +131,7 @@ case $1 in
         >>$LOG_DIR/db_migrate.stdout.log \
         2>>$LOG_DIR/db_migrate.stderr.log
         <% end %>
-        
+
       if [ $? != 0 ]; then
         echo "Migrations failed"
         exit 1

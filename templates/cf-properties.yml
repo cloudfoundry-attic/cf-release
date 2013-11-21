@@ -41,11 +41,13 @@ properties:
       fog_connection: ~
       cdn: ~
 
+    development_mode: false
+
     newrelic:
       license_key: ~
       environment_name: (( meta.environment ))
       monitor_mode: false
-      developer_mode: false
+      developer_mode: (( cc.development_mode ))
 
     buildpacks:
       buildpack_directory_key: (( domain "-cc-buildpacks" ))

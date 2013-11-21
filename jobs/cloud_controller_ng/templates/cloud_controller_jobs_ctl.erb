@@ -40,7 +40,7 @@ case $1 in
 
     echo $$ > $PIDFILE
     chown vcap:vcap $PIDFILE
-    
+
     <% if_p("syslog_aggregator") do %>
     # TODO(kowshik): Configure Steno to write to the correct files.
     # Log to syslog agg, Log rotation.
