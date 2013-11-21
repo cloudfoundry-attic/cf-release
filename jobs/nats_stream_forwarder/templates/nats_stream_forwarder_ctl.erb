@@ -5,7 +5,7 @@ LOG_DIR=/var/vcap/sys/log/nats_stream_forwarder
 JOB_DIR=/var/vcap/jobs/nats_stream_forwarder
 BIN_DIR=$JOB_DIR/bin
 PIDFILE=$RUN_DIR/nats_stream_forwarder.pid
-export BUNDLE_GEMFILE=/var/vcap/packages/nats/Gemfile
+export BUNDLE_GEMFILE=/var/vcap/packages/nats/nats/Gemfile
 export CONFIG_DIR=$JOB_DIR/config
 
 source /var/vcap/packages/common/utils.sh
