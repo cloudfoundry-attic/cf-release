@@ -1,7 +1,7 @@
 ---
 name: cloud_controller_ng
 templates:
-  nginx_ctl: bin/nginx_ctl
+  nginx_ctl.erb: bin/nginx_ctl
   nginx.conf.erb: config/nginx.conf
   mime.types: config/mime.types
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
