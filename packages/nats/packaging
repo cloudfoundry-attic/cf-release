@@ -1,6 +1,7 @@
 set -e -x
 
-cp -a nats/* ${BOSH_INSTALL_TARGET}
+cp -a * ${BOSH_INSTALL_TARGET}
 
-cd ${BOSH_INSTALL_TARGET}
-/var/vcap/packages/ruby/bin/bundle install --binstubs --local --deployment
+cd ${BOSH_INSTALL_TARGET}/nats
+
+/var/vcap/packages/ruby/bin/bundle install --local --deployment --without development test
