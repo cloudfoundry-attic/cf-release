@@ -378,6 +378,10 @@ properties:
     default: 60
     description: "For requests to service brokers, this is the HTTP (open and read) timeout setting."
 
+  ccng.development_mode:
+    default: false
+    description: "Enable development features for monitoring and insight"
+
   ccng.newrelic.license_key:
     default: ~
     description: "The api key for NewRelic. Setting this value will activate NewRelic monitoring."
