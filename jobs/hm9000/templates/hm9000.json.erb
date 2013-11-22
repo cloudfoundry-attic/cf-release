@@ -45,10 +45,14 @@
 
     "sender_nats_start_subject": "hm9000.start",
     "sender_nats_stop_subject": "hm9000.stop",
-    "nats": {
-        "host": "<%= p("nats.address") %>",
-        "port": <%= p("nats.port") %>,
-        "user": "<%= p("nats.user") %>",
-        "password": "<%= p("nats.password") %>"
+    "nats": <%=
+  p("nats.machines").collect do |ip|
+    {
+      "host" => ip,
+      "port" => p("nats.port"),
+      "user" => p("nats.user"),
+      "password" => p("nats.password")
     }
+  end.to_json
+%>
 }
