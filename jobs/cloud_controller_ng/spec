@@ -355,6 +355,13 @@ properties:
   loggregator_endpoint.shared_secret:
     description: "The key used to sign log messages"
 
+  logger_endpoint.use_ssl:
+    description: "Whether to use ssl for logger endpoint listed at /v2/info"
+    default: true
+  logger_endpoint.port:
+    description: "Port for logger endpoint listed at /v2/info"
+    default: 443
+
   ccng.db_encryption_key:
     default: ""
     description: "key for encrypting sensitive values in the CC database"
