@@ -10,6 +10,7 @@ packages:
   - common
   - gnatsd
   - nats
+  - ruby
   - syslog_aggregator
 properties:
   networks.apps:
