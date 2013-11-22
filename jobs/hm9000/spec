@@ -27,6 +27,8 @@ properties:
     description:
   nats.port:
     description:
+  nats.machines:
+    description:
   syslog_aggregator.address:
     description: "IP address of syslog aggregator"
   syslog_aggregator.port:
