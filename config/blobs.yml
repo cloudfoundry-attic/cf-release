@@ -125,9 +125,10 @@ buildpack_cache/ruby-1.8.7.tgz:
     MzcwNWY0Zjg5NTUwZjZmNTgyZGE5ZjI1YWYxYTcxNWM3MTZhNDM5NA==
   size: 4402111
 buildpack_cache/ruby-1.9.2.tgz:
-  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f0514794ff3e620
-  sha: 5a03121fa4de31f60a22fab4846fe820122e7811
-  size: 11513584
+  object_id: ae2f9381-a54b-47bf-a7d1-eb561eb365ae
+  sha: !binary |-
+    ZWNkYzhiYjg5NzVlNjg2ZDBmMWIwYWM0NDdiMmI1ZmZjMGI0ZWExZA==
+  size: 10143524
 buildpack_cache/ruby-1.9.3.tgz:
   object_id: 592c86e7-07fe-4106-a55f-b8c190935fa4
   sha: !binary |-
@@ -139,9 +140,10 @@ buildpack_cache/ruby-build-1.8.7.tgz:
     NWM3NWExYTU1M2Q5Yjc0ZDUyOWI2OTI5YzJkMWI4OWIyMWVmZjUyOA==
   size: 4400433
 buildpack_cache/ruby-build-1.9.2.tgz:
-  object_id: rest/objects/4e4e78bca31e121004e4e7d514745f0514780f549dec
-  sha: 11b61212e3e56ec9017311f1b4c84e9f86621bce
-  size: 11518812
+  object_id: f4fc6c65-967a-4b59-bb31-2ee1848bcd1f
+  sha: !binary |-
+    NjUzYjk0YTcwYWQ2MWQ4NDQ5MzRjMGIwZDZlMmQzZjlmM2I2YTg5Mg==
+  size: 10148015
 buildpack_cache/bundler-1.3.0.pre.5.tgz:
   object_id: rest/objects/4e4e78bca51e122004e4e8ec68407705135451b3613c
   sha: aba7a30dfe6cc83005d940e1bcc33ef9ad506001
