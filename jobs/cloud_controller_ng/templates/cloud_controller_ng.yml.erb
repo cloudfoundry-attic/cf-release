@@ -141,6 +141,18 @@ resource_pool:
     <% else %>
     aws_access_key_id: <%= p("ccng.resource_pool.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.resource_pool.fog_connection.aws_secret_access_key") %>
+    <% if_p("ccng.resource_pool.fog_connection.aws_host") do |host| %>
+    host: <%= host %>
+    <% end %>
+    <% if_p("ccng.resource_pool.fog_connection.aws_port") do |port| %>
+    port: <%= port %>
+    <% end %>
+    <% if_p("ccng.resource_pool.fog_connection.aws_scheme") do |scheme| %>
+    scheme: <%= scheme %>
+    <% end %>
+    <% if_p("ccng.resource_pool.fog_connection.aws_path_style") do |path_style| %>
+    path_style: <%= path_style %>
+    <% end %>
     <% end %>
   <% end %>
 
@@ -166,6 +178,18 @@ packages:
     <% else %>
     aws_access_key_id: <%= p("ccng.packages.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.packages.fog_connection.aws_secret_access_key") %>
+    <% if_p("ccng.packages.fog_connection.aws_host") do |host| %>
+    host: <%= host %>
+    <% end %>
+    <% if_p("ccng.packages.fog_connection.aws_port") do |port| %>
+    port: <%= port %>
+    <% end %>
+    <% if_p("ccng.packages.fog_connection.aws_scheme") do |scheme| %>
+    scheme: <%= scheme %>
+    <% end %>
+    <% if_p("ccng.packages.fog_connection.aws_path_style") do |path_style| %>
+    path_style: <%= path_style %>
+    <% end %>
     <% end %>
   <% end %>
 
@@ -191,6 +215,18 @@ droplets:
     <% else %>
     aws_access_key_id: <%= p("ccng.droplets.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.droplets.fog_connection.aws_secret_access_key") %>
+    <% if_p("ccng.droplets.fog_connection.aws_host") do |host| %>
+    host: <%= host %>
+    <% end %>
+    <% if_p("ccng.droplets.fog_connection.aws_port") do |port| %>
+    port: <%= port %>
+    <% end %>
+    <% if_p("ccng.droplets.fog_connection.aws_scheme") do |scheme| %>
+    scheme: <%= scheme %>
+    <% end %>
+    <% if_p("ccng.droplets.fog_connection.aws_path_style") do |path_style| %>
+    path_style: <%= path_style %>
+    <% end %>
     <% end %>
   <% end %>
 
@@ -216,6 +252,18 @@ buildpacks:
     <% else %>
     aws_access_key_id: <%= p("ccng.buildpacks.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.buildpacks.fog_connection.aws_secret_access_key") %>
+    <% if_p("ccng.buildpacks.fog_connection.aws_host") do |host| %>
+    host: <%= host %>
+    <% end %>
+    <% if_p("ccng.buildpacks.fog_connection.aws_port") do |port| %>
+    port: <%= port %>
+    <% end %>
+    <% if_p("ccng.buildpacks.fog_connection.aws_scheme") do |scheme| %>
+    scheme: <%= scheme %>
+    <% end %>
+    <% if_p("ccng.buildpacks.fog_connection.aws_path_style") do |path_style| %>
+    path_style: <%= path_style %>
+    <% end %>
     <% end %>
   <% end %>
 

@@ -178,6 +178,14 @@ properties:
     description: "AWS access key used to access the resources bucket"
   ccng.resource_pool.fog_connection.aws_secret_access_key:
     description: "AWS secret key used to access the resources bucket"
+  ccng.resource_pool.fog_connection.aws_host:
+    description: "Host of S3 api compatible endpoint"
+  ccng.resource_pool.fog_connection.aws_port:
+    description: "Port of S3 api compatible endpoint"
+  ccng.resource_pool.fog_connection.aws_scheme:
+    description: "Scheme of S3 api compatible endpoint (eg: https/http)"
+  ccng.resource_pool.fog_connection.aws_path_style:
+    description: "Set to true of host does not suppport subdomain buckets"
   ccng.resource_pool.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -212,6 +220,14 @@ properties:
     description: "AWS access key used to access the packages bucket"
   ccng.packages.fog_connection.aws_secret_access_key:
     description: "AWS secret key used to access the packages bucket"
+  ccng.packages.fog_connection.aws_host:
+    description: "Host of S3 api compatible endpoint"
+  ccng.packages.fog_connection.aws_port:
+    description: "Port of S3 api compatible endpoint"
+  ccng.packages.fog_connection.aws_scheme:
+    description: "Scheme of S3 api compatible endpoint (eg: https/http)"
+  ccng.packages.fog_connection.aws_path_style:
+    description: "Set to true of host does not suppport subdomain buckets"
   ccng.packages.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -246,6 +262,14 @@ properties:
     description: "AWS access key used to access the droplets bucket"
   ccng.droplets.fog_connection.aws_secret_access_key:
     description: "AWS secret key used to access the droplets bucket"
+  ccng.droplets.fog_connection.aws_host:
+    description: "Host of S3 api compatible endpoint"
+  ccng.droplets.fog_connection.aws_port:
+    description: "Port of S3 api compatible endpoint"
+  ccng.droplets.fog_connection.aws_scheme:
+    description: "Scheme of S3 api compatible endpoint (eg: https/http)"
+  ccng.droplets.fog_connection.aws_path_style:
+    description: "Set to true of host does not suppport subdomain buckets"
   ccng.droplets.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -280,6 +304,14 @@ properties:
     description: "AWS access key used to access the buildpacks bucket"
   ccng.buildpacks.fog_connection.aws_secret_access_key:
     description: "AWS secret key used to access the buildpacks bucket"
+  ccng.buildpacks.fog_connection.aws_host:
+    description: "Host of S3 api compatible endpoint"
+  ccng.buildpacks.fog_connection.aws_port:
+    description: "Port of S3 api compatible endpoint"
+  ccng.buildpacks.fog_connection.aws_scheme:
+    description: "Scheme of S3 api compatible endpoint (eg: https/http)"
+  ccng.buildpacks.fog_connection.aws_path_style:
+    description: "Set to true of host does not suppport subdomain buckets"
   ccng.buildpacks.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
