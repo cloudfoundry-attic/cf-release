@@ -1,7 +1,7 @@
 set -e -x
 
-tar xzf ruby/ruby-1.9.3-p448.tar.gz
-pushd ruby-1.9.3-p448
+tar xzf ruby/ruby-1.9.3-p484.tar.gz
+pushd ruby-1.9.3-p484
   ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=/var/vcap/packages/libyaml
   make
   make install
