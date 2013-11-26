@@ -1,0 +1,374 @@
+---
+packages:
+- name: rootfs_lucid64
+  version: 2
+  sha1: !binary |-
+    NGExMTMxNzViMGI2NDdhZjEzODQxODIzMzQ5MzYyNTI4ZjAzYzIwNQ==
+  fingerprint: !binary |-
+    ZTI2ZTc4OGFiOTdkZmEyMGM0MmVlMGQzZTY0NWZmYjc4MmJmNjFhMw==
+  dependencies: []
+- name: saml_login
+  version: 16
+  sha1: !binary |-
+    ZTdjZDk1NGFmZTNlYTg4OTdlYTkyZjZmMzA0OTZjYjQxZDAwMWY2Yw==
+  fingerprint: !binary |-
+    ZjZkYjk2ZDQ5YjAxNzczOGJlODIwMDIzMTk3YTc0M2MwMTg0ODRiYw==
+  dependencies:
+  - ruby
+  - git
+- name: haproxy
+  version: 1
+  sha1: !binary |-
+    ZDNlNTlkMjIyY2Q5YWYzNWIyOGE4N2IxNGQzZTdiNzVmYjU2ZmY0MQ==
+  fingerprint: !binary |-
+    YTk0MTNmYzM5OGZiMmRlMGRkMDc2MmE4ZmNmNzgxM2QxNGI2ZDc0Yw==
+  dependencies:
+  - syslog_aggregator
+- name: loggregator_trafficcontroller
+  version: 4
+  sha1: !binary |-
+    YWU3NTg0YjY4NjgxOTNjMTBmNzUzMjZiNGNkOWUyZTFiOWJmMjE2Nw==
+  fingerprint: !binary |-
+    MmZhNGRmZWNiZGJmZmU2OTYyOTJmOTQ1NWZjNTIyNjRlZDQ0Y2QxNg==
+  dependencies: []
+- name: gnatsd
+  version: 1
+  sha1: !binary |-
+    MzUzNDdjMGI4MTdmNmEzNTMxMGVjZmNmZWM5NTM2OTVjZTQ1ZTgyNA==
+  fingerprint: !binary |-
+    MWRiZjVkNGJkNDljNjRhYTJlMTdkZDI0M2IwNjJlMjU3MTJiNGI5OA==
+  dependencies:
+  - golang
+- name: git
+  version: 2
+  sha1: !binary |-
+    MTNmMDYzODEwZjk1OTliYzNhNTkzNWRkOTkwMWVmMDdmNDFiZTEwYw==
+  fingerprint: !binary |-
+    MzM3M2VhYjBjNjJmOTg4MDE5YzVmNmZjODUyZTlhN2Q4MGNiNDJjMQ==
+  dependencies: []
+- name: ruby
+  version: 10
+  sha1: !binary |-
+    NTJmNGVlMDgzMDQ2NzUyZjVlMzE5ZjkwNzE4ZjliZTFmYjhhOTJhMA==
+  fingerprint: !binary |-
+    MmFlYjYwNGM5Y2JiMmNiN2QyN2JlZDJlOTJkOWQ4YzkxM2U0NDg4Zg==
+  dependencies:
+  - libyaml
+- name: gorouter
+  version: 18
+  sha1: !binary |-
+    ZGRiYzI0ZmU1NmU4ZTllMTJmNTg2Mjg4Y2ZhYTExNTU1N2E3ZTZjNA==
+  fingerprint: !binary |-
+    ZGQzNTEwZTlmZTQ4YjY3NThjZWEzMTdjODI1NDk1M2I3NjU3NjNiZg==
+  dependencies:
+  - golang
+- name: syslog_aggregator
+  version: 8
+  sha1: !binary |-
+    ZDE4OTRiN2NkZDcwZGM4NDRiNTE4MTJiYTczNGFjOTVmMmFmYWU1NQ==
+  fingerprint: !binary |-
+    MTNkNTIyMGRiZTIwY2Y3MTllY2I3MmE4NDY3ZmEzNWJlNTJkODU3Mg==
+  dependencies:
+  - ruby
+- name: narc
+  version: 9
+  sha1: !binary |-
+    OGQxMjFlOGI4OTIzM2M2OGJlMzc5NmQ3YzA0ZGE0ZGM5MzgxZDM4OA==
+  fingerprint: !binary |-
+    ZTIzZjJlM2RjZTdiNTcxYTUzODk2ZWI2ZjIxOWQxMDFlZWUzMGVmZA==
+  dependencies:
+  - golang
+- name: postgres
+  version: 5
+  sha1: !binary |-
+    MmM3YjNjNWQyNTBhMmYyZGMxNzE1NjU3OTFmZGYzNWQ2NWZlNjEwNA==
+  fingerprint: !binary |-
+    N2M2MTJhYjM5ZjdlZDY2ODhlNjdkOWM3ODJiNjkzM2Q2OWU4ZmMxMw==
+  dependencies: []
+- name: cloud_controller_ng
+  version: 30
+  sha1: !binary |-
+    NmIxYjhmMzk3YTZjMDFhOWJmYTQ1MjJiNDQ3MGZmZmY4YTk0NjlmYQ==
+  fingerprint: !binary |-
+    YjA3YTAyNmNiNmY1OWE1MTRjNDQ1ZjUzMDI0ODE3ZDA5MGRmMGQ1ZA==
+  dependencies:
+  - libpq
+  - mysqlclient
+  - sqlite
+  - ruby
+- name: uaa
+  version: 40
+  sha1: !binary |-
+    Mzk4OGRmNWMxNDI5MjBjYWMyMGVkM2YxYmFiODM5OWJkNDkyOWIwZQ==
+  fingerprint: !binary |-
+    NzE1NmQ5ZDk0OWZhYTY0OGIwMDJjNmI4ZDM1ZmUwZTc1OTQyZmFlZg==
+  dependencies:
+  - ruby
+- name: dea_next
+  version: 33
+  sha1: !binary |-
+    NGM4MjUxMjdlNTVlNDdmMWFkNzBmMTUwNzkzZDMxNGJlZGJjNWFkZQ==
+  fingerprint: !binary |-
+    ZDc2YmIwOWMzNzBkMjg4ZGEwYmI1MWE4MTQzZjgxYzUzYzc1ZGZiMA==
+  dependencies:
+  - ruby
+  - golang
+- name: debian_nfs_server
+  version: 4
+  sha1: !binary |-
+    NTk5MTQwMmI4YjZlZjFlZDhiMGRkZWZlYTdlY2JkMDVjZTI5NmJlYg==
+  fingerprint: !binary |-
+    OGU2ZDc3ZGYyMmYyYmQyZWFiYTMxOTJlNTljNjE3YWQyYTEzZjEwMg==
+  dependencies: []
+- name: buildpack_cache
+  version: 6
+  sha1: !binary |-
+    MmEwYThlNDkyMzdmZDI0OTVjMzJjZTFiMDVmNmQ5MDExMDRlYzgzMA==
+  fingerprint: !binary |-
+    NjdhN2I1MTc4NDFkMTU3Y2E5MWU0MmVmMzI0NjZjZDdhOGM4OGJlMQ==
+  dependencies: []
+- name: pivotal_login
+  version: 2
+  sha1: !binary |-
+    NjYxZWE3Mjg1ZGM0MTI1NWQ3MjBjYzRkZDQzZDgxYTg2YTIwMDNkMQ==
+  fingerprint: !binary |-
+    MDZiMzRmNDQ0NjkzMjUxZDRjODEyYzlkZmU5MDQzMTIxYmI3NmMyNw==
+  dependencies:
+  - ruby
+- name: sqlite
+  version: 4
+  sha1: !binary |-
+    Njg4MGU5YjU5MzVkNjIwMTg3MTQzODdiOGY0ODIzYjUwYzVlNTU2Nw==
+  fingerprint: !binary |-
+    YmRjZjk1Yjc0YzM4MzQyZTA1ODBjMjBhMDhjYzk3YWM4Zjg0NmMxOA==
+  dependencies: []
+- name: hm9000
+  version: 5
+  sha1: !binary |-
+    NTUxY2IyOTA1MzlhNGExY2YxMmNlMDY1ZDAyYzk1NmMxMGFmZGIyNA==
+  fingerprint: !binary |-
+    OTU2MDM5OWM1N2JmMjcyOTg2MDJjYjk0YTY2N2NiOGMyYTQwNjk5OA==
+  dependencies:
+  - golang
+  - git
+- name: loggregator
+  version: 13
+  sha1: !binary |-
+    NTYwZjhjMTA0NzFmOTY2OTM3MmI2MDQ3ZGE5MzZlNTQyMDZmZGEwYQ==
+  fingerprint: !binary |-
+    ZmUwNjQ0Zjg1NzZiNWZiZThlMGY4NDg4ZDliOWMwYWE3YTY5YjFmNQ==
+  dependencies: []
+- name: mysqlclient
+  version: 4
+  sha1: !binary |-
+    OGNlMWZmMWQ3YmQ0Y2FhMzBmZDFjODg2ZTdjNzA4YjA1MDc1NmFhYw==
+  fingerprint: !binary |-
+    MjMwNDA4NjliZTVlZDExNTUxNjc0MzJjYTNiZjEwYmYyOGQ0OTkyMQ==
+  dependencies: []
+- name: libyaml
+  version: 2
+  sha1: !binary |-
+    NWI5ZmNmNDMxNzZlOGM2OGUwZDhiZWYwNzAzZWJkMmFiMDE2ODcwZA==
+  fingerprint: !binary |-
+    MmM4MzUwYmM2YjYwYjdjNTBmMmI5ZDdkMTllZDAyZTE5YjcyYmYzOA==
+  dependencies: []
+- name: golang
+  version: 4
+  sha1: !binary |-
+    ZWM1Y2U2MzNiOTdmYTk3Y2VjZTExODI4NzI2OGYzM2M2NTZmMTQ5MA==
+  fingerprint: !binary |-
+    OTg0Y2UwMzM3NWViMmNlY2JkOTBiNGQ0MmZhODFlODYxNjU4YWY0YQ==
+  dependencies: []
+- name: collector
+  version: 19
+  sha1: !binary |-
+    ODUwNDFiZGRmN2Q1MjJmY2EyOTNlNzE3MWYxOGQ3ODA5MWViYzQzMQ==
+  fingerprint: !binary |-
+    NTBjNjI2OTBlMDA4ZGJjNGYwZTk3OGVjMmE3NGI2ZjE0ZDg3NzlmYw==
+  dependencies:
+  - ruby
+- name: nats
+  version: 10
+  sha1: !binary |-
+    YzNhNDU3MzFjNjM5ZTk3MTJmZjFmMjIyYTA2MzM0NTE2MjQxMWRlMQ==
+  fingerprint: !binary |-
+    ZDA1NjNjYjQ0NmQ5MWM3ZGJjZmQ1NmE0MTc4NjQ5NjAwNzAzOGQzNw==
+  dependencies:
+  - ruby
+- name: warden
+  version: 35
+  sha1: !binary |-
+    MTU1NDE5ZDg5ZWE0N2M2ODU2NGJiOGYxYmE5ODQ0ZmY5NTRhYWQ2Yg==
+  fingerprint: !binary |-
+    YmE0Y2JkODA4NTM4YzU4NjA1YzU0YzMwYWJjMTY5MDllMzEzNzA3Ng==
+  dependencies:
+  - ruby
+- name: nginx
+  version: 10
+  sha1: !binary |-
+    YTVkMmJhNDFjZDBhMmM0NGExNTExOGJiZjZmYWYzNzM2MGRjODVlMw==
+  fingerprint: !binary |-
+    ZmZiOGFhZWNhNDE2MmQ5ZmYyMGY5MDc5OGRlZGI4MGQyM2IyYzJjMA==
+  dependencies: []
+- name: dea_logging_agent
+  version: 13
+  sha1: !binary |-
+    OTIxYmE4ZTMwY2I0YjAyZmM4YzY4NTViYzg4MTNlNmU0MWVjZjNlMA==
+  fingerprint: !binary |-
+    YTFmYWJlNWI1YTlkNzNiODJkMGI1MTQzYWQyZjEzZDg4Y2NlN2U5Mg==
+  dependencies: []
+- name: login
+  version: 29
+  sha1: !binary |-
+    YmQ5Y2NjMDI5ZWJhZmZmNjFkOWI3MzFkNThjYTY5MmUwMjJjN2ExYg==
+  fingerprint: !binary |-
+    YjMzM2QwNWIxOWNiYzlkZWJkYmI2ZmI0YzRiODYxMGIzNDhkMzgzOA==
+  dependencies:
+  - ruby
+- name: health_manager_next
+  version: 24
+  sha1: !binary |-
+    YjQ0NmUyZTJjM2Q2YTkyZmQwNGY4Y2JjN2EyYTI3YmViNzVlNDViNA==
+  fingerprint: !binary |-
+    M2U0ZTdlOGZkYzY1YjYzNDQzMmUwMTYwYjJhMmE5ZmMzZDg4ZGE0OQ==
+  dependencies:
+  - ruby
+- name: common
+  version: 6
+  sha1: !binary |-
+    ZTQ4YTRhMWU1ZWQ4MjE1YWRlOTJjZmM0MDA0ZWUxYmEyM2Q4MDdiNQ==
+  fingerprint: !binary |-
+    OGMwMTI1N2ViZTZmZGRhNmY0NWVmODk5NmYwYWRiNTQwMDFlODU1ZQ==
+  dependencies: []
+- name: libpq
+  version: 6
+  sha1: !binary |-
+    Mzg4Mzk4MWY4NThlNDBlYWI3Nzc5M2U2ZTU1YWRkOWVkZjI1ZTc5Mw==
+  fingerprint: !binary |-
+    YTFlZjhmYWU5YzU2MDM5MThmYTkyMjYwMWE3MDFhMGY3MjkyYjU3Ng==
+  dependencies: []
+jobs:
+- name: saml_login
+  version: 7
+  fingerprint: !binary |-
+    MmI0Y2I1ZjVjYmE5YzZiN2Y5MDFjMWY2MDA0NzczMGJkOWUxOTdjMw==
+  sha1: !binary |-
+    ZGE2OTJiZWZlNzk4NTI3NWIzNDE3YjMyYjRhNDhkZmM5MDlhZTFkMA==
+- name: haproxy
+  version: 3
+  fingerprint: !binary |-
+    NzIyYTBkYWRkY2VkYzAwYjUzYjdhYjk0NjYwMzgzNmM3ZTQ3OTcxMA==
+  sha1: !binary |-
+    OWFjZDFkN2Q3N2EzMjBhYjUzZTZkNTA1MTIyNGRjYmNiOGMzNmNmMg==
+- name: loggregator_trafficcontroller
+  version: 4
+  fingerprint: !binary |-
+    MjQyZWVjYzc4ZmM3NjJkYzM4N2IwNTcwNDQ3NDU0ZWRjMDAxYzViMg==
+  sha1: !binary |-
+    YjRhNDQ5MTI1ZjBjZjhlMmQ1MzliYjRhM2RkMGZlNjA0YTBiZDdiOA==
+- name: gorouter
+  version: 10
+  fingerprint: !binary |-
+    Njk3MWZlMTFjZDAzMTAyNjk0NDBlYTA1ZTRhMDg4N2FkNDlhMWUwZA==
+  sha1: !binary |-
+    YmY3YjI3OWQxZGUyMzg4YzQxZDQzMjIzNWE2MDMwMmZkYTRkY2FkZA==
+- name: syslog_aggregator
+  version: 21
+  fingerprint: !binary |-
+    ZGE5M2RmZDliNDljMjFhZTcyYTc5YWJjNTM1NTkyYWE3M2ZlODkxMg==
+  sha1: !binary |-
+    ZmYxNWM3ZjU0ZTI0OTkzY2UwNTRjYjUxNTc0YjY2YWMzOWQ4MzQ4Ng==
+- name: narc
+  version: 4
+  fingerprint: !binary |-
+    YWMxY2Q2NmRkMzEzMzcyNWMxMGJjOTAwNTBlOWU3MmNiMmY4YWE5MA==
+  sha1: !binary |-
+    MDQ5ODdlYmJjZWU2ZmQ2ZDZmM2RlYmJkMDg3MGUyNzY0ZDA0YThmNg==
+- name: postgres
+  version: 4
+  fingerprint: !binary |-
+    NTE3YTI5OGJiYWE1MDg5ODViMjlkMTZkNzFlZDhiYzA2MzhiMTYyMw==
+  sha1: !binary |-
+    YWE3NDA0YzAxY2RkMGExYjI4M2FkNDdlYjVkMzAxNDE2YTc5MzM0ZA==
+- name: cloud_controller_ng
+  version: 21
+  fingerprint: !binary |-
+    NTY0MDExMzVjYTNlYzkyMTlmODViNTA3MjgyYjcwZDVlYjQwNDljOA==
+  sha1: !binary |-
+    ZDA3ZGEwZWZkY2M0YTUzMzIwNzg5ZmE3MWFkODQxMDAxMzJmMzRkZg==
+- name: uaa
+  version: 35
+  fingerprint: !binary |-
+    NDI5ZDU1NWRmNTIyNjU3NjhjYzQ3N2FmYmMxZmYyOTQ1OWIyOGFlYg==
+  sha1: !binary |-
+    N2E2NjZmOGI3OWQyNDAwMmE0YTNiYjIyMjJiYWU5OTc5YWEwMzVmYg==
+- name: dea_next
+  version: 23
+  fingerprint: !binary |-
+    MjYyMzc1YTg0OWMwNjk3ODc2MGEzNTI3ZTBhMGUzNTQ1MGY2ZGI3OA==
+  sha1: !binary |-
+    NzE2NjVjNDcwZjIyZDMyMGZjN2M5NTZjNjUwYjliYTc2MTZhMmIzYg==
+- name: debian_nfs_server
+  version: 8
+  fingerprint: !binary |-
+    MWU5MGU3NjViNmRiOTVmOGE3ZTFkM2Q4NjdjZDU1YjUxNjE0MmE5Yg==
+  sha1: !binary |-
+    NmUzODExMjk1MjQ0MWQxMDM1MWYxM2ZlYzk1YjQ2ODkxMTUxZWIzMQ==
+- name: nats_stream_forwarder
+  version: 2
+  fingerprint: !binary |-
+    Yzg2MWQyNTgyYTE1Y2E0OGIzMThlMDk5MDMzN2MxNWQzZmY4MDFlOA==
+  sha1: !binary |-
+    M2FhYjI5MDk5N2ZiZTg4ZDE3YzQ1MTE0YjQ1ZWJjMjhkODY2Y2NmYw==
+- name: pivotal_login
+  version: 1
+  fingerprint: !binary |-
+    YTAyNGYzZWI3NWEwYzg2NmI2YzE5YmQxZjFmZGNmZGUwMjJkZmNmOQ==
+  sha1: !binary |-
+    NmMzMjE2MmU1N2I4MDBhMzZlOTI2ZjkyZjg1YjIyNTJkN2Q0Y2UwZg==
+- name: hm9000
+  version: 5
+  fingerprint: !binary |-
+    NTg4NzI0NmNhOWI1YzUwNzE2NmE2MDdmYzU0OWNmZWMzNWJhYzllYg==
+  sha1: !binary |-
+    OTM0ZTA4OTE5ZjczZTI1ZDBlZmQzZTZlM2EyM2ZmODBlZjg1N2Q4Yw==
+- name: loggregator
+  version: 10
+  fingerprint: !binary |-
+    MThmZDVlZGI3MDQ5YTJjMmJhOWMzOTU4MzgyYWVhZTM5YTc3ZTNkYg==
+  sha1: !binary |-
+    YjRiYjJhMjNhZGEzMGUwODhkYzQzNmJhMDFhNDcwNjZjZGM5MjY3Yg==
+- name: collector
+  version: 10
+  fingerprint: !binary |-
+    YTJiMTYxN2I3ZWUyYmJlZTkwNTZlOWU1NzBiNjcwMWI1N2RlOWZkZQ==
+  sha1: !binary |-
+    NDRmODllYzBjMDhhN2IxMjMwMDQzOTI5YTE3YzAxYmJkNDU3YWU1Mw==
+- name: nats
+  version: 15
+  fingerprint: !binary |-
+    Mjg3ZTEzY2FiYjJiYzBiYzJkNWY1ZjExZDQ2YzAxNGJjMzJlZmYwZA==
+  sha1: !binary |-
+    N2FhNDI0N2IwYzU4OGY4OTZjYjAyNTJmNTNhNDFlOTQ0NjFjN2ZjYw==
+- name: dea_logging_agent
+  version: 6
+  fingerprint: !binary |-
+    MTM2MzA2OWVlNWM3MWJjYWRkM2E4NzllMDQxZmQxMzg1NzEyZjZjNQ==
+  sha1: !binary |-
+    YzRjZmI2ZTM2NzkzODk3YTAzNWJlNzQzYTNkNzJiM2Y1ZjliNDQxYw==
+- name: login
+  version: 21
+  fingerprint: !binary |-
+    OTcwMjg3YjI3MTExNTc4ZGQ0Yjc1ZjcwNWQxMDBiZjZlMzAyOTNjNg==
+  sha1: !binary |-
+    YzIwYTQ1ODVmZWMwNDkxOTJjMTJlMzQ1YzY2MGM2MDMzNTZlYmFjOQ==
+- name: health_manager_next
+  version: 13
+  fingerprint: !binary |-
+    Mjc5ODdhOWFiNzgwYjk1YzE5MWZmZTg5ZGRhNGEwZDE5OGQ4ZmY5Nw==
+  sha1: !binary |-
+    YzQ2YzFlMzljZjAxMzhiMGQ2NGM2MmEzOTJhZDhhMzkwNDkwZWZiNA==
+commit_hash: 7d78dfbb
+uncommitted_changes: true
+name: cf
+version: 149
