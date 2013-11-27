@@ -16,6 +16,9 @@ meta:
 properties:
   template_only: (( merge ))
 
+  logger_endpoint:
+    port: 4443
+
   cc:
     resource_pool:
       fog_connection: (( meta.fog_config ))
