@@ -1,3 +1,4 @@
+<% require 'json' %>
 {
   "IncomingPort": <%= p("loggregator.incoming_port") %>,
   "OutgoingPort": <%= p("loggregator.outgoing_port") %>,
@@ -15,4 +16,7 @@
     <% if_p("syslog_aggregator") do |_| %>
     , "Syslog": "vcap.loggregator"
     <% end %>
+    <% if_p("loggregator.blacklisted_syslog_ranges") do |_| %>
+    , "BlackListIPs": <%= p("loggregator.blacklisted_syslog_ranges").to_json %>
+    <% end %>  
 }
