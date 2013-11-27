@@ -33,6 +33,8 @@ properties:
   loggregator.outgoing_port:
     description: Port for outgoing log messages
     default: 8080
+  loggregator.blacklisted_syslog_ranges:
+    description: "Blacklist for IPs that should not be used as syslog drains, e.g. internal ip addresses."
   loggregator.servers:
     description: "This property is not used by the job itself, but has the desired effect of restarting the loggregator jobs when the property changes on bosh deployment. See loggregator_trafficcontroller job spec for a description."
   loggregator_endpoint.shared_secret:
