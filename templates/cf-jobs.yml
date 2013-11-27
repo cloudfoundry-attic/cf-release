@@ -359,6 +359,8 @@ properties:
   loggregator_endpoint:
     shared_secret: (( merge ))
 
+  logger_endpoint: ~
+
   loggregator:
     servers:
       z1: (( jobs.loggregator_z1.networks.cf1.static_ips ))
