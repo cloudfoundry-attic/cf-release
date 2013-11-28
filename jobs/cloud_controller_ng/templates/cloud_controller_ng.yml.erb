@@ -141,6 +141,7 @@ resource_pool:
     <% else %>
     aws_access_key_id: <%= p("ccng.resource_pool.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.resource_pool.fog_connection.aws_secret_access_key") %>
+    region: <%= p("ccng.resource_pool.fog_connection.region") %>
     <% end %>
   <% end %>
 
@@ -166,6 +167,7 @@ packages:
     <% else %>
     aws_access_key_id: <%= p("ccng.packages.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.packages.fog_connection.aws_secret_access_key") %>
+    region: <%= p("ccng.packages.fog_connection.region") %>
     <% end %>
   <% end %>
 
@@ -191,6 +193,7 @@ droplets:
     <% else %>
     aws_access_key_id: <%= p("ccng.droplets.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.droplets.fog_connection.aws_secret_access_key") %>
+    region: <%= p("ccng.droplets.fog_connection.region") %>
     <% end %>
   <% end %>
 
@@ -216,6 +219,7 @@ buildpacks:
     <% else %>
     aws_access_key_id: <%= p("ccng.buildpacks.fog_connection.aws_access_key_id") %>
     aws_secret_access_key: <%= p("ccng.buildpacks.fog_connection.aws_secret_access_key") %>
+    region: <%= p("ccng.buildpacks.fog_connection.region") %>
     <% end %>
   <% end %>
 
