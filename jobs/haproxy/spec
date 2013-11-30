@@ -9,7 +9,6 @@ templates:
   cert.pem.erb:              config/cert.pem
 properties:
   ha_proxy.ssl_pem:
-    default:
     description: "SSL certificate (PEM file)"
   ha_proxy.timeout:
     default: 300
@@ -21,8 +20,6 @@ properties:
     default:
     description:
   router.servers.z1:
-    default:
-    description:
+    description: Array of router IPs/hostnames
   router.servers.z2:
-    default:
-    description:
+    description: Array of router IPs/hostnames
