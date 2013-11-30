@@ -5,7 +5,7 @@ packages:
 templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   haproxy.config.erb:        config/haproxy.config
-  haproxy.init:              bin/haproxy.init
+  haproxy_ctl:               bin/haproxy_ctl
   cert.pem.erb:              config/cert.pem
 properties:
   ha_proxy.ssl_pem:
