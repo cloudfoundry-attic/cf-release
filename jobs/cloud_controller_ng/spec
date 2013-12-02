@@ -180,6 +180,7 @@ properties:
     description: "AWS secret key used to access the resources bucket"
   ccng.resource_pool.fog_connection.region:
     description: "AWS region where the resources bucket is located in"
+    default: "us-east-1"
   ccng.resource_pool.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -216,6 +217,7 @@ properties:
     description: "AWS secret key used to access the packages bucket"
   ccng.packages.fog_connection.region:
     description: "AWS region where the packages bucket is located in"    
+    default: "us-east-1"
   ccng.packages.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -252,6 +254,7 @@ properties:
     description: "AWS secret key used to access the droplets bucket"
   ccng.droplets.fog_connection.region:
     description: "AWS region where the droplets bucket is located in"    
+    default: "us-east-1"
   ccng.droplets.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -288,6 +291,7 @@ properties:
     description: "AWS secret key used to access the buildpacks bucket"
   ccng.buildpacks.fog_connection.region:
     description: "AWS region where the buildpacks bucket is located in"    
+    default: "us-east-1"
   ccng.buildpacks.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
