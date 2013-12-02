@@ -64,3 +64,5 @@ staging:
     BUILDPACK_CACHE: "/var/vcap/packages/buildpack_cache"
 
 stacks: <%= p("dea_next.stacks") %>
+placement_properties:
+  zone: <%= p("dea_next.zone") %>
