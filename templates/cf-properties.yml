@@ -65,6 +65,10 @@ properties:
         memory_limit: 102400
         total_services: -1
 
+    memory_stats_databases:
+      api: ~
+      worker: ~
+
   login:
     catalina_opts: (( merge ))
     uaa_certificate: ~

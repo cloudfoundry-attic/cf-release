@@ -404,3 +404,10 @@ properties:
   ccng.newrelic.log_file_path:
     default: "/var/vcap/sys/log/cloud_controller_ng/newrelic"
     description: "The location for NewRelic to log to"
+
+  ccng.memory_stats_databases.api:
+    default: ~
+    description: "Sequel connection string for API process memory usage statistics."
+  ccng.memory_stats_databases.worker:
+    default: ~
+    description: "Sequel connection string for worker process memory usage statistics."
