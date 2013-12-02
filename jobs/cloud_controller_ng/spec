@@ -185,7 +185,7 @@ properties:
   ccng.resource_pool.fog_connection.scheme:
     description: "Scheme for configuring non standard enpoints (eg: https/http)"
   ccng.resource_pool.fog_connection.path_style:
-    description: "Set to true of host does not suppport subdomain buckets"
+    description: "Set to true if host does not suppport subdomain buckets"
   ccng.resource_pool.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -227,7 +227,7 @@ properties:
   ccng.packages.fog_connection.scheme:
     description: "Scheme for configuring non standard enpoints (eg: https/http)"
   ccng.packages.fog_connection.path_style:
-    description: "Set to true of host does not suppport subdomain buckets"
+    description: "Set to true if host does not suppport subdomain buckets"
   ccng.packages.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
@@ -269,7 +269,7 @@ properties:
   ccng.droplets.fog_connection.scheme:
     description: "Scheme for configuring non standard enpoints (eg: https/http)"
   ccng.droplets.fog_connection.path_style:
-    description: "Set to true of host does not suppport subdomain buckets"
+    description: "Set to true if host does not suppport subdomain buckets"
   ccng.droplets.fog_connection.local_root:
     description: "The directory used as the root for the Local fog provider"
     default: "/var/vcap/nfs/shared"
