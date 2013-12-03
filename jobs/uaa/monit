@@ -9,3 +9,4 @@ check process uaa_cf-registrar
   start program "/var/vcap/jobs/uaa/bin/uaa_cf-registrar_ctl start"
   stop program "/var/vcap/jobs/uaa/bin/uaa_cf-registrar_ctl stop"
   group vcap
+  depends on uaa
