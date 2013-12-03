@@ -94,3 +94,6 @@
 [submodule "src/gnatsd"]
 	path = src/gnatsd
 	url = https://github.com/apcera/gnatsd.git
+[submodule "src/loggregator"]
+	path = src/loggregator
+	url = https://github.com/cloudfoundry/loggregator

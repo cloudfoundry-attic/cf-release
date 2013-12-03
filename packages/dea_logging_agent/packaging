@@ -1,30 +1,9 @@
 set -e -x
 
-dir="loggregator"
-binary="deaagent"
+export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export PATH=/var/vcap/packages/git/bin:$PATH
+export PATH=$GOROOT/bin:$PATH
 
-if [[ `uname -a` =~ "x86_64" ]] ; then
-  echo "Using 64-bit version"
-  echo "Extracting archive..."
-  gzip -d $dir/"${binary}-linux-amd64.gz"
-  mv $dir/"${binary}-linux-amd64" $dir/$binary
-else
-  echo "Only 64-bit architectures are supported."
-  exit 1
-fi
-
-if [[ -f $dir/$binary ]] ; then
-  echo "Binary found"
-else
-  echo "Binary not found"
-  exit 1
-fi
-
-chmod 755 $dir/$binary
-
-if [[ `./$dir/$binary --version 2>&1` =~ "version:" && $? == 0 ]]; then
-  cp $dir/$binary ${BOSH_INSTALL_TARGET}
-else
-  echo "${binary} is not properly packaged"
-  exit 1
-fi
+export GOPATH=$PWD/loggregator
+go install deaagent/deaagent
+cp -a $PWD/loggregator/bin/deaagent ${BOSH_INSTALL_TARGET}

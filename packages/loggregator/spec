@@ -1,4 +1,6 @@
 ---
 name: loggregator
+dependencies:
+- golang
 files:
-- loggregator/loggregator-linux-amd64.gz
+- loggregator/**/*
