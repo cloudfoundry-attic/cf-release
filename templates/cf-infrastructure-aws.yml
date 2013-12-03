@@ -145,13 +145,13 @@ resource_pools:
 # set up static IPs
 jobs:
   - name: logs_z1
-    instances: 1
+    instances: 0
     networks:
       - name: cf1
         static_ips: (( static_ips(0) ))
 
   - name: logs_z2
-    instances: 1
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(0) ))
