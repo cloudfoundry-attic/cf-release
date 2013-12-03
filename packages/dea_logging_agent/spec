@@ -1,4 +1,6 @@
 ---
 name: dea_logging_agent
+dependencies:
+- golang
 files:
-- loggregator/deaagent-linux-amd64.gz
+- loggregator/**/*
