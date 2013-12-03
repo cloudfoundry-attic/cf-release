@@ -9,3 +9,4 @@ check process login_cf-registrar
   start program "/var/vcap/jobs/login/bin/login_cf-registrar_ctl start"
   stop program "/var/vcap/jobs/login/bin/login_cf-registrar_ctl stop"
   group vcap
+  depends on login
