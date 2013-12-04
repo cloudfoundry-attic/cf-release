@@ -128,20 +128,9 @@ resource_pool:
     private_key: <%= p("ccng.resource_pool.cdn.private_key").inspect %>
   <% end %>
   fog_connection:
-  <% if_p("ccng.resource_pool.fog_connection.provider") do |provider| %>
-    provider: <%= provider %>
-    <% if provider.downcase == "local" %>
-    local_root: <%= p("ccng.resource_pool.fog_connection.local_root") %>
-    <% elsif provider.downcase == "openstack" %>
-    openstack_username: <%= p("ccng.resource_pool.fog_connection.openstack_username") %>
-    openstack_api_key: <%= p("ccng.resource_pool.fog_connection.openstack_api_key") %>
-    openstack_auth_url: <%= p("ccng.resource_pool.fog_connection.openstack_auth_url") %>
-    openstack_tenant: <%= p("ccng.resource_pool.fog_connection.openstack_tenant") %>
-    openstack_temp_url_key: <%= p("ccng.resource_pool.fog_connection.openstack_temp_url_key") %>
-    <% else %>
-    aws_access_key_id: <%= p("ccng.resource_pool.fog_connection.aws_access_key_id") %>
-    aws_secret_access_key: <%= p("ccng.resource_pool.fog_connection.aws_secret_access_key") %>
-    <% end %>
+  <% if_p("ccng.resource_pool.fog_connection") do |fog_connection| %>
+    <% fog_connection = { resource_pool: { fog_connection: fog_connection }} %>
+    <%= "\n" + fog_connection.to_yaml.lines.to_a[3..-1].join %>
   <% end %>
 
 packages:
@@ -153,20 +142,9 @@ packages:
     private_key: <%= p("ccng.packages.cdn.private_key").inspect %>
   <% end %>
   fog_connection:
-  <% if_p("ccng.packages.fog_connection.provider") do |provider| %>
-    provider: <%= provider %>
-    <% if provider.downcase == "local" %>
-    local_root: <%= p("ccng.packages.fog_connection.local_root") %>
-    <% elsif provider.downcase == "openstack" %>
-    openstack_username: <%= p("ccng.packages.fog_connection.openstack_username") %>
-    openstack_api_key: <%= p("ccng.packages.fog_connection.openstack_api_key") %>
-    openstack_auth_url: <%= p("ccng.packages.fog_connection.openstack_auth_url") %>
-    openstack_tenant: <%= p("ccng.packages.fog_connection.openstack_tenant") %>
-    openstack_temp_url_key: <%= p("ccng.packages.fog_connection.openstack_temp_url_key") %>
-    <% else %>
-    aws_access_key_id: <%= p("ccng.packages.fog_connection.aws_access_key_id") %>
-    aws_secret_access_key: <%= p("ccng.packages.fog_connection.aws_secret_access_key") %>
-    <% end %>
+  <% if_p("ccng.packages.fog_connection") do |fog_connection| %>
+    <% fog_connection = { packages: { fog_connection: fog_connection }} %>
+    <%= "\n" + fog_connection.to_yaml.lines.to_a[3..-1].join %>
   <% end %>
 
 droplets:
@@ -178,20 +156,9 @@ droplets:
     private_key: <%= p("ccng.droplets.cdn.private_key").inspect %>
   <% end %>
   fog_connection:
-  <% if_p("ccng.droplets.fog_connection.provider") do |provider| %>
-    provider: <%= provider %>
-    <% if provider.downcase == "local" %>
-    local_root: <%= p("ccng.droplets.fog_connection.local_root") %>
-    <% elsif provider.downcase == "openstack" %>
-    openstack_username: <%= p("ccng.droplets.fog_connection.openstack_username") %>
-    openstack_api_key: <%= p("ccng.droplets.fog_connection.openstack_api_key") %>
-    openstack_auth_url: <%= p("ccng.droplets.fog_connection.openstack_auth_url") %>
-    openstack_tenant: <%= p("ccng.droplets.fog_connection.openstack_tenant") %>
-    openstack_temp_url_key: <%= p("ccng.droplets.fog_connection.openstack_temp_url_key") %>
-    <% else %>
-    aws_access_key_id: <%= p("ccng.droplets.fog_connection.aws_access_key_id") %>
-    aws_secret_access_key: <%= p("ccng.droplets.fog_connection.aws_secret_access_key") %>
-    <% end %>
+  <% if_p("ccng.droplets.fog_connection") do |fog_connection| %>
+    <% fog_connection = { droplets: { fog_connection: fog_connection }} %>
+    <%= "\n" + fog_connection.to_yaml.lines.to_a[3..-1].join %>
   <% end %>
 
 buildpacks:
@@ -203,22 +170,10 @@ buildpacks:
     private_key: <%= p("ccng.buildpacks.cdn.private_key").inspect %>
   <% end %>
   fog_connection:
-  <% if_p("ccng.buildpacks.fog_connection.provider") do |provider| %>
-    provider: <%= provider %>
-    <% if provider.downcase == "local" %>
-    local_root: <%= p("ccng.buildpacks.fog_connection.local_root") %>
-    <% elsif provider.downcase == "openstack" %>
-    openstack_username: <%= p("ccng.buildpacks.fog_connection.openstack_username") %>
-    openstack_api_key: <%= p("ccng.buildpacks.fog_connection.openstack_api_key") %>
-    openstack_auth_url: <%= p("ccng.buildpacks.fog_connection.openstack_auth_url") %>
-    openstack_tenant: <%= p("ccng.buildpacks.fog_connection.openstack_tenant") %>
-    openstack_temp_url_key: <%= p("ccng.buildpacks.fog_connection.openstack_temp_url_key") %>
-    <% else %>
-    aws_access_key_id: <%= p("ccng.buildpacks.fog_connection.aws_access_key_id") %>
-    aws_secret_access_key: <%= p("ccng.buildpacks.fog_connection.aws_secret_access_key") %>
-    <% end %>
+  <% if_p("ccng.buildpacks.fog_connection") do |fog_connection| %>
+    <% fog_connection = { buildpacks: { fog_connection: fog_connection }} %>
+    <%= "\n" + fog_connection.to_yaml.lines.to_a[3..-1].join %>
   <% end %>
-
 
 db_encryption_key: <%= p("ccng.db_encryption_key") %>
 
