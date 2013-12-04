@@ -2,25 +2,17 @@ update:
   canaries: 0
 
 jobs:
-  - name: runner_z1
-    instances: 1
-    template: dea_next
-
-  - name: runner_z2
-    instances: 0
-    template: dea_next
-
   - name: loggregator_z1
     instances: 1
 
   - name: loggregator_z2
-    instances: 1
+    instances: 0
 
   - name: loggregator_trafficcontroller_z1
     instances: 1
 
   - name: loggregator_trafficcontroller_z2
-    instances: 1
+    instances: 0
 
   - name: logs_z1
     instances: 0
@@ -29,6 +21,15 @@ jobs:
     instances: 0
 
   - name: router_z2
+    instances: 0
+
+  - name: runner_z1
+    instances: 1
+
+  - name: runner_z2
+    instances: 0
+
+  - name: taskmaster_z1
     instances: 0
 
 properties:
