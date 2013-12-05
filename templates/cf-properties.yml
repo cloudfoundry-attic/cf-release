@@ -115,6 +115,7 @@ properties:
         authorized-grant-types: authorization_code,client_credentials
         access-token-validity: 1209600
         refresh-token-validity: 1209600
+        redirect-uri: (( "https://console." domain "/oauth/callback" ))
       billing:
         override: true
         scope: uaa.none
