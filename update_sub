@@ -1,5 +1,13 @@
 #!/bin/sh
 
+if [ "$1" == "--help" ]; then
+  echo "Usage: $0 REPO_NAME"
+  echo ""
+  echo "This script updates the requested submodule to the latest commit on origin."
+  echo "It will then prepare a commit message for you containing all of the commit messages between the previous submodule sha and the new submodule sha."
+  exit 0
+fi
+
 if [ "$#" -ne 1 ]; then
   echo "Usage: $0 REPO_NAME"
   exit 1

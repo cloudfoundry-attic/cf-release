@@ -1,4 +1,14 @@
-#!/bin/bash -x
+#!/bin/bash
+
+if [ "$1" == "--help" ]; then
+  echo "USAGE: $0"
+  echo "    This command takes no arguments."
+  echo ""
+  echo "This script does a git submodule update on all submodules"
+  exit 0
+fi
+
+set -x
 
 if [[ "$(git --version | grep 'version 1.7')x" != "x" ]]; then
   git pull && git submodule foreach --recursive git submodule sync && git submodule update --init --recursive
