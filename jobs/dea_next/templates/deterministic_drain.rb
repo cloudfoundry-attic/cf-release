@@ -6,15 +6,9 @@ require "fileutils"
 FileUtils.mkdir_p("/var/vcap/sys/log/dea_next")
 logger = Logger.new("/var/vcap/sys/log/dea_next/drain.log")
 
-job_change, hash_change, *updated_packages = ARGV
-
 logger.info("Drain script invoked with #{ARGV.join(" ")}")
 
 dea_pidfile = "/var/vcap/sys/run/dea_next/dea_next.pid"
-warden_pidfile = "/var/vcap/sys/run/warden/warden.pid"
-
-# give the DEAS a while to evacuate and restart apps
-default_timeout = <%= p("dea_next.evacuation_delay") %>
 
 if !File.exists?(dea_pidfile)
   logger.info("DEA not running")
@@ -24,16 +18,10 @@ end
 
 begin
   dea_pid = File.read(dea_pidfile).to_i
-  warden_pid = File.read(warden_pidfile).to_i
-
   logger.info("Sending signal USR2 to DEA.")
   Process.kill("USR2", dea_pid)
-  timeout = (ENV["DEA_DRAIN_TIMEOUT"] || default_timeout).to_i
-  logger.info("Setting timeout as #{timeout}.")
-  puts timeout
-  # XXX: Warden should be rolled after the DEA has exited. Unsure how to make
-  # that happen.
-
+  logger.info("Hey BOSH, call me back in 5s.")
+  puts -5
 rescue Errno::ESRCH => e
   logger.info("Caught exception: #{e}")
   puts 0

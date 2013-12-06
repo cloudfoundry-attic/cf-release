@@ -3,7 +3,7 @@ name: dea_next
 templates:
   dea.yml.erb: config/dea.yml
   dea_ctl.erb: bin/dea_ctl
-  drain.erb: bin/drain
+  deterministic_drain.rb: bin/drain
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 
