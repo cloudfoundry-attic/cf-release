@@ -334,9 +334,9 @@ properties:
     servers:
       z1: (( jobs.loggregator_z1.networks.cf1.static_ips ))
       z2: (( jobs.loggregator_z2.networks.cf2.static_ips ))
-    incoming_port: 3456
-    outgoing_port: 8080
     maxRetainedLogMessages: 100
+    debug: (( merge || false ))
+    blacklisted_syslog_ranges: ~
 
   cc: (( merge ))
   ccdb: (( merge ))
