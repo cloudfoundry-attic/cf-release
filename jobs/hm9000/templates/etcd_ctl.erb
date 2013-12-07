@@ -3,7 +3,7 @@
 RUN_DIR=/var/vcap/sys/run/hm9000
 LOG_DIR=/var/vcap/sys/log/hm9000
 PIDFILE=$RUN_DIR/etcd.pid
-WORK_DIR=/var/vcap/store/etcdstorage
+WORK_DIR=/var/vcap/store/etcd
 
 source /var/vcap/packages/common/utils.sh
 
@@ -26,9 +26,6 @@ case $1 in
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/hm9000/config
     <% end %>
 
-    if [ -f $WORK_DIR/info ]; then
-      rm $WORK_DIR/info
-    fi
 
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/etcd \
         -data-dir=$WORK_DIR \
