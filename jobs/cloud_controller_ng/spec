@@ -173,12 +173,6 @@ properties:
     default: "cc-resources"
   ccng.resource_pool.fog_connection:
     description: "Fog connection hash"
-  ccng.resource_pool.fog_connection.provider:
-    description: "Local for shared resources on NFS. AWS to place them in S3. OpenStack to place them in swift."
-    default: "Local"
-  ccng.resource_pool.fog_connection.local_root:
-    description: "The directory used as the root for the Local fog provider"
-    default: "/var/vcap/nfs/shared"
   ccng.resource_pool.cdn.uri:
     description: "URI for a CDN to used for resource pool downloads"
     default: ""
@@ -194,12 +188,6 @@ properties:
     default: "cc-packages"
   ccng.packages.fog_connection:
     description: "Fog connection hash"
-  ccng.packages.fog_connection.provider:
-    description: "Local for shared resources on NFS. AWS to place them in S3. OpenStack to place them in swift."
-    default: "Local"
-  ccng.packages.fog_connection.local_root:
-    description: "The directory used as the root for the Local fog provider"
-    default: "/var/vcap/nfs/shared"
   ccng.packages.cdn.uri:
     description: "URI for a CDN to used for app package downloads"
     default: ""
@@ -215,12 +203,6 @@ properties:
     default: "cc-droplets"
   ccng.droplets.fog_connection:
     description: "Fog connection hash"
-  ccng.droplets.fog_connection.provider:
-    description: "Local for droplets on NFS. AWS to place them in S3. OpenStack to place them in swift."
-    default: "Local"
-  ccng.droplets.fog_connection.local_root:
-    description: "The directory used as the root for the Local fog provider"
-    default: "/var/vcap/nfs/shared"
   ccng.droplets.cdn.uri:
     description: "URI for a CDN to used for droplet downloads"
     default: ""
@@ -236,12 +218,6 @@ properties:
     default: "cc-buildpacks"
   ccng.buildpacks.fog_connection:
     description: "Fog connection hash"
-  ccng.buildpacks.fog_connection.provider:
-    description: "Local for buildpacks on NFS. AWS to place them in S3. OpenStack to place them in swift."
-    default: "Local"
-  ccng.buildpacks.fog_connection.local_root:
-    description: "The directory used as the root for the Local fog provider"
-    default: "/var/vcap/nfs/shared"
   ccng.buildpacks.cdn.uri:
     description: "URI for a CDN to used for buildpack downloads"
     default: ""
