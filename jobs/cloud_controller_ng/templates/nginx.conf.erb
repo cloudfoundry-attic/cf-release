@@ -52,12 +52,14 @@ http {
       proxy_pass                 http://cloud_controller;
     }
 
+<% if p("ccng.droplets.fog_connection.provider").downcase == "local" %>
     # used for x-accel-redirect uri://location/foo.txt
     # nginx will serve the file root || location || foo.txt
     location /droplets/ {
       internal;
       root   <%= p("ccng.droplets.fog_connection.local_root") %>;
     }
+<% end %>
 
 <% if p("ccng.packages.fog_connection.provider").downcase == "local" %>
     # used for x-accel-redirect uri://location/foo.txt
