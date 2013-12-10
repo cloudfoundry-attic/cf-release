@@ -127,7 +127,10 @@ resource_pool:
     key_pair_id: <%= p("ccng.resource_pool.cdn.key_pair_id") %>
     private_key: <%= p("ccng.resource_pool.cdn.private_key").inspect %>
   <% end %>
-  fog_connection: <%= p("ccng.resource_pool.fog_connection").to_json %>
+  fog_connection: <%= fc = properties.ccng.resource_pool.fog_connection
+    fc.local_root ||= "/var/vcap/nfs/shared" if fc.provider.downcase == "local"
+    fc.marshal_dump.to_json
+  %>
 
 packages:
   app_package_directory_key: <%= p("ccng.packages.app_package_directory_key") %>
@@ -137,7 +140,11 @@ packages:
     key_pair_id: <%= p("ccng.packages.cdn.key_pair_id") %>
     private_key: <%= p("ccng.packages.cdn.private_key").inspect %>
   <% end %>
-  fog_connection: <%= p("ccng.packages.fog_connection").to_json %>
+  fog_connection: <%= fc = properties.ccng.packages.fog_connection
+    fc.local_root ||= "/var/vcap/nfs/shared" if fc.provider.downcase == "local"
+    fc.marshal_dump.to_json
+  %>
+
 
 droplets:
   droplet_directory_key: <%= p("ccng.droplets.droplet_directory_key") %>
@@ -147,7 +154,11 @@ droplets:
     key_pair_id: <%= p("ccng.droplets.cdn.key_pair_id") %>
     private_key: <%= p("ccng.droplets.cdn.private_key").inspect %>
   <% end %>
-  fog_connection: <%= p("ccng.droplets.fog_connection").to_json %>
+  fog_connection: <%= fc = properties.ccng.droplets.fog_connection
+    fc.local_root ||= "/var/vcap/nfs/shared" if fc.provider.downcase == "local"
+    fc.marshal_dump.to_json
+  %>
+
 
 buildpacks:
   buildpack_directory_key: <%= p("ccng.buildpacks.buildpack_directory_key") %>
@@ -157,7 +168,11 @@ buildpacks:
     key_pair_id: <%= p("ccng.buildpacks.cdn.key_pair_id") %>
     private_key: <%= p("ccng.buildpacks.cdn.private_key").inspect %>
   <% end %>
-  fog_connection: <%= p("ccng.buildpacks.fog_connection").to_json %>
+  fog_connection: <%= fc = properties.ccng.buildpacks.fog_connection
+    fc.local_root ||= "/var/vcap/nfs/shared" if fc.provider.downcase == "local"
+    fc.marshal_dump.to_json
+  %>
+
 
 db_encryption_key: <%= p("ccng.db_encryption_key") %>
 
