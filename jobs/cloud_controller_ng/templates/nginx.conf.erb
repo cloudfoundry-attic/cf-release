@@ -52,30 +52,30 @@ http {
       proxy_pass                 http://cloud_controller;
     }
 
-<% if p("ccng.droplets.fog_connection.provider").downcase == "local" %>
+<% if p("ccng.droplets.fog_connection.provider", "local").downcase == "local" %>
     # used for x-accel-redirect uri://location/foo.txt
     # nginx will serve the file root || location || foo.txt
     location /droplets/ {
       internal;
-      root   <%= p("ccng.droplets.fog_connection.local_root") %>;
+      root   <%= p(["ccng.droplets.fog_connection.local_root", "ccng.droplets.local_fog_connection.local_root"]) %>;
     }
 <% end %>
 
-<% if p("ccng.packages.fog_connection.provider").downcase == "local" %>
+<% if p("ccng.packages.fog_connection.provider", "local").downcase == "local" %>
     # used for x-accel-redirect uri://location/foo.txt
     # nginx will serve the file root || location || foo.txt
     location <%= "/#{p('ccng.packages.app_package_directory_key')}/" %> {
       internal;
-      root   <%= p("ccng.packages.fog_connection.local_root") %>;
+      root   <%= p(["ccng.packages.fog_connection.local_root", "ccng.packages.local_fog_connection.local_root"]) %>;
     }
 <% end %>
 
-<% if p("ccng.droplets.fog_connection.provider").downcase == "local" %>
+<% if p("ccng.droplets.fog_connection.provider", "local").downcase == "local" %>
     # used for x-accel-redirect uri://location/foo.txt
     # nginx will serve the file root || location || foo.txt
     location <%= "/#{p('ccng.droplets.droplet_directory_key')}/" %> {
       internal;
-      root   <%= p("ccng.droplets.fog_connection.local_root") %>;
+      root   <%= p(["ccng.droplets.fog_connection.local_root", "ccng.droplets.local_fog_connection.local_root"]) %>;
     }
 <% end %>
 
