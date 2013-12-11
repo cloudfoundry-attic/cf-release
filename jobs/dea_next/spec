@@ -71,6 +71,9 @@ properties:
   dea_next.evacuation_delay:
     description: "Duration to wait before shutting down, in seconds."
     default: 115
+  dea_next.zone:
+    description: "The Availability Zone"
+    default: "default"
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
