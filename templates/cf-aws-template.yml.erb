@@ -382,11 +382,12 @@ properties:
     clients:
       login:
         id: login
-        scope: openid
+        scope: openid,oauth.approvals
         authorities: oauth.login
         secret: HZtd2FyZS5jb20iL
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: http://login.<%= find("properties.domain") %>
+        override: true
       portal:
         id: portal
         scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write,console.admin,console.support

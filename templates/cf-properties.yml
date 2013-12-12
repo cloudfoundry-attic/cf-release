@@ -102,7 +102,7 @@ properties:
     clients:
       login:
         override: true
-        scope: openid
+        scope: openid,oauth.approvals
         authorities: oauth.login
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
