@@ -1,0 +1,7 @@
+---
+name: etcd
+dependencies:
+  - golang
+  - git
+files:
+  - etcd/etcd-0.2.0-rc2.tar.gz

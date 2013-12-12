@@ -182,6 +182,42 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      etcd_ips: (( jobs.etcd_leader_z1.networks.cf1.static_ips jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
+
+  - name: etcd_leader_z1
+    template: etcd
+    instances: 1
+    persistent_disk: 10024
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+        static_ips:  (( merge ))
+    properties:
+      networks: (( meta.networks.z1 ))
+
+  - name: etcd_z1
+    template: etcd
+    instances: 1
+    persistent_disk: 10024
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+        static_ips: (( merge ))
+    properties:
+      networks: (( meta.networks.z1 ))
+      leader_ip: (( jobs.etcd_leader_z1.networks.cf1.static_ips.[0] ))
+
+  - name: etcd_z2
+    template: etcd
+    instances: 1
+    persistent_disk: 10024
+    resource_pool: medium_z2
+    networks:
+      - name: cf2
+        static_ips: (( merge ))
+    properties:
+      networks: (( meta.networks.z2 ))
+      leader_ip: (( jobs.etcd_leader_z1.networks.cf1.static_ips.[0] ))
 
   - name: runner_z1
     template: (( merge || ["dea_next", "dea_logging_agent"] ))

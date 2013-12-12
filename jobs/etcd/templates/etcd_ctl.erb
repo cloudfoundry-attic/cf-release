@@ -1,0 +1,48 @@
+#!/bin/bash
+
+ETCD_VERSION="0.2.0-rc2"
+
+RUN_DIR=/var/vcap/sys/run/etcd
+LOG_DIR=/var/vcap/sys/log/etcd
+PIDFILE=$RUN_DIR/etcd.pid
+WORK_DIR=/var/vcap/store/etcd-$ETCD_VERSION
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "etcd"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+    mkdir -p $WORK_DIR
+
+    chown -R vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+    chown -R vcap:vcap $WORK_DIR
+
+    echo $$ > $PIDFILE
+
+    exec chpst -u vcap:vcap /var/vcap/packages/etcd/etcd -snapshot -data-dir=$WORK_DIR \
+        -addr=<%= spec.networks.send(properties.networks.apps).ip %>:4001 \
+        -peer-addr=<%= spec.networks.send(properties.networks.apps).ip %>:7001 \
+        -name=<%= "#{name}-#{spec.index}" %> \
+        <% if_p("leader_ip") do |leader_ip| %>\
+        -peers=<%= leader_ip %>:7001 \
+        <% end %>\
+         1>>$LOG_DIR/etcd.stdout.log \
+         2>>$LOG_DIR/etcd.stderr.log
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: etcd_ctl {start|stop}"
+
+    ;;
+
+esac

@@ -155,6 +155,24 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(3) ))
 
+  - name: etcd_leader_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(13) ))
+
+  - name: etcd_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(14) ))
+
+  - name: etcd_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(13) ))
+
   # using login template, that supports self-signed certs
   - name: login_z1
     template: login

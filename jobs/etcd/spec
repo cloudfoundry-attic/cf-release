@@ -1,0 +1,13 @@
+---
+name: etcd
+templates:
+  etcd_ctl.erb: bin/etcd_ctl
+packages:
+  - common
+  - etcd
+
+properties:
+  leader_ip:
+    description: "IP of ETCD cluster leader"
+  networks.apps:
+    description: "Used to get our IP address"
