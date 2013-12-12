@@ -162,6 +162,13 @@ properties:
     default: free
     description: "Local to use a local (NFS) file system.  AWS to use AWS."
 
+  ccng.default_fog_connection.provider:
+    description: "Local fog provider (should always be 'Local'), used if fog_connection hash is not provided in the manifest"
+    default: "Local"
+  ccng.default_fog_connection.local_root:
+    description: "Local root when fog provider is not overridden (should be an NFS mount if using more than one cloud controller)"
+    default: "/var/vcap/nfs/store"
+
   ccng.resource_pool.minimum_size:
     description: "Minimum size of a resource to add to the pool"
     default: 65536
@@ -173,12 +180,6 @@ properties:
     default: "cc-resources"
   ccng.resource_pool.fog_connection:
     description: "Fog connection hash"
-  ccng.resource_pool.local_fog_connection.local_root:
-    description: "Local root when using local fog provider (should be an NFS mount if using more than one cloud controller)"
-    default: "/var/vcap/nfs/store"
-  ccng.resource_pool.local_fog_connection.provider:
-    description: "Local fog provider (should always be 'Local')"
-    default: "Local"
   ccng.resource_pool.cdn.uri:
     description: "URI for a CDN to used for resource pool downloads"
     default: ""
@@ -194,12 +195,6 @@ properties:
     default: "cc-packages"
   ccng.packages.fog_connection:
     description: "Fog connection hash"
-  ccng.packages.local_fog_connection.local_root:
-    description: "Local root when using local fog provider (should be an NFS mount if using more than one cloud controller)"
-    default: "/var/vcap/nfs/store"
-  ccng.packages.local_fog_connection.provider:
-    description: "Local fog provider (should always be 'Local')"
-    default: "Local"
   ccng.packages.cdn.uri:
     description: "URI for a CDN to used for app package downloads"
     default: ""
@@ -215,12 +210,6 @@ properties:
     default: "cc-droplets"
   ccng.droplets.fog_connection:
     description: "Fog connection hash"
-  ccng.droplets.local_fog_connection.local_root:
-    description: "Local root when using local fog provider (should be an NFS mount if using more than one cloud controller)"
-    default: "/var/vcap/nfs/store"
-  ccng.droplets.local_fog_connection.provider:
-    description: "Local fog provider (should always be 'Local')"
-    default: "Local"
   ccng.droplets.cdn.uri:
     description: "URI for a CDN to used for droplet downloads"
     default: ""
@@ -236,12 +225,6 @@ properties:
     default: "cc-buildpacks"
   ccng.buildpacks.fog_connection:
     description: "Fog connection hash"
-  ccng.buildpacks.local_fog_connection.local_root:
-    description: "Local root when using local fog provider (should be an NFS mount if using more than one cloud controller)"
-    default: "/var/vcap/nfs/store"
-  ccng.buildpacks.local_fog_connection.provider:
-    description: "Local fog provider (should always be 'Local')"
-    default: "Local"
   ccng.buildpacks.cdn.uri:
     description: "URI for a CDN to used for buildpack downloads"
     default: ""
