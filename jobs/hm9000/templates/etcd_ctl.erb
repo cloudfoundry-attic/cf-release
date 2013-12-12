@@ -29,7 +29,7 @@ case $1 in
 
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/etcd \
         -data-dir=$WORK_DIR \
-        -name=HM9000ETCD
+        -name=HM9000ETCD \
         -snapshot \
          1>>$LOG_DIR/etcd.stdout.log \
          2>>$LOG_DIR/etcd.stderr.log
