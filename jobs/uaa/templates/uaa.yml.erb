@@ -83,7 +83,7 @@ oauth:
       secret: "<%= properties.uaa.login.client_secret %>"
       authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
-      scope: openid
+      scope: openid,oauth.approvals
       redirect-uri: https://login.<%= properties.domain %>
 <% end %>
 <% if properties.uaa.scim %>
