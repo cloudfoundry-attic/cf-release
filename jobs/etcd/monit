@@ -1,0 +1,6 @@
+check process etcd
+  with pidfile /var/vcap/sys/run/etcd/etcd.pid
+  start program "/var/vcap/jobs/etcd/bin/etcd_ctl start"
+    with timeout 60 seconds
+  stop program "/var/vcap/jobs/etcd/bin/etcd_ctl stop"
+  group vcap

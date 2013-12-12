@@ -1,0 +1,11 @@
+set -e -x
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export PATH=$GOROOT/bin:$PATH
+
+tar xzf etcd/etcd-0.2.0-rc2.tar.gz
+pushd etcd-0.2.0-rc2
+  ./build
+popd
+
+cp ./etcd-0.2.0-rc2/etcd ${BOSH_INSTALL_TARGET}
