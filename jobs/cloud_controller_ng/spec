@@ -300,7 +300,9 @@ properties:
   ccng.tasks_disabled:
     default: false
     description: "Disable tasks endpoint"
-
+  ccng.default_app_memory:
+    default: 1024
+    description: "How much memory given to an app if not specified"
   ccng.hm9000_noop:
     default: true
     description: "Disable processing HM9000 messages"

@@ -8,7 +8,7 @@ properties:
     shared_secret: (( merge ))
   cc:
     hm9000_noop: false
-
+    default_app_memory: 1024
     default_quota_definition: free
 
     srv_api_uri: (( "https://api." domain ))

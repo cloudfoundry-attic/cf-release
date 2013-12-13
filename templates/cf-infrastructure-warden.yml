@@ -43,7 +43,7 @@ properties:
 
   cc:
     default_quota_definition: runaway
-
+    default_app_memory: 256
     bulk_api_password: bulk-password
     staging_upload_user: upload-user
     staging_upload_password: upload-password
