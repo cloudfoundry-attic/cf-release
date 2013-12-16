@@ -79,7 +79,8 @@ pushd nginx-0.8.54
     --add-module=../headers-more-v0.15rc1 \
     --add-module=../nginx_upload_module-2.2.0 \
     --add-module=../simpl-ngx_devel_kit-bc97eea \
-    --add-module=../chaoslawful-lua-nginx-module-4d92cb1
+    --add-module=../chaoslawful-lua-nginx-module-4d92cb1 \
+    --with-cc-opt='-Wno-error'
 
   make
   make install
