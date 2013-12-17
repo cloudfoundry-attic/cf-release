@@ -6,8 +6,6 @@ require "json"
 
 FileUtils.mkdir_p("/var/vcap/sys/log/dea_next")
 
-job_change, hash_change, *updated_packages = ARGV
-
 DEA_PIDFILE = "/var/vcap/sys/run/dea_next/dea_next.pid"
 SHUTTING_DOWN_FILE = "/var/vcap/sys/run/dea_next/shutting_down"
 WARDEN_PIDFILE = "/var/vcap/sys/run/warden/warden.pid"
@@ -33,8 +31,6 @@ class DEADrainer
       return
     end
 
-    job_change = @argv.first
-
     if shutting_down?
       mark_as_shutting_down
       evacuate
@@ -54,6 +50,10 @@ class DEADrainer
     job_change == "job_shutdown" || \
       # see bosh bug #62604304
       File.exists?(SHUTTING_DOWN_FILE)
+  end
+
+  def job_change
+    @argv.first
   end
 
   def mark_as_shutting_down
