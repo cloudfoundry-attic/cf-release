@@ -2,6 +2,7 @@
 name: haproxy
 packages:
 - haproxy
+- syslog_aggregator
 templates:
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   haproxy.config.erb:        config/haproxy.config
