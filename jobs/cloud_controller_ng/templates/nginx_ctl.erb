@@ -36,8 +36,8 @@ case $1 in
 	<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
     exec /var/vcap/packages/nginx/sbin/nginx \
          -c $CC_JOB_DIR/config/nginx.conf \
-	      > >(tee -a >(logger -p user.info -t vcap.nginx.stdout) $LOG_DIR/nginx.stdout.log) \
-	      2> >(tee -a >(logger -p user.error -t vcap.nginx.stderr) $LOG_DIR/nginx.stderr.log)
+	      > >(tee >(logger -p user.info -t vcap.nginx.stdout) >>$LOG_DIR/nginx.stdout.log) \
+	      2> >(tee >(logger -p user.error -t vcap.nginx.stderr) >>$LOG_DIR/nginx.stderr.log)
 	<% else %>
     exec /var/vcap/packages/nginx/sbin/nginx \
          -c $CC_JOB_DIR/config/nginx.conf \

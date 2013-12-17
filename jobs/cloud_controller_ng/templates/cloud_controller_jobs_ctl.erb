@@ -50,8 +50,8 @@ case $1 in
     cd $CC_PACKAGE_DIR/cloud_controller_ng
     export QUEUES=cc-<%= name %>-<%= spec.index.to_i %>,$GENERIC_QUEUE
     exec chpst -u vcap:vcap bundle exec rake jobs:work \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
-      > >(tee -a >(logger -p user.info -t vcap.jobs_work.stdout) $LOG_DIR/jobs_work.stdout.log) \
-      2> >(tee -a >(logger -p user.error -t vcap.jobs_work.stderr) $LOG_DIR/jobs_work.stderr.log)<% else %>
+      > >(tee >(logger -p user.info -t vcap.jobs_work.stdout) >>$LOG_DIR/jobs_work.stdout.log) \
+      2> >(tee >(logger -p user.error -t vcap.jobs_work.stderr) >>$LOG_DIR/jobs_work.stderr.log)<% else %>
       >>$LOG_DIR/jobs_work.stdout.log \
       2>>$LOG_DIR/jobs_work.stderr.log
       <% end %>

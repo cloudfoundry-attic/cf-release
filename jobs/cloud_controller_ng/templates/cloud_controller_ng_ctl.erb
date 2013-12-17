@@ -126,8 +126,8 @@ case $1 in
     <% if spec.index.to_i == 0 %>
       cd $CC_PACKAGE_DIR/cloud_controller_ng
       chpst -u vcap:vcap bundle exec rake db:migrate \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
-        > >(tee -a >(logger -p user.info -t vcap.db_migrate.stdout) $LOG_DIR/db_migrate.stdout.log) \
-        2> >(tee -a >(logger -p user.error -t vcap.db_migrate.stderr) $LOG_DIR/db_migrate.stderr.log)<% else %>
+        > >(tee >(logger -p user.info -t vcap.db_migrate.stdout) >>$LOG_DIR/db_migrate.stdout.log) \
+        2> >(tee >(logger -p user.error -t vcap.db_migrate.stderr) >>$LOG_DIR/db_migrate.stderr.log)<% else %>
         >>$LOG_DIR/db_migrate.stdout.log \
         2>>$LOG_DIR/db_migrate.stderr.log
         <% end %>
@@ -143,8 +143,8 @@ case $1 in
       exec chpst -u vcap:vcap $CC_PACKAGE_DIR/cloud_controller_ng/bin/cloud_controller -m \<% else %>
       exec chpst -u vcap:vcap $CC_PACKAGE_DIR/cloud_controller_ng/bin/cloud_controller \<% end %>
         -c $CLOUD_CONTROLLER_NG_CONFIG \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
-        > >(tee -a >(logger -p user.info -t vcap.cloud_controller_ng.stdout) $LOG_DIR/cloud_controller_ng.stdout.log) \
-        2> >(tee -a >(logger -p user.error -t vcap.cloud_controller_ng.stderr) $LOG_DIR/cloud_controller_ng.stderr.log)<% else %>
+        > >(tee -a >(logger -p user.info -t vcap.cloud_controller_ng.stdout) >>$LOG_DIR/cloud_controller_ng.stdout.log) \
+        2> >(tee -a >(logger -p user.error -t vcap.cloud_controller_ng.stderr) >>$LOG_DIR/cloud_controller_ng.stderr.log)<% else %>
         >>$LOG_DIR/cloud_controller_ng.stdout.log \
         2>>$LOG_DIR/cloud_controller_ng.stderr.log
         <% end %>
