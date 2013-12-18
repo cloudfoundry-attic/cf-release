@@ -60,8 +60,12 @@ bind_mounts:
 staging:
   enabled: true
   max_staging_duration: <%= p("dea_next.max_staging_duration") %>
+  cpu_limit_shares: <%= p("dea_next.staging_cpu_limit_shares") %>
   environment:
     BUILDPACK_CACHE: "/var/vcap/packages/buildpack_cache"
+
+instance:
+  cpu_limit_shares: <%= p("dea_next.instance_cpu_limit_shares") %>
 
 stacks: <%= p("dea_next.stacks") %>
 placement_properties:
