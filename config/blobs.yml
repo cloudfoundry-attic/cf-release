@@ -407,11 +407,6 @@ golang/go1.1.2.linux-amd64-yacc-shaved.tar.gz:
   sha: !binary |-
     MDJhYTlmNDdiOTVjZTAxMmI1NzAyZGFmNDFkM2ZmNGI3ODFhYzMwZQ==
   size: 41768327
-uaa/cloudfoundry-identity-uaa-1.4.6.war:
-  object_id: 7e311146-628a-4b40-be57-4dd04d15d1f6
-  sha: !binary |-
-    NzI3ZmUyNDBmMjllZGVjMDgxZGQ5ZWFlMTA1ZDNjN2JlYWRkZTUzMA==
-  size: 20776012
 haproxy/haproxy-1.5-dev19.tar.gz:
   object_id: 4832cdff-951f-4e76-b7b9-d7b126ddef8d
   sha: !binary |-
@@ -482,16 +477,6 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     NWYyYjZlZGRiZWQ1OWJiYjU0YmQ4MzkwYjcxNTg2ZjFkOWE5NTE1Zg==
   size: 5040017
-login/cloudfoundry-login-server-1.2.7.war:
-  object_id: c614400e-2adf-4076-aeea-e295ec19b1ef
-  sha: !binary |-
-    YTRmNjU3OWRmZTBmMzhkNTU1OGI0ODQ1Mzg0MzRmMGZhODAzZGJjYQ==
-  size: 7489471
-saml_login/cloudfoundry-saml-login-server-1.2.7.war:
-  object_id: a5966360-905e-459b-9b9f-3656d5e5ea0d
-  sha: !binary |-
-    NWRlNDM0ZGEyZjZmODYxMTI0NGI2ZDZmMzIyZDM3OGQ2YzlkM2E4Mg==
-  size: 21491434
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fapp-dynamics%2Fapp-dynamics-3.7.11_1.zip.cached:
   object_id: ee8626bf-a911-4649-a06b-f1162509edbd
   sha: !binary |-
@@ -517,11 +502,6 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     ZWE1NDg4MTUzNWZjY2IzZGZkN2RhMTIyMzU4ZDk4MzI5N2Q2OTE5Ng==
   size: 8234674
-pivotal_login/pivotal-login-server-1.2.8.war:
-  object_id: e59c462d-1577-4af8-b5cb-6ee55c9013c8
-  sha: !binary |-
-    NWI5YzdmMGJhMzhjNjdjN2JmOWNlOGUzM2UwZmYxYjJkZTkyMTA3Mw==
-  size: 7538494
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fnew-relic%2Fnew-relic-3.1.1.jar.cached:
   object_id: 54f52dcf-d66d-418f-886a-df2c06bdfc71
   sha: !binary |-
@@ -537,3 +517,23 @@ etcd/etcd-0.2.0-rc2.tar.gz:
   sha: !binary |-
     YzEwZWI2Mzc3ZGJjMmZiYWNhOTdkZmU1Y2JmYmVlNmQ4Y2ZiZGIxZA==
   size: 1493493
+login/cloudfoundry-login-server-1.2.10.war:
+  object_id: d599bc9b-2f1a-46ab-a4df-4f573164442c
+  sha: !binary |-
+    MmMyMjRiYzM0MjVlMzFiZTgwMjlmYTEyZTg1YjI3NDgzZWZjODdhMQ==
+  size: 8464889
+pivotal_login/pivotal-login-server-1.2.10.war:
+  object_id: 7d778e47-0a5a-4868-8839-829756eb022b
+  sha: !binary |-
+    YTNjYzAzODNjZDcyYzZmM2E0Mzk1Y2IyNDE0NzdkNDk5ZWZmM2NiMA==
+  size: 8478106
+saml_login/cloudfoundry-saml-login-server-1.2.10.war:
+  object_id: 1c93803b-5006-4f36-afd2-920ba5665d15
+  sha: !binary |-
+    ODg3ZmFkODE4ODBiNmMyNGM5OWZkZjE5YzBkNmQ4YzhjMGE1ZmMxMA==
+  size: 22009771
+uaa/cloudfoundry-identity-uaa-1.4.7.war:
+  object_id: cd27ea1a-56df-4e6f-b6ac-5721f23cd2ec
+  sha: !binary |-
+    ODk3MGE4MDMwZjZlZjZmOGFmYTdmZDU2YjAzZDVlOWZmNGJmMTUyZA==
+  size: 20776417
