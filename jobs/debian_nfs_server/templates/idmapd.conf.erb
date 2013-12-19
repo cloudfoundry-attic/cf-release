@@ -1,7 +1,7 @@
 [General]
 
 Verbosity = 0
-Pipefs-Directory = /var/lib/nfs/rpc_pipefs
+Pipefs-Directory = <%= properties.nfs_server.pipefs_directory ? properties.nfs_server.pipefs_directory : "/var/lib/nfs/rpc_pipef" %>
 Domain = <%= properties.nfs_server.idmapd_domain ? properties.nfs_server.idmapd_domain : "localdomain" %>
 
 [Mapping]
