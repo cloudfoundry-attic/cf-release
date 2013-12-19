@@ -1,7 +1,7 @@
 [General]
 
 Verbosity = 0
-Domain = <%= properties.nfs_server && properties.nfs_server.idmapd_domain ? properties.nfs_server.idmapd_domain : "localdomain" %>
+Domain = <%= p("nfs_server.idmapd_domain") %>
 Pipefs-Directory = <%= p("nfs_server.pipefs_directory") %>
 
 [Mapping]
