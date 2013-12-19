@@ -46,6 +46,9 @@ properties:
   dea_next.max_staging_duration:
     description:
     default: 900
+  dea_next.default_health_check_timeout:
+    description: Default timeout for application to start
+    default: 60
   dea_next.memory_mb:
     description:
     default: 8000
