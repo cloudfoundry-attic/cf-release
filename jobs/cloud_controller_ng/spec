@@ -72,6 +72,9 @@ properties:
     description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
   nfs_server.nfsv4:
     description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
+  nfs_server.pipefs_directory:
+    description: "Pipefs directory for NFS idmapd"
+    default: "/var/lib/nfs/rpc_pipefs"
 
   ccng.info.name:
     description: "name attribute in the /info endpoint"
