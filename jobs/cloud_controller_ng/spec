@@ -127,6 +127,9 @@ properties:
   ccng.max_staging_runtime:
     default: 900
     description: "Timeout for staging a droplet"
+  ccng.maximum_health_check_timeout:
+    default: 180
+    description: "Maximum health check timeout that can be set for the app"
 
   ccng.stacks:
     default:

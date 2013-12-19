@@ -90,6 +90,8 @@ staging:
     user: <%= p("ccng.staging_upload_user") %>
     password: "<%= p("ccng.staging_upload_password") %>"
 
+maximum_health_check_timeout: <%= p("ccng.maximum_health_check_timeout") %>
+
 runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
 stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
 
