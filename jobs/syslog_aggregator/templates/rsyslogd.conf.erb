@@ -13,7 +13,7 @@ $PrivDropToGroup vcap
 # programname is assumed to be 'vcap.<component>'
 # Directory is created automatically
 $template VcapComponentLogFile, "/var/vcap/store/log/%programname:6:$%/%$year%/%$month%/%$day%/%programname:6:$%.log"
-$template VcapComponentLogFormat, "%fromhost% -- %msg%\n"
+$template VcapComponentLogFormat, "%fromhost% --%msg:::sp-if-no-1st-sp%%msg%\n"
 
 # The initial '-' tells rsyslogd to not sync the file after each write
 :programname, startswith, "vcap." ?VcapComponentLogFile;VcapComponentLogFormat
