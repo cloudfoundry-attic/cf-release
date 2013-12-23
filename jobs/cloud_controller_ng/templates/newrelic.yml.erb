@@ -13,12 +13,12 @@
   audit_log:
     enabled: false
 
-  capture_params: false
+  capture_params: <%= properties.ccng.newrelic.capture_params %>
 
   transaction_tracer:
-    enabled: true
+    enabled: <%= properties.ccng.newrelic.transaction_tracer.enabled %>
+    record_sql: <%= properties.ccng.newrelic.transaction_tracer.record_sql %>
     transaction_threshold: apdex_f
-    record_sql: obfuscated
     stack_trace_threshold: 0.500
 
   error_collector:

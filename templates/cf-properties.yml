@@ -54,8 +54,12 @@ properties:
     newrelic:
       license_key: ~
       environment_name: (( meta.environment ))
-      monitor_mode: false
       developer_mode: (( cc.development_mode ))
+      monitor_mode: (( merge || false ))
+      capture_params: (( merge || false ))
+      transaction_tracer:
+        enabled: (( merge || true ))
+        record_sql: (( merge || "obfuscated" ))
 
     buildpacks:
       buildpack_directory_key: (( domain "-cc-buildpacks" ))
