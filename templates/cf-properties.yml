@@ -115,14 +115,6 @@ properties:
         access-token-validity: 1209600
         refresh-token-validity: 1209600
         redirect-uri: (( "https://console." domain "/oauth/callback" ))
-      billing:
-        override: true
-        scope: uaa.none
-        authorities: cloud_controller.read,cloud_controller.write,cloud_controller.admin,uaa.resource,scim.read,scim.write
-        secret: (( merge ))
-        authorized-grant-types: client_credentials
-        access-token-validity: 1209600
-        refresh-token-validity: 1209600
       app-direct:
         override: true
         authorities: app_direct_invoice.write
