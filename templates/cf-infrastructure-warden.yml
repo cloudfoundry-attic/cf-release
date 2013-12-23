@@ -94,10 +94,8 @@ properties:
     clients:
       login:
         secret: login-secret
-      portal:
-        secret: portal-secret
-      billing:
-        secret: billing-secret
+      developer_console:
+        secret: console-secret
       app-direct:
         secret: app-direct-secret
       support-services:
