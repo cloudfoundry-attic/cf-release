@@ -1,5 +1,12 @@
 meta:
   environment: ~
+  default_quota_definitions:
+    default:
+       memory_limit: 10240
+       total_services: 100
+       non_basic_services_allowed: true
+       total_routes: 1000
+       trial_db_allowed: true
 
 properties:
   domain: (( merge ))
@@ -11,7 +18,6 @@ properties:
 
     hm9000_noop: false
     default_app_memory: 1024
-    default_quota_definition: free
 
     srv_api_uri: (( "https://api." domain ))
 
@@ -55,17 +61,8 @@ properties:
       buildpack_directory_key: (( domain "-cc-buildpacks" ))
       fog_connection: ~
       cdn: ~
-
-    quota_definitions:
-      free:
-        memory_limit: 0
-        total_services: 0
-      paid:
-        memory_limit: 10240
-        total_services: -1
-      runaway:
-        memory_limit: 102400
-        total_services: -1
+    quota_definitions: (( merge || meta.default_quota_definitions ))
+    default_quota_definition: default
 
   login:
     catalina_opts: (( merge ))

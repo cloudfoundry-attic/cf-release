@@ -42,7 +42,7 @@ properties:
     address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
 
   cc:
-    default_quota_definition: runaway
+    default_quota_definition: default
     default_app_memory: 256
     bulk_api_password: bulk-password
     staging_upload_user: upload-user
