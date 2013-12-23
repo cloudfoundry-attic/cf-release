@@ -332,6 +332,15 @@ properties:
   ccng.newrelic.log_file_path:
     default: "/var/vcap/sys/log/cloud_controller_ng/newrelic"
     description: "The location for NewRelic to log to"
+  ccng.newrelic.capture_params:
+    default: false
+    description: "Capture and send query params to NewRelic"
+  ccng.newrelic.transaction_tracer.enabled:
+    default: false
+    description: "Enable transaction tracing in NewRelic"
+  ccng.newrelic.transaction_tracer.record_sql:
+    default: "off"
+    description: "NewRelic's SQL statement recording mode: [off | obfuscated | raw]"
 
   ccng.process_group:
     default: cloud_controller
