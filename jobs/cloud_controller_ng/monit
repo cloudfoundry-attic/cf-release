@@ -1,3 +1,4 @@
+<% if p("ccng.process_group") == "cloud_controller" %>
 check process cloud_controller_ng
   with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
@@ -18,5 +19,14 @@ check process nginx_ccng
   with pidfile /var/vcap/sys/run/nginx_ccng/nginx.pid
   start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl stop"
+  group vcap
+<% end %>
+<% end %>
+
+<% if p("ccng.process_group") == "clock" %>
+check process cloud_controller_clock
+  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_clock.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl stop"
   group vcap
 <% end %>

@@ -272,6 +272,8 @@ jobs:
   - name: api_z2
     persistent_disk: 4096
     instances: 0
+  - name: clock_global
+    persistent_disk: 4096
 
   # smaller persistent disk for logs, and set up static IPs
   - name: logs_z1
