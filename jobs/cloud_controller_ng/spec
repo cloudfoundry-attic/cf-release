@@ -7,6 +7,7 @@ templates:
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_ng_ctl.erb: bin/cloud_controller_ng_ctl
   cloud_controller_jobs_ctl.erb: bin/cloud_controller_jobs_ctl
+  cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl
   stacks.yml.erb: config/stacks.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   nfs-common: config/nfs-common
@@ -346,3 +347,7 @@ properties:
   ccng.newrelic.log_file_path:
     default: "/var/vcap/sys/log/cloud_controller_ng/newrelic"
     description: "The location for NewRelic to log to"
+
+  ccng.process_group:
+    default: cloud_controller
+    description: "Determines what processes to run for the job"

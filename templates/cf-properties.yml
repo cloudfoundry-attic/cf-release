@@ -7,6 +7,8 @@ properties:
   loggregator_endpoint:
     shared_secret: (( merge ))
   cc:
+    process_group: cloud_controller
+
     hm9000_noop: false
     default_app_memory: 1024
     default_quota_definition: free

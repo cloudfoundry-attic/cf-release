@@ -180,6 +180,22 @@ jobs:
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
 
+  - name: clock_global
+    release: (( meta.release.name ))
+    template: cloud_controller_ng
+    instances: 1
+    resource_pool: large_z1
+    persistent_disk: 0
+    networks:
+      - name: cf1
+    properties:
+      ccdb: ccdb
+      networks: (( meta.networks.z1 ))
+      loggregator_endpoint:
+        host: (( meta.loggregator_endpoint.z1.host ))
+      ccng:
+        process_group: clock
+
   - name: hm_z1
     release: (( meta.release.name ))
     template: health_manager_next

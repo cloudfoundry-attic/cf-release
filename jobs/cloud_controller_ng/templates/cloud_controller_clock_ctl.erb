@@ -1,0 +1,68 @@
+#!/bin/bash
+
+export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
+
+RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
+LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
+PIDFILE=$RUN_DIR/cloud_controller_clock.pid
+
+export CONFIG_DIR=$CC_JOB_DIR/config
+export CLOUD_CONTROLLER_NG_CONFIG=$CONFIG_DIR/cloud_controller_ng.yml
+export BUNDLE_GEMFILE=$CC_PACKAGE_DIR/cloud_controller_ng/Gemfile
+
+export C_INCLUDE_PATH=/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
+export LIBRARY_PATH=/var/vcap/packages/libpq/lib:$LIBRARY_PATH
+export LANG=en_US.UTF-8
+
+export GENERIC_QUEUE=cc-generic
+
+<% if_p("ccng.newrelic.license_key") do %>
+    export NRCONFIG=$CONFIG_DIR/newrelic.yml
+    export RACK_ENV=<%= properties.ccng.newrelic.environment_name %>_background # used by NewRelic
+    export NEW_RELIC_DISPATCHER=delayed_job
+<% end %>
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+start)
+pid_guard $PIDFILE "Cloud controller clock"
+
+mkdir -p $RUN_DIR
+mkdir -p $LOG_DIR
+
+chown vcap:vcap $RUN_DIR
+chown vcap:vcap $LOG_DIR
+
+echo $$ > $PIDFILE
+chown vcap:vcap $PIDFILE
+
+<% if_p("syslog_aggregator") do %>
+    # TODO(kowshik): Configure Steno to write to the correct files.
+    # Log to syslog agg, Log rotation.
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
+<% end %>
+
+cd $CC_PACKAGE_DIR/cloud_controller_ng
+export QUEUES=cc-<%= name %>-<%= spec.index.to_i %>,$GENERIC_QUEUE
+exec chpst -u vcap:vcap bundle exec rake clock:start \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+    > >(tee -a >(logger -p user.info -t vcap.clock.stdout) $LOG_DIR/clock.stdout.log) \
+    2> >(tee -a >(logger -p user.error -t vcap.clock.stderr) $LOG_DIR/clock.stderr.log)<% else %>
+    >>$LOG_DIR/clock.stdout.log \
+    2>>$LOG_DIR/clock.stderr.log
+<% end %>
+;;
+
+stop)
+kill_and_wait $PIDFILE
+;;
+
+*)
+echo "Usage: clock_ctl {start|stop}"
+;;
+
+esac
