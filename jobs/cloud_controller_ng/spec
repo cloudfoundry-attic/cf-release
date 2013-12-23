@@ -150,26 +150,11 @@ properties:
   ccng.staging_upload_password:
     description: "S3 Secure Access Key for staging droplets on AWS installs; Blobstore password for other IaaSs"
 
-  ccng.quota_definitions.free.non_basic_services_allowed:
-    default: false
-  ccng.quota_definitions.free.total_services:
-    default: 2
-  ccng.quota_definitions.free.memory_limit:
-    default: 1024 # 1 GB
-  ccng.quota_definitions.paid.non_basic_services_allowed:
-    default: true
-  ccng.quota_definitions.paid.total_services:
-    default: 32
-  ccng.quota_definitions.paid.memory_limit:
-    default: 204800 # 200 GB
-  ccng.quota_definitions.runaway.non_basic_services_allowed:
-    default: true
-  ccng.quota_definitions.runaway.total_services:
-    default: 500
-  ccng.quota_definitions.runaway.memory_limit:
-    default: 204800 # 200 GB
+  ccng.quota_definitions:
+    description: "Hash of default quota definitions. Overriden by custom quota definitions."
+
   ccng.default_quota_definition:
-    default: free
+    default: default
     description: "Local to use a local (NFS) file system.  AWS to use AWS."
 
   ccng.default_fog_connection.provider:

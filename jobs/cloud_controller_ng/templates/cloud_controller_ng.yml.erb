@@ -96,27 +96,10 @@ runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
 stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
 
 quota_definitions:
-  free:
-    non_basic_services_allowed: <%= p("ccng.quota_definitions.free.non_basic_services_allowed") %>
-    total_services: <%= p("ccng.quota_definitions.free.total_services") %>
-    total_routes: 1000
-    memory_limit: <%= p("ccng.quota_definitions.free.memory_limit") %>
-  paid:
-    non_basic_services_allowed: <%= p("ccng.quota_definitions.paid.non_basic_services_allowed") %>
-    total_services: <%= p("ccng.quota_definitions.paid.total_services") %>
-    total_routes: 1000
-    memory_limit: <%= p("ccng.quota_definitions.paid.memory_limit") %>
-  runaway:
-    non_basic_services_allowed: <%= p("ccng.quota_definitions.runaway.non_basic_services_allowed") %>
-    total_services: <%= p("ccng.quota_definitions.runaway.total_services") %>
-    total_routes: 1000
-    memory_limit: <%= p("ccng.quota_definitions.runaway.memory_limit") %>
-  trial:
-    non_basic_services_allowed: false
-    total_services: 10
-    memory_limit: 2048
-    total_routes: 1000
-    trial_db_allowed: true
+  <% p("ccng.quota_definitions").each do |name, quota_properties| %>
+  <%= name %>:<% quota_properties.each do |key,value|%>
+    <%= key %>: <%= value %><% end %>
+  <% end %>
 
 default_quota_definition: <%= p("ccng.default_quota_definition") %>
 
