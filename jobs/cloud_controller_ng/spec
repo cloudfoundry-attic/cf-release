@@ -7,6 +7,7 @@ templates:
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_ng_ctl.erb: bin/cloud_controller_ng_ctl
   cloud_controller_jobs_ctl.erb: bin/cloud_controller_jobs_ctl
+  cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl
   stacks.yml.erb: config/stacks.yml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   nfs-common: config/nfs-common
@@ -149,26 +150,11 @@ properties:
   ccng.staging_upload_password:
     description: "S3 Secure Access Key for staging droplets on AWS installs; Blobstore password for other IaaSs"
 
-  ccng.quota_definitions.free.non_basic_services_allowed:
-    default: false
-  ccng.quota_definitions.free.total_services:
-    default: 2
-  ccng.quota_definitions.free.memory_limit:
-    default: 1024 # 1 GB
-  ccng.quota_definitions.paid.non_basic_services_allowed:
-    default: true
-  ccng.quota_definitions.paid.total_services:
-    default: 32
-  ccng.quota_definitions.paid.memory_limit:
-    default: 204800 # 200 GB
-  ccng.quota_definitions.runaway.non_basic_services_allowed:
-    default: true
-  ccng.quota_definitions.runaway.total_services:
-    default: 500
-  ccng.quota_definitions.runaway.memory_limit:
-    default: 204800 # 200 GB
+  ccng.quota_definitions:
+    description: "Hash of default quota definitions. Overriden by custom quota definitions."
+
   ccng.default_quota_definition:
-    default: free
+    default: default
     description: "Local to use a local (NFS) file system.  AWS to use AWS."
 
   ccng.default_fog_connection.provider:
@@ -346,3 +332,16 @@ properties:
   ccng.newrelic.log_file_path:
     default: "/var/vcap/sys/log/cloud_controller_ng/newrelic"
     description: "The location for NewRelic to log to"
+  ccng.newrelic.capture_params:
+    default: false
+    description: "Capture and send query params to NewRelic"
+  ccng.newrelic.transaction_tracer.enabled:
+    default: false
+    description: "Enable transaction tracing in NewRelic"
+  ccng.newrelic.transaction_tracer.record_sql:
+    default: "off"
+    description: "NewRelic's SQL statement recording mode: [off | obfuscated | raw]"
+
+  ccng.process_group:
+    default: cloud_controller
+    description: "Determines what processes to run for the job"

@@ -1,5 +1,12 @@
 meta:
   environment: ~
+  default_quota_definitions:
+    default:
+       memory_limit: 10240
+       total_services: 100
+       non_basic_services_allowed: true
+       total_routes: 1000
+       trial_db_allowed: true
 
 properties:
   domain: (( merge ))
@@ -7,9 +14,10 @@ properties:
   loggregator_endpoint:
     shared_secret: (( merge ))
   cc:
+    process_group: cloud_controller
+
     hm9000_noop: false
     default_app_memory: 1024
-    default_quota_definition: free
 
     srv_api_uri: (( "https://api." domain ))
 
@@ -46,24 +54,19 @@ properties:
     newrelic:
       license_key: ~
       environment_name: (( meta.environment ))
-      monitor_mode: false
       developer_mode: (( cc.development_mode ))
+      monitor_mode: (( merge || false ))
+      capture_params: (( merge || false ))
+      transaction_tracer:
+        enabled: (( merge || true ))
+        record_sql: (( merge || "obfuscated" ))
 
     buildpacks:
       buildpack_directory_key: (( domain "-cc-buildpacks" ))
       fog_connection: ~
       cdn: ~
-
-    quota_definitions:
-      free:
-        memory_limit: 0
-        total_services: 0
-      paid:
-        memory_limit: 10240
-        total_services: -1
-      runaway:
-        memory_limit: 102400
-        total_services: -1
+    quota_definitions: (( merge || meta.default_quota_definitions ))
+    default_quota_definition: default
 
   login:
     catalina_opts: (( merge ))
@@ -107,7 +110,7 @@ properties:
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( "https://login." domain ))
-      portal:
+      developer_console:
         override: true
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
@@ -116,14 +119,6 @@ properties:
         access-token-validity: 1209600
         refresh-token-validity: 1209600
         redirect-uri: (( "https://console." domain "/oauth/callback" ))
-      billing:
-        override: true
-        scope: uaa.none
-        authorities: cloud_controller.read,cloud_controller.write,cloud_controller.admin,uaa.resource,scim.read,scim.write
-        secret: (( merge ))
-        authorized-grant-types: client_credentials
-        access-token-validity: 1209600
-        refresh-token-validity: 1209600
       app-direct:
         override: true
         authorities: app_direct_invoice.write
