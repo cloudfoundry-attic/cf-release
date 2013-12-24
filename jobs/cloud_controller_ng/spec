@@ -80,6 +80,12 @@ properties:
     description: "Pipefs directory for NFS idmapd"
     default: "/var/lib/nfs/rpc_pipefs"
 
+  ccng.app_events.cutoff_age_in_days:
+    description: "How old an app event should stay in cloud controller database before being cleaned up"
+    default: 31
+  ccng.app_usage_events.cutoff_age_in_days:
+    description: "How old an app usage event should stay in cloud controller database before being cleaned up"
+    default: 31
   ccng.info.name:
     description: "name attribute in the /info endpoint"
   ccng.info.build:
