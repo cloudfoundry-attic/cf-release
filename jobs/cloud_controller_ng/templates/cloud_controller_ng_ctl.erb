@@ -35,9 +35,13 @@ export C_INCLUDE_PATH=/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=/var/vcap/packages/libpq/lib:$LIBRARY_PATH
 export LANG=en_US.UTF-8
 
+<% if p("ccng.newrelic",nil) %>
+export NEWRELIC_ENABLE=false
+<% else %>
 <% if_p("ccng.newrelic.license_key") do %>
 export NRCONFIG=$CONFIG_DIR/newrelic.yml
 export RACK_ENV=<%= properties.ccng.newrelic.environment_name %> # used by NewRelic
+<% end %>
 <% end %>
 
 source /var/vcap/packages/common/utils.sh
