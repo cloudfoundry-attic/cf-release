@@ -15,6 +15,13 @@ external_domain:
 system_domain_organization: <%= p("system_domain_organization") %>
 system_domain: <%= p("system_domain") %>
 app_domains: [ <%= p("app_domains").join(", ") %> ]
+
+app_events:
+  cutoff_age_in_days: <%= p("ccng.app_events.cutoff_age_in_days") %>
+
+app_usage_events:
+  cutoff_age_in_days: <%= p("ccng.app_usage_events.cutoff_age_in_days") %>
+
 default_app_memory: <%= p("ccng.default_app_memory") %>
 
 cc_partition: <%= p("ccng.cc_partition") %>
