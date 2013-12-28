@@ -3,8 +3,6 @@ name: gorouter
 templates:
   gorouter_ctl.erb: bin/gorouter_ctl
   gorouter.yml.erb: config/gorouter.yml
-
-
   gorouter_logrotate.cron.erb: config/gorouter_logrotate.cron
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.conf.erb: config/logrotate.conf
