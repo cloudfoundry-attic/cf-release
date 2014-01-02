@@ -59,7 +59,7 @@ properties:
       fog_connection: (( meta.fog_config ))
 
   uaa:
-    catalina_opts: -Xmx384m -XX:MaxPermSize=128m
+    catalina_opts: -Xmx192m -XX:MaxPermSize=128m
     jwt:
       signing_key: |
         -----BEGIN RSA PRIVATE KEY-----
@@ -110,7 +110,7 @@ properties:
     no_ssl: true
 
   login:
-    catalina_opts: -Xmx384m -XX:MaxPermSize=128m
+    catalina_opts: -Xmx96m -XX:MaxPermSize=64m
     protocol: http
 
   router:
