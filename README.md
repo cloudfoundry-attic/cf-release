@@ -31,7 +31,11 @@ Releases:
 
 See the [documentation for deploying Cloud Foundry](http://cloudfoundry.github.com/docs/running/deploying-cf/) for more information about using BOSH.
 
-In order to deploy Cloud Foundry with BOSH, you will need to create a manifest. You can find a [sample manifest in the documentation](http://cloudfoundry.github.com/docs/running/deploying-cf/vsphere/cloud-foundry-example-manifest.html).
+In order to deploy Cloud Foundry with BOSH, you will need to create a manifest.
+To do so, run `./generate_deployment_manifest <infrastructure-type>`, where `<infrastructure-type>` is one of `aws`, `vsphere`, or `warden`.
+This script merges together several manifest stubs from the templates directory using the [spiff](https://github.com/cloudfoundry-incubator/spiff) tool, which must be installed beforehand.
+Consult the [spiff repository](https://github.com/cloudfoundry-incubator/spiff) or [http://spiff.cfapps.io](http://spiff.cfapps.io) for more information on installing and using spiff.
+A complete [sample manifest](http://cloudfoundry.github.com/docs/running/deploying-cf/vsphere/cloud-foundry-example-manifest.html) is also available in the Cloud Foundry documentation.
 
 ## Cloud Foundry Components (V2)
 
