@@ -6,7 +6,7 @@ meta:
     local_root: /var/vcap/store
 
   stemcell:
-    name: bosh-stemcell
+    name: bosh-warden-boshlite-ubuntu
     version: latest
 
   loggregator_endpoint:
