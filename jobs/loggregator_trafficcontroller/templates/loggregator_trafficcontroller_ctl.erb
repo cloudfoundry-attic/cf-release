@@ -18,6 +18,9 @@ case $1 in
 
     echo $$ > $PIDFILE
 
+    ulimit -l unlimited
+    ulimit -n 65536
+
     <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
         /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/loggregator_trafficcontroller/config
     <% end %>
