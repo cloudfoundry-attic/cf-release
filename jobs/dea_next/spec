@@ -77,7 +77,7 @@ properties:
   dea_next.mtu:
     description: "Interface MTU size"
     default: 1500
-  dea_next.evacuation_delay:
+  dea_next.evacuation_bail_out_time_in_seconds:
     description: "Duration to wait before shutting down, in seconds."
     default: 115
   dea_next.zone:

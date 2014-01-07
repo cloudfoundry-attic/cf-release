@@ -28,7 +28,7 @@ properties:
   disk_quota_enabled: false
 
   dea_next:
-    evacuation_delay: 0
+    evacuation_bail_out_time_in_seconds: 0
     memory_mb: 8192
     disk_mb: 16384
     kernel_network_tuning_enabled: false
