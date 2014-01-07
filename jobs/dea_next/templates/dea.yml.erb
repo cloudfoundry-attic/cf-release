@@ -12,7 +12,7 @@ base_dir: /var/vcap/data/dea_next
 
 warden_socket: /var/vcap/data/warden/warden.sock
 
-evacuation_delay_secs: <%= p("dea_next.evacuation_delay") %>
+evacuation_bail_out_time_in_seconds: <%= p("dea_next.evacuation_bail_out_time_in_seconds") %>
 default_health_check_timeout: <%= p("dea_next.default_health_check_timeout") %>
 
 directory_server:
