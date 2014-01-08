@@ -295,26 +295,6 @@ jobs:
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
 
-  - name: taskmaster_z1
-    release: (( meta.release.name ))
-    template: narc
-    instances: 1
-    resource_pool: runner_z1
-    networks:
-      - name: cf1
-    properties:
-      networks: (( meta.networks.z1 ))
-
-  - name: taskmaster_z2
-    release: (( meta.release.name ))
-    template: narc
-    instances: 1
-    resource_pool: runner_z2
-    networks:
-      - name: cf2
-    properties:
-      networks: (( meta.networks.z2 ))
-
   - name: loggregator_z1
     release: (( meta.release.name ))
     template: loggregator

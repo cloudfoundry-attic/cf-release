@@ -252,12 +252,6 @@ jobs:
     - name: cf1
       static_ips: (( static_ips(7) ))
 
-  # only need one taskmaster
-  - name: taskmaster_z1
-    instances: 1
-  - name: taskmaster_z2
-    instances: 0
-
   # only need one uaa
   - name: uaa_z1
     instances: 1
