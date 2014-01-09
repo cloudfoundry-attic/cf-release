@@ -2,20 +2,33 @@
 $ModLoad omrelp
 $ModLoad imuxsock                       # local message reception (rsyslog uses a datagram socket)
 $MaxMessageSize 4k                      # default is 2k
-$WorkDirectory /var/vcap/sys/rsyslog/buffered  # where messages should be buffered on disk
+$WorkDirectory /var/vcap/sys/rsyslog/buffered # where messages should be buffered on disk
 
 # Forward vcap messages to the aggregator
 #
-$ActionResumeRetryCount -1              # Try until the server becomes available
-$ActionQueueType LinkedList             # Allocate on-demand
-$ActionQueueFileName agg_backlog        # Spill to disk if queue is full
-$ActionQueueMaxDiskSpace 32m            # Max size for disk queue
-$ActionQueueLowWaterMark 2000           # Num messages. Assuming avg size of 512B, this is 1MiB.
-$ActionQueueHighWaterMark 8000          # Num messages. Assuming avg size of 512B, this is 4MiB. (If this is reached, messages will spill to disk until the low watermark is reached).
-$ActionQueueTimeoutEnqueue 0            # Discard messages if the queue + disk is full
-$ActionQueueSaveOnShutdown on           # Save in-memory data to disk if rsyslog shuts down
-$template LongTagForwardFormat, "<%%PRI%>%TIMESTAMP:::date-rfc3339% %HOSTNAME% %syslogtag%%msg:::sp-if-no-1st-sp%%msg%" #Eliminate 32 character tag limit
-:programname, startswith, "vcap." :omrelp:<%= address %>:<%= port %>;LongTagForwardFormat
+$ActionResumeRetryCount -1
+$ActionResumeInterval 5
+$ActionQueueType LinkedList
+$ActionQueueFileName agg_backlog
+$ActionQueueMaxDiskSpace 32m
+$ActionQueueLowWaterMark 2000
+$ActionQueueHighWaterMark 8000
+$ActionQueueSaveOnShutdown on
+$ActionQueueTimeoutEnqueue 1000
+
+<% ip = `hostname -I | cut -d' ' -f1` %>
+template(name="CfLogTemplate" type="list") {
+        constant(value="<")
+        property(name="pri")
+        constant(value=">")
+        property(name="timestamp" dateFormat="rfc3339")
+        constant(value=" <%= ip.strip %> ")
+        property(name="programname")
+        constant(value=" [job=cloud_controller index=<%= spec.index.to_i %>] ")
+        property(name="msg")
+}
+
+:programname, startswith, "vcap." :omrelp:<%= address %>:<%= port %>;CfLogTemplate
 
 # Log vcap messages locally, too
 #$template VcapComponentLogFile, "/var/log/%programname:6:$%/%programname:6:$%.log"
