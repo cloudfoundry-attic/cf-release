@@ -8,6 +8,8 @@ PACKAGE_DIR=/var/vcap/packages/syslog_aggregator
 BIN_DIR=$JOB_DIR/bin
 PIDFILE=$RUN_DIR/syslog_aggregator.pid
 
+export PATH=/usr/sbin:/usr/local/sbin:$PATH
+
 source /var/vcap/packages/common/utils.sh
 
 case $1 in
