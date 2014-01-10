@@ -269,7 +269,7 @@ jobs:
 
   # smaller persistent disk for logs, and set up static IPs
   - name: logs_z1
-    instances: 1
+    instances: 0
     persistent_disk: 4096
     networks:
       - name: cf1
