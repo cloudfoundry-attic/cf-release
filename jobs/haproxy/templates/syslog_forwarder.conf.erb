@@ -24,7 +24,9 @@ template(name="CfLogTemplate" type="list") {
         property(name="timestamp" dateFormat="rfc3339")
         constant(value=" <%= ip.strip %> ")
         property(name="programname")
-        constant(value=" [job=haproxy index=<%= spec.index.to_i %>] ")
+        constant(value=" [job=")
+        property(name="programname")
+        constant(value=" index=<%= spec.index.to_i %>] ")
         property(name="msg")
 }
 
