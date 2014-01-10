@@ -196,6 +196,38 @@ jobs:
       ccng:
         process_group: clock
 
+  - name: api_worker_z1
+    release: (( meta.release.name ))
+    template: cloud_controller_ng
+    instances: 1
+    resource_pool: large_z1
+    persistent_disk: 0
+    networks:
+      - name: cf1
+    properties:
+      ccdb: ccdb
+      networks: (( meta.networks.z1 ))
+      loggregator_endpoint:
+        host: (( meta.loggregator_endpoint.z1.host ))
+      ccng:
+        process_group: worker
+
+  - name: api_worker_z2
+    release: (( meta.release.name ))
+    template: cloud_controller_ng
+    instances: 1
+    resource_pool: large_z2
+    persistent_disk: 0
+    networks:
+      - name: cf2
+    properties:
+      ccdb: ccdb
+      networks: (( meta.networks.z2 ))
+      loggregator_endpoint:
+        host: (( meta.loggregator_endpoint.z2.host ))
+      ccng:
+        process_group: worker
+
   - name: hm_z1
     release: (( meta.release.name ))
     template: health_manager_next
