@@ -168,7 +168,7 @@ properties:
     default: "Local"
   ccng.default_fog_connection.local_root:
     description: "Local root when fog provider is not overridden (should be an NFS mount if using more than one cloud controller)"
-    default: "/var/vcap/nfs/store"
+    default: "/var/vcap/nfs/shared"
 
   ccng.resource_pool.minimum_size:
     description: "Minimum size of a resource to add to the pool"
