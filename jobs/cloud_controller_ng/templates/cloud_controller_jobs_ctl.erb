@@ -25,6 +25,11 @@ export RACK_ENV=<%= properties.ccng.newrelic.environment_name %>_background # us
 export NEW_RELIC_DISPATCHER=delayed_job
 <% end %>
 
+<% if p("ccng.process_group") == "worker" %>
+  export QUEUES=$GENERIC_QUEUE<% else %>
+  export QUEUES=cc-<%= name %>-<%= spec.index.to_i %>
+<%end%>
+
 source /var/vcap/packages/common/utils.sh
 
 case $1 in
@@ -48,7 +53,6 @@ case $1 in
     <% end %>
 
     cd $CC_PACKAGE_DIR/cloud_controller_ng
-    export QUEUES=cc-<%= name %>-<%= spec.index.to_i %>,$GENERIC_QUEUE
     exec chpst -u vcap:vcap bundle exec rake jobs:work \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
       > >(tee -a >(logger -p user.info -t vcap.jobs_work.stdout) $LOG_DIR/jobs_work.stdout.log) \
       2> >(tee -a >(logger -p user.error -t vcap.jobs_work.stderr) $LOG_DIR/jobs_work.stderr.log)<% else %>
