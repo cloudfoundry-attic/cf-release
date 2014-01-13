@@ -17,18 +17,11 @@ export C_INCLUDE_PATH=/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
 export LIBRARY_PATH=/var/vcap/packages/libpq/lib:$LIBRARY_PATH
 export LANG=en_US.UTF-8
 
-export GENERIC_QUEUE=cc-generic
-
 <% if_p("ccng.newrelic.license_key") do %>
 export NRCONFIG=$CONFIG_DIR/newrelic.yml
 export RACK_ENV=<%= properties.ccng.newrelic.environment_name %>_background # used by NewRelic
 export NEW_RELIC_DISPATCHER=delayed_job
 <% end %>
-
-<% if p("ccng.process_group") == "worker" %>
-  export QUEUES=$GENERIC_QUEUE<% else %>
-  export QUEUES=cc-<%= name %>-<%= spec.index.to_i %>
-<%end%>
 
 source /var/vcap/packages/common/utils.sh
 
@@ -53,7 +46,8 @@ case $1 in
     <% end %>
 
     cd $CC_PACKAGE_DIR/cloud_controller_ng
-    exec chpst -u vcap:vcap bundle exec rake jobs:work \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+    <% task_name = p("ccng.process_group") == "worker" ? "jobs:generic" : "jobs:local"  %>
+    exec chpst -u vcap:vcap bundle exec rake <%= task_name %> \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
       > >(tee -a >(logger -p user.info -t vcap.jobs_work.stdout) $LOG_DIR/jobs_work.stdout.log) \
       2> >(tee -a >(logger -p user.error -t vcap.jobs_work.stderr) $LOG_DIR/jobs_work.stderr.log)<% else %>
       >>$LOG_DIR/jobs_work.stdout.log \
