@@ -16,6 +16,42 @@ system_domain_organization: <%= p("system_domain_organization") %>
 system_domain: <%= p("system_domain") %>
 app_domains: [ <%= p("app_domains").join(", ") %> ]
 
+jobs:
+  global:
+    timeout_in_seconds: <%= p("ccng.jobs.global.timeout_in_seconds") %>
+  <% if_p("ccng.jobs.app_bits_packer.timeout_in_seconds") do |timeout| %>
+  app_bits_packer:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.app_events_cleanup.timeout_in_seconds") do |timeout| %>
+  app_events_cleanup:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.app_usage_events_cleanup.timeout_in_seconds") do |timeout| %>
+  app_usage_events_cleanup:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.blobstore_delete.timeout_in_seconds") do |timeout| %>
+  blobstore_delete:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.blobstore_upload.timeout_in_seconds") do |timeout| %>
+  blobstore_upload:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.v.timeout_in_seconds") do |timeout| %>
+  droplet_deletion:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.droplet_upload.timeout_in_seconds") do |timeout| %>
+  droplet_upload:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.droplet_upload.timeout_in_seconds") do |timeout| %>
+  droplet_upload:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+
 app_events:
   cutoff_age_in_days: <%= p("ccng.app_events.cutoff_age_in_days") %>
 
