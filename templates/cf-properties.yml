@@ -38,6 +38,8 @@ properties:
       cutoff_age_in_days: 31
     app_usage_events:
       cutoff_age_in_days: 31
+    audit_events:
+      cutoff_age_in_days: 31
 
     process_group: cloud_controller
 

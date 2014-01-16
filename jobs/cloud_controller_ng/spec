@@ -106,6 +106,9 @@ properties:
   ccng.app_usage_events.cutoff_age_in_days:
     description: "How old an app usage event should stay in cloud controller database before being cleaned up"
     default: 31
+  ccng.audit_events.cutoff_age_in_days:
+    description: "How old an audit event should stay in cloud controller database before being cleaned up"
+    default: 31
   ccng.info.name:
     description: "name attribute in the /info endpoint"
   ccng.info.build:
