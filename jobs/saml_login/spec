@@ -15,6 +15,7 @@ templates:
   web.xml.erb: config/tomcat/web.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   uaa.crt.erb: config/uaa.crt
+  ldap.crt.erb: config/ldap.crt
 
 packages:
   - common
@@ -28,30 +29,46 @@ properties:
   description: "The SAML Login Server enables authentication to the UAA via SAML."
   domain:
     description: "The domain that the saml login server will listen at."
-  uaa.clients:
-    description: "List of UAA clients that contains the client for the login server."
-  uaa.clients.login:
-    description: "Login client configuration."
+  env.http_proxy:
+    description: "The http_proxy accross the VMs"
+  env.https_proxy:
+    description: "The https_proxy accross the VMs"
+  env.no_proxy:
+    description: "Set No_Proxy accross the VMs"
+  nats.address:
+    description: "IP address of NATS server"
+  nats.password:
+    description: "Password for NATS login"
+  nats.port:
+    description: "TCP port of NATS server"
+  nats.user:
+    description: "User name for NATS login"
+  nats.machines:
+    description: "IP of each NATS cluster member."
+  networks.apps:
+    description: "The App network name"
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "Port of syslog aggregator"
   uaa.clients.login.secret:
-    description: "Secret of the login client."
-  uaa.login.client_secret:
-    description: "Secret of the login client."
-  uaa.require_https:
-    description: "Boolean value to configure whether the login server will require SSL."
-    default: false
+    description:
   uaa.dump_requests:
-    description: "Boolean value to configure whether the login server will log requests."
-    default: false
+    description:
+  uaa.login.client_secret:
+    description:
+  uaa.require_https:
+    description:
   saml_login.uaa_certificate:
     description: "Certificate to import if the UAA is using self-signed certificates"
-  saml_login.idp_metadata_url:
+  saml_login.idpMetadataURL:
     description: "URL location of the IDP Metadata."
   saml_login.idp_metadata_file:
     description: "Optional IDP Metadata file for the SAML login server."
   saml_login.port:
     description: "Port that the local SAML login server is listening on."
     default: 8080
-  saml_login.idp_entity_alias:
+  saml_login.idpEntityAlias:
     description: "An alias for the IDP."
   saml_login.protocol:
     description:
@@ -80,29 +97,41 @@ properties:
   saml_login.assertion_consumer_index:
     description:
     default: 1
-  saml_login.nameid_format:
+  saml_login.nameidFormat:
     description:
     default: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
-  nats.user:
-    description: "Username for vcap registrar to connect to NATS"
-  nats.password:
-    description: "Password for vcap registrar to connect to NATS"
-  nats.address:
-    description: "IP address of Cloud Foundry NATS server"
-  nats.port:
-    description: "IP port of Cloud Foundry NATS server"
-  networks.apps:
-    description:
-  env.http_proxy:
-    description:
-  env.https_proxy:
-    description:
-  env.no_proxy:
-    description:
-  syslog_aggregator.address:
-    description:
-  syslog_aggregator.port:
-    description:
-  login.port:
-    description:
-    default: 8080
+  saml_login.spring_profiles:
+    description: "The spring bean profile to use for the spring configuration files. Only options at this time is ldap for additional profile. Default is empty. Setting this to ldap requires the uaa.login.addnew property to be set to true on the UAA."
+  saml_login.ldap.profile_type:
+    description: "The file to be used for configuring the LDAP authentication. options are simple-bind, search-and-bind and search-and-compare"
+  saml_login.ldap.url:
+    description: "The URL to the ldap server, must start with ldap:// or ldaps://"
+  saml_login.ldap.userDNPattern:
+    description: "Used with simple-bind only. A semi-colon separated lists of DN patterns to construct a DN direct from the user ID without performing a search."
+  saml_login.ldap.userDN:
+    description: "Used with search-and-bind and search-and-compare. A valid LDAP ID that has read permissions to perform a search of the LDAP tree for user information. "
+  saml_login.ldap.userPassword:
+    description: "Used with search-and-bind and search-and-compare. Password for the LDAP ID that performs a search of the LDAP tree for user information."
+  saml_login.ldap.searchBase:
+    description: "Used with search-and-bind and search-and-compare. Define a base where the search starts at."
+    default: ""
+  saml_login.ldap.searchFilter:
+    description: "Used with search-and-bind and search-and-compare. Search filter used. Takes one parameter, user ID defined as {0}"
+    default: "cn={0}"
+  saml_login.ldap.passwordAttributeName:
+    description: "Used with search-and-compare only. The name of the password attribute in the LDAP directory"
+    default: "userPassword"
+  saml_login.ldap.localPasswordCompare:
+    description: "Used with search-and-compare only. Set to true if passwords are retrieved by the search, and should be compared in the login server."
+    default: "true"
+  saml_login.ldap.passwordEncoder:
+    description: "Used with search-and-compare only. The encoder used to properly encode user password to match the one in the LDAP directory."
+    default: "org.cloudfoundry.identity.uaa.login.ldap.DynamicPasswordComparator"
+  saml_login.ldap.sslCertificate:
+    description: "Used with ldaps:// URLs. The certificate, if self signed, to be trusted by this connection."
+  saml_login.ldap.sslCertificateAlias:
+    description: "Used with ldaps:// URLs. The certificate alias, to be trusted by this connection and stored in the keystore."
+  saml_login.analytics.code:
+    description: "Analytics code"
+  saml_login.analytics.domain:
+    description: "Analytics domain"

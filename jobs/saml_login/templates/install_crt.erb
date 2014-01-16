@@ -5,13 +5,13 @@
 JDK_HOME=/var/vcap/packages/saml_login/jdk
 
 #define the certificate to import
-CERT_FILE=/var/vcap/jobs/saml_login/config/uaa.crt
+CERT_FILE=/var/vcap/jobs/saml_login/config/$1
 
 #define the trust store
 TRUST_STORE_FILE=$JDK_HOME/lib/security/cacerts
 
 #define the alias
-CERT_ALIAS=uaacert
+CERT_ALIAS=$2
 
 #check if the cert file exists, readable and that the trust store exists and is writeable
 if test -r "$CERT_FILE" -a -f "$CERT_FILE" -a -f $TRUST_STORE_FILE -a -w $TRUST_STORE_FILE

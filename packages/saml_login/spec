@@ -2,8 +2,8 @@
 name: saml_login
 dependencies:
 - ruby
-- git
 files:
 - saml_login/**/*
 - uaa/**/*
 - vcap-common/**/*
+

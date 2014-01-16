@@ -58,7 +58,11 @@ case $1 in
     echo $$ > $PIDFILE
 
     <% if properties.saml_login && properties.saml_login.uaa_certificate %>
-    /var/vcap/jobs/saml_login/bin/install_crt
+    /var/vcap/jobs/saml_login/bin/install_crt uaa.crt uaacert
+    <% end %>
+    
+    <% if properties.saml_login && properties.saml_login.ldap &&  properties.saml_login.ldap.sslCertificate %>
+    /var/vcap/jobs/saml_login/bin/install_crt ldap.crt ldapcert
     <% end %>
 
     <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>

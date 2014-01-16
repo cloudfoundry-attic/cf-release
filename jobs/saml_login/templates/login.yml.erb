@@ -2,19 +2,18 @@
 name: saml_login
 
 <%
-  props = properties.saml_login
   config_artifacts_path = "/var/vcap/jobs/saml_login/config/security"
 %>
 
 logging:
   config: /var/vcap/jobs/saml_login/config/log4j.properties
 
-<% protocol = (props && props.protocol) ? props.protocol : "http" %>
-<% if !props || !props.uaa_base
+<% protocol = (properties.saml_login && properties.saml_login.protocol) ? properties.saml_login.protocol : "http" %>
+<% if !properties.saml_login || !properties.saml_login.uaa_base
   # Fix this to https when SSL certs are working in dev and staging
   uaa_base = "#{protocol}://uaa.#{properties.domain}"
 else
-  uaa_base = props.uaa_base
+  uaa_base = properties.saml_login.uaa_base
 end %>
 uaa:
   url: <%= uaa_base %>
@@ -26,8 +25,8 @@ uaa:
     url: <%= uaa_base %>/clientinfo
   approvals:
     url: <%= uaa_base %>/approvals
-<% if props and props.links then %>
-links: <% props.links.marshal_dump.each do |id,url| %>
+<% if properties.saml_login and properties.saml_login.links then %>
+links: <% properties.saml_login.links.marshal_dump.each do |id,url| %>
   <%= id %>: <%= url %><% end %>
 <% end %>
 
@@ -50,26 +49,62 @@ login:
   # (The host and port of the application that will accept assertions)
   entityBaseURL: <%= "#{protocol}://login.#{properties.domain}" %>
   # The entityID of this SP
-  entityID: <%= (props && props.entityid) ? props.entityid : "login.#{properties.domain}" %>
-
-  # The location and credentials of the certificate for this SP
-  serviceProviderKey: !
-  <%= "    '" + p("saml_login.serviceProviderKey").gsub("\n", "\n\n    ") + "'" %>
-  serviceProviderCertificate: !
-  <%= "    '" + p("saml_login.serviceProviderCertificate").gsub("\n", "\n\n    ") + "'" %>
+  entityID: <%= (properties.saml_login && properties.saml_login.entityid) ? properties.saml_login.entityid : "login.#{properties.domain}" %>
 
   # The entity alias of the IDP
-  idpEntityAlias: <%= props.idp_entity_alias %>
+  idpEntityAlias: <%= properties.saml_login.idpEntityAlias %>
+  <% if !properties.saml_login.idpMetadataURL.nil? %>
+  idpMetadataURL: <%= properties.saml_login.idpMetadataURL %>
+  <% end %>
   <% if !properties.saml_login.idp_metadata_file.nil? %>
   idpMetadataFile: /var/vcap/jobs/saml_login/<%= properties.saml_login.idp_metadata_file %>
   <% end %>
-  <% if !properties.saml_login.idp_metadata_url.nil? %>
-  idpMetadataURL: <%= properties.saml_login.idp_metadata_url %>
-  <% end %>
+  serviceProviderCertificate: ! <%= "'" + p("saml_login.serviceProviderCertificate").gsub("\n", "\n\n    ") + "'" %>
+  serviceProviderKey: ! <%= "'" + p("saml_login.serviceProviderKey").gsub("\n", "\n\n    ") + "'" %>
+  serviceProviderKeyPassword: <%= properties.saml_login.serviceProviderKeyPassword %>
 
   authorize:
-    url: <%= uaa_base %>/login/oauth/authorize
+    url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
 
   saml:
-    assertionConsumerIndex: <%= (props && props.assertion_consumer_index) ? props.assertion_consumer_index : 1 %>
-    nameID: <%= (props && props.nameid_format) ? props.nameid_format : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
+    assertionConsumerIndex: <%= (properties.saml_login && properties.saml_login.assertionConsumerIndex) ? properties.saml_login.assertionConsumerIndex : 1 %>
+    nameID: <%= (properties.saml_login && properties.saml_login.nameidFormat) ? properties.saml_login.nameidFormat : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
+    
+<% if properties.saml_login.analytics && properties.saml_login.analytics.code && properties.saml_login.analytics.domain %>
+analytics:
+  code: <%= properties.saml_login.analytics.code %>
+  domain: <%= properties.saml_login.analytics.domain %>
+<% end %>
+
+
+<% if properties.saml_login && properties.saml_login.spring_profiles %>
+spring_profiles: <%= properties.saml_login.spring_profiles %>
+<% end %>
+
+<% if properties.saml_login && properties.saml_login.spring_profiles && properties.saml_login.spring_profiles.index('ldap') >= 0 %>
+ldap:
+  profile:
+    file: <%= (properties.saml_login.ldap.profile_type == 'simple-bind') ? 'ldap/ldap-simple-bind.xml' : (properties.saml_login.ldap.profile_type == 'search-and-bind') ? 'ldap/ldap-search-and-bind.xml' : 'ldap/ldap-search-and-compare.xml' %>
+  base:
+    url: '<%= properties.saml_login.ldap.url %>'
+    <% if properties.saml_login.ldap.profile_type == 'simple-bind' %> 
+    userDnPattern: '<%= properties.saml_login.ldap.userDNPattern %>'
+    <% else  %>
+    userDn: '<%= properties.saml_login.ldap.userDN %>'
+    password: '<%= properties.saml_login.ldap.userPassword %>'
+    searchBase: '<%= properties.saml_login.ldap.searchBase %>' 
+    searchFilter: '<%= properties.saml_login.ldap.searchFilter %>'
+    <% end %>
+    <% if properties.saml_login.ldap.profile_type == 'search-and-compare' %> 
+    passwordAttributeName: <%= properties.saml_login.ldap.passwordAttributeName %>
+    passwordEncoder: <%= properties.saml_login.ldap.localPasswordCompare %>
+    localPasswordCompare: <%= properties.saml_login.ldap.passwordEncoder %>
+    <% end %>
+  <% if properties.saml_login.ldap.sslCertificate %>
+  ssl: 
+    sslCertificate: ! <%= "'" + p("saml_login.ldap.sslCertificate").gsub("\n", "\n\n    ") + "'" %>
+    <% if properties.saml_login.ldap.sslCertificateAlias %>
+    sslCertificateAlias: <%= properties.saml_login.ldap.sslCertificateAlias %>
+    <% end %>
+  <% end %>  
+<% end %>
