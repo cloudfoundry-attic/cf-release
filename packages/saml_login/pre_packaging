@@ -1,8 +1,4 @@
 set -e -x
 
-cd ${BUILD_DIR}
-echo `pwd`
-echo `ls -alh`
-
 cd ${BUILD_DIR}/vcap-common
 BUNDLE_WITHOUT=development:test bundle package --all
