@@ -204,6 +204,9 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(3, 4) ))
 
+  - name: hm9000_z2
+    instances: 0
+
   - name: etcd_leader_z1
     instances: 1
     networks:
