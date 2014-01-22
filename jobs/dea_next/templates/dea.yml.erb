@@ -62,11 +62,13 @@ staging:
   enabled: true
   max_staging_duration: <%= p("dea_next.max_staging_duration") %>
   cpu_limit_shares: <%= p("dea_next.staging_cpu_limit_shares") %>
+  disk_inode_limit: <%= p("dea_next.staging_disk_inode_limit") %>
   environment:
     BUILDPACK_CACHE: "/var/vcap/packages/buildpack_cache"
 
 instance:
   cpu_limit_shares: <%= p("dea_next.instance_cpu_limit_shares") %>
+  disk_inode_limit: <%= p("dea_next.instance_disk_inode_limit") %>
 
 stacks: <%= p("dea_next.stacks") %>
 placement_properties:
