@@ -133,6 +133,7 @@ uaa:
 # App staging parameters
 staging:
   max_staging_runtime: <%= p("ccng.max_staging_runtime") %>
+  minimum_staging_memory_mb: <%= p("dea_next.staging_memory_limit_mb") %>
   auth:
     user: <%= p("ccng.staging_upload_user") %>
     password: "<%= p("ccng.staging_upload_password") %>"
