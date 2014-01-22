@@ -4,6 +4,8 @@ check process cloud_controller_ng
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
   group vcap
+  if totalmem > 2250 Mb then alert
+  if totalmem > 2450 Mb then restart
 
 check process cloud_controller_jobs
   with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_jobs.pid
@@ -13,6 +15,8 @@ check process cloud_controller_jobs
   depends on cloud_controller_ng
 <% end %>
   group vcap
+  if totalmem > 2250 Mb then alert
+  if totalmem > 2450 Mb then restart
 
 <% if p("ccng.use_nginx", true) %>
 check process nginx_ccng
@@ -29,6 +33,8 @@ check process cloud_controller_clock
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl stop"
   group vcap
+  if totalmem > 2250 Mb then alert
+  if totalmem > 2450 Mb then restart
 <% end %>
 
 <% if p("ccng.process_group") == "worker" %>
@@ -37,4 +43,6 @@ check process cloud_controller_jobs
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl stop"
   group vcap
+  if totalmem > 2250 Mb then alert
+  if totalmem > 2450 Mb then restart
 <% end %>
