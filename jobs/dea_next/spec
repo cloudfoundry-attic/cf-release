@@ -68,6 +68,12 @@ properties:
   dea_next.instance_cpu_limit_shares:
     description: CPU limit in shares for running instances cgroup
     default: 256
+  dea_next.staging_disk_inode_limit:
+    description: Limit on inodes for a staging container
+    default: 200000
+  dea_next.instance_disk_inode_limit:
+    description: Limit on inodes for an instance container
+    default: 200000
   dea_next.directory_server_protocol:
     description: 'The protocol to use when communicating with the directory server ("http" or "https")'
     default: 'https'
