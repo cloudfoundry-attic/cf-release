@@ -42,3 +42,6 @@ properties:
     description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
   etcd_ips:
     description: "IPs pointing to the ETCD cluster"
+  ssl.skip_cert_verify:
+    description: "when connecting over https, ignore bad ssl certificates"
+    default: false
