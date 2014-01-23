@@ -1,5 +1,7 @@
 #!/bin/bash
 
+INDEX=$2
+
 export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
@@ -7,7 +9,7 @@ CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
 
 RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
 LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
-PIDFILE=$RUN_DIR/cloud_controller_jobs.pid
+PIDFILE=$RUN_DIR/cloud_controller_jobs_$INDEX.pid
 
 export CONFIG_DIR=$CC_JOB_DIR/config
 export CLOUD_CONTROLLER_NG_CONFIG=$CONFIG_DIR/cloud_controller_ng.yml
@@ -50,8 +52,8 @@ case $1 in
     exec chpst -u vcap:vcap bundle exec rake <%= task_name %> \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
       > >(tee -a >(logger -p user.info -t vcap.jobs_work.stdout) $LOG_DIR/jobs_work.stdout.log) \
       2> >(tee -a >(logger -p user.error -t vcap.jobs_work.stderr) $LOG_DIR/jobs_work.stderr.log)<% else %>
-      >>$LOG_DIR/jobs_work.stdout.log \
-      2>>$LOG_DIR/jobs_work.stderr.log
+      >>$LOG_DIR/jobs_work_$INDEX.stdout.log \
+      2>>$LOG_DIR/jobs_work_$INDEX.stderr.log
       <% end %>
   ;;
 
