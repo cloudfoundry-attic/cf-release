@@ -377,6 +377,12 @@ properties:
   ccng.process_group:
     default: cloud_controller
     description: "Determines what processes to run for the job"
+  ccng.jobs.local.number_of_workers:
+    default: 2
+    description: "Number of local cloud_controller_jobs workers"
+  ccng.jobs.generic.number_of_workers:
+    default: 1
+    description: "Number of generic cloud_controller_jobs workers"
 
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in mb for staging tasks"
