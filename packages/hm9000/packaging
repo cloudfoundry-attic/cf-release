@@ -7,7 +7,3 @@ export PATH=$GOROOT/bin:$PATH
 export GOPATH=$PWD/hm9000
 go install github.com/cloudfoundry/hm9000
 cp -a $PWD/hm9000/bin/hm9000 ${BOSH_INSTALL_TARGET}
-
-cd $GOPATH/src/github.com/coreos/etcd
-./build
-cp -a $PWD/etcd ${BOSH_INSTALL_TARGET}
