@@ -39,4 +39,7 @@ template(name="CfLogTemplate" type="list") {
 
 # Prevent them from reaching anywhere else
 :rawmsg, contains, "vcap.hm9000" ~
+<% if_p("syslog_aggregator.all") %>
+*.*    @<%= address %>:<%= port %>
+<% end %>
 <% end %>

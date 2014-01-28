@@ -42,4 +42,7 @@ template(name="CfLogTemplate" type="list") {
 
 # Prevent them from reaching anywhere else
 :programname, startswith, "vcap." ~
+<% if_p("syslog_aggregator.all") %>
+*.*    @<%= address %>:<%= port %>
+<% end %>
 <% end %>

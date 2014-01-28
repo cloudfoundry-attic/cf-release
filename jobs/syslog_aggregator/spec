@@ -35,3 +35,5 @@ properties:
     description: "IP address for syslog aggregator"
   syslog_aggregator.port:
     description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "if presents, it will add *.* @address to syslog_forwarder.conf"
