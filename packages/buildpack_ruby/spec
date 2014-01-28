@@ -1,0 +1,7 @@
+---
+name: buildpack_ruby
+dependencies:
+files:
+- buildpacks/ruby/Gemfile
+- buildpacks/ruby/Gemfile.lock
+- buildpacks/ruby/{bin,config,lib,resources,scripts,support,vendor}/**/*
