@@ -5,7 +5,12 @@ logging:
   syslog: vcap.saml_login_cf-registrar
   <% end %>
   level: info
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+
+message_bus_servers:
+<% p("nats.machines").each do |ip| %>
+  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= ip %>:<%= p("nats.port") %>
+<% end %>
+
 uri:
   - login.<%= properties.domain %>
 host: <%= spec.networks.send(properties.networks.apps).ip %>
