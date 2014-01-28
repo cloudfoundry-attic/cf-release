@@ -39,7 +39,7 @@ jobs:
   blobstore_upload:
     timeout_in_seconds: <%= timeout %>
   <% end %>
-  <% if_p("ccng.jobs.v.timeout_in_seconds") do |timeout| %>
+  <% if_p("ccng.jobs.droplet_deletion.timeout_in_seconds") do |timeout| %>
   droplet_deletion:
     timeout_in_seconds: <%= timeout %>
   <% end %>
