@@ -79,3 +79,12 @@
 [submodule "src/etcd-metrics-server"]
 	path = src/etcd-metrics-server
 	url = https://github.com/cloudfoundry-incubator/etcd-metrics-server.git
+[submodule "src/buildpacks/java"]
+	path = src/buildpacks/java
+	url = https://github.com/cloudfoundry/java-buildpack
+[submodule "src/buildpacks/nodejs"]
+	path = src/buildpacks/nodejs
+	url = https://github.com/cloudfoundry/heroku-buildpack-nodejs.git
+[submodule "src/buildpacks/ruby"]
+	path = src/buildpacks/ruby
+	url = https://github.com/cloudfoundry/heroku-buildpack-ruby.git
