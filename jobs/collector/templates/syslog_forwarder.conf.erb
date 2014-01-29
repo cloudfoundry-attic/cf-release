@@ -21,6 +21,6 @@ $ActionQueueSaveOnShutdown on           # Save in-memory data to disk if rsyslog
 #$template VcapComponentLogFormat, "%timegenerated% %syslogseverity-text% -- %msg%\n"
 #:programname, startswith, "vcap." -?VcapComponentLogFile;VcapComponentLogFormat
 
+<% end %>
 # Prevent them from reaching anywhere else
 :programname, startswith, "vcap." ~
-<% end %>
