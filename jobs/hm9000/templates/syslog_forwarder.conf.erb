@@ -37,6 +37,6 @@ template(name="CfLogTemplate" type="list") {
 #$template VcapComponentLogFormat, "%timegenerated% %syslogseverity-text% -- %msg%\n"
 #:programname, startswith, "vcap." -?VcapComponentLogFile;VcapComponentLogFormat
 
+<% end %>
 # Prevent them from reaching anywhere else
 :rawmsg, contains, "vcap.hm9000" ~
-<% end %>
