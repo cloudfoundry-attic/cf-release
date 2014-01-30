@@ -43,9 +43,7 @@ jobs:
 
   - name: nats_z1
     release: (( meta.release.name ))
-    template:
-      - nats
-      - nats_stream_forwarder
+    template: (( merge || ["nats", "nats_stream_forwarder"] ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -56,9 +54,7 @@ jobs:
 
   - name: nats_z2
     release: (( meta.release.name ))
-    template:
-      - nats
-      - nats_stream_forwarder
+    template: (( merge || ["nats", "nats_stream_forwarder"] ))
     instances: 1
     resource_pool: medium_z2
     networks:
