@@ -144,6 +144,12 @@ properties:
   ccng.use_nginx:
     default: true
     description: "Use nginx in front of the CC"
+  ccng.nginx_client_inactivity_timeout:
+    default: 300
+    description: "Inactivity timeout period between nginx and its clients."
+  ccng.nginx_app_inactivity_timeout:
+    default: 300
+    description: "Inactivity timeout period between nginx and its backends."
 
   ccng.uaa_resource_id:
     default: "cloud_controller"
