@@ -45,6 +45,7 @@ properties:
 
     hm9000_noop: false
     default_app_memory: 1024
+    maximum_app_disk_in_mb: 2048
 
     srv_api_uri: (( "https://api." domain ))
 
