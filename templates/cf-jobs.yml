@@ -456,6 +456,7 @@ properties:
 
   login: (( merge ))
   pivotal_login: (( login ))
+  saml_login: (( merge ))
 
   router:
     endpoint_timeout: 60

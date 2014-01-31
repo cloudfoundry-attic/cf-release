@@ -128,7 +128,10 @@ properties:
     batch:
       username: (( merge ))
       password: (( merge ))
-
+    
+    login:
+      addnew: false
+      
     clients:
       login:
         override: true

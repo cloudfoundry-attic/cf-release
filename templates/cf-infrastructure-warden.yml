@@ -94,6 +94,7 @@ properties:
     clients:
       login:
         secret: login-secret
+        redirect-uri: (( "http://login." domain ))
       developer_console:
         secret: console-secret
       app-direct:
@@ -110,6 +111,10 @@ properties:
     no_ssl: true
 
   login:
+    catalina_opts: -Xmx384m -XX:MaxPermSize=128m
+    protocol: http
+
+  saml_login:
     catalina_opts: -Xmx384m -XX:MaxPermSize=128m
     protocol: http
 
