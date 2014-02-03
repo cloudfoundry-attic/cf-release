@@ -7,4 +7,4 @@ export GOPATH=${BOSH_INSTALL_TARGET}
 export PATH=$GOROOT/bin:$PATH
 
 cd $GOPATH
-go install github.com/cloudfoundry/gorouter/router
+go install github.com/cloudfoundry/gorouter
