@@ -1,0 +1,91 @@
+GIT
+  remote: git://github.com/cloudfoundry/cf-registrar.git
+  revision: 5dfb3b57192dcf3ee9d1edca2cf73f6a7f03cbbc
+  specs:
+    cf-registrar (1.0.0)
+      cf-message-bus
+      eventmachine (~> 1.0.0)
+      steno
+      vcap-concurrency
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (4.0.2)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
+    atomic (1.1.14)
+    axiom-types (0.0.5)
+      descendants_tracker (~> 0.0.1)
+      ice_nine (~> 0.9)
+    builder (3.2.2)
+    cf-message-bus (0.2.0)
+      eventmachine (~> 1.0.0)
+      nats (>= 0.5.0.beta.12, < 0.6)
+      vcap-concurrency
+      vcap-concurrency
+      yajl-ruby
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
+    daemons (1.1.9)
+    descendants_tracker (0.0.3)
+    equalizer (0.0.9)
+    eventmachine (1.0.3)
+    fluent-logger (0.4.7)
+      msgpack (>= 0.4.4, < 0.6.0, != 0.5.3, != 0.5.2, != 0.5.1, != 0.5.0)
+      yajl-ruby (~> 1.0)
+    grape (0.6.1)
+      activesupport
+      builder
+      hashie (>= 1.2.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      rack (>= 1.3.0)
+      rack-accept
+      rack-mount
+      virtus (>= 1.0.0)
+    hashie (2.0.5)
+    i18n (0.6.9)
+    ice_nine (0.11.0)
+    json_pure (1.8.1)
+    minitest (4.7.5)
+    msgpack (0.5.8)
+    multi_json (1.8.4)
+    multi_xml (0.5.5)
+    nats (0.5.0.beta.12)
+      daemons (>= 1.1.9)
+      eventmachine (>= 1.0.3)
+      json_pure (>= 1.8.0)
+      thin (>= 1.5.0)
+    rack (1.5.2)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-mount (0.8.3)
+      rack (>= 1.0.0)
+    steno (1.2.2)
+      fluent-logger
+      grape
+      yajl-ruby (~> 1.0)
+    thin (1.6.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 1.0.0)
+      rack (>= 1.0.0)
+    thread_safe (0.1.3)
+      atomic
+    tzinfo (0.3.38)
+    vcap-concurrency (0.1.0)
+    virtus (1.0.1)
+      axiom-types (~> 0.0.5)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0.1)
+      equalizer (~> 0.0.7)
+    yajl-ruby (1.2.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  cf-registrar!

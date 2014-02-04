@@ -23,6 +23,6 @@ cp -a ${BOSH_COMPILE_TARGET}/pivotal_login/pivotal-login-server-1.2.10.war webap
 cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-varz-1.0.2.war webapps/varz.war
 
 cd ${BOSH_INSTALL_TARGET}
-cp -a ${BOSH_COMPILE_TARGET}/vcap-common vcap-common
+cp -a ${BOSH_COMPILE_TARGET}/cf-registrar-bundle-for-identity vcap-common
 cd vcap-common
-/var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test
+/var/vcap/packages/ruby/bin/bundle install --binstubs --deployment --local --without=development test

@@ -1,4 +1,4 @@
 set -e -x
 
-cd ${BUILD_DIR}/vcap-common
+cd ${BUILD_DIR}/cf-registrar-bundle-for-identity
 BUNDLE_WITHOUT=development:test bundle package --all
