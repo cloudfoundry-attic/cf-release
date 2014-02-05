@@ -8,3 +8,16 @@ templates:
 packages:
   - common
   - debian_nfs_server
+
+properties:
+  debian_nfs_server.no_root_squash:
+    description: "Exports /var/vcap/store with no_root_squash when set to true"
+    default: false
+  nfs_server.network:
+    description: "Network prefix when exporting /var/vcap/store"
+  nfs_server.idmapd_domain:
+    description: "Domain name for NFS idmapd"
+    default: "localdomain"
+  nfs_server.pipefs_directory:
+    description: "Pipefs directory for NFS idmapd"
+    default: "/var/lib/nfs/rpc_pipef" # There was always a missing trailing 's', keeping this for backwards compatibility
