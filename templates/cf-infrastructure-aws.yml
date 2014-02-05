@@ -118,12 +118,12 @@ resource_pools:
 
   - name: large_z1
     cloud_properties:
-      instance_type: m1.medium
+      instance_type: m1.large
       availability_zone: (( meta.zones.z1 ))
 
   - name: large_z2
     cloud_properties:
-      instance_type: m1.medium
+      instance_type: m1.large
       availability_zone: (( meta.zones.z2 ))
 
   - name: runner_z1
