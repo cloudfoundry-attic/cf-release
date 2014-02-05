@@ -20,13 +20,11 @@ check process cloud_controller_jobs_<%= index %>
   if totalmem > 2450 Mb then restart
 <% end %>
 
-<% if p("ccng.use_nginx", true) %>
 check process nginx_ccng
   with pidfile /var/vcap/sys/run/nginx_ccng/nginx.pid
   start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl stop"
   group vcap
-<% end %>
 <% end %>
 
 <% if p("ccng.process_group") == "clock" %>
