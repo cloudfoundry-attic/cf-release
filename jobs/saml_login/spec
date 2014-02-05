@@ -91,6 +91,8 @@ properties:
     description: "IP address of Cloud Foundry NATS server"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
+  nats.machines:
+    description: "IP of each NATS cluster member."
   networks.apps:
     description:
   env.http_proxy:
