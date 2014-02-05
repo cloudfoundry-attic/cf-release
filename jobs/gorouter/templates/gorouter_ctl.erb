@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 RUN_DIR=/var/vcap/sys/run/gorouter
 LOG_DIR=/var/vcap/sys/log/gorouter
@@ -22,30 +22,34 @@ case $1 in
     # If the PID file would be written here, monit considers the gorouter to be started too early.
     # BOSH -- in turn -- continues to roll other routers, while this one is not yet ready.
 
-    # Ephemeral port range
-    echo "1024 65535" > /proc/sys/net/ipv4/ip_local_port_range
+    if grep -q '/instance' /proc/self/cgroup; then
+        echo "Not setting /proc/sys/net/ipv4 parameters, since I'm running inside a linux container"
+    else
+        # Ephemeral port range
+        echo "1024 65535" > /proc/sys/net/ipv4/ip_local_port_range
 
-    # TCP_FIN_TIMEOUT
-    # This setting determines the time that must elapse before TCP/IP can release a closed connection and reuse
-    # its resources. During this TIME_WAIT state, reopening the connection to the client costs less than establishing
-    # a new connection. By reducing the value of this entry, TCP/IP can release closed connections faster, making more
-    # resources available for new connections. Addjust this in the presense of many connections sitting in the
-    # TIME_WAIT state:
+        # TCP_FIN_TIMEOUT
+        # This setting determines the time that must elapse before TCP/IP can release a closed connection and reuse
+        # its resources. During this TIME_WAIT state, reopening the connection to the client costs less than establishing
+        # a new connection. By reducing the value of this entry, TCP/IP can release closed connections faster, making more
+        # resources available for new connections. Addjust this in the presense of many connections sitting in the
+        # TIME_WAIT state:
 
-    echo 5 > /proc/sys/net/ipv4/tcp_fin_timeout
+        echo 5 > /proc/sys/net/ipv4/tcp_fin_timeout
 
-    # TCP_TW_RECYCLE
-    # It enables fast recycling of TIME_WAIT sockets. The default value is 0 (disabled). The sysctl documentation
-    # incorrectly states the default as enabled. It can be changed to 1 (enabled) in many cases. Known to cause some
-    # issues with hoststated (load balancing and fail over) if enabled, should be used with caution.
+        # TCP_TW_RECYCLE
+        # It enables fast recycling of TIME_WAIT sockets. The default value is 0 (disabled). The sysctl documentation
+        # incorrectly states the default as enabled. It can be changed to 1 (enabled) in many cases. Known to cause some
+        # issues with hoststated (load balancing and fail over) if enabled, should be used with caution.
 
-    echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
+        echo 1 > /proc/sys/net/ipv4/tcp_tw_recycle
 
-    # TCP_TW_REUSE
-    # This allows reusing sockets in TIME_WAIT state for new connections when it is safe from protocol viewpoint.
-    # Default value is 0 (disabled). It is generally a safer alternative to tcp_tw_recycle
+        # TCP_TW_REUSE
+        # This allows reusing sockets in TIME_WAIT state for new connections when it is safe from protocol viewpoint.
+        # Default value is 0 (disabled). It is generally a safer alternative to tcp_tw_recycle
 
-    echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
+        echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
+    fi
 
     # Allow a few more queued connections than are allowed by default
     echo 1024 > /proc/sys/net/core/somaxconn
