@@ -212,3 +212,8 @@ renderer:
   max_results_per_page: <%= p("ccng.renderer.max_results_per_page") %>
   default_results_per_page: <%= p("ccng.renderer.default_results_per_page") %>
   max_inline_relations_depth: <%= p("ccng.renderer.max_inline_relations_depth") %>
+
+<% if_p("uaa.clients.cc_service_broker_client.secret") do %>
+uaa_client_name: "cc_service_broker_client"
+uaa_client_secret: <%= p("uaa.clients.cc_service_broker_client.secret") %>
+<% end %>
