@@ -30,7 +30,5 @@ properties:
     default: 15
   nats.machines:
     description: "IP of each NATS cluster member."
-  syslog_aggregator.address:
-    description: "The address of the syslog_aggregator job."
-  syslog_aggregator.port:
-    description: "The port used by the syslog_aggregator job."
+  syslog_aggregator:
+    description:

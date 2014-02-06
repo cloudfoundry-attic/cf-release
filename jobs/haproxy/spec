@@ -15,10 +15,7 @@ properties:
   ha_proxy.timeout:
     default: 300
     description: "Server and client timeouts in seconds"
-  syslog_aggregator.address:
-    default:
-    description:
-  syslog_aggregator.port:
+  syslog_aggregator:
     default:
     description:
   router.servers.z1:

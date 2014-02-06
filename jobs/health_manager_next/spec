@@ -25,10 +25,8 @@ properties:
     description: "TCP port of NATS server"
   nats.user:
     description: "user name for NATS login"
-  syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
+  syslog_aggregator:
+    description:
   health_manager.cc_partition:
     description:
     default: 'default'

@@ -29,10 +29,8 @@ properties:
     description:
   nats.machines:
     description:
-  syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
+  syslog_aggregator:
+    description:
   cc.srv_api_uri:
     description:
   ccng.bulk_api_user:
