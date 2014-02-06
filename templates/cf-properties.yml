@@ -183,3 +183,8 @@ properties:
         authorized-grant-types: client_credentials
         access-token-validity: 1209600
         refresh-token-validity: 1209600
+      cc_service_broker_client:
+        scope: cloud_controller.read,cloud_controller.write,openid
+        authorities: clients.read,clients.write
+        secret: (( merge ))
+        authorized-grant-types: client_credentials
