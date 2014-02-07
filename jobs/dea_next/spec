@@ -55,6 +55,9 @@ properties:
   dea_next.memory_overcommit_factor:
     description:
     default: 1
+  dea_next.max_instances:
+    description: "Maximum number of allowable application instances not in the deleted state in a given DEA."
+    default: 256
   dea_next.stacks:
     default:
     - "lucid64"
