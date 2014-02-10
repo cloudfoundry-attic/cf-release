@@ -8,3 +8,4 @@ export PATH=$GOROOT/bin:$PATH
 
 cd $GOPATH
 go install github.com/cloudfoundry/gorouter
+

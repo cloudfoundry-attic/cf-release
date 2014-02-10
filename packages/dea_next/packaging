@@ -12,3 +12,4 @@ export GOPATH=${BOSH_INSTALL_TARGET}/go
 
 cd $GOPATH
 go install runner
+
