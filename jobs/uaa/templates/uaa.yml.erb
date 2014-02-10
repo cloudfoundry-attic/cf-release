@@ -48,6 +48,7 @@ oauth:
   <% end %>
   clients:
 <% if properties.uaa.clients then properties.uaa.clients.marshal_dump.each do |id,client| %>
+    <% next unless client %>
     <%= id %>:<% client.marshal_dump.each do |key,value|%>
       <%= key %>: <%= value %><% end %><% end %>
 <% end %>
