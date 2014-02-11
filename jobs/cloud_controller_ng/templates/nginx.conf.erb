@@ -27,7 +27,7 @@ http {
 
   keepalive_timeout  75 20; #inherited from router
 
-  client_max_body_size 256M; #already enforced upstream/but doesn't hurt.
+  client_max_body_size <%= p("ccng.client_max_body_size") %>; #already enforced upstream/but doesn't hurt.
 
   upstream cloud_controller {
     server unix:/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock;
