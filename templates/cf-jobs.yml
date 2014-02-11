@@ -239,6 +239,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: etcd_leader_z1
+    release: (( meta.release.name ))
     template: etcd
     instances: 1
     persistent_disk: 10024
@@ -250,6 +251,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: etcd_z1
+    release: (( meta.release.name ))
     template: etcd
     instances: 1
     persistent_disk: 10024
@@ -262,6 +264,7 @@ jobs:
       leader_ip: (( jobs.etcd_leader_z1.networks.cf1.static_ips.[0] ))
 
   - name: etcd_z2
+    release: (( meta.release.name ))
     template: etcd
     instances: 1
     persistent_disk: 10024
