@@ -52,3 +52,4 @@ check process cloud_controller_jobs_<%= index %>
   if totalmem > 2450 Mb then restart
 <% end %>
 <% end %>
+

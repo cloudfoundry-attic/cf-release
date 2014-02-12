@@ -3,3 +3,4 @@ check process health_manager_next
   start program "/var/vcap/jobs/health_manager_next/bin/health_manager_next_ctl start"
   stop program "/var/vcap/jobs/health_manager_next/bin/health_manager_next_ctl stop"
   group vcap
+
