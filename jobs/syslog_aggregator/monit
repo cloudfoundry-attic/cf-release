@@ -3,3 +3,4 @@ check process syslog_aggregator
   start program "/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl start"
   stop program "/var/vcap/jobs/syslog_aggregator/bin/syslog_aggregator_ctl stop"
   group vcap
+

@@ -3,3 +3,4 @@ check process postgres
   start program "/var/vcap/jobs/postgres/bin/postgres_ctl start"
   stop program "/var/vcap/jobs/postgres/bin/postgres_ctl stop"
   group vcap
+

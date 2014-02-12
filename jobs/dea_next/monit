@@ -21,3 +21,4 @@ check process dir_server
   start program "/var/vcap/jobs/dea_next/bin/dir_server_ctl start"
   stop program "/var/vcap/jobs/dea_next/bin/dir_server_ctl stop"
   group vcap
+

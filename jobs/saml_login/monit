@@ -9,3 +9,4 @@ check process saml_login_cf-registrar
   start program "/var/vcap/jobs/saml_login/bin/saml_login_cf-registrar_ctl start"
   stop program "/var/vcap/jobs/saml_login/bin/saml_login_cf-registrar_ctl stop"
   group vcap
+
