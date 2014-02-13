@@ -1,5 +1,4 @@
 <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
-$ModLoad omrelp
 $ModLoad imuxsock                       # local message reception (rsyslog uses a datagram socket)
 $MaxMessageSize 4k                      # default is 2k
 $WorkDirectory /var/vcap/sys/rsyslog/buffered # where messages should be buffered on disk
@@ -15,7 +14,7 @@ $ActionQueueHighWaterMark 8000          # Num messages. Assuming avg size of 512
 $ActionQueueTimeoutEnqueue 0            # Discard messages if the queue + disk is full
 $ActionQueueSaveOnShutdown on           # Save in-memory data to disk if rsyslog shuts down
 $template SyslogFormat, "<%%PRI%>%TIMESTAMP% localhost vcap.hm9000[] %msg%"
-:rawmsg, contains, "vcap.hm9000" :omrelp:<%= properties.syslog_aggregator.address %>:<%= properties.syslog_aggregator.port %>;SyslogFormat
+:rawmsg, contains, "vcap.hm9000" @@<%= properties.syslog_aggregator.address %>:<%= properties.syslog_aggregator.port %>;SyslogFormat
 
 # Log vcap messages locally, too
 #$template VcapComponentLogFile, "/var/log/%programname:6:$%/%programname:6:$%.log"
