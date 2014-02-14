@@ -80,7 +80,7 @@ properties:
     description: "Pipefs directory for NFS idmapd"
     default: "/var/lib/nfs/rpc_pipefs"
 
-  ccng.port:
+  ccng.external_port:
     description: "External Cloud Controller port"
     default: 9022
 
