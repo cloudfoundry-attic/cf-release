@@ -14,6 +14,7 @@ warden_socket: /var/vcap/data/warden/warden.sock
 
 evacuation_bail_out_time_in_seconds: <%= p("dea_next.evacuation_bail_out_time_in_seconds") %>
 default_health_check_timeout: <%= p("dea_next.default_health_check_timeout") %>
+crash_lifetime_secs: <%= p("dea_next.crash_lifetime_secs") %>
 
 directory_server:
   protocol: '<%= p('dea_next.directory_server_protocol') %>'

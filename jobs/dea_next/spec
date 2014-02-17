@@ -62,6 +62,9 @@ properties:
   dea_next.streaming_timeout:
     description:
     default: 60
+  dea_next.crash_lifetime_secs:
+    description: "Crashed app lifetime in seconds"
+    default: 3600
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in mb for staging tasks"
     default: 1024
