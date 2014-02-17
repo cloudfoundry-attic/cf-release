@@ -21,6 +21,7 @@ meta:
     z2:
       host: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] || nil ))
 
+  nfs_server: ~
 
 jobs:
   - name: ha_proxy_z1
@@ -165,6 +166,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
+      nfs_server: (( meta.nfs_server ))
 
   - name: api_z2
     release: (( meta.release.name ))
@@ -179,6 +181,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
+      nfs_server: (( meta.nfs_server ))
 
   - name: clock_global
     release: (( meta.release.name ))
@@ -211,6 +214,7 @@ jobs:
         host: (( meta.loggregator_endpoint.z1.host ))
       ccng:
         process_group: worker
+      nfs_server: (( meta.nfs_server ))
 
   - name: api_worker_z2
     release: (( meta.release.name ))
@@ -227,6 +231,7 @@ jobs:
         host: (( meta.loggregator_endpoint.z2.host ))
       ccng:
         process_group: worker
+      nfs_server: (( meta.nfs_server ))
 
   - name: hm_z1
     release: (( meta.release.name ))
