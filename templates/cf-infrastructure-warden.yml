@@ -3,7 +3,7 @@ meta:
 
   fog_config:
     provider: Local
-    local_root: /var/vcap/nfs
+    local_root: /var/vcap/store
 
   stemcell:
     name: bosh-warden-boshlite-ubuntu
@@ -12,10 +12,6 @@ meta:
   loggregator_endpoint:
     z2:
       host: "unused"
-
-  nfs_server:
-    address: 192.168.50.4
-    share: /export/blobstore
 
 update:
   canaries: 1

@@ -22,9 +22,9 @@ fi
 
 echo "Mounting NFS..."
 <% if properties.nfs_server.nfsv4 %>
-mount --verbose -o nolock,timeo=10,intr,lookupcache=positive -t nfs4 <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/" %> $NFS_SHARE
+mount --verbose -o timeo=10,intr,lookupcache=positive -t nfs4 <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/" %> $NFS_SHARE
 <% else %>
-mount --verbose -o nolock,timeo=10,intr,lookupcache=positive -t nfs <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/var/vcap/store" %> $NFS_SHARE
+mount --verbose -o timeo=10,intr,lookupcache=positive -t nfs <%= properties.nfs_server.address %>:<%= properties.nfs_server.share || "/var/vcap/store" %> $NFS_SHARE
 <% end %>
 if [ $? != 0 ]; then
   echo "Cannot mount NFS, exiting..."
