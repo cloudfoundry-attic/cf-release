@@ -4,7 +4,6 @@ export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
 CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
-NFS_SHARE=/var/vcap/nfs
 
 RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
 LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
@@ -56,6 +55,7 @@ case $1 in
     chown vcap:vcap $TMPDIR
 
     <% if properties.nfs_server.address %>
+    NFS_SHARE=/var/vcap/nfs
     modprobe nfs
     mkdir -p $NFS_SHARE
     chown vcap:vcap $NFS_SHARE
