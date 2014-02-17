@@ -13,6 +13,10 @@ meta:
     z2:
       host: "unused"
 
+  nfs_server:
+    address: 192.168.50.4
+    share: /export/blobstore
+
 update:
   canaries: 1
   max_in_flight: 50
@@ -42,8 +46,6 @@ properties:
     address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
 
   cc:
-    nfs_server:
-      address: 192.168.50.4
     default_quota_definition: default
     default_app_memory: 256
     bulk_api_password: bulk-password
