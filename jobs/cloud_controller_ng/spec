@@ -391,3 +391,13 @@ properties:
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in mb for staging tasks"
     default: 1024
+
+  ccng.renderer.max_results_per_page:
+    description: "Maximum number of results returned per page"
+    default: 100
+  ccng.renderer.default_results_per_page:
+    description: "Default number of results returned per page if user does not specify"
+    default: 50
+  ccng.renderer.max_inline_relations_depth:
+    description: "Maximum depth of inlined relationships in the result"
+    default: 2
