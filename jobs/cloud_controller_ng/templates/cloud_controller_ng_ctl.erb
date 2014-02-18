@@ -54,7 +54,7 @@ case $1 in
     chown vcap:vcap $LOG_DIR
     chown vcap:vcap $TMPDIR
 
-    source handle_nfs_or_local_blobstore.sh
+    source $CC_JOB_DIR/bin/handle_nfs_or_local_blobstore.sh
 
     # Configure the core file location
     mkdir -p /var/vcap/sys/cores

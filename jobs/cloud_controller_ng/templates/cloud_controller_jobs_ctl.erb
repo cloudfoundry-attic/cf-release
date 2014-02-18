@@ -41,7 +41,7 @@ case $1 in
     echo $$ > $PIDFILE
     chown vcap:vcap $PIDFILE
 
-    source handle_nfs_or_local_blobstore.sh
+    source $CC_JOB_DIR/bin/handle_nfs_or_local_blobstore.sh
 
     <% if_p("syslog_aggregator") do %>
     # TODO(kowshik): Configure Steno to write to the correct files.
