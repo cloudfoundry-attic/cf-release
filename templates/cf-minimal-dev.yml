@@ -1,6 +1,7 @@
 update:
   canaries: 0
 
+# Basically disables the jobs from second availability zone (z2) not necessary in a dev setup
 jobs:
   - name: loggregator_z1
     instances: 1
@@ -27,6 +28,34 @@ jobs:
     instances: 1
 
   - name: runner_z2
+    instances: 0
+
+# To disable nats_z2 this also requires to override nats properties which reference each of the nats jobs, delying it for now
+#  - name: nats_z2
+#    instances: 0
+
+  - name: stats_z1
+    instances: 0
+
+  - name: uaa_z2
+    instances: 0
+
+  - name: api_z2
+    instances: 0
+
+  - name: api_worker_z2
+    instances: 0
+
+  - name: etcd_z2
+    instances: 0
+
+  - name: hm9000_z2
+    instances: 0
+
+  - name: runner_z2
+    instances: 0
+
+  - name: router_z2
     instances: 0
 
 properties:
