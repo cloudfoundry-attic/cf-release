@@ -568,3 +568,8 @@ buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2
   sha: !binary |-
     NjdhZWY5MjIwMDBkM2NhYTNmYmJhMThiN2I1ZmE4NDI2ZjIwZjJkNw==
   size: 4670
+golang/go1.2.src.tar.gz:
+  object_id: 4c8fbae5-f106-44f1-9a5c-d53f0c5c5dc7
+  sha: !binary |-
+    N2RkMjQwOGQ0MDQ3MWFlYjMwYTllMGI1MDJjNjcxN2I1YmYzODNhNQ==
+  size: 9519109

@@ -1,6 +1,6 @@
 ---
 name: dea_logging_agent
 dependencies:
-- golang
+- go1.2
 files:
 - loggregator/**/*
