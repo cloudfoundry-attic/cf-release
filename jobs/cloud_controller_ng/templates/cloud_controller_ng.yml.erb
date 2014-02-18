@@ -1,6 +1,8 @@
 ---
+#Actually NGX host and port
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
-port: <%= p("ccng.port") %>
+external_port: <%= p("ccng.external_port") %>
+
 pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
 development_mode: <%= p("ccng.development_mode") %>
 
@@ -205,3 +207,8 @@ flapping_crash_count_threshold: <%= p("ccng.flapping_crash_count_threshold") %>
 disable_custom_buildpacks: <%= p("ccng.disable_custom_buildpacks") %>
 
 broker_client_timeout_seconds: <%= p("ccng.broker_client_timeout_seconds") %>
+
+renderer:
+  max_results_per_page: <%= p("ccng.renderer.max_results_per_page") %>
+  default_results_per_page: <%= p("ccng.renderer.default_results_per_page") %>
+  max_inline_relations_depth: <%= p("ccng.renderer.max_inline_relations_depth") %>
