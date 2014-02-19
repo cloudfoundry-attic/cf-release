@@ -6,9 +6,9 @@ meta:
 
 compilation:
   cloud_properties:
-    ram: 2048
-    disk: 8096
-    cpu: 4
+    ram: 1024
+    disk: 6144
+    cpu: 2
 networks: (( merge ))
 
 resource_pools:
