@@ -101,6 +101,7 @@ properties:
     catalina_opts: (( merge ))
     uaa_certificate: ~
     protocol: https
+    brand: oss
 
     links:
       home: (( "https://console." domain ))
@@ -130,7 +131,10 @@ properties:
     batch:
       username: (( merge ))
       password: (( merge ))
-
+    
+    login:
+      addnew: false
+      
     clients:
       login:
         override: true
