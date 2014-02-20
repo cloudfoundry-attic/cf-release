@@ -145,7 +145,7 @@ jobs:
 
   - name: login_z1
     release: (( meta.release.name ))
-    template: (( merge ))
+    template: login
     instances: 1
     resource_pool: medium_z1
     networks:
