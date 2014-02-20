@@ -3,6 +3,9 @@ check process warden
   start program "/var/vcap/jobs/dea_next/bin/warden_ctl start"
       with timeout 120 seconds
   stop program "/var/vcap/jobs/dea_next/bin/warden_ctl stop"
+  if failed unixsocket /var/vcap/data/warden/warden.sock
+      with timeout 5 seconds for 5 cycles
+  then restart
   if failed host 127.0.0.1 port 2345 protocol http
       and request '/'
       with timeout 5 seconds for 5 cycles
