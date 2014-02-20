@@ -1,6 +1,6 @@
 set -e -x
 
-export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export GOROOT=$(readlink -nf /var/vcap/packages/go1.2)
 export PATH=/var/vcap/packages/git/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
 

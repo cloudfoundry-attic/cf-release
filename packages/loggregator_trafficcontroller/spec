@@ -1,6 +1,6 @@
 ---
 name: loggregator_trafficcontroller
 dependencies:
-- golang
+- go1.2
 files:
 - loggregator/**/*
