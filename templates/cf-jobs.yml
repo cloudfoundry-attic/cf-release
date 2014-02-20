@@ -145,7 +145,7 @@ jobs:
 
   - name: login_z1
     release: (( meta.release.name ))
-    template: (( merge || "pivotal_login" ))
+    template: (( merge ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -465,7 +465,6 @@ properties:
   databases: ~
 
   login: (( merge ))
-  pivotal_login: (( login ))
 
   router:
     endpoint_timeout: 60
