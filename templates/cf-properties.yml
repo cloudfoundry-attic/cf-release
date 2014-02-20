@@ -6,7 +6,6 @@ meta:
        total_services: 100
        non_basic_services_allowed: true
        total_routes: 1000
-       trial_db_allowed: true
 
 properties:
   domain: (( merge ))
