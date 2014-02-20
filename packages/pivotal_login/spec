@@ -1,8 +1,0 @@
----
-name: pivotal_login
-dependencies:
-- ruby
-files:
-- pivotal_login/**/*
-- uaa/**/*
-- cf-registrar-bundle-for-identity/**/*

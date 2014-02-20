@@ -94,6 +94,7 @@ properties:
     clients:
       login:
         secret: login-secret
+        redirect-uri: (( "http://login." domain ))
       developer_console:
         secret: console-secret
       app-direct:
