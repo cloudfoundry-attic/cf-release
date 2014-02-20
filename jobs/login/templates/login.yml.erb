@@ -52,25 +52,32 @@ login:
   entityBaseURL: <%= "#{protocol}://login.#{properties.domain}" %>
   # The entityID of this SP
   entityID: <%= (properties.login && properties.login.saml.entityid) ? properties.login.saml.entityid : "login.#{properties.domain}" %>
-
+<% if properties.login.saml %>
   # The entity alias of the IDP
-  idpEntityAlias: <%= properties.login.saml.idpEntityAlias %>
+  idpEntityAlias: <%= properties.login.saml.idpEntityAlias ? properties.login.saml.idpEntityAlias : "vsphere.local" %>
   <% if !properties.login.saml.idpMetadataURL.nil? %>
   idpMetadataURL: <%= properties.login.saml.idpMetadataURL %>
   <% end %>
   <% if !properties.login.saml.idp_metadata_file.nil? %>
   idpMetadataFile: /var/vcap/jobs/login/<%= properties.login.saml.idp_metadata_file %>
   <% end %>
+  <% if !properties.login.saml.serviceProviderCertificate.nil? %>
   serviceProviderCertificate: ! <%= "'" + p("login.saml.serviceProviderCertificate").gsub("\n", "\n\n    ") + "'" %>
+  <% end %>
+  <% if !properties.login.saml.serviceProviderKey.nil? %>
   serviceProviderKey: ! <%= "'" + p("login.saml.serviceProviderKey").gsub("\n", "\n\n    ") + "'" %>
+  <% end %>
+  <% if !properties.login.saml.serviceProviderKeyPassword.nil? %>
   serviceProviderKeyPassword: <%= properties.login.saml.serviceProviderKeyPassword %>
-
-  authorize:
-    url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
-
+  <% end %>
   saml:
     assertionConsumerIndex: <%= (properties.login && properties.login.saml.assertionConsumerIndex) ? properties.login.saml.assertionConsumerIndex : 1 %>
     nameID: <%= (properties.login && properties.login.saml.nameidFormat) ? properties.login.saml.nameidFormat : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
+
+<% end %>
+  authorize:
+    url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
+
     
 <% if properties.login.analytics && properties.login.analytics.code && properties.login.analytics.domain %>
 analytics:
