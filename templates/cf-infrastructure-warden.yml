@@ -90,7 +90,6 @@ properties:
     clients:
       login:
         secret: login-secret
-        redirect-uri: (( "http://login." domain ))
       developer_console:
         secret: console-secret
       app-direct:
@@ -326,6 +325,10 @@ jobs:
           x6QmQgxUZiIr+9n/qvECQQDiDIeSmo2mRYsaqr4CQ3Ak+EDjsm9XTpXHuqm+xgFO
           iDIeQCWd3/twqdDTR7FaDE7Q0i559u7A1yLumUn8caLF
           -----END RSA PRIVATE KEY-----
+
+  # using login template, that supports self-signed certs
+  - name: login_z1
+    template: login
 
 compilation:
   cloud_properties:

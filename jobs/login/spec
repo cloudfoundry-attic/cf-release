@@ -15,7 +15,6 @@ templates:
   web.xml.erb: config/tomcat/web.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   uaa.crt.erb: config/uaa.crt
-  ldap.crt.erb: config/ldap.crt
 
 packages:
   - common
@@ -25,17 +24,12 @@ packages:
   - git
 
 properties:
-  name: Login Server for the UAA
-  description: "The Login Server enables authentication to the UAA optionally with SAML or LDAP."
-  login.brand: 
-    description: "The brand to use for the UI, available values are oss and pivotal"
-    default: oss
   login.uaa_certificate:
     description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
     description:
   login.links:
-    description: "A hash of home/passwd/signup URLS (see commented examples below)"
+    description: A hash of home/passwd/signup URLS (see commented examples below)
   login.links.home:
     description: URL for primary console/dashboard for users
     default: https://console.run.pivotal.io
@@ -45,17 +39,11 @@ properties:
   login.links.signup:
     description: URL for requesting to signup/register for an account
     default: https://console.run.pivotal.io/register
-  login.links.network:
-    description: URL for Pivotal Network
-    default: https://network.gopivotal.com/login
-  login.links.signup-network:
-    description: URL for requesting to signup/register for an account at Pivotal Network
-    default: https://network.gopivotal.com/users/new
   login.port:
     default: 8080
     description:
   login.uaa_base:
-    description: "Location of the UAA."
+    description:
   domain:
     description: "The domain name for this CloudFoundry deploy"
   env.http_proxy:
@@ -91,69 +79,3 @@ properties:
   login.protocol:
     default: "http"
     description: "The scheme in which login server should use to contact the UAA"
-  login.saml.idpMetadataURL:
-    description: "URL location of the IDP Metadata."
-  login.saml.idp_metadata_file:
-    description: "Optional IDP Metadata file for the SAML login server."
-  login.saml.entityid:
-    description: "The ID to represent this server"
-  login.saml.idpEntityAlias:
-    description: "An alias for the IDP."
-  login.entity_id:
-    description: "The entity ID of the SAML login server."
-  login.saml.keystore_name:
-    description: "Name of the SAML login server keystore."
-    default: "samlKeystore.jks"
-  login.saml.keystore_key:
-    description: "Key name of the SAML login server keystore."
-    default: "selfsigned"
-  login.saml.keystore_password:
-    description: "Key password to the SAML login server keystore."
-    default: "password"
-  login.saml.serviceProviderKey:
-    description: "Private key for the service provider certificate."
-  login.saml.serviceProviderKeyPassword:
-    description: "Password to protect the service provider private key."
-  login.saml.serviceProviderCertificate:
-    description: "Service provider certificate."
-  login.saml.assertion_consumer_index:
-    description:
-    default: 1
-  login.saml.nameidFormat:
-    description:
-    default: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
-  login.spring_profiles:
-    description: "The spring bean profile to use for the spring configuration files. Only options at this time is ldap for additional profile. Default is empty. Setting this to ldap requires the uaa.login.addnew property to be set to true on the UAA."
-  login.ldap.profile_type:
-    description: "The file to be used for configuring the LDAP authentication. options are simple-bind, search-and-bind and search-and-compare"
-  login.ldap.url:
-    description: "The URL to the ldap server, must start with ldap:// or ldaps://"
-  login.ldap.userDNPattern:
-    description: "Used with simple-bind only. A semi-colon separated lists of DN patterns to construct a DN direct from the user ID without performing a search."
-  login.ldap.userDN:
-    description: "Used with search-and-bind and search-and-compare. A valid LDAP ID that has read permissions to perform a search of the LDAP tree for user information. "
-  login.ldap.userPassword:
-    description: "Used with search-and-bind and search-and-compare. Password for the LDAP ID that performs a search of the LDAP tree for user information."
-  login.ldap.searchBase:
-    description: "Used with search-and-bind and search-and-compare. Define a base where the search starts at."
-    default: ""
-  login.ldap.searchFilter:
-    description: "Used with search-and-bind and search-and-compare. Search filter used. Takes one parameter, user ID defined as {0}"
-    default: "cn={0}"
-  login.ldap.passwordAttributeName:
-    description: "Used with search-and-compare only. The name of the password attribute in the LDAP directory"
-    default: "userPassword"
-  login.ldap.localPasswordCompare:
-    description: "Used with search-and-compare only. Set to true if passwords are retrieved by the search, and should be compared in the login server."
-    default: "true"
-  login.ldap.passwordEncoder:
-    description: "Used with search-and-compare only. The encoder used to properly encode user password to match the one in the LDAP directory."
-    default: "org.cloudfoundry.identity.uaa.login.ldap.DynamicPasswordComparator"
-  login.ldap.sslCertificate:
-    description: "Used with ldaps:// URLs. The certificate, if self signed, to be trusted by this connection."
-  login.ldap.sslCertificateAlias:
-    description: "Used with ldaps:// URLs. The certificate alias, to be trusted by this connection and stored in the keystore."
-  login.analytics.code:
-    description: "Analytics code"
-  login.analytics.domain:
-    description: "Analytics domain"
