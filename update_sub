@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$1" == "--help" ]; then
+if [ "$1" = "--help" ]; then
   echo "Usage: $0 REPO_NAME"
   echo ""
   echo "This script updates the requested submodule to the latest commit on origin."
@@ -19,14 +19,15 @@ release=`pwd`
 set -e
 
 # buckle up
-git submodule foreach \
-  "if (pwd | grep -q src/$repo); then" \
-  '  sub=`pwd`;' \
-  '  git checkout master;' \
-  '  git pull;' \
-  '  git submodule update --init --recursive;' \
-  "  cd $release;" \
-  '  git add $sub;' \
-  'fi'
+CMD="if pwd | grep -q src/$repo; then\
+    sub=\`pwd\`; \
+    git checkout master; \
+    git pull; \
+    git submodule update --init --recursive; \
+    cd $release; \
+    git add \$sub; \
+  fi"
+
+git submodule foreach '$CMD'
 
 ./staged_shortlog -c
