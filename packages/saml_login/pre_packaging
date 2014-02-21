@@ -1,4 +1,0 @@
-set -e -x
-
-cd ${BUILD_DIR}/cf-registrar-bundle-for-identity
-BUNDLE_WITHOUT=development:test bundle package --all
