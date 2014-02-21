@@ -145,7 +145,7 @@ jobs:
 
   - name: login_z1
     release: (( meta.release.name ))
-    template: login
+    template: (( merge || "pivotal_login" ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -285,6 +285,7 @@ jobs:
     release: (( meta.release.name ))
     template: hm9000
     instances: 1
+    persistent_disk: 1024
     resource_pool: medium_z1
     networks:
       - name: cf1
@@ -296,6 +297,7 @@ jobs:
     release: (( meta.release.name ))
     template: hm9000
     instances: 1
+    persistent_disk: 1024
     resource_pool: medium_z2
     networks:
       - name: cf2
@@ -465,6 +467,7 @@ properties:
   databases: ~
 
   login: (( merge ))
+  pivotal_login: (( login ))
 
   router:
     endpoint_timeout: 60

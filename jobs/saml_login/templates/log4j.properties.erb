@@ -1,0 +1,30 @@
+log4j.rootCategory=INFO, FILE, SYSLOG
+
+PID=????
+LOG_PATH=/var/vcap/sys/log/saml_login
+LOG_FILE=${LOG_PATH}/saml_login.log
+LOG_PATTERN=[%d{yyyy-MM-dd HH:mm:ss.SSS}] saml_login%X{context} - ${PID} [%t] .... %5p --- %c{1}: %m%n
+
+log4j.appender.FILE=org.apache.log4j.RollingFileAppender
+log4j.appender.FILE.File=${LOG_FILE}
+log4j.appender.FILE.Threshold=ALL
+log4j.appender.FILE.MaxFileSize=10MB
+log4j.appender.FILE.MaxBackupIndex=5
+log4j.appender.FILE.layout = org.apache.log4j.PatternLayout
+log4j.appender.FILE.layout.ConversionPattern=${LOG_PATTERN}
+
+log4j.appender.SYSLOG=org.apache.log4j.net.SyslogAppender
+log4j.appender.SYSLOG.Facility=USER
+log4j.appender.SYSLOG.Threshold=INFO
+log4j.appender.SYSLOG.FacilityPrinting=false
+log4j.appender.SYSLOG.SyslogHost=localhost
+log4j.appender.SYSLOG.layout = org.apache.log4j.PatternLayout
+# Workaround to log4j's SyslogAppender not supporting tags/identities.
+# Prefix the message with the tag (vcap.saml_login) and set FacilityPrinting off.
+log4j.appender.SYSLOG.layout.ConversionPattern=vcap.saml_login: ${LOG_PATTERN}
+
+log4j.category.org.springframework.security=DEBUG
+log4j.category.org.cloudfoundry.identity=DEBUG
+log4j.category.org.springframework.web=DEBUG
+log4j.category.org.springframework.web.context.support.StandardServletEnvironment=INFO
+log4j.category.org.springframework.jdbc=DEBUG
