@@ -1,0 +1,48 @@
+---
+name: pivotal_login
+
+logging:
+  config: /var/vcap/jobs/pivotal_login/config/log4j.properties
+
+<% protocol = p("pivotal_login.protocol") %> # http or https
+<% unless properties.pivotal_login.uaa_base
+  # Fix this to https when SSL certs are working in dev and staging
+  uaa_base = "#{protocol}://uaa.#{properties.domain}"
+else
+  uaa_base = properties.pivotal_login.uaa_base
+end %>
+uaa:
+  url: <%= uaa_base %>
+  token:
+    url: <%= uaa_base %>/oauth/token
+  login:
+    url: <%= uaa_base %>/authenticate
+  clientinfo:
+    url: <%= uaa_base %>/clientinfo
+  approvals:
+    url: <%= uaa_base %>/approvals
+
+links:
+  home:   <%= p("pivotal_login.links.home") %>
+  passwd: <%= p("pivotal_login.links.passwd") %>
+  signup: <%= p("pivotal_login.links.signup") %>
+
+<% if !properties.uaa.clients || !properties.uaa.clients.login %>
+LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
+<% else %>
+LOGIN_SECRET: <%= properties.uaa.clients.login.secret %>
+<% end %>
+<% if !properties.uaa.require_https.nil? %>
+require_https: <%= properties.uaa.require_https %>
+<% end %>
+<% if !properties.uaa.dump_requests.nil? %>
+dump_requests: <%= properties.uaa.dump_requests %>
+<% end %>
+
+login.authorize.url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
+
+<% if properties.pivotal_login.analytics && properties.pivotal_login.analytics.code && properties.pivotal_login.analytics.domain %>
+analytics:
+  code: <%= properties.pivotal_login.analytics.code %>
+  domain: <%= properties.pivotal_login.analytics.domain %>
+<% end %>
