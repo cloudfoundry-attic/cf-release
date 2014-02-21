@@ -1,4 +1,4 @@
-<% if_p("syslog_aggregator.address", "syslog_aggregator.port") do |address, port| %>
+<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
 $ModLoad imuxsock                       # local message reception (rsyslog uses a datagram socket)
 $MaxMessageSize 4k                      # default is 2k
 $WorkDirectory /var/vcap/sys/rsyslog/buffered  # where messages should be buffered on disk
@@ -13,22 +13,7 @@ $ActionQueueLowWaterMark 2000           # Num messages. Assuming avg size of 512
 $ActionQueueHighWaterMark 8000          # Num messages. Assuming avg size of 512B, this is 4MiB. (If this is reached, messages will spill to disk until the low watermark is reached).
 $ActionQueueTimeoutEnqueue 0            # Discard messages if the queue + disk is full
 $ActionQueueSaveOnShutdown on           # Save in-memory data to disk if rsyslog shuts down
-
-<% ip = `hostname -I | cut -d' ' -f1` %>
-template(name="CfLogTemplate" type="list") {
-        constant(value="<")
-        property(name="pri")
-        constant(value=">")
-        property(name="timestamp" dateFormat="rfc3339")
-        constant(value=" <%= ip.strip %> ")
-        property(name="programname")
-        constant(value=" [job=")
-        property(name="programname")
-        constant(value=" index=<%= spec.index.to_i %>] ")
-        property(name="msg")
-}
-
-:programname, startswith, "vcap." @@<%= address %>:<%= port %>;CfLogTemplate
+:programname, startswith, "vcap." @@<%= properties.syslog_aggregator.address %>:<%= properties.syslog_aggregator.port %>
 
 # Log vcap messages locally, too
 #$template VcapComponentLogFile, "/var/log/%programname:6:$%/%programname:6:$%.log"
