@@ -170,6 +170,7 @@ resource_pool:
 
 packages:
   app_package_directory_key: <%= p("ccng.packages.app_package_directory_key") %>
+  max_package_size: <%= p("ccng.packages.max_package_size") %>
   <% if_p("ccng.packages.cdn") do %>
   cdn:
     uri: <%= p("ccng.packages.cdn.uri") %>
