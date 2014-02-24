@@ -44,6 +44,7 @@ properties:
     process_group: cloud_controller
 
     hm9000_noop: false
+    diego: false
     default_app_memory: 1024
     maximum_app_disk_in_mb: 2048
     client_max_body_size: 256M
