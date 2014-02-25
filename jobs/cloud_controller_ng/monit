@@ -29,6 +29,15 @@ check process nginx_ccng
   start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_ctl stop"
   group vcap
+
+<% if_p("ccng.newrelic.license_key") do %>
+check process nginx_newrelic_plugin
+  with pidfile /var/vcap/sys/run/nginx_newrelic_plugin/nginx_newrelic_plugin.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_newrelic_plugin_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_newrelic_plugin_ctl stop"
+  group vcap
+<% end %>
+
 <% end %>
 
 <% if p("ccng.process_group") == "clock" %>

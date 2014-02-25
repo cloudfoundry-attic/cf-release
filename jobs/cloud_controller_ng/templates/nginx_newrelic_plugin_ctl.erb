@@ -1,0 +1,53 @@
+#!/bin/bash
+
+export PATH=/var/vcap/packages/ruby/bin:$PATH
+
+RUN_DIR=/var/vcap/sys/run/nginx_newrelic_plugin
+LOG_DIR=/var/vcap/sys/log/nginx_newrelic_plugin
+PIDFILE=$RUN_DIR/nginx_newrelic_plugin.pid
+JOB_DIR=/var/vcap/jobs/cloud_controller_ng
+CONFIG_DIR=$JOB_DIR/config
+NGINX_NEWRELIC_PLUGIN_DIR=/var/vcap/packages/nginx_newrelic_plugin
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "Nginx Newrelic Plugin"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    cp $CONFIG_DIR/newrelic_plugin.yml $NGINX_NEWRELIC_PLUGIN_DIR/config
+
+    cd $NGINX_NEWRELIC_PLUGIN_DIR
+
+    <% if_p("syslog_aggregator") do %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
+    <% end %>
+
+    <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
+      exec $NGINX_NEWRELIC_PLUGIN_DIR/newrelic_nginx_agent \
+        > >(tee -a >(logger -p user.info -t vcap.nginx_newrelic_plugin.stdout) $LOG_DIR/nginx_newrelic_plugin.stdout.log) \
+        2> >(tee -a >(logger -p user.error -t vcap.nginx_newrelic_plugin.stderr) $LOG_DIR/nginx_newrelic_plugin.stderr.log)
+    <% else %>
+      exec $NGINX_NEWRELIC_PLUGIN_DIR/newrelic_nginx_agent \
+        >> $LOG_DIR/nginx_newrelic_plugin.stdout.log \
+        2>> $LOG_DIR/nginx_newrelic_plugin.stderr.log
+    <% end %>
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: nginx_newrelic_plugin_ctl {start|stop}"
+
+    ;;
+
+esac

@@ -1,0 +1,6 @@
+---
+name: nginx_newrelic_plugin
+dependencies:
+- ruby
+files:
+- nginx/newrelic_nginx_agent.tar.gz

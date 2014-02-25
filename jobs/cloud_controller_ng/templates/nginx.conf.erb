@@ -150,5 +150,12 @@ http {
       # Download the file and send it to client
       proxy_pass $download_url;
     }
+
+    location /nginx_status {
+      stub_status on;
+      access_log  /var/vcap/sys/log/nginx_newrelic_plugin/nginx_newrelic_plugin.access.log main;
+      allow 127.0.0.1;
+      deny all;
+    }
   }
 }
