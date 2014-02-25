@@ -41,6 +41,8 @@ properties:
     audit_events:
       cutoff_age_in_days: 31
 
+    billing_event_writing_enabled: true
+
     process_group: cloud_controller
 
     hm9000_noop: false

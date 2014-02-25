@@ -114,6 +114,9 @@ properties:
   ccng.audit_events.cutoff_age_in_days:
     description: "How old an audit event should stay in cloud controller database before being cleaned up"
     default: 31
+  ccng.billing_event_writing_enabled:
+    description: "If true, billing events are written to the CCDB."
+    default: true
   ccng.info.name:
     description: "name attribute in the /info endpoint"
   ccng.info.build:
