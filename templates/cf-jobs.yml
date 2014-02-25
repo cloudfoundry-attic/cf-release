@@ -422,6 +422,8 @@ properties:
     port: 4222
     machines: (( jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
     use_gnatsd: (( merge || true ))
+    debug: false
+    trace: false
 
   dea_next:
     memory_mb: (( merge ))

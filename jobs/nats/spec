@@ -30,6 +30,12 @@ properties:
     default: 15
   nats.machines:
     description: "IP of each NATS cluster member."
+  nats.debug:
+    description: "Enable debug logging output."
+    default: false
+  nats.trace:
+    description: "Enable trace logging output."
+    default: false
   syslog_aggregator.address:
     description: "The address of the syslog_aggregator job."
   syslog_aggregator.port:

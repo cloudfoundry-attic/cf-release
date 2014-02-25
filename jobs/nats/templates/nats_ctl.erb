@@ -21,7 +21,7 @@ case $1 in
     sysctl -w net.ipv4.neigh.default.gc_thresh2=2048
     sysctl -w net.ipv4.neigh.default.gc_thresh1=1024
 
-    exec /var/vcap/packages/gnatsd/bin/gnatsd -V -D \
+    exec /var/vcap/packages/gnatsd/bin/gnatsd \
          -c /var/vcap/jobs/nats/config/nats.conf \
          >>$LOG_DIR/nats.stdout.log \
          2>>$LOG_DIR/nats.stderr.log
