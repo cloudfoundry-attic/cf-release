@@ -14,11 +14,14 @@ templates:
   nfs-common: config/nfs-common
   idmapd.conf.erb: config/idmapd.conf
   newrelic.yml.erb: config/newrelic.yml
+  nginx_newrelic_plugin_ctl.erb: bin/nginx_newrelic_plugin_ctl
+  newrelic_plugin.yml.erb: config/newrelic_plugin.yml
 
 packages:
   - common
   - cloud_controller_ng
   - nginx
+  - nginx_newrelic_plugin
   - libpq
   - mysqlclient
   - sqlite
