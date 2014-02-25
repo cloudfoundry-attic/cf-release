@@ -1,0 +1,11 @@
+--- auto/cc/gcc
++++ auto/cc/gcc
+@@ -169,7 +169,7 @@
+ 
+ 
+ # stop on warning
+-CFLAGS="$CFLAGS -Werror"
++#CFLAGS="$CFLAGS -Werror"
+ 
+ # debug
+ CFLAGS="$CFLAGS -g"

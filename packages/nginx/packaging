@@ -38,6 +38,7 @@ tar xzvf nginx/nginx-0.8.54.tar.gz
 echo "Patching nginx..."
 pushd nginx-0.8.54
   patch -p0 < ../nginx/zero_byte_in_cstr_20120315.patch
+  patch -p0 < ../nginx/no_werror_20140224.patch
 popd
 
 echo "Building lua..."
