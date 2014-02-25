@@ -42,10 +42,10 @@ backend http-routers
     <% size = p("router.servers.z1").size %>
 
     <% p("router.servers.z1").each_with_index do |ip, index| %>
-        server node<%= index %> <%= ip %>:80 check inter 1000
+        server node<%= index %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>
     <% p("router.servers.z2").each_with_index do |ip, index| %>
-        server node<%= index + size %> <%= ip %>:80 check inter 1000
+        server node<%= index + size %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>
 
 backend tcp-routers
@@ -54,8 +54,8 @@ backend tcp-routers
     <% size = p("router.servers.z1").size %>
 
     <% p("router.servers.z1").each_with_index do |ip, index| %>
-        server node<%= index %> <%= ip %>:80 check inter 1000
+        server node<%= index %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>
     <% p("router.servers.z2").each_with_index do |ip, index| %>
-        server node<%= index + size %> <%= ip %>:80 check inter 1000
+        server node<%= index + size %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>

@@ -29,7 +29,7 @@ loggregatorConfig:
   shared_secret: <%= shared_secret %>
 <% end %>
 
-port: 80
+port: <%= p("router.port") %>
 index: <%= p("router.offset") + spec.index %>
 pidfile: /var/vcap/sys/run/gorouter/gorouter.pid
 go_max_procs: 8
