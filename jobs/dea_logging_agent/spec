@@ -11,7 +11,8 @@ packages:
 - syslog_aggregator
 properties:
   syslog_aggregator:
-    description:
+    description: "Syslog Aggregator properties."
+
   dea_logging_agent.debug:
     description: boolean value to turn on verbose mode
     default: false

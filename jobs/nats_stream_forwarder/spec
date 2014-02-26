@@ -10,6 +10,9 @@ packages:
   - nats
   - syslog_aggregator
 properties:
+  syslog_aggregator:
+    description: "Syslog Aggregator properties."
+
   nats_props:
     description:
     default: "nats"
@@ -23,7 +26,3 @@ properties:
     description: "NATS address"
   nats.port:
     description: "The port for the NATS server to listen on."
-  syslog_aggregator.address:
-    description: "The address of the syslog_aggregator job."
-  syslog_aggregator.port:
-    description: "The port used by the syslog_aggregator job."

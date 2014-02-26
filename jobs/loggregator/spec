@@ -11,7 +11,8 @@ packages:
 - syslog_aggregator
 properties:
   syslog_aggregator:
-    description:
+    description: "Syslog Aggregator properties."
+
   loggregator.debug:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)
     default: false
