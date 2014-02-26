@@ -18,6 +18,9 @@ packages:
   - syslog_aggregator
 
 properties:
+  syslog_aggregator:
+    description: "Syslog Aggregator properties."
+
   nats.user:
     description:
   nats.password:
@@ -28,10 +31,6 @@ properties:
     description:
   nats.machines:
     description:
-  syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
   cc.srv_api_uri:
     description:
   ccng.bulk_api_user:

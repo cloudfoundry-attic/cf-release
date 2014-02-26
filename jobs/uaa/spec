@@ -22,6 +22,9 @@ packages:
   - uaa
 
 properties:
+  syslog_aggregator:
+    description: "Syslog Aggregator properties."
+
   uaa.admin.client_secret:
     description:
   uaa.batch.password:
@@ -86,10 +89,6 @@ properties:
     description: "IP of each NATS cluster member."
   networks.apps:
     description: "The App network name"
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "Port of syslog aggregator"
   uaadb.address:
     description: "The UAA database IP address"
   uaadb.databases:
