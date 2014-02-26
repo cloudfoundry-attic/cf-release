@@ -12,7 +12,7 @@ properties:
   ha_proxy.ssl_pem:
     default:
     description: "SSL certificate (PEM file)"
-  ha_proxy.timeout:
+  request_timeout_in_seconds:
     default: 300
     description: "Server and client timeouts in seconds"
   syslog_aggregator.address:

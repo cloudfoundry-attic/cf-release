@@ -84,6 +84,10 @@ properties:
     description: "Pipefs directory for NFS idmapd"
     default: "/var/lib/nfs/rpc_pipefs"
 
+  request_timeout_in_seconds:
+    description: "Timeout for requests in seconds."
+    default: 300
+
   ccng.external_port:
     description: "External Cloud Controller port"
     default: 9022
