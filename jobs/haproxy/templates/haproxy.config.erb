@@ -9,8 +9,8 @@ global
 defaults
     log global
     timeout connect 30000ms
-    timeout client <%= p("ha_proxy.timeout").to_i * 1000 %>ms
-    timeout server <%= p("ha_proxy.timeout").to_i * 1000 %>ms
+    timeout client <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
+    timeout server <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
 
 frontend http-in
     mode http

@@ -39,9 +39,9 @@ properties:
       If the X-Vcap-Trace request header is set and has this value,
       trace headers are added to the response.
     default: 22
-  router.endpoint_timeout:
+  request_timeout_in_seconds:
     description: "Timeout in seconds for Router -> Endpoint roundtrip."
-    default: 60
+    default: 300
   loggregator_endpoint.host:
     description: "The host used to emit messages to the Loggregator"
   loggregator_endpoint.port:
