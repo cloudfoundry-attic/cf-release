@@ -13,6 +13,9 @@ packages:
   - ruby
   - syslog_aggregator
 properties:
+  syslog_aggregator:
+    description: "Syslog Aggregator properties."
+
   networks.apps:
     description:
   nats.use_gnatsd:
@@ -36,7 +39,3 @@ properties:
   nats.trace:
     description: "Enable trace logging output."
     default: false
-  syslog_aggregator.address:
-    description: "The address of the syslog_aggregator job."
-  syslog_aggregator.port:
-    description: "The port used by the syslog_aggregator job."

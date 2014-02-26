@@ -11,7 +11,8 @@ packages:
 - syslog_aggregator
 properties:
   syslog_aggregator:
-    description:
+    description: "Syslog Aggregator properties."
+
   traffic_controller.zone:
     description: Zone of the loggregator_trafficcontroller
   traffic_controller.host:

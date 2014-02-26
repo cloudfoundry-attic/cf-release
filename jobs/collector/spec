@@ -10,6 +10,9 @@ packages:
 - ruby
 - syslog_aggregator
 properties:
+  syslog_aggregator:
+    description: "Syslog Aggregator properties."
+
   collector.aws_access_key_id:
     description: "AWS access key for CloudWatch access"
   collector.aws_secret_access_key:
@@ -59,7 +62,3 @@ properties:
     description: "IP address of OpenTsdb"
   opentsdb.port:
     description: "TCP port of OpenTsdb"
-  syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
-  syslog_aggregator.port:
-    description: "port of syslog aggregator"

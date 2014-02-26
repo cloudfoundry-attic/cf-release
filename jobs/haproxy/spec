@@ -9,18 +9,15 @@ templates:
   haproxy_ctl:               bin/haproxy_ctl
   cert.pem.erb:              config/cert.pem
 properties:
+  syslog_aggregator:
+    description: "Syslog Aggregator properties."
+
   ha_proxy.ssl_pem:
     default:
     description: "SSL certificate (PEM file)"
   request_timeout_in_seconds:
     default: 300
     description: "Server and client timeouts in seconds"
-  syslog_aggregator.address:
-    default:
-    description:
-  syslog_aggregator.port:
-    default:
-    description:
   router.servers.z1:
     default:
     description:
