@@ -13,7 +13,8 @@ packages:
   - syslog_aggregator
 properties:
   syslog_aggregator:
-    description:
+    description: "Syslog Aggregator properties."
+
   router.status.port:
     description: "Port for the Router varz/status endpoint."
     default: 8080

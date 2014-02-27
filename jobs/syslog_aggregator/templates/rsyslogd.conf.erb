@@ -1,11 +1,19 @@
-$ModLoad imrelp # needs to be done just once
 $ModLoad imuxsock
 $MaxMessageSize 4k
 
 # Caveat - This always binds to all interfaces (cannot specify otherwise).
+$ModLoad imudp
 $ModLoad imtcp
 $InputTCPMaxSessions 1024
+<% case properties.syslog_aggregator.transport
+     when "relp" %>
+$ModLoad imrelp
 $InputRELPServerRun <%= properties.syslog_aggregator.port %>
+<%   when "udp" %>
+$UDPServerRun <%= properties.syslog_aggregator.port %>
+<%   else %>
+$InputTCPServerRun <%= properties.syslog_aggregator.port %>
+<% end %>
 $PrivDropToUser vcap
 $PrivDropToGroup vcap
 

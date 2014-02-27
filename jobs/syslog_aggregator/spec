@@ -31,6 +31,8 @@ properties:
     description:
   syslog_aggregator.relay_host_port:
     description:
+  syslog_aggregator.transport:
+    description: "Transport (other than tcp, which is the default) to be used when forwarding logs (relp|udp)."
   syslog_aggregator.address:
     description: "IP address for syslog aggregator"
   syslog_aggregator.port:
