@@ -16,8 +16,10 @@ properties:
     description: "TCP port of syslog aggregator"
   syslog_aggregator.all:
     description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
   syslog_aggregator.transport:
-    description: "Transport (other than tcp, which is the default) to be used when forwarding logs (relp|udp)."
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
 
   nats_props:
     description:
