@@ -25,8 +25,14 @@ packages:
   - git
 
 properties:
-  syslog_aggregator:
-    description: "Syslog Aggregator properties."
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+  syslog_aggregator.transport:
+    description: "Transport (other than tcp, which is the default) to be used when forwarding logs (relp|udp)."
 
   name: Login Server for the UAA
   description: "The Login Server enables authentication to the UAA optionally with SAML or LDAP."
