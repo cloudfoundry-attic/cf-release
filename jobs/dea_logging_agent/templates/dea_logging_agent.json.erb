@@ -1,7 +1,8 @@
 {
 	"Index": <%= spec.index %>,
 	"LoggregatorAddress": "<%= p("loggregator_endpoint.host") %>:<%= p("loggregator_endpoint.port") %>",
-    "SharedSecret": "<%= p("loggregator_endpoint.shared_secret") %>",
+        "SharedSecret": "<%= p("loggregator_endpoint.shared_secret") %>",
+
 	"NatsHost": "<%= p("nats.address") %>",
   	"NatsPort": <%= p("nats.port") %>,
   	"NatsUser": "<%= p("nats.user") %>",
