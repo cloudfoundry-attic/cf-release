@@ -1,4 +1,4 @@
-<% if_p("syslog_aggregator.address", "syslog_aggregator.port") do |address, port| %>
+<% if_p("syslog_aggregator.address", "syslog_aggregator.port", "syslog_aggregator.transport") do |address, port, transport| %>
 $ModLoad imuxsock                       # local message reception (rsyslog uses a datagram socket)
 $MaxMessageSize 4k                      # default is 2k
 
@@ -32,32 +32,38 @@ template(name="CfLogTemplate" type="list") {
         property(name="msg")
 }
 
-<% case properties.syslog_aggregator.transport
-     when "relp" %>
+<% if transport == "relp" %>
 $ModLoad omrelp
 :programname, startswith, "vcap." :omrelp:<%= address %>:<%= port %>;CfLogTemplate
-<%   when "udp" %>
+<% elsif transport == "udp" %>
 :programname, startswith, "vcap." @<%= address %>:<%= port %>;CfLogTemplate
-<%   else %>
+<% elsif transport == "tcp" %>
 :programname, startswith, "vcap." @@<%= address %>:<%= port %>;CfLogTemplate
+<% else %>
+#only RELP, UDP, and TCP are supported
 <% end %>
-
-<% if properties.syslog_aggregator.all == true
-     case properties.syslog_aggregator.transport
-       when "relp" %>
-*.*  :omrelp:<%= address %>:<%= port %>
-<%     when "udp" %>
-*.*  @<%= address %>:<%= port %>
-<%     else %>
-*.*  @@<%= address %>:<%= port %>
-<%   end
-   end %>
 
 # Log vcap messages locally, too
 #$template VcapComponentLogFile, "/var/log/%programname:6:$%/%programname:6:$%.log"
 #$template VcapComponentLogFormat, "%timegenerated% %syslogseverity-text% -- %msg%\n"
 #:programname, startswith, "vcap." -?VcapComponentLogFile;VcapComponentLogFormat
 
-<% end %>
 # Prevent them from reaching anywhere else
 :programname, startswith, "vcap." ~
+
+<% if properties.syslog_aggregator.all %>
+   <% if transport == "relp" %>
+*.*  :omrelp:<%= address %>:<%= port %>
+   <% elsif transport == "udp" %>
+*.*  @<%= address %>:<%= port %>
+   <% elsif transport == "tcp" %>
+*.*  @@<%= address %>:<%= port %>
+   <% else %>
+#only RELP, UDP, and TCP are supported
+   <% end %>
+<% end %>
+
+<% end.else do %>
+# Prevent them from reaching anywhere else
+:programname, startswith, "vcap." ~
+<% end %>

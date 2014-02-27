@@ -5,14 +5,15 @@ $MaxMessageSize 4k
 $ModLoad imudp
 $ModLoad imtcp
 $InputTCPMaxSessions 1024
-<% case properties.syslog_aggregator.transport
-     when "relp" %>
+<% if properties.syslog_aggregator.transport == "relp" %>
 $ModLoad imrelp
 $InputRELPServerRun <%= properties.syslog_aggregator.port %>
-<%   when "udp" %>
+<% elsif transport == "udp" %>
 $UDPServerRun <%= properties.syslog_aggregator.port %>
-<%   else %>
+<% elsif transport == "tcp" %>
 $InputTCPServerRun <%= properties.syslog_aggregator.port %>
+<% else %>
+#only RELP, UDP, and TCP are supported
 <% end %>
 $PrivDropToUser vcap
 $PrivDropToGroup vcap
