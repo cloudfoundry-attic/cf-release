@@ -97,3 +97,9 @@
 [submodule "packages/ruby"]
 	path = packages/ruby
 	url = https://github.com/cloudfoundry/ruby-package
+[submodule "src/uaa"]
+	path = src/uaa
+	url = https://github.com/cloudfoundry/uaa.git
+[submodule "src/login"]
+	path = src/login
+	url = https://github.com/cloudfoundry/login-server.git

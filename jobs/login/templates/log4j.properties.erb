@@ -28,3 +28,10 @@ log4j.category.org.cloudfoundry.identity=DEBUG
 log4j.category.org.springframework.web=DEBUG
 log4j.category.org.springframework.web.context.support.StandardServletEnvironment=INFO
 log4j.category.org.springframework.jdbc=DEBUG
+
+# leaks HTTP data in debug mode
+log4j.category.org.apache.http.wire=INFO
+# reduce log level
+log4j.category.org.springframework.aop.aspectj.AspectJExpressionPointcut=INFO
+log4j.category.org.springframework.beans.factory.support.DefaultListableBeanFactory=INFO
+log4j.category.org.springframework.beans.factory.support.DisposableBeanAdapter=INFO
