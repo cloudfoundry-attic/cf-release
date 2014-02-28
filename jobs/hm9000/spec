@@ -18,6 +18,15 @@ packages:
   - syslog_aggregator
 
 properties:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+  syslog_aggregator.transport:
+    description: "Transport (other than tcp, which is the default) to be used when forwarding logs (relp|udp)."
+
   nats.user:
     description:
   nats.password:
@@ -28,10 +37,6 @@ properties:
     description:
   nats.machines:
     description:
-  syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
   cc.srv_api_uri:
     description:
   ccng.bulk_api_user:

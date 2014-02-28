@@ -32,7 +32,26 @@ template(name="CfLogTemplate" type="list") {
         property(name="msg")
 }
 
+<% case properties.syslog_aggregator.transport
+     when "relp" %>
+$ModLoad omrelp
+:programname, startswith, "vcap." :omrelp:<%= address %>:<%= port %>;CfLogTemplate
+<%   when "udp" %>
+:programname, startswith, "vcap." @<%= address %>:<%= port %>;CfLogTemplate
+<%   else %>
 :programname, startswith, "vcap." @@<%= address %>:<%= port %>;CfLogTemplate
+<% end %>
+
+<% if properties.syslog_aggregator.all == true
+     case properties.syslog_aggregator.transport
+       when "relp" %>
+*.*  :omrelp:<%= address %>:<%= port %>
+<%     when "udp" %>
+*.*  @<%= address %>:<%= port %>
+<%     else %>
+*.*  @@<%= address %>:<%= port %>
+<%   end
+   end %>
 
 # Log vcap messages locally, too
 #$template VcapComponentLogFile, "/var/log/%programname:6:$%/%programname:6:$%.log"
