@@ -171,7 +171,7 @@ properties:
     default: 1
     description: "Passthru value for Steno logger"
 
-  ccng.timeout_in_seconds:
+  ccng.staging_timeout_in_seconds:
     default: 900
     description: "Timeout for staging a droplet"
   ccng.maximum_health_check_timeout:
