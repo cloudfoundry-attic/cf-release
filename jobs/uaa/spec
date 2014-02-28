@@ -22,6 +22,17 @@ packages:
   - uaa
 
 properties:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   uaa.admin.client_secret:
     description:
   uaa.batch.password:
@@ -86,10 +97,6 @@ properties:
     description: "IP of each NATS cluster member."
   networks.apps:
     description: "The App network name"
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "Port of syslog aggregator"
   uaadb.address:
     description: "The UAA database IP address"
   uaadb.databases:

@@ -31,7 +31,8 @@ properties:
     description:
   syslog_aggregator.relay_host_port:
     description:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
   syslog_aggregator.port:
     description: "TCP port of syslog aggregator"
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"

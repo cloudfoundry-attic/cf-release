@@ -21,6 +21,17 @@ packages:
 - syslog_aggregator
 - buildpack_cache
 properties:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   domain:
     description: "DNS domain name for this Cloud Foundry deployment"
   nats.address:
@@ -101,8 +112,6 @@ properties:
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
-  syslog_aggregator:
-    description: "Syslog aggregator stuff"
   loggregator_endpoint.host:
     description: "The host used to emit messages to the Loggregator"
   loggregator_endpoint.port:

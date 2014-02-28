@@ -10,6 +10,17 @@ packages:
   - ruby
   - syslog_aggregator
 properties:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   cc_props:
     description: "BOSH job name of cloud controller"
     default: 'cc'
@@ -25,10 +36,6 @@ properties:
     description: "TCP port of NATS server"
   nats.user:
     description: "user name for NATS login"
-  syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
   health_manager.cc_partition:
     description:
     default: 'default'
