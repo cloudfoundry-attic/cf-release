@@ -25,6 +25,17 @@ packages:
   - git
 
 properties:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   name: Login Server for the UAA
   description: "The Login Server enables authentication to the UAA optionally with SAML or LDAP."
   login.brand: 
@@ -76,10 +87,6 @@ properties:
     description: "IP of each NATS cluster member."
   networks.apps:
     description: "The App network name"
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "Port of syslog aggregator"
   uaa.clients.login.secret:
     description:
   uaa.dump_requests:

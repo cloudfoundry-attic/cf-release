@@ -10,8 +10,17 @@ packages:
 - loggregator
 - syslog_aggregator
 properties:
-  syslog_aggregator:
-    description:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   loggregator.debug:
     description: boolean value to turn on verbose logging for loggregator system (dea agent & loggregator server)
     default: false

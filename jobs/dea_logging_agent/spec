@@ -10,8 +10,17 @@ packages:
 - dea_logging_agent
 - syslog_aggregator
 properties:
-  syslog_aggregator:
-    description:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   dea_logging_agent.debug:
     description: boolean value to turn on verbose mode
     default: false

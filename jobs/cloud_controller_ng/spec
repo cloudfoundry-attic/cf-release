@@ -29,6 +29,17 @@ packages:
   - syslog_aggregator
 
 properties:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   name:
     default: "vcap"
     description:
@@ -302,10 +313,6 @@ properties:
   login.url:
     description:
 
-  syslog_aggregator.address:
-    description: "The address of the syslog_aggregator job."
-  syslog_aggregator.port:
-    description: "The port used by the syslog_aggregator job."
   uaa.jwt.verification_key:
     default: ""
     description: "ssl cert defined in the manifest by the UAA, required by the cc to communicate with UAA"

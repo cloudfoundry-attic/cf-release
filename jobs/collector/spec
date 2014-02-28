@@ -10,6 +10,17 @@ packages:
 - ruby
 - syslog_aggregator
 properties:
+  syslog_aggregator.address:
+    description: "IP address for syslog aggregator"
+  syslog_aggregator.port:
+    description: "TCP port of syslog aggregator"
+  syslog_aggregator.all:
+    description: "Define whether forwarders should send all their syslog data to our aggregator."
+    default: false
+  syslog_aggregator.transport:
+    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
+    default: "tcp"
+
   collector.aws_access_key_id:
     description: "AWS access key for CloudWatch access"
   collector.aws_secret_access_key:
@@ -59,7 +70,3 @@ properties:
     description: "IP address of OpenTsdb"
   opentsdb.port:
     description: "TCP port of OpenTsdb"
-  syslog_aggregator.address:
-    description: "IP address of syslog aggregator"
-  syslog_aggregator.port:
-    description: "port of syslog aggregator"
