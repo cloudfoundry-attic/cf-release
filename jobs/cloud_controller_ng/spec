@@ -171,7 +171,7 @@ properties:
     default: 1
     description: "Passthru value for Steno logger"
 
-  ccng.max_staging_runtime:
+  ccng.timeout_in_seconds:
     default: 900
     description: "Timeout for staging a droplet"
   ccng.maximum_health_check_timeout:
@@ -188,6 +188,7 @@ properties:
     default: ""
     description: "S3 Access key for staging droplets on AWS installs; Blobstore user for other IaaSs"
   ccng.staging_upload_password:
+    default: ""
     description: "S3 Secure Access Key for staging droplets on AWS installs; Blobstore password for other IaaSs"
 
   ccng.quota_definitions:
