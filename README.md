@@ -8,7 +8,7 @@ Our documentation, currently a work in progress, is available here: [http://clou
 
 ## About Branches
 
-The **master** branch is where we do active development. Although we endeavor to keep the **master** branch stable, we do not guarantee that any given commit will deploy cleanly.
+The **develop** branch is where we do active development. Although we endeavor to keep the **develop** branch stable, we do not guarantee that any given commit will deploy cleanly.
 
 If you want a stable branch, we recommend that you use the **release-candidate** branch.
 
