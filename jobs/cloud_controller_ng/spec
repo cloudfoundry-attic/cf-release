@@ -29,6 +29,10 @@ packages:
   - syslog_aggregator
 
 properties:
+  ssl.skip_cert_verify:
+    description: "specifies that the job is allowed to skip ssl cert verification"
+    default: false
+
   syslog_aggregator.address:
     description: "IP address for syslog aggregator"
   syslog_aggregator.port:

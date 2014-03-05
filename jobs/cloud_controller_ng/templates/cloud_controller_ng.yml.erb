@@ -223,3 +223,7 @@ uaa_client_secret: <%= p("uaa.clients.cc_service_broker_client.secret") %>
 <% end %>
 
 diego: <%= p("ccng.diego") %>
+
+<% if_p("ssl.skip_cert_verify") do |skip_cert_verify|%>
+skip_cert_verify: <%= skip_cert_verify %>
+<% end %>
