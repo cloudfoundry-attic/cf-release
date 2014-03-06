@@ -94,3 +94,6 @@
 [submodule "src/acceptance-tests"]
 	path = src/acceptance-tests
 	url = https://github.com/cloudfoundry/cf-acceptance-tests
+[submodule "packages/ruby"]
+	path = packages/ruby
+	url = https://github.com/cloudfoundry/ruby-package
