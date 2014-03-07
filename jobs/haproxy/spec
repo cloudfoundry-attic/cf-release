@@ -12,6 +12,18 @@ properties:
   ha_proxy.ssl_pem:
     default:
     description: "SSL certificate (PEM file)"
+  ha_proxy.stats.enabled:
+    default: false
+    description: "Enable the HAProxy stats page"
+  ha_proxy.stats.port:
+    default: 8888
+    description: "Port HAPRoxy stats page is listening on"
+  ha_proxy.stats.username:
+    default:
+    description: "Username for auth"
+  ha_proxy.stats.password:
+    default:
+    description: "Password for auth"
   request_timeout_in_seconds:
     default: 300
     description: "Server and client timeouts in seconds"

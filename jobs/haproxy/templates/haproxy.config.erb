@@ -36,6 +36,16 @@ frontend ssl-in
     default_backend tcp-routers
 <% end %>
 
+<% if p("ha_proxy.stats.enabled") %>
+listen stats :<% p("ha_proxy.stats.port") %>
+    mode http
+    stats enable
+    stats hide-version
+    stats realm Haproxy\ Statistics
+    stats uri /
+    stats auth <% p("ha_proxy.stats.username") %>:<% p("ha_proxy.stats.password") %>
+<% end %>
+
 backend http-routers
     mode http
     balance roundrobin
