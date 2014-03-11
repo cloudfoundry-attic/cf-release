@@ -59,9 +59,6 @@ properties:
   description:
     default: "Cloud Foundry sponsored by Pivotal"
     description:
-  api_version:
-    default: "2.0.0"
-    description:
   domain:
     description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
   system_domain:
