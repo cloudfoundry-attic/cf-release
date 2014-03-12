@@ -1,5 +1,7 @@
 <% require 'json' %>
 {
+  "EtcdUrls": [<%= p("etcd_ips").map{|addr| "\"http://#{addr}:4001\""}.join(",")%>],
+  "EtcdMaxConcurrentRequests" : 10,
   "IncomingPort": <%= p("loggregator.incoming_port") %>,
   "OutgoingPort": <%= p("loggregator.outgoing_port") %>,
   "SkipCertVerify": <%= p("ssl.skip_cert_verify") %>,
