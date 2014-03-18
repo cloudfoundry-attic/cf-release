@@ -8,9 +8,9 @@ $InputTCPMaxSessions 1024
 <% if properties.syslog_aggregator.transport == "relp" %>
 $ModLoad imrelp
 $InputRELPServerRun <%= properties.syslog_aggregator.port %>
-<% elsif transport == "udp" %>
+<% elsif properties.syslog_aggregator.transport == "udp" %>
 $UDPServerRun <%= properties.syslog_aggregator.port %>
-<% elsif transport == "tcp" %>
+<% elsif properties.syslog_aggregator.transport == "tcp" %>
 $InputTCPServerRun <%= properties.syslog_aggregator.port %>
 <% else %>
 #only RELP, UDP, and TCP are supported
