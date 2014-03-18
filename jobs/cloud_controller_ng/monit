@@ -1,4 +1,3 @@
-<% if p("ccng.process_group") == "cloud_controller" %>
 check process cloud_controller_ng
   with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
@@ -36,29 +35,5 @@ check process nginx_newrelic_plugin
   start program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_newrelic_plugin_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/nginx_newrelic_plugin_ctl stop"
   group vcap
-<% end %>
-
-<% end %>
-
-<% if p("ccng.process_group") == "clock" %>
-check process cloud_controller_clock
-  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_clock.pid
-  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl start"
-  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl stop"
-  group vcap
-  if totalmem > 2250 Mb then alert
-  if totalmem > 2450 Mb then restart
-<% end %>
-
-<% if p("ccng.process_group") == "worker" %>
-<% (1..(p("ccng.jobs.generic.number_of_workers"))).each do |index| %>
-check process cloud_controller_jobs_<%= index %>
-  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_jobs_<%= index %>.pid
-  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl start <%= index %>"
-  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl stop <%= index %>"
-  group vcap
-  if totalmem > 2250 Mb then alert
-  if totalmem > 2450 Mb then restart
-<% end %>
 <% end %>
 

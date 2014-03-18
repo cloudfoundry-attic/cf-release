@@ -1,0 +1,228 @@
+---
+#Actually NGX host and port
+local_route: <%= spec.networks.send(properties.networks.apps).ip %>
+external_port: <%= p("ccng.external_port") %>
+
+pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
+development_mode: <%= p("ccng.development_mode") %>
+
+message_bus_servers:
+<% p("nats.machines").each do |ip| %>
+  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= ip %>:<%= p("nats.port") %>
+<% end %>
+
+external_domain:
+  - <%= p("ccng.external_host") %>.<%= p("domain") %>
+
+system_domain_organization: <%= p("system_domain_organization") %>
+system_domain: <%= p("system_domain") %>
+app_domains: [ <%= p("app_domains").join(", ") %> ]
+
+jobs:
+  global:
+    timeout_in_seconds: <%= p("ccng.jobs.global.timeout_in_seconds") %>
+  <% if_p("ccng.jobs.app_bits_packer.timeout_in_seconds") do |timeout| %>
+  app_bits_packer:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.app_events_cleanup.timeout_in_seconds") do |timeout| %>
+  app_events_cleanup:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.app_usage_events_cleanup.timeout_in_seconds") do |timeout| %>
+  app_usage_events_cleanup:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.blobstore_delete.timeout_in_seconds") do |timeout| %>
+  blobstore_delete:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.blobstore_upload.timeout_in_seconds") do |timeout| %>
+  blobstore_upload:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.droplet_deletion.timeout_in_seconds") do |timeout| %>
+  droplet_deletion:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.droplet_upload.timeout_in_seconds") do |timeout| %>
+  droplet_upload:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+  <% if_p("ccng.jobs.droplet_upload.timeout_in_seconds") do |timeout| %>
+  droplet_upload:
+    timeout_in_seconds: <%= timeout %>
+  <% end %>
+
+app_events:
+  cutoff_age_in_days: <%= p("ccng.app_events.cutoff_age_in_days") %>
+
+app_usage_events:
+  cutoff_age_in_days: <%= p("ccng.app_usage_events.cutoff_age_in_days") %>
+
+audit_events:
+  cutoff_age_in_days: <%= p("ccng.audit_events.cutoff_age_in_days") %>
+
+billing_event_writing_enabled: <%= p("ccng.billing_event_writing_enabled") %>
+
+default_app_memory: <%= p("ccng.default_app_memory") %>
+maximum_app_disk_in_mb: <%= p("ccng.maximum_app_disk_in_mb") %>
+
+request_timeout_in_seconds: <%= p("request_timeout_in_seconds") %>
+
+cc_partition: <%= p("ccng.cc_partition") %>
+
+bootstrap_admin_email: <%= p("ccng.bootstrap_admin_email") %>
+
+bulk_api:
+  auth_user: <%= p("ccng.bulk_api_user") %>
+  auth_password: "<%= p("ccng.bulk_api_password") %>"
+
+nginx:
+  use_nginx: true
+  instance_socket: "/var/vcap/sys/run/cloud_controller_ng/cloud_controller.sock"
+
+index: <%= spec.index %>
+name: <%= name %>
+
+info:
+  name: <%= p("name") %>
+  build: "<%= p("build") %>"
+  version: <%= p("version") %>
+  support_address: <%= p("support_address") %>
+  description: <%= p("description") %>
+
+<% if_p("ccng.directories.tmpdir") do |tmpdir| %>
+directories:
+ tmpdir: <%= tmpdir %>
+<% end %>
+
+logging:
+  file: /var/vcap/sys/log/cloud_controller_ng/cloud_controller_ng.log
+  <% if_p("syslog_aggregator.address") do %>
+  syslog: vcap.cloud_controller_ng
+  <% end %>
+  level: <%= p("ccng.logging_level") %>
+  max_retries: <%= p("ccng.logging_max_retries") %>
+
+<% if_p("loggregator_endpoint.host", "loggregator_endpoint.port", "loggregator_endpoint.shared_secret") do |host, port, shared_secret| %>
+loggregator:
+  router: <%= host %>:<%= port %>
+  shared_secret: <%= shared_secret %>
+  url: ws<%= "s" if p("logger_endpoint.use_ssl") %>://loggregator.<%= p("system_domain") %>:<%= p("logger_endpoint.port") %>
+<% end %>
+
+<% db = p("ccdb_ng.databases").find { |db| db["tag"] == "cc" } %>
+<% db_role = p("ccdb_ng.roles").find { |role| role["tag"] == "admin" } %>
+db: &db
+  database: <%= p("ccdb_ng.db_scheme") == "mysql" ? "mysql2" : p("ccdb_ng.db_scheme") %>://<%= db_role["name"] %>:<%= db_role["password"] %>@<%= p("ccdb_ng.address") %>:<%= p("ccdb_ng.port") %>/<%= db["name"] %>
+  max_connections: <%= p("ccdb_ng.max_connections") %>
+  pool_timeout: <%= p("ccdb_ng.pool_timeout") %>
+  log_level: <%= p("ccng.db_logging_level") %>
+
+<% scheme = p("uaa.no_ssl") ? "http" : "https"
+   domain = p("domain") %>
+
+<% if p("login.enabled") %>
+login:
+  url: <%= p("login.url", "#{scheme}://login.#{domain}") %>
+<% end %>
+uaa:
+  url: <%= p("uaa.url", "#{scheme}://uaa.#{domain}") %>
+  resource_id: <%= p("ccng.uaa_resource_id") %>
+  <% if_p("uaa.cc.token_secret") do |token_secret| %>
+  symmetric_secret: "<%= token_secret %>"
+  <% end %>
+  verification_key: <%= p("uaa.jwt.verification_key") ? ("|\n      " + p("uaa.jwt.verification_key").gsub("\n", "\n      ")) : '~' %>
+
+# App staging parameters
+staging:
+  timeout_in_seconds: <%= p("ccng.staging_timeout_in_seconds") %>
+  minimum_staging_memory_mb: <%= p("dea_next.staging_memory_limit_mb") %>
+  auth:
+    user: <%= p("ccng.staging_upload_user") %>
+    password: "<%= p("ccng.staging_upload_password") %>"
+
+maximum_health_check_timeout: <%= p("ccng.maximum_health_check_timeout") %>
+
+runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
+stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
+
+quota_definitions:
+  <% p("ccng.quota_definitions").each do |name, quota_properties| %>
+  <%= name %>:<% quota_properties.each do |key,value|%>
+    <%= key %>: <%= value %><% end %>
+  <% end %>
+
+default_quota_definition: <%= p("ccng.default_quota_definition") %>
+
+resource_pool:
+  minimum_size: <%= p("ccng.resource_pool.minimum_size") %>
+  maximum_size: <%= p("ccng.resource_pool.maximum_size") %>
+  resource_directory_key: <%= p("ccng.resource_pool.resource_directory_key") %>
+  <% if_p("ccng.resource_pool.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.resource_pool.cdn.uri") %>
+    key_pair_id: <%= p("ccng.resource_pool.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.resource_pool.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= p(["ccng.resource_pool.fog_connection", "ccng.default_fog_connection"]).to_json %>
+
+packages:
+  app_package_directory_key: <%= p("ccng.packages.app_package_directory_key") %>
+  <% if_p("ccng.packages.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.packages.cdn.uri") %>
+    key_pair_id: <%= p("ccng.packages.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.packages.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= p(["ccng.packages.fog_connection", "ccng.default_fog_connection"]).to_json %>
+
+droplets:
+  droplet_directory_key: <%= p("ccng.droplets.droplet_directory_key") %>
+  <% if_p("ccng.droplets.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.droplets.cdn.uri") %>
+    key_pair_id: <%= p("ccng.droplets.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.droplets.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= p(["ccng.droplets.fog_connection", "ccng.default_fog_connection"]).to_json %>
+
+buildpacks:
+  buildpack_directory_key: <%= p("ccng.buildpacks.buildpack_directory_key") %>
+  <% if_p("ccng.buildpacks.cdn") do %>
+  cdn:
+    uri: <%= p("ccng.buildpacks.cdn.uri") %>
+    key_pair_id: <%= p("ccng.buildpacks.cdn.key_pair_id") %>
+    private_key: <%= p("ccng.buildpacks.cdn.private_key").inspect %>
+  <% end %>
+  fog_connection: <%= p(["ccng.buildpacks.fog_connection", "ccng.default_fog_connection"]).to_json %>
+
+db_encryption_key: <%= p("ccng.db_encryption_key") %>
+
+trial_db:
+  guid: "78ad16cf-3c22-4427-a982-b9d35d746914"
+
+tasks_disabled: <%= p("ccng.tasks_disabled") %>
+hm9000_noop: <%= p("ccng.hm9000_noop") %>
+flapping_crash_count_threshold: <%= p("ccng.flapping_crash_count_threshold") %>
+
+disable_custom_buildpacks: <%= p("ccng.disable_custom_buildpacks") %>
+
+broker_client_timeout_seconds: <%= p("ccng.broker_client_timeout_seconds") %>
+
+renderer:
+  max_results_per_page: <%= p("ccng.renderer.max_results_per_page") %>
+  default_results_per_page: <%= p("ccng.renderer.default_results_per_page") %>
+  max_inline_relations_depth: <%= p("ccng.renderer.max_inline_relations_depth") %>
+
+<% if_p("uaa.clients.cc_service_broker_client.secret") do %>
+uaa_client_name: "cc_service_broker_client"
+uaa_client_secret: <%= p("uaa.clients.cc_service_broker_client.secret") %>
+<% end %>
+
+diego: <%= p("ccng.diego") %>
+
+<% if_p("ssl.skip_cert_verify") do |skip_cert_verify|%>
+skip_cert_verify: <%= skip_cert_verify %>
+<% end %>
