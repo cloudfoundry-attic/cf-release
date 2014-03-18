@@ -50,7 +50,7 @@ case $1 in
     <% end %>
 
     cd $CC_PACKAGE_DIR/cloud_controller_ng
-    <% task_name = "jobs:local"  %>
+    <% task_name = "jobs:generic" %>
     exec chpst -u vcap:vcap bundle exec rake <%= task_name %> \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
       > >(tee -a >(logger -p user.info -t vcap.jobs_work.stdout) $LOG_DIR/jobs_work.stdout.log) \
       2> >(tee -a >(logger -p user.error -t vcap.jobs_work.stderr) $LOG_DIR/jobs_work.stderr.log)<% else %>

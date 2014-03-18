@@ -43,8 +43,6 @@ properties:
 
     billing_event_writing_enabled: true
 
-    process_group: cloud_controller
-
     hm9000_noop: false
     diego: false
     default_app_memory: 1024

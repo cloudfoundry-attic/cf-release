@@ -181,7 +181,7 @@ jobs:
 
   - name: clock_global
     release: (( meta.release.name ))
-    template: cloud_controller_ng
+    template: cloud_controller_clock
     instances: 1
     resource_pool: medium_z1
     persistent_disk: 0
@@ -192,12 +192,10 @@ jobs:
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
-      ccng:
-        process_group: clock
 
   - name: api_worker_z1
     release: (( meta.release.name ))
-    template: cloud_controller_ng
+    template: cloud_controller_worker
     instances: 1
     resource_pool: small_z1
     persistent_disk: 0
@@ -208,13 +206,11 @@ jobs:
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
-      ccng:
-        process_group: worker
       nfs_server: (( meta.nfs_server ))
 
   - name: api_worker_z2
     release: (( meta.release.name ))
-    template: cloud_controller_ng
+    template: cloud_controller_worker
     instances: 1
     resource_pool: small_z2
     persistent_disk: 0
@@ -225,8 +221,6 @@ jobs:
       networks: (( meta.networks.z2 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
-      ccng:
-        process_group: worker
       nfs_server: (( meta.nfs_server ))
 
   - name: hm_z1

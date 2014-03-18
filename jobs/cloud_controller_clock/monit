@@ -1,0 +1,7 @@
+check process cloud_controller_clock
+  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_clock.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_clock_ctl stop"
+  group vcap
+  if totalmem > 2250 Mb then alert
+  if totalmem > 2450 Mb then restart
