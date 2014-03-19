@@ -9,7 +9,7 @@ CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
 
 RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
 LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
-PIDFILE=$RUN_DIR/cloud_controller_jobs_$INDEX.pid
+PIDFILE=$RUN_DIR/cloud_controller_worker_$INDEX.pid
 
 export CONFIG_DIR=$CC_JOB_DIR/config
 export CLOUD_CONTROLLER_NG_CONFIG=$CONFIG_DIR/cloud_controller_ng.yml
@@ -64,7 +64,7 @@ case $1 in
   ;;
 
   *)
-    echo "Usage: cloud_controller_jobs_ctl {start|stop}"
+    echo "Usage: cloud_controller_worker_ctl {start|stop}"
   ;;
 
 esac
