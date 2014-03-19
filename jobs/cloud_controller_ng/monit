@@ -11,10 +11,10 @@ check process cloud_controller_ng
   then restart
 
 <% (1..(p("ccng.jobs.local.number_of_workers"))).each do |index| %>
-check process cloud_controller_jobs_local_<%= index %>
-  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_jobs_<%= index %>.pid
-  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl start <%= index %>"
-  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_jobs_ctl stop <%= index %>"
+check process cloud_controller_worker_local_<%= index %>
+  with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_worker_<%= index %>.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_worker_ctl start <%= index %>"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_worker_ctl stop <%= index %>"
 <% if spec.index.to_i == 0 %>
   depends on cloud_controller_ng
 <% end %>
