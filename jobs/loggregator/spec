@@ -48,6 +48,8 @@ properties:
     description: "This property is not used by the job itself, but has the desired effect of restarting the loggregator jobs when the property changes on bosh deployment. See loggregator_trafficcontroller job spec for a description."
   loggregator_endpoint.shared_secret:
     description: "Shared secret used to verify cryptographically signed loggregator messages"
+  etcd_ips:
+    description: "IPs pointing to the ETCD cluster"
   nats.user:
     description: "Username for cc client to connect to NATS"
   nats.password:

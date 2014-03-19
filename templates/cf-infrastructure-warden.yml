@@ -9,10 +9,6 @@ meta:
     name: bosh-warden-boshlite-ubuntu
     version: latest
 
-  loggregator_endpoint:
-    z2:
-      host: "unused"
-
 update:
   canaries: 1
   max_in_flight: 50
@@ -95,6 +91,11 @@ properties:
       login:
         secret: login-secret
         redirect-uri: (( "http://login." domain ))
+      cc_service_broker_client:
+        secret: cc-broker-secret
+        scope: cloud_controller.write,openid,cloud_controller.read
+        authorities: clients.read,clients.write
+        authorized-grant-types: client_credentials
       developer_console:
         secret: console-secret
       app-direct:
@@ -107,7 +108,7 @@ properties:
         secret: space-mail-secret
     scim:
       users:
-      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write
     no_ssl: true
 
   login:
@@ -218,13 +219,13 @@ jobs:
     instances: 0
     networks:
       - name: cf1
-        static_ips: []
+        static_ips: (( static_ips(10) ))
 
   - name: etcd_z2
     instances: 0
     networks:
       - name: cf2
-        static_ips: []
+        static_ips: (( static_ips(9) ))
 
   # only need one router, and set up static IPs
   - name: router_z1
