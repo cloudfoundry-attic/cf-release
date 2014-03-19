@@ -2,13 +2,13 @@
 
 INDEX=$2
 
-export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
+export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_worker
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
 CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
 
-RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
-LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
+RUN_DIR=/var/vcap/sys/run/cloud_controller_worker
+LOG_DIR=/var/vcap/sys/log/cloud_controller_worker
 PIDFILE=$RUN_DIR/cloud_controller_jobs_$INDEX.pid
 
 export CONFIG_DIR=$CC_JOB_DIR/config

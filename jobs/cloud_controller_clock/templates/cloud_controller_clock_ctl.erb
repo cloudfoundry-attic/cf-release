@@ -1,12 +1,12 @@
 #!/bin/bash
 
-export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
+export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_clock
 export PATH=/var/vcap/packages/ruby/bin:$PATH
 
 CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
 
-RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
-LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
+RUN_DIR=/var/vcap/sys/run/cloud_controller_clock
+LOG_DIR=/var/vcap/sys/log/cloud_controller_clock
 PIDFILE=$RUN_DIR/cloud_controller_clock.pid
 
 export CONFIG_DIR=$CC_JOB_DIR/config
