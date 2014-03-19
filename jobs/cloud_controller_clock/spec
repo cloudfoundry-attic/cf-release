@@ -3,12 +3,9 @@ name: cloud_controller_clock
 templates:
   cloud_controller_ng.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl
-  handle_nfs_or_local_blobstore.sh.erb: bin/handle_nfs_or_local_blobstore.sh
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
-  nfs-common: config/nfs-common
-  idmapd.conf.erb: config/idmapd.conf
   newrelic.yml.erb: config/newrelic.yml
-  newrelic_plugin.yml.erb: config/newrelic_plugin.yml
+  stacks.yml.erb: config/stacks.yml
 
 packages:
   - common

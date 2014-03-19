@@ -3,7 +3,7 @@
 local_route: <%= spec.networks.send(properties.networks.apps).ip %>
 external_port: <%= p("ccng.external_port") %>
 
-pid_filename: /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
+pid_filename: /var/vcap/sys/run/cloud_controller_clock/cloud_controller_ng.pid
 development_mode: <%= p("ccng.development_mode") %>
 
 message_bus_servers:
@@ -98,7 +98,7 @@ directories:
 <% end %>
 
 logging:
-  file: /var/vcap/sys/log/cloud_controller_ng/cloud_controller_ng.log
+  file: /var/vcap/sys/log/cloud_controller_clock/cloud_controller_clock.log
   <% if_p("syslog_aggregator.address") do %>
   syslog: vcap.cloud_controller_ng
   <% end %>
@@ -146,7 +146,7 @@ staging:
 maximum_health_check_timeout: <%= p("ccng.maximum_health_check_timeout") %>
 
 runtimes_file: /var/vcap/jobs/cloud_controller_ng/config/runtimes.yml
-stacks_file: /var/vcap/jobs/cloud_controller_ng/config/stacks.yml
+stacks_file: /var/vcap/jobs/cloud_controller_clock/config/stacks.yml
 
 quota_definitions:
   <% p("ccng.quota_definitions").each do |name, quota_properties| %>
