@@ -9,7 +9,7 @@ CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
 
 RUN_DIR=/var/vcap/sys/run/cloud_controller_worker
 LOG_DIR=/var/vcap/sys/log/cloud_controller_worker
-PIDFILE=$RUN_DIR/cloud_controller_jobs_$INDEX.pid
+PIDFILE=$RUN_DIR/cloud_controller_worker_$INDEX.pid
 
 export CONFIG_DIR=$CC_JOB_DIR/config
 export CLOUD_CONTROLLER_NG_CONFIG=$CONFIG_DIR/cloud_controller_ng.yml
@@ -30,7 +30,7 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
-    pid_guard $PIDFILE "Cloud controller jobs"
+    pid_guard $PIDFILE "Cloud controller worker"
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
@@ -52,10 +52,10 @@ case $1 in
     cd $CC_PACKAGE_DIR/cloud_controller_ng
     <% task_name = "jobs:generic" %>
     exec chpst -u vcap:vcap bundle exec rake <%= task_name %> \<% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
-      > >(tee -a >(logger -p user.info -t vcap.jobs_work.stdout) $LOG_DIR/jobs_work.stdout.log) \
-      2> >(tee -a >(logger -p user.error -t vcap.jobs_work.stderr) $LOG_DIR/jobs_work.stderr.log)<% else %>
-      >>$LOG_DIR/jobs_work_$INDEX.stdout.log \
-      2>>$LOG_DIR/jobs_work_$INDEX.stderr.log
+      > >(tee -a >(logger -p user.info -t vcap.worker.stdout) $LOG_DIR/worker.stdout.log) \
+      2> >(tee -a >(logger -p user.error -t vcap.worker.stderr) $LOG_DIR/worker.stderr.log)<% else %>
+      >>$LOG_DIR/worker_$INDEX.stdout.log \
+      2>>$LOG_DIR/worker_$INDEX.stderr.log
       <% end %>
   ;;
 
@@ -64,7 +64,7 @@ case $1 in
   ;;
 
   *)
-    echo "Usage: cloud_controller_jobs_ctl {start|stop}"
+    echo "Usage: cloud_controller_worker_ctl {start|stop}"
   ;;
 
 esac
