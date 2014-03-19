@@ -1,11 +1,9 @@
 #!/bin/bash
 
-ETCD_VERSION="0.3.0"
-
 RUN_DIR=/var/vcap/sys/run/etcd
 LOG_DIR=/var/vcap/sys/log/etcd
 PIDFILE=$RUN_DIR/etcd.pid
-WORK_DIR=/var/vcap/store/etcd-$ETCD_VERSION
+WORK_DIR=/var/vcap/store/etcd
 
 source /var/vcap/packages/common/utils.sh
 
