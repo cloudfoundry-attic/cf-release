@@ -7,9 +7,6 @@
 [submodule "src/dea_next"]
   path = src/dea_next
   url = https://github.com/cloudfoundry/dea_ng.git
-[submodule "src/health_manager_next"]
-  path = src/health_manager_next
-  url = https://github.com/cloudfoundry/health_manager.git
 [submodule "src/router"]
   path = src/router
   url = https://github.com/cloudfoundry/router.git

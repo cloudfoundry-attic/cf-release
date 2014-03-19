@@ -229,16 +229,6 @@ jobs:
         process_group: worker
       nfs_server: (( meta.nfs_server ))
 
-  - name: hm_z1
-    release: (( meta.release.name ))
-    template: health_manager_next
-    instances: 0
-    resource_pool: medium_z1
-    networks:
-      - name: cf1
-    properties:
-      networks: (( meta.networks.z1 ))
-
   - name: etcd_leader_z1
     release: (( meta.release.name ))
     template: etcd
