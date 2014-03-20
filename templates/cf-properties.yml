@@ -102,7 +102,6 @@ properties:
 
   login:
     url: ~
-    enabled: ~
     catalina_opts: (( merge ))
     uaa_certificate: ~
     protocol: https
