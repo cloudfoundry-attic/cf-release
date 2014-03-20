@@ -14,6 +14,12 @@ tsdb:
   port: <%= properties.opentsdb.port %>
 <% end %>
 
+<% if properties.collector && properties.collector.use_graphite %>
+graphite:
+  host: <%= properties.graphite.address %>
+  port: <%= properties.graphite.port %>
+<% end %>
+
 <% if properties.collector && properties.collector.use_aws_cloudwatch %>
 aws_cloud_watch:
   access_key_id: <%= properties.collector.aws_access_key_id %>
