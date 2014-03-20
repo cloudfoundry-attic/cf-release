@@ -58,6 +58,9 @@ properties:
   collector.use_tsdb:
     description: "enable OpenTsdb plugin"
     default: false
+  collector.use_graphite:
+    description: "enable Graphite plugin"
+    default: false
   nats.address:
     description: "NATS address"
   nats.password:
@@ -70,3 +73,7 @@ properties:
     description: "IP address of OpenTsdb"
   opentsdb.port:
     description: "TCP port of OpenTsdb"
+  graphite.address:
+    description: "IP address of Graphite"
+  graphite.port:
+    description: "TCP port of Graphite"
