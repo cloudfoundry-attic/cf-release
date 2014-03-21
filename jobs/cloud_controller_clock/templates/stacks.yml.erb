@@ -1,5 +1,1 @@
-# lucid64 stack is just a default stack that was made
-# in the create_stacks_table migration
-default: "lucid64"
-
-stacks: <%= p("ccng.stacks", []).to_yaml.gsub("---", "") %>
+../../../src/cloud_controller_ng/bosh-templates/stacks.yml.erb
