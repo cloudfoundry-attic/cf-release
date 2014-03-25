@@ -404,6 +404,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z2.host ))
 
 properties:
+  support_address: (( merge || "http://support.cloudfoundry.com" ))
+  description: (( merge || "Cloud Foundry sponsored by Pivotal" ))
   domain: (( merge ))
   ssl:
     skip_cert_verify: (( merge || false ))
