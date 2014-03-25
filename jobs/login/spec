@@ -61,7 +61,7 @@ properties:
     default: https://network.gopivotal.com/login
   login.links.signup-network:
     description: URL for requesting to signup/register for an account at Pivotal Network
-    default: https://network.gopivotal.com/users/new
+    default: https://network.gopivotal.com/registrations/new
   login.port:
     default: 8080
     description:
