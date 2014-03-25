@@ -428,6 +428,7 @@ properties:
     kernel_network_tuning_enabled: true
     directory_server_protocol: https
     evacuation_bail_out_time_in_seconds: 600
+    logging_level: debug
 
   loggregator_endpoint:
     shared_secret: (( merge ))
