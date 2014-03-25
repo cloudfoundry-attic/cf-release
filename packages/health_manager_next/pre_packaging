@@ -1,4 +1,0 @@
-set -e -x
-
-cd ${BUILD_DIR}/health_manager_next
-BUNDLE_WITHOUT=development:test bundle package --all

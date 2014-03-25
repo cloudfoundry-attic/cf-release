@@ -1,6 +1,0 @@
-check process health_manager_next
-  with pidfile /var/vcap/sys/run/health_manager_next/health_manager_next.pid
-  start program "/var/vcap/jobs/health_manager_next/bin/health_manager_next_ctl start"
-  stop program "/var/vcap/jobs/health_manager_next/bin/health_manager_next_ctl stop"
-  group vcap
-
