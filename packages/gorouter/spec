@@ -3,7 +3,5 @@ name: gorouter
 dependencies:
 - golang
 files:
-- gorouter/src/code.google.com/p/gogoprotobuf/**/*.{go,golden,proto}
-- gorouter/src/code.google.com/p/gogoprotobuf/**/Makefile
-- gorouter/src/github.com/**/*.go
-- gorouter/src/launchpad.net/goyaml/**/*.{c,h,go}
+- gorouter/**/*.{go,golden,proto,c,h,}
+- gorouter/**/Makefile

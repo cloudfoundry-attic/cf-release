@@ -8,8 +8,8 @@
   path = src/dea_next
   url = https://github.com/cloudfoundry/dea_ng.git
 [submodule "src/router"]
-  path = src/router
-  url = https://github.com/cloudfoundry/router.git
+	path = src/gorouter
+	url = https://github.com/cloudfoundry/gorouter
 [submodule "src/stager"]
   path = src/stager
   url = https://github.com/cloudfoundry/stager.git
@@ -28,24 +28,6 @@
 [submodule "src/collector"]
   path = src/collector
   url = https://github.com/cloudfoundry/collector.git
-[submodule "src/gorouter/src/github.com/cloudfoundry/gorouter"]
-	path = src/gorouter/src/github.com/cloudfoundry/gorouter
-	url = https://github.com/cloudfoundry/gorouter.git
-[submodule "src/gorouter/src/github.com/cloudfoundry/yagnats"]
-	path = src/gorouter/src/github.com/cloudfoundry/yagnats
-	url = https://github.com/cloudfoundry/yagnats.git
-[submodule "src/gorouter/src/github.com/cloudfoundry/go_cfmessagebus"]
-	path = src/gorouter/src/github.com/cloudfoundry/go_cfmessagebus
-	url = https://github.com/cloudfoundry/go_cfmessagebus.git
-[submodule "src/gorouter/src/github.com/cloudfoundry/gosteno"]
-	path = src/gorouter/src/github.com/cloudfoundry/gosteno
-	url = https://github.com/cloudfoundry/gosteno.git
-[submodule "src/gorouter/src/github.com/rcrowley/go-metrics"]
-	path = src/gorouter/src/github.com/rcrowley/go-metrics
-	url = https://github.com/rcrowley/go-metrics.git
-[submodule "src/gorouter/src/github.com/nu7hatch/gouuid"]
-	path = src/gorouter/src/github.com/nu7hatch/gouuid
-	url = https://github.com/nu7hatch/gouuid.git
 [submodule "src/narc/src/github.com/cloudfoundry/gibson"]
 	path = src/narc/src/github.com/cloudfoundry/gibson
 	url = https://github.com/cloudfoundry/gibson.git
@@ -70,12 +52,6 @@
 [submodule "src/narc/src/github.com/nu7hatch/gouuid"]
 	path = src/narc/src/github.com/nu7hatch/gouuid
 	url = https://github.com/nu7hatch/gouuid.git
-[submodule "src/gorouter/src/github.com/cloudfoundry/loggregatorlib"]
-	path = src/gorouter/src/github.com/cloudfoundry/loggregatorlib
-	url = https://github.com/cloudfoundry/loggregatorlib.git
-[submodule "src/gorouter/src/code.google.com/p/gogoprotobuf"]
-	path = src/gorouter/src/code.google.com/p/gogoprotobuf
-	url = https://code.google.com/p/gogoprotobuf/
 [submodule "shared"]
 	path = shared
 	url = https://github.com/cloudfoundry/shared-release-packages.git
