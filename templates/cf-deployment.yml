@@ -32,6 +32,7 @@ update:
   max_in_flight: 1
   canary_watch_time: 30000-600000
   update_watch_time: 5000-600000
+  serial: true
 
 resource_pools:
   - name: small_z1
