@@ -54,6 +54,9 @@ properties:
   dea_next.disk_overcommit_factor:
     description:
     default: 1
+  dea_next.logging_level:
+    description: "Log level for DEA."
+    default: debug
   dea_next.max_staging_duration:
     description:
     default: 900
@@ -125,4 +128,3 @@ properties:
     default: 3456
   loggregator_endpoint.shared_secret:
     description: "The key used to sign log messages"
-
