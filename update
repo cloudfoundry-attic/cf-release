@@ -10,6 +10,16 @@ fi
 
 set -x
 
+echo "src/gorouter/ is being replaced by a submodule"
+
+if git status --porcelain | grep -q 'src/gorouter'; then
+  echo "leaving src/gorouter/ - it has uncommitted changes"
+
+else
+  echo "removing src/gorouter/ - it is being replaced by a submodule"
+  rm -rf src/gorouter/
+fi
+
 if [[ "$(git --version | grep 'version 1.7')x" != "x" ]]; then
   git pull && git submodule foreach --recursive git submodule sync && git submodule update --init --recursive
 else
