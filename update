@@ -1,53 +1,32 @@
 #!/bin/bash
+set -e
+
+submodule_warning='Uncommitted submodules changes will be clobbered'
 
 if [ "$1" == "--help" ]; then
   echo "USAGE: $0"
   echo "    This command takes no arguments."
   echo ""
   echo "This script does a git submodule update on all submodules"
+  echo ""
+  echo "NOTE: $submodule_warning"
   exit 0
 fi
 
-set -x
+echo ""
+echo "===> $submodule_warning <==="
+echo ""
 
-echo "src/gorouter/ is being replaced by a submodule"
+set -x # show the commands we are running
 
-if git status --porcelain | grep -q 'src/gorouter'; then
-  echo "leaving src/gorouter/ - it has uncommitted changes"
+git pull
 
-else
-  echo "removing src/gorouter/ - it is being replaced by a submodule"
-  rm -rf src/gorouter/
-fi
+# Update submodule pointers; Clean out any submodule changes
+git submodule foreach --recursive 'git submodule sync; git clean -d --force --force'
 
-if [[ "$(git --version | grep 'version 1.7')x" != "x" ]]; then
-  git pull && git submodule foreach --recursive git submodule sync && git submodule update --init --recursive
-else
-  git pull && git submodule sync --recursive && git submodule foreach --recursive git submodule sync  && git submodule update --init --recursive
-fi
+# Update submodule content, checkout if necessary
+git submodule update --init --recursive --force
 
-set +x
-echo
-echo
-echo welcome to...
-echo "        ___ "
-echo "  _  __|_  |"
-echo " | |/ / __/ "
-echo " |___/____/ "
-echo
-if [[ -d jobs/micro || -d src/cloud_controller ]]; then
-  echo "For v1, please change to the v1 branch."
-  echo
-  echo
-  echo Cleaning out old v1 files that were not removed from a previous "git pull"
-  echo "Press 'y' & 'y' to delete each unnecessary folder"
-  if [[ -d jobs/micro ]]; then
-    rm -ri jobs/micro
-  fi
-  for src in cloud_controller dea router stager vblob_src
-  do
-    if [[ -d src/$src ]]; then
-      rm -ri src/$src
-    fi
-  done
-fi
+set +x # stop showing commands
+
+echo "CF Release has been updated"
