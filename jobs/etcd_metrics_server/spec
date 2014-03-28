@@ -1,0 +1,43 @@
+---
+name: etcd_metrics_server
+
+templates:
+  ctl.erb: bin/ctl
+
+packages:
+  - common
+  - etcd_metrics_server
+
+properties:
+  etcd_metrics_server.etcd.machine:
+    description: "address of ETCD server to instrument"
+    default: "127.0.0.1"
+
+  etcd_metrics_server.etcd.port:
+    description: "port of ETCD server to instrument"
+    default: 4001
+
+  etcd_metrics_server.nats.machines:
+    description: "array of NATS addresses"
+
+  etcd_metrics_server.nats.port:
+    description: "NATS server port"
+    default: 4222
+
+  etcd_metrics_server.nats.username:
+    description: "NATS server username"
+
+  etcd_metrics_server.nats.password:
+    description: "NATS server password"
+
+  etcd_metrics_server.status.port:
+    description: "listening port for metrics server"
+    default: 5678
+
+  etcd_metrics_server.status.username:
+    description: "basic auth username for metrics server (leave empty for generated)"
+    default: ""
+
+  etcd_metrics_server.status.password:
+    description: "basic auth password for metrics server (leave empty for generated)"
+    default: ""

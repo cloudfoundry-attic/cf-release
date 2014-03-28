@@ -76,3 +76,6 @@
 [submodule "src/login"]
 	path = src/login
 	url = https://github.com/cloudfoundry/login-server.git
+[submodule "src/etcd-metrics-server"]
+	path = src/etcd-metrics-server
+	url = https://github.com/cloudfoundry-incubator/etcd-metrics-server.git
