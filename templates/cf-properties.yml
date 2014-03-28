@@ -98,6 +98,7 @@ properties:
     default_quota_definition: default
 
   login:
+    url: ~
     catalina_opts: (( merge ))
     uaa_certificate: ~
     protocol: https
@@ -134,6 +135,7 @@ properties:
     
     login:
       addnew: false
+      client_secret: ~
       
     clients:
       login:
