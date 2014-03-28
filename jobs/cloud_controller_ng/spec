@@ -3,6 +3,7 @@ name: cloud_controller_ng
 templates:
   nginx_ctl.erb: bin/nginx_ctl
   nginx.conf.erb: config/nginx.conf
+  nginx_drain.rb: bin/drain
   mime.types: config/mime.types
   cloud_controller_api.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_api_ctl.erb: bin/cloud_controller_ng_ctl
