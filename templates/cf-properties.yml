@@ -136,6 +136,7 @@ properties:
       addnew: false
       
     clients:
+      <<: (( merge || nil ))
       login:
         override: true
         scope: openid,oauth.approvals
@@ -183,4 +184,3 @@ properties:
         authorized-grant-types: client_credentials
         access-token-validity: 1209600
         refresh-token-validity: 1209600
-      cc_service_broker_client: ~
