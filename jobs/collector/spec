@@ -30,7 +30,7 @@ properties:
   collector.datadog_application_key:
     description: "Datadog application key"
   collector.deployment_name:
-    description: "name for this bosh deployment. All metrics will be tagged with deployment:XXX when sending them to CloudWatch and Datadog"
+    description: "name for this bosh deployment. All metrics will be tagged with deployment:XXX when sending them to CloudWatch, Datadog and Graphite"
   collector.intervals.discover:
     description: "the interval in seconds that the collector attempts to discover components"
     default: 60
@@ -61,6 +61,10 @@ properties:
   collector.use_graphite:
     description: "enable Graphite plugin"
     default: false
+  collector.graphite.address:
+    description: "IP address of Graphite"
+  collector.graphite.port:
+    description: "TCP port of Graphite"
   nats.address:
     description: "NATS address"
   nats.password:
@@ -73,7 +77,3 @@ properties:
     description: "IP address of OpenTsdb"
   opentsdb.port:
     description: "TCP port of OpenTsdb"
-  graphite.address:
-    description: "IP address of Graphite"
-  graphite.port:
-    description: "TCP port of Graphite"
