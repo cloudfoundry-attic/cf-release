@@ -134,7 +134,6 @@ properties:
       password: (( merge ))
     
     login:
-      addnew: false
       client_secret: ~
       
     clients:

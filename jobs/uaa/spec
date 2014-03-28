@@ -122,5 +122,3 @@ properties:
     description:
   uaa_client_auth_credentials.username:
     description:
-  uaa.login.addnew:
-    description: "If set to true, non existent client accounts are automatically added to the SCIM user database upon an authentication attempt" 
