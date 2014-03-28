@@ -228,7 +228,11 @@ jobs:
 
   - name: etcd_leader_z1
     release: (( meta.release.name ))
-    template: etcd
+    templates:
+      - name: etcd
+        release: (( meta.release.name ))
+      - name: etcd_metrics_server
+        release: (( meta.release.name ))
     instances: 1
     persistent_disk: 10024
     resource_pool: medium_z1
@@ -240,7 +244,11 @@ jobs:
 
   - name: etcd_z1
     release: (( meta.release.name ))
-    template: etcd
+    templates:
+      - name: etcd
+        release: (( meta.release.name ))
+      - name: etcd_metrics_server
+        release: (( meta.release.name ))
     instances: 1
     persistent_disk: 10024
     resource_pool: medium_z1
@@ -253,7 +261,11 @@ jobs:
 
   - name: etcd_z2
     release: (( meta.release.name ))
-    template: etcd
+    templates:
+      - name: etcd
+        release: (( meta.release.name ))
+      - name: etcd_metrics_server
+        release: (( meta.release.name ))
     instances: 1
     persistent_disk: 10024
     resource_pool: medium_z2
@@ -415,6 +427,12 @@ properties:
     use_gnatsd: (( merge || true ))
     debug: false
     trace: false
+
+  etcd_metrics_server:
+    nats:
+      machines: (( .properties.nats.machines ))
+      username: (( .properties.nats.user ))
+      password: (( .properties.nats.password ))
 
   dea_next:
     memory_mb: (( merge ))
