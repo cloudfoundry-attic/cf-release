@@ -116,6 +116,7 @@ properties:
     no_ssl: false
 
     scim:
+      userids_enabled: (( merge || false ))
       users: (( merge ))
 
     jwt:
