@@ -33,13 +33,19 @@ fi
 #setup Java and Maven paths
 export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH
 
+#setup .git directory
+GIT_DIR=${RELEASE_DIR}/src/uaa/.git
+if [ -f "${GIT_DIR}" ]; then
+  GIT_DIR=$(sed "/^gitdir: / s/gitdir: //" ${GIT_DIR})
+fi
+
 #Maven options for building
 export MAVEN_OPTS='-Xmx1g -XX:MaxPermSize=512m'
 
 #build cloud foundry war
 cd ${BUILD_DIR}/uaa
 mvn clean
-mvn -U -e -B package -DskipTests=true -Ddot.git.directory=${RELEASE_DIR}/src/uaa/.git
+mvn -U -e -B package -DskipTests=true -Ddot.git.directory=${GIT_DIR}
 cp uaa/target/cloudfoundry-identity-uaa-*.war ${BUILD_DIR}/uaa/cloudfoundry-identity-uaa.war
 
 #remove build resources
