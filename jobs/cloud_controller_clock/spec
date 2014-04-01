@@ -337,6 +337,9 @@ properties:
   ccng.default_app_memory:
     default: 1024
     description: "How much memory given to an app if not specified"
+  ccng.default_app_disk_in_mb:
+    default: 1024
+    description: "The default disk space an app gets"
   ccng.maximum_app_disk_in_mb:
     default: 2048
     description: "The maximum amount of disk a user can request"
