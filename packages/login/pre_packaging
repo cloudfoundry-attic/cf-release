@@ -33,13 +33,19 @@ fi
 #setup Java and Maven paths
 export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH
 
+#setup .git directory
+GIT_DIR=${RELEASE_DIR}/src/login/.git
+if [ -f "${GIT_DIR}" ]; then
+  GIT_DIR=$(sed "/^gitdir: / s/gitdir: //" ${GIT_DIR})
+fi
+
 #Maven options for building
 export MAVEN_OPTS='-Xmx1g -XX:MaxPermSize=512m'
 
 #build cloud foundry war
 cd ${BUILD_DIR}/login
 mvn clean
-mvn -U -e -B package -DskipTests=true -Ddot.git.directory=${RELEASE_DIR}/src/login/.git
+mvn -U -e -B package -DskipTests=true -Ddot.git.directory=${GIT_DIR}
 cp login-server/target/cloudfoundry-login-server-*.war ${BUILD_DIR}/login/cloudfoundry-login-server.war
 
 #remove build resources
