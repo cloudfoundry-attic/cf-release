@@ -231,6 +231,9 @@ properties:
   ccng.packages.app_package_directory_key:
     description: "Directory (bucket) used store app packages.  It does not have be pre-created."
     default: "cc-packages"
+  ccng.packages.max_package_size:
+    description: "Maximum size of application package"
+    default: 536870912
   ccng.packages.fog_connection:
     description: "Fog connection hash"
   ccng.packages.cdn.uri:
