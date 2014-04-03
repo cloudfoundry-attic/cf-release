@@ -1,0 +1,4 @@
+set -e -x
+
+cd ${BUILD_DIR}/buildpacks/nodejs
+git --git-dir ${RELEASE_DIR}/src/buildpacks/nodejs/.git describe --tags > gitinfo
