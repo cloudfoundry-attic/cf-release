@@ -97,6 +97,18 @@ properties:
     quota_definitions: (( merge || meta.default_quota_definitions ))
     default_quota_definition: default
 
+    user_buildpacks: (( merge || [] ))
+    system_buildpacks: (( merge || default_buildpacks ))
+    default_buildpacks:
+      - name: java_buildpack
+        package: buildpack_java
+      - name: ruby_buildpack
+        package: buildpack_ruby
+      - name: nodejs_buildpack
+        package: buildpack_nodejs
+
+    install_buildpacks: (( system_buildpacks user_buildpacks ))
+
   login:
     url: ~
     catalina_opts: (( merge ))

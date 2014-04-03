@@ -1,0 +1,5 @@
+---
+name: buildpack_nodejs
+dependencies:
+files:
+- buildpacks/nodejs/{bin,config,lib,resources,scripts,support,vendor}/**/*
