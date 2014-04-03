@@ -27,6 +27,9 @@ packages:
   - sqlite
   - ruby
   - syslog_aggregator
+  - buildpack_java
+  - buildpack_ruby
+  - buildpack_nodejs
 
 properties:
   ssl.skip_cert_verify:
@@ -426,3 +429,7 @@ properties:
 
   uaa.clients.cc_service_broker_client.secret:
     description: "Used for generating SSO clients for service brokers."
+
+  ccng.install_buildpacks:
+    description: "Set of buildpacks to install during deploy" 
+

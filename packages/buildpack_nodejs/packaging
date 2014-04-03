@@ -1,0 +1,5 @@
+set -e -x
+
+cd buildpacks/nodejs
+gitinfo=`cat gitinfo`
+zip -r ${BOSH_INSTALL_TARGET}/buildpack_nodejs_${gitinfo}.zip *

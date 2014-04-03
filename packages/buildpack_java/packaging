@@ -1,0 +1,5 @@
+set -e -x
+
+cd buildpacks/java
+gitinfo=`cat gitinfo`
+zip -r ${BOSH_INSTALL_TARGET}/buildpack_java_${gitinfo}.zip *
