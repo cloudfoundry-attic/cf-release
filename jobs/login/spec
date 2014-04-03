@@ -130,7 +130,7 @@ properties:
     description:
     default: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   login.spring_profiles:
-    description: "The spring bean profile to use for the spring configuration files. Only options at this time is ldap for additional profile. Default is empty. Setting this to ldap requires the uaa.login.addnew property to be set to true on the UAA."
+    description: "The spring bean profile to use for the spring configuration files. Only options at this time is ldap for additional profile. Default is empty."
   login.ldap.profile_type:
     description: "The file to be used for configuring the LDAP authentication. options are simple-bind, search-and-bind and search-and-compare"
   login.ldap.url:
