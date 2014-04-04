@@ -16,8 +16,8 @@ tsdb:
 
 <% if properties.collector && properties.collector.use_graphite %>
 graphite:
-  host: <%= properties.graphite.address %>
-  port: <%= properties.graphite.port %>
+  host: <%= properties.collector.graphite.address %>
+  port: <%= properties.collector.graphite.port %>
 <% end %>
 
 <% if properties.collector && properties.collector.use_aws_cloudwatch %>
