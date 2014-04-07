@@ -416,6 +416,9 @@ properties:
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in mb for staging tasks"
     default: 1024
+  dea_next.staging_disk_limit_mb:
+    description: "Disk limit in mb for staging tasks"
+    default: 2048
 
   ccng.renderer.max_results_per_page:
     description: "Maximum number of results returned per page"
