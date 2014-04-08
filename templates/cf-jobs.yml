@@ -26,6 +26,14 @@ meta:
   api_templates:
   - name: cloud_controller_ng
 
+  nats_templates:
+  - name: nats
+  - name: nats_stream_forwarder
+
+  dea_templates:
+  - name: dea_next
+  - name: dea_logging_agent
+
 jobs:
   - name: ha_proxy_z1
     release: (( meta.release.name ))
@@ -46,7 +54,7 @@ jobs:
 
   - name: nats_z1
     release: (( meta.release.name ))
-    template: (( merge || ["nats", "nats_stream_forwarder"] ))
+    templates: (( merge || meta.nats_templates ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -57,7 +65,7 @@ jobs:
 
   - name: nats_z2
     release: (( meta.release.name ))
-    template: (( merge || ["nats", "nats_stream_forwarder"] ))
+    templates: (( merge || meta.nats_templates ))
     instances: 1
     resource_pool: medium_z2
     networks:
@@ -300,7 +308,7 @@ jobs:
 
   - name: runner_z1
     release: (( meta.release.name ))
-    template: (( merge || ["dea_next", "dea_logging_agent"] ))
+    templates: (( merge || meta.dea_templates ))
     instances: 1
     update:
       max_in_flight: 1
@@ -315,7 +323,7 @@ jobs:
 
   - name: runner_z2
     release: (( meta.release.name ))
-    template: (( merge || ["dea_next", "dea_logging_agent"] ))
+    templates: (( merge || meta.dea_templates ))
     instances: 1
     update:
       max_in_flight: 1
