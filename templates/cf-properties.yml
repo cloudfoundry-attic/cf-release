@@ -46,6 +46,7 @@ properties:
     diego: false
     default_app_memory: 1024
     maximum_app_disk_in_mb: 2048
+    client_max_body_size: 1280M
 
     srv_api_uri: (( "https://api." domain ))
 
@@ -71,6 +72,7 @@ properties:
       app_package_directory_key: (( domain "-cc-packages" ))
       fog_connection: ~
       cdn: ~
+      max_package_size: 1073741824
 
     droplets:
       droplet_directory_key: (( domain "-cc-droplets" ))
