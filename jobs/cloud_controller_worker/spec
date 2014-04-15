@@ -416,6 +416,9 @@ properties:
   ccng.renderer.max_inline_relations_depth:
     description: "Maximum depth of inlined relationships in the result"
     default: 2
+  ccng.app_bits_upload_grace_period_in_seconds:
+    description: "Extra token expiry time while uploading big apps."
+    default: 1200
 
   uaa.clients.cc_service_broker_client.secret:
     description: "Used for generating SSO clients for service brokers."

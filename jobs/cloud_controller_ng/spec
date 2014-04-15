@@ -431,4 +431,7 @@ properties:
 
   ccng.install_buildpacks:
     description: "Set of buildpacks to install during deploy" 
+  ccng.app_bits_upload_grace_period_in_seconds:
+    description: "Extra token expiry time while uploading big apps."
+    default: 1200
 
