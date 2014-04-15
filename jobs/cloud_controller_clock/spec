@@ -350,7 +350,7 @@ properties:
     default: 3
     description: "The threshold of crashes after which the app is marked as flapping"
   ccng.client_max_body_size:
-    default: "1280M"
+    default: "1536M"
     description: "Maximum body size for nginx"
 
   ccng.disable_custom_buildpacks:
