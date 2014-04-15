@@ -33,8 +33,8 @@ datadog:
 <% end %>
 
 message_bus_uris:
-<% p("nats.machines").each do |ip| %>
-  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= ip %>:<%= p("nats.port") %>
+<% p("nats.machines").each do |address| %>
+  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= address %>:<%= p("nats.port") %>
 <% end %>
 
 intervals:
