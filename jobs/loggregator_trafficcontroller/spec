@@ -52,8 +52,8 @@ properties:
     description: "Username for cc client to connect to NATS"
   nats.password:
     description: "Password for cc client to connect to NATS"
-  nats.address:
-    description: "IP address of Cloud Foundry NATS server"
+  nats.machines:
+    description: "IP addresses of Cloud Foundry NATS servers"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
   loggregator_endpoint.shared_secret:

@@ -9,7 +9,7 @@
     "ApiHost": "<%= p("cc.srv_api_uri") %>",
     "SystemDomain": "<%= p("system_domain") %>",
 
-    "NatsHost": "<%= p("nats.address") %>",
+    "NatsHosts": <%= p("nats.machines") %>,
     "NatsPort": <%= p("nats.port") %>,
     "NatsUser": "<%= p("nats.user") %>",
     "NatsPass": "<%= p("nats.password") %>",
