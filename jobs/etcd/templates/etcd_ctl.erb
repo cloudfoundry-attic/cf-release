@@ -29,8 +29,8 @@ case $1 in
         <% if_p("leader_ip") do |leader_ip| %>\
         -peers=<%= leader_ip %>:7001 \
         <% end %>\
-        -peer-heartbeat-timeout=50 \
-        -peer-election-timeout=1000 \
+        -peer-heartbeat-timeout=<%= p("heartbeat_interval_in_milliseconds") %>\
+        -peer-election-timeout=<%= p("election_timeout_in_milliseconds") %>\
         1>>$LOG_DIR/etcd.stdout.log \
         2>>$LOG_DIR/etcd.stderr.log
     ;;
