@@ -161,9 +161,6 @@ properties:
   ccng.cc_partition:
     default: "default"
     description: "Deprecated. Defines a 'partition' for the health_manager job"
-  ccng.bootstrap_admin_email:
-    default: "admin@example.com"
-    description: "Deprecated."
 
   ccng.bulk_api_user:
     default: "bulk_api"
