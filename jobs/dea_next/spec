@@ -34,8 +34,6 @@ properties:
 
   domain:
     description: "DNS domain name for this Cloud Foundry deployment"
-  nats.address:
-    description: "IP address of NATS server"
   nats.password:
     description: "password for NATS login"
   nats.port:
