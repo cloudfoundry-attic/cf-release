@@ -146,6 +146,9 @@ properties:
   ccng.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
 
+  ccng.external_protocol:
+    default: "http"
+    description: "The protocol used to access the CC API from an external entity"
   ccng.external_host:
     default: "api"
     description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
