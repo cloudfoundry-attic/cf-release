@@ -85,8 +85,6 @@ properties:
     description: "The https_proxy accross the VMs"
   env.no_proxy:
     description: "Set No_Proxy accross the VMs"
-  nats.address:
-    description: "IP address of NATS server"
   nats.password:
     description: "Password for NATS login"
   nats.port:
