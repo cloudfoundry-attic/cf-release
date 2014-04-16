@@ -40,9 +40,7 @@ jobs:
     template: haproxy
     instances: 0
     resource_pool: router_z1
-    networks:
-      - name: cf1
-        static_ips: ~
+    networks: (( merge || nil ))
     properties:
       networks: (( meta.networks.z1 ))
       ha_proxy:
