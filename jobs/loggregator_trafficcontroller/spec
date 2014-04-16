@@ -37,6 +37,10 @@ properties:
   loggregator.outgoing_port:
     description: Port for outgoing log messages
     default: 8080
+  traffic_controller.incoming_port:
+    default: 3456
+  traffic_controller.outgoing_port:
+    default: 8080
   traffic_controller.status.user:
     description: username used to log into varz endpoint
     default: ""
