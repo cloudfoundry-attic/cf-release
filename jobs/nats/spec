@@ -3,13 +3,10 @@ name: nats
 templates:
   nats_ctl.erb: bin/nats_ctl
   nats.conf.erb: config/nats.conf
-  old_nats.yml.erb: config/old_nats.yml
-  old_nats_ctl: bin/old_nats_ctl
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
   - common
   - gnatsd
-  - nats
   - ruby
   - syslog_aggregator
 properties:
@@ -26,8 +23,6 @@ properties:
 
   networks.apps:
     description:
-  nats.use_gnatsd:
-    description: "Using gnatsd or ruby nats server"
   nats.user:
     description: "Username for server authentication."
   nats.password:
