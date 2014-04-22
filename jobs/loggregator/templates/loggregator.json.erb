@@ -1,6 +1,6 @@
 <% require 'json' %>
 {
-  "EtcdUrls": [<%= p("etcd_ips").map{|addr| "\"http://#{addr}:4001\""}.join(",")%>],
+  "EtcdUrls": [<%= p("etcd.machines").map{|addr| "\"http://#{addr}:4001\""}.join(",")%>],
   "EtcdMaxConcurrentRequests" : 10,
   "IncomingPort": <%= p("loggregator.incoming_port") %>,
   "OutgoingPort": <%= p("loggregator.outgoing_port") %>,
@@ -8,7 +8,7 @@
   "Index": <%= spec.index %>,
   "MaxRetainedLogMessages": <%= p("loggregator.maxRetainedLogMessages") %>,
   "SharedSecret": "<%= p("loggregator_endpoint.shared_secret") %>",
-  
+
   "NatsHosts": <%= p("nats.machines") %>,
   "NatsPort": <%= p("nats.port") %>,
   "NatsUser": "<%= p("nats.user") %>",
@@ -21,5 +21,5 @@
     <% end %>
     <% if_p("loggregator.blacklisted_syslog_ranges") do |_| %>
     , "BlackListIPs": <%= p("loggregator.blacklisted_syslog_ranges").to_json %>
-    <% end %>  
+    <% end %>
 }

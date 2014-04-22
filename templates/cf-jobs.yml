@@ -235,22 +235,6 @@ jobs:
         host: (( meta.loggregator_endpoint.z2.host ))
       nfs_server: (( meta.nfs_server ))
 
-  - name: etcd_leader_z1
-    release: (( meta.release.name ))
-    templates:
-      - name: etcd
-        release: (( meta.release.name ))
-      - name: etcd_metrics_server
-        release: (( meta.release.name ))
-    instances: 1
-    persistent_disk: 10024
-    resource_pool: medium_z1
-    networks:
-      - name: cf1
-        static_ips:  (( merge ))
-    properties:
-      networks: (( meta.networks.z1 ))
-
   - name: etcd_z1
     release: (( meta.release.name ))
     templates:
@@ -258,7 +242,7 @@ jobs:
         release: (( meta.release.name ))
       - name: etcd_metrics_server
         release: (( meta.release.name ))
-    instances: 1
+    instances: 2
     persistent_disk: 10024
     resource_pool: medium_z1
     networks:
@@ -266,7 +250,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      leader_ip: (( jobs.etcd_leader_z1.networks.cf1.static_ips.[0] ))
 
   - name: etcd_z2
     release: (( meta.release.name ))
@@ -283,7 +266,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      leader_ip: (( jobs.etcd_leader_z1.networks.cf1.static_ips.[0] ))
 
   - name: hm9000_z1
     release: (( meta.release.name ))
@@ -294,7 +276,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      etcd_ips: (( jobs.etcd_leader_z1.networks.cf1.static_ips jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
 
   - name: hm9000_z2
     release: (( meta.release.name ))
@@ -305,7 +286,6 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
-      etcd_ips: (( jobs.etcd_leader_z1.networks.cf1.static_ips jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
 
   - name: runner_z1
     release: (( meta.release.name ))
@@ -346,7 +326,6 @@ jobs:
       - name: cf1
         static_ips: (( merge ))
     properties:
-      etcd_ips: (( jobs.etcd_leader_z1.networks.cf1.static_ips jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
       networks: (( meta.networks.z1 ))
 
   - name: loggregator_z2
@@ -358,7 +337,6 @@ jobs:
       - name: cf2
         static_ips: (( merge ))
     properties:
-      etcd_ips: (( jobs.etcd_leader_z1.networks.cf1.static_ips jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
       networks: (( meta.networks.z2 ))
 
   - name: loggregator_trafficcontroller_z1
@@ -435,6 +413,9 @@ properties:
     machines: (( jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
     debug: false
     trace: false
+
+  etcd:
+    machines: (( jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
 
   etcd_metrics_server:
     nats:
