@@ -65,8 +65,8 @@ properties:
     description: "IP address of Graphite"
   collector.graphite.port:
     description: "TCP port of Graphite"
-  nats.address:
-    description: "NATS address"
+  nats.machines:
+    description: "IP of each NATS cluster member."
   nats.password:
     description: "NATS password"
   nats.port:

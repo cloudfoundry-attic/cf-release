@@ -1,0 +1,7 @@
+---
+name: buildpack_go
+dependencies:
+files:
+- buildpacks/go/Gemfile
+- buildpacks/go/Gemfile.lock
+- buildpacks/go/{bin,lib,vendor}/**/*

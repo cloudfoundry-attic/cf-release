@@ -30,6 +30,7 @@ packages:
   - buildpack_java
   - buildpack_ruby
   - buildpack_nodejs
+  - buildpack_go
 
 properties:
   ssl.skip_cert_verify:
@@ -79,8 +80,6 @@ properties:
     description: "Username for cc client to connect to NATS"
   nats.password:
     description: "Password for cc client to connect to NATS"
-  nats.address:
-    description: "IP address of Cloud Foundry NATS server"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
   nats.machines:
@@ -149,8 +148,6 @@ properties:
     description: "URL for the support attribute in the /info endpoint"
   ccng.info.description:
     description: "free form description for attribute in the /info endpoint"
-  ccng.api_version:
-    description: "API version for cloud_controller. Tells clienets what version to speak to this cloud_controller"
 
   ccng.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
@@ -161,9 +158,6 @@ properties:
   ccng.cc_partition:
     default: "default"
     description: "Deprecated. Defines a 'partition' for the health_manager job"
-  ccng.bootstrap_admin_email:
-    default: "admin@example.com"
-    description: "Deprecated."
 
   ccng.bulk_api_user:
     default: "bulk_api"
@@ -366,7 +360,7 @@ properties:
     default: 3
     description: "The threshold of crashes after which the app is marked as flapping"
   ccng.client_max_body_size:
-    default: "1280M"
+    default: "1536M"
     description: "Maximum body size for nginx"
 
   ccng.disable_custom_buildpacks:
@@ -416,7 +410,9 @@ properties:
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in mb for staging tasks"
     default: 1024
-
+  dea_next.staging_disk_limit_mb:
+    description: "Disk limit in mb for staging tasks"
+    default: 4096
   ccng.renderer.max_results_per_page:
     description: "Maximum number of results returned per page"
     default: 100
@@ -432,4 +428,7 @@ properties:
 
   ccng.install_buildpacks:
     description: "Set of buildpacks to install during deploy" 
+  ccng.app_bits_upload_grace_period_in_seconds:
+    description: "Extra token expiry time while uploading big apps."
+    default: 1200
 

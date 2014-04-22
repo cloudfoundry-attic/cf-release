@@ -6,11 +6,9 @@ templates:
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   uaa.yml.erb: config/uaa.yml
-  batch.yml.erb: config/batch.yml
   varz.yml.erb: config/varz.yml
   log4j.properties.erb: config/log4j.properties
   varz.log4j.properties.erb: config/varz.log4j.properties
-  batch.log4j.properties.erb: config/batch.log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
@@ -36,9 +34,9 @@ properties:
   uaa.admin.client_secret:
     description:
   uaa.batch.password:
-    description:
+    description: "Deprecated"
   uaa.batch.username:
-    description:
+    description: "Deprecated"
   uaa.catalina_opts:
     description:
     default: -Xmx768m -XX:MaxPermSize=256m
@@ -85,8 +83,6 @@ properties:
     description: "The https_proxy accross the VMs"
   env.no_proxy:
     description: "Set No_Proxy accross the VMs"
-  nats.address:
-    description: "IP address of NATS server"
   nats.password:
     description: "Password for NATS login"
   nats.port:

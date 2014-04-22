@@ -32,7 +32,11 @@ datadog:
   application_key: <%= properties.collector.datadog_application_key %>
 <% end %>
 
-mbus: nats://<%= properties.nats.user %>:<%= properties.nats.password %>@<%= properties.nats.address %>:<%= properties.nats.port %>
+message_bus_uris:
+<% p("nats.machines").each do |address| %>
+  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= address %>:<%= p("nats.port") %>
+<% end %>
+
 intervals:
   discover: <%= properties.collector.intervals.discover %>
   varz: <%= properties.collector.intervals.varz %>

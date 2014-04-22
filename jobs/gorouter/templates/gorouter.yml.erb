@@ -9,8 +9,8 @@ status:
 <% end %>
 
 nats:
-<% p("nats.machines").each do |ip| %>
-  - host: <%= ip %>
+<% p("nats.machines").each do |address| %>
+  - host: <%= address %>
     port: <%= p("nats.port") %>
     user: <%= p("nats.user") %>
     pass: "<%= p("nats.password") %>"

@@ -3,7 +3,7 @@
 	"LoggregatorAddress": "<%= p("loggregator_endpoint.host") %>:<%= p("loggregator_endpoint.port") %>",
         "SharedSecret": "<%= p("loggregator_endpoint.shared_secret") %>",
 
-	"NatsHost": "<%= p("nats.address") %>",
+	  "NatsHosts": <%= p("nats.machines") %>,
   	"NatsPort": <%= p("nats.port") %>,
   	"NatsUser": "<%= p("nats.user") %>",
   	"NatsPass": "<%= p("nats.password") %>",

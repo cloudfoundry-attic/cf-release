@@ -1,0 +1,7 @@
+set -e -x
+
+cd buildpacks/go
+gitinfo=`cat gitinfo`
+bundle exec rake package
+mv go_buildpack.zip ${BOSH_INSTALL_TARGET}/buildpack_go_${gitinfo}.zip
+

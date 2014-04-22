@@ -88,3 +88,6 @@
 [submodule "src/buildpacks/ruby"]
 	path = src/buildpacks/ruby
 	url = https://github.com/cloudfoundry/heroku-buildpack-ruby.git
+[submodule "src/buildpacks/go"]
+	path = src/buildpacks/go
+	url = https://github.com/pivotal-cf-experimental/cf-buildpack-go.git

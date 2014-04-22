@@ -1,4 +1,3 @@
-<% if p("nats.use_gnatsd") %>
 check process nats
   with pidfile /var/vcap/sys/run/nats/nats.pid
   start program "/var/vcap/jobs/nats/bin/nats_ctl start"
@@ -6,13 +5,4 @@ check process nats
   group vcap
   if totalmem > 500 Mb for 2 cycles then alert
   if totalmem > 3000 Mb then restart
-<% else %>
-check process nats
-  with pidfile /var/vcap/sys/run/nats/nats.pid
-  start program "/var/vcap/jobs/nats/bin/old_nats_ctl start"
-  stop program "/var/vcap/jobs/nats/bin/old_nats_ctl stop"
-  group vcap
-  if totalmem > 500 Mb for 2 cycles then alert
-  if totalmem > 3000 Mb then restart
-<% end %>
 

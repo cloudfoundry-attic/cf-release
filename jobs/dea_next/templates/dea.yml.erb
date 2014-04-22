@@ -1,7 +1,7 @@
 ---
 nats_servers:
-<% p("nats.machines").each do |ip| %>
-  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= ip %>:<%= p("nats.port") %>
+<% p("nats.machines").each do |address| %>
+  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= address %>:<%= p("nats.port") %>
 <% end %>
 
 dea_ruby: /usr/bin/ruby
