@@ -9,7 +9,7 @@
     "fetcher_network_timeout_in_seconds": 10,
 
     "store_schema_version": 4,
-    "store_urls": [<%= p("etcd_ips").map{|addr| "\"http://#{addr}:4001\""}.join(",")%>],
+    "store_urls": [<%= p("etcd.machines").map{|addr| "\"http://#{addr}:4001\""}.join(",")%>],
 
     "metrics_server_port": 0,
     "metrics_server_user": "",

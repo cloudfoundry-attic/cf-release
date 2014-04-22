@@ -210,17 +210,11 @@ jobs:
   - name: hm9000_z2
     instances: 0
 
-  - name: etcd_leader_z1
+  - name: etcd_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(9) ))
-
-  - name: etcd_z1
-    instances: 0
-    networks:
-      - name: cf1
-        static_ips: (( static_ips(10) ))
+        static_ips: (( static_ips(10, 11) ))
 
   - name: etcd_z2
     instances: 0
