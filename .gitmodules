@@ -88,3 +88,6 @@
 [submodule "src/buildpacks/ruby"]
 	path = src/buildpacks/ruby
 	url = https://github.com/cloudfoundry/heroku-buildpack-ruby.git
+[submodule "src/etcd"]
+	path = src/etcd
+	url = https://github.com/coreos/etcd.git
