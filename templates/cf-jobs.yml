@@ -165,7 +165,7 @@ jobs:
     release: (( meta.release.name ))
     template: login
     instances: 1
-    resource_pool: medium_z1
+    resource_pool: medium_z2
     networks:
       - name: cf2
     properties:
