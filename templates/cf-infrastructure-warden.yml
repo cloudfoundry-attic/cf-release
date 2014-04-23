@@ -234,6 +234,11 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(5) ))
 
+  - name: login_z2
+    instances: 0
+    networks:
+      - name: cf2
+
   # only need one runner
   #
   # also give it a static IP to make testing easier
