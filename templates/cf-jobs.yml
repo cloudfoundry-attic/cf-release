@@ -161,6 +161,16 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
 
+  - name: login_z2
+    release: (( meta.release.name ))
+    template: login
+    instances: 1
+    resource_pool: medium_z1
+    networks:
+      - name: cf2
+    properties:
+      networks: (( meta.networks.z2 ))
+
   - name: api_z1
     release: (( meta.release.name ))
     templates: (( merge || meta.api_templates ))
