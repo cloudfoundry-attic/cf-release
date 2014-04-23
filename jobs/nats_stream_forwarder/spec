@@ -21,16 +21,14 @@ properties:
     description: "Transport to be used when forwarding logs (tcp|udp|relp)."
     default: "tcp"
 
-  nats_props:
-    description:
-    default: "nats"
   networks.apps:
     description:
   nats.user:
     description: "Username for server authentication."
   nats.password:
     description: "Password for server authentication."
-  nats.address:
-    description: "NATS address"
   nats.port:
     description: "The port for the NATS server to listen on."
+  nats.machines:
+    description: "IP of each NATS cluster member."
+
