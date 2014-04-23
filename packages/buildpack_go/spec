@@ -5,4 +5,4 @@ files:
 - buildpacks/go/Gemfile
 - buildpacks/go/Gemfile.lock
 - buildpacks/go/Rakefile
-- buildpacks/go/{bin,lib,vendor}/**/*
+- buildpacks/go/{bin,lib,vendor,linux-amd64}/**/*
