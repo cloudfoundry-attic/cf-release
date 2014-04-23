@@ -20,6 +20,7 @@ packages:
   - buildpack_java
   - buildpack_ruby
   - buildpack_nodejs
+  - buildpack_go
 
 properties:
   ssl.skip_cert_verify:
