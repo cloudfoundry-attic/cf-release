@@ -90,7 +90,7 @@ analytics:
 spring_profiles: <%= properties.login.spring_profiles %>
 <% end %>
 
-<% if properties.login && properties.login.spring_profiles && properties.login.spring_profiles.index('ldap') >= 0 %>
+<% if properties.login && properties.login.spring_profiles && properties.login.spring_profiles.include?('ldap') %>
 ldap:
   profile:
     file: <%= (properties.login.ldap.profile_type == 'simple-bind') ? 'ldap/ldap-simple-bind.xml' : (properties.login.ldap.profile_type == 'search-and-bind') ? 'ldap/ldap-search-and-bind.xml' : 'ldap/ldap-search-and-compare.xml' %>
