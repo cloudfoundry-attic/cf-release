@@ -446,6 +446,7 @@ properties:
     memory_overcommit_factor: 3
     disk_mb: (( merge ))
     disk_overcommit_factor: 2
+    max_instances: 256
     staging_disk_inode_limit: 200000
     instance_disk_inode_limit: 200000
     deny_networks: (( merge || [] ))
