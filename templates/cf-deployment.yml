@@ -13,7 +13,9 @@ name: (( meta.environment ))
 
 director_uuid: (( merge ))
 
-releases: (( merge ))
+releases:
+  - name: cf
+    version: latest
 
 networks: (( merge ))
 
