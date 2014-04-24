@@ -7,7 +7,6 @@ templates:
 packages:
   - common
   - gnatsd
-  - ruby
   - syslog_aggregator
 properties:
   syslog_aggregator.address:
