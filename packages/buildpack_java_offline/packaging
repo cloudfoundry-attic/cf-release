@@ -1,0 +1,3 @@
+set -e
+
+cp java-buildpack/java-buildpack-offline-v2.1.zip ${BOSH_INSTALL_TARGET}

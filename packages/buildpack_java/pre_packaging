@@ -1,5 +1,0 @@
-set -e -x
-
-cd ${BUILD_DIR}/buildpacks/java
-git --git-dir ${RELEASE_DIR}/src/buildpacks/java/.git describe --tags > gitinfo
-BUNDLE_WITHOUT=development:test bundle package --all
