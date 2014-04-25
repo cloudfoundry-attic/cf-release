@@ -1,6 +1,8 @@
 <% self_ip = spec.networks.send(properties.networks.apps).ip %>
 net: "<%= self_ip %>"
 port: <%= p("nats.port") %>
+prof_port: <%= p("nats.prof_port") %>
+monitor_port: <%= p("nats.monitor_port") %>
 
 pid_file: "/var/vcap/sys/run/nats/nats.pid"
 
