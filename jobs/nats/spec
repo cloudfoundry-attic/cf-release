@@ -39,3 +39,9 @@ properties:
   nats.trace:
     description: "Enable trace logging output."
     default: false
+  nats.monitor_port:
+    description: "Port for varz and connz monitoring. 0 means disabled."
+    default: 0
+  nats.prof_port:
+    description: "Port for pprof. 0 means disabled."
+    default: 0

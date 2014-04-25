@@ -423,6 +423,8 @@ properties:
     machines: (( jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
     debug: false
     trace: false
+    monitor_port: 0
+    prof_port: 0
 
   etcd:
     machines: (( jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
