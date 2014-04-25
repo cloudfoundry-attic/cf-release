@@ -1,0 +1,10 @@
+set -e -x
+export HOME=/home/vcap
+cd buildpacks/go
+
+gitinfo=`cat gitinfo`
+
+bundle install --local --deployment --without=development test
+bundle exec rake package --trace
+chmod 644 go_buildpack.zip
+mv go_buildpack.zip ${BOSH_INSTALL_TARGET}/buildpack_go_${gitinfo}.zip
