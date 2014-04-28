@@ -1,4 +1,4 @@
-<% (1..(p("ccng.jobs.generic.number_of_workers"))).each do |index| %>
+<% (1..(p("cc.jobs.generic.number_of_workers"))).each do |index| %>
 check process cloud_controller_worker_<%= index %>
   with pidfile /var/vcap/sys/run/cloud_controller_worker/cloud_controller_worker_<%= index %>.pid
   start program "/var/vcap/jobs/cloud_controller_worker/bin/cloud_controller_worker_ctl start <%= index %>"

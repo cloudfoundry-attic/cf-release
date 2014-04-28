@@ -186,7 +186,6 @@ jobs:
     networks:
       - name: cf1
     properties:
-      ccdb: ccdb
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
@@ -201,7 +200,6 @@ jobs:
     networks:
       - name: cf2
     properties:
-      ccdb: ccdb
       networks: (( meta.networks.z2 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
@@ -216,7 +214,6 @@ jobs:
     networks:
       - name: cf1
     properties:
-      ccdb: ccdb
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
@@ -230,7 +227,6 @@ jobs:
     networks:
       - name: cf1
     properties:
-      ccdb: ccdb
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z1.host ))
@@ -245,7 +241,6 @@ jobs:
     networks:
       - name: cf2
     properties:
-      ccdb: ccdb
       networks: (( meta.networks.z2 ))
       loggregator_endpoint:
         host: (( meta.loggregator_endpoint.z2.host ))
@@ -488,9 +483,6 @@ properties:
 
   cc: (( merge ))
   ccdb: (( merge ))
-
-  ccng: (( cc ))
-  ccdb_ng: (( ccdb ))
 
   uaa: (( merge ))
   uaadb: (( merge ))
