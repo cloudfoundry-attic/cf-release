@@ -103,205 +103,205 @@ properties:
     description: "Timeout for requests in seconds."
     default: 300
 
-  ccng.external_port:
+  cc.external_port:
     description: "External Cloud Controller port"
     default: 9022
 
-  ccng.jobs.global.timeout_in_seconds:
+  cc.jobs.global.timeout_in_seconds:
     description: "The longest any job can take before it is cancelled unless overriden per job"
     default: 14400 # 4 hours
-  ccng.jobs.app_bits_packer.timeout_in_seconds:
+  cc.jobs.app_bits_packer.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  ccng.jobs.app_events_cleanup.timeout_in_seconds:
+  cc.jobs.app_events_cleanup.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  ccng.jobs.app_usage_events_cleanup.timeout_in_seconds:
+  cc.jobs.app_usage_events_cleanup.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  ccng.jobs.blobstore_delete.timeout_in_seconds:
+  cc.jobs.blobstore_delete.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  ccng.jobs.blobstore_upload.timeout_in_seconds:
+  cc.jobs.blobstore_upload.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  ccng.jobs.droplet_deletion.timeout_in_seconds:
+  cc.jobs.droplet_deletion.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  ccng.jobs.droplet_upload.timeout_in_seconds:
+  cc.jobs.droplet_upload.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  ccng.jobs.model_deletion.timeout_in_seconds:
+  cc.jobs.model_deletion.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
 
-  ccng.app_events.cutoff_age_in_days:
+  cc.app_events.cutoff_age_in_days:
     description: "How old an app event should stay in cloud controller database before being cleaned up"
     default: 31
-  ccng.app_usage_events.cutoff_age_in_days:
+  cc.app_usage_events.cutoff_age_in_days:
     description: "How old an app usage event should stay in cloud controller database before being cleaned up"
     default: 31
-  ccng.audit_events.cutoff_age_in_days:
+  cc.audit_events.cutoff_age_in_days:
     description: "How old an audit event should stay in cloud controller database before being cleaned up"
     default: 31
-  ccng.billing_event_writing_enabled:
+  cc.billing_event_writing_enabled:
     description: "If true, billing events are written to the CCDB."
     default: true
-  ccng.info.name:
+  cc.info.name:
     description: "name attribute in the /info endpoint"
-  ccng.info.build:
+  cc.info.build:
     description: "build attribute in the /info endpoint"
-  ccng.info.version:
+  cc.info.version:
     description: "version attribute in the /info endpoint"
-  ccng.info.support_address:
+  cc.info.support_address:
     description: "URL for the support attribute in the /info endpoint"
-  ccng.info.description:
+  cc.info.description:
     description: "free form description for attribute in the /info endpoint"
 
-  ccng.directories.tmpdir:
+  cc.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
 
-  ccng.external_host:
+  cc.external_host:
     default: "api"
     description: "Host part of the cloud_controller api URI, will be joined with value of 'domain'"
-  ccng.cc_partition:
+  cc.cc_partition:
     default: "default"
     description: "Deprecated. Defines a 'partition' for the health_manager job"
 
-  ccng.bulk_api_user:
+  cc.bulk_api_user:
     default: "bulk_api"
     description: "User used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
-  ccng.bulk_api_password:
+  cc.bulk_api_password:
     description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
 
-  ccng.uaa_resource_id:
+  cc.uaa_resource_id:
     default: "cloud_controller"
     description: "Name of service to register to UAA"
 
-  ccng.db_logging_level:
+  cc.db_logging_level:
     default: "debug2"
     description: "Log level for cc database operations"
 
-  ccng.logging_level:
+  cc.logging_level:
     default: "debug2"
     description: "Log level for cc"
-  ccng.logging_max_retries:
+  cc.logging_max_retries:
     default: 1
     description: "Passthru value for Steno logger"
 
-  ccng.staging_timeout_in_seconds:
+  cc.staging_timeout_in_seconds:
     default: 900
     description: "Timeout for staging a droplet"
-  ccng.maximum_health_check_timeout:
+  cc.maximum_health_check_timeout:
     default: 180
     description: "Maximum health check timeout that can be set for the app"
 
-  ccng.stacks:
+  cc.stacks:
     default:
       - name: "lucid64"
         description: "Ubuntu 10.04"
     description: "Tag used by the DEA to describe capabilities (i.e. 'Windows7', 'python-linux'). DEA and CC must agree."
 
-  ccng.staging_upload_user:
+  cc.staging_upload_user:
     default: ""
     description: "S3 Access key for staging droplets on AWS installs; Blobstore user for other IaaSs"
-  ccng.staging_upload_password:
+  cc.staging_upload_password:
     default: ""
     description: "S3 Secure Access Key for staging droplets on AWS installs; Blobstore password for other IaaSs"
 
-  ccng.quota_definitions:
+  cc.quota_definitions:
     description: "Hash of default quota definitions. Overriden by custom quota definitions."
 
-  ccng.default_quota_definition:
+  cc.default_quota_definition:
     default: default
     description: "Local to use a local (NFS) file system.  AWS to use AWS."
 
-  ccng.default_fog_connection.provider:
+  cc.default_fog_connection.provider:
     description: "Local fog provider (should always be 'Local'), used if fog_connection hash is not provided in the manifest"
     default: "Local"
-  ccng.default_fog_connection.local_root:
+  cc.default_fog_connection.local_root:
     description: "Local root when fog provider is not overridden (should be an NFS mount if using more than one cloud controller)"
     default: "/var/vcap/nfs/shared"
 
-  ccng.resource_pool.minimum_size:
+  cc.resource_pool.minimum_size:
     description: "Minimum size of a resource to add to the pool"
     default: 65536
-  ccng.resource_pool.maximum_size:
+  cc.resource_pool.maximum_size:
     description: "Maximum size of a resource to add to the pool"
     default: 536870912
-  ccng.resource_pool.resource_directory_key:
+  cc.resource_pool.resource_directory_key:
     description: "Directory (bucket) used store app resources.  It does not have be pre-created."
     default: "cc-resources"
-  ccng.resource_pool.fog_connection:
+  cc.resource_pool.fog_connection:
     description: "Fog connection hash"
-  ccng.resource_pool.cdn.uri:
+  cc.resource_pool.cdn.uri:
     description: "URI for a CDN to used for resource pool downloads"
     default: ""
-  ccng.resource_pool.cdn.private_key:
+  cc.resource_pool.cdn.private_key:
     description: "Private key for signing download URIs"
     default: ""
-  ccng.resource_pool.cdn.key_pair_id:
+  cc.resource_pool.cdn.key_pair_id:
     description: "Key pair name for signed download URIs"
     default: ""
 
-  ccng.packages.app_package_directory_key:
+  cc.packages.app_package_directory_key:
     description: "Directory (bucket) used store app packages.  It does not have be pre-created."
     default: "cc-packages"
-  ccng.packages.max_package_size:
+  cc.packages.max_package_size:
     description: "Maximum size of application package"
     default: 1073741824
-  ccng.packages.fog_connection:
+  cc.packages.fog_connection:
     description: "Fog connection hash"
-  ccng.packages.cdn.uri:
+  cc.packages.cdn.uri:
     description: "URI for a CDN to used for app package downloads"
     default: ""
-  ccng.packages.cdn.private_key:
+  cc.packages.cdn.private_key:
     description: "Private key for signing download URIs"
     default: ""
-  ccng.packages.cdn.key_pair_id:
+  cc.packages.cdn.key_pair_id:
     description: "Key pair name for signed download URIs"
     default: ""
 
-  ccng.droplets.droplet_directory_key:
+  cc.droplets.droplet_directory_key:
     description: "Directory (bucket) used store droplets.  It does not have be pre-created."
     default: "cc-droplets"
-  ccng.droplets.fog_connection:
+  cc.droplets.fog_connection:
     description: "Fog connection hash"
-  ccng.droplets.cdn.uri:
+  cc.droplets.cdn.uri:
     description: "URI for a CDN to used for droplet downloads"
     default: ""
-  ccng.droplets.cdn.private_key:
+  cc.droplets.cdn.private_key:
     description: "Private key for signing download URIs"
     default: ""
-  ccng.droplets.cdn.key_pair_id:
+  cc.droplets.cdn.key_pair_id:
     description: "Key pair name for signed download URIs"
     default: ""
 
-  ccng.buildpacks.buildpack_directory_key:
+  cc.buildpacks.buildpack_directory_key:
     description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
     default: "cc-buildpacks"
-  ccng.buildpacks.fog_connection:
+  cc.buildpacks.fog_connection:
     description: "Fog connection hash"
-  ccng.buildpacks.cdn.uri:
+  cc.buildpacks.cdn.uri:
     description: "URI for a CDN to used for buildpack downloads"
     default: ""
-  ccng.buildpacks.cdn.private_key:
+  cc.buildpacks.cdn.private_key:
     description: "Private key for signing download URIs"
     default: ""
-  ccng.buildpacks.cdn.key_pair_id:
+  cc.buildpacks.cdn.key_pair_id:
     description: "Key pair name for signed download URIs"
     default: ""
 
-  ccdb_ng.databases:
+  ccdb.databases:
     description:
-  ccdb_ng.roles:
+  ccdb.roles:
     description:
-  ccdb_ng.db_scheme:
+  ccdb.db_scheme:
     description:
     default: postgres
-  ccdb_ng.address:
+  ccdb.address:
     description:
-  ccdb_ng.port:
+  ccdb.port:
     description:
-  ccdb_ng.max_connections:
+  ccdb.max_connections:
     default: 25
     description: "Maximum connections for Sequel"
-  ccdb_ng.max_ar_connections:
+  ccdb.max_ar_connections:
     default: 5
     description: "Maximum connections for ActiveRecord"
-  ccdb_ng.pool_timeout:
+  ccdb.pool_timeout:
     default: 10
     description:
 
@@ -338,73 +338,73 @@ properties:
     description: "Port for logger endpoint listed at /v2/info"
     default: 443
 
-  ccng.db_encryption_key:
+  cc.db_encryption_key:
     default: ""
     description: "key for encrypting sensitive values in the CC database"
 
-  ccng.tasks_disabled:
+  cc.tasks_disabled:
     default: false
     description: "Disable tasks endpoint"
-  ccng.default_app_memory:
+  cc.default_app_memory:
     default: 1024
     description: "How much memory given to an app if not specified"
-  ccng.maximum_app_disk_in_mb:
+  cc.maximum_app_disk_in_mb:
     default: 2048
     description: "The maximum amount of disk a user can request"
-  ccng.hm9000_noop:
+  cc.hm9000_noop:
     default: true
     description: "Disable processing HM9000 messages"
-  ccng.diego:
+  cc.diego:
     default: false
     description: "Enable diego support"
-  ccng.flapping_crash_count_threshold:
+  cc.flapping_crash_count_threshold:
     default: 3
     description: "The threshold of crashes after which the app is marked as flapping"
-  ccng.client_max_body_size:
+  cc.client_max_body_size:
     default: "1536M"
     description: "Maximum body size for nginx"
 
-  ccng.disable_custom_buildpacks:
+  cc.disable_custom_buildpacks:
     default: false
     description: "Disable external (i.e. git) buildpacks? (Admin buildpacks and system buildpacks only.)"
 
-  ccng.broker_client_timeout_seconds:
+  cc.broker_client_timeout_seconds:
     default: 60
     description: "For requests to service brokers, this is the HTTP (open and read) timeout setting."
 
-  ccng.development_mode:
+  cc.development_mode:
     default: false
     description: "Enable development features for monitoring and insight"
 
-  ccng.newrelic.license_key:
+  cc.newrelic.license_key:
     default: ~
     description: "The api key for NewRelic. Setting this value will activate NewRelic monitoring."
-  ccng.newrelic.environment_name:
+  cc.newrelic.environment_name:
     default: "development"
     description: "The environment name used by NewRelic"
-  ccng.newrelic.developer_mode:
+  cc.newrelic.developer_mode:
     default: false
     description: "Activate NewRelic developer mode"
-  ccng.newrelic.monitor_mode:
+  cc.newrelic.monitor_mode:
     default: false
     description: "Activate NewRelic monitoring"
-  ccng.newrelic.log_file_path:
+  cc.newrelic.log_file_path:
     default: "/var/vcap/sys/log/cloud_controller_ng/newrelic"
     description: "The location for NewRelic to log to"
-  ccng.newrelic.capture_params:
+  cc.newrelic.capture_params:
     default: false
     description: "Capture and send query params to NewRelic"
-  ccng.newrelic.transaction_tracer.enabled:
+  cc.newrelic.transaction_tracer.enabled:
     default: false
     description: "Enable transaction tracing in NewRelic"
-  ccng.newrelic.transaction_tracer.record_sql:
+  cc.newrelic.transaction_tracer.record_sql:
     default: "off"
     description: "NewRelic's SQL statement recording mode: [off | obfuscated | raw]"
 
-  ccng.jobs.local.number_of_workers:
+  cc.jobs.local.number_of_workers:
     default: 2
     description: "Number of local cloud_controller_worker workers"
-  ccng.jobs.generic.number_of_workers:
+  cc.jobs.generic.number_of_workers:
     default: 1
     description: "Number of generic cloud_controller_worker workers"
 
@@ -414,22 +414,22 @@ properties:
   dea_next.staging_disk_limit_mb:
     description: "Disk limit in mb for staging tasks"
     default: 4096
-  ccng.renderer.max_results_per_page:
+  cc.renderer.max_results_per_page:
     description: "Maximum number of results returned per page"
     default: 100
-  ccng.renderer.default_results_per_page:
+  cc.renderer.default_results_per_page:
     description: "Default number of results returned per page if user does not specify"
     default: 50
-  ccng.renderer.max_inline_relations_depth:
+  cc.renderer.max_inline_relations_depth:
     description: "Maximum depth of inlined relationships in the result"
     default: 2
 
   uaa.clients.cc_service_broker_client.secret:
     description: "Used for generating SSO clients for service brokers."
 
-  ccng.install_buildpacks:
+  cc.install_buildpacks:
     description: "Set of buildpacks to install during deploy" 
-  ccng.app_bits_upload_grace_period_in_seconds:
+  cc.app_bits_upload_grace_period_in_seconds:
     description: "Extra token expiry time while uploading big apps."
     default: 1200
 
