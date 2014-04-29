@@ -1,5 +1,10 @@
 set -e -x
-
+export HOME=/home/vcap
 cd buildpacks/ruby
+
 gitinfo=`cat gitinfo`
-zip -r ${BOSH_INSTALL_TARGET}/buildpack_ruby_${gitinfo}.zip *
+
+bundle install --local --deployment --without=development test
+bundle exec rake package --trace
+chmod 644 ruby_buildpack.zip
+mv ruby_buildpack.zip ${BOSH_INSTALL_TARGET}/buildpack_ruby_${gitinfo}.zip
