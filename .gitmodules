@@ -7,7 +7,7 @@
 [submodule "src/dea_next"]
   path = src/dea_next
   url = https://github.com/cloudfoundry/dea_ng.git
-[submodule "src/router"]
+[submodule "src/gorouter"]
 	path = src/gorouter
 	url = https://github.com/cloudfoundry/gorouter
 [submodule "src/stager"]
