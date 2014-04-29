@@ -19,34 +19,6 @@ debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
   sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
   size: 169618
-nats/vendor/cache/json_pure-1.6.5.gem:
-  object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f525f001b6d1
-  sha: 739c40b6acebe9b7b3fdcaf3ff6bd4600ce3dcfb
-  size: 424960
-nats/vendor/cache/daemons-1.1.6.gem:
-  object_id: rest/objects/4e4e78bca51e121204e4e86ee8e2c904f525f2bc3482
-  sha: 5861f9ddae2a9ecc63b997e16fe69249b6694dc4
-  size: 33792
-nats/vendor/cache/eventmachine-0.12.11.cloudfoundry.3.gem:
-  object_id: rest/objects/4e4e78bca31e122204e4e9863b1b7404f525f3e0a9a3
-  sha: 7622ad909692f791ce6fce7f867f45194a1b4856
-  size: 221696
-nats/vendor/cache/thin-1.3.1.gem:
-  object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc04f525f4aa78ee
-  sha: e009f5ce3ba092299cd0810652e67c080ffaef14
-  size: 141824
-nats/vendor/cache/rack-1.4.1.gem:
-  object_id: rest/objects/4e4e78bca21e122204e4e9863926b104f525f57b3dcb
-  sha: 6a4c6c954d7fa87064b84afad720434402b6d257
-  size: 167936
-nats/vendor/cache/nats-0.4.22.beta.8.gem:
-  object_id: rest/objects/4e4e78bca51e121204e4e86ee8e2c904f525f674a2bc
-  sha: 2adef4b6685c2a1b91fb62fc16fa7e1ec7b5205b
-  size: 24576
-nats/vendor/cache/yajl-ruby-0.7.8.gem:
-  object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd04f671802ebaad
-  sha: d9a29e4321fd26dfa15cc17befccdb9442e42310
-  size: 555008
 mysql/client-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
   object_id: rest/objects/4e4e78bca21e122204e4e9863926b104fb68b259c9fc
   sha: 6e5a17195831688a5f14f20aa5d9cd5d5f4164db
@@ -405,16 +377,6 @@ ruby/ruby-1.9.3-p484.tar.gz:
   sha: !binary |-
     NmFlODBmNDI0OTY4YjVjZTY2MWVlOWIyYmVlMWMyMWFkYzllZTY3Yw==
   size: 12576996
-etcd/etcd-0.2.0-rc2.tar.gz:
-  object_id: 5f505262-3f19-425c-81c7-f1a64534c2ad
-  sha: !binary |-
-    YzEwZWI2Mzc3ZGJjMmZiYWNhOTdkZmU1Y2JmYmVlNmQ4Y2ZiZGIxZA==
-  size: 1493493
-etcd/etcd-0.2.0.tar.gz:
-  object_id: 5867ef9c-a611-4107-a97c-05f7698651db
-  sha: !binary |-
-    YzE4YmZlNTMzYTVjMTgwMDEyMTg4ZTQwMzliNzQwYjk1NjQ4OTRjZQ==
-  size: 1500812
 buildpack_cache/java-buildpack/http:%2F%2Fdownload.pivotal.io.s3.amazonaws.com%2Fapp-dynamics%2Fapp-dynamics-3.7.14.zip.cached:
   object_id: e9fdfa30-c183-447a-975b-e75df5a2688a
   sha: !binary |-
@@ -495,11 +457,6 @@ maven/apache-maven-3.1.1-bin.tar.gz:
   sha: !binary |-
     NjMwZWVhMjEwN2IwNzQyYWNiMzE1YjIxNDAwOWJhMDg2MDJkZGE1Zg==
   size: 5494427
-etcd/etcd-0.3.0.tar.gz:
-  object_id: b05118fc-2006-4453-9859-53a97e97383f
-  sha: !binary |-
-    MGYxOTEwNzAyNjhmN2M4N2NhMDQ0YWQyMzE3OTk5NWI5MjkwZTNjMA==
-  size: 911733
 golang/go1.2.linux-amd64.tar.gz:
   object_id: e66c98d4-40cc-4710-b83a-425dce5c0451
   sha: !binary |-
@@ -560,3 +517,13 @@ uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz:
   sha: !binary |-
     YWM3ZmViYzViYmZmMmRlZGY4YWRkNjI0YTcyN2E0YzBhYzZjM2QxMA==
   size: 65991397
+java-buildpack/java-buildpack-offline-v2.1.2.zip:
+  object_id: 01b7885f-8040-477a-815f-df60522762ee
+  sha: !binary |-
+    NDY0NzU4NjM3NWI0MTM1MTI2MTEwZmRiN2Y1ZDlmYWFhNGVhY2U1YQ==
+  size: 218797643
+java-buildpack/java-buildpack-v2.1.2.zip:
+  object_id: b0faa1ca-cfb9-4525-b414-0a416ce1eca7
+  sha: !binary |-
+    MGVhYzI0MWRjYzZiOGRlZjUwNjY0NDdhZTYyNDExYmZhNzA1NzJlMA==
+  size: 136315

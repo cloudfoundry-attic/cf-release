@@ -22,15 +22,24 @@ case $1 in
 
     echo $$ > $PIDFILE
 
+    <% my_ip = spec.networks.send(properties.networks.apps).ip %>
+
     exec chpst -u vcap:vcap /var/vcap/packages/etcd/etcd -snapshot -data-dir=$WORK_DIR \
-        -addr=<%= spec.networks.send(properties.networks.apps).ip %>:4001 \
-        -peer-addr=<%= spec.networks.send(properties.networks.apps).ip %>:7001 \
+        -addr=<%= my_ip %>:4001 \
+        -peer-addr=<%= my_ip %>:7001 \
         -name=<%= "#{name}-#{spec.index}" %> \
-        <% if_p("leader_ip") do |leader_ip| %>\
-        -peers=<%= leader_ip %>:7001 \
-        <% end %>\
-        -peer-heartbeat-timeout=50 \
-        -peer-election-timeout=1000 \
+        <%
+          # etcd crashes if all peers are missing. for the first deploy,
+          # we need at least one instance to come up without trying to
+          # connect to any peers.
+        %> \
+        <% if p("etcd.machines").length > 1 %> \
+          <% if p("etcd.machines").first != my_ip %> \
+        -peers=<%= p("etcd.machines").reject { |ip| ip == my_ip }.map { |m| "#{m}:7001" }.join(",") %> \
+          <% end %> \
+        <% end %> \
+        -peer-heartbeat-timeout=<%= p("heartbeat_interval_in_milliseconds") %>\
+        -peer-election-timeout=<%= p("election_timeout_in_milliseconds") %>\
         1>>$LOG_DIR/etcd.stdout.log \
         2>>$LOG_DIR/etcd.stderr.log
     ;;

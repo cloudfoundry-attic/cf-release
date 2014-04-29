@@ -1,0 +1,5 @@
+set -e -x
+
+cd ${BUILD_DIR}/buildpacks/go
+git --git-dir ${RELEASE_DIR}/src/buildpacks/go/.git describe --tags > gitinfo
+BUNDLE_WITHOUT=development:test bundle package --all

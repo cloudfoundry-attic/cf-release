@@ -1,7 +1,5 @@
 ---
 name: buildpack_java
-dependencies:
+
 files:
-- buildpacks/java/Gemfile
-- buildpacks/java/Gemfile.lock
-- buildpacks/java/{bin,config,lib,resources,scripts,support,vendor}/**/*
+  - java-buildpack/java-buildpack-v2.1.2.zip

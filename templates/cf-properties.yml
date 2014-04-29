@@ -107,6 +107,8 @@ properties:
         package: buildpack_ruby
       - name: nodejs_buildpack
         package: buildpack_nodejs
+      - name: go_buildpack
+        package: buildpack_go
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
