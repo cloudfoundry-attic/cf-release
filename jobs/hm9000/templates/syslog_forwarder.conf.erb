@@ -14,7 +14,7 @@ $ActionQueueHighWaterMark 8000          # Num messages. Assuming avg size of 512
 $ActionQueueTimeoutEnqueue 0            # Discard messages if the queue + disk is full
 $ActionQueueSaveOnShutdown on           # Save in-memory data to disk if rsyslog shuts down
 
-<% ip = `hostname -I | cut -d' ' -f1` %>
+<% ip = spec.networks.send(properties.networks.apps).ip %>
 template(name="CfLogTemplate" type="list") {
         constant(value="<")
         property(name="pri")
