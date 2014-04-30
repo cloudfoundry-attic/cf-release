@@ -85,7 +85,7 @@ oauth:
       authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
       scope: openid,oauth.approvals
-      redirect-uri: https://login.<%= properties.domain %>
+      redirect-uri: <%= properties.login.url %>
 <% end %>
 <% if properties.uaa.scim %>
 scim:
