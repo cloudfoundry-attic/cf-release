@@ -77,3 +77,5 @@ properties:
     description: "IP address of OpenTsdb"
   opentsdb.port:
     description: "TCP port of OpenTsdb"
+  networks.apps:
+    description: "Collector network information."

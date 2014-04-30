@@ -61,3 +61,5 @@ properties:
   ssl.skip_cert_verify:
     description: "when connecting over TLS, don't verify certificates"
     default: false
+  networks.apps:
+    description: "Loggregator network information."
