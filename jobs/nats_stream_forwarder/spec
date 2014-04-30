@@ -25,7 +25,7 @@ properties:
     description:
     default: "nats"
   networks.apps:
-    description:
+    description: "Nats stream forwarder network information."
   nats.user:
     description: "Username for server authentication."
   nats.password:

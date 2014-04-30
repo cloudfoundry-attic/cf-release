@@ -126,3 +126,5 @@ properties:
     default: 3456
   loggregator_endpoint.shared_secret:
     description: "The key used to sign log messages"
+  networks.apps:
+    description: "DEA network information."

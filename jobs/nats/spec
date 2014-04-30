@@ -21,7 +21,7 @@ properties:
     default: "tcp"
 
   networks.apps:
-    description:
+    description: "NATS network information"
   nats.user:
     description: "Username for server authentication."
   nats.password:
