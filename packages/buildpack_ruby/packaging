@@ -1,5 +1,5 @@
 set -e -x
-export HOME=/home/vcap
+
 cd buildpacks/ruby
 
 gitinfo=`cat gitinfo`
