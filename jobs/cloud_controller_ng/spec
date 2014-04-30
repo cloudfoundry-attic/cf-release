@@ -75,7 +75,7 @@ properties:
     description: "Array of domains for user apps (example: 'user.app.space.foo', a user app called 'neat' will listen at 'http://neat.user.app.space.foo')"
 
   networks.apps:
-    description: "TODO"
+    description: "Cloud controller network information."
 
   nats.user:
     description: "Username for cc client to connect to NATS"
