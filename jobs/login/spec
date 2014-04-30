@@ -85,8 +85,6 @@ properties:
     description: "IP of each NATS cluster member."
   networks.apps:
     description: "The App network name"
-  uaa.clients.login.secret:
-    description:
   uaa.dump_requests:
     description:
   uaa.login.client_secret:
