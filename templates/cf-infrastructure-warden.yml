@@ -90,10 +90,9 @@ properties:
     batch:
       username: batch-username
       password: batch-password
+    login:
+      client_secret: login-secret
     clients:
-      login:
-        secret: login-secret
-        redirect-uri: (( "http://login." domain ))
       cc-service-dashboards:
         secret: cc-broker-secret
         scope: openid,cloud_controller_service_permissions.read

@@ -41,11 +41,7 @@ tiles: <% properties.login.tiles.each do |tile| %>
 <% end %>
 
 # The secret that this login server will use to authenticate to the uaa
-<% if !properties.uaa.clients || !properties.uaa.clients.login %>
 LOGIN_SECRET: <%= properties.uaa.login.client_secret %>
-<% else %>
-LOGIN_SECRET: <%= properties.uaa.clients.login.secret %>
-<% end %>
 <% if !properties.uaa.require_https.nil? %>
 require_https: <%= properties.uaa.require_https %>
 <% end %>
