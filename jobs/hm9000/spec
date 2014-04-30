@@ -49,3 +49,5 @@ properties:
   ssl.skip_cert_verify:
     description: "when connecting over https, ignore bad ssl certificates"
     default: false
+  networks.apps:
+    description: "HM9000 network information."

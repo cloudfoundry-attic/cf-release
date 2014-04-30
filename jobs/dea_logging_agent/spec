@@ -48,3 +48,5 @@ properties:
     description: "IP addresses of Cloud Foundry NATS servers"
   nats.port:
     description: "IP port of Cloud Foundry NATS server"
+  networks.apps:
+    description: "DEA Logging Agent network information."
