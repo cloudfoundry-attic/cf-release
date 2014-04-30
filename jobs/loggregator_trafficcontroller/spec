@@ -67,4 +67,5 @@ properties:
     default: false
   cc.srv_api_uri:
     description: "API URI of cloud controller"
-
+  networks.apps:
+    description: "Loggregator Traffic Controller network information."
