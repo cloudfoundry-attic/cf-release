@@ -2,6 +2,7 @@
 set -e
 
 submodule_warning='Uncommitted submodules changes will be clobbered'
+unversioned_change_warning='Unversioned changes will be clobbered'
 
 if [ "$1" == "--help" ]; then
   echo "USAGE: $0"
@@ -17,6 +18,10 @@ echo ""
 echo "===> $submodule_warning <==="
 echo ""
 
+echo ""
+echo "===> $unversioned_change_warning <==="
+echo ""
+
 set -x # show the commands we are running
 
 git pull
@@ -26,6 +31,8 @@ git submodule foreach --recursive 'git submodule sync; git clean -d --force --fo
 
 # Update submodule content, checkout if necessary
 git submodule update --init --recursive --force
+
+git clean -ffd
 
 set +x # stop showing commands
 
