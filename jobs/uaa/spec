@@ -118,3 +118,6 @@ properties:
     description:
   uaa_client_auth_credentials.username:
     description:
+
+  login.url:
+    description: "The URL for the login server."

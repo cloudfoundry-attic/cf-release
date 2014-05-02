@@ -113,7 +113,7 @@ properties:
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
   login:
-    url: ~
+    url: (( "https://login." domain ))
     catalina_opts: (( merge ))
     uaa_certificate: ~
     protocol: https
