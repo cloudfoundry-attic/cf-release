@@ -1,0 +1,17 @@
+set -e
+
+cd cli
+
+if uname | grep Darwin; then
+  cli=cf-darwin-amd64.tgz
+else
+  cli=cf-linux-amd64.tgz
+fi
+
+tar xzf $cli
+
+BIN_DIR=${BOSH_INSTALL_TARGET}/bin
+
+mkdir -p ${BIN_DIR}
+
+cp cf ${BIN_DIR}/gcf
