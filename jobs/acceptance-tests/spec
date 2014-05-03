@@ -1,0 +1,24 @@
+---
+name: acceptance-tests
+packages:
+  - golang
+  - cli
+  - acceptance-tests
+templates:
+  run.erb: bin/run
+  config.json.erb: bin/config.json
+properties:
+  acceptance_tests.api:
+    description: The Elastic Runtime API endpoint URL
+  acceptance_tests.apps_domain:
+    description: The Elastic Runtime Appliction Domain
+  acceptance_tests.admin_user:
+    description: The Elastic Runtime API admin user
+  acceptance_tests.admin_password:
+    description: The Elastic Runtime API admin user's password
+  acceptance_tests.skip_ssl_validation:
+    default: false
+    description: Toggles cli verification of the Elastic Runtime API SSL certificate
+  acceptance_tests.nodes:
+    default: 2
+    description: The number of parallel test executors to spawn. The larger the number the higher the stress on the system.

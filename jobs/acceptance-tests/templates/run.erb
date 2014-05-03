@@ -1,0 +1,35 @@
+#!/bin/bash -l
+
+set -e -x
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export PATH=/var/vcap/packages/git/bin:${PATH}
+export PATH=${GOROOT}/bin:${PATH}
+
+export PATH=/var/vcap/packages/cli/bin:${PATH} # put the cli on the path
+
+export GOPATH=/var/vcap/packages/acceptance-tests
+export PATH=${GOPATH}/bin:${PATH}
+
+export GOPATH=${PWD}/Godeps/_workspace:${GOPATH}
+export PATH=${PWD}/Godeps/_workspace/bin:${PATH}
+
+export CF_COLOR=false
+export CONFIG=/var/vcap/jobs/acceptance-tests/bin/config.json
+
+cd /var/vcap/packages/acceptance-tests/src/github.com/cloudfoundry/cf-acceptance-tests
+
+echo '################################################################################################################'
+echo $(go version)
+echo CONFIG=$CONFIG
+cat $CONFIG
+env | sort
+echo '################################################################################################################'
+
+echo "Running acceptance tests..."
+
+EXITSTATUS=0
+./bin/test -randomizeAllSpecs -nodes=<%= properties.acceptance_tests.nodes %> || EXITSTATUS=$?
+
+echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
+exit $EXITSTATUS
