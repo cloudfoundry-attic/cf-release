@@ -132,6 +132,8 @@ properties:
       home: (( "https://console." domain ))
       passwd: (( "https://console." domain "/password_resets/new" ))
       signup: (( "https://console." domain "/register" ))
+      network: (( "https://network." domain ))
+      signup-network: (( "https://network." domain "/registrations/new" ))
 
   uaa:
     catalina_opts: (( merge ))
