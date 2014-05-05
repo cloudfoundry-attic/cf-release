@@ -65,9 +65,7 @@ case $1 in
     /var/vcap/jobs/login/bin/install_crt ldap.crt ldapcert
     <% end %>
 
-    <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-    <% end %>
 
     # Generate a random usernames and passwords
     username="$RANDOM-$RANDOM-$RANDOM-$RANDOM"

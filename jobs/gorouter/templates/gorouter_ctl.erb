@@ -57,9 +57,7 @@ case $1 in
     # Allowed number of open file descriptors
     ulimit -n 100000
 
-    <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/gorouter/config
-    <% end %>
 
     (crontab -l | sed /gorouter.*logrotate/d; cat /var/vcap/jobs/gorouter/config/gorouter_logrotate.cron) | sed /^$/d | crontab
 

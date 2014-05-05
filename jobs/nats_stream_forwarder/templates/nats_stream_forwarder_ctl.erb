@@ -19,9 +19,7 @@ case $1 in
 
     PATH=/var/vcap/packages/ruby/bin:$PATH
 
-    <% if_p("syslog_aggregator") do %>
-        /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
-    <% end %>
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
 
     echo $$ > $PIDFILE
     exec bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>' \
