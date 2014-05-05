@@ -4,4 +4,5 @@ dependencies:
 files:
 - buildpacks/ruby/Gemfile
 - buildpacks/ruby/Gemfile.lock
+- buildpacks/ruby/Rakefile
 - buildpacks/ruby/{bin,config,lib,resources,scripts,support,vendor}/**/*
