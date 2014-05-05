@@ -55,9 +55,7 @@ case $1 in
     echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
     <% end %>
 
-    <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-    <% end %>
 
     exec /var/vcap/packages/ruby/bin/ruby /var/vcap/packages/dea_next/bin/dea \
          $JOB_DIR/config/dea.yml \

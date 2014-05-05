@@ -22,9 +22,7 @@ case $1 in
 
     export CONFIG_FILE=$JOB_DIR/config/config.yml
 
-    <% if properties.syslog_aggregator %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-    <% end %>
 
     cd /var/vcap/packages/collector
 
