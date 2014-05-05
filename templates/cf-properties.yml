@@ -112,7 +112,7 @@ properties:
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
-    stacks:
+    stacks: ~
 
   login:
     url: ~
