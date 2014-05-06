@@ -402,6 +402,10 @@ resource_pools:
     cloud_properties:
       name: random
 
+  - name: small_errand
+    cloud_properties:
+      name: random
+
 networks:
 - name: cf1
   subnets:
