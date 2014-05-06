@@ -2,4 +2,6 @@
 name: buildpack_nodejs
 dependencies:
 files:
-- buildpacks/nodejs/{bin,config,lib,resources,scripts,support,vendor}/**/*
+- buildpacks/nodejs/Gemfile
+- buildpacks/nodejs/Gemfile.lock
+- buildpacks/nodejs/{bin,config,lib,resources,scripts,support,node_modules,tmp,vendor}/**/*
