@@ -410,6 +410,15 @@ jobs:
     networks:
       - name: cf1
 
+  - name: smoke_tests_z1
+    release: (( meta.release.name ))
+    template: smoke-tests
+    instances: 1
+    resource_pool: small_z1
+    lifecycle: errand
+    networks:
+      - name: cf1
+
 properties:
   support_address: (( merge || "http://support.cloudfoundry.com" ))
   description: (( merge || "Cloud Foundry sponsored by Pivotal" ))
@@ -506,4 +515,6 @@ properties:
   opentsdb: (( merge || nil ))
 
   acceptance_tests: (( merge || nil ))
+
+  smoke_tests: (( merge || nil ))
 

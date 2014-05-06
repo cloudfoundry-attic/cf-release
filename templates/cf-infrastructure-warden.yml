@@ -173,6 +173,15 @@ properties:
     admin_password: admin
     skip_ssl_validation: true
 
+  smoke_tests:
+    api:  (( "api." domain ))
+    apps_domain: (( domain ))
+    user: admin
+    password: admin
+    org: SMOKE_TEST_ORG
+    space: SMOKE_TEST_SPACE
+    skip_ssl_validation: true
+
 jobs:
   # specify nats static IP
   - name: nats_z1
