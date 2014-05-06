@@ -2,4 +2,7 @@ set -e -x
 
 cd buildpacks/nodejs
 gitinfo=`cat gitinfo`
-zip -r ${BOSH_INSTALL_TARGET}/buildpack_nodejs_${gitinfo}.zip *
+
+./bin/package offline
+chmod 644 nodejs_buildpack.zip
+mv nodejs_buildpack.zip ${BOSH_INSTALL_TARGET}/buildpack_nodejs_${gitinfo}.zip
