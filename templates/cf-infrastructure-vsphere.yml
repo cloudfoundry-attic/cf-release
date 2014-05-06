@@ -72,6 +72,12 @@ resource_pools:
       disk: 2048
       cpu: 1
 
+  - name: small_errand
+    cloud_properties:
+      ram: 1024
+      disk: 2048
+      cpu: 1
+
 
 jobs:
   - name: logs_z1
