@@ -38,6 +38,7 @@ export MAVEN_OPTS='-Xmx1g -XX:MaxPermSize=512m'
 
 #build cloud foundry war
 cd ${BUILD_DIR}/login
+unset GEM_PATH
 mvn clean
 mvn -U -e -B package -DskipTests=true -Ddot.git.directory=${RELEASE_DIR}/src/login/.git
 cp login-server/target/cloudfoundry-login-server-*.war ${BUILD_DIR}/login/cloudfoundry-login-server.war
