@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export PATH=/var/vcap/packages/git/bin:${PATH}
+export PATH=${GOROOT}/bin:${PATH}
+
+export PATH=/var/vcap/packages/cli/bin:${PATH} # put the cli on the path
+
+export GOPATH=/var/vcap/packages/smoke-tests
+export PATH=${GOPATH}/bin:${PATH}
+
+cd /var/vcap/packages/smoke-tests/src/github.com/cloudfoundry-incubator/cf-smoke-tests
+
+export GOPATH=${PWD}/Godeps/_workspace:${GOPATH}
+export PATH=${PWD}/Godeps/_workspace/bin:${PATH}
+
+export CONFIG=/var/vcap/jobs/smoke-tests/bin/config.json
+
+echo '################################################################################################################'
+echo $(go version)
+echo CONFIG=${CONFIG}
+cat ${CONFIG}
+env | sort
+echo '################################################################################################################'
+
+echo "Running smoke tests..."
+
+EXITSTATUS=0
+./bin/test || EXITSTATUS=$?
+
+echo "Smoke Tests Complete; exit status: $EXITSTATUS"
+exit $EXITSTATUS

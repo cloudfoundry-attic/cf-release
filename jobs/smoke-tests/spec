@@ -1,0 +1,40 @@
+---
+name: smoke-tests
+packages:
+  - golang
+  - cli
+  - smoke-tests
+templates:
+  run.erb: bin/run
+  config.json.erb: bin/config.json
+properties:
+  smoke_tests.suite_name:
+    default: CF_SMOKE_TESTS
+    description: A token used by the tests when creating Apps / Spaces
+  smoke_tests.api:
+    description: The Elastic Runtime API endpoint URL
+  smoke_tests.apps_domain:
+    description: The Elastic Runtime Appliction Domain
+  smoke_tests.user:
+    description: The Elastic Runtime API user
+  smoke_tests.password:
+    description: The Elastic Runtime API user's password
+  smoke_tests.org:
+    description: The Elastic Runtime organization name to use when running tests
+  smoke_tests.space:
+    description: The Elastic Runtime space name to use when running tests
+  smoke_tests.use_existing_org:
+    default: false
+    description: Toggles setup and cleanup of the Elastic Runtime organization
+  smoke_tests.use_existing_space:
+    default: false
+    description: Toggles setup and cleanup of the Elastic Runtime space
+  smoke_tests.logging_app:
+    default: ''
+    description: The Elastic Runtime app name to use when running logging tests
+  smoke_tests.runtime_app:
+    default: ''
+    description: The Elastic Runtime app name to use when running runtime tests
+  smoke_tests.skip_ssl_validation:
+    default: false
+    description: Toggles cli verification of the Elastic Runtime API SSL certificate
