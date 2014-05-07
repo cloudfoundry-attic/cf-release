@@ -152,6 +152,10 @@ properties:
 
   ccng.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
+    description: "The directory to use for temporary files"
+  ccng.directories.diagnostics:
+    default: "/var/vcap/data/cloud_controller_ng/diagnostics"
+    description: "The directory where operator requested diagnostic files should be placed"
 
   ccng.external_protocol:
     default: "http"
