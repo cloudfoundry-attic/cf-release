@@ -474,7 +474,8 @@ properties:
 
   databases: ~
 
-  login: (( merge ))
+  login: (( merge || nil ))
+  saml_login (( merge || nil ))
 
   router:
     status:
