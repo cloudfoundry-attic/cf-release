@@ -1,7 +1,7 @@
 {
   "suite_name"         : "<%= properties.smoke_tests.suite_name %>",
   "api"                : "<%= properties.smoke_tests.api %>",
-  "apps_domain"        : "<%= properties.smoke_tests.apps_domain %>",
+  "apps_domain"        : "<%= Array(properties.smoke_tests.apps_domain).first %>",
   "user"               : "<%= properties.smoke_tests.user %>",
   "password"           : "<%= properties.smoke_tests.password %>",
   "org"                : "<%= properties.smoke_tests.org %>",
