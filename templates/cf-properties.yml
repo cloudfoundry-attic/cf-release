@@ -113,9 +113,6 @@ properties:
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
   login:
-    analytics:
-      code: ~
-      domain: ~
     url: ~
     catalina_opts: (( merge ))
     uaa_certificate: ~
