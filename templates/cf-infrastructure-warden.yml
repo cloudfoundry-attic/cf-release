@@ -356,6 +356,12 @@ jobs:
           iDIeQCWd3/twqdDTR7FaDE7Q0i559u7A1yLumUn8caLF
           -----END RSA PRIVATE KEY-----
 
+  - name: acceptance_tests
+    instances: 1
+
+  - name: smoke_tests
+    instances: 1
+
 compilation:
   cloud_properties:
     name: random

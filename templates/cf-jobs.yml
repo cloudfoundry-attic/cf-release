@@ -404,7 +404,7 @@ jobs:
   - name: acceptance_tests
     release: (( meta.release.name ))
     template: acceptance-tests
-    instances: 1
+    instances: 0
     resource_pool: small_errand
     lifecycle: errand
     networks:
@@ -413,7 +413,7 @@ jobs:
   - name: smoke_tests
     release: (( meta.release.name ))
     template: smoke-tests
-    instances: 1
+    instances: 0
     resource_pool: small_errand
     lifecycle: errand
     networks:
