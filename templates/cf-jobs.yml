@@ -467,6 +467,7 @@ properties:
     evacuation_bail_out_time_in_seconds: 600
     logging_level: debug
     staging_disk_limit_mb: 4096
+    staging_memory_limit_mb: 1024
 
   loggregator_endpoint:
     shared_secret: (( merge ))
