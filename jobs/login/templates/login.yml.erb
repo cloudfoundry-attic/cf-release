@@ -106,8 +106,8 @@ ldap:
     <% end %>
     <% if properties.login.ldap.profile_type == 'search-and-compare' %> 
     passwordAttributeName: <%= properties.login.ldap.passwordAttributeName %>
-    passwordEncoder: <%= properties.login.ldap.localPasswordCompare %>
-    localPasswordCompare: <%= properties.login.ldap.passwordEncoder %>
+    passwordEncoder: <%= properties.login.ldap.passwordEncoder %>
+    localPasswordCompare: <%= properties.login.ldap.localPasswordCompare %>
     <% end %>
   <% if properties.login.ldap.sslCertificate %>
   ssl: 
