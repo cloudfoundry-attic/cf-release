@@ -122,6 +122,12 @@ properties:
     protocol: https
     brand: oss
 
+    smtp:
+      host: ~
+      port: ~
+      user: ~
+      password: ~
+
     links:
       home: (( "https://console." domain ))
       passwd: (( "https://console." domain "/password_resets/new" ))
