@@ -49,6 +49,7 @@ properties:
     client_max_body_size: 1536M
 
     srv_api_uri: (( "https://api." domain ))
+    external_host: api
 
     bulk_api_password: (( merge ))
 
