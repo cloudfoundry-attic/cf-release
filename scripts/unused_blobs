@@ -22,3 +22,5 @@ package_specs.each do |spec_path|
 end
 
 puts unused_blobs.keys
+
+fail unless unused_blobs.empty?

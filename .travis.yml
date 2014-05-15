@@ -1,0 +1,8 @@
+language: ruby
+
+rvm:
+  - 1.9.3-p545
+
+script:
+  - bundle exec bosh sync blobs
+  - ./scripts/unused_blobs
