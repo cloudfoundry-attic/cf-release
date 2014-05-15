@@ -4,5 +4,4 @@ dependencies:
 files:
 - buildpacks/go/Gemfile
 - buildpacks/go/Gemfile.lock
-- buildpacks/go/Rakefile
-- buildpacks/go/{bin,lib,vendor,linux-amd64}/**/*
+- buildpacks/go/{bin,lib,vendor,builds,linux-amd64}/**/*
