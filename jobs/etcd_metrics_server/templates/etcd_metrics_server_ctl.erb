@@ -1,7 +1,6 @@
 #!/bin/bash
 
 RUN_DIR=/var/vcap/sys/run/etcd_metrics_server
-LOG_DIR=/var/vcap/sys/log/etcd_metrics_server
 PIDFILE=$RUN_DIR/etcd_metrics_server.pid
 WORK_DIR=/var/vcap/store/etcd_metrics_server
 
@@ -13,10 +12,8 @@ case $1 in
     pid_guard $PIDFILE "etcd_metrics_server"
 
     mkdir -p $RUN_DIR
-    mkdir -p $LOG_DIR
 
     chown -R vcap:vcap $RUN_DIR
-    chown -R vcap:vcap $LOG_DIR
 
     echo $$ > $PIDFILE
 
@@ -28,9 +25,7 @@ case $1 in
         -natsPassword='<%= p("etcd_metrics_server.nats.password") %>' \
         -port=<%= p("etcd_metrics_server.status.port") %> \
         -username=<%= p("etcd_metrics_server.status.username") %> \
-        -password=<%= p("etcd_metrics_server.status.password") %> \
-        1>>$LOG_DIR/etcd_metrics_server.stdout.log \
-        2>>$LOG_DIR/etcd_metrics_server.stderr.log
+        -password=<%= p("etcd_metrics_server.status.password") %>
     ;;
 
   stop)

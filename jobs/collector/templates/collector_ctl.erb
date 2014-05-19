@@ -27,9 +27,8 @@ case $1 in
     cd /var/vcap/packages/collector
 
     exec /var/vcap/packages/ruby/bin/ruby \
-         /var/vcap/packages/collector/bin/collector \
-         >>$LOG_DIR/collector.stdout.log \
-         2>>$LOG_DIR/collector.stderr.log
+         /var/vcap/packages/collector/bin/collector
+
 
     ;;
 

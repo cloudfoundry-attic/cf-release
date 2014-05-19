@@ -48,9 +48,7 @@ case $1 in
     export PATH=/var/vcap/packages/ruby/bin:$PATH
 
     exec /var/vcap/packages/ruby/bin/bundle exec \
-         rake warden:start[$WARDEN_CONF_DIR/warden.yml] \
-         1>>$LOG_DIR/warden.stdout.log \
-         2>>$LOG_DIR/warden.stderr.log
+         rake warden:start[$WARDEN_CONF_DIR/warden.yml]
 
     ;;
 
