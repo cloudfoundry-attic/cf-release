@@ -1,7 +1,5 @@
 ---
 name: buildpack_nodejs
-dependencies:
+
 files:
-- buildpacks/nodejs/Gemfile
-- buildpacks/nodejs/Gemfile.lock
-- buildpacks/nodejs/{bin,config,lib,resources,scripts,support,node_modules,tmp,vendor}/**/*
+  - nodejs-buildpack/nodejs-buildpack-offline-b9.zip
