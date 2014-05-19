@@ -6,7 +6,6 @@ templates:
   gorouter_logrotate.cron.erb: config/gorouter_logrotate.cron
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.conf.erb: config/logrotate.conf
-  drain: bin/drain
 packages:
   - common
   - golang
