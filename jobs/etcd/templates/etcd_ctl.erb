@@ -1,9 +1,9 @@
 #!/bin/bash
 
 RUN_DIR=/var/vcap/sys/run/etcd
-LOG_DIR=/var/vcap/sys/log/etcd
 PIDFILE=$RUN_DIR/etcd.pid
 WORK_DIR=/var/vcap/store/etcd
+JOB_DIR=/var/vcap/jobs/etcd
 
 source /var/vcap/packages/common/utils.sh
 
@@ -13,12 +13,12 @@ case $1 in
     pid_guard $PIDFILE "etcd"
 
     mkdir -p $RUN_DIR
-    mkdir -p $LOG_DIR
     mkdir -p $WORK_DIR
 
     chown -R vcap:vcap $RUN_DIR
-    chown -R vcap:vcap $LOG_DIR
     chown -R vcap:vcap $WORK_DIR
+
+    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
 
     echo $$ > $PIDFILE
 
@@ -39,9 +39,7 @@ case $1 in
           <% end %> \
         <% end %> \
         -peer-heartbeat-timeout=<%= p("heartbeat_interval_in_milliseconds") %>\
-        -peer-election-timeout=<%= p("election_timeout_in_milliseconds") %>\
-        1>>$LOG_DIR/etcd.stdout.log \
-        2>>$LOG_DIR/etcd.stderr.log
+        -peer-election-timeout=<%= p("election_timeout_in_milliseconds") %>
     ;;
 
   stop)

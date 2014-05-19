@@ -25,9 +25,7 @@ case $1 in
     exec /var/vcap/packages/ruby/bin/bundle exec \
          $VCAP_COMMON_PATH/bin/cf-registrar \
          --register-with-router \
-         --register-varz-credentials \
-         >>$LOG_DIR/cf-registrar.stdout.log \
-         2>>$LOG_DIR/cf-registrar.stderr.log
+         --register-varz-credentials
 
     ;;
 

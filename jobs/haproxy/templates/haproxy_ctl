@@ -11,8 +11,6 @@ CONFIG=/var/vcap/jobs/haproxy/config/haproxy.config
 DESC="HAProxy"
 USER=vcap
 
-INIT_LOG_DIR=/var/vcap/sys/log/haproxy
-
 PID_FILE=/var/vcap/sys/run/haproxy/pid
 
 TIMESTAMP=$(which date)
@@ -33,7 +31,6 @@ ensure_dir() {
 
 ensure_dirs() {
     ensure_dir "$(dirname "${PID_FILE}")"
-    ensure_dir "${INIT_LOG_DIR}"
 }
 
 remove_pid() {
@@ -48,24 +45,21 @@ start_haproxy() {
     else
         RETVAL=0
         ensure_dirs
-        echo "$("${TIMESTAMP}"): Starting HAProxy" >> "${INIT_LOG_DIR}/startup_stdout.log"
+        echo "$("${TIMESTAMP}"): Starting HAProxy"
         set +e
-        "${DAEMON}" -f "${CONFIG}" -D -p "${PID_FILE}" \
-            1>> "${INIT_LOG_DIR}/startup_stdout.log" \
-            2>> "${INIT_LOG_DIR}/startup_stderr.log" \
-            0<&-
+        "${DAEMON}" -f "${CONFIG}" -D -p "${PID_FILE}" 0<&-
         RETVAL=$?
         set -e
         case "${RETVAL}" in
             0)
-                echo "$("${TIMESTAMP}"): Finished starting HAProxy" >> "${INIT_LOG_DIR}/startup_stdout.log"
+                echo "$("${TIMESTAMP}"): Finished starting HAProxy"
                 echo "SUCCESS"
                 ;;
             *)
-                echo "$("${TIMESTAMP}"): Errored starting HAProxy" >> "${INIT_LOG_DIR}/startup_stdout.log"
-                echo "$("${TIMESTAMP}"): Errored starting HAProxy" >> "${INIT_LOG_DIR}/startup_stderr.log"
+                echo "$("${TIMESTAMP}"): Errored starting HAProxy"
+                echo "$("${TIMESTAMP}"): Errored starting HAProxy" >&2
                 remove_pid
-                echo "FAILED - check ${INIT_LOG_DIR}/startup_std*.log"
+                echo "FAILED - check logs"
                 RETVAL=1
                 ;;
         esac
