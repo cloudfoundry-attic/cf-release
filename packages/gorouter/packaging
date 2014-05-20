@@ -12,4 +12,5 @@ export GOROOT=$(readlink -nf /var/vcap/packages/golang)
 export GOPATH=$BOSH_INSTALL_TARGET:${REPO_DIR}/Godeps/_workspace
 export PATH=$GOROOT/bin:$PATH
 
+
 go install ${REPO_NAME}
