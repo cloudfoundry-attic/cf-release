@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Each Warden container is a /30 in Warden's network range, which is
 # configured as 10.244.0.0/22. There are 256 available entries.
 #
@@ -12,11 +14,13 @@
 require "yaml"
 require "netaddr"
 
+IP_ADDRESS_SUFFIX = ENV.fetch("IP_ADDRESS_SUFFIX", 4).to_i
+
 cf1_subnets = []
-cf1_start = NetAddr::CIDR.create("10.244.0.0/30")
+cf1_start = NetAddr::CIDR.create("10.24#{IP_ADDRESS_SUFFIX}.0.0/30")
 
 cf2_subnets = []
-cf2_start = NetAddr::CIDR.create("10.244.2.0/30")
+cf2_start = NetAddr::CIDR.create("10.24#{IP_ADDRESS_SUFFIX}.2.0/30")
 
 128.times do
   cf1_subnets << cf1_start
