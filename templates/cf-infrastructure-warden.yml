@@ -412,7 +412,8 @@ resource_pools:
     cloud_properties:
       name: random
 
-networks:
+networks: (( merge || networks_default ))
+networks_default:
 - name: cf1
   subnets:
   - cloud_properties:
