@@ -4,6 +4,8 @@ RUN_DIR=/var/vcap/sys/run/gorouter
 LOG_DIR=/var/vcap/sys/log/gorouter
 PIDFILE=$RUN_DIR/gorouter.pid
 
+export DROPSONDE_ORIGIN="<%= name %>/<%= index %>"
+
 source /var/vcap/packages/common/utils.sh
 
 case $1 in
