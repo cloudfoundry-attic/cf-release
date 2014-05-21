@@ -17,10 +17,7 @@ case $1 in
     chown -R vcap:vcap $RUN_DIR
     chown -R vcap:vcap $LOG_DIR
 
-    # DON'T WRITE PID FILE HERE
-    # The PID file is written by the gorouter when it starts serving requests (after a delay).
-    # If the PID file would be written here, monit considers the gorouter to be started too early.
-    # BOSH -- in turn -- continues to roll other routers, while this one is not yet ready.
+    echo $$ > $PIDFILE
 
     if grep -q '/instance' /proc/self/cgroup; then
         echo "Not setting /proc/sys/net/ipv4 parameters, since I'm running inside a linux container"
