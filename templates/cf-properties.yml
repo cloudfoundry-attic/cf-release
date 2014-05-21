@@ -109,6 +109,8 @@ properties:
         package: buildpack_nodejs
       - name: go_buildpack
         package: buildpack_go
+      - name: python_buildpack
+        package: buildpack_python
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
