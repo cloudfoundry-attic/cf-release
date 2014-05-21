@@ -1,8 +1,3 @@
-set -e -x
+set -e
 
-cd buildpacks/go
-gitinfo=`cat gitinfo`
-
-./bin/package offline
-chmod 644 go_buildpack.zip
-mv go_buildpack.zip ${BOSH_INSTALL_TARGET}/buildpack_go_${gitinfo}.zip
+cp go-buildpack/go-buildpack-offline-b7.zip ${BOSH_INSTALL_TARGET}
