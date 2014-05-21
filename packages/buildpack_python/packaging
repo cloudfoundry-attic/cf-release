@@ -1,0 +1,3 @@
+set -e
+
+cp python-buildpack/python-buildpack-offline-b10.zip ${BOSH_INSTALL_TARGET}
