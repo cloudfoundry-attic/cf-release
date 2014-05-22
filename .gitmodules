@@ -88,9 +88,6 @@
 [submodule "src/etcd"]
 	path = src/etcd
 	url = https://github.com/coreos/etcd.git
-[submodule "src/buildpacks/go"]
-	path = src/buildpacks/go
-	url = https://github.com/cloudfoundry-incubator/cf-buildpack-go.git
 [submodule "src/smoke-tests"]
 	path = src/smoke-tests
 	url = https://github.com/cloudfoundry-incubator/cf-smoke-tests
