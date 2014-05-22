@@ -34,6 +34,10 @@ meta:
   - name: dea_next
   - name: dea_logging_agent
 
+  router_templates:
+  - name: gorouter
+    release: cf
+
 jobs:
   - name: ha_proxy_z1
     release: (( meta.release.name ))
@@ -376,8 +380,7 @@ jobs:
         zone: z2
 
   - name: router_z1
-    release: (( meta.release.name ))
-    template: gorouter
+    templates: (( merge || meta.router_templates ))
     instances: 1
     resource_pool: router_z1
     networks:
@@ -389,8 +392,7 @@ jobs:
         host: (( meta.loggregator_endpoint.z1.host ))
 
   - name: router_z2
-    release: (( meta.release.name ))
-    template: gorouter
+    templates: (( merge || meta.router_templates ))
     instances: 1
     resource_pool: router_z2
     networks:
