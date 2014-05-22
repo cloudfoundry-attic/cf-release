@@ -5,6 +5,10 @@ meta:
   # i.e. cf-tabasco
   environment: ~
 
+  releases:
+  - name: cf
+    version: latest
+
   stemcell:
     name: bosh-aws-xen-ubuntu
     version: latest
@@ -13,9 +17,7 @@ name: (( meta.environment ))
 
 director_uuid: (( merge ))
 
-releases:
-  - name: cf
-    version: latest
+releases: (( merge || meta.releases ))
 
 networks: (( merge ))
 
