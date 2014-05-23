@@ -9,9 +9,7 @@ meta:
   - name: cf
     version: latest
 
-  stemcell:
-    name: bosh-aws-xen-ubuntu
-    version: latest
+  stemcell: (( merge ))
 
 name: (( meta.environment ))
 
