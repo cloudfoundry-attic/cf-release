@@ -232,16 +232,6 @@ uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz:
   sha: !binary |-
     YWM3ZmViYzViYmZmMmRlZGY4YWRkNjI0YTcyN2E0YzBhYzZjM2QxMA==
   size: 65991397
-java-buildpack/java-buildpack-offline-v2.1.2.zip:
-  object_id: 01b7885f-8040-477a-815f-df60522762ee
-  sha: !binary |-
-    NDY0NzU4NjM3NWI0MTM1MTI2MTEwZmRiN2Y1ZDlmYWFhNGVhY2U1YQ==
-  size: 218797643
-java-buildpack/java-buildpack-v2.1.2.zip:
-  object_id: b0faa1ca-cfb9-4525-b414-0a416ce1eca7
-  sha: !binary |-
-    MGVhYzI0MWRjYzZiOGRlZjUwNjY0NDdhZTYyNDExYmZhNzA1NzJlMA==
-  size: 136315
 cli/cf-darwin-amd64.tgz:
   object_id: 23596b36-828e-4e98-96c9-09c4edadfc3b
   sha: !binary |-
@@ -272,3 +262,13 @@ go-buildpack/go-buildpack-online-b5.zip:
   sha: !binary |-
     NjlmMjc4Y2JmNTcyYWQwYTI2MjMzMjZjM2ViNDNkMmM3MTg0MGNlMw==
   size: 40431863
+java-buildpack/java-buildpack-offline-v2.2.zip:
+  object_id: c6f52313-f894-4816-9861-92f7a8950571
+  sha: !binary |-
+    M2Y2NzQxMTc1OGUxNTI5ODUyZWI2ZDM2NjhiMzUxMjkwMGIxM2QwOQ==
+  size: 221902410
+java-buildpack/java-buildpack-v2.2.zip:
+  object_id: db825262-e3c4-449f-a3e5-1f1a6678f18a
+  sha: !binary |-
+    OTNhMzc3MzlkMGY3NGFmODEzNTE1ZjJiZTQ0YzQyZmI1ZmEyMDIwNw==
+  size: 135918
