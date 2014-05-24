@@ -468,6 +468,8 @@ properties:
     logging_level: debug
     staging_disk_limit_mb: 4096
     staging_memory_limit_mb: 1024
+    kernel_core_directory: /var/vcap/sys/cores
+    kernel_core_pattern: /var/vcap/sys/cores/core-%e-%s-%p-%t
 
   loggregator_endpoint:
     shared_secret: (( merge ))
