@@ -3,6 +3,7 @@ name: uaa
 templates:
   uaa_ctl.erb: bin/uaa_ctl
   cf-registrar_ctl: bin/uaa_cf-registrar_ctl
+  install_crt.erb: bin/install_crt
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   uaa.yml.erb: config/uaa.yml
@@ -12,6 +13,7 @@ templates:
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
+  ldap.crt.erb: config/ldap.crt
 
 packages:
   - common
@@ -118,3 +120,63 @@ properties:
     description:
   uaa_client_auth_credentials.username:
     description:
+  uaa.ldap.profile_type:
+    description: "The file to be used for configuring the LDAP authentication. options are simple-bind, search-and-bind and search-and-compare"
+  uaa.ldap.url:
+    description: "The URL to the ldap server, must start with ldap:// or ldaps://"
+  uaa.ldap.userDNPattern:
+    description: "Used with simple-bind only. A semi-colon separated lists of DN patterns to construct a DN direct from the user ID without performing a search."
+  uaa.ldap.userDN:
+    description: "Used with search-and-bind and search-and-compare. A valid LDAP ID that has read permissions to perform a search of the LDAP tree for user information. "
+  uaa.ldap.userPassword:
+    description: "Used with search-and-bind and search-and-compare. Password for the LDAP ID that performs a search of the LDAP tree for user information."
+  uaa.ldap.searchBase:
+    description: "Used with search-and-bind and search-and-compare. Define a base where the search starts at."
+    default: ""
+  uaa.ldap.searchFilter:
+    description: "Used with search-and-bind and search-and-compare. Search filter used. Takes one parameter, user ID defined as {0}"
+    default: "cn={0}"
+  uaa.ldap.passwordAttributeName:
+    description: "Used with search-and-compare only. The name of the password attribute in the LDAP directory"
+    default: "userPassword"
+  uaa.ldap.localPasswordCompare:
+    description: "Used with search-and-compare only. Set to true if passwords are retrieved by the search, and should be compared in the login server."
+    default: "true"
+  uaa.ldap.passwordEncoder:
+    description: "Used with search-and-compare only. The encoder used to properly encode user password to match the one in the LDAP directory."
+    default: "org.cloudfoundry.identity.uaa.login.ldap.DynamicPasswordComparator"
+  uaa.ldap.sslCertificate:
+    description: "Used with ldaps:// URLs. The certificate, if self signed, to be trusted by this connection."
+  uaa.ldap.sslCertificateAlias:
+    description: "Used with ldaps:// URLs. The certificate alias, to be trusted by this connection and stored in the keystore."
+  login.ldap.profile_type:
+    description: "See uaa.ldap.profile_type - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+  login.ldap.url:
+    description: "See uaa.ldap.url - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+  login.ldap.userDNPattern:
+    description: "See uaa.ldap.userDNPattern - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+  login.ldap.userDN:
+    description: "See uaa.ldap.userDN - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+  login.ldap.userPassword:
+    description: "See uaa.ldap.userPassword - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+  login.ldap.searchBase:
+    description: "See uaa.ldap.searchBase - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+    default: ""
+  login.ldap.searchFilter:
+    description: "See uaa.ldap.searchFilter - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+    default: "cn={0}"
+  login.ldap.passwordAttributeName:
+    description: "See uaa.ldap.passwordAttributeName - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+    default: "userPassword"
+  login.ldap.localPasswordCompare:
+    description: "See uaa.ldap.localPasswordCompare - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+    default: "true"
+  login.ldap.passwordEncoder:
+    description: "See uaa.ldap.passwordEncoder - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+    default: "org.cloudfoundry.identity.uaa.login.ldap.DynamicPasswordComparator"
+  login.ldap.sslCertificate:
+    description: "See uaa.ldap.sslCertificate - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
+  login.ldap.sslCertificateAlias:
+    description: "See uaa.ldap.sslCertificateAlias - login.ldap prefix is used for backwards compatibility to enable ldap from login config"  
+  login.spring_profiles:
+    description: "See uaa.spring_profiles - login.spring_profiles is used for backwards compatibility to enable ldap from login config"
