@@ -56,7 +56,7 @@ automated system uses, then we manually make the Pull Request as having a CLA on
    [checked out version of](http://docs.cloudfoundry.com/docs/running/deploying-cf/common/cf-release.html) `cf-release`
 1. Make changes on your branch
 1. Re-deploy your version of `cf-release`
-1. [Run integration YETI tests](https://github.com/cloudfoundry/vcap-yeti)
+1. [Run Cloud Foundry Acceptance Tests (CATS)](https://github.com/cloudfoundry/cf-acceptance-tests)
 1. Push to your fork (`git push origin better_cf-release`) and
    [submit a pull request](https://help.github.com/articles/creating-a-pull-request)
    selecting `develop` as the target branch
