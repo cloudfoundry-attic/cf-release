@@ -1,5 +1,3 @@
 set -e -x
 
-cd buildpacks/ruby
-gitinfo=`cat gitinfo`
-zip -r ${BOSH_INSTALL_TARGET}/buildpack_ruby_${gitinfo}.zip *
+cp ruby-buildpack/ruby-buildpack-offline-b13.zip ${BOSH_INSTALL_TARGET}
