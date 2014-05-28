@@ -121,7 +121,6 @@ properties:
     uaa_certificate: ~
     protocol: https
     brand: oss
-    uaa_base: ~
 
     smtp:
       host: ~
@@ -160,10 +159,10 @@ properties:
     batch:
       username: (( merge ))
       password: (( merge ))
-
+    
     login:
       client_secret: ~
-
+      
     clients:
       <<: (( merge || nil ))
       login:
