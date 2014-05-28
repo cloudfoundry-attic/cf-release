@@ -163,7 +163,7 @@ properties:
     description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
 
   ccng.uaa_resource_id:
-    default: "cloud_controller"
+    default: "cloud_controller,cloud_controller_service_permissions"
     description: "Name of service to register to UAA"
 
   ccng.db_logging_level:
