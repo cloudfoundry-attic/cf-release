@@ -99,31 +99,3 @@ analytics:
 <% if properties.login && properties.login.spring_profiles %>
 spring_profiles: <%= properties.login.spring_profiles %>
 <% end %>
-
-<% if properties.login && properties.login.spring_profiles && properties.login.spring_profiles.include?('ldap') %>
-ldap:
-  profile:
-    file: <%= (properties.login.ldap.profile_type == 'simple-bind') ? 'ldap/ldap-simple-bind.xml' : (properties.login.ldap.profile_type == 'search-and-bind') ? 'ldap/ldap-search-and-bind.xml' : 'ldap/ldap-search-and-compare.xml' %>
-  base:
-    url: '<%= properties.login.ldap.url %>'
-    <% if properties.login.ldap.profile_type == 'simple-bind' %> 
-    userDnPattern: '<%= properties.login.ldap.userDNPattern %>'
-    <% else  %>
-    userDn: '<%= properties.login.ldap.userDN %>'
-    password: '<%= properties.login.ldap.userPassword %>'
-    searchBase: '<%= properties.login.ldap.searchBase %>' 
-    searchFilter: '<%= properties.login.ldap.searchFilter %>'
-    <% end %>
-    <% if properties.login.ldap.profile_type == 'search-and-compare' %> 
-    passwordAttributeName: <%= properties.login.ldap.passwordAttributeName %>
-    passwordEncoder: <%= properties.login.ldap.passwordEncoder %>
-    localPasswordCompare: <%= properties.login.ldap.localPasswordCompare %>
-    <% end %>
-  <% if properties.login.ldap.sslCertificate %>
-  ssl: 
-    sslCertificate: ! <%= "'" + p("login.ldap.sslCertificate").gsub("\n", "\n\n    ") + "'" %>
-    <% if properties.login.ldap.sslCertificateAlias %>
-    sslCertificateAlias: <%= properties.login.ldap.sslCertificateAlias %>
-    <% end %>
-  <% end %>  
-<% end %>
