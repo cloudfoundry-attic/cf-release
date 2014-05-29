@@ -17,9 +17,7 @@ case $1 in
     chown -R vcap:vcap $RUN_DIR
     chown -R vcap:vcap $LOG_DIR
 
-    <% if_p("syslog_aggregator") do %>
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh /var/vcap/jobs/hm9000/config
-    <% end %>
 
     echo $$ > $PIDFILE
 

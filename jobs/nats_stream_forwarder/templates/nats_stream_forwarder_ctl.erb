@@ -1,7 +1,6 @@
 #!/bin/bash
 
 RUN_DIR=/var/vcap/sys/run/nats_stream_forwarder
-LOG_DIR=/var/vcap/sys/log/nats_stream_forwarder
 JOB_DIR=/var/vcap/jobs/nats_stream_forwarder
 BIN_DIR=$JOB_DIR/bin
 PIDFILE=$RUN_DIR/nats_stream_forwarder.pid
@@ -15,16 +14,13 @@ case $1 in
     pid_guard $PIDFILE "NATS Stream Forwarder"
 
     mkdir -p $RUN_DIR
-    mkdir -p $LOG_DIR
 
     PATH=/var/vcap/packages/ruby/bin:$PATH
 
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
 
     echo $$ > $PIDFILE
-    exec bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>' \
-      >>$LOG_DIR/nats_stream_forwarder.stdout.log \
-      2>>$LOG_DIR/nats_stream_forwarder.stderr.log
+    exec bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>'
 
     ;;
 
