@@ -116,6 +116,12 @@ properties:
   dea_next.zone:
     description: "The Availability Zone"
     default: "default"
+  dea_next.kernel_core_directory:
+    description: "The kenerl core file directory"
+    default: "/var/vcap/sys/cores"
+  dea_next.kernel_core_pattern:
+    description: "The kernel core file pattern"
+    default: "/var/vcap/sys/cores/core-%e-%s-%p-%t"
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
