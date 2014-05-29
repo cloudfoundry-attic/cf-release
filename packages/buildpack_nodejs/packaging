@@ -1,5 +1,3 @@
-set -e -x
+set -e
 
-cd buildpacks/nodejs
-gitinfo=`cat gitinfo`
-zip -r ${BOSH_INSTALL_TARGET}/buildpack_nodejs_${gitinfo}.zip *
+cp nodejs-buildpack/nodejs-buildpack-offline-b9.zip ${BOSH_INSTALL_TARGET}
