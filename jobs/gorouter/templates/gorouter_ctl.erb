@@ -61,9 +61,7 @@ case $1 in
     setcap cap_net_bind_service=+ep /var/vcap/packages/gorouter/bin/gorouter
 
     exec chpst -u vcap:vcap /var/vcap/packages/gorouter/bin/gorouter \
-         -c /var/vcap/jobs/gorouter/config/gorouter.yml \
-         1>>$LOG_DIR/gorouter.stdout.log \
-         2>>$LOG_DIR/gorouter.stderr.log
+         -c /var/vcap/jobs/gorouter/config/gorouter.yml
 
     ;;
 
