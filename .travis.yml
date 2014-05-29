@@ -3,6 +3,9 @@ language: ruby
 rvm:
   - 1.9.3-p545
 
+before_install:
+  - git submodule update --init --recursive
 script:
   - bundle exec bosh sync blobs
+  - bundle exec bosh --non-interactive --verbose create release --dry-run
   - ./scripts/unused_blobs
