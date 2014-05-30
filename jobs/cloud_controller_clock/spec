@@ -424,6 +424,9 @@ properties:
 
   uaa.clients.cc_service_broker_client.secret:
     description: "Used for generating SSO clients for service brokers."
+  uaa.clients.cc_service_broker_client.scope:
+    description: "Used to grant scope for SSO clients for service brokers"
+    default: "openid,cloud_controller_service_permissions.read"
 
   ccng.install_buildpacks:
       description: "Set of buildpacks to install during deploy"
