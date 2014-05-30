@@ -1,7 +1,8 @@
 set -e -x
 
-REPO_DIR=${BOSH_INSTALL_TARGET}/src/github.com/cloudfoundry/cf-acceptance-tests
+CATS_SRC=github.com/cloudfoundry/cf-acceptance-tests
+BOSH_TARGET=${BOSH_INSTALL_TARGET}/src/${CATS_SRC}
 
-mkdir -p ${REPO_DIR}
+mkdir -p ${BOSH_TARGET}
 
-cp -a acceptance-tests/* ${REPO_DIR}
+cp -a ${CATS_SRC}/* ${BOSH_TARGET}
