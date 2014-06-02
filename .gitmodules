@@ -64,6 +64,9 @@
 [submodule "src/loggregator"]
 	path = src/loggregator
 	url = https://github.com/cloudfoundry/loggregator
+[submodule "src/acceptance-tests"]
+	path = src/acceptance-tests
+	url = https://github.com/cloudfoundry/cf-acceptance-tests
 [submodule "packages/ruby"]
 	path = packages/ruby
 	url = https://github.com/cloudfoundry/ruby-package
@@ -82,9 +85,6 @@
 [submodule "src/etcd"]
 	path = src/etcd
 	url = https://github.com/coreos/etcd.git
-[submodule "src/github.com/cloudfoundry/cf-acceptance-tests"]
-	path = src/github.com/cloudfoundry/cf-acceptance-tests
-	url = https://github.com/cloudfoundry/cf-acceptance-tests
-[submodule "src/github.com/cloudfoundry-incubator/cf-smoke-tests"]
-	path = src/github.com/cloudfoundry-incubator/cf-smoke-tests
-	url = https://github.com/cloudfoundry-incubator/cf-smoke-tests.git
+[submodule "src/smoke-tests"]
+	path = src/smoke-tests
+	url = https://github.com/cloudfoundry-incubator/cf-smoke-tests
