@@ -1,12 +1,8 @@
-FROM ubuntu:lucid
+FROM ubuntu:trusty
 
 RUN apt-get update
 
-RUN apt-get -y install libxml2-dev libxslt-dev libreadline-dev python-software-properties
-
-RUN add-apt-repository ppa:git-core/ppa
-RUN apt-get update
-RUN apt-get -y install git
+RUN apt-get -y install libxml2-dev libxslt-dev libreadline-dev python-software-properties git
 
 RUN apt-get -y install libmysqlclient-dev libpq-dev libsqlite3-dev
 
