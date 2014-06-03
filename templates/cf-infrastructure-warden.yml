@@ -54,6 +54,7 @@ properties:
       fog_connection: (( meta.fog_config ))
     buildpacks:
       fog_connection: (( meta.fog_config ))
+    diego: (( merge || false ))
 
   uaa:
     catalina_opts: -Xmx384m -XX:MaxPermSize=128m
@@ -172,6 +173,8 @@ properties:
     admin_user: admin
     admin_password: admin
     skip_ssl_validation: true
+    include_diego: (( properties.cc.diego ))
+    nodes: 1
 
   smoke_tests:
     api:  (( "api." domain ))
