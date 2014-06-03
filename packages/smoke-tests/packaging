@@ -1,8 +1,7 @@
 set -e -x
 
-SMOKE_SRC=github.com/cloudfoundry-incubator/cf-smoke-tests
-BOSH_TARGET=${BOSH_INSTALL_TARGET}/src/${SMOKE_SRC}
+REPO_DIR=${BOSH_INSTALL_TARGET}/src/github.com/cloudfoundry-incubator/cf-smoke-tests
 
-mkdir -p ${BOSH_TARGET}
+mkdir -p ${REPO_DIR}
 
-cp -a ${SMOKE_SRC}/* ${BOSH_TARGET}
+cp -a smoke-tests/* ${REPO_DIR}
