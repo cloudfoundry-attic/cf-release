@@ -2,6 +2,7 @@ image: cloudfoundry/cf-release-pipeline
 
 cache:
   - output
+  - .blobs
 script:
   - source /usr/local/share/chruby/chruby.sh
   - chruby ruby-1.9.3-p547
