@@ -1,5 +1,3 @@
-<% db = properties.send(properties.db) %>
-
 # Control the available listen_addresses via
 # deployment manifest - add networks to the job
 #
@@ -16,8 +14,8 @@
 #     static_ips:
 #     - 9.8.7.6
 listen_addresses = '0.0.0.0'
-port = <%= db.port %>
-max_connections = <%= db.max_connections || 500 %>
+port = <%= p("databases.port") %>
+max_connections = <%= p("databases.max_connections", 500) %>
 external_pid_file = '/var/vcap/sys/run/postgres/postgres.pid'
 authentication_timeout = 1min
 

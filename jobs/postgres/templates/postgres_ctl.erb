@@ -1,5 +1,4 @@
 #!/bin/bash -e
-<% db = properties.send(properties.db) %>
 
 PACKAGE_DIR=/var/vcap/packages/postgres
 JOB_DIR=/var/vcap/jobs/postgres
@@ -15,7 +14,7 @@ LOG_DIR=/var/vcap/sys/log/postgres
 PIDFILE=$RUN_DIR/postgres.pid
 
 HOST='0.0.0.0'
-PORT="<%= db.port %>"
+PORT="<%= p("databases.port") %>"
 LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH
 
 source /var/vcap/packages/common/utils.sh
@@ -72,42 +71,42 @@ case "$1" in
     echo "PostgreSQL started successfully"
 
     echo "Creating roles..."
-    <% db.roles.each do |role| %>
-      echo "Trying to create role <%= role.name %>..."
+    <% p("databases.roles", []).each do |role| %>
+      echo "Trying to create role <%= role["name"] %>..."
       set +e
       # TODO remove unused roles automatically
       # Default permissions are: nosuperuser nologin inherit nocreatedb.
       # Will fail if role already exists, which is OK
       $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
-                            -c "CREATE ROLE \"<%= role.name %>\""
+                            -c "CREATE ROLE \"<%= role["name"] %>\""
       set -e
 
-      echo "Setting password for role <%= role.name %>..."
+      echo "Setting password for role <%= role["name"] %>..."
       $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
-                            -c "ALTER ROLE \"<%= role.name %>\" \
-                                WITH LOGIN PASSWORD '<%= role.password %>'"
+                            -c "ALTER ROLE \"<%= role["name"] %>\" \
+                                WITH LOGIN PASSWORD '<%= role["password"] %>'"
     <% end %>
 
     echo "Creating databases..."
-    <% db.databases.each do |database| %>
-      echo "Trying to create database <%= database.name %>..."
+    <% p("databases.databases", []).each do |database| %>
+      echo "Trying to create database <%= database["name"] %>..."
       set +e
-      su - vcap -c "$PACKAGE_DIR/bin/createdb \"<%= database.name %>\" -p $PORT"
+      su - vcap -c "$PACKAGE_DIR/bin/createdb \"<%= database["name"] %>\" -p $PORT"
       set -e
 
-      <% if database.citext %>
+      <% if database["citext"] %>
         echo "Trying to install citext..."
         set +e
         $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
-                              -d "<%= database.name %>" \
+                              -d "<%= database["name"] %>" \
                               -f $PACKAGE_DIR/share/postgresql/contrib/citext.sql
         set -e
       <% end %>
 
-      <% if database.run_on_every_startup %>
-        <% database.run_on_every_startup.each do |query| %>
+      <% if database["run_on_every_startup"] %>
+        <% database["run_on_every_startup"].each do |query| %>
           $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
-                                -d "<%= database.name %>" \
+                                -d "<%= database["name"] %>" \
                                 -c "<%= query %>"
         <% end %>
       <% end %>
