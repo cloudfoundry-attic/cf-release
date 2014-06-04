@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e -x
+
 CF_RELEASE_OUT="../create-release.out"
 
 bosh -n create release --with-tarball | tee $CF_RELEASE_OUT
