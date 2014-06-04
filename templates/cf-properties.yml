@@ -115,6 +115,8 @@ properties:
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
+    stacks: ~
+
   login:
     analytics:
       code: ~
