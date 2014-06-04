@@ -74,6 +74,8 @@ properties:
   login.links.signup-network:
     description: URL for requesting to signup/register for an account at Pivotal Network
     default: https://network.gopivotal.com/registrations/new
+  login.tiles:
+    description: "A list of links to other services to show on the landing page after logging in and/or signing up, depending on whether login-link and/or signup-link is specified."
   login.port:
     default: 8080
     description:

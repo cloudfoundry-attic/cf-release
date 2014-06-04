@@ -138,6 +138,8 @@ properties:
       network: ~
       signup-network: ~
 
+    tiles: (( merge ))
+
   uaa:
     catalina_opts: (( merge ))
 
