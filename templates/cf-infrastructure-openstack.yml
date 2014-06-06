@@ -41,7 +41,7 @@ properties:
   nats:
     address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
 
-  ccdb_ng:
+  ccdb:
     address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
     databases:
     - name: ccdb
@@ -52,8 +52,6 @@ properties:
     - name: ccadmin
       password: (( merge ))
       tag: admin
-
-  ccdb: (( ccdb_ng ))
 
   uaadb:
     address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
