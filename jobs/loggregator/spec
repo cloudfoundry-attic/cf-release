@@ -35,7 +35,7 @@ properties:
     default: 0
   loggregator.maxRetainedLogMessages:
     description: number of log messages to retain per application
-    default: 10
+    default: 100
   loggregator.incoming_port:
     description: Port for incoming log messages
     default: 3456
