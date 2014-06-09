@@ -59,6 +59,8 @@ properties:
 
     db_encryption_key: (( merge ))
 
+    directories: ~
+
     tasks_disabled: false
 
     disable_custom_buildpacks: false
