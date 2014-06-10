@@ -45,6 +45,18 @@ properties:
     description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
     description:
+  login.smtp:
+    description: "SMTP server configuration, for password reset emails etc."
+  login.smtp.host:
+    description: "SMTP server host address"
+    default: localhost
+  login.smtp.port:
+    description: "SMTP server port"
+    default: 2525
+  login.smtp.user:
+    description: "SMTP server username"
+  login.smtp.password:
+    description: "SMTP server password"
   login.links:
     description: "A hash of home/passwd/signup URLS (see commented examples below)"
   login.links.home:
@@ -62,6 +74,8 @@ properties:
   login.links.signup-network:
     description: URL for requesting to signup/register for an account at Pivotal Network
     default: https://network.gopivotal.com/registrations/new
+  login.tiles:
+    description: "A list of links to other services to show on the landing page after logging in and/or signing up, depending on whether login-link and/or signup-link is specified."
   login.port:
     default: 8080
     description:
