@@ -39,8 +39,10 @@ properties:
   name: Login Server for the UAA
   description: "The Login Server enables authentication to the UAA optionally with SAML or LDAP."
   login.brand: 
-    description: "The brand to use for the UI, available values are oss and pivotal"
+    description: "The brand to use for the reset password emails, available values are oss and pivotal"
     default: oss
+  login.asset_base_url:
+    description: "Base url for static assets, allows custom styling of the login server.  Use '/resources/pivotal' for Pivotal style."
   login.uaa_certificate:
     description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
