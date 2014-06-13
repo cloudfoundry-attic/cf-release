@@ -62,3 +62,6 @@ properties:
     description: "The key used to sign log messages."
   networks.apps:
     description: "GoRouter network information."
+  dropsonde.enabled:
+    default: false
+    description: "Enable the dropsonde emitter library"
