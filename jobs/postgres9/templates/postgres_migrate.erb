@@ -1,0 +1,41 @@
+#!/bin/bash -e
+<% db = properties.send(properties.db) %>
+
+STORE_DIR=/var/vcap/store
+DATA_DIR=$STORE_DIR/postgres
+PACKAGE_DIR=/var/vcap/packages/postgres9
+JOB_DIR=/var/vcap/jobs/postgres9
+
+LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH
+PATH=$PACKAGE_DIR/bin:$PATH
+
+source /var/vcap/packages/common/utils.sh
+
+
+cat /dev/null > ~/.pgpass
+<% db.databases.each do |database| %>
+  <% thisdb = properties.send(database.name) %> 
+
+  <% thisdb.roles.each do |role| %>
+    if [ "<%= role.tag %>" == "admin" ]; then
+      echo "<%= db.address %>:<%= db.port %>:<%= database.name %>:<%= role.name %>:<%= role.password %>" >> ~/.pgpass
+    fi
+  <% end %>
+<% end %>
+
+chmod 600 ~/.pgpass
+
+<% db.databases.each do |database| %>
+  <% thisdb = properties.send(database.name) %> 
+
+  <% thisdb.roles.each do |role| %>
+    if [ "<%= role.tag %>" == "admin" ]; then
+      $USER = <%= role.name %>
+    fi
+  <% end %>
+  
+  pg_dump  <%= database.name %>  -h <%= db.address %> -p <%= db.port %> -U $USER -f <%= database.name %>.sql
+ 
+  psql -U vcap -p <%= db.port %> -d <%= database.name %> -f  <%= database.name %>.sql
+<% end %>
+

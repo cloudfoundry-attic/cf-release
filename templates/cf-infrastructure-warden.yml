@@ -150,7 +150,7 @@ properties:
 
   databases:
     db_scheme: postgres
-    address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    address: (( jobs.postgres9_z1.networks.cf1.static_ips.[0] ))
     port: 5524
     roles:
       - tag: admin
@@ -270,7 +270,7 @@ jobs:
     instances: 0
 
   # set up static IP for postgres
-  - name: postgres_z1
+  - name: postgres9_z1
     instances: 1
     networks:
     - name: cf1
