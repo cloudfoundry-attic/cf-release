@@ -95,7 +95,14 @@ analytics:
   domain: <%= properties.login.analytics.domain %>
 <% end %>
 
-
 <% if properties.login && properties.login.spring_profiles %>
-spring_profiles: <%= properties.login.spring_profiles %>
+  <% if properties.login.spring_profiles.include?(',ldap') %>
+spring_profiles: <%= properties.login.spring_profiles.gsub! ',ldap', '' %>
+  <% elsif properties.login.spring_profiles.include?('ldap,') %>
+spring_profiles: <%= properties.login.spring_profiles.gsub! 'ldap,', '' %>
+  <% elsif properties.login.spring_profiles.eql?('ldap') %>
+#spring_profiles: <%= properties.login.spring_profiles.gsub! 'ldap,', '' %>
+  <% else %>
+spring_profiles: <%= properties.login.spring_profiles.gsub! 'ldap', '' %>  
+  <% end %>
 <% end %>

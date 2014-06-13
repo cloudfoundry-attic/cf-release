@@ -9,7 +9,9 @@ database:
   username: <%= uaa_role.name %>
   password: "<%= uaa_role.password %>"
 
-<% if properties.uaa && properties.uaa.spring_profiles && properties.uaa.spring_profiles.include?('ldap') && properties.uaa.ldap %>
+<% if properties.uaa && properties.uaa.spring_profiles && properties.uaa.spring_profiles.eql?('ldap') && properties.uaa.ldap %>
+spring_profiles: <%= properties.uaa.spring_profiles %>,<%=properties.uaadb.db_scheme%>
+<% elsif properties.uaa && properties.uaa.spring_profiles && properties.uaa.spring_profiles.include?('ldap') && properties.uaa.ldap %>
 spring_profiles: <%= properties.uaa.spring_profiles ? properties.uaa.spring_profiles : properties.uaadb.db_scheme %>
 <% elsif properties.login && properties.login.spring_profiles && properties.login.spring_profiles.include?('ldap') &&  properties.login.ldap %>
 spring_profiles: <%= properties.uaa.spring_profiles ? properties.uaa.spring_profiles : properties.uaadb.db_scheme %>,ldap
