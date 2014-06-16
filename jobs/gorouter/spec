@@ -65,3 +65,9 @@ properties:
   dropsonde.enabled:
     default: false
     description: "Enable the dropsonde emitter library"
+  dropsonde.destination.host:
+    default: "localhost"
+    description: "Dropsonde destination host for emitted metric events."
+  dropsonde.destination.port:
+    default: 42420
+    description: "Dropsonde destination port for emitted metric events."

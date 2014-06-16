@@ -19,6 +19,7 @@ case $1 in
 
     <% if p("dropsonde.enabled") %>
     export DROPSONDE_ORIGIN=<%= name %>/<%= index %>
+    export DROPSONDE_DESTINATION=<%= p("dropsonde.destination.host") %>:<%= p("dropsonde.destination.port") %>
     <% end %>
 
     echo $$ > $PIDFILE
