@@ -420,7 +420,6 @@ jobs:
 
 properties:
   dropsonde: ~
-  dropsonde_agent: ~
 
   support_address: (( merge || "http://support.cloudfoundry.com" ))
   description: (( merge || "Cloud Foundry sponsored by Pivotal" ))
