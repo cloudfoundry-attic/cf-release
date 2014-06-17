@@ -5,8 +5,8 @@
     "cc_auth_password": "<%= p("cc.bulk_api_password") %>",
     "cc_base_url": "<%= p("cc.srv_api_uri") %>",
     "skip_cert_verify": <%= p("ssl.skip_cert_verify") %>,
-    "desired_state_batch_size": 500,
-    "fetcher_network_timeout_in_seconds": 10,
+    "desired_state_batch_size": 5000,
+    "fetcher_network_timeout_in_seconds": 30,
 
     "store_schema_version": 4,
     "store_urls": [<%= p("etcd.machines").map{|addr| "\"http://#{addr}:4001\""}.join(",")%>],
