@@ -21,10 +21,8 @@ properties:
 
   loggregator:
     blacklisted_syslog_ranges:
-    - start: 10.10.16.0
-      end: 10.10.31.255
-    - start: 10.10.80.0
-      end: 10.10.95.255
+    - start: 10.10.0.0
+      end: 10.10.255.255
 
   cc:
     resource_pool:
@@ -45,9 +43,7 @@ properties:
   dea_next:
     deny_networks:
       - 169.254.0.0/16 # AWS Status
-      - 10.10.0.0/24 # BOSH network
-      - (( networks.cf1.subnets.[0].range ))
-      - (( networks.cf2.subnets.[0].range ))
+      - 10.10.0.0/16
 
     allow_networks:
       - 10.10.0.2/32 # Amazon DNS
@@ -59,40 +55,7 @@ compilation:
     availability_zone: (( meta.zones.z1 ))
 
 
-networks:
-  - name: cf1
-    type: manual
-    subnets:
-      - range: 10.10.16.0/20
-        name: default_unused
-        reserved:
-          - 10.10.16.2 - 10.10.16.9
-        static:
-          - 10.10.16.10 - 10.10.16.255
-        gateway: 10.10.16.1
-        dns:
-          - 10.10.0.2 # amazon has only 1 DNS server for the whole VPC at x.x.0.2
-        cloud_properties:
-          security_groups:
-            - cf
-          subnet: (( properties.template_only.aws.subnet_ids.cf1 ))
-
-  - name: cf2
-    type: manual
-    subnets:
-      - range: 10.10.80.0/20
-        name: default_unused
-        reserved:
-          - 10.10.80.2 - 10.10.80.9
-        static:
-          - 10.10.80.10 - 10.10.80.255
-        gateway: 10.10.80.1
-        dns:
-          - 10.10.0.2 # amazon has only 1 DNS server for the whole VPC at x.x.0.2
-        cloud_properties:
-          security_groups:
-            - cf
-          subnet: (( properties.template_only.aws.subnet_ids.cf2 ))
+networks: (( merge ))
 
 
 resource_pools:
