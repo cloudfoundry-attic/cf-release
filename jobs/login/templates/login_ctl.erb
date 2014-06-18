@@ -61,10 +61,6 @@ case $1 in
     /var/vcap/jobs/login/bin/install_crt uaa.crt uaacert
     <% end %>
     
-    <% if properties.login && properties.login.ldap &&  properties.login.ldap.sslCertificate %>
-    /var/vcap/jobs/login/bin/install_crt ldap.crt ldapcert
-    <% end %>
-
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
 
     # Generate a random usernames and passwords

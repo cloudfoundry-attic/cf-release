@@ -15,7 +15,6 @@ templates:
   web.xml.erb: config/tomcat/web.xml
   syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   uaa.crt.erb: config/uaa.crt
-  ldap.crt.erb: config/ldap.crt
 
 packages:
   - common
@@ -39,8 +38,10 @@ properties:
   name: Login Server for the UAA
   description: "The Login Server enables authentication to the UAA optionally with SAML or LDAP."
   login.brand: 
-    description: "The brand to use for the UI, available values are oss and pivotal"
+    description: "The brand to use for the reset password emails, available values are oss and pivotal"
     default: oss
+  login.asset_base_url:
+    description: "Base url for static assets, allows custom styling of the login server.  Use '/resources/pivotal' for Pivotal style."
   login.uaa_certificate:
     description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
@@ -142,36 +143,36 @@ properties:
     description:
     default: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   login.spring_profiles:
-    description: "The spring bean profile to use for the spring configuration files. Only options at this time is ldap for additional profile. Default is empty."
+    description: "deprecated. use UAA configuration."
   login.ldap.profile_type:
-    description: "The file to be used for configuring the LDAP authentication. options are simple-bind, search-and-bind and search-and-compare"
+    description: "deprecated. use UAA configuration."
   login.ldap.url:
-    description: "The URL to the ldap server, must start with ldap:// or ldaps://"
+    description: "deprecated. use UAA configuration."
   login.ldap.userDNPattern:
-    description: "Used with simple-bind only. A semi-colon separated lists of DN patterns to construct a DN direct from the user ID without performing a search."
+    description: "deprecated. use UAA configuration."
   login.ldap.userDN:
-    description: "Used with search-and-bind and search-and-compare. A valid LDAP ID that has read permissions to perform a search of the LDAP tree for user information. "
+    description: "deprecated. use UAA configuration."
   login.ldap.userPassword:
-    description: "Used with search-and-bind and search-and-compare. Password for the LDAP ID that performs a search of the LDAP tree for user information."
+    description: "deprecated. use UAA configuration."
   login.ldap.searchBase:
-    description: "Used with search-and-bind and search-and-compare. Define a base where the search starts at."
+    description: "deprecated. use UAA configuration."
     default: ""
   login.ldap.searchFilter:
-    description: "Used with search-and-bind and search-and-compare. Search filter used. Takes one parameter, user ID defined as {0}"
+    description: "deprecated. use UAA configuration."
     default: "cn={0}"
   login.ldap.passwordAttributeName:
-    description: "Used with search-and-compare only. The name of the password attribute in the LDAP directory"
+    description: "deprecated. use UAA configuration."
     default: "userPassword"
   login.ldap.localPasswordCompare:
-    description: "Used with search-and-compare only. Set to true if passwords are retrieved by the search, and should be compared in the login server."
+    description: "deprecated. use UAA configuration."
     default: "true"
   login.ldap.passwordEncoder:
-    description: "Used with search-and-compare only. The encoder used to properly encode user password to match the one in the LDAP directory."
+    description: "deprecated. use UAA configuration."
     default: "org.cloudfoundry.identity.uaa.login.ldap.DynamicPasswordComparator"
   login.ldap.sslCertificate:
-    description: "Used with ldaps:// URLs. The certificate, if self signed, to be trusted by this connection."
+    description: "deprecated. use UAA configuration."
   login.ldap.sslCertificateAlias:
-    description: "Used with ldaps:// URLs. The certificate alias, to be trusted by this connection and stored in the keystore."
+    description: "deprecated. use UAA configuration."
   login.analytics.code:
     description: "Analytics code"
   login.analytics.domain:
