@@ -115,6 +115,8 @@ properties:
         package: buildpack_go
       - name: python_buildpack
         package: buildpack_python
+      - name: php_buildpack
+        package: buildpack_php
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
