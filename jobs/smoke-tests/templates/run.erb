@@ -28,7 +28,7 @@ echo '##########################################################################
 echo "Running smoke tests..."
 
 EXITSTATUS=0
-./bin/test || EXITSTATUS=$?
+./bin/test -stream=false || EXITSTATUS=$?
 
 echo "Smoke Tests Complete; exit status: $EXITSTATUS"
 exit $EXITSTATUS
