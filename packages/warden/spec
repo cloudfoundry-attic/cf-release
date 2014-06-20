@@ -7,3 +7,7 @@ files:
 - warden/warden/Gemfile
 - warden/warden/Gemfile.lock
 - warden/warden/Rakefile
+- warden/warden-client/warden-client.gemspec
+- warden/warden-client/lib/**/*
+- warden/warden-protocol/warden-protocol.gemspec
+- warden/warden-protocol/lib/**/*

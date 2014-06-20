@@ -26,6 +26,7 @@ packages:
   - buildpack_nodejs
   - buildpack_go
   - buildpack_python
+  - buildpack_php
 
 properties:
   ssl.skip_cert_verify:
@@ -146,6 +147,7 @@ properties:
 
   cc.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
+    description: "The directory to use for temporary files"
 
   cc.external_protocol:
     default: "http"
