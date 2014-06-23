@@ -352,9 +352,6 @@ properties:
   cc.maximum_app_disk_in_mb:
     default: 2048
     description: "The maximum amount of disk a user can request"
-  cc.hm9000_noop:
-    default: true
-    description: "Disable processing HM9000 messages"
   cc.diego:
     default: false
     description: "Enable diego support"
