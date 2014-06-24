@@ -26,6 +26,7 @@ packages:
   - buildpack_nodejs
   - buildpack_go
   - buildpack_python
+  - buildpack_php
 
 properties:
   ssl.skip_cert_verify:
