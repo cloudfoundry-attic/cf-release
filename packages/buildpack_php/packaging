@@ -1,0 +1,3 @@
+set -e
+
+cp php-buildpack/php-buildpack-offline-b26.zip ${BOSH_INSTALL_TARGET}
