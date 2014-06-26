@@ -17,6 +17,11 @@ case $1 in
     chown -R vcap:vcap $RUN_DIR
     chown -R vcap:vcap $LOG_DIR
 
+    <% if p("dropsonde.enabled") %>
+    export DROPSONDE_ORIGIN=<%= name %>/<%= index %>
+    export DROPSONDE_DESTINATION=<%= p("dropsonde.destination.host") %>:<%= p("dropsonde.destination.port") %>
+    <% end %>
+
     echo $$ > $PIDFILE
 
     if grep -q '/instance' /proc/self/cgroup; then
