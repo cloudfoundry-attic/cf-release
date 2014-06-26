@@ -419,6 +419,8 @@ jobs:
       - name: cf1
 
 properties:
+  dropsonde: ~
+
   support_address: (( merge || "http://support.cloudfoundry.com" ))
   description: (( merge || "Cloud Foundry sponsored by Pivotal" ))
   domain: (( merge ))
