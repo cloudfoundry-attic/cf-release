@@ -1,4 +1,5 @@
 set -e -x
 
 cd ${BUILD_DIR}/cloud_controller_ng
+bundle install
 BUNDLE_WITHOUT=development:test bundle package --all
