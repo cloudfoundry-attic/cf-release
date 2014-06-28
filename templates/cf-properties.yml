@@ -121,6 +121,24 @@ properties:
 
     stacks: ~
 
+    security_group_definitions:
+      - name: defaults
+        rules:
+        - protocol: all
+          destination: 0.0.0.0-9.255.255.255
+        - protocol: all
+          destination: 11.0.0.0-169.253.255.255
+        - protocol: all
+          destination: 169.255.0.0-172.15.255.255
+        - protocol: all
+          destination: 172.32.0.0-192.167.255.255
+        - protocol: all
+          destination: 192.169.0.0-255.255.255.255
+
+    default_running_security_group: defaults
+    default_staging_security_group: defaults
+
+
   login:
     analytics:
       code: ~
