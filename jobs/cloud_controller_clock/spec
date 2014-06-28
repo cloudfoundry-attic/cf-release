@@ -374,7 +374,7 @@ properties:
 
   cc.newrelic.license_key:
     default: ~
-    description: "The api key for NewRelic. Setting this value will activate NewRelic monitoring."
+    description: "The api key for NewRelic"
   cc.newrelic.environment_name:
     default: "development"
     description: "The environment name used by NewRelic"
@@ -383,7 +383,7 @@ properties:
     description: "Activate NewRelic developer mode"
   cc.newrelic.monitor_mode:
     default: false
-    description: "Activate NewRelic monitoring"
+    description: "Activate NewRelic monitor mode"
   cc.newrelic.log_file_path:
     default: "/var/vcap/sys/log/cloud_controller_ng/newrelic"
     description: "The location for NewRelic to log to"
