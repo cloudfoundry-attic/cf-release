@@ -88,11 +88,11 @@ properties:
       license_key: ~
       environment_name: (( meta.environment ))
       developer_mode: (( cc.development_mode ))
-      monitor_mode: (( merge || false ))
-      capture_params: (( merge || false ))
+      monitor_mode: false
+      capture_params: false
       transaction_tracer:
-        enabled: (( merge || true ))
-        record_sql: (( merge || "obfuscated" ))
+        enabled: true
+        record_sql: "obfuscated"
 
     buildpacks:
       buildpack_directory_key: (( domain "-cc-buildpacks" ))
