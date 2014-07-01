@@ -505,6 +505,7 @@ properties:
     network: (( networks.cf1.subnets.[0].range ))
 
   collector:
+    <<: (( merge ))
     use_datadog: true
     datadog_api_key: ""
     datadog_application_key: ""
