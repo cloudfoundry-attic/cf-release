@@ -57,10 +57,6 @@ The components in a V2 deployment are:
 This is useful in the following situations:
   * After you've first cloned the repo
   * Before you make changes to the directory. (Running the script avoids having to rebase your changes on top of submodule updates.)
-* `./update_sub` takes as an argument the name of a submodule (partial matches okay) and pulls that submodule to master. The script then stages the changing of that submodule in cf-release.
-Typically, only people developing Cloud Foundry should use `update_sub`.
-This script is useful in the following situations:
-  * After you've made changes to a submodule if you need those changes made available for deployment
 * `./commit_with_shortlog` commits changes you've made using `update_sub`.
 
 ## Ask Questions
