@@ -21,13 +21,13 @@ properties:
     description: "Transport to be used when forwarding logs (tcp|udp|relp)."
     default: "tcp"
 
-  collector.aws_access_key_id:
+  collector.aws.access_key_id:
     description: "AWS access key for CloudWatch access"
-  collector.aws_secret_access_key:
+  collector.aws.secret_access_key:
     description: "AWS secret for CloudWatch access"
-  collector.datadog_api_key:
+  collector.datadog.api_key:
     description: "Datadog API key"
-  collector.datadog_application_key:
+  collector.datadog.application_key:
     description: "Datadog application key"
   collector.deployment_name:
     description: "name for this bosh deployment. All metrics will be tagged with deployment:XXX when sending them to CloudWatch, Datadog and Graphite"
@@ -58,6 +58,10 @@ properties:
   collector.use_tsdb:
     description: "enable OpenTsdb plugin"
     default: false
+  collector.opentsdb.address:
+    description: "IP address of OpenTsdb"
+  collector.opentsdb.port:
+    description: "TCP port of OpenTsdb"
   collector.use_graphite:
     description: "enable Graphite plugin"
     default: false
@@ -73,9 +77,5 @@ properties:
     description: "NATS TCP port"
   nats.user:
     description: "NATS user"
-  opentsdb.address:
-    description: "IP address of OpenTsdb"
-  opentsdb.port:
-    description: "TCP port of OpenTsdb"
   networks.apps:
     description: "Collector network information."

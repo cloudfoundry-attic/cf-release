@@ -10,8 +10,8 @@ deployment_name: <%= properties.collector.deployment_name %>
 
 <% if properties.collector && properties.collector.use_tsdb %>
 tsdb:
-  host: <%= properties.opentsdb.address %>
-  port: <%= properties.opentsdb.port %>
+  host: <%= properties.collector.opentsdb.address %>
+  port: <%= properties.collector.opentsdb.port %>
 <% end %>
 
 <% if properties.collector && properties.collector.use_graphite %>
@@ -22,14 +22,14 @@ graphite:
 
 <% if properties.collector && properties.collector.use_aws_cloudwatch %>
 aws_cloud_watch:
-  access_key_id: <%= properties.collector.aws_access_key_id %>
-  secret_access_key: <%= properties.collector.aws_secret_access_key %>
+  access_key_id: <%= properties.collector.aws.access_key_id %>
+  secret_access_key: <%= properties.collector.aws.secret_access_key %>
 <% end %>
 
 <% if properties.collector && properties.collector.use_datadog %>
 datadog:
-  api_key: <%= properties.collector.datadog_api_key %>
-  application_key: <%= properties.collector.datadog_application_key %>
+  api_key: <%= properties.collector.datadog.api_key %>
+  application_key: <%= properties.collector.datadog.application_key %>
 <% end %>
 
 message_bus_uris:
