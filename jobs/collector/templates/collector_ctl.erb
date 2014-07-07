@@ -18,7 +18,11 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
 
+    chown vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
     echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
 
     export CONFIG_FILE=$JOB_DIR/config/config.yml
 
@@ -26,7 +30,7 @@ case $1 in
 
     cd /var/vcap/packages/collector
 
-    exec /var/vcap/packages/ruby/bin/ruby \
+    exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby \
          /var/vcap/packages/collector/bin/collector
 
 

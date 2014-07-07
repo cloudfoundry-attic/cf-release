@@ -17,12 +17,16 @@ case $1 in
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
 
+    chown vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
     echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
 
     export CONFIG_FILE=/var/vcap/jobs/uaa/config/cf-registrar/config.yml
 
     cd $VCAP_COMMON_PATH
-    exec /var/vcap/packages/ruby/bin/bundle exec \
+    exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/bundle exec \
          $VCAP_COMMON_PATH/bin/cf-registrar \
          --register-with-router \
          --register-varz-credentials

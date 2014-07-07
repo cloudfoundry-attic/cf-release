@@ -14,13 +14,16 @@ case $1 in
     pid_guard $PIDFILE "NATS Stream Forwarder"
 
     mkdir -p $RUN_DIR
+    chown vcap:vcap $RUN_DIR
 
     PATH=/var/vcap/packages/ruby/bin:$PATH
 
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
 
     echo $$ > $PIDFILE
-    exec bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>'
+    chown vcap_vcap $PIDFILE
+
+    exec chpst -u vcap:vcap bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>'
 
     ;;
 

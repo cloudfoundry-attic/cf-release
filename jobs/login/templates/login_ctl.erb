@@ -55,12 +55,17 @@ case $1 in
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
+
+    chown vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
     echo $$ > $PIDFILE
+    chown vcap:vcap $PIDFILE
 
     <% if properties.login && properties.login.uaa_certificate %>
     /var/vcap/jobs/login/bin/install_crt uaa.crt uaacert
     <% end %>
-    
+
     /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
 
     # Generate a random usernames and passwords
@@ -81,7 +86,8 @@ case $1 in
     export CATALINA_OPTS="<%= properties.login ? properties.login.catalina_opts : '' %>"
 
     cd /var/vcap/data/login
-    exec tomcat/bin/catalina.sh run
+    chown -R vcap:vcap /var/vcap/data/login
+    exec chpst -u vcap:vcap tomcat/bin/catalina.sh run
 
     ;;
 

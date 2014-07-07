@@ -59,8 +59,13 @@ case $1 in
 
     mkdir -p $RUN_DIR
     mkdir -p $LOG_DIR
+
+    chown vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
     echo $$ > $PIDFILE
-    
+    chown vcap:vcap $PIDFILE
+
     <% if properties.uaa && properties.uaa.ldap &&  properties.uaa.ldap.sslCertificate %>
     /var/vcap/jobs/uaa/bin/install_crt ldap.crt ldapcert
     <% elsif properties.login && properties.login.ldap &&  properties.login.ldap.sslCertificate %>
@@ -87,7 +92,8 @@ case $1 in
     export CATALINA_OPTS="<%= properties.uaa.catalina_opts %>"
 
     cd /var/vcap/data/uaa
-    exec tomcat/bin/catalina.sh run
+    chown -R vcap:vcap /var/vcap/data/uaa
+    exec chpst -u vcap:vcap tomcat/bin/catalina.sh run
 
     ;;
 
