@@ -1,4 +1,5 @@
 <% self_ip = spec.networks.send(properties.networks.apps).ip %>
+<% self_host = spec.networks.send(properties.networks.apps).dns_record_name %>
 net: "<%= self_ip %>"
 port: <%= p("nats.port") %>
 prof_port: <%= p("nats.prof_port") %>
@@ -27,7 +28,7 @@ cluster {
   }
 
   routes = [
-    <% (p("nats.machines") - [self_ip]).each do |address| %>
+    <% (p("nats.machines") - [self_ip] - [self_host]).each do |address| %>
     nats-route://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= address %>:<%= p("nats.port") + 1 %>
     <% end %>
   ]
