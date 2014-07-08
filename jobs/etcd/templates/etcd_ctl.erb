@@ -23,6 +23,7 @@ case $1 in
     echo $$ > $PIDFILE
 
     <% my_ip = spec.networks.send(properties.networks.apps).ip %>
+    <% my_host = spec.networks.send(properties.networks.apps).dns_record_name %>
 
     exec chpst -u vcap:vcap /var/vcap/packages/etcd/etcd -snapshot -data-dir=$WORK_DIR \
         -addr=<%= my_ip %>:4001 \
@@ -34,8 +35,8 @@ case $1 in
           # connect to any peers.
         %> \
         <% if p("etcd.machines").length > 1 %> \
-          <% if p("etcd.machines").first != my_ip %> \
-        -peers=<%= p("etcd.machines").reject { |ip| ip == my_ip }.map { |m| "#{m}:7001" }.join(",") %> \
+          <% if p("etcd.machines").first != my_ip && p("etcd.machines").first != my_host %> \
+        -peers=<%= p("etcd.machines").reject { |ip| ip == my_ip || ip == my_host }.map { |m| "#{m}:7001" }.join(",") %> \
           <% end %> \
         <% end %> \
         -peer-heartbeat-timeout=<%= p("heartbeat_interval_in_milliseconds") %>\
