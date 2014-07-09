@@ -28,6 +28,7 @@ network:
   <% if_p("dea_next.allow_networks") do |allow_networks| %>
   allow_networks: <%= allow_networks %>
   <% end %>
+  allow_inherited_dns: <%= p("dea_next.allow_inherited_dns") %>
 
   # Interface MTU size
   # (for OpenStack use 1454 to avoid problems with rubygems with GRE tunneling)
