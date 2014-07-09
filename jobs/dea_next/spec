@@ -42,6 +42,9 @@ properties:
     description: "user name for NATS login"
   nats.machines:
     description: "IP of each NATS cluster member."
+  dea_next.allow_inherited_dns:
+    description: "Allow network access from containers to the DNS servers inherited from the DEA."
+    default: false
   dea_next.allow_networks:
     description:
   dea_next.deny_networks:

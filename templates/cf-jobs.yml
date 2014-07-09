@@ -469,6 +469,7 @@ properties:
     logging_level: debug
     staging_disk_limit_mb: 4096
     staging_memory_limit_mb: 1024
+    allow_inherited_dns: false
 
   loggregator_endpoint:
     shared_secret: (( merge ))
