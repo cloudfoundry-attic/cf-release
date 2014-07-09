@@ -60,8 +60,6 @@ properties:
 
     directories: ~
 
-    tasks_disabled: false
-
     disable_custom_buildpacks: false
 
     broker_client_timeout_seconds: 70
