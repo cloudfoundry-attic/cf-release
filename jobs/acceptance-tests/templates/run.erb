@@ -29,7 +29,7 @@ echo '##########################################################################
 echo "Running acceptance tests..."
 
 EXITSTATUS=0
-test_command=<%= properties.acceptance_tests.include_diego ? "./bin/test_con_diego" : "./bin/test" %>
+test_command=<%= properties.acceptance_tests.diego ? "bin/test_diego" : "bin/test" %>
 nodes=<%= properties.acceptance_tests.nodes %>
 skips=<%= properties.acceptance_tests.include_sso ? "" : "-skip=SSO" %>
 $test_command -randomizeAllSpecs -nodes=$nodes $skips -keepGoing || EXITSTATUS=$?
