@@ -344,9 +344,6 @@ properties:
     default: ""
     description: "key for encrypting sensitive values in the CC database"
 
-  cc.tasks_disabled:
-    default: false
-    description: "Disable tasks endpoint"
   cc.default_app_memory:
     default: 1024
     description: "How much memory given to an app if not specified"
