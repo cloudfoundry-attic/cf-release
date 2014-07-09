@@ -22,9 +22,9 @@ properties:
   acceptance_tests.nodes:
     default: 2
     description: The number of parallel test executors to spawn. The larger the number the higher the stress on the system.
-  acceptance_tests.include_diego:
+  acceptance_tests.diego:
     default: false
-    description: Flag to include the 'diego' test package.
+    description: Flag to run the 'diego' test package.
   acceptance_tests.include_sso:
     default: false
     description: Flag to include the services tests that integrate with SSO.
