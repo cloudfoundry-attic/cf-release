@@ -16,7 +16,7 @@ export PATH=$PATH:/bin:/usr/bin
 if [ `uname` = "Darwin" ]; then
   mkdir java
   cd java
-  tar zxvf ../uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz
+  tar zxvf ../uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz --exclude="._*"
   export JAVA_HOME=${BUILD_DIR}/java/Contents/Home
 elif [ `uname` = "Linux" ]; then
   mkdir java
