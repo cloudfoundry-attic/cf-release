@@ -267,16 +267,6 @@ nodejs-buildpack/nodejs-buildpack-offline-b29.zip:
   sha: !binary |-
     NGViMGQ1ZTVlYmVkODhiOWYxMTIzOGNiYjA4MmI3OWIyMjA2NDQ4OA==
   size: 393231066
-java-buildpack/java-buildpack-offline-v2.3.zip:
-  object_id: 61225a3a-f66c-4bac-94fe-fb15aff0c888
-  sha: !binary |-
-    YTk4MzM1ODI4YmI2MjAxZDNkMjAzODVjM2ZmNmUyNjdmZDlmYzlhYw==
-  size: 225894207
-java-buildpack/java-buildpack-v2.3.zip:
-  object_id: 8df97db0-624e-493f-8bc0-0b5f046a3d90
-  sha: !binary |-
-    MmM2NTA2NTNhYjlmYTM0MjFlZmNiNGZjYTdlYTA4M2JjNTBiMDQ3Yg==
-  size: 136323
 ruby-buildpack/ruby-buildpack-offline-b53.zip:
   object_id: e6deac43-97c9-46b0-a3b3-9e2666db08aa
   sha: !binary |-
@@ -287,3 +277,13 @@ php-buildpack/php-buildpack-offline-b26.zip:
   sha: !binary |-
     ZGY1YzBiZmNlMjAwYzkyNDVhNGM3MjVmOGJhYWViMzI0MjRhMzcxMQ==
   size: 191244760
+java-buildpack/java-buildpack-offline-v2.4.zip:
+  object_id: 7498b6ad-60f5-4400-9f3a-35321a458e6d
+  sha: !binary |-
+    ZTAwZWJiZmRiZWJkNTQ3NWVjZmM0M2Y5ZmI4NjU4ZmMxZjYxOGRiNg==
+  size: 225928527
+java-buildpack/java-buildpack-v2.4.zip:
+  object_id: d5502109-bbe4-4794-8cc1-0f7cbd108fcf
+  sha: !binary |-
+    N2EwN2Q2MTYyODczZmRhMjlhMGFjZWIwM2FhYTUzZjZmMGVmZjI1YQ==
+  size: 137582
