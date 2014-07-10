@@ -48,8 +48,12 @@ comment on pull requests.
 When the project receives a new CLA, it is recorded in the project records, the CLA is added to the database for the
 automated system uses, then we manually make the Pull Request as having a CLA on-file.
 
+## Proposing new Features
+Please see the [Proposing New Features](https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Proposing-New-Features) page on the Cloud Foundry community wiki that explains the process for getting the team's buy-in on your contribution before you start work.
+
 ## General Workflow
 
+1. [Collaborate with the team](https://github.com/cloudfoundry-community/cf-docs-contrib/wiki/Proposing-New-Features) before you start work
 1. Fork the repository
 1. Create a feature branch (`git checkout -b better_cf-release`)
 1. Build and deploy the
