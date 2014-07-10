@@ -29,7 +29,6 @@ properties:
     memory_mb: 8192
     disk_mb: 16384
     kernel_network_tuning_enabled: false
-    allow_inherited_dns: true
 
   loggregator_endpoint:
     shared_secret: loggregator-secret
