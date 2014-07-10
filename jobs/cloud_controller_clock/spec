@@ -435,7 +435,7 @@ properties:
 
   cc.security_group_definitions:
     description: "Array of security groups that will be seeded into CloudController."
-  cc.default_running_security_group:
-    description: "The default running security group that will be seeded in CloudController."
-  cc.default_staging_security_group:
-    description: "The default staging security group that will be seeded in CloudController."
+  cc.default_running_security_groups:
+    description: "The default running security groups that will be seeded in CloudController."
+  cc.default_staging_security_groups:
+    description: "The default staging security groups that will be seeded in CloudController."

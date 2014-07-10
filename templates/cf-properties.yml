@@ -6,6 +6,27 @@ meta:
        total_services: 100
        non_basic_services_allowed: true
        total_routes: 1000
+  default_security_group_definitions:
+  - name: public_networks
+    rules:
+    - protocol: all
+      destination: 0.0.0.0-9.255.255.255
+    - protocol: all
+      destination: 11.0.0.0-169.253.255.255
+    - protocol: all
+      destination: 169.255.0.0-172.15.255.255
+    - protocol: all
+      destination: 172.32.0.0-192.167.255.255
+    - protocol: all
+      destination: 192.169.0.0-255.255.255.255
+  - name: dns
+    rules:
+    - protocol: tcp
+      destination: 0.0.0.0/0
+      ports: '53'
+    - protocol: udp
+      destination: 0.0.0.0/0
+      ports: '53'
 
 properties:
   domain: (( merge ))
@@ -119,23 +140,9 @@ properties:
 
     stacks: ~
 
-    security_group_definitions:
-      - name: defaults
-        rules:
-        - protocol: all
-          destination: 0.0.0.0-9.255.255.255
-        - protocol: all
-          destination: 11.0.0.0-169.253.255.255
-        - protocol: all
-          destination: 169.255.0.0-172.15.255.255
-        - protocol: all
-          destination: 172.32.0.0-192.167.255.255
-        - protocol: all
-          destination: 192.169.0.0-255.255.255.255
-
-    default_running_security_group: defaults
-    default_staging_security_group: defaults
-
+    security_group_definitions: (( merge || meta.default_security_group_definitions ))
+    default_running_security_groups: (( merge || ["public_networks", "dns"] ))
+    default_staging_security_groups: (( merge || ["public_networks", "dns"] ))
 
   login:
     analytics:
