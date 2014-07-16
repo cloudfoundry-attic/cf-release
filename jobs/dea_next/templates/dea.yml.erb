@@ -21,7 +21,7 @@ directory_server:
   v1_port: 12345
   v2_port: 34567
   file_api_port: 23456
-  streaming_timeout: <% p("dea_next.streaming_timeout") %>
+  streaming_timeout: <%= p("dea_next.streaming_timeout") %>
   logging:
     file: /var/vcap/sys/log/dea_next/dir_server.log
     <% if_p("syslog_aggregator") do %>
