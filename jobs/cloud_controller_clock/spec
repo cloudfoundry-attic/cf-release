@@ -321,13 +321,20 @@ properties:
     default: true
     description: "whether use login as the authorization endpoint or not"
 
-
   loggregator_endpoint.host:
-    description: "The host used to emit messages to the Loggregator"
+    description: "The host used to emit messages to the loggregator"
   loggregator_endpoint.port:
-    description: "The port used to emit messages to the Loggregator"
+    description: "The port used to emit messages to the loggregator"
     default: 3456
   loggregator_endpoint.shared_secret:
+    description: "The key used to sign log messages"
+
+  metron_endpoint.host:
+    description: "The host used to emit messages to the Metron agent"
+  metron_endpoint.port:
+    description: "The port used to emit messages to the Metron agent"
+    default: 3456
+  metron_endpoint.shared_secret:
     description: "The key used to sign log messages"
 
   logger_endpoint.use_ssl:
