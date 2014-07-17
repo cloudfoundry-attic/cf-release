@@ -108,6 +108,8 @@ properties:
         secret: servicesmgmt-secret
       space-mail:
         secret: space-mail-secret
+      notifications:
+        secret: notification-secret
     scim:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write
