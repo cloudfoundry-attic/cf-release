@@ -413,9 +413,6 @@ properties:
   cc.jobs.local.number_of_workers:
     default: 2
     description: "Number of local cloud_controller_worker workers"
-  cc.jobs.generic.number_of_workers:
-    default: 1
-    description: "Number of generic cloud_controller_worker workers"
 
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in mb for staging tasks"
@@ -440,7 +437,7 @@ properties:
     default: "openid,cloud_controller_service_permissions.read"
 
   cc.install_buildpacks:
-    description: "Set of buildpacks to install during deploy" 
+    description: "Set of buildpacks to install during deploy"
   cc.app_bits_upload_grace_period_in_seconds:
     description: "Extra token expiry time while uploading big apps."
     default: 1200
@@ -451,4 +448,3 @@ properties:
     description: "The default running security groups that will be seeded in CloudController."
   cc.default_staging_security_groups:
     description: "The default staging security groups that will be seeded in CloudController."
-

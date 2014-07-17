@@ -400,9 +400,6 @@ properties:
     default: "off"
     description: "NewRelic's SQL statement recording mode: [off | obfuscated | raw]"
 
-  cc.jobs.local.number_of_workers:
-    default: 2
-    description: "Number of local cloud_controller_worker workers"
   cc.jobs.generic.number_of_workers:
     default: 1
     description: "Number of generic cloud_controller_worker workers"
