@@ -23,7 +23,7 @@ logging:
   <% end %>
   level: info
 
-<% if_p("loggregator_endpoint.host", "loggregator_endpoint.port", "loggregator_endpoint.shared_secret") do |host, port, shared_secret| %>
+<% if_p("metron_endpoint.host", "metron_endpoint.port", "metron_endpoint.shared_secret") do |host, port, shared_secret| %>
 loggregatorConfig:
   url: <%= host %>:<%= port %>
   shared_secret: <%= shared_secret %>

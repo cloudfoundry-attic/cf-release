@@ -119,12 +119,12 @@ properties:
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
-  loggregator_endpoint.host:
-    description: "The host used to emit messages to the Loggregator"
-  loggregator_endpoint.port:
-    description: "The port used to emit messages to the Loggregator"
+  metron_endpoint.host:
+    description: "The host used to emit messages to the Metron agent"
+  metron_endpoint.port:
+    description: "The port used to emit messages to the Metron agent"
     default: 3456
-  loggregator_endpoint.shared_secret:
+  metron_endpoint.shared_secret:
     description: "The key used to sign log messages"
   networks.apps:
     description: "DEA network information."
