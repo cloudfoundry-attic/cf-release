@@ -9,11 +9,9 @@ meta:
   networks:
     z1:
       apps: cf1
-      management: cf1
 
     z2:
       apps: cf2
-      management: cf2
 
   loggregator_endpoint:
     z1:
@@ -509,4 +507,3 @@ properties:
   acceptance_tests: (( merge || nil ))
 
   smoke_tests: (( merge || nil ))
-
