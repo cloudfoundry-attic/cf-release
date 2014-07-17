@@ -248,3 +248,7 @@ properties:
         authorized-grant-types: client_credentials
         access-token-validity: 1209600
         refresh-token-validity: 1209600
+      notifications:
+        secret: (( merge ))
+        authorities: cloud_controller.admin,scim.read
+        authorized-grant-types: client_credentials
