@@ -14,4 +14,5 @@ BIN_DIR=${BOSH_INSTALL_TARGET}/bin
 
 mkdir -p ${BIN_DIR}
 
+cp cf ${BIN_DIR}/cf
 cp cf ${BIN_DIR}/gcf
