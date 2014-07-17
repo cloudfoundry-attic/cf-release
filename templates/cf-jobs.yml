@@ -35,6 +35,12 @@ meta:
   api_templates:
   - name: cloud_controller_ng
 
+  api_worker_templates:
+  - name: cloud_controller_worker
+
+  clock_templates:
+  - name: cloud_controller_clock
+
   nats_templates:
   - name: nats
   - name: nats_stream_forwarder
@@ -216,7 +222,7 @@ jobs:
 
   - name: clock_global
     release: (( meta.release.name ))
-    template: cloud_controller_clock
+    templates: (( merge || meta.clock_templates ))
     instances: 1
     resource_pool: medium_z1
     persistent_disk: 0
@@ -231,7 +237,7 @@ jobs:
 
   - name: api_worker_z1
     release: (( meta.release.name ))
-    template: cloud_controller_worker
+    templates: (( merge || meta.api_worker_templates ))
     instances: 1
     resource_pool: small_z1
     persistent_disk: 0
@@ -247,7 +253,7 @@ jobs:
 
   - name: api_worker_z2
     release: (( meta.release.name ))
-    template: cloud_controller_worker
+    templates: (( merge || meta.api_worker_templates ))
     instances: 1
     resource_pool: small_z2
     persistent_disk: 0
