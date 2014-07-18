@@ -197,7 +197,7 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
+        host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
       nfs_server: (( meta.nfs_server ))
@@ -213,7 +213,7 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       loggregator_endpoint:
-        host: (( meta.metron_endpoint.z2.host ))
+        host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
       nfs_server: (( meta.nfs_server ))
@@ -229,7 +229,7 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
+        host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
 
@@ -244,7 +244,7 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
+        host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
       nfs_server: (( meta.nfs_server ))
@@ -260,7 +260,7 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       loggregator_endpoint:
-        host: (( meta.metron_endpoint.z2.host ))
+        host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
       nfs_server: (( meta.nfs_server ))
@@ -330,7 +330,7 @@ jobs:
     properties:
       networks: (( meta.networks.z1 ))
       loggregator_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
+        host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
 
@@ -347,7 +347,7 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       loggregator_endpoint:
-        host: (( meta.metron_endpoint.z2.host ))
+        host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
 
@@ -408,6 +408,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
+      loggregator_endpoint:
+        host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
 
@@ -420,6 +422,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
+      loggregator_endpoint:
+        host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
 
