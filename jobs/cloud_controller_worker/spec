@@ -147,6 +147,8 @@ properties:
     description: "URL for the support attribute in the /info endpoint"
   cc.info.description:
     description: "free form description for attribute in the /info endpoint"
+  cc.info.custom:
+    description: "Custom values for /v2/info endpoint"
 
   cc.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
