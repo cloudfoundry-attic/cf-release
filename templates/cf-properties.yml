@@ -199,6 +199,8 @@ properties:
     login:
       client_secret: ~
 
+    ldap: ~
+
     clients:
       <<: (( merge || nil ))
       login:
