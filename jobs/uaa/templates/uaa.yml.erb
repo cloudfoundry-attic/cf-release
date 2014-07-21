@@ -9,14 +9,12 @@ database:
   username: <%= uaa_role.name %>
   password: "<%= uaa_role.password %>"
 
-<% if properties.uaa && properties.uaa.spring_profiles && properties.uaa.spring_profiles.eql?('ldap') && properties.uaa.ldap %>
-spring_profiles: <%= properties.uaa.spring_profiles %>,<%=properties.uaadb.db_scheme%>
-<% elsif properties.uaa && properties.uaa.spring_profiles && properties.uaa.spring_profiles.include?('ldap') && properties.uaa.ldap %>
-spring_profiles: <%= properties.uaa.spring_profiles ? properties.uaa.spring_profiles : properties.uaadb.db_scheme %>
-<% elsif properties.login && properties.login.spring_profiles && properties.login.spring_profiles.include?('ldap') &&  properties.login.ldap %>
-spring_profiles: <%= properties.uaa.spring_profiles ? properties.uaa.spring_profiles : properties.uaadb.db_scheme %>,ldap
+<% if properties.uaa && properties.uaa.ldap && properties.uaa.ldap.profile_type %>
+spring_profiles: <%= properties.uaadb.db_scheme %>,ldap
+<% elsif properties.login && properties.login.spring_profiles && properties.login.spring_profiles.include?('ldap') &&  properties.login.ldap && properties.login.ldap.profile_type %>
+spring_profiles: <%= properties.uaadb.db_scheme %>,ldap
 <% else %>
-spring_profiles: <%= properties.uaa.spring_profiles ? properties.uaa.spring_profiles : properties.uaadb.db_scheme %>
+spring_profiles: <%= properties.uaadb.db_scheme %>
 <% end %>
 
 logging:
@@ -122,7 +120,7 @@ require_https: <%= properties.uaa.require_https %>
 <% if !properties.uaa.dump_requests.nil? %>
 dump_requests: <%= properties.uaa.dump_requests %>
 <% end %>
-<% if properties.uaa && properties.uaa.spring_profiles && properties.uaa.spring_profiles.include?('ldap') && properties.uaa.ldap && properties.uaa.ldap.profile_type %>
+<% if properties.uaa && properties.uaa.ldap && properties.uaa.ldap.profile_type %>
 ldap:
   ldapdebug: 'Ldap configured through UAA'
   profile:
