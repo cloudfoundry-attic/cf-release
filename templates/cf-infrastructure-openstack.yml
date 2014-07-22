@@ -5,11 +5,8 @@ meta:
 
   openstack: (( merge ))
 
-  bosh-network:
-    cidr: (( merge ))
-
   stemcell:
-    name: bosh-openstack-kvm-ubuntu
+    name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
 
   floating_static_ips: (( merge ))
@@ -33,9 +30,7 @@ properties:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
 
   dea_next:
-    deny_networks:
-      - 169.254.0.0/16 # Openstack Metadata endpoint
-
+    deny_networks: (( merge || nil ))
     allow_networks: (( merge || nil ))
 
   nats:
@@ -125,83 +120,71 @@ resource_pools:
   - name: router_z1
     cloud_properties:
       instance_type: m1.medium
-      elbs: (( merge || ["cfrouter"] ))
 
   - name: router_z2
     cloud_properties:
       instance_type: m1.medium
-      elbs: (( merge || ["cfrouter"] ))
 
 # This config is for the simplest Openstack config using just one AZ.
 # All values for "z2" and network "cf2" are set to null. They'll end up
 # in the final 'spiff merge' manifest with zero instances.
 jobs:
-
   - name: ha_proxy_z1
-    instances: 2
+    instances: 1
     networks:
       - name: floating
         static_ips: (( meta.floating_static_ips ))
       - name: cf1
-        static_ips: (( static_ips(25,26) ))
+        static_ips: (( static_ips(0) ))
         default: (( merge || nil ))
 
   - name: logs_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(0) ))
+        static_ips: (( static_ips(1) ))
 
   - name: nats_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(1) ))
+        static_ips: (( static_ips(2) ))
 
   - name: nfs_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(2) ))
+        static_ips: (( static_ips(3) ))
 
   - name: postgres_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(3) ))
-
-  - name: hm_z1
-    instances: 0
+        static_ips: (( static_ips(4) ))
 
   - name: router_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+        static_ips: (( static_ips(5) ))
 
   - name: loggregator_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(21, 22) ))
+        static_ips: (( static_ips(6) ))
 
   - name: loggregator_trafficcontroller_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(24) ))
+        static_ips: (( static_ips(7) ))
 
-  - name: etcd_leader_z1
+  - name: etcd_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(9) ))
-
-  - name: etcd_z1
-    instances: 0
-    networks:
-      - name: cf1
-        static_ips: (( static_ips(27, 28, 29, 30) ))
+        static_ips: (( static_ips(8, 9, 10) ))
 
   - name: logs_z2
     instances: 0
@@ -252,4 +235,7 @@ jobs:
     instances: 0
 
   - name: runner_z2
+    instances: 0
+
+  - name: login_z2
     instances: 0
