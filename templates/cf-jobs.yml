@@ -380,6 +380,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
+      loggregator:
+        zone: z1
 
   - name: loggregator_z2
     release: (( meta.release.name ))
@@ -391,6 +393,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
+      loggregator:
+        zone: z2
 
   - name: loggregator_trafficcontroller_z1
     release: (( meta.release.name ))
