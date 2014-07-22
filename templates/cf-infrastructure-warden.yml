@@ -291,7 +291,6 @@ jobs:
       - name: cloud_controller_ng
       - name: cloud_controller_clock
       - name: cloud_controller_worker
-      - name: metron_agent
 
   - name: api_worker_z1
     instances: 0
