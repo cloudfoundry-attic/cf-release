@@ -200,6 +200,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
+      metron_agent:
+        zone: z1
       nfs_server: (( meta.nfs_server ))
 
   - name: api_z2
@@ -216,6 +218,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
+      metron_agent:
+        zone: z2
       nfs_server: (( meta.nfs_server ))
 
   - name: clock_global
@@ -232,6 +236,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
+      metron_agent:
+        zone: z1
 
   - name: api_worker_z1
     release: (( meta.release.name ))
@@ -247,6 +253,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
+      metron_agent:
+        zone: z1
       nfs_server: (( meta.nfs_server ))
 
   - name: api_worker_z2
@@ -263,6 +271,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
+      metron_agent:
+        zone: z2
       nfs_server: (( meta.nfs_server ))
 
   - name: etcd_z1
@@ -333,6 +343,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
+      metron_agent:
+        zone: z1
 
   - name: runner_z2
     release: (( meta.release.name ))
@@ -350,6 +362,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
+      metron_agent:
+        zone: z2
 
   - name: loggregator_z1
     release: (( meta.release.name ))
@@ -416,6 +430,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z1.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z1.host ))
+      metron_agent:
+        zone: z1
 
   - name: router_z2
     templates: (( merge || meta.router_templates ))
@@ -430,6 +446,8 @@ jobs:
         host: (( meta.loggregator_endpoint.z2.host ))
       metron_endpoint:
         host: (( meta.metron_endpoint.z2.host ))
+      metron_agent:
+        zone: z2
 
   - name: acceptance_tests
     release: (( meta.release.name ))
