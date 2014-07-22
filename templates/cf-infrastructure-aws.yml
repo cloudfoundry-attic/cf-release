@@ -33,6 +33,7 @@ properties:
       fog_connection: (( meta.fog_config ))
     buildpacks:
       fog_connection: (( meta.fog_config ))
+    diego: (( merge || false ))
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
