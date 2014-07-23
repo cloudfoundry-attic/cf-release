@@ -9,8 +9,10 @@ database:
   username: <%= uaa_role.name %>
   password: "<%= uaa_role.password %>"
 
-<% if properties.uaa && properties.uaa.ldap && properties.uaa.ldap.profile_type %>
+<% if properties.uaa && properties.uaa.ldap && ((properties.uaa.ldap.enabled &&  (properties.uaa.ldap.enabled==true)) || (properties.uaa.spring_profiles && properties.uaa.spring_profiles.eql?('ldap'))) %>
 spring_profiles: <%= properties.uaadb.db_scheme %>,ldap
+<% elsif properties.uaa && properties.uaa.spring_profiles && properties.uaa.spring_profiles.include?('ldap') && properties.uaa.ldap %>
+spring_profiles: <%= properties.uaa.spring_profiles ? properties.uaa.spring_profiles : properties.uaadb.db_scheme %>
 <% elsif properties.login && properties.login.spring_profiles && properties.login.spring_profiles.include?('ldap') &&  properties.login.ldap && properties.login.ldap.profile_type %>
 spring_profiles: <%= properties.uaadb.db_scheme %>,ldap
 <% else %>
@@ -114,13 +116,17 @@ scim:
   users: <% properties.uaa.scim.users.each do |user| %>
     - <%= user %><% end %>
 <% end %>
+<% if properties.uaa.scim && properties.uaa.scim.external_groups then %>
+  external_groups: <% properties.uaa.scim.external_groups.each do |group| %>
+    - <%= group %><% end %>
+<% end %>
 <% if !properties.uaa.require_https.nil? %>
 require_https: <%= properties.uaa.require_https %>
 <% end %>
 <% if !properties.uaa.dump_requests.nil? %>
 dump_requests: <%= properties.uaa.dump_requests %>
 <% end %>
-<% if properties.uaa && properties.uaa.ldap && properties.uaa.ldap.profile_type %>
+<% if properties.uaa && properties.uaa.ldap && ((properties.uaa.ldap.enabled &&  (properties.uaa.ldap.enabled==true)) || (properties.uaa.spring_profiles && properties.uaa.spring_profiles.include?('ldap'))) %>
 ldap:
   ldapdebug: 'Ldap configured through UAA'
   profile:
@@ -129,6 +135,7 @@ ldap:
     url: '<%= properties.uaa.ldap.url %>'
     <% if properties.uaa.ldap.profile_type == 'simple-bind' %> 
     userDnPattern: '<%= properties.uaa.ldap.userDNPattern %>'
+    userDnPatternDelimiter: '<%= properties.uaa.ldap.userDNPatternDelimiter%>'
     <% else  %>
     userDn: '<%= properties.uaa.ldap.userDN %>'
     password: '<%= properties.uaa.ldap.userPassword %>'
@@ -140,13 +147,24 @@ ldap:
     passwordEncoder: <%= properties.uaa.ldap.passwordEncoder %>
     localPasswordCompare: <%= properties.uaa.ldap.localPasswordCompare %>
     <% end %>
+    mailAttributeName: '<%= properties.uaa.ldap.mailAttributeName%>'
   <% if properties.uaa.ldap.sslCertificate %>
   ssl: 
-    sslCertificate: ! <%= "'" + p("login.ldap.sslCertificate").gsub("\n", "\n\n    ") + "'" %>
+    sslCertificate: ! <%= "'" + p("uaa.ldap.sslCertificate").gsub("\n", "\n\n    ") + "'" %>
     <% if properties.uaa.ldap.sslCertificateAlias %>
     sslCertificateAlias: <%= properties.uaa.ldap.sslCertificateAlias %>
     <% end %>
-  <% end %>  
+  <% end %>
+  <% if properties.uaa.ldap.groups && properties.uaa.ldap.groups.profile_type %>
+  groups:
+    file: <%= (properties.uaa.ldap.groups.profile_type == 'no-groups') ? 'ldap/ldap-groups-null.xml' : (properties.uaa.ldap.groups.profile_type == 'groups-as-scopes') ? 'ldap/ldap-groups-as-scopes.xml' : 'ldap/ldap-groups-map-to-scopes.xml' %>
+    searchBase: '<%= properties.uaa.ldap.groups.searchBase %>'
+    groupRoleAttribute: '<%= properties.uaa.ldap.groups.groupRoleAttribute %>'
+    groupSearchFilter: '<%= properties.uaa.ldap.groups.groupSearchFilter %>'
+    searchSubtree: <%= properties.uaa.ldap.groups.searchSubtree %>
+    maxSearchDepth: <%= properties.uaa.ldap.groups.maxSearchDepth %>
+    autoAdd: <%= properties.uaa.ldap.groups.autoAdd %>
+  <% end %>
 <% elsif properties.login && properties.login.spring_profiles && properties.login.spring_profiles.include?('ldap') &&  properties.login.ldap && properties.login.ldap.profile_type %>
 ldap:
   ldapdebug: 'Ldap configured through Login Server'
