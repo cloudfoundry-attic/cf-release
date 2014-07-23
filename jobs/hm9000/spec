@@ -51,3 +51,10 @@ properties:
     default: false
   networks.apps:
     description: "HM9000 network information."
+
+  hm9000.desired_state_batch_size:
+    description: "The batch size when fetching desired state information from the CC."
+    default: 5000
+  hm9000.fetcher_network_timeout_in_seconds:
+    description: "Each API call to the CC must succeed within this timeout."
+    default: 30
