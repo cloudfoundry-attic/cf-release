@@ -32,12 +32,15 @@ meta:
 
   api_templates:
   - name: cloud_controller_ng
+  - name: metron_agent
 
   api_worker_templates:
   - name: cloud_controller_worker
+  - name: metron_agent
 
   clock_templates:
   - name: cloud_controller_clock
+  - name: metron_agent
 
   nats_templates:
   - name: nats
@@ -46,10 +49,12 @@ meta:
   dea_templates:
   - name: dea_next
   - name: dea_logging_agent
+  - name: metron_agent
 
   router_templates:
   - name: gorouter
     release: cf
+  - name: metron_agent
 
   loggregator:
     servers:
