@@ -65,6 +65,8 @@ properties:
     default: false
   uaa.scim.users:
     description:
+  uaa.scim.external_groups:
+    description: "A list of external group mappings. Pipe delimited. A value may look as '- internal.read|cn=developers,ou=scopes,dc=test,dc=com'"
   ccdb.address:
     description: "The CloudController database IP address"
   ccdb.databases:
@@ -118,12 +120,21 @@ properties:
     description:
   uaa_client_auth_credentials.username:
     description:
+  uaa.spring_profiles:
+    description: "Deprecated. Use 'uaa.ldap.enabled'. Sets the Spring profiles on the UAA web application. This gets combined with the 'uaadb.db_scheme' property if and only if the value is exactly 'ldap' in order to setup the database, for example 'ldap,mysql'. If spring_profiles contains more than just 'ldap' it will be used to overwrite spring_profiles and db_scheme ignored. See uaa.yml.erb."
+  uaa.ldap.enabled:
+    description: "Set to true to enable LDAP"
+    default: false
   uaa.ldap.profile_type:
     description: "The file to be used for configuring the LDAP authentication. options are simple-bind, search-and-bind and search-and-compare"
+    default: search-and-bind
   uaa.ldap.url:
     description: "The URL to the ldap server, must start with ldap:// or ldaps://"
   uaa.ldap.userDNPattern:
     description: "Used with simple-bind only. A semi-colon separated lists of DN patterns to construct a DN direct from the user ID without performing a search."
+  uaa.ldap.userDNPatternDelimiter:
+    description: "The delimiter character in between user DN patterns for simple bind authentication"
+    default: ";"
   uaa.ldap.userDN:
     description: "Used with search-and-bind and search-and-compare. A valid LDAP ID that has read permissions to perform a search of the LDAP tree for user information. "
   uaa.ldap.userPassword:
@@ -142,11 +153,34 @@ properties:
     default: "true"
   uaa.ldap.passwordEncoder:
     description: "Used with search-and-compare only. The encoder used to properly encode user password to match the one in the LDAP directory."
-    default: "org.cloudfoundry.identity.uaa.login.ldap.DynamicPasswordComparator"
+    default: "org.cloudfoundry.identity.uaa.ldap.DynamicPasswordComparator"
   uaa.ldap.sslCertificate:
     description: "Used with ldaps:// URLs. The certificate, if self signed, to be trusted by this connection."
   uaa.ldap.sslCertificateAlias:
     description: "Used with ldaps:// URLs. The certificate alias, to be trusted by this connection and stored in the keystore."
+  uaa.ldap.mailAttributeName:
+    description: "The name of the LDAP attribute that contains the users email address"
+    default: mail
+  uaa.ldap.groups.profile_type:
+    description: "What type of group integration should be used. Values are no-groups, groups-as-scopes and groups-map-to-scopes"
+    default: "no-groups"
+  uaa.ldap.groups.autoAdd:
+    description: "Set to true when profile_type=groups_as_scopes to auto create scopes for a user. Ignored for other profiles."
+    default: "true"
+  uaa.ldap.groups.searchBase:
+    description: "Search start point for a user group membership search"
+    default: ""
+  uaa.ldap.groups.groupRoleAttribute:
+    description: "Used with groups-as-scopes, defines the attribute that holds the scope name(s)."
+  uaa.ldap.groups.groupSearchFilter:
+    description: "Search query filter to find groups a user belongs to, or for a nested search, groups that a group belongs to"
+    default: "member={0}"
+  uaa.ldap.groups.searchSubtree:
+    description: "Boolean value, set to true to search below the search base"
+    default: "true"
+  uaa.ldap.groups.maxSearchDepth:
+    description: "Set to number of levels a nested group search should go. Set to 1 to disable nested groups (default)"
+    default: "1"
   login.ldap.profile_type:
     description: "See uaa.ldap.profile_type - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
   login.ldap.url:
