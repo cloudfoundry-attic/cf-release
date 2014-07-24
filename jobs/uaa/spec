@@ -35,6 +35,12 @@ properties:
 
   uaa.admin.client_secret:
     description:
+  uaa.authentication.policy.lockoutAfterFailures:
+    description: "Number of allowed failures before account is locked"
+  uaa.authentication.policy.countFailuresWithinSeconds:
+    description: "Number of seconds in which lockoutAfterFailures failures must occur in order for account to be locked"
+  uaa.authentication.policy.lockoutPeriodSeconds:
+    description: "Number of seconds to lock out an account when lockoutAfterFailures failures is exceeded"
   uaa.batch.password:
     description: "Deprecated"
   uaa.batch.username:
