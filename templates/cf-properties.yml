@@ -193,6 +193,12 @@ properties:
     admin:
       client_secret: (( merge ))
 
+    authentication:
+      policy:
+        lockoutAfterFailures: ~
+        countFailuresWithinSeconds: ~
+        lockoutPeriodSeconds: ~
+
     batch:
       username: (( merge ))
       password: (( merge ))

@@ -39,6 +39,14 @@ jwt:
 <% scheme = p("uaa.no_ssl") ? "http" : "https"
    domain = p("domain") %>
 
+<% if properties.uaa.authentication && properties.uaa.authentication.policy %>
+authentication:
+  policy:
+    lockoutAfterFailures: <%= properties.uaa.authentication.policy.lockoutAfterFailures ? properties.uaa.authentication.policy.lockoutAfterFailures : 5%>
+    countFailuresWithinSeconds: <%= properties.uaa.authentication.policy.countFailuresWithinSeconds ? properties.uaa.authentication.policy.countFailuresWithinSeconds : 3600 %>
+    lockoutPeriodSeconds: <%= properties.uaa.authentication.policy.lockoutPeriodSeconds ? properties.uaa.authentication.policy.lockoutPeriodSeconds : 300%>
+<% end %>
+
 issuer.uri: <%= p("uaa.url", "#{scheme}://uaa.#{domain}") %>
 
 oauth:
