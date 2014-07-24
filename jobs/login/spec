@@ -35,9 +35,7 @@ properties:
     description: "Transport to be used when forwarding logs (tcp|udp|relp)."
     default: "tcp"
 
-  name: Login Server for the UAA
-  description: "The Login Server enables authentication to the UAA optionally with SAML or LDAP."
-  login.brand: 
+  login.brand:
     description: "The brand to use for the reset password emails, available values are oss and pivotal"
     default: oss
   login.asset_base_url:
