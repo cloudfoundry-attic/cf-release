@@ -101,6 +101,18 @@ properties:
   dea_next.instance_disk_inode_limit:
     description: Limit on inodes for an instance container
     default: 200000
+  dea_next.staging_http_proxy:
+    description: "The http proxy for staging tasks"
+  dea_next.staging_https_proxy:
+    description: "The https proxy for staging tasks"
+  dea_next.staging_no_proxy:
+    description: "The no_proxy for staging tasks"
+  dea_next.instance_http_proxy:
+    description: "The http proxy for all apps"
+  dea_next.instance_https_proxy:
+    description: "The https proxy for all apps"
+  dea_next.instance_no_proxy:
+    description: "The no_proxy for all apps"
   dea_next.directory_server_protocol:
     description: 'The protocol to use when communicating with the directory server ("http" or "https")'
     default: 'https'
