@@ -242,11 +242,6 @@ ruby/yaml-0.1.6.tar.gz:
   sha: !binary |-
     ZjNkNDA0ZTExYmVjM2M0ZWZjZGRmZDE0YzQyZDQ2ZjFhYWJlMGI1ZA==
   size: 503012
-go-buildpack/go-buildpack-offline-b7.zip:
-  object_id: 98842827-a5a9-4db2-8f63-598636b671bb
-  sha: !binary |-
-    Y2Q2OTc5MDNiYTYxNGEyNWJiYWJkYzkwMDZjOTI4ODlhNDBkNmJiOA==
-  size: 269064277
 ruby/ruby-1.9.3-p547.tar.gz:
   object_id: 82ec5a34-c6f5-46ba-8420-d927020a2a41
   sha: !binary |-
@@ -282,3 +277,8 @@ php-buildpack/php_buildpack-offline-v1.0.1.zip:
   sha: !binary |-
     OWExOWViNTk0YTAzZDk4MGRkYzJkZTY4MjIwOTFlMGU1ZWVmYTgyNA==
   size: 295649294
+go_buildpack-offline-v1.0.1.zip:
+  object_id: a2d815f9-e4df-48a9-9d8f-d933b0d0f0cf
+  sha: !binary |-
+    OTk3YWQwMWUwYjllZWRkNTU2NmM3MDQ4MGM3NjI0YzY0ZDQ1YWUwZQ==
+  size: 375528925
