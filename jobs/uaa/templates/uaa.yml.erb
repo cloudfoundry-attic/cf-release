@@ -44,6 +44,18 @@ oauth:
   authorize:
     ssl: true
   <% end %>
+  <% if properties.uaa.endpoint %>
+  endpoint:
+    <% if properties.uaa.endpoint.lockoutAfterFailures %>
+      lockoutAfterFailures: <%= properties.uaa.endpoint.lockoutAfterFailures %>
+    <% end %>
+    <% if properties.uaa.endpoint.countFailuresWithinSeconds %>
+      countFailuresWithinSeconds: <%= properties.uaa.endpoint.countFailuresWithinSeconds %>
+    <% end %>
+    <% if properties.uaa.endpoint.lockoutPeriodSeconds %>
+      lockoutPeriodSeconds: <%= properties.uaa.endpoint.lockoutPeriodSeconds %>
+    <% end %>
+  <% end %>
   client:
   <% if properties.uaa.client && properties.uaa.client.autoapprove %>
     autoapprove: <% properties.uaa.client.autoapprove.each do |client_id| %>
