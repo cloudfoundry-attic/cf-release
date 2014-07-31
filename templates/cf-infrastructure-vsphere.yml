@@ -174,7 +174,8 @@ jobs:
 
   # using login template, that supports self-signed certs
   - name: login_z1
-    template: login
+    templates: 
+    - name: login
 
   - name: acceptance_tests
     instances: 1
