@@ -181,6 +181,7 @@ properties:
     scim:
       userids_enabled: (( merge || false ))
       users: (( merge ))
+      external_groups: ~
 
     jwt:
       signing_key: (( merge ))
@@ -192,6 +193,12 @@ properties:
     admin:
       client_secret: (( merge ))
 
+    authentication:
+      policy:
+        lockoutAfterFailures: ~
+        countFailuresWithinSeconds: ~
+        lockoutPeriodSeconds: ~
+
     batch:
       username: (( merge ))
       password: (( merge ))
@@ -200,6 +207,8 @@ properties:
       client_secret: ~
 
     ldap: ~
+
+    spring_profiles: ~
 
     clients:
       <<: (( merge || nil ))

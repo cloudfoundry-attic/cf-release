@@ -4,10 +4,7 @@ set -e -x
 cd ${BUILD_DIR}/cf-registrar-bundle-for-identity
 BUNDLE_WITHOUT=development:test bundle package --all
 
-#unpack Maven
 cd ${BUILD_DIR}
-tar zxvf maven/apache-maven-3.1.1-bin.tar.gz
-export MAVEN_HOME=${BUILD_DIR}/apache-maven-3.1.1
 
 # Make sure we can see uname
 export PATH=$PATH:/bin:/usr/bin
@@ -27,31 +24,20 @@ else
   if [ ! -d $JAVA_HOME ]; then
     echo "JAVA_HOME properly set is required for non Linux/Darwin builds."
     exit 1
-  fi    
+  fi
 fi
 
-#setup Java and Maven paths
-export PATH=$MAVEN_HOME/bin:$JAVA_HOME/bin:$PATH
-
-#Maven options for building
-export MAVEN_OPTS='-Xmx1g -XX:MaxPermSize=512m'
+#setup Java path
+export PATH=$JAVA_HOME/bin:$PATH
 
 #build cloud foundry war
 cd ${BUILD_DIR}/login
-unset GEM_PATH
-mvn clean
-mvn -U -e -B package -DskipTests=true -Ddot.git.directory=${RELEASE_DIR}/src/login/.git
-cp target/cloudfoundry-login-server-*.war ${BUILD_DIR}/login/cloudfoundry-login-server.war
+GIT_DIR=${RELEASE_DIR}/.git/modules/src/login ./gradlew :assemble
+cp build/libs/cloudfoundry-login-server-*.war ${BUILD_DIR}/login/cloudfoundry-login-server.war
 
-#remove build resources
-mvn clean
-
-#clean up - so we don't transfer files we don't need
-cd ${BUILD_DIR}
-rm -rf apache-maven*
+#clean build data
+./gradlew clean
 rm -rf java
-rm -rf maven
 rm -rf uaa/openjdk-1.7.0-u40-unofficial-linux-amd64.tgz
 rm -rf uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz
-
 ${BUILD_DIR}/login/.clean-cf-release-build
