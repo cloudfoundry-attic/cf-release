@@ -432,8 +432,8 @@ jobs:
   - name: loggregator_trafficcontroller_z1
     release: (( meta.release.name ))
     templates:
-    - name: loggregator
-      release: cf_trafficcontroller
+    - name: loggregator_trafficcontroller
+      release: cf
     instances: 1
     resource_pool: small_z1
     networks:
@@ -447,8 +447,8 @@ jobs:
   - name: loggregator_trafficcontroller_z2
     release: (( meta.release.name ))
     templates:
-    - name: loggregator
-      release: cf_trafficcontroller
+    - name: loggregator_trafficcontroller
+      release: cf
     instances: 1
     resource_pool: small_z2
     networks:
