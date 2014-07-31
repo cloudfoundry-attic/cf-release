@@ -13,18 +13,6 @@ meta:
     z2:
       apps: cf2
 
-  loggregator_endpoint:
-    z1:
-      host: (( jobs.loggregator_trafficcontroller_z1.networks.cf1.static_ips.[0] || nil ))
-    z2:
-      host: (( jobs.loggregator_trafficcontroller_z2.networks.cf2.static_ips.[0] || nil ))
-
-  metron_endpoint:
-    z1:
-      host: (( meta.loggregator_endpoint.z1.host ))
-    z2:
-      host: (( meta.loggregator_endpoint.z2.host ))
-
   nfs_server:
     address: (( jobs.nfs_z1.networks.cf1.static_ips.[0] || nil ))
     network: (( .networks.cf1.subnets.[0].range || nil ))
@@ -226,10 +214,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z1.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
       metron_agent:
         zone: z1
       nfs_server: (( meta.nfs_server ))
@@ -244,10 +228,6 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z2.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z2.host ))
       metron_agent:
         zone: z2
       nfs_server: (( meta.nfs_server ))
@@ -262,10 +242,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z1.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
       metron_agent:
         zone: z1
 
@@ -279,10 +255,6 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z1.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
       metron_agent:
         zone: z1
       nfs_server: (( meta.nfs_server ))
@@ -297,10 +269,6 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z2.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z2.host ))
       metron_agent:
         zone: z2
       nfs_server: (( meta.nfs_server ))
@@ -373,10 +341,6 @@ jobs:
         static_ips: ~
     properties:
       networks: (( meta.networks.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z1.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
       metron_agent:
         zone: z1
 
@@ -392,10 +356,6 @@ jobs:
         static_ips: ~
     properties:
       networks: (( meta.networks.z2 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z2.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z2.host ))
       metron_agent:
         zone: z2
 
@@ -468,10 +428,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z1.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z1.host ))
       metron_agent:
         zone: z1
 
@@ -484,10 +440,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      loggregator_endpoint:
-        host: (( meta.loggregator_endpoint.z2.host ))
-      metron_endpoint:
-        host: (( meta.metron_endpoint.z2.host ))
       metron_agent:
         zone: z2
 
