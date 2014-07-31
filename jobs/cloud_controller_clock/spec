@@ -434,8 +434,14 @@ properties:
     default: 1200
 
   uaa.clients.cc_service_broker_client.secret:
-    description: "Used for generating SSO clients for service brokers."
+    description: "(DEPRECATED) - Used for generating SSO clients for service brokers."
   uaa.clients.cc_service_broker_client.scope:
+    description: "(DEPRECATED) - Used to grant scope for SSO clients for service brokers"
+    default: "openid,cloud_controller_service_permissions.read"
+
+  uaa.clients.cc-service-dashboards.secret:
+    description: "Used for generating SSO clients for service brokers."
+  uaa.clients.cc-service-dashboards.scope:
     description: "Used to grant scope for SSO clients for service brokers"
     default: "openid,cloud_controller_service_permissions.read"
 
