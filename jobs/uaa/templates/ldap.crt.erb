@@ -1,5 +1,5 @@
 <% if properties.uaa && properties.uaa.ldap && properties.uaa.ldap.sslCertificate then %>
-<%= p("login.uaa.sslCertificate", "") %>
+<%= p("uaa.ldap.sslCertificate", "") %>
 <% elsif properties.login && properties.login.ldap && properties.login.ldap.sslCertificate then %>
 <%= p("login.ldap.sslCertificate", "") %>
 <% end %>
