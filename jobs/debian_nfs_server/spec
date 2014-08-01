@@ -10,11 +10,11 @@ packages:
   - debian_nfs_server
 
 properties:
-  debian_nfs_server.no_root_squash:
+  nfs_server.no_root_squash:
     description: "Exports /var/vcap/store with no_root_squash when set to true"
     default: false
-  nfs_server.network:
-    description: "Network prefix when exporting /var/vcap/store"
+  nfs_server.allow_from_entries:
+    description: "An array of Hosts, Domains, Wildcard Domains, CIDR Networks and/or IPs from which /var/vcap/store is accessible"
   nfs_server.idmapd_domain:
     description: "Domain name for NFS idmapd"
     default: "localdomain"
