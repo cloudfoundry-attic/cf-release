@@ -93,7 +93,7 @@ properties:
       login:
         secret: login-secret
         redirect-uri: (( "http://login." domain ))
-      cc_service_broker_client:
+      cc-service-dashboards:
         secret: cc-broker-secret
         scope: openid,cloud_controller_service_permissions.read
         authorities: clients.read,clients.write,clients.admin
