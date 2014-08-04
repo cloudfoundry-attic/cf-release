@@ -257,11 +257,6 @@ nodejs-buildpack/nodejs-buildpack-offline-b29.zip:
   sha: !binary |-
     NGViMGQ1ZTVlYmVkODhiOWYxMTIzOGNiYjA4MmI3OWIyMjA2NDQ4OA==
   size: 393231066
-ruby-buildpack/ruby-buildpack-offline-b53.zip:
-  object_id: e6deac43-97c9-46b0-a3b3-9e2666db08aa
-  sha: !binary |-
-    YmY5YzliMzllN2Q4MTYwZDA4NjRkMDAzYmMyMTg0MDdhMTlhMzIzMQ==
-  size: 747817037
 java-buildpack/java-buildpack-offline-v2.4.zip:
   object_id: 7498b6ad-60f5-4400-9f3a-35321a458e6d
   sha: !binary |-
@@ -282,3 +277,8 @@ go-buildpack/go_buildpack-offline-v1.0.1.zip:
   sha: !binary |-
     OTk3YWQwMWUwYjllZWRkNTU2NmM3MDQ4MGM3NjI0YzY0ZDQ1YWUwZQ==
   size: 375528925
+ruby-buildpack/ruby_buildpack-offline-v1.0.1.zip:
+  object_id: 3454e41e-2aa3-44e1-a517-f49f2add2af9
+  sha: !binary |-
+    Yzc1Y2JmM2ZhZDdiNzQ5NjU0ODQ3ZjI2NjhjYzUxNTQ0ODI1NDdhOA==
+  size: 729765004
