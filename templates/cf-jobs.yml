@@ -103,6 +103,36 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
 
+  - name: etcd_z1
+    templates:
+      - name: etcd
+        release: (( meta.release.name ))
+      - name: etcd_metrics_server
+        release: (( meta.release.name ))
+    instances: 2
+    persistent_disk: 10024
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+        static_ips: (( merge ))
+    properties:
+      networks: (( meta.networks.z1 ))
+
+  - name: etcd_z2
+    templates:
+      - name: etcd
+        release: (( meta.release.name ))
+      - name: etcd_metrics_server
+        release: (( meta.release.name ))
+    instances: 1
+    persistent_disk: 10024
+    resource_pool: medium_z2
+    networks:
+      - name: cf2
+        static_ips: (( merge ))
+    properties:
+      networks: (( meta.networks.z2 ))
+
   - name: logs_z1
     templates:
     - name: syslog_aggregator
@@ -269,36 +299,6 @@ jobs:
       metron_agent:
         zone: z2
       nfs_server: (( meta.nfs_server ))
-
-  - name: etcd_z1
-    templates:
-      - name: etcd
-        release: (( meta.release.name ))
-      - name: etcd_metrics_server
-        release: (( meta.release.name ))
-    instances: 2
-    persistent_disk: 10024
-    resource_pool: medium_z1
-    networks:
-      - name: cf1
-        static_ips: (( merge ))
-    properties:
-      networks: (( meta.networks.z1 ))
-
-  - name: etcd_z2
-    templates:
-      - name: etcd
-        release: (( meta.release.name ))
-      - name: etcd_metrics_server
-        release: (( meta.release.name ))
-    instances: 1
-    persistent_disk: 10024
-    resource_pool: medium_z2
-    networks:
-      - name: cf2
-        static_ips: (( merge ))
-    properties:
-      networks: (( meta.networks.z2 ))
 
   - name: hm9000_z1
     templates:
