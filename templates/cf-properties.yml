@@ -124,7 +124,7 @@ properties:
     system_buildpacks: (( merge || default_buildpacks ))
     default_buildpacks:
       - name: java_buildpack
-        package: buildpack_java
+        package: buildpack_java_offline
       - name: ruby_buildpack
         package: buildpack_ruby
       - name: nodejs_buildpack
