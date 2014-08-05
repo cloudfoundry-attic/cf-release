@@ -247,11 +247,6 @@ ruby/ruby-1.9.3-p547.tar.gz:
   sha: !binary |-
     MDFhNzkyZjk3MmY1Nzg3Y2U1MjZhMWFhZDYyOTc2YzU2YzkzMTc0Yg==
   size: 12582375
-python-buildpack/python-buildpack-offline-b10.zip:
-  object_id: e31547f1-7d05-48a4-a917-4c8754fd0902
-  sha: !binary |-
-    MTU2MjM2MDU5MzQxYzcyNjNiZGZlMDdkM2EwYjVhNTE1ZDBjNjdiYw==
-  size: 259090962
 nodejs-buildpack/nodejs-buildpack-offline-b29.zip:
   object_id: 891514ac-a6ce-454b-9b3d-e7611b6db9f0
   sha: !binary |-
@@ -282,3 +277,8 @@ ruby-buildpack/ruby_buildpack-offline-v1.0.1.zip:
   sha: !binary |-
     Yzc1Y2JmM2ZhZDdiNzQ5NjU0ODQ3ZjI2NjhjYzUxNTQ0ODI1NDdhOA==
   size: 729765004
+python-buildpack/python_buildpack-offline-v1.0.1.zip:
+  object_id: 0d9de92b-ff0a-4e8c-a5fd-9bf8aa78632c
+  sha: !binary |-
+    ZjY5ZWQ4MzFlNmZjNDY1NDczOGU1ZDBlYTI1M2UxMzJjMGJiMzUxMw==
+  size: 272135235
