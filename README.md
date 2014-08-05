@@ -10,11 +10,7 @@ Our documentation (currently a work in progress) is available here: [http://docs
 
 The [**develop**](https://github.com/cloudfoundry/cf-release/tree/develop) branch is where we do active development. Although we endeavor to keep the [**develop**](https://github.com/cloudfoundry/cf-release/tree/develop) branch stable, we do not guarantee that any given commit will deploy cleanly.
 
-After passing all unit, integration, smoke, & acceptance tests, commits from the develop branch are merged to [**master**](https://github.com/cloudfoundry/cf-release/tree/master).
-
-At semi-regular intervals (usually twice a month) a [**release-candidate**](https://github.com/cloudfoundry/cf-release/tree/release-candidate) branch is made from master. The RC branch is used to test upgrading from the previous release. 
-
-If upgrading to the RC branch succeeds with smoke and acceptance test errands passing, then a new [**release**](https://github.com/cloudfoundry/cf-release/releases) is tagged.
+If you want a stable branch, we recommend that you use the [**release-candidate**](https://github.com/cloudfoundry/cf-release/tree/release-candidate) branch.
 
 ## Repository Contents
 
