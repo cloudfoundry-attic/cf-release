@@ -456,3 +456,6 @@ properties:
     description: "The default running security groups that will be seeded in CloudController."
   cc.default_staging_security_groups:
     description: "The default staging security groups that will be seeded in CloudController."
+
+  cc.feature_disabled_message:
+    description: "Custom message to use for a disabled feature."
