@@ -140,9 +140,6 @@ properties:
   login.saml.nameidFormat:
     description:
     default: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
-  login.saml.metadataTrustCheck:
-    description: "When true metadata signature will be verified for trust using PKIX with metadataTrustedKeys as anchors."
-    default: true
   login.spring_profiles:
     description: "deprecated. use UAA configuration."
   login.ldap.profile_type:
