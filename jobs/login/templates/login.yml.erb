@@ -87,6 +87,7 @@ login:
   saml:
     assertionConsumerIndex: <%= (properties.login && properties.login.saml.assertionConsumerIndex) ? properties.login.saml.assertionConsumerIndex : 1 %>
     nameID: <%= (properties.login && properties.login.saml.nameidFormat) ? properties.login.saml.nameidFormat : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
+    metadataTrustCheck: <%= (properties.login.saml.metadataTrustCheck) %>
 
 <% end %>
   authorize:

@@ -171,6 +171,9 @@ properties:
 
     tiles: ~
 
+    saml:
+      metadataTrustCheck: ~
+
   uaa:
     catalina_opts: (( merge ))
 
