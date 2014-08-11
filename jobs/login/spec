@@ -80,6 +80,8 @@ properties:
     description:
   login.uaa_base:
     description: "Location of the UAA."
+  login.signups_enabled:
+    description: "Enable account creation flow in the login server. Enabled by default."
   domain:
     description: "The domain name for this CloudFoundry deploy"
   env.http_proxy:
