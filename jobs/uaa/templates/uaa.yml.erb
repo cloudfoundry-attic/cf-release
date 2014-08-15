@@ -156,6 +156,8 @@ ldap:
     localPasswordCompare: <%= properties.uaa.ldap.localPasswordCompare %>
     <% end %>
     mailAttributeName: '<%= properties.uaa.ldap.mailAttributeName%>'
+    mailSubstitute: '<%= properties.uaa.ldap.mailSubstitute %>'
+    mailSubstituteOverridesLdap: <%= properties.uaa.ldap.mailSubstituteOverridesLdap %>
   <% if properties.uaa.ldap.sslCertificate %>
   ssl: 
     sslCertificate: ! <%= "'" + p("uaa.ldap.sslCertificate").gsub("\n", "\n\n    ") + "'" %>

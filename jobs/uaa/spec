@@ -167,6 +167,12 @@ properties:
   uaa.ldap.mailAttributeName:
     description: "The name of the LDAP attribute that contains the users email address"
     default: mail
+  uaa.ldap.mailSubstitute:
+    description: "Defines an email pattern containing a {0} to generate an email address for an LDAP user during authentication"
+    default: ''
+  uaa.ldap.mailSubstituteOverridesLdap:
+    description: "Set to true if you wish to override an LDAP user email address with a generated one"
+    default: false
   uaa.ldap.groups.profile_type:
     description: "What type of group integration should be used. Values are no-groups, groups-as-scopes and groups-map-to-scopes"
     default: "no-groups"
