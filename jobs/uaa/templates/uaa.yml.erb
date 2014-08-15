@@ -169,7 +169,7 @@ ldap:
   groups:
     file: <%= (properties.uaa.ldap.groups.profile_type == 'no-groups') ? 'ldap/ldap-groups-null.xml' : (properties.uaa.ldap.groups.profile_type == 'groups-as-scopes') ? 'ldap/ldap-groups-as-scopes.xml' : 'ldap/ldap-groups-map-to-scopes.xml' %>
     searchBase: '<%= properties.uaa.ldap.groups.searchBase %>'
-    groupRoleAttribute: '<%= properties.uaa.ldap.groups.groupRoleAttribute %>'
+    groupRoleAttribute: '<%= (properties.uaa.ldap.groups.profile_type == 'groups-as-scopes') ? properties.uaa.ldap.groups.groupRoleAttribute : 'spring.security.ldap.dn' %>'
     groupSearchFilter: '<%= properties.uaa.ldap.groups.groupSearchFilter %>'
     searchSubtree: <%= properties.uaa.ldap.groups.searchSubtree %>
     maxSearchDepth: <%= properties.uaa.ldap.groups.maxSearchDepth %>
