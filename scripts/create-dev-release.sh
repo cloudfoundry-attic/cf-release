@@ -34,5 +34,6 @@ mkdir -p output
 
 mv $MANIFEST_YML ./output/dev-manifest.yml
 mv $TARBALL ./output/dev-release.tgz
+mv $CF_RELEASE_OUT ./output/
 
 exit 0
