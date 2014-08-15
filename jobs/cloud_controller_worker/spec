@@ -20,13 +20,6 @@ packages:
   - sqlite
   - ruby
   - syslog_aggregator
-  - buildpack_java
-  - buildpack_java_offline
-  - buildpack_ruby
-  - buildpack_nodejs
-  - buildpack_go
-  - buildpack_python
-  - buildpack_php
 
 properties:
   ssl.skip_cert_verify:
