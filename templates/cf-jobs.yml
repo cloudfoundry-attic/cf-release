@@ -377,6 +377,8 @@ jobs:
     templates:
     - name: loggregator_trafficcontroller
       release: (( meta.release.name ))
+    - name: metron_agent
+      release: (( meta.release.name ))
     instances: 1
     resource_pool: small_z1
     networks:
@@ -386,10 +388,14 @@ jobs:
       networks: (( meta.networks.z1 ))
       traffic_controller:
         zone: z1
+      metron_agent:
+        zone: z1
 
   - name: loggregator_trafficcontroller_z2
     templates:
     - name: loggregator_trafficcontroller
+      release: (( meta.release.name ))
+    - name: metron_agent
       release: (( meta.release.name ))
     instances: 1
     resource_pool: small_z2
@@ -399,6 +405,8 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       traffic_controller:
+        zone: z2
+      metron_agent:
         zone: z2
 
   - name: router_z1
