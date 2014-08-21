@@ -9,7 +9,7 @@ meta:
     aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
 
   stemcell:
-    name: bosh-aws-xen-ubuntu-lucid-go_agent
+    name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
 
 
