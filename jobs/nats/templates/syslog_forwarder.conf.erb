@@ -24,19 +24,17 @@ template(name="CfLogTemplate" type="list") {
         property(name="timestamp" dateFormat="rfc3339")
         constant(value=" <%= ip.strip %> ")
         property(name="programname")
-        constant(value=" [job=")
-        property(name="programname")
-        constant(value=" index=<%= spec.index.to_i %>] ")
+        constant(value=" [job=<%= name %> index=<%= spec.index.to_i %>] ")
         property(name="msg")
 }
 
 <% if transport == "relp" %>
 $ModLoad omrelp
-:programname, startswith, "vcap." :omrelp:<%= address %>:<%= port %>;CfLogTemplate
+*.* :omrelp:<%= address %>:<%= port %>;CfLogTemplate
 <% elsif transport == "udp" %>
-:programname, startswith, "vcap." @<%= address %>:<%= port %>;CfLogTemplate
+*.* @<%= address %>:<%= port %>;CfLogTemplate
 <% elsif transport == "tcp" %>
-:programname, startswith, "vcap." @@<%= address %>:<%= port %>;CfLogTemplate
+*.* @@<%= address %>:<%= port %>;CfLogTemplate
 <% else %>
 #only RELP, UDP, and TCP are supported
 <% end %>
@@ -48,18 +46,6 @@ $ModLoad omrelp
 
 # Prevent them from reaching anywhere else
 :programname, startswith, "vcap." ~
-
-<% if properties.syslog_aggregator.all %>
-   <% if transport == "relp" %>
-*.*  :omrelp:<%= address %>:<%= port %>
-   <% elsif transport == "udp" %>
-*.*  @<%= address %>:<%= port %>
-   <% elsif transport == "tcp" %>
-*.*  @@<%= address %>:<%= port %>
-   <% else %>
-#only RELP, UDP, and TCP are supported
-   <% end %>
-<% end %>
 
 <% end.else do %>
 # Prevent them from reaching anywhere else
