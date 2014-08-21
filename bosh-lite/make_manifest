@@ -1,0 +1,34 @@
+#!/bin/bash
+
+BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}
+CF_RELEASE_DIR=${CF_RELEASE_DIR:-$BOSH_RELEASES_DIR/cf-release}
+
+if [[ ! -d $CF_RELEASE_DIR ]]; then
+  echo "Cannot find cf-release at $CF_RELEASE_DIR; override with \$CF_RELEASE_DIR variable"
+  exit 1
+fi
+
+BOSH_STATUS=$(bosh status)
+EXPECTED_DIRECTOR_NAME="Bosh Lite Director"
+DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
+
+if [[ "$(echo "$BOSH_STATUS" | grep Name)" != *"$EXPECTED_DIRECTOR_NAME"* ]]; then
+  echo "Can only target $EXPECTED_DIRECTOR_NAME. Please use 'bosh target' before running this script."
+  exit 1
+fi
+
+cd $CF_RELEASE_DIR
+mkdir -p bosh-lite/tmp
+mkdir -p bosh-lite/manifests
+cp bosh-lite/cf-stub-spiff.yml bosh-lite/tmp/cf-stub-with-uuid.yml
+
+echo $DIRECTOR_UUID
+perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" bosh-lite/tmp/cf-stub-with-uuid.yml
+
+$CF_RELEASE_DIR/generate_deployment_manifest \
+                                              warden \
+                                              bosh-lite/tmp/cf-stub-with-uuid.yml \
+                                              templates/cf-minimal-dev.yml \
+                                              $* > bosh-lite/manifests/cf-manifest.yml
+
+bosh deployment bosh-lite/manifests/cf-manifest.yml

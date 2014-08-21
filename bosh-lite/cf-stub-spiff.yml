@@ -1,0 +1,9 @@
+---
+name: cf-warden
+director_uuid: PLACEHOLDER-DIRECTOR-UUID
+releases:
+  - name: cf
+    version: latest
+properties:
+  loggregator_endpoint:
+    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET

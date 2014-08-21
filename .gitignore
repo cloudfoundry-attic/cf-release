@@ -21,3 +21,5 @@ src_alt
 **/.DS_Store
 releases/**/*.tgz
 .DS_Store
+bosh-lite/manifests/*
+bosh-lite/tmp/*
