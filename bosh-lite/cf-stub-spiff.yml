@@ -15,8 +15,6 @@ properties:
         - protocol: all
           destination: 0.0.0.0-9.255.255.255
         - protocol: all
-          destination: 9.255.255.255-10.255.255.255
-        - protocol: all
           destination: 11.0.0.0-169.253.255.255
         - protocol: all
           destination: 169.255.0.0-172.15.255.255
@@ -35,5 +33,7 @@ properties:
       - name: services
         rules:
         - protocol: all
-          destination: 10.244.0.0-10.244.255.255
+          destination: 10.244.1.0/24
+        - protocol: all
+          destination: 10.244.3.0/24
     default_running_security_groups: ["public_networks", "dns", "services"]
