@@ -53,6 +53,8 @@ properties:
         timeout_in_seconds: ~
       model_deletion:
         timeout_in_seconds: ~
+      generic:
+        number_of_workers: ~
 
     app_events:
       cutoff_age_in_days: 31
