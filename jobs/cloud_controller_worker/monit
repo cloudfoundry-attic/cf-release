@@ -4,7 +4,7 @@ check process cloud_controller_worker_<%= index %>
   start program "/var/vcap/jobs/cloud_controller_worker/bin/cloud_controller_worker_ctl start <%= index %>"
   stop program "/var/vcap/jobs/cloud_controller_worker/bin/cloud_controller_worker_ctl stop <%= index %>"
   group vcap
-  if totalmem > 2250 Mb then alert
-  if totalmem > 2450 Mb then restart
+  if totalmem > 384 Mb then alert
+  if totalmem > 512 Mb then restart
 <% end %>
 
