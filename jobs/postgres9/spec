@@ -1,0 +1,10 @@
+---
+name: postgres9
+templates:
+  postgres_ctl.erb: bin/postgres_ctl
+  postgresql.conf.erb: config/postgresql.conf
+  pg_hba.conf.erb: config/pg_hba.conf
+  postgres_migrate.erb: bin/postgres_migrate
+packages:
+  - common
+  - postgres9
