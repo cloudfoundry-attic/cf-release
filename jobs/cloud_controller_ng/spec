@@ -462,3 +462,6 @@ properties:
 
   cc.feature_disabled_message:
     description: "Custom message to use for a disabled feature."
+  cc.allowed_cors_domains:
+    description: "List of domains (including scheme) from which Cross-Origin requests will be accepted, a * can be used as a wildcard for any part of a domain"
+    default: []

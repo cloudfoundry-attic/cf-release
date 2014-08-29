@@ -147,6 +147,8 @@ properties:
     default_running_security_groups: (( merge || ["public_networks", "dns"] ))
     default_staging_security_groups: (( merge || ["public_networks", "dns"] ))
 
+    allowed_cors_domains: (( merge || [] ))
+
   login:
     analytics:
       code: ~
