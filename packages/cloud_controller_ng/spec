@@ -4,7 +4,7 @@ dependencies:
 - libpq
 - mysqlclient
 - sqlite
-- ruby
+- ruby-2.1
 files:
 - cloud_controller_ng/{Rakefile,Gemfile,Gemfile.lock}
 - cloud_controller_ng/{db,lib,bin,app}/**/*
