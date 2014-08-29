@@ -58,11 +58,59 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
+  ha_proxy_templates:
+  - name: haproxy
+    release: (( meta.release.name ))
+
+  etcd_templates:
+  - name: etcd
+    release: (( meta.release.name ))
+  - name: etcd_metrics_server
+    release: (( meta.release.name ))
+
+  logs_templates:
+  - name: syslog_aggregator
+    release: (( meta.release.name ))
+
+  stats_templates:
+  - name: collector
+    release: (( meta.release.name ))
+
+  nfs_templates:
+  - name: debian_nfs_server
+    release: (( meta.release.name ))
+
+  postgres_templates:
+  - name: postgres
+    release: (( meta.release.name ))
+
+  uaa_templates:
+  - name: uaa
+    release: (( meta.release.name ))
+
+  login_templates:
+  - name: login
+    release: (( meta.release.name ))
+
+  hm9000_templates:
+  - name: hm9000
+    release: (( meta.release.name ))
+
+  loggregator_templates:
+  - name: loggregator
+    release: (( meta.release.name ))
+
+  loggregator_trafficcontroller_templates:
+  - name: loggregator_trafficcontroller
+    release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
+
+
+
 jobs:
   - name: ha_proxy_z1
-    templates:
-    - name: haproxy
-      release: (( meta.release.name ))
+    templates: (( merge || meta.ha_proxy_templates ))
     instances: 0
     resource_pool: router_z1
     default_networks:
@@ -99,11 +147,7 @@ jobs:
       networks: (( meta.networks.z2 ))
 
   - name: etcd_z1
-    templates:
-      - name: etcd
-        release: (( meta.release.name ))
-      - name: etcd_metrics_server
-        release: (( meta.release.name ))
+    templates: (( merge || meta.etcd_templates ))
     instances: 2
     persistent_disk: 10024
     resource_pool: medium_z1
@@ -114,11 +158,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: etcd_z2
-    templates:
-      - name: etcd
-        release: (( meta.release.name ))
-      - name: etcd_metrics_server
-        release: (( meta.release.name ))
+    templates: (( merge || meta.etcd_templates ))
     instances: 1
     persistent_disk: 10024
     resource_pool: medium_z2
@@ -129,9 +169,7 @@ jobs:
       networks: (( meta.networks.z2 ))
 
   - name: logs_z1
-    templates:
-    - name: syslog_aggregator
-      release: (( meta.release.name ))
+    templates: (( merge || meta.logs_templates ))
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 100000
@@ -142,9 +180,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: logs_z2
-    templates:
-    - name: syslog_aggregator
-      release: (( meta.release.name ))
+    templates: (( merge || meta.logs_templates ))
     instances: 0
     resource_pool: medium_z2
     persistent_disk: 100000
@@ -155,9 +191,7 @@ jobs:
       networks: (( meta.networks.z2 ))
 
   - name: stats_z1
-    templates:
-    - name: collector
-      release: (( meta.release.name ))
+    templates: (( merge || meta.stats_templates ))
     instances: 1
     resource_pool: small_z1
     networks:
@@ -166,9 +200,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: nfs_z1
-    templates:
-    - name: debian_nfs_server
-      release: (( meta.release.name ))
+    templates: (( merge || meta.nfs_templates ))
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 102400
@@ -177,9 +209,7 @@ jobs:
         static_ips: ~
 
   - name: postgres_z1
-    templates:
-    - name: postgres
-      release: (( meta.release.name ))
+    templates: (( merge || meta.postgres_templates ))
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 4096
@@ -188,9 +218,7 @@ jobs:
       static_ips: ~
 
   - name: uaa_z1
-    templates:
-    - name: uaa
-      release: (( meta.release.name ))
+    templates: (( merge || meta.uaa_templates ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -199,9 +227,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: uaa_z2
-    templates:
-    - name: uaa
-      release: (( meta.release.name ))
+    templates: (( merge || meta.uaa_templates ))
     instances: 1
     resource_pool: medium_z2
     networks:
@@ -210,9 +236,7 @@ jobs:
       networks: (( meta.networks.z2 ))
 
   - name: login_z1
-    templates:
-    - name: login
-      release: (( meta.release.name ))
+    templates: (( merge || meta.login_templates ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -221,9 +245,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: login_z2
-    templates:
-    - name: login
-      release: (( meta.release.name ))
+    templates: (( merge || meta.login_templates ))
     instances: 1
     resource_pool: medium_z2
     networks:
@@ -296,9 +318,7 @@ jobs:
       nfs_server: (( meta.nfs_server ))
 
   - name: hm9000_z1
-    templates:
-    - name: hm9000
-      release: (( meta.release.name ))
+    templates: (( merge || meta.hm9000_templates ))
     instances: 1
     resource_pool: medium_z1
     networks:
@@ -307,9 +327,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
   - name: hm9000_z2
-    templates:
-    - name: hm9000
-      release: (( meta.release.name ))
+    templates: (( merge || meta.hm9000_templates ))
     instances: 1
     resource_pool: medium_z2
     networks:
@@ -346,9 +364,7 @@ jobs:
         zone: z2
 
   - name: loggregator_z1
-    templates:
-    - name: loggregator
-      release: (( meta.release.name ))
+    templates: (( merge || meta.loggregator_templates ))
     instances: 2
     resource_pool: medium_z1
     networks:
@@ -360,9 +376,7 @@ jobs:
         zone: z1
 
   - name: loggregator_z2
-    templates:
-    - name: loggregator
-      release: (( meta.release.name ))
+    templates: (( merge || meta.loggregator_templates ))
     instances: 2
     resource_pool: medium_z2
     networks:
@@ -374,11 +388,7 @@ jobs:
         zone: z2
 
   - name: loggregator_trafficcontroller_z1
-    templates:
-    - name: loggregator_trafficcontroller
-      release: (( meta.release.name ))
-    - name: metron_agent
-      release: (( meta.release.name ))
+    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z1
     networks:
@@ -392,11 +402,7 @@ jobs:
         zone: z1
 
   - name: loggregator_trafficcontroller_z2
-    templates:
-    - name: loggregator_trafficcontroller
-      release: (( meta.release.name ))
-    - name: metron_agent
-      release: (( meta.release.name ))
+    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z2
     networks:
