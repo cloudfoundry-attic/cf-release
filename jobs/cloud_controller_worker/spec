@@ -166,6 +166,9 @@ properties:
   cc.uaa_resource_id:
     default: "cloud_controller,cloud_controller_service_permissions"
     description: "Name of service to register to UAA"
+  cc.uaa_skip_ssl_validation:
+    default: false
+    description: "Skip SSL cert validation when communicating with UAA."
 
   cc.db_logging_level:
     default: "debug2"

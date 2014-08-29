@@ -56,6 +56,7 @@ properties:
       fog_connection: (( meta.fog_config ))
     diego: (( merge || false ))
     diego_docker: (( merge || false ))
+    uaa_skip_ssl_validation: true
 
   uaa:
     catalina_opts: -Xmx192m -XX:MaxPermSize=128m
