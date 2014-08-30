@@ -59,58 +59,77 @@ assetBaseUrl: <%= properties.login.asset_base_url %>
 
 login:
   brand: <%= (properties.login && properties.login.brand) ? properties.login.brand : "oss" %>
-  
   url: <%= "#{protocol}://login.#{properties.domain}" %>
-  # The entity base url is the location of this application
-  # (The host and port of the application that will accept assertions)
   entityBaseURL: <%= "#{protocol}://login.#{properties.domain}" %>
-  # The entityID of this SP
   entityID: <%= (properties.login && properties.login.saml.entityid) ? properties.login.saml.entityid : "login.#{properties.domain}" %>
 <% if properties.login.saml %>
-  # The entity alias of the IDP
-  idpEntityAlias: <%= properties.login.saml.idpEntityAlias ? properties.login.saml.idpEntityAlias : "vsphere.local" %>
-  <% if !properties.login.saml.idpMetadataURL.nil? %>
-  idpMetadataURL: <%= properties.login.saml.idpMetadataURL %>
-  <% end %>
-  <% if !properties.login.saml.idp_metadata_file.nil? %>
-  idpMetadataFile: /var/vcap/jobs/login/<%= properties.login.saml.idp_metadata_file %>
-  <% end %>
   <% if !properties.login.saml.serviceProviderCertificate.nil? %>
-  serviceProviderCertificate: ! <%= "'" + p("login.saml.serviceProviderCertificate").gsub("\n", "\n\n    ") + "'" %>
+  serviceProviderCertificate: | 
+    <%= p("login.saml.serviceProviderCertificate").gsub("\n", "\n    ")%>
+  <% else %>
+  serviceProviderCertificate: | 
+    -----BEGIN CERTIFICATE-----
+    MIIBzzCCATgCCQDTMCX3wJYrVDANBgkqhkiG9w0BAQUFADAsMSowKAYDVQQDFCFz
+    YW1sX2xvZ2luLE9VPXRlc3QsTz12bXdhcmUsTz1jb20wHhcNMTMwNzAyMjMzOTU4
+    WhcNMTQwNzAyMjMzOTU4WjAsMSowKAYDVQQDFCFzYW1sX2xvZ2luLE9VPXRlc3Qs
+    Tz12bXdhcmUsTz1jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANYBRuep
+    WaoNA7/RsOUVlmOzxbhtfW8AstGXjsWbAmmg8NSruRlNuMz1WdCeESM3zBqLSyp8
+    Vf3j3ExzB2qquDbPXNA1k4EqgNya2E+6n3KsgVLCWQm4W46Pd7C6QswrR6JgUKaW
+    6KI8BgyJQ9wjL/nR8uqZouJJyRSLuIaGXIuXAgMBAAEwDQYJKoZIhvcNAQEFBQAD
+    gYEAXOojarkGv5nVZqTuY8BRM/TRt1oby3i0VRG70l0PcDlWft52aSvCd3t8ds2S
+    h92cXLz8nvHEBaBTkxTLtf2/h5x2KQhXyHoU1UU+JjOegoF+LD6KdmaVk2l35Na5
+    1V2AHsj+yDrJ9aKwt86jbBbcFkRphdkn5ivq71GCWRfcpZE=
+    -----END CERTIFICATE-----
   <% end %>
   <% if !properties.login.saml.serviceProviderKey.nil? %>
-  serviceProviderKey: ! <%= "'" + p("login.saml.serviceProviderKey").gsub("\n", "\n\n    ") + "'" %>
+  serviceProviderKey: | 
+    <%= p("login.saml.serviceProviderKey").gsub("\n", "\n    ")%>
+  <% else %>
+  serviceProviderKey: | 
+    -----BEGIN RSA PRIVATE KEY-----
+    Proc-Type: 4,ENCRYPTED
+    DEK-Info: DES-EDE3-CBC,231BD428AF94D4C8
+    0Nmo90pX8byVS7ZlakMIoXdJSLlxqzi1pN0g1ye2U+9HgTLTLuMwWaPknZ/2NFtK
+    rO72ss8uc7xBAoMkOvcMTZCg5P4JDlmuQ31IabzRyOQcAxCPZedgarRnwxT6GUim
+    JtkzNPmAAgf1bfUTu/LNt2o01dW+qq+2qiwUxgUBM2xLBmadIWqqTOZbkFc9Xjvl
+    /IEnJgp/c49sNh68EpXPlsGJfW7jAh90nlA13H1fpvTsSg2/6wKbRsxxNkpVg0Nq
+    bQURQIO6htOLZBPMMpoPILp/KtKkd1zpaZJnbZGDo9AdwfAh9dUbEw8ukJwRg3Xl
+    lsptHoMGsGdvgViWZhCB/pAHYLh31G8oVMA/qPB9PNJYIK2aQZdm7yiAdf+m8Jxb
+    Do2xBH6XUeHkg2F0LWnC/FjaMRpLuliI9vvJVB7YCQKkMdgNVV0SCx39IiX0rEm5
+    8vuuoAH3b7b+maWp5+ffriNIcEFSlcmTPIgqZBboIORBNXZnHTUG7nGIML+nlOK9
+    zdvF2vAxchqOKroc6+SGFLNvNQd9S/nLH3vP+aX9iStL55G11+p2tL+bIGMWZj0h
+    Z+qqQoogtngRFbjcVoKYerFXbKG6xXzXUc4O3EbvAKvEi0HJodYccP3L7wIer1aY
+    VaMF2M05g5KedHosEfvvhU17xS9L4u2SRMZIQ3K8iLNEhZ6bOw6EnzTaKWeffrYr
+    UOjfMEgswcHfpxx1iD5T4RTwxuKOgtFhd1QM4enXPsU6uRU5PGSiB/0t6jal6ClF
+    PhtIrTwhx0vBR4rySx4raXdLClxxt5vLe826C3uwo/6HTdUsnDvIXA==
+    -----END RSA PRIVATE KEY-----
   <% end %>
-  <% if !properties.login.saml.serviceProviderKeyPassword.nil? %>
-  serviceProviderKeyPassword: <%= properties.login.saml.serviceProviderKeyPassword %>
-  <% end %>
+  serviceProviderKeyPassword: <%= properties.login.saml.serviceProviderKeyPassword ? properties.login.saml.serviceProviderKeyPassword : 'password' %>
   <% if !properties.login.signups_enabled.nil? %>
   signupsEnabled: <%= properties.login.signups_enabled %>
   <% end %>
   saml:
-    assertionConsumerIndex: <%= (properties.login && properties.login.saml.assertionConsumerIndex) ? properties.login.saml.assertionConsumerIndex : 1 %>
-    nameID: <%= (properties.login && properties.login.saml.nameidFormat) ? properties.login.saml.nameidFormat : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
-    metadataTrustCheck: <%= (properties.login.saml.metadataTrustCheck) %>
-
+    providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.each do |idpAlias,idpProvider| %>
+      <%= idpAlias %>: <% idpProvider.marshal_dump.each do |key,value|%>
+        <%= key %>: <%= value.is_a?(String) && value.match("\n") ? "| \n          " + value.gsub("\n", "\n          ") + "" : value %><% end %><% end %>
+    <% end %><% if properties.login.saml.idpEntityAlias && (properties.login.saml.idpMetadataURL || properties.login.saml.idp_metadata_file) %>
+      <%= properties.login.saml.idpEntityAlias %>: 
+        idpMetadata: <%= properties.login.saml.idpMetadataURL ? properties.login.saml.idpMetadataURL : "/var/vcap/jobs/login/" + properties.login.saml.idp_metadata_file %>
+        assertionConsumerIndex: <%= (properties.login && properties.login.saml.assertionConsumerIndex) ? properties.login.saml.assertionConsumerIndex : 1 %>
+        nameID: <%= (properties.login && properties.login.saml.nameidFormat) ? properties.login.saml.nameidFormat : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
+        metadataTrustCheck: <%= (properties.login.saml.metadataTrustCheck ? properties.login.saml.metadataTrustCheck : true) %>
+        showSamlLoginLink: true
+        linkText: 'Use your corporate credentials'
+    <% end %>
+    socket:
+      connectionManagerTimeout: <%= properties.login.saml.socket.connectionManagerTimeout.nil? ? 10000 : properties.login.saml.socket.connectionManagerTimeout %>
+      soTimeout: <%= properties.login.saml.socket.soTimeout.nil? ? 10000 : properties.login.saml.socket.soTimeout %>
 <% end %>
   authorize:
     url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
-
     
 <% if properties.login.analytics && properties.login.analytics.code && properties.login.analytics.domain %>
 analytics:
   code: <%= properties.login.analytics.code %>
   domain: <%= properties.login.analytics.domain %>
-<% end %>
-
-<% if properties.login && properties.login.spring_profiles %>
-  <% if properties.login.spring_profiles.include?(',ldap') %>
-spring_profiles: <%= properties.login.spring_profiles.gsub ',ldap', '' %>
-  <% elsif properties.login.spring_profiles.include?('ldap,') %>
-spring_profiles: <%= properties.login.spring_profiles.gsub 'ldap,', '' %>
-  <% elsif properties.login.spring_profiles.eql?('ldap') %>
-#spring_profiles: <%= properties.login.spring_profiles.gsub! 'ldap,', '' %>
-  <% else %>
-spring_profiles: <%= properties.login.spring_profiles.gsub 'ldap', '' %>
-  <% end %>
 <% end %>
