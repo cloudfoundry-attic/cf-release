@@ -112,15 +112,15 @@ properties:
     default: "http"
     description: "The scheme in which login server should use to contact the UAA"
   login.saml.idpMetadataURL:
-    description: "URL location of the IDP Metadata."
+    description: "Deprecated: Use login.saml.providers list objects"
   login.saml.idp_metadata_file:
-    description: "Optional IDP Metadata file for the SAML login server."
+    description: "Deprecated: Use login.saml.providers list objects"
   login.saml.entityid:
     description: "The ID to represent this server"
   login.saml.idpEntityAlias:
-    description: "An alias for the IDP."
+    description: "Deprecated: Use login.saml.providers list objects"
   login.entity_id:
-    description: "The entity ID of the SAML login server."
+    description: "Deprecated: Use login.saml.entityid"
   login.saml.keystore_name:
     description: "Name of the SAML login server keystore."
     default: "samlKeystore.jks"
@@ -137,14 +137,20 @@ properties:
   login.saml.serviceProviderCertificate:
     description: "Service provider certificate."
   login.saml.assertion_consumer_index:
-    description:
+    description: "Deprecated: Use login.saml.providers list objects"
     default: 1
   login.saml.nameidFormat:
-    description:
+    description: "Deprecated: Use login.saml.providers list objects"
     default: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   login.saml.metadataTrustCheck:
-    description: "When true metadata signature will be verified for trust using PKIX with metadataTrustedKeys as anchors."
+    description: "Deprecated: Use login.saml.providers list objects"
     default: true
+  login.saml.providers:
+    description: "Contains a hash of SAML Identity Providers, the key is the IDP Alias, followed by key/value pairs for idpMetadata, nameID, assertionConsumerIndex, metadataTrustCheck, showSamlLoginLink, linkText, iconUrl"
+  login.saml.socket.connectionManagerTimeout:
+    description: "Timeout in milliseconds for connection pooling for SAML metadata HTTP requests"
+  login.saml.socket.soTimeout:
+    description: "Read timeout in milliseconds for SAML metadata HTTP requests"
   login.spring_profiles:
     description: "deprecated. use UAA configuration."
   login.ldap.profile_type:
