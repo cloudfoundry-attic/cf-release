@@ -106,20 +106,9 @@ oauth:
       scope: openid,oauth.approvals
       redirect-uri: https://login.<%= properties.domain %>
 <% end %>
-<% if properties.uaa.scim %>
 scim:
-  userids_enabled: <%= properties.uaa.scim.userids_enabled %>
-<% else %>
-scim:
-  userids_enabled: false
-<% end %>
-<%
-  override = true
-  if properties.uaa.scim && properties.uaa.scim.user && !properties.uaa.scim.user.override.nil?
-    override = properties.uaa.scim.user.override
-  end
-%>
-  user.override: <%= override %>
+  userids_enabled: <%= properties.uaa.scim && (!properties.uaa.scim.userids_enabled.nil?) ?  properties.uaa.scim.userids_enabled : false %>
+  user.override: <%= properties.uaa.scim && properties.uaa.scim.user && (!properties.uaa.scim.user.override.nil?) ? properties.uaa.scim.user.override : true %>
 <% if properties.uaa.scim && properties.uaa.scim.users then %>
   users: <% properties.uaa.scim.users.each do |user| %>
     - <%= user %><% end %>
