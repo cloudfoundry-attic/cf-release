@@ -524,6 +524,7 @@ properties:
     logging_level: debug
     staging_disk_limit_mb: 4096
     staging_memory_limit_mb: 1024
+    default_health_check_timeout: (( merge || 60 ))
 
   loggregator_endpoint:
     shared_secret: (( merge ))
