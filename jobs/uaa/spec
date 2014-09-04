@@ -54,6 +54,19 @@ properties:
     description:
   uaa.client.autoapprove:
     description:
+  uaa.user.authorities:
+    description: 'Contains a list of the default authorities/scopes assigned to a user.'  
+    default:
+      - openid
+      - scim.me
+      - cloud_controller.read
+      - cloud_controller.write
+      - cloud_controller_service_permissions.read
+      - password.write
+      - scim.userids
+      - uaa.user
+      - approvals.me
+      - oauth.approvals
   uaa.clients:
     description:
   uaa.jwt.signing_key:
