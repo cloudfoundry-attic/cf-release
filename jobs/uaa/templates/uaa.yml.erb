@@ -1,6 +1,7 @@
 ---
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
+<% protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http" %>
 
 name: uaa
 
@@ -104,7 +105,7 @@ oauth:
       authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
       scope: openid,oauth.approvals
-      redirect-uri: https://login.<%= properties.domain %>
+      redirect-uri: <%= "#{protocol}://login.#{properties.domain}" %>
 <% end %>
   user:
     authorities: <% properties.uaa.user.authorities.each do |authority| %>
