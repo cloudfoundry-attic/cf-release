@@ -237,3 +237,5 @@ properties:
     description: "See uaa.ldap.sslCertificateAlias - login.ldap prefix is used for backwards compatibility to enable ldap from login config"  
   login.spring_profiles:
     description: "See uaa.spring_profiles - login.spring_profiles is used for backwards compatibility to enable ldap from login config"
+  login.protocol:
+    description: "The protocol that the Login Server uses. http/https"
