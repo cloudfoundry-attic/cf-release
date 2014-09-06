@@ -6,6 +6,7 @@ rvm:
 before_install:
   - git submodule update --init --recursive
 script:
+  - bundle exec rspec spec
   - bundle exec bosh sync blobs
   - bundle exec bosh --non-interactive --verbose create release --dry-run
   - ./scripts/unused_blobs

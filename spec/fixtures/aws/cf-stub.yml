@@ -1,0 +1,99 @@
+---
+director_uuid: DIRECTOR_UUID
+meta:
+  zones:
+    z1: zone_1
+    z2: zone_2
+
+networks:
+- name: cf1
+  subnets:
+    - cloud_properties:
+      static:
+      - 0.0.0.0 - 0.0.0.25
+- name: cf2
+  subnets:
+    - cloud_properties:
+      static:
+      - 0.0.1.0 - 0.0.1.25
+
+properties:
+  cc:
+    droplets:
+      droplet_directory_key: the_key
+    buildpacks:
+      buildpack_directory_key: bd_key
+    staging_upload_user: username
+    staging_upload_password: password
+    bulk_api_password: password
+    db_encryption_key: the_key
+  ccdb:
+    db_scheme: db_scheme
+    roles:
+    - tag: db_user
+      name: db_user_name
+      password: db_user_password
+    databases:
+    - tag: cc
+      name: ccdb
+    address: ccdb.example.com 
+    port: 0
+  dea_next:
+    disk_mb: 2048
+    memory_mb: 1024
+  domain: example.com
+  nats:
+    user: nats_user
+    password: nats_password
+  router:
+    status:
+      user: router_user
+      password: router_password
+  template_only:
+    aws:
+      access_key_id: AWS_ACCESS_KEY
+      secret_access_key: AWS_SECRET_ACCESS_KEY
+      availability_zone: zone_1
+      availability_zone2: zone_2
+  uaa:
+    admin:
+      client_secret: admin_secret
+    batch:
+      username: batch_username
+      password: batch_password
+    cc:
+      client_secret: cc_client_secret
+    clients:
+      app-direct:
+        secret: app-direct_secret
+      developer_console:
+        secret: developer_console_secret
+      login:
+        secret: login_secret 
+      notifications:
+        secret: notification_secret
+      servicesmgmt:
+        secret: service_mgmt_secret
+      space-mail:
+        secret: space-mail_secret
+      support-services:
+        secret: support-services_secret
+    jwt:
+      verification_key: vk
+      signing_key: sk
+    scim:
+      users:
+      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin
+  loggregator_endpoint:
+    shared_secret: secret
+  uaadb:
+    db_scheme: db_scheme
+    roles:
+    - tag: db_user
+      name: db_user_name
+      password: db_user_password
+    databases:
+    - tag: uaa
+      name: uaadb
+    address: uaadb.example.com 
+    port: 0

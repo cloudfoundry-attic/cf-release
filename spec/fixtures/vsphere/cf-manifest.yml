@@ -1,0 +1,1012 @@
+compilation:
+  cloud_properties:
+    cpu: 2
+    disk: 6144
+    ram: 1024
+  network: cf1
+  reuse_compilation_vms: true
+  workers: 6
+director_uuid: DIRECTOR_UUID
+jobs:
+- default_networks:
+  - name: cf1
+    static_ips: null
+  instances: 1
+  name: ha_proxy_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.3
+  properties:
+    ha_proxy:
+      ssl_pem: null
+    networks:
+      apps: cf1
+    router:
+      servers:
+        z1:
+        - 0.0.0.5
+        z2:
+        - 0.0.1.5
+  resource_pool: router_z1
+  templates:
+  - name: haproxy
+    release: cf
+- instances: 0
+  name: nats_z1
+  networks:
+  - name: cf1
+    static_ips: []
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: nats
+    release: cf
+  - name: nats_stream_forwarder
+    release: cf
+- instances: 1
+  name: nats_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.1
+  properties:
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: nats
+    release: cf
+  - name: nats_stream_forwarder
+    release: cf
+- instances: 2
+  name: etcd_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.14
+    - 0.0.0.15
+  persistent_disk: 10024
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: etcd
+    release: cf
+  - name: etcd_metrics_server
+    release: cf
+- instances: 1
+  name: etcd_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.13
+  persistent_disk: 10024
+  properties:
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: etcd
+    release: cf
+  - name: etcd_metrics_server
+    release: cf
+- instances: 1
+  name: logs_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.0
+  persistent_disk: 8192
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: syslog_aggregator
+    release: cf
+- instances: 1
+  name: logs_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.0
+  persistent_disk: 8192
+  properties:
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: syslog_aggregator
+    release: cf
+- instances: 1
+  name: stats_z1
+  networks:
+  - name: cf1
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: small_z1
+  templates:
+  - name: collector
+    release: cf
+- instances: 1
+  name: nfs_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.2
+  persistent_disk: 102400
+  resource_pool: medium_z1
+  templates:
+  - name: debian_nfs_server
+    release: cf
+- instances: 1
+  name: postgres_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.12
+  persistent_disk: 4096
+  resource_pool: medium_z1
+  templates:
+  - name: postgres
+    release: cf
+- instances: 1
+  name: uaa_z1
+  networks:
+  - name: cf1
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: uaa
+    release: cf
+- instances: 1
+  name: uaa_z2
+  networks:
+  - name: cf2
+  properties:
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: uaa
+    release: cf
+- instances: 1
+  name: login_z1
+  networks:
+  - name: cf1
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: login
+- instances: 1
+  name: login_z2
+  networks:
+  - name: cf2
+  properties:
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: login
+    release: cf
+- instances: 1
+  name: api_z1
+  networks:
+  - name: cf1
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+    nfs_server:
+      address: 0.0.0.2
+      allow_from_entries:
+      - null
+      - null
+      share: null
+  resource_pool: large_z1
+  templates:
+  - name: cloud_controller_ng
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: api_z2
+  networks:
+  - name: cf2
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z2
+    networks:
+      apps: cf2
+    nfs_server:
+      address: 0.0.0.2
+      allow_from_entries:
+      - null
+      - null
+      share: null
+  resource_pool: large_z2
+  templates:
+  - name: cloud_controller_ng
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: clock_global
+  networks:
+  - name: cf1
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: cloud_controller_clock
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: api_worker_z1
+  networks:
+  - name: cf1
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+    nfs_server:
+      address: 0.0.0.2
+      allow_from_entries:
+      - null
+      - null
+      share: null
+  resource_pool: small_z1
+  templates:
+  - name: cloud_controller_worker
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: api_worker_z2
+  networks:
+  - name: cf2
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z2
+    networks:
+      apps: cf2
+    nfs_server:
+      address: 0.0.0.2
+      allow_from_entries:
+      - null
+      - null
+      share: null
+  resource_pool: small_z2
+  templates:
+  - name: cloud_controller_worker
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: hm9000_z1
+  networks:
+  - name: cf1
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: hm9000
+    release: cf
+- instances: 1
+  name: hm9000_z2
+  networks:
+  - name: cf2
+  properties:
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: hm9000
+    release: cf
+- instances: 1
+  name: runner_z1
+  networks:
+  - name: cf1
+    static_ips: null
+  properties:
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+  resource_pool: runner_z1
+  templates:
+  - name: dea_next
+    release: cf
+  - name: dea_logging_agent
+    release: cf
+  - name: metron_agent
+    release: cf
+  update:
+    max_in_flight: 1
+- instances: 1
+  name: runner_z2
+  networks:
+  - name: cf2
+    static_ips: null
+  properties:
+    metron_agent:
+      zone: z2
+    networks:
+      apps: cf2
+  resource_pool: runner_z2
+  templates:
+  - name: dea_next
+    release: cf
+  - name: dea_logging_agent
+    release: cf
+  - name: metron_agent
+    release: cf
+  update:
+    max_in_flight: 1
+- instances: 2
+  name: loggregator_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.10
+    - 0.0.0.11
+  properties:
+    loggregator:
+      zone: z1
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: loggregator
+    release: cf
+- instances: 2
+  name: loggregator_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.10
+    - 0.0.1.11
+  properties:
+    loggregator:
+      zone: z2
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: loggregator
+    release: cf
+- instances: 1
+  name: loggregator_trafficcontroller_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.9
+  properties:
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+    traffic_controller:
+      zone: z1
+  resource_pool: small_z1
+  templates:
+  - name: loggregator_trafficcontroller
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: loggregator_trafficcontroller_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.9
+  properties:
+    metron_agent:
+      zone: z2
+    networks:
+      apps: cf2
+    traffic_controller:
+      zone: z2
+  resource_pool: small_z2
+  templates:
+  - name: loggregator_trafficcontroller
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: router_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.5
+  properties:
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+  resource_pool: router_z1
+  templates:
+  - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  name: router_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.5
+  properties:
+    metron_agent:
+      zone: z2
+    networks:
+      apps: cf2
+  resource_pool: router_z2
+  templates:
+  - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+- instances: 1
+  lifecycle: errand
+  name: acceptance_tests
+  networks:
+  - name: cf1
+  resource_pool: small_errand
+  templates:
+  - name: acceptance-tests
+    release: cf
+- instances: 1
+  lifecycle: errand
+  name: acceptance_tests_diego
+  networks:
+  - name: cf1
+  properties:
+    acceptance_tests:
+      diego: true
+  resource_pool: small_errand
+  templates:
+  - name: acceptance-tests
+    release: cf
+- instances: 1
+  lifecycle: errand
+  name: smoke_tests
+  networks:
+  - name: cf1
+  resource_pool: small_errand
+  templates:
+  - name: smoke-tests
+    release: cf
+meta:
+  environment: null
+  releases:
+  - name: cf
+    version: latest
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+name: null
+networks:
+- name: cf1
+  subnets:
+  - cloud_properties: null
+    static:
+    - 0.0.0.0 - 0.0.0.25
+- name: cf2
+  subnets:
+  - cloud_properties: null
+    static:
+    - 0.0.1.0 - 0.0.1.25
+properties:
+  acceptance_tests: null
+  app_domains:
+  - 0.0.0.3.xip.io
+  cc:
+    allowed_cors_domains: []
+    app_events:
+      cutoff_age_in_days: 31
+    app_usage_events:
+      cutoff_age_in_days: 31
+    audit_events:
+      cutoff_age_in_days: 31
+    billing_event_writing_enabled: true
+    broker_client_timeout_seconds: 70
+    buildpacks:
+      buildpack_directory_key: bd_key
+      cdn: null
+      fog_connection: null
+    bulk_api_password: password
+    client_max_body_size: 1536M
+    db_encryption_key: the_key
+    default_app_disk_in_mb: 1024
+    default_app_memory: 1024
+    default_buildpacks:
+    - name: java_buildpack
+      package: buildpack_java
+    - name: ruby_buildpack
+      package: buildpack_ruby
+    - name: nodejs_buildpack
+      package: buildpack_nodejs
+    - name: go_buildpack
+      package: buildpack_go
+    - name: python_buildpack
+      package: buildpack_python
+    - name: php_buildpack
+      package: buildpack_php
+    default_quota_definition: default
+    default_running_security_groups:
+    - public_networks
+    - dns
+    default_staging_security_groups:
+    - public_networks
+    - dns
+    development_mode: false
+    diego: false
+    diego_docker: false
+    directories: null
+    disable_custom_buildpacks: false
+    droplets:
+      cdn: null
+      droplet_directory_key: the_key
+      fog_connection: null
+    external_host: api
+    install_buildpacks:
+    - name: java_buildpack
+      package: buildpack_java
+    - name: ruby_buildpack
+      package: buildpack_ruby
+    - name: nodejs_buildpack
+      package: buildpack_nodejs
+    - name: go_buildpack
+      package: buildpack_go
+    - name: python_buildpack
+      package: buildpack_python
+    - name: php_buildpack
+      package: buildpack_php
+    jobs:
+      app_bits_packer:
+        timeout_in_seconds: null
+      app_events_cleanup:
+        timeout_in_seconds: null
+      app_usage_events_cleanup:
+        timeout_in_seconds: null
+      blobstore_delete:
+        timeout_in_seconds: null
+      blobstore_upload:
+        timeout_in_seconds: null
+      droplet_deletion:
+        timeout_in_seconds: null
+      droplet_upload:
+        timeout_in_seconds: null
+      generic:
+        number_of_workers: null
+      global:
+        timeout_in_seconds: 14400
+      model_deletion:
+        timeout_in_seconds: null
+    maximum_app_disk_in_mb: 2048
+    newrelic:
+      capture_params: false
+      developer_mode: false
+      environment_name: null
+      license_key: null
+      monitor_mode: false
+      transaction_tracer:
+        enabled: true
+        record_sql: obfuscated
+    packages:
+      app_package_directory_key: 0.0.0.3.xip.io-cc-packages
+      cdn: null
+      fog_connection: null
+      max_package_size: 1073741824
+    quota_definitions:
+      default:
+        memory_limit: 10240
+        non_basic_services_allowed: true
+        total_routes: 1000
+        total_services: 100
+    resource_pool:
+      cdn: null
+      fog_connection: null
+      resource_directory_key: 0.0.0.3.xip.io-cc-resources
+    security_group_definitions:
+    - name: public_networks
+      rules:
+      - destination: 0.0.0.0-9.255.255.255
+        protocol: all
+      - destination: 11.0.0.0-169.253.255.255
+        protocol: all
+      - destination: 169.255.0.0-172.15.255.255
+        protocol: all
+      - destination: 172.32.0.0-192.167.255.255
+        protocol: all
+      - destination: 192.169.0.0-255.255.255.255
+        protocol: all
+    - name: dns
+      rules:
+      - destination: 0.0.0.0/0
+        ports: "53"
+        protocol: tcp
+      - destination: 0.0.0.0/0
+        ports: "53"
+        protocol: udp
+    srv_api_uri: https://api.0.0.0.3.xip.io
+    stacks: null
+    staging_upload_password: password
+    staging_upload_user: username
+    system_buildpacks:
+    - name: java_buildpack
+      package: buildpack_java
+    - name: ruby_buildpack
+      package: buildpack_ruby
+    - name: nodejs_buildpack
+      package: buildpack_nodejs
+    - name: go_buildpack
+      package: buildpack_go
+    - name: python_buildpack
+      package: buildpack_python
+    - name: php_buildpack
+      package: buildpack_php
+    user_buildpacks: []
+  ccdb:
+    address: 0.0.0.12
+    databases:
+    - citext: true
+      name: ccdb
+      tag: cc
+    db_scheme: postgres
+    port: 5524
+    roles:
+    - name: ccadmin
+      password: admin
+      tag: admin
+  collector: null
+  databases:
+    address: 0.0.0.12
+    databases:
+    - citext: true
+      name: ccdb
+      tag: cc
+    - citext: true
+      name: uaadb
+      tag: uaa
+    db_scheme: postgres
+    port: 5524
+    roles:
+    - name: ccadmin
+      password: admin
+      tag: admin
+    - name: uaaadmin
+      password: admin
+      tag: admin
+  dea_next:
+    allow_networks: []
+    default_health_check_timeout: 60
+    deny_networks: []
+    directory_server_protocol: https
+    disk_mb: 2048
+    disk_overcommit_factor: 2
+    evacuation_bail_out_time_in_seconds: 600
+    instance_disk_inode_limit: 200000
+    kernel_network_tuning_enabled: true
+    logging_level: debug
+    memory_mb: 1024
+    memory_overcommit_factor: 3
+    staging_disk_inode_limit: 200000
+    staging_disk_limit_mb: 4096
+    staging_memory_limit_mb: 1024
+  description: Cloud Foundry sponsored by Pivotal
+  disk_quota_enabled: true
+  domain: 0.0.0.3.xip.io
+  dropsonde:
+    enabled: true
+  etcd:
+    machines:
+    - 0.0.0.14
+    - 0.0.0.15
+    - 0.0.1.13
+  etcd_metrics_server:
+    nats:
+      machines:
+      - 0.0.1.1
+      password: nats_password
+      username: nats_user
+  logger_endpoint: null
+  loggregator:
+    blacklisted_syslog_ranges: null
+    debug: false
+    maxRetainedLogMessages: 100
+  loggregator_endpoint:
+    shared_secret: loggregator_endpoint_secret
+  login:
+    analytics:
+      code: null
+      domain: null
+    asset_base_url: null
+    brand: oss
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    links:
+      home: https://console.0.0.0.3.xip.io
+      network: null
+      passwd: https://console.0.0.0.3.xip.io/password_resets/new
+      signup: https://console.0.0.0.3.xip.io/register
+      signup-network: null
+    protocol: http
+    saml:
+      metadataTrustCheck: null
+    signups_enabled: null
+    smtp:
+      host: null
+      password: null
+      port: null
+      user: null
+    spring_profiles: null
+    tiles: null
+    uaa_base: null
+    uaa_certificate: null
+    url: null
+  metron_endpoint:
+    shared_secret: loggregator_endpoint_secret
+  nats:
+    address: 0.0.1.1
+    debug: false
+    machines:
+    - 0.0.1.1
+    monitor_port: 0
+    password: nats_password
+    port: 4222
+    prof_port: 0
+    trace: false
+    user: nats_user
+  nfs_server:
+    address: 0.0.0.2
+    allow_from_entries:
+    - null
+    - null
+    share: null
+  request_timeout_in_seconds: 300
+  router:
+    status:
+      password: router_password
+      user: router_user
+  smoke_tests: null
+  ssl:
+    skip_cert_verify: false
+  support_address: http://support.cloudfoundry.com
+  syslog_aggregator: null
+  system_domain: 0.0.0.3.xip.io
+  system_domain_organization: pivotal
+  uaa:
+    admin:
+      client_secret: admin_secret
+    authentication:
+      policy:
+        countFailuresWithinSeconds: null
+        lockoutAfterFailures: null
+        lockoutPeriodSeconds: null
+    batch:
+      password: batch_password
+      username: batch_username
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    cc:
+      client_secret: cc_client_secret
+    clients:
+      app-direct:
+        access-token-validity: 1209600
+        authorities: app_direct_invoice.write
+        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
+        override: true
+        redirect-uri: https://console.0.0.0.3.xip.io
+        refresh-token-validity: 1209600
+        secret: app-direct_secret
+      developer_console:
+        access-token-validity: 1209600
+        authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
+        authorized-grant-types: authorization_code,client_credentials
+        override: true
+        redirect-uri: https://console.0.0.0.3.xip.io/oauth/callback
+        refresh-token-validity: 1209600
+        scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
+        secret: developer_console_secret
+      login:
+        authorities: oauth.login
+        authorized-grant-types: authorization_code,client_credentials,refresh_token
+        override: true
+        redirect-uri: https://login.0.0.0.3.xip.io
+        scope: openid,oauth.approvals
+        secret: login_secret
+      notifications:
+        authorities: cloud_controller.admin,scim.read
+        authorized-grant-types: client_credentials
+        secret: notification_secret
+      servicesmgmt:
+        authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
+        authorized-grant-types: authorization_code,client_credentials,password,implicit
+        autoapprove: true
+        override: true
+        redirect-uri: http://servicesmgmt.0.0.0.3.xip.io/auth/cloudfoundry/callback
+        scope: openid,cloud_controller.read,cloud_controller.write
+        secret: service_mgmt_secret
+      space-mail:
+        access-token-validity: 1209600
+        authorities: scim.read,scim.write,cloud_controller.admin
+        authorized-grant-types: client_credentials
+        override: true
+        refresh-token-validity: 1209600
+        secret: space-mail_secret
+      support-services:
+        access-token-validity: 1209600
+        authorities: portal.users.read
+        authorized-grant-types: authorization_code,client_credentials
+        redirect-uri: http://support-signon.0.0.0.3.xip.io
+        refresh-token-validity: 1209600
+        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
+        secret: support-services_secret
+    jwt:
+      signing_key: sk
+      verification_key: vk
+    ldap: null
+    login:
+      client_secret: null
+    no_ssl: false
+    scim:
+      external_groups: null
+      userids_enabled: false
+      users:
+      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin
+    spring_profiles: null
+    url: https://uaa.0.0.0.3.xip.io
+  uaadb:
+    address: 0.0.0.12
+    databases:
+    - citext: true
+      name: uaadb
+      tag: uaa
+    db_scheme: postgresql
+    port: 5524
+    roles:
+    - name: uaaadmin
+      password: admin
+      tag: admin
+releases:
+- name: cf
+  version: latest
+resource_pools:
+- cloud_properties:
+    cpu: 1
+    disk: 4096
+    ram: 1024
+  name: small_z1
+  network: cf1
+  size: 3
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 4096
+    ram: 1024
+  name: small_z2
+  network: cf2
+  size: 2
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 4096
+    ram: 1024
+  name: medium_z1
+  network: cf1
+  size: 11
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 4096
+    ram: 1024
+  name: medium_z2
+  network: cf2
+  size: 8
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 10240
+    ram: 1024
+  name: large_z1
+  network: cf1
+  size: 1
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 10240
+    ram: 1024
+  name: large_z2
+  network: cf2
+  size: 1
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 2
+    disk: 32768
+    ram: 16384
+  name: runner_z1
+  network: cf1
+  size: 1
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 2
+    disk: 32768
+    ram: 16384
+  name: runner_z2
+  network: cf2
+  size: 1
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 2048
+    ram: 1024
+  name: router_z1
+  network: cf1
+  size: 2
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 2048
+    ram: 1024
+  name: router_z2
+  network: cf2
+  size: 1
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 2048
+    ram: 1024
+  name: small_errand
+  network: cf1
+  size: 3
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
+update:
+  canaries: 1
+  canary_watch_time: 30000-600000
+  max_in_flight: 1
+  serial: true
+  update_watch_time: 5000-600000
+
