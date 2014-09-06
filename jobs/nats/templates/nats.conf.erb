@@ -9,6 +9,7 @@ pid_file: "/var/vcap/sys/run/nats/nats.pid"
 
 debug: <%= p("nats.debug") %>
 trace: <%= p("nats.trace") %>
+logtime: true
 
 authorization {
   user: "<%= p("nats.user") %>"
