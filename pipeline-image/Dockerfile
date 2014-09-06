@@ -32,12 +32,3 @@ RUN bash -l -c "source $HOME/.gvm/scripts/gvm && gvm use go1.3.1 && GOPATH=/tmp/
 RUN cp /tmp/go/src/github.com/cloudfoundry-incubator/spiff/spiff /usr/local/bin
 RUN rm -rf /tmp/go
 
-RUN bash -l -c "git clone https://github.com/cloudfoundry/cf-release.git --depth 1 -b develop /tmp/cf-release && \
-  cd /tmp/cf-release && \
-  git submodule update --init --recursive && \
-  bosh sync blobs && \
-  bosh --non-interactive --verbose create release && \
-  mv /tmp/cf-release/.blobs $HOME/cf-release-blobs && \
-  mv /tmp/cf-release/.dev_builds $HOME/cf-release-dev-builds && \
-  mv /tmp/cf-release/.final_builds $HOME/cf-release-final-builds && \
-  rm -rf /tmp/cf-release"

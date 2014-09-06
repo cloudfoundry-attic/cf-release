@@ -4,18 +4,6 @@ set -e -x
 
 CF_RELEASE_OUT="../create-release.out"
 
-if [ -d $HOME/cf-release-blobs ]; then
-  mv $HOME/cf-release-blobs .blobs
-fi
-
-if [ -d $HOME/cf-release-dev-builds ]; then
-  mv $HOME/cf-release-dev-builds .dev_builds
-fi
-
-if [ -d $HOME/cf-release-final-builds ]; then
-  find $HOME/cf-release-final-builds -name *.tgz | sed "s|\($HOME/cf-release-final-builds/\)\(.*\)|mv \1\2 .final_builds/\2|" | bash
-fi
-
 bosh -n create release --with-tarball | tee $CF_RELEASE_OUT
 
 EXIT_STATUS=${PIPESTATUS[0]}
