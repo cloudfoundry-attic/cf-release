@@ -1,0 +1,86 @@
+---
+director_uuid: DIRECTOR_UUID
+meta:
+  openstack:
+    net_id: net_id
+    auth_url: auth_url
+    tenant: openstack_tenant
+    username: openstack_username
+    api_key: openstack_api_key
+    security_groups: []
+  floating_static_ips:
+  - 0.0.0.0
+networks:
+- name: cf1
+  subnets:
+    - cloud_properties:
+      static:
+      - 0.0.0.0 - 0.0.0.25
+properties:
+  cc:
+    droplets:
+      droplet_directory_key: the_key
+    buildpacks:
+      buildpack_directory_key: bd_key
+    staging_upload_user: username
+    staging_upload_password: password
+    bulk_api_password: password
+    db_encryption_key: the_key
+  ccdb:
+    roles:
+    - name: ccadmin
+      password: admin_password
+      tag: admin
+  databases:
+    roles:
+    - name: ccadmin
+      password: ccadmin_password
+    - name: uaaadmin
+      password: uaaadmin_password
+  dea_next:
+    disk_mb: 2048
+    memory_mb: 1024
+  domain: example.com
+  loggregator_endpoint:
+    shared_secret: loggregator_endpoint_secret
+  nats:
+    user: nats_user
+    password: nats_password
+  router:
+    status:
+      user: router_user
+      password: router_password
+  uaa:
+    admin:
+      client_secret: admin_secret
+    batch:
+      username: batch_username
+      password: batch_password
+    cc:
+      client_secret: cc_client_secret
+    clients:
+      app-direct:
+        secret: app-direct_secret
+      developer_console:
+        secret: developer_console_secret
+      login:
+        secret: login_secret 
+      notifications:
+        secret: notification_secret
+      servicesmgmt:
+        secret: service_mgmt_secret
+      space-mail:
+        secret: space-mail_secret
+      support-services:
+        secret: support-services_secret
+    jwt:
+      verification_key: vk
+      signing_key: sk
+    scim:
+      users:
+      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin
+  uaadb:
+    roles:
+    - name: uaaadmin
+      password: admin_password
+      tag: admin
