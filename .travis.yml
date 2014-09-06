@@ -3,8 +3,13 @@ language: ruby
 rvm:
   - 1.9.3-p545
 
+go:
+  - 1.3
+
 before_install:
   - git submodule update --init --recursive
+  - ./scripts/travis/install_spiff
+  - export PATH=$PATH:$PWD
 script:
   - bundle exec rspec spec
   - bundle exec bosh sync blobs
