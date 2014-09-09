@@ -1,7 +1,7 @@
 ---
 name: hm9000
 dependencies:
-- golang
+- golang1.3
 - git
 files:
 - hm9000/src/bitbucket.org/**/*
