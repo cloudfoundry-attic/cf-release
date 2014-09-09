@@ -9,7 +9,6 @@ templates:
   drain: bin/drain
 packages:
   - common
-  - golang
   - gorouter
   - syslog_aggregator
 properties:

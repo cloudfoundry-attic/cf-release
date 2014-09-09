@@ -5,7 +5,7 @@ cp -a dea_next/* ${BOSH_INSTALL_TARGET}
 cd ${BOSH_INSTALL_TARGET}
 /var/vcap/packages/ruby/bin/bundle install --local --deployment --without=development test
 
-export GOROOT=$(readlink -nf /var/vcap/packages/golang)
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.3)
 export PATH=$GOROOT/bin:$PATH
 
 export GOPATH=${BOSH_INSTALL_TARGET}/go

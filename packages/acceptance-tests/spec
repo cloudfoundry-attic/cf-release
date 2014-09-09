@@ -1,7 +1,7 @@
 ---
 name: acceptance-tests
 dependencies:
-  - golang
+  - golang1.3
   - cli
 files:
   - acceptance-tests/**/*

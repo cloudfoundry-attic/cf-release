@@ -1,7 +1,7 @@
 ---
 name: smoke-tests
 dependencies:
-  - golang
+  - golang1.3
   - cli
 files:
   - smoke-tests/**/*
