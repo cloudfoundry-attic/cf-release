@@ -32,3 +32,6 @@ RUN bash -l -c "source $HOME/.gvm/scripts/gvm && gvm use go1.3.1 && GOPATH=/tmp/
 RUN cp /tmp/go/src/github.com/cloudfoundry-incubator/spiff/spiff /usr/local/bin
 RUN rm -rf /tmp/go
 
+RUN wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb
+RUN dpkg --install vagrant_1.6.5_x86_64.deb && rm vagrant_1.6.5_x86_64.deb
+RUN vagrant plugin install vagrant-aws
