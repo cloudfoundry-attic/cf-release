@@ -99,6 +99,8 @@ meta:
   loggregator_templates:
   - name: loggregator
     release: (( meta.release.name ))
+  - name: doppler
+    release: (( meta.release.name ))
 
   loggregator_trafficcontroller_templates:
   - name: loggregator_trafficcontroller
@@ -374,6 +376,8 @@ jobs:
       networks: (( meta.networks.z1 ))
       loggregator:
         zone: z1
+      doppler:
+        zone: z1
 
   - name: loggregator_z2
     templates: (( merge || meta.loggregator_templates ))
@@ -385,6 +389,8 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       loggregator:
+        zone: z2
+      doppler:
         zone: z2
 
   - name: loggregator_trafficcontroller_z1
@@ -529,12 +535,20 @@ properties:
   loggregator_endpoint:
     shared_secret: (( merge ))
 
+  doppler_endpoint:
+    shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
+
   metron_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
 
   logger_endpoint: ~
 
   loggregator:
+    maxRetainedLogMessages: 100
+    debug: (( merge || false ))
+    blacklisted_syslog_ranges: ~
+
+  doppler:
     maxRetainedLogMessages: 100
     debug: (( merge || false ))
     blacklisted_syslog_ranges: ~
