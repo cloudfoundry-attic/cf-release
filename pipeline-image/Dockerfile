@@ -4,7 +4,8 @@ RUN apt-get update && \
   apt-get -y install \
   libxml2-dev libxslt-dev libreadline-dev python-software-properties git \
   libmysqlclient-dev libpq-dev libsqlite3-dev \
-  build-essential zlib1g-dev libssl-dev libyaml-dev curl wget unzip mercurial bison
+  build-essential zlib1g-dev libssl-dev libyaml-dev \
+  curl libcurl4-openssl-dev wget unzip mercurial bison
 
 RUN git clone https://github.com/postmodern/chruby /tmp/chruby
 RUN cd /tmp/chruby && git reset --hard 310bd34d1fcbb3365814c85018114123cef5a41f
