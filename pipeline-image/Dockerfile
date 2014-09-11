@@ -25,11 +25,12 @@ RUN bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
 
 RUN curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -o /tmp/gvm-install.sh
 RUN chmod 744 /tmp/gvm-install.sh
-RUN bash -l -c "GVM_NO_UPDATE_PROFILE=false /tmp/gvm-install.sh"
-RUN bash -l -c "source $HOME/.gvm/scripts/gvm && gvm install go1.3.1"
+RUN bash -l -c "/tmp/gvm-install.sh"
+RUN bash -l -c "gvm install go1.3.1"
+RUN echo "gvm use go1.3.1" >> $HOME/.bashrc
 
 RUN git clone https://github.com/cloudfoundry-incubator/spiff.git /tmp/go/src/github.com/cloudfoundry-incubator/spiff
-RUN bash -l -c "source $HOME/.gvm/scripts/gvm && gvm use go1.3.1 && GOPATH=/tmp/go /tmp/go/src/github.com/cloudfoundry-incubator/spiff/scripts/build"
+RUN bash -l -c "GOPATH=/tmp/go /tmp/go/src/github.com/cloudfoundry-incubator/spiff/scripts/build"
 RUN cp /tmp/go/src/github.com/cloudfoundry-incubator/spiff/spiff /usr/local/bin
 RUN rm -rf /tmp/go
 
