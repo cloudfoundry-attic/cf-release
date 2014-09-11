@@ -10,11 +10,13 @@ Our documentation (currently a work in progress) is available here: [http://docs
 
 The [**develop**](https://github.com/cloudfoundry/cf-release/tree/develop) branch is where we do active development. Although we endeavor to keep the [**develop**](https://github.com/cloudfoundry/cf-release/tree/develop) branch stable, we do not guarantee that any given commit will deploy cleanly.
 
-After passing all unit, integration, smoke, & acceptance tests, commits from the develop branch are merged to [**master**](https://github.com/cloudfoundry/cf-release/tree/master).
+The [**release-candidate**](https://github.com/cloudfoundry/cf-release/tree/release-candidate) branch has passed all of our unit, integration, smoke, & acceptance tests, but has not been used in a final release yet. This branch should be fairly stable.
 
-At semi-regular intervals (usually twice a month) a [**release-candidate**](https://github.com/cloudfoundry/cf-release/tree/release-candidate) branch is made from master. The RC branch is used to test upgrading from the previous release. 
+The [**master**](https://github.com/cloudfoundry/cf-release/tree/master) branch points to the most recent stable final release.
 
-If upgrading to the RC branch succeeds with smoke and acceptance test errands passing, then a new [**release**](https://github.com/cloudfoundry/cf-release/releases) is tagged.
+At semi-regular intervals a final release is created from the [**release-candidate**](https://github.com/cloudfoundry/cf-release/tree/release-candidate) branch. This final release is tagged and pushed to the [**master**](https://github.com/cloudfoundry/cf-release/tree/master) branch.
+
+Pushing to any branch other than [**develop**](https://github.com/cloudfoundry/cf-release/tree/develop) will create problems for the CI pipeline, which relies on fast forward merges. To recover from this condition follow the instructions [here](docs/fix_commit_to_master.md).
 
 ## Repository Contents
 
