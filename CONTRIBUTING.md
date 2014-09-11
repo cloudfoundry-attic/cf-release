@@ -76,6 +76,7 @@ Please see the [Proposing New Features](https://github.com/cloudfoundry-communit
    bosh deploy
    ```
 1. Make changes on your branch
+1. Update and run [manifest generation tests](spec) for each infrastructure with `rspec spec`
 1. [Re-deploy](http://docs.cloudfoundry.org/deploying/) your version of `cf-release`.
 1. [Run Cloud Foundry Acceptance Tests (CATS)](https://github.com/cloudfoundry/cf-acceptance-tests).  We recommend
    running the tests as a bosh errand (`bosh run errand acceptance_tests`). You won't see any output from the tests 
