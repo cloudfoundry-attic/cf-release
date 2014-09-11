@@ -1,25 +1,42 @@
 FROM ubuntu:trusty
 
-RUN apt-get update && \
-  apt-get -y install \
-  libxml2-dev libxslt-dev libreadline-dev python-software-properties git \
-  libmysqlclient-dev libpq-dev libsqlite3-dev \
-  build-essential zlib1g-dev libssl-dev libyaml-dev \
-  curl libcurl4-openssl-dev wget unzip mercurial bison
+# docker defaults to using '/' as $HOME, we have to setup bash this way to get ruby and go in the path
+# when doing 'bash -l -c'
+RUN touch $HOME/.bashrc
+RUN echo "[ -f ~/.bashrc ] && source ~/.bashrc" >> $HOME/.bash_profile
+
+RUN apt-get update
+RUN apt-get -y install \
+  bison \
+  build-essential \
+  curl \
+  git \
+  libcurl4-openssl-dev \
+  libmysqlclient-dev \
+  libpq-dev \
+  libreadline-dev \
+  libsqlite3-dev \
+  libssl-dev \
+  libxml2-dev \
+  libxslt-dev \
+  libyaml-dev \
+  mercurial \
+  python-software-properties \
+  unzip \
+  wget \
+  zlib1g-dev
 
 RUN git clone https://github.com/postmodern/chruby /tmp/chruby
 RUN cd /tmp/chruby && git reset --hard 310bd34d1fcbb3365814c85018114123cef5a41f
 RUN cd /tmp/chruby && ./scripts/setup.sh
-RUN echo 'source /usr/local/share/chruby/auto.sh' >> $HOME/.bashrc
+RUN echo 'source /usr/local/share/chruby/chruby.sh' >> $HOME/.bashrc
 
 ADD https://github.com/postmodern/ruby-install/archive/v0.4.1.tar.gz /tmp/
 RUN tar zxf /tmp/v0.4.1.tar.gz -C /tmp
 RUN cd /tmp/ruby-install-0.4.1 && make install
-RUN rm -rf /tmp/ruby-install-0.4.1
-
 RUN ruby-install ruby 1.9.3-p547
+RUN echo 'chruby 1.9.3-p547' >> $HOME/.bashrc
 
-RUN echo 'chruby 1.9.3-p547' >> $HOME/.bash_profile
 RUN bash -l -c "gem install bundler --no-rdoc --no-ri"
 RUN bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
 
@@ -27,13 +44,14 @@ RUN curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscript
 RUN chmod 744 /tmp/gvm-install.sh
 RUN bash -l -c "/tmp/gvm-install.sh"
 RUN bash -l -c "gvm install go1.3.1"
-RUN echo "gvm use go1.3.1" >> $HOME/.bashrc
+RUN echo 'gvm use go1.3.1' >> $HOME/.bashrc
 
 RUN git clone https://github.com/cloudfoundry-incubator/spiff.git /tmp/go/src/github.com/cloudfoundry-incubator/spiff
 RUN bash -l -c "GOPATH=/tmp/go /tmp/go/src/github.com/cloudfoundry-incubator/spiff/scripts/build"
 RUN cp /tmp/go/src/github.com/cloudfoundry-incubator/spiff/spiff /usr/local/bin
-RUN rm -rf /tmp/go
 
-RUN wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb
-RUN dpkg --install vagrant_1.6.5_x86_64.deb && rm vagrant_1.6.5_x86_64.deb
+ADD https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb /tmp/
+RUN dpkg --install /tmp/vagrant_1.6.5_x86_64.deb
 RUN vagrant plugin install vagrant-aws
+
+RUN rm -rf /tmp/*
