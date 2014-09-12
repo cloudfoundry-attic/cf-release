@@ -42,11 +42,10 @@ RUN echo 'chruby 1.9.3-p547' >> $HOME/.bashrc
 RUN bash -l -c "gem install bundler --no-rdoc --no-ri"
 RUN bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
 
-RUN curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer -o /tmp/gvm-install.sh
-RUN chmod 744 /tmp/gvm-install.sh
-RUN bash -l -c "/tmp/gvm-install.sh"
-RUN bash -l -c "gvm install go1.3.1"
-RUN echo 'gvm use go1.3.1' >> $HOME/.bashrc
+ADD https://storage.googleapis.com/golang/go1.3.1.linux-amd64.tar.gz /tmp/
+RUN tar xzvf /tmp/go1.3.1.linux-amd64.tar.gz -C /usr/local
+ENV GOPATH $HOME/go
+ENV PATH /usr/local/go/bin:$PATH
 
 RUN git clone https://github.com/cloudfoundry-incubator/spiff.git /tmp/go/src/github.com/cloudfoundry-incubator/spiff
 RUN bash -l -c "GOPATH=/tmp/go /tmp/go/src/github.com/cloudfoundry-incubator/spiff/scripts/build"
