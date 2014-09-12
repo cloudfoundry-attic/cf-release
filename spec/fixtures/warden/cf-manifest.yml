@@ -423,6 +423,8 @@ jobs:
     static_ips:
     - 10.244.0.14
   properties:
+    doppler:
+      zone: z1
     loggregator:
       zone: z1
     networks:
@@ -431,12 +433,16 @@ jobs:
   templates:
   - name: loggregator
     release: cf
+  - name: doppler
+    release: cf
 - instances: 0
   name: loggregator_z2
   networks:
   - name: cf2
     static_ips: []
   properties:
+    doppler:
+      zone: z2
     loggregator:
       zone: z2
     networks:
@@ -444,6 +450,8 @@ jobs:
   resource_pool: medium_z2
   templates:
   - name: loggregator
+    release: cf
+  - name: doppler
     release: cf
 - instances: 1
   name: loggregator_trafficcontroller_z1
@@ -2467,6 +2475,12 @@ properties:
     debug: false
     maxRetainedLogMessages: 100
   loggregator_endpoint:
+    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+  doppler:
+    blacklisted_syslog_ranges: null
+    debug: false
+    maxRetainedLogMessages: 100
+  doppler_endpoint:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
   login:
     analytics:
