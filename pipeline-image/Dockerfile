@@ -54,4 +54,8 @@ ADD https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb /tmp/
 RUN dpkg --install /tmp/vagrant_1.6.5_x86_64.deb
 RUN vagrant plugin install vagrant-aws
 
+ADD https://s3.amazonaws.com/go-cli/releases/v6.6.0/cf-linux-amd64.tgz /tmp/
+RUN tar xvf /tmp/cf-linux-amd64.tgz -C /usr/local/bin
+RUN ln -s /usr/local/bin/cf /usr/local/bin/gcf
+
 RUN rm -rf /tmp/*
