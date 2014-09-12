@@ -1,3 +1,4 @@
+require 'yaml'
 require 'tempfile'
 
 describe "Manifest Generation" do
@@ -6,8 +7,14 @@ describe "Manifest Generation" do
       example_manifest = Tempfile.new("example-manifest.yml")
       `./generate_deployment_manifest #{infrastructure} spec/fixtures/#{infrastructure}/cf-stub.yml > #{example_manifest.path}`
       expect($?.exitstatus).to eq(0)
-      identical = FileUtils.compare_file("spec/fixtures/#{infrastructure}/cf-manifest.yml", example_manifest.path)
-      expect(identical).to eq(true)
+
+      expected = YAML.load_file("spec/fixtures/#{infrastructure}/cf-manifest.yml")
+      actual = YAML.load_file(example_manifest.path)
+
+      expect(actual.keys).to eq(expected.keys)
+      actual.each do |key, value|
+        expect(value).to eq(expected[key])
+      end
     end
   end
 
