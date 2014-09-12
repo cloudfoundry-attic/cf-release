@@ -45,7 +45,7 @@ RUN bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
 ADD https://storage.googleapis.com/golang/go1.3.1.linux-amd64.tar.gz /tmp/
 RUN tar xzvf /tmp/go1.3.1.linux-amd64.tar.gz -C /usr/local
 ENV GOPATH $HOME/go
-ENV PATH /usr/local/go/bin:$PATH
+ENV PATH $HOME/go/bin:/usr/local/go/bin:$PATH
 
 RUN git clone https://github.com/cloudfoundry-incubator/spiff.git /tmp/go/src/github.com/cloudfoundry-incubator/spiff
 RUN bash -l -c "GOPATH=/tmp/go /tmp/go/src/github.com/cloudfoundry-incubator/spiff/scripts/build"
