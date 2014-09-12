@@ -35,6 +35,8 @@ ADD https://github.com/postmodern/ruby-install/archive/v0.4.1.tar.gz /tmp/
 RUN tar zxf /tmp/v0.4.1.tar.gz -C /tmp
 RUN cd /tmp/ruby-install-0.4.1 && make install
 RUN ruby-install ruby 1.9.3-p547
+RUN rm -rf /usr/local/src/ruby-1.9.3-p547
+
 RUN echo 'chruby 1.9.3-p547' >> $HOME/.bashrc
 
 RUN bash -l -c "gem install bundler --no-rdoc --no-ri"
