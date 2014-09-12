@@ -19,6 +19,9 @@ networks:
 
 properties:
   cc:
+    diego:
+      staging: optional
+      running: disabled
     droplets:
       droplet_directory_key: the_key
     buildpacks:

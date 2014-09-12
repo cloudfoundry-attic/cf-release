@@ -568,7 +568,9 @@ properties:
     - public_networks
     - dns
     development_mode: false
-    diego: false
+    diego:
+      staging: optional
+      running: disabled
     diego_docker: false
     directories: null
     disable_custom_buildpacks: false

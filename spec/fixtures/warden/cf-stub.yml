@@ -9,6 +9,9 @@ properties:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
 
   cc:
+    diego:
+      staging: required
+      running: disabled
     security_group_definitions:
       - name: public_networks
         rules:

@@ -1,3 +1,4 @@
+require 'support/yaml_eq'
 require 'yaml'
 require 'tempfile'
 
@@ -8,13 +9,10 @@ describe "Manifest Generation" do
       `./generate_deployment_manifest #{infrastructure} spec/fixtures/#{infrastructure}/cf-stub.yml > #{example_manifest.path}`
       expect($?.exitstatus).to eq(0)
 
-      expected = YAML.load_file("spec/fixtures/#{infrastructure}/cf-manifest.yml")
-      actual = YAML.load_file(example_manifest.path)
+      expected = File.read("spec/fixtures/#{infrastructure}/cf-manifest.yml")
+      actual = File.read(example_manifest.path)
 
-      expect(actual.keys).to eq(expected.keys)
-      actual.each do |key, value|
-        expect(value).to eq(expected[key])
-      end
+      expect(actual).to yaml_eq(expected)
     end
   end
 
