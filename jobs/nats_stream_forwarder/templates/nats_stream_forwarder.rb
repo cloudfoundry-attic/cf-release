@@ -38,5 +38,6 @@ begin
   end
 rescue NATS::ConnectError, NATS::ServerError => e
   log(:error, Time.now.to_f, "nats.error", %Q[{"exception_message": #{json_safe e.message}}])
+  sleep(10)
   retry
 end

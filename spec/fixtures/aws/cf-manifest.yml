@@ -30,11 +30,12 @@ jobs:
   templates:
   - name: haproxy
     release: cf
-- instances: 0
+- instances: 1
   name: nats_z1
   networks:
   - name: cf1
-    static_ips: []
+    static_ips:
+    - 0.0.0.1
   properties:
     networks:
       apps: cf1
@@ -731,6 +732,7 @@ properties:
   etcd_metrics_server:
     nats:
       machines:
+      - 0.0.0.1
       - 0.0.1.1
       password: nats_password
       username: nats_user
@@ -780,9 +782,10 @@ properties:
   metron_endpoint:
     shared_secret: secret
   nats:
-    address: 0.0.1.1
+    address: 0.0.0.1
     debug: false
     machines:
+    - 0.0.0.1
     - 0.0.1.1
     monitor_port: 0
     password: nats_password
@@ -926,7 +929,7 @@ resource_pools:
     instance_type: m3.medium
   name: medium_z1
   network: cf1
-  size: 8
+  size: 9
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest

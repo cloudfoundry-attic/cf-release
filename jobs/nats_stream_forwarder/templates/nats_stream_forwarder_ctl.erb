@@ -23,7 +23,11 @@ case $1 in
     echo $$ > $PIDFILE
     chown vcap_vcap $PIDFILE
 
-    exec chpst -u vcap:vcap bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= p("nats.address") %>:<%= p("nats.port") %>'
+
+    <% my_ip = spec.networks.send(properties.networks.apps).ip %>
+    <% connect_ip = p("nats.machines").include?(my_ip) ? my_ip : p("nats.machines").sample %>
+
+    exec chpst -u vcap:vcap bundle exec $BIN_DIR/nats_stream_forwarder.rb 'nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= connect_ip %>:<%= p("nats.port") %>'
 
     ;;
 
