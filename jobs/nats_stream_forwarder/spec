@@ -30,7 +30,7 @@ properties:
     description: "Username for server authentication."
   nats.password:
     description: "Password for server authentication."
-  nats.address:
-    description: "NATS address"
+  nats.machines:
+    description: "NATS addresses"
   nats.port:
     description: "The port for the NATS server to listen on."

@@ -498,7 +498,7 @@ properties:
   nats:
     user: (( merge ))
     password: (( merge ))
-    address: (( jobs.nats_z2.networks.cf2.static_ips.[0] ))
+    address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
     port: 4222
     machines: (( jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
     debug: false
