@@ -31,6 +31,7 @@ set -x # show the commands we are running
 has_upstream && git pull
 
 # Update submodule pointers; Clean out any submodule changes
+git submodule sync
 git submodule foreach --recursive 'git submodule sync; git clean -d --force --force'
 
 # Update submodule content, checkout if necessary
