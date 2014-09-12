@@ -374,11 +374,15 @@ jobs:
   properties:
     loggregator:
       zone: z1
+    doppler:
+      zone: z1
     networks:
       apps: cf1
   resource_pool: medium_z1
   templates:
   - name: loggregator
+    release: cf
+  - name: doppler
     release: cf
 - instances: 2
   name: loggregator_z2
@@ -390,11 +394,15 @@ jobs:
   properties:
     loggregator:
       zone: z2
+    doppler:
+      zone: z2
     networks:
       apps: cf2
   resource_pool: medium_z2
   templates:
   - name: loggregator
+    release: cf
+  - name: doppler
     release: cf
 - instances: 1
   name: loggregator_trafficcontroller_z1
@@ -738,6 +746,12 @@ properties:
     debug: false
     maxRetainedLogMessages: 100
   loggregator_endpoint:
+    shared_secret: loggregator_endpoint_secret
+  doppler:
+    blacklisted_syslog_ranges: ~
+    debug: false
+    maxRetainedLogMessages: 100
+  doppler_endpoint:
     shared_secret: loggregator_endpoint_secret
   login:
     analytics:
