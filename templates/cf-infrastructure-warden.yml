@@ -176,7 +176,7 @@ properties:
     admin_user: admin
     admin_password: admin
     skip_ssl_validation: true
-    diego: (( properties.cc.diego ))
+    diego: false
     nodes: 1
 
   smoke_tests:

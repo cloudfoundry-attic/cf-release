@@ -65,7 +65,10 @@ properties:
 
     billing_event_writing_enabled: true
 
-    diego: false
+    diego:
+      staging: disabled
+      running: disabled
+
     diego_docker: false
     default_app_memory: 1024
     default_app_disk_in_mb: 1024
