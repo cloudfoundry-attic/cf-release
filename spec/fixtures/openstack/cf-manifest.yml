@@ -699,6 +699,7 @@ properties:
       password: uaaadmin_password
       tag: admin
   dea_next:
+    advertise_interval_in_seconds: 5
     allow_networks: null
     default_health_check_timeout: 60
     deny_networks: null
@@ -706,6 +707,7 @@ properties:
     disk_mb: 2048
     disk_overcommit_factor: 2
     evacuation_bail_out_time_in_seconds: 600
+    heartbeat_interval_in_seconds: 10
     instance_disk_inode_limit: 200000
     kernel_network_tuning_enabled: true
     logging_level: debug

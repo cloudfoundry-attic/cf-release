@@ -428,6 +428,8 @@ properties:
   dea_next.staging_disk_limit_mb:
     description: "Disk limit in mb for staging tasks"
     default: 4096
+  dea_next.advertise_interval_in_seconds:
+    description: "Advertise interval for DEAs"
   cc.renderer.max_results_per_page:
     description: "Maximum number of results returned per page"
     default: 100

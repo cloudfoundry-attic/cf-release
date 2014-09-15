@@ -116,6 +116,9 @@ properties:
   dea_next.advertise_interval_in_seconds:
     description: "frequency of staging & DEA advertisments in seconds."
     default: 5
+  dea_next.heartbeat_interval_in_seconds:
+    description: "frequency of heartbeats in seconds."
+    default: 10
 
   dea_next.zone:
     description: "The Availability Zone"

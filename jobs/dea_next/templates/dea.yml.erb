@@ -47,6 +47,7 @@ loggregator:
 index: <%= spec.index %>
 
 intervals:
+  heartbeat: <%= p("dea_next.advertise_interval_in_seconds") %>
   advertise: <%= p("dea_next.heartbeat_interval_in_seconds") %>
 
 resources:
