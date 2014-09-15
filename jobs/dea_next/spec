@@ -113,6 +113,10 @@ properties:
   dea_next.evacuation_bail_out_time_in_seconds:
     description: "Duration to wait before shutting down, in seconds."
     default: 115
+  dea_next.advertise_interval_in_seconds:
+    description: "frequency of staging & DEA advertisments in seconds."
+    default: 5
+
   dea_next.zone:
     description: "The Availability Zone"
     default: "default"

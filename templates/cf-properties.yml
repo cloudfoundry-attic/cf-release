@@ -33,6 +33,7 @@ properties:
 
   loggregator_endpoint:
     shared_secret: (( merge ))
+
   cc:
     jobs:
       global:
@@ -151,6 +152,9 @@ properties:
     default_staging_security_groups: (( merge || ["public_networks", "dns"] ))
 
     allowed_cors_domains: (( merge || [] ))
+
+  dea_next:
+    advertise_interval_in_seconds: 5
 
   login:
     analytics:
