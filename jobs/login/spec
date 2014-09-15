@@ -99,7 +99,9 @@ properties:
   nats.machines:
     description: "IP of each NATS cluster member."
   networks.apps:
-    description: "The Login network name"
+    description: "Login network name"
+  uaa.clients.login.secret:
+    description:
   uaa.dump_requests:
     description:
   uaa.login.client_secret:
