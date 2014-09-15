@@ -1,5 +1,5 @@
 {
-    "heartbeat_period_in_seconds": 10,
+    "heartbeat_period_in_seconds": <%= p("dea_next.heartbeat_interval_in_seconds") %>,
 
     "cc_auth_user": "<%= p("cc.bulk_api_user") %>",
     "cc_auth_password": "<%= p("cc.bulk_api_password") %>",
