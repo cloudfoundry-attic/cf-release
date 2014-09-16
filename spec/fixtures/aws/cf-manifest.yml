@@ -769,6 +769,7 @@ properties:
       signup-network: null
     protocol: https
     saml:
+      metadataTrustCheck: null
     signups_enabled: null
     smtp:
       host: null
@@ -844,6 +845,13 @@ properties:
         refresh-token-validity: 1209600
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
+      login:
+        authorities: oauth.login
+        authorized-grant-types: authorization_code,client_credentials,refresh_token
+        override: true
+        redirect-uri: https://login.example.com
+        scope: openid,oauth.approvals
+        secret: login_secret
       notifications:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
@@ -876,7 +884,7 @@ properties:
       verification_key: vk
     ldap: null
     login:
-      client_secret: login_client_secret
+      client_secret: null
     no_ssl: false
     scim:
       external_groups: null
@@ -885,7 +893,6 @@ properties:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin
     spring_profiles: null
     url: https://uaa.example.com
-    user: null
   uaadb:
     address: uaadb.example.com
     databases:

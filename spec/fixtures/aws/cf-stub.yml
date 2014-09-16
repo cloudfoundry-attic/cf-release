@@ -66,13 +66,13 @@ properties:
       password: batch_password
     cc:
       client_secret: cc_client_secret
-    login:
-      client_secret: login_client_secret
     clients:
       app-direct:
         secret: app-direct_secret
       developer_console:
         secret: developer_console_secret
+      login:
+        secret: login_secret 
       notifications:
         secret: notification_secret
       servicesmgmt:
