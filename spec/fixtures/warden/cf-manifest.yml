@@ -2501,7 +2501,6 @@ properties:
       signup-network: null
     protocol: http
     saml:
-      metadataTrustCheck: null
     signups_enabled: null
     smtp:
       host: null
@@ -2589,11 +2588,11 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
       login:
+        override: true
+        scope: openid,oauth.approvals
         authorities: oauth.login
         authorized-grant-types: authorization_code,client_credentials,refresh_token
-        override: true
         redirect-uri: http://login.10.244.0.34.xip.io
-        scope: openid,oauth.approvals
         secret: login-secret
       notifications:
         authorities: cloud_controller.admin,scim.read
@@ -2669,7 +2668,6 @@ properties:
 '
     ldap: null
     login:
-      client_secret: null
     no_ssl: true
     scim:
       external_groups: null
@@ -2678,6 +2676,20 @@ properties:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write
     spring_profiles: null
     url: https://uaa.10.244.0.34.xip.io
+    user:
+      authorities:
+      - openid
+      - scim.me
+      - cloud_controller.read
+      - cloud_controller.write
+      - cloud_controller_service_permissions.read
+      - password.write
+      - scim.userids
+      - uaa.user
+      - approvals.me
+      - oauth.approvals
+      - test.scope
+
   uaadb:
     address: 10.244.0.30
     databases:
