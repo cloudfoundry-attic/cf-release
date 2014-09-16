@@ -1,7 +1,6 @@
 ---
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
-<% protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http" %>
 
 name: uaa
 
@@ -92,7 +91,7 @@ oauth:
       id: cf
       override: true
       authorized-grant-types: implicit,password,refresh_token
-      scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,scim.userids
+      scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write
       authorities: uaa.none
       access-token-validity: 600
       refresh-token-validity: 2592000
@@ -105,14 +104,22 @@ oauth:
       authorized-grant-types: authorization_code,client_credentials,refresh_token
       authorities: oauth.login
       scope: openid,oauth.approvals
-      redirect-uri: <%= "#{protocol}://login.#{properties.domain}" %>
+      redirect-uri: https://login.<%= properties.domain %>
 <% end %>
-  user:
-    authorities: <% properties.uaa.user.authorities.each do |authority| %>
-      - <%= authority %><% end %>
+<% if properties.uaa.scim %>
 scim:
-  userids_enabled: <%= properties.uaa.scim && (!properties.uaa.scim.userids_enabled.nil?) ?  properties.uaa.scim.userids_enabled : false %>
-  user.override: <%= properties.uaa.scim && properties.uaa.scim.user && (!properties.uaa.scim.user.override.nil?) ? properties.uaa.scim.user.override : true %>
+  userids_enabled: <%= properties.uaa.scim.userids_enabled %>
+<% else %>
+scim:
+  userids_enabled: false
+<% end %>
+<%
+  override = true
+  if properties.uaa.scim && properties.uaa.scim.user && !properties.uaa.scim.user.override.nil?
+    override = properties.uaa.scim.user.override
+  end
+%>
+  user.override: <%= override %>
 <% if properties.uaa.scim && properties.uaa.scim.users then %>
   users: <% properties.uaa.scim.users.each do |user| %>
     - <%= user %><% end %>
