@@ -63,10 +63,10 @@ properties:
         secret: app-direct_secret
       developer_console:
         secret: developer_console_secret
-      login:
-        secret: login_secret 
       notifications:
         secret: notification_secret
+      login:
+        secret: login_client_secret
       servicesmgmt:
         secret: service_mgmt_secret
       space-mail:
