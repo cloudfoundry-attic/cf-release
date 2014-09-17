@@ -855,7 +855,7 @@ properties:
         override: true
         redirect-uri: http://login.0.0.0.3.xip.io
         scope: openid,oauth.approvals
-        secret: null
+        secret: login_client_secret
       notifications:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
@@ -888,7 +888,6 @@ properties:
       verification_key: vk
     ldap: null
     login:
-      client_secret: login_client_secret
     no_ssl: false
     scim:
       external_groups: null
