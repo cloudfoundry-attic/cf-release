@@ -51,7 +51,7 @@ properties:
       developer_console:
         secret: developer_console_secret
       login:
-        secret: login_secret 
+        secret: login_client_secret
       notifications:
         secret: notification_secret
       servicesmgmt:

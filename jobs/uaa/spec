@@ -54,6 +54,19 @@ properties:
     description:
   uaa.client.autoapprove:
     description:
+  uaa.user.authorities:
+    description: 'Contains a list of the default authorities/scopes assigned to a user.'  
+    default:
+      - openid
+      - scim.me
+      - cloud_controller.read
+      - cloud_controller.write
+      - cloud_controller_service_permissions.read
+      - password.write
+      - scim.userids
+      - uaa.user
+      - approvals.me
+      - oauth.approvals
   uaa.clients:
     description:
   uaa.jwt.signing_key:
@@ -119,7 +132,9 @@ properties:
   uaa.dump_requests:
     description:
   uaa.login.client_secret:
-    description:
+    description: 'Deprecated. Default login client secret if no login client is defined'
+  uaa.clients.login.secret:
+    description: 'Login client secret - overrides uaa.login.client_secret'
   uaa.require_https:
     description:
   uaa_client_auth_credentials.password:
@@ -224,3 +239,5 @@ properties:
     description: "See uaa.ldap.sslCertificateAlias - login.ldap prefix is used for backwards compatibility to enable ldap from login config"  
   login.spring_profiles:
     description: "See uaa.spring_profiles - login.spring_profiles is used for backwards compatibility to enable ldap from login config"
+  login.protocol:
+    description: "The protocol that the Login Server uses. http/https"

@@ -40,3 +40,17 @@ properties:
         - protocol: all
           destination: 10.244.3.0/24
     default_running_security_groups: ["public_networks", "dns", "services"]
+  uaa:
+    user:
+      authorities:
+      - openid
+      - scim.me
+      - cloud_controller.read
+      - cloud_controller.write
+      - cloud_controller_service_permissions.read
+      - password.write
+      - scim.userids
+      - uaa.user
+      - approvals.me
+      - oauth.approvals
+      - test.scope

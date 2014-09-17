@@ -182,8 +182,7 @@ properties:
 
     tiles: ~
 
-    saml:
-      metadataTrustCheck: ~
+    saml: ~
 
   uaa:
     catalina_opts: (( merge ))
@@ -217,12 +216,13 @@ properties:
       username: (( merge ))
       password: (( merge ))
 
-    login:
-      client_secret: ~
+    login: ~
 
     ldap: ~
 
     spring_profiles: ~
+
+    user: ~
 
     clients:
       <<: (( merge || nil ))
@@ -232,7 +232,7 @@ properties:
         authorities: oauth.login
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
-        redirect-uri: (( "https://login." domain ))
+        redirect-uri: (( properties.login.protocol "://login." domain ))
       developer_console:
         override: true
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
