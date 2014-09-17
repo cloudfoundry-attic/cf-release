@@ -58,8 +58,6 @@ properties:
       password: batch_password
     cc:
       client_secret: cc_client_secret
-    login:
-      client_secret: login_client_secret
     clients:
       app-direct:
         secret: app-direct_secret
@@ -67,6 +65,8 @@ properties:
         secret: developer_console_secret
       notifications:
         secret: notification_secret
+      login:
+        secret: login_client_secret
       servicesmgmt:
         secret: service_mgmt_secret
       space-mail:

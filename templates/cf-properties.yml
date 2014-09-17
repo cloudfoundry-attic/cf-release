@@ -230,7 +230,7 @@ properties:
         override: true
         scope: openid,oauth.approvals
         authorities: oauth.login
-        secret: (( merge || nil ))
+        secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( properties.login.protocol "://login." domain ))
       developer_console:
