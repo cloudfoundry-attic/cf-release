@@ -177,6 +177,9 @@ properties:
     signups_enabled: ~
     spring_profiles: ~
 
+    notifications:
+      url: ~
+
     smtp:
       host: ~
       port: ~

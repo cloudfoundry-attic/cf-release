@@ -66,6 +66,11 @@ dump_requests: <%= properties.uaa.dump_requests %>
 assetBaseUrl: <%= properties.login.asset_base_url %>
 <% end %>
 
+<% if properties.login.notifications && properties.login.notifications.url %>
+notifications:
+  url: <%= properties.login.notifications.url %>
+<% end %>
+
 login:
   brand: <%= (properties.login && properties.login.brand) ? properties.login.brand : "oss" %>
   url: <%= "#{protocol}://login.#{properties.domain}" %>
