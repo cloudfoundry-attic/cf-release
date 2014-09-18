@@ -97,8 +97,6 @@ meta:
     release: (( meta.release.name ))
 
   loggregator_templates:
-  - name: loggregator
-    release: (( meta.release.name ))
   - name: doppler
     release: (( meta.release.name ))
 
@@ -374,8 +372,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
-      loggregator:
-        zone: z1
       doppler:
         zone: z1
 
@@ -388,8 +384,6 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-      loggregator:
-        zone: z2
       doppler:
         zone: z2
 
