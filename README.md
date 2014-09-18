@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cloudfoundry/cf-release.svg?branch=develop)](https://travis-ci.org/cloudfoundry/cf-release)
+
 # Welcome to Cloud Foundry
 
 Cloud Foundry is an open platform as a service (PaaS) that provides a choice of clouds, developer frameworks, and application services. Cloud Foundry makes it faster and easier to build, test, deploy, and scale applications.
