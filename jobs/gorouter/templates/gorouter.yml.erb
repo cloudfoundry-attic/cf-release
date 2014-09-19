@@ -22,6 +22,9 @@ logging:
   syslog: vcap.gorouter
   <% end %>
   level: info
+  <% if_p("metron_endpoint.host", "metron_endpoint.port", "metron_endpoint.shared_secret") do |_| %>
+  loggregator_enabled: true
+  <% end %>
 
 <% if_p("metron_endpoint.host", "metron_endpoint.port", "metron_endpoint.shared_secret") do |host, port, shared_secret| %>
 loggregatorConfig:
