@@ -373,16 +373,12 @@ jobs:
     - 0.0.0.10
     - 0.0.0.11
   properties:
-    loggregator:
-      zone: z1
     doppler:
       zone: z1
     networks:
       apps: cf1
   resource_pool: medium_z1
   templates:
-  - name: loggregator
-    release: cf
   - name: doppler
     release: cf
 - instances: 2
@@ -393,16 +389,12 @@ jobs:
     - 0.0.1.10
     - 0.0.1.11
   properties:
-    loggregator:
-      zone: z2
     doppler:
       zone: z2
     networks:
       apps: cf2
   resource_pool: medium_z2
   templates:
-  - name: loggregator
-    release: cf
   - name: doppler
     release: cf
 - instances: 1
