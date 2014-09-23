@@ -382,6 +382,8 @@ jobs:
     static_ips:
     - 10.244.0.26
   properties:
+    dea_next:
+      zone: null
     metron_agent:
       zone: z1
     networks:
@@ -402,6 +404,8 @@ jobs:
   - name: cf2
     static_ips: null
   properties:
+    dea_next:
+      zone: null
     metron_agent:
       zone: z2
     networks:
