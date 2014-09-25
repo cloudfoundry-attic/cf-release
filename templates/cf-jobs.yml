@@ -346,7 +346,7 @@ jobs:
         static_ips: ~
     properties:
       dea_next:
-        zone: (( merge || nil ))
+        zone: (( merge || "z1" ))
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -362,7 +362,7 @@ jobs:
         static_ips: ~
     properties:
       dea_next:
-        zone: (( merge || nil ))
+        zone: (( merge || "z2" ))
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2

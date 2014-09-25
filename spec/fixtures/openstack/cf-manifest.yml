@@ -330,7 +330,7 @@ jobs:
     static_ips: null
   properties:
     dea_next:
-      zone: null
+      zone: z1
     metron_agent:
       zone: z1
     networks:
@@ -352,7 +352,7 @@ jobs:
     static_ips: null
   properties:
     dea_next:
-      zone: null
+      zone: z2
     metron_agent:
       zone: z2
     networks:
