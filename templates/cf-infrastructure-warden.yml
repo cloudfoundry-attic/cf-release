@@ -175,7 +175,6 @@ properties:
     admin_user: admin
     admin_password: admin
     skip_ssl_validation: true
-    diego: false
     nodes: 1
 
   smoke_tests:
@@ -363,9 +362,6 @@ jobs:
           -----END RSA PRIVATE KEY-----
 
   - name: acceptance_tests
-    instances: 1
-
-  - name: acceptance_tests_diego
     instances: 1
 
   - name: smoke_tests

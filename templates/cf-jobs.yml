@@ -453,19 +453,6 @@ jobs:
     networks:
       - name: cf1
 
-  - name: acceptance_tests_diego
-    templates:
-    - name: acceptance-tests
-      release: (( meta.release.name ))
-    instances: 0
-    resource_pool: small_errand
-    lifecycle: errand
-    networks:
-      - name: cf1
-    properties:
-      acceptance_tests:
-        diego: true
-
   - name: smoke_tests
     templates:
     - name: smoke-tests
