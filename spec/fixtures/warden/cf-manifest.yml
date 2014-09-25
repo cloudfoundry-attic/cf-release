@@ -530,18 +530,6 @@ jobs:
     release: cf
 - instances: 1
   lifecycle: errand
-  name: acceptance_tests_diego
-  networks:
-  - name: cf1
-  properties:
-    acceptance_tests:
-      diego: true
-  resource_pool: small_errand
-  templates:
-  - name: acceptance-tests
-    release: cf
-- instances: 1
-  lifecycle: errand
   name: smoke_tests
   networks:
   - name: cf1
@@ -2237,7 +2225,6 @@ properties:
     admin_user: admin
     api: api.10.244.0.34.xip.io
     apps_domain: 10.244.0.34.xip.io
-    diego: false
     nodes: 1
     skip_ssl_validation: true
   app_domains:
@@ -2774,7 +2761,7 @@ resource_pools:
     name: random
   name: small_errand
   network: cf1
-  size: 3
+  size: 2
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest

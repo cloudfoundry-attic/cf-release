@@ -479,18 +479,6 @@ jobs:
     release: cf
 - instances: 1
   lifecycle: errand
-  name: acceptance_tests_diego
-  networks:
-  - name: cf1
-  properties:
-    acceptance_tests:
-      diego: true
-  resource_pool: small_errand
-  templates:
-  - name: acceptance-tests
-    release: cf
-- instances: 1
-  lifecycle: errand
   name: smoke_tests
   networks:
   - name: cf1
@@ -1002,7 +990,7 @@ resource_pools:
     instance_type: m3.medium
   name: small_errand
   network: cf1
-  size: 3
+  size: 2
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
