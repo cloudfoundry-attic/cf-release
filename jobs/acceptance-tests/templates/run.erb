@@ -38,7 +38,7 @@ $test_command -randomizeAllSpecs $verbose -nodes=$nodes $skips -keepGoing || EXI
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 
-for i in /var/vcap/sys/log/acceptance_tests/*.txt; do
+for i in /var/vcap/sys/log/acceptance_tests/*; do
   if [ -e "$i" ]
   then
     mv $i $i.log # needed to make download-logs work
