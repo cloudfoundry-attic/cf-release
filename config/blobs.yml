@@ -122,11 +122,6 @@ buildpack_cache/play-jpa-plugin-0.6.6.jar:
   object_id: rest/objects/4e4e78bca51e121004e4e7d51906cd051420648c02a0
   sha: 3df7c473533d1ffe4e5f2d0360f8d412280f9627
   size: 4320
-rootfs/lucid64.tar.gz:
-  object_id: ef5097c3-bcc7-4edf-9f50-744bef39d8bc
-  sha: !binary |-
-    MDE3NGZkZDViMjQ2NmJjMWM1ODI2NmUzOWE3ZmM5NDFhNjExM2JhMA==
-  size: 202227999
 buildpack_cache/openjdk-1.6.0_27.tar.gz:
   object_id: 51513056-c453-44af-a77c-1fdad381d6ad
   sha: !binary |-
@@ -287,3 +282,8 @@ nodejs-buildpack/nodejs_buildpack-offline-v1.0.2.zip:
   sha: !binary |-
     NDIyNGJhYjU3ODdjMTYyMjUwNWFjOTQ3ZTAyYTU2YTQ1ZWFlMjIwNg==
   size: 425672760
+rootfs/lucid64.tar.gz:
+  object_id: 4bebd6d1-0250-44b6-98ee-b7f122d45961
+  sha: !binary |-
+    MGU1YmJkYmIxZWQ2MzA2NzRmZGU1OTM3OWJhMGUwOGJjNGM1MDE1NA==
+  size: 202427174
