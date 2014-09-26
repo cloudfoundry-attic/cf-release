@@ -277,3 +277,12 @@ properties:
         secret: (( merge ))
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
+      cc-service-dashboards:
+        secret: (( merge ))
+        override: true
+        authorized-grant-types: client_credentials
+        scope: cloud_controller.write,openid,cloud_controller.read,cloud_controller_service_permissions.read
+        authorities: clients.read,clients.write,clients.admin
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+        autoapprove: true
