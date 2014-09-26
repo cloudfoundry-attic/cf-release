@@ -13,3 +13,4 @@ before_install:
 script:
   - bundle exec rspec spec
   - rm spiff
+  - ./scripts/unused_blobs
