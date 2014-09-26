@@ -371,11 +371,6 @@ jobs:
     max_in_flight: 1
 - instances: 2
   name: loggregator_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 0.0.0.10
-    - 0.0.0.11
   properties:
     doppler:
       zone: z1
@@ -387,11 +382,6 @@ jobs:
     release: cf
 - instances: 2
   name: loggregator_z2
-  networks:
-  - name: cf2
-    static_ips:
-    - 0.0.1.10
-    - 0.0.1.11
   properties:
     doppler:
       zone: z2
@@ -403,10 +393,6 @@ jobs:
     release: cf
 - instances: 1
   name: loggregator_trafficcontroller_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 0.0.0.9
   properties:
     metron_agent:
       zone: z1
@@ -422,10 +408,6 @@ jobs:
     release: cf
 - instances: 1
   name: loggregator_trafficcontroller_z2
-  networks:
-  - name: cf2
-    static_ips:
-    - 0.0.1.9
   properties:
     metron_agent:
       zone: z2
