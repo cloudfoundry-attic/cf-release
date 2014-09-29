@@ -10,5 +10,7 @@
   "use_existing_space" : <%= properties.smoke_tests.use_existing_space %>,
   "logging_app"        : "<%= properties.smoke_tests.logging_app %>",
   "runtime_app"        : "<%= properties.smoke_tests.runtime_app %>",
-  "skip_ssl_validation": <%= properties.smoke_tests.skip_ssl_validation %>
+  "skip_ssl_validation": <%= properties.smoke_tests.skip_ssl_validation %>,
+  "syslog_drain_port"  : 514,
+  "syslog_ip_address"  : "REPLACE_THIS_WITH_SYSLOG_TEST_IP"
 }
