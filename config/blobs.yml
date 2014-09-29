@@ -242,11 +242,6 @@ php-buildpack/php_buildpack-offline-v1.0.1.zip:
   sha: !binary |-
     OWExOWViNTk0YTAzZDk4MGRkYzJkZTY4MjIwOTFlMGU1ZWVmYTgyNA==
   size: 295649294
-python-buildpack/python_buildpack-offline-v1.0.2.zip:
-  object_id: 7f087975-5304-4a32-9175-4a1868e88514
-  sha: !binary |-
-    MmQ2YjMyMDBmZTEyYWY2NGViYzFlNTJiODk1NzE5ZWFhZWYyYjVhNQ==
-  size: 300183390
 golang/go1.3.1.linux-amd64.tar.gz:
   object_id: b4778c9a-1994-4dda-b7a2-97ae93e1b835
   sha: !binary |-
@@ -287,3 +282,8 @@ java-buildpack/java-buildpack-v2.5.zip:
   sha: !binary |-
     YjRhZGVkNDY5NTg4MzA1YmU2NWM2NDU1MGNjZjAxMTU5MzQyNDk0ZQ==
   size: 138186
+python-buildpack/python_buildpack-offline-v1.0.3.zip:
+  object_id: 212e2a02-6e2f-4947-8c3b-6081bd95c3ef
+  sha: !binary |-
+    YzYxMjBjNWE5NGFkNGEyZWI5NjdkMDBhYjI5Y2ZlMzYwOGRmYzVlMA==
+  size: 300183467
