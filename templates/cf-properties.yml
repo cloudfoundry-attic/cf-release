@@ -286,3 +286,7 @@ properties:
         secret: (( merge ))
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
+      doppler:
+        override: true
+        authorities: uaa.resource
+        secret: (( merge ))

@@ -862,6 +862,10 @@ properties:
         refresh-token-validity: 1209600
         scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
         secret: support-services_secret
+      doppler:
+        override: true
+        authorities: uaa.resource
+        secret: doppler_secret
     jwt:
       signing_key: sk
       verification_key: vk
