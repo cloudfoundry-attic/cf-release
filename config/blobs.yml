@@ -257,11 +257,6 @@ ruby-buildpack/ruby_buildpack-offline-v1.1.1.zip:
   sha: !binary |-
     YzU3NGI2YzhjNGU1YjI2ZTM0YWQ0MzJmMTA2NWMwZTFjNjhmNzlhYQ==
   size: 751630535
-nodejs-buildpack/nodejs_buildpack-offline-v1.0.2.zip:
-  object_id: 4a6a4481-4afe-46d7-952f-be02943aabf3
-  sha: !binary |-
-    NDIyNGJhYjU3ODdjMTYyMjUwNWFjOTQ3ZTAyYTU2YTQ1ZWFlMjIwNg==
-  size: 425672760
 rootfs/lucid64.tar.gz:
   object_id: 7aef2d56-68e7-4d33-b800-10c584771186
   sha: !binary |-
@@ -287,3 +282,8 @@ python-buildpack/python_buildpack-offline-v1.0.3.zip:
   sha: !binary |-
     YzYxMjBjNWE5NGFkNGEyZWI5NjdkMDBhYjI5Y2ZlMzYwOGRmYzVlMA==
   size: 300183467
+nodejs-buildpack/nodejs_buildpack-offline-v1.0.4.zip:
+  object_id: c38a663c-04b8-4a56-a5aa-217deb3b7b75
+  sha: !binary |-
+    ZjdlMzUzMjJmNWMyMGYxZTNmNzk2NDlmNDQzZDNjMzQzZDlkNjdlMw==
+  size: 432322734
