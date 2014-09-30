@@ -2603,6 +2603,10 @@ properties:
         refresh-token-validity: 1209600
         scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
         secret: support-services-secret
+      doppler:
+        override: true
+        authorities: uaa.resource
+        secret: doppler-secret
     jwt:
       signing_key: '-----BEGIN RSA PRIVATE KEY-----
 
