@@ -81,6 +81,8 @@ properties:
         secret: space-mail_secret
       support-services:
         secret: support-services_secret
+      doppler:
+        secret: doppler_secret
     jwt:
       verification_key: vk
       signing_key: sk
