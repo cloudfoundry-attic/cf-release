@@ -154,14 +154,13 @@ properties:
     allowed_cors_domains: (( merge || [] ))
     thresholds:
       api:
-        alert_if_above_mb: (( merge || nil ))
-        restart_if_consistently_above_mb: (( merge || nil ))
-        restart_if_above_mb: (( merge || nil ))
+        alert_if_above_mb: ~
+        restart_if_consistently_above_mb: ~
+        restart_if_above_mb: ~
       worker:
-        alert_if_above_mb: (( merge || nil ))
-        restart_if_consistently_above_mb: (( merge || nil ))
-        restart_if_above_mb: (( merge || nil ))
-
+        alert_if_above_mb: ~
+        restart_if_consistently_above_mb: ~
+        restart_if_above_mb: ~
 
   login:
     analytics:
