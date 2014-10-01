@@ -91,6 +91,7 @@ properties:
       username: batch-username
       password: batch-password
     clients:
+      <<: (( merge || nil ))
       login:
         secret: login-secret
       cc-service-dashboards:
