@@ -652,6 +652,15 @@ properties:
     - name: php_buildpack
       package: buildpack_php
     user_buildpacks: []
+    thresholds:
+      api:
+        alert_if_above_mb: null
+        restart_if_above_mb: null
+        restart_if_consistently_above_mb: null
+      worker:
+        alert_if_above_mb: null
+        restart_if_above_mb: null
+        restart_if_consistently_above_mb: null
   ccdb:
     address: 0.0.0.4
     databases:
