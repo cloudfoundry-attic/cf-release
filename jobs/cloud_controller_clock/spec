@@ -439,3 +439,13 @@ properties:
     description: "The default running security groups that will be seeded in CloudController."
   cc.default_staging_security_groups:
     description: "The default staging security groups that will be seeded in CloudController."
+
+  cc.thresholds.api.alert_if_above_mb:
+    description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
+    default: 2250
+  cc.thresholds.api.restart_if_consistently_above_mb:
+    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    default: 2250
+  cc.thresholds.api.restart_if_above_mb:
+    description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
+    default: 2450

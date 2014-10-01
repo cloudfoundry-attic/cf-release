@@ -3,8 +3,9 @@ check process cloud_controller_ng
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
   group vcap
-  if totalmem > 2250 Mb then alert
-  if totalmem > 2450 Mb then restart
+  if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
+  if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then restart
+  if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then restart
   if failed host <%= spec.networks.send(properties.networks.apps).ip %> port <%= p("cc.external_port") %> protocol http
       and request '/v2/info'
       with timeout 60 seconds for 5 cycles
@@ -19,8 +20,10 @@ check process cloud_controller_worker_local_<%= index %>
   depends on cloud_controller_ng
 <% end %>
   group vcap
-  if totalmem > 2250 Mb then alert
-  if totalmem > 2450 Mb then restart
+
+  if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
+  if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then restart
+  if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then restart
 <% end %>
 
 check process nginx_cc

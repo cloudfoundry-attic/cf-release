@@ -152,6 +152,16 @@ properties:
     default_staging_security_groups: (( merge || ["public_networks", "dns"] ))
 
     allowed_cors_domains: (( merge || [] ))
+    thresholds:
+      api:
+        alert_if_above_mb: (( merge || nil ))
+        restart_if_consistently_above_mb: (( merge || nil ))
+        restart_if_above_mb: (( merge || nil ))
+      worker:
+        alert_if_above_mb: (( merge || nil ))
+        restart_if_consistently_above_mb: (( merge || nil ))
+        restart_if_above_mb: (( merge || nil ))
+
 
   login:
     analytics:
