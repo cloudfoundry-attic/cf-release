@@ -422,6 +422,16 @@ properties:
     default: 2
     description: "Number of local cloud_controller_worker workers"
 
+  cc.thresholds.api.alert_if_above_mb:
+    description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
+    default: 2250
+  cc.thresholds.api.restart_if_consistently_above_mb:
+    description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
+    default: 2250
+  cc.thresholds.api.restart_if_above_mb:
+    description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
+    default: 2450
+
   dea_next.staging_memory_limit_mb:
     description: "Memory limit in mb for staging tasks"
     default: 1024
