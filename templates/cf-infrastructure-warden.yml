@@ -205,15 +205,23 @@ jobs:
 
   - name: loggregator_trafficcontroller_z1
     instances: 1
+    networks:
+      - name: cf1
 
   - name: loggregator_trafficcontroller_z2
     instances: 0
+    networks:
+      - name: cf2
 
   - name: loggregator_z1
     instances: 1
+    networks:
+      - name: cf1
 
   - name: loggregator_z2
     instances: 0
+    networks:
+      - name: cf2
 
   - name: hm9000_z2
     instances: 0
