@@ -169,13 +169,11 @@ jobs:
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(6) ))
 
   - name: loggregator_trafficcontroller_z1
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(7) ))
 
   - name: etcd_z1
     instances: 1
@@ -211,13 +209,11 @@ jobs:
     instances: 0
     networks:
      - name: cf2
-       static_ips: []
 
   - name: loggregator_trafficcontroller_z2
     instances: 0
     networks:
       - name: cf2
-        static_ips: []
 
   - name: uaa_z2
     instances: 0
