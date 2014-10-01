@@ -371,6 +371,8 @@ jobs:
     templates: (( merge || meta.loggregator_templates ))
     instances: 2
     resource_pool: medium_z1
+    networks:
+      - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
       doppler:
@@ -380,6 +382,8 @@ jobs:
     templates: (( merge || meta.loggregator_templates ))
     instances: 2
     resource_pool: medium_z2
+    networks:
+      - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
       doppler:
@@ -389,6 +393,8 @@ jobs:
     templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z1
+    networks:
+      - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
       traffic_controller:
@@ -400,6 +406,8 @@ jobs:
     templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z2
+    networks:
+      - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
       traffic_controller:

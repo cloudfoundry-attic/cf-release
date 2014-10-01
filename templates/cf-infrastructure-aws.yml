@@ -154,15 +154,23 @@ jobs:
 
   - name: loggregator_z1
     instances: 2
+    networks:
+      - name: cf1
 
   - name: loggregator_z2
     instances: 2
+    networks:
+      - name: cf2
 
   - name: loggregator_trafficcontroller_z1
     instances: 1
+    networks:
+      - name: cf1
 
   - name: loggregator_trafficcontroller_z2
     instances: 1
+    networks:
+      - name: cf2
 
   - name: etcd_z1
     instances: 2
