@@ -795,6 +795,7 @@ properties:
     share: null
   request_timeout_in_seconds: 300
   router:
+    requested_route_registration_interval_in_seconds: 20
     status:
       password: router_password
       user: router_user
