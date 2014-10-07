@@ -267,11 +267,6 @@ java-buildpack/java-buildpack-v2.5.zip:
   sha: !binary |-
     YjRhZGVkNDY5NTg4MzA1YmU2NWM2NDU1MGNjZjAxMTU5MzQyNDk0ZQ==
   size: 138186
-python-buildpack/python_buildpack-offline-v1.0.4.zip:
-  object_id: c3cc5dde-c1b2-471d-b49f-44c52abb9b6b
-  sha: !binary |-
-    ZGRjYTdkYmU5Njc4OWQ1MDRhYTkxMGYwNmQ0MzczMWEwYTgyZjE2OQ==
-  size: 300183536
 nodejs-buildpack/nodejs_buildpack-offline-v1.0.4.zip:
   object_id: c38a663c-04b8-4a56-a5aa-217deb3b7b75
   sha: !binary |-
@@ -287,3 +282,8 @@ php-buildpack/php_buildpack-offline-v1.0.2.zip:
   sha: !binary |-
     YjMwZGQ4YzgwMDE2ZWZmNzA0NTAyZWNlNjQxYTQ5N2I4N2EyMTc3NA==
   size: 295649665
+python-buildpack/python_buildpack-offline-v1.0.5.zip:
+  object_id: 6c71efc3-f593-4c3c-ae0e-c5584a2738dd
+  sha: !binary |-
+    MmI2NGFhNGY1MzBkOGMwNTE4NDE2ZjViMjFlOGYzZGE4YzUzYWMwZQ==
+  size: 300184005
