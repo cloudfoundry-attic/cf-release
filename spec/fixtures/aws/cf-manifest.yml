@@ -728,6 +728,8 @@ properties:
       passwd: https://console.example.com/password_resets/new
       signup: https://console.example.com/register
       signup-network: null
+    notifications:
+      url: null
     protocol: https
     saml: null
     signups_enabled: null
@@ -807,7 +809,9 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
       login:
-        authorities: oauth.login
+        override: true
+        scope: openid,oauth.approvals
+        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
         redirect-uri: https://login.example.com

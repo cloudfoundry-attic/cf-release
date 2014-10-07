@@ -242,7 +242,7 @@ properties:
       login:
         override: true
         scope: openid,oauth.approvals
-        authorities: oauth.login
+        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( properties.login.protocol "://login." domain ))
