@@ -136,3 +136,7 @@ properties:
     description: "The key used to sign log messages"
   networks.apps:
     description: "DEA network information."
+
+  router.requested_route_registration_interval_in_seconds:
+    description: "Interval at which the router requests routes to be registered."
+    default: 20

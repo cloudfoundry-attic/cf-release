@@ -45,3 +45,5 @@ droplet_stale_threshold: 120
 publish_active_apps_interval: 0 # 0 means disabled
 
 endpoint_timeout: <%= p("request_timeout_in_seconds") %>
+
+start_response_delay_interval_in_seconds: <%= p("router.requested_route_registration_interval_in_seconds") %>

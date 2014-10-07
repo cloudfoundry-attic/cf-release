@@ -33,6 +33,9 @@ properties:
     description: "Username for HTTP basic auth to the varz/status endpoint."
   router.status.password:
     description: "Password for HTTP basic auth to the varz/status endpoint."
+  router.requested_route_registration_interval_in_seconds:
+    description: "Interval at which the router requests routes to be registered."
+    default: 20
   nats.user:
     description:
   nats.password:
