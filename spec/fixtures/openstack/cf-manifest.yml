@@ -105,7 +105,7 @@ jobs:
       apps: cf1
   resource_pool: medium_z1
   templates:
-  - name: syslog_aggregator
+  - name: metron_agent
     release: cf
 - instances: 0
   name: logs_z2
@@ -118,7 +118,7 @@ jobs:
       apps: cf2
   resource_pool: medium_z2
   templates:
-  - name: syslog_aggregator
+  - name: metron_agent
     release: cf
 - instances: 1
   name: stats_z1
@@ -790,7 +790,7 @@ properties:
   ssl:
     skip_cert_verify: false
   support_address: http://support.cloudfoundry.com
-  syslog_aggregator: null
+  syslog_daemon_config: null
   system_domain: example.com
   system_domain_organization: null
   uaa:

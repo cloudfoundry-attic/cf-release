@@ -4,7 +4,6 @@ templates:
   dea.yml.erb: config/dea.yml
   dea_ctl.erb: bin/dea_ctl
   deterministic_drain.rb: bin/drain
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 
   warden.yml.erb: config/warden.yml
@@ -18,20 +17,8 @@ packages:
 - warden
 - rootfs_lucid64
 - ruby
-- syslog_aggregator
 - buildpack_cache
 properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
   domain:
     description: "DNS domain name for this Cloud Foundry deployment"
   nats.password:

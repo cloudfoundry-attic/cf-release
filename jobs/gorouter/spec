@@ -4,25 +4,12 @@ templates:
   gorouter_ctl.erb: bin/gorouter_ctl
   gorouter.yml.erb: config/gorouter.yml
   gorouter_logrotate.cron.erb: config/gorouter_logrotate.cron
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   logrotate.conf.erb: config/logrotate.conf
   drain: bin/drain
 packages:
   - common
   - gorouter
-  - syslog_aggregator
 properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator."
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator."
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
   router.port:
     description: "Listening Port for Router."
     default: 80

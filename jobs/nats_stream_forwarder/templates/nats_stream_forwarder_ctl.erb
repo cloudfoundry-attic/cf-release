@@ -18,8 +18,6 @@ case $1 in
 
     PATH=/var/vcap/packages/ruby/bin:$PATH
 
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $CONFIG_DIR
-
     echo $$ > $PIDFILE
     chown vcap:vcap $PIDFILE
 

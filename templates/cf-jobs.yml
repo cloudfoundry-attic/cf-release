@@ -22,7 +22,7 @@ meta:
 
   api_templates:
   - name: cloud_controller_ng
-    release: (( meta.release.name )) 
+    release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
@@ -69,7 +69,7 @@ meta:
     release: (( meta.release.name ))
 
   logs_templates:
-  - name: syslog_aggregator
+  - name: metron_agent
     release: (( meta.release.name ))
 
   stats_templates:
@@ -555,6 +555,7 @@ properties:
       password: (( merge ))
 
   syslog_aggregator: ~
+  syslog_daemon_config: (( syslog_aggregator ))
 
   nfs_server: (( meta.nfs_server ))
 

@@ -10,25 +10,12 @@ templates:
   hm9000_evacuator_ctl: bin/hm9000_evacuator_ctl
   hm9000_shredder_ctl: bin/hm9000_shredder_ctl
   hm9000.json.erb: config/hm9000.json
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 
 packages:
   - common
   - hm9000
-  - syslog_aggregator
 
 properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
   nats.user:
     description:
   nats.password:

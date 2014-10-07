@@ -12,9 +12,7 @@ server:
 logging:
   file: /var/vcap/sys/log/warden/warden.log
   level: <%= p("dea_next.logging_level") %>
-  <% if_p("syslog_aggregator.address") do |syslog_aggregator| %>
   syslog: vcap.warden
-  <% end %>
 
 health_check_server:
   port: 2345
