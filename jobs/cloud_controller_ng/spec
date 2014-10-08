@@ -10,7 +10,6 @@ templates:
   cloud_controller_api_worker_ctl.erb: bin/cloud_controller_worker_ctl
   handle_nfs_or_local_blobstore.sh.erb: bin/handle_nfs_or_local_blobstore.sh
   stacks.yml.erb: config/stacks.yml
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   nfs-common: config/nfs-common
   idmapd.conf.erb: config/idmapd.conf
   newrelic.yml.erb: config/newrelic.yml
