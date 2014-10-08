@@ -4,8 +4,8 @@ check process cloud_controller_ng
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
   group vcap
   if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
-  if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then restart
-  if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then restart
+  if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
+  if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
   if failed host <%= spec.networks.send(properties.networks.apps).ip %> port <%= p("cc.external_port") %> protocol http
       and request '/v2/info'
       with timeout 60 seconds for 5 cycles
