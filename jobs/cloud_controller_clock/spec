@@ -3,7 +3,6 @@ name: cloud_controller_clock
 templates:
   cloud_controller_clock.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   newrelic.yml.erb: config/newrelic.yml
   stacks.yml.erb: config/stacks.yml
 
