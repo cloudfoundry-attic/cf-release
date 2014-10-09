@@ -480,6 +480,9 @@ jobs:
   name: smoke_tests
   networks:
   - name: cf1
+  properties:
+    networks:
+      apps: cf1
   resource_pool: small_errand
   templates:
   - name: smoke-tests
@@ -544,8 +547,8 @@ properties:
     - dns
     development_mode: false
     diego:
-      staging: disabled
       running: disabled
+      staging: disabled
     diego_docker: false
     directories: null
     disable_custom_buildpacks: false
@@ -651,7 +654,6 @@ properties:
       package: buildpack_python
     - name: php_buildpack
       package: buildpack_php
-    user_buildpacks: []
     thresholds:
       api:
         alert_if_above_mb: null
@@ -661,6 +663,7 @@ properties:
         alert_if_above_mb: null
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
+    user_buildpacks: []
   ccdb:
     address: 0.0.0.4
     databases:
@@ -712,6 +715,12 @@ properties:
   description: Cloud Foundry sponsored by Pivotal
   disk_quota_enabled: true
   domain: example.com
+  doppler:
+    blacklisted_syslog_ranges: null
+    debug: false
+    maxRetainedLogMessages: 100
+  doppler_endpoint:
+    shared_secret: loggregator_endpoint_secret
   dropsonde:
     enabled: true
   etcd:
@@ -731,12 +740,6 @@ properties:
     maxRetainedLogMessages: 100
   loggregator_endpoint:
     shared_secret: loggregator_endpoint_secret
-  doppler:
-    blacklisted_syslog_ranges: ~
-    debug: false
-    maxRetainedLogMessages: 100
-  doppler_endpoint:
-    shared_secret: loggregator_endpoint_secret
   login:
     analytics:
       code: null
@@ -751,7 +754,7 @@ properties:
       signup: https://console.example.com/register
       signup-network: null
     protocol: https
-    saml:
+    saml: null
     signups_enabled: null
     smtp:
       host: null
@@ -828,11 +831,11 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
       login:
-        override: true
-        scope: openid,oauth.approvals
         authorities: oauth.login
         authorized-grant-types: authorization_code,client_credentials,refresh_token
+        override: true
         redirect-uri: https://login.example.com
+        scope: openid,oauth.approvals
         secret: login_client_secret
       notifications:
         authorities: cloud_controller.admin,scim.read
@@ -865,7 +868,7 @@ properties:
       signing_key: sk
       verification_key: vk
     ldap: null
-    login:
+    login: null
     no_ssl: false
     scim:
       external_groups: null
