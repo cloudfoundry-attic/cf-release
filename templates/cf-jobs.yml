@@ -462,6 +462,8 @@ jobs:
     lifecycle: errand
     networks:
       - name: cf1
+    properties:
+      networks: (( meta.networks.z1 ))
 
 properties:
   dropsonde:
