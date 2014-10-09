@@ -533,6 +533,9 @@ jobs:
   name: smoke_tests
   networks:
   - name: cf1
+  properties:
+    networks:
+      apps: cf1
   resource_pool: small_errand
   templates:
   - name: smoke-tests
@@ -2273,8 +2276,8 @@ properties:
     - dns
     development_mode: false
     diego:
-      staging: required
       running: disabled
+      staging: required
     diego_docker: false
     directories: null
     disable_custom_buildpacks: false
@@ -2392,7 +2395,6 @@ properties:
       package: buildpack_python
     - name: php_buildpack
       package: buildpack_php
-    user_buildpacks: []
     thresholds:
       api:
         alert_if_above_mb: null
@@ -2402,6 +2404,7 @@ properties:
         alert_if_above_mb: null
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
+    user_buildpacks: []
   ccdb:
     address: 10.244.0.30
     databases:
@@ -2454,6 +2457,12 @@ properties:
   description: Cloud Foundry sponsored by Pivotal
   disk_quota_enabled: false
   domain: 10.244.0.34.xip.io
+  doppler:
+    blacklisted_syslog_ranges: null
+    debug: false
+    maxRetainedLogMessages: 100
+  doppler_endpoint:
+    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
   dropsonde:
     enabled: true
   etcd:
@@ -2472,12 +2481,6 @@ properties:
     maxRetainedLogMessages: 100
   loggregator_endpoint:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
-  doppler:
-    blacklisted_syslog_ranges: null
-    debug: false
-    maxRetainedLogMessages: 100
-  doppler_endpoint:
-    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
   login:
     analytics:
       code: null
@@ -2492,7 +2495,7 @@ properties:
       signup: https://console.10.244.0.34.xip.io/register
       signup-network: null
     protocol: http
-    saml:
+    saml: null
     signups_enabled: null
     smtp:
       host: null
@@ -2581,11 +2584,11 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
       login:
-        override: true
-        scope: openid,oauth.approvals
         authorities: oauth.login
         authorized-grant-types: authorization_code,client_credentials,refresh_token
+        override: true
         redirect-uri: http://login.10.244.0.34.xip.io
+        scope: openid,oauth.approvals
         secret: login-secret
       notifications:
         authorities: cloud_controller.admin,scim.read
@@ -2660,7 +2663,7 @@ properties:
 
 '
     ldap: null
-    login:
+    login: null
     no_ssl: true
     scim:
       external_groups: null
@@ -2670,7 +2673,6 @@ properties:
     spring_profiles: null
     url: https://uaa.10.244.0.34.xip.io
     user: null
-
   uaadb:
     address: 10.244.0.30
     databases:
