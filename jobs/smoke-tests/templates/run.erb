@@ -17,8 +17,6 @@ export GOPATH=${PWD}/Godeps/_workspace:${GOPATH}
 export PATH=${PWD}/Godeps/_workspace/bin:${PATH}
 
 export CONFIG=/var/vcap/jobs/smoke-tests/bin/config.json
-export SYSLOG_TEST_IP=`ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}' | tail -1`
-sed -i "s/REPLACE_THIS_WITH_SYSLOG_TEST_IP/$SYSLOG_TEST_IP/" $CONFIG
 
 echo '################################################################################################################'
 echo $(go version)

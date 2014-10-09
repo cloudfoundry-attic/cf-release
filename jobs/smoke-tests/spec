@@ -38,3 +38,5 @@ properties:
   smoke_tests.skip_ssl_validation:
     default: false
     description: Toggles cli verification of the Elastic Runtime API SSL certificate
+  networks.apps:
+    description: "Nats stream forwarder network information."
