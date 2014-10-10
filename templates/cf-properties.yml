@@ -193,6 +193,8 @@ properties:
 
     saml: ~
 
+    ip_range_regexes: ~
+
   uaa:
     catalina_opts: (( merge ))
 
