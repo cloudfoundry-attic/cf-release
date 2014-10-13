@@ -80,6 +80,7 @@ properties:
     srv_api_uri: (( "https://" external_host "." domain ))
 
     bulk_api_password: (( merge ))
+    internal_api_password: (( bulk_api_password ))
 
     staging_upload_user: (( merge ))
     staging_upload_password: (( merge ))
