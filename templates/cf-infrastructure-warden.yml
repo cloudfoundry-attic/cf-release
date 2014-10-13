@@ -42,6 +42,7 @@ properties:
     default_quota_definition: default
     default_app_memory: 256
     bulk_api_password: bulk-password
+    internal_api_password: internal-password
     staging_upload_user: upload-user
     staging_upload_password: upload-password
     db_encryption_key: db-encryption-key
