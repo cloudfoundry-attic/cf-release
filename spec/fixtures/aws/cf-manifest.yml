@@ -521,6 +521,7 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
     bulk_api_password: password
+    internal_api_password: password
     client_max_body_size: 1536M
     db_encryption_key: the_key
     default_app_disk_in_mb: 1024
