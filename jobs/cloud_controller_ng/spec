@@ -183,7 +183,6 @@ properties:
   cc.internal_api_user:
     default: "internal_user"
     description: "User name used by Diego to access internal endpoints"
-
   cc.internal_api_password:
     description: "Password used by Diego to access internal endpoints"
 
