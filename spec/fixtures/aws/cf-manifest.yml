@@ -1,7 +1,7 @@
 compilation:
   cloud_properties:
     availability_zone: zone_1
-    instance_type: c3.large
+    instance_type: c1.medium
   network: cf1
   reuse_compilation_vms: true
   workers: 6
@@ -902,7 +902,7 @@ releases:
 resource_pools:
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m3.medium
+    instance_type: m1.small
   name: small_z1
   network: cf1
   size: 3
@@ -911,7 +911,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m3.medium
+    instance_type: m1.small
   name: small_z2
   network: cf2
   size: 2
@@ -920,7 +920,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m3.medium
+    instance_type: m1.medium
   name: medium_z1
   network: cf1
   size: 9
@@ -929,7 +929,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m3.medium
+    instance_type: m1.medium
   name: medium_z2
   network: cf2
   size: 7
@@ -938,7 +938,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m3.large
+    instance_type: m1.large
   name: large_z1
   network: cf1
   size: 1
@@ -947,7 +947,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m3.large
+    instance_type: m1.large
   name: large_z2
   network: cf2
   size: 1
@@ -956,7 +956,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m3.large
+    instance_type: m1.large
   name: runner_z1
   network: cf1
   size: 1
@@ -965,7 +965,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m3.large
+    instance_type: m1.large
   name: runner_z2
   network: cf2
   size: 1
@@ -976,7 +976,7 @@ resource_pools:
     availability_zone: zone_1
     elbs:
     - cfrouter
-    instance_type: m3.medium
+    instance_type: m1.medium
   name: router_z1
   network: cf1
   size: 1
@@ -987,7 +987,7 @@ resource_pools:
     availability_zone: zone_2
     elbs:
     - cfrouter
-    instance_type: m3.medium
+    instance_type: m1.medium
   name: router_z2
   network: cf2
   size: 1
@@ -996,7 +996,7 @@ resource_pools:
     version: latest
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m3.medium
+    instance_type: m1.small
   name: small_errand
   network: cf1
   size: 2
