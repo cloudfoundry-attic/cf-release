@@ -2777,6 +2777,14 @@ resource_pools:
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
+- cloud_properties:
+    name: random
+  name: xlarge_errand
+  network: cf1
+  size: 0
+  stemcell:
+    name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+    version: latest
 update:
   canaries: 1
   canary_watch_time: 1000-180000
