@@ -881,7 +881,7 @@ properties:
       external_groups: null
       userids_enabled: false
       users:
-      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin
+      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
     spring_profiles: null
     url: https://uaa.example.com
     user: null

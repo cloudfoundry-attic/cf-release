@@ -67,4 +67,4 @@ properties:
       signing_key: sk
     scim:
       users:
-      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin
+      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
