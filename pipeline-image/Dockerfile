@@ -26,6 +26,7 @@ RUN \
     libyaml-dev \
     mercurial \
     python-software-properties \
+    python-pip \
     unzip \
     wget \
     zlib1g-dev
@@ -47,6 +48,7 @@ RUN \
   rm -rf /tmp/*
 
 RUN \
+  bash -l -c "pip install awscli"; \
   bash -l -c "gem install bundler --no-rdoc --no-ri"; \
   bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
 
