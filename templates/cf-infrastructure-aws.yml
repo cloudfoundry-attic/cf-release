@@ -113,6 +113,10 @@ resource_pools:
       instance_type: m1.small
       availability_zone: (( meta.zones.z1 ))
 
+  - name: xlarge_errand
+    cloud_properties:
+      instance_type: c3.xlarge
+      availability_zone: (( meta.zones.z1 ))
 
 # set up static IPs
 jobs:

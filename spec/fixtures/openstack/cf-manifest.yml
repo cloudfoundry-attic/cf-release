@@ -981,6 +981,14 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+- cloud_properties:
+    instance_type: m1.large
+  name: xlarge_errand
+  network: cf1
+  size: 0
+  stemcell:
+    name: bosh-openstack-kvm-ubuntu-lucid-go_agent
+    version: latest
 update:
   canaries: 1
   canary_watch_time: 30000-600000

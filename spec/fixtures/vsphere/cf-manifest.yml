@@ -1016,6 +1016,16 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+- cloud_properties:
+    cpu: 1
+    disk: 10240
+    ram: 1024
+  name: xlarge_errand
+  network: cf1
+  size: 0
+  stemcell:
+    name: bosh-vsphere-esxi-ubuntu
+    version: latest
 update:
   canaries: 1
   canary_watch_time: 30000-600000
