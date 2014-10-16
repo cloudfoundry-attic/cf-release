@@ -38,13 +38,13 @@ resource_pools:
 
   - name: large_z1
     cloud_properties:
-      ram: 1024
+      ram: 2048
       disk: 10240
       cpu: 1
 
   - name: large_z2
     cloud_properties:
-      ram: 1024
+      ram: 2048
       disk: 10240
       cpu: 1
 
