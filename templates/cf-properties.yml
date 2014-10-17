@@ -152,7 +152,6 @@ properties:
     default_running_security_groups: (( merge || ["public_networks", "dns"] ))
     default_staging_security_groups: (( merge || ["public_networks", "dns"] ))
 
-    uaa_skip_ssl_validation: false
     allowed_cors_domains: (( merge || [] ))
     thresholds:
       api:

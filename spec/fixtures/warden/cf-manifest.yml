@@ -2399,7 +2399,6 @@ properties:
         alert_if_above_mb: null
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
-    uaa_skip_ssl_validation: true
     user_buildpacks: []
   ccdb:
     address: 10.244.0.30
