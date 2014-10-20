@@ -164,6 +164,7 @@ properties:
         restart_if_above_mb: ~
 
   login:
+    enabled: true
     analytics:
       code: ~
       domain: ~
