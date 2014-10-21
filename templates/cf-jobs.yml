@@ -68,10 +68,6 @@ meta:
   - name: etcd_metrics_server
     release: (( meta.release.name ))
 
-  logs_templates:
-  - name: metron_agent
-    release: (( meta.release.name ))
-
   stats_templates:
   - name: collector
     release: (( meta.release.name ))
@@ -162,28 +158,6 @@ jobs:
     instances: 1
     persistent_disk: 10024
     resource_pool: medium_z2
-    networks:
-      - name: cf2
-        static_ips: (( merge ))
-    properties:
-      networks: (( meta.networks.z2 ))
-
-  - name: logs_z1
-    templates: (( merge || meta.logs_templates ))
-    instances: 0
-    resource_pool: medium_z1
-    persistent_disk: 100000
-    networks:
-      - name: cf1
-        static_ips: (( merge ))
-    properties:
-      networks: (( meta.networks.z1 ))
-
-  - name: logs_z2
-    templates: (( merge || meta.logs_templates ))
-    instances: 0
-    resource_pool: medium_z2
-    persistent_disk: 100000
     networks:
       - name: cf2
         static_ips: (( merge ))
@@ -554,8 +528,7 @@ properties:
       user: (( merge ))
       password: (( merge ))
 
-  syslog_aggregator: ~
-  syslog_daemon_config: (( syslog_aggregator ))
+  syslog_daemon_config: ~
 
   nfs_server: (( meta.nfs_server ))
 

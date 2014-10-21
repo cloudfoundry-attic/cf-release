@@ -148,32 +148,6 @@ jobs:
   - name: etcd_metrics_server
     release: cf
 - instances: 0
-  name: logs_z1
-  networks:
-  - name: cf1
-    static_ips: []
-  persistent_disk: 4096
-  properties:
-    networks:
-      apps: cf1
-  resource_pool: medium_z1
-  templates:
-  - name: metron_agent
-    release: cf
-- instances: 0
-  name: logs_z2
-  networks:
-  - name: cf2
-    static_ips: []
-  persistent_disk: 4096
-  properties:
-    networks:
-      apps: cf2
-  resource_pool: medium_z2
-  templates:
-  - name: metron_agent
-    release: cf
-- instances: 0
   name: stats_z1
   networks:
   - name: cf1

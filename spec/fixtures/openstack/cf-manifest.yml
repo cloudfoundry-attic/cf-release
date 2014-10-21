@@ -94,33 +94,6 @@ jobs:
   - name: etcd_metrics_server
     release: cf
 - instances: 1
-  name: logs_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 0.0.0.1
-  persistent_disk: 100000
-  properties:
-    networks:
-      apps: cf1
-  resource_pool: medium_z1
-  templates:
-  - name: metron_agent
-    release: cf
-- instances: 0
-  name: logs_z2
-  networks:
-  - name: cf2
-    static_ips: []
-  persistent_disk: 100000
-  properties:
-    networks:
-      apps: cf2
-  resource_pool: medium_z2
-  templates:
-  - name: metron_agent
-    release: cf
-- instances: 1
   name: stats_z1
   networks:
   - name: cf1
@@ -912,7 +885,7 @@ resource_pools:
     instance_type: m1.medium
   name: medium_z1
   network: cf1
-  size: 10
+  size: 9
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
