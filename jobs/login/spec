@@ -14,6 +14,7 @@ templates:
   # Updates to Tomcat must also check web.xml
   web.xml.erb: config/tomcat/web.xml
   uaa.crt.erb: config/uaa.crt
+  messages.properties.erb: config/messages.properties
 
 packages:
   - common
@@ -175,3 +176,23 @@ properties:
     description: "Analytics code"
   login.analytics.domain:
     description: "Analytics domain"
+  login.messages:
+    description: |
+      A nested or flat hash of messages that the login server uses to display UI message
+      This will be flattened into a java.util.Properties file. The example below will lead
+      to four properties, where the key is the concatenated value delimited by dot, for example scope.tokens.read=message
+      Nested example:
+      messages:
+        scope:
+          tokens:
+            read: View details of your approvals you have granted to this and other applications
+            write: Cancel the approvals like this one that you have granted to this and other applications
+          cloud_controller:
+            read: View details of your applications and services
+            write: Push applications to your account and create and bind services
+      Flat example:
+      messages:
+        scope.tokens.read: View details of your approvals you have granted to this and other applications
+        scope.tokens.write: Cancel the approvals like this one that you have granted to this and other applications
+        scope.cloud_controller.read: View details of your applications and services
+        scope.cloud_controller.write: Push applications to your account and create and bind services
