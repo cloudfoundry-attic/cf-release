@@ -188,6 +188,7 @@ properties:
     password: admin
     org: SMOKE_TEST_ORG
     space: SMOKE_TEST_SPACE
+    ginkgo_opts: ~
     skip_ssl_validation: true
 
 jobs:

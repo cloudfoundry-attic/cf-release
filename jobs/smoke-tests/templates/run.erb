@@ -28,7 +28,7 @@ echo '##########################################################################
 echo "Running smoke tests..."
 
 EXITSTATUS=0
-./bin/test || EXITSTATUS=$?
+./bin/test <%= properties.smoke_tests.ginkgo_opts %> || EXITSTATUS=$?
 
 echo "Smoke Tests Complete; exit status: $EXITSTATUS"
 exit $EXITSTATUS

@@ -2504,6 +2504,7 @@ properties:
   smoke_tests:
     api: api.10.244.0.34.xip.io
     apps_domain: 10.244.0.34.xip.io
+    ginkgo_opts: ~
     org: SMOKE_TEST_ORG
     password: admin
     skip_ssl_validation: true
