@@ -43,6 +43,8 @@ meta:
     release: (( meta.release.name ))
   - name: nats_stream_forwarder
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   dea_templates:
   - name: dea_next
@@ -135,6 +137,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: nats_z2
     templates: (( merge || meta.nats_templates ))
@@ -145,6 +149,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: etcd_z1
     templates: (( merge || meta.etcd_templates ))
