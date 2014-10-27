@@ -16,6 +16,8 @@ jobs:
     static_ips:
     - 10.244.0.34
   properties:
+    metron_agent:
+      zone: z1
     ha_proxy:
       ssl_pem: '-----BEGIN CERTIFICATE-----
 
@@ -86,6 +88,8 @@ jobs:
   resource_pool: router_z1
   templates:
   - name: haproxy
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: nats_z1

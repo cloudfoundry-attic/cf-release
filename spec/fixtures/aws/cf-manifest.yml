@@ -16,6 +16,8 @@ jobs:
   - name: cf1
     static_ips: null
   properties:
+    metron_agent:
+      zone: z1
     ha_proxy:
       ssl_pem: null
     networks:
@@ -29,6 +31,8 @@ jobs:
   resource_pool: router_z1
   templates:
   - name: haproxy
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: nats_z1
