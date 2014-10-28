@@ -172,6 +172,8 @@ jobs:
   - name: login_z1
     templates: 
     - name: login
+    - name: metron_agent
+      release: cf
 
   - name: acceptance_tests
     instances: 1

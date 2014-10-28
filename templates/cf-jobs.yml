@@ -101,6 +101,8 @@ meta:
   login_templates:
   - name: login
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   hm9000_templates:
   - name: hm9000
@@ -253,6 +255,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: login_z2
     templates: (( merge || meta.login_templates ))
@@ -262,6 +266,8 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: api_z1
     templates: (( merge || meta.api_templates ))
