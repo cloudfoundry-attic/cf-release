@@ -107,6 +107,8 @@ meta:
   hm9000_templates:
   - name: hm9000
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   loggregator_templates:
   - name: doppler
@@ -341,6 +343,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: hm9000_z2
     templates: (( merge || meta.hm9000_templates ))
@@ -350,6 +354,8 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: runner_z1
     templates: (( merge || meta.dea_templates ))
