@@ -461,9 +461,13 @@ jobs:
       zone: z1
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: doppler
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 0
   name: loggregator_z2
@@ -474,9 +478,13 @@ jobs:
       zone: z2
     networks:
       apps: cf2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: doppler
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: loggregator_trafficcontroller_z1
