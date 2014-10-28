@@ -495,6 +495,7 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
     bulk_api_password: password
+    internal_api_user: internal_user
     internal_api_password: password
     client_max_body_size: 1536M
     db_encryption_key: the_key
@@ -858,6 +859,8 @@ properties:
     spring_profiles: null
     url: https://uaa.example.com
     user: null
+  hm9000:
+    url: https://hm9000.example.com
   uaadb:
     address: uaadb.example.com
     databases:

@@ -488,6 +488,7 @@ properties:
       cdn: null
       fog_connection: null
     bulk_api_password: password
+    internal_api_user: internal_user
     internal_api_password: password
     client_max_body_size: 1536M
     db_encryption_key: the_key
@@ -632,6 +633,8 @@ properties:
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
     user_buildpacks: []
+  hm9000:
+    url: https://hm9000.example.com
   ccdb:
     address: 0.0.0.4
     databases:

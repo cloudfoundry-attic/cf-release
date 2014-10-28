@@ -16,6 +16,9 @@ packages:
   - hm9000
 
 properties:
+  domain:
+    description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
+
   nats.user:
     description:
   nats.password:
@@ -31,6 +34,10 @@ properties:
     description: "User used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
   cc.bulk_api_password:
     description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
+  cc.internal_api_user:
+    description: "Username for hm9000 API"
+  cc.internal_api_password:
+    description: "Password for hm9000 API"
   dea_next.heartbeat_interval_in_seconds:
     description: "Heartbeat interval for DEAs"
 
@@ -48,3 +55,5 @@ properties:
   hm9000.fetcher_network_timeout_in_seconds:
     description: "Each API call to the CC must succeed within this timeout."
     default: 30
+  hm9000.url:
+    description: "URL that HM9000 will register with the gorouter"

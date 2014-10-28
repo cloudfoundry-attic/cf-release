@@ -8,6 +8,8 @@ properties:
   loggregator_endpoint:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
 
+  hm9000:
+    url: http://hm9000.10.244.0.34.xip.io
   cc:
     diego:
       staging: required

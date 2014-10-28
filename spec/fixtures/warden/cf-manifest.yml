@@ -2374,6 +2374,8 @@ properties:
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
     user_buildpacks: []
+  hm9000:
+    url: http://hm9000.10.244.0.34.xip.io
   ccdb:
     address: 10.244.0.30
     databases:

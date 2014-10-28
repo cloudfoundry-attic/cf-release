@@ -80,6 +80,7 @@ properties:
     srv_api_uri: (( "https://" external_host "." domain ))
 
     bulk_api_password: (( merge ))
+    internal_api_user: "internal_user"
     internal_api_password: (( bulk_api_password ))
 
     staging_upload_user: (( merge ))
@@ -162,6 +163,9 @@ properties:
         alert_if_above_mb: ~
         restart_if_consistently_above_mb: ~
         restart_if_above_mb: ~
+
+  hm9000:
+    url: (( "https://hm9000." domain ))
 
   login:
     analytics:
