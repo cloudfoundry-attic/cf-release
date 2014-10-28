@@ -133,10 +133,15 @@ jobs:
   networks:
   - name: cf1
     static_ips: null
+  properties:
+    metron_agent:
+      zone: z1
   persistent_disk: 102400
   resource_pool: medium_z1
   templates:
   - name: debian_nfs_server
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 0
   name: postgres_z1
