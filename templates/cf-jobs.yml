@@ -95,6 +95,8 @@ meta:
   uaa_templates:
   - name: uaa
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   login_templates:
   - name: login
@@ -229,6 +231,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: uaa_z2
     templates: (( merge || meta.uaa_templates ))
@@ -238,6 +242,8 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: login_z1
     templates: (( merge || meta.login_templates ))

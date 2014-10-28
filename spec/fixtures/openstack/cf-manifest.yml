@@ -167,9 +167,13 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: uaa
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 0
   name: uaa_z2
@@ -178,9 +182,13 @@ jobs:
   properties:
     networks:
       apps: cf2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: uaa
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: login_z1
