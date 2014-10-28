@@ -71,6 +71,8 @@ meta:
     release: (( meta.release.name ))
   - name: etcd_metrics_server
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   stats_templates:
   - name: collector
@@ -162,6 +164,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: etcd_z2
     templates: (( merge || meta.etcd_templates ))
@@ -173,6 +177,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: stats_z1
     templates: (( merge || meta.stats_templates ))
