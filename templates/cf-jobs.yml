@@ -89,6 +89,8 @@ meta:
   postgres_templates:
   - name: postgres
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   uaa_templates:
   - name: uaa
@@ -215,6 +217,9 @@ jobs:
     networks:
     - name: cf1
       static_ips: ~
+    properties:
+      metron_agent:
+        zone: z1
 
   - name: uaa_z1
     templates: (( merge || meta.uaa_templates ))
