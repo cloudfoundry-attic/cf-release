@@ -122,9 +122,13 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: small_z1
   templates:
   - name: collector
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: nfs_z1

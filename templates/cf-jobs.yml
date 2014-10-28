@@ -77,6 +77,8 @@ meta:
   stats_templates:
   - name: collector
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   nfs_templates:
   - name: debian_nfs_server
@@ -188,6 +190,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: nfs_z1
     templates: (( merge || meta.nfs_templates ))
