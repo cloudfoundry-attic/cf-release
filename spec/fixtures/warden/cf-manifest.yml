@@ -2217,6 +2217,7 @@ properties:
         local_root: /var/vcap/store
         provider: Local
     bulk_api_password: bulk-password
+    internal_api_user: internal_user
     internal_api_password: internal-password
     client_max_body_size: 1536M
     db_encryption_key: db-encryption-key
