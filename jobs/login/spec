@@ -72,6 +72,8 @@ properties:
     description: "Location of the UAA."
   login.signups_enabled:
     description: "Enable account creation flow in the login server. Enabled by default."
+  login.invitations_enabled:
+    description: "Allows users to send invitations to email addresses outside the system and invite them to create an account. Disabled by default."
   domain:
     description: "The domain name for this CloudFoundry deploy"
   env.http_proxy:

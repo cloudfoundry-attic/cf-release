@@ -76,6 +76,9 @@ login:
   url: <%= "#{protocol}://login.#{properties.domain}" %>
   entityBaseURL: <%= "#{protocol}://login.#{properties.domain}" %>
   entityID: <%= (properties.login && properties.login.saml.entityid) ? properties.login.saml.entityid : properties.login.entity_id ? properties.login.entity_id : "login.#{properties.domain}" %>
+  <% if !properties.login.invitations_enabled.nil? %>
+  invitationsEnabled: <%= properties.login.invitations_enabled %>
+  <% end %>
 <% if properties.login.saml %>
   <% if !properties.login.saml.serviceProviderCertificate.nil? %>
   serviceProviderCertificate: | 
