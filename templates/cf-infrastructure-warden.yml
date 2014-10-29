@@ -17,6 +17,7 @@ update:
   serial: true
 
 properties:
+  <<: (( merge ))
   ssl:
     skip_cert_verify: true
 

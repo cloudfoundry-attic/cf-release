@@ -29,6 +29,7 @@ meta:
       ports: '53'
 
 properties:
+  <<: (( merge ))
   domain: (( merge ))
 
   loggregator_endpoint:

@@ -861,6 +861,12 @@ properties:
     user: null
   hm9000:
     url: https://hm9000.example.com
+  template_only:
+    aws:
+      access_key_id: AWS_ACCESS_KEY
+      secret_access_key: AWS_SECRET_ACCESS_KEY
+      availability_zone: zone_1
+      availability_zone2: zone_2
   uaadb:
     address: uaadb.example.com
     databases:

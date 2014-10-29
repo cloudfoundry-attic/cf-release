@@ -436,6 +436,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
 properties:
+  <<: (( merge ))
   dropsonde:
     enabled: true
 
