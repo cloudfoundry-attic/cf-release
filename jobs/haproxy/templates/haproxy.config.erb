@@ -20,7 +20,7 @@ frontend http-in
     reqadd X-Forwarded-Proto:\ http
     default_backend http-routers
 
-<% if p("ha_proxy.ssl_pem", false) %>
+<% if p("ha_proxy.ssl_pem") %>
 frontend https-in
     mode http
     bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3
