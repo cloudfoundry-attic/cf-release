@@ -1,3 +1,5 @@
+# The following line helps maintain current documentation at http://docs.cloudfoundry.org.
+# code_snippet cf-stub-openstack start
 ---
 director_uuid: DIRECTOR_UUID
 meta:
@@ -86,3 +88,6 @@ properties:
     - name: uaaadmin
       password: admin_password
       tag: admin
+
+# code_snippet cf-stub-openstack end
+# The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

@@ -1,3 +1,5 @@
+# The following line helps maintain current documentation at http://docs.cloudfoundry.org.
+# code_snippet cf-stub-vsphere start
 ---
 director_uuid: DIRECTOR_UUID
 
@@ -68,3 +70,6 @@ properties:
     scim:
       users:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
+
+# code_snippet cf-stub-vsphere end
+# The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
