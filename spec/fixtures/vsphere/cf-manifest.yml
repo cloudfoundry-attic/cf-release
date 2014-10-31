@@ -722,6 +722,7 @@ properties:
   loggregator_endpoint:
     shared_secret: loggregator_endpoint_secret
   login:
+    enabled: true
     analytics:
       code: null
       domain: null
@@ -1006,4 +1007,3 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
-

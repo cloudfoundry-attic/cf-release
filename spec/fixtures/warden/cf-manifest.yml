@@ -2454,6 +2454,7 @@ properties:
   loggregator_endpoint:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
   login:
+    enabled: true
     analytics:
       code: null
       domain: null
@@ -2768,4 +2769,3 @@ update:
   max_in_flight: 50
   serial: true
   update_watch_time: 1000-180000
-

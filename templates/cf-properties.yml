@@ -168,6 +168,7 @@ properties:
     url: (( "https://hm9000." domain ))
 
   login:
+    enabled: true
     analytics:
       code: ~
       domain: ~
