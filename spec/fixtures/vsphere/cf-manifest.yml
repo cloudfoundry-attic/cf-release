@@ -747,6 +747,7 @@ properties:
     uaa_base: null
     uaa_certificate: null
     url: null
+    ip_range_regexes: null
   metron_endpoint:
     shared_secret: loggregator_endpoint_secret
   nats:

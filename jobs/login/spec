@@ -65,6 +65,8 @@ properties:
   login.port:
     default: 8080
     description:
+  login.ip_range_regexes:
+    description: "Used when choosing nonstandard internal IP range for a deployment; add all ranges to ensure login starts up successfully."
   login.uaa_base:
     description: "Location of the UAA."
   login.signups_enabled:
