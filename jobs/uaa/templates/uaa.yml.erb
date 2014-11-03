@@ -119,7 +119,7 @@ oauth:
       override: true
       secret: "<%= login_secret %>"
       authorized-grant-types: authorization_code,client_credentials,refresh_token
-      authorities: oauth.login
+      authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
       scope: openid,oauth.approvals
       redirect-uri: <%= "#{protocol}://login.#{properties.domain}" %>
 <% end %>

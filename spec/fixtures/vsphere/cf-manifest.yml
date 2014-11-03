@@ -787,12 +787,15 @@ properties:
     asset_base_url: null
     brand: oss
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    invitations_enabled: null
     links:
       home: https://console.0.0.0.3.xip.io
       network: null
       passwd: https://console.0.0.0.3.xip.io/password_resets/new
       signup: https://console.0.0.0.3.xip.io/register
       signup-network: null
+    notifications:
+      url: null
     protocol: http
     saml: null
     signups_enabled: null
@@ -806,6 +809,7 @@ properties:
     uaa_base: null
     uaa_certificate: null
     url: null
+    messages: null
   metron_endpoint:
     shared_secret: loggregator_endpoint_secret
   nats:
@@ -872,7 +876,7 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
       login:
-        authorities: oauth.login
+        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
         redirect-uri: http://login.0.0.0.3.xip.io

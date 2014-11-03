@@ -782,12 +782,15 @@ properties:
     asset_base_url: null
     brand: oss
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    invitations_enabled: null
     links:
       home: https://console.example.com
       network: null
       passwd: https://console.example.com/password_resets/new
       signup: https://console.example.com/register
       signup-network: null
+    notifications:
+      url: null
     protocol: https
     saml: null
     signups_enabled: null
@@ -801,6 +804,7 @@ properties:
     uaa_base: null
     uaa_certificate: null
     url: null
+    messages: null
   metron_endpoint:
     shared_secret: secret
   nats:
@@ -867,7 +871,9 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
       login:
-        authorities: oauth.login
+        override: true
+        scope: openid,oauth.approvals
+        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
         redirect-uri: https://login.example.com
