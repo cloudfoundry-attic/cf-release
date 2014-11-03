@@ -1,3 +1,5 @@
+# The following line helps maintain current documentation at http://docs.cloudfoundry.org.
+# code_snippet cf-stub-warden start
 ---
 name: cf-warden
 director_uuid: DIRECTOR_UUID
@@ -42,3 +44,6 @@ properties:
         - protocol: all
           destination: 10.244.3.0/24
     default_running_security_groups: ["public_networks", "dns", "services"]
+
+# code_snippet cf-stub-warden end
+# The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
