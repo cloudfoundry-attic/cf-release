@@ -499,7 +499,7 @@ properties:
 
   disk_quota_enabled: true
 
-  request_timeout_in_seconds: 300
+  request_timeout_in_seconds: 900
 
   nats:
     user: (( merge ))

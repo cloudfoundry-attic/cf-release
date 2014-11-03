@@ -819,7 +819,7 @@ properties:
     - null
     - null
     share: null
-  request_timeout_in_seconds: 300
+  request_timeout_in_seconds: 900
   router:
     requested_route_registration_interval_in_seconds: 20
     status:
