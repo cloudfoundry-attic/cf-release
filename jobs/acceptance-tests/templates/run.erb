@@ -29,12 +29,26 @@ echo '##########################################################################
 
 echo "Running acceptance tests..."
 
+export THIS_MACHINE_IP=<%=
+  def discover_external_ip
+    networks = spec.networks.marshal_dump
+    _, network = networks.find do |_name, network_spec|
+      network_spec.default
+    end
+    if !network
+      _, network = networks.first
+    end
+    if !network
+      raise "Could not determine IP via network spec: #{networks}"
+    end
+    network.ip
+  end
+  discover_external_ip
+%>
+
 EXITSTATUS=0
 test_command=<%= properties.acceptance_tests.diego ? "bin/test_diego" : "bin/test" %>
-nodes=<%= properties.acceptance_tests.nodes %>
-skips=<%= properties.acceptance_tests.include_sso ? "" : "-skip=SSO" %>
-verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
-$test_command -randomizeAllSpecs $verbose -nodes=$nodes $skips -keepGoing || EXITSTATUS=$?
+$test_command <%= properties.acceptance_tests.ginkgo_opts %> || EXITSTATUS=$?
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 

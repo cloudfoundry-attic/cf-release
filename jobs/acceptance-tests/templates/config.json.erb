@@ -4,5 +4,14 @@
   "admin_user"         : "<%= properties.acceptance_tests.admin_user %>",
   "admin_password"     : "<%= properties.acceptance_tests.admin_password %>",
   "skip_ssl_validation": <%= properties.acceptance_tests.skip_ssl_validation %>,
-  "artifacts_directory": "/var/vcap/sys/log/acceptance_tests/"
+  "artifacts_directory": "/var/vcap/sys/log/acceptance_tests/",
+  "syslog_drain_port"  : 1234,
+  "syslog_ip_address"  : "SYSLOG_IP_ADDRESS",
+  "suite_name"         : "CF_OPERATOR_TESTS",
+  "user"               : "admin",
+  "password"           : "admin",
+  "org"                : "CF-OPERATOR-ORG",
+  "space"              : "CF-OPERATOR-SPACE",
+  "use_existing_org"   : false,
+  "use_existing_space" : false
 }
