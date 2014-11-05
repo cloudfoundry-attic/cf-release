@@ -26,5 +26,5 @@ properties:
     default: false
     description: Flag to include the services tests that integrate with SSO.
   acceptance_tests.ginkgo_opts:
-    default: "-randomizeAllSpecs -v -nodes=4 -keepGoing -slowSpecThreshold=120 -skipPackage='operator'"
+    default: "-randomizeAllSpecs -v -nodes=4 -keepGoing -slowSpecThreshold=120 -skipPackage='operator,logging'"
     description: Flags to pass to ginkgo

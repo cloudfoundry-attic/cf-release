@@ -59,10 +59,9 @@ properties:
     admin_user: (( cloud_controller_admin_credentials.username ))
     admin_password: (( cloud_controller_admin_credentials.password ))
     skip_ssl_validation: (( properties.ssl.skip_cert_verify ))
-    nodes: ~
+    ginkgo_opts: "-randomizeAllSpecs -v -nodes=4 -keepGoing -slowSpecThreshold=120 -skipPackage='operator'"
     diego: false
     include_sso: ~
-    verbose: ~
   ssl: (( merge ))
 
 Resources: (( merge ))
