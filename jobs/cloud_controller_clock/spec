@@ -111,6 +111,12 @@ properties:
   cc.failed_jobs.cutoff_age_in_days:
     description: "How old a failed job should stay in cloud controller database before being cleaned up"
     default: 31
+  cc.pending_packages.frequency_in_seconds:
+    description: "How often the package pending cleanup job runs"
+    default: 300
+  cc.pending_packages.expiration_in_seconds:
+    description: "How long packages can remain in pending state before being cleaned up"
+    default: 1200
   cc.billing_event_writing_enabled:
     description: "If true, billing events are written to the CCDB."
     default: true
