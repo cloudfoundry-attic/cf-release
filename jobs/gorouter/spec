@@ -41,7 +41,7 @@ properties:
     default: 22
   request_timeout_in_seconds:
     description: "Timeout in seconds for Router -> Endpoint roundtrip."
-    default: 300
+    default: 900
   metron_endpoint.host:
     description: "The host used to emit messages to the Metron agent."
     default: "127.0.0.1"

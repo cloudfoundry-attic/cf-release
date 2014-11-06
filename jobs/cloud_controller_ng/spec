@@ -91,7 +91,7 @@ properties:
 
   request_timeout_in_seconds:
     description: "Timeout for requests in seconds."
-    default: 300
+    default: 900
 
   cc.external_port:
     description: "External Cloud Controller port"

@@ -11,7 +11,7 @@ properties:
     default:
     description: "SSL certificate (PEM file)"
   request_timeout_in_seconds:
-    default: 300
+    default: 900
     description: "Server and client timeouts in seconds"
   router.servers.z1:
     default:
