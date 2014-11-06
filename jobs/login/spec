@@ -198,3 +198,6 @@ properties:
         scope.tokens.write: Cancel the approvals like this one that you have granted to this and other applications
         scope.cloud_controller.read: View details of your applications and services
         scope.cloud_controller.write: Push applications to your account and create and bind services
+  login.restricted_ips_regex:
+    description: "A pipe delimited set of regular expressions of IP addresses that can reach the listening HTTP port of the server."
+    default: "10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}"

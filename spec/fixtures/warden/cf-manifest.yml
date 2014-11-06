@@ -2538,6 +2538,7 @@ properties:
     notifications:
       url: null
     protocol: http
+    restricted_ips_regex: null
     saml: null
     signups_enabled: null
     smtp:
@@ -2716,6 +2717,7 @@ properties:
     ldap: null
     login: null
     no_ssl: true
+    restricted_ips_regex: null
     scim:
       external_groups: null
       userids_enabled: false
