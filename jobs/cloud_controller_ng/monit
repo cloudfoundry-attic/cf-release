@@ -3,6 +3,9 @@ check process cloud_controller_ng
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
   group vcap
+<% if properties.nfs_server.address %>
+  depends on nfs_mounter
+<% end %>
   if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
   if totalmem > <%= p("cc.thresholds.api.restart_if_consistently_above_mb") %> Mb for 15 cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
   if totalmem > <%= p("cc.thresholds.api.restart_if_above_mb") %> Mb for 3 cycles then exec "/var/vcap/jobs/cloud_controller_ng/bin/restart_drain"
