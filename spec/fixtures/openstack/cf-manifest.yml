@@ -242,6 +242,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: nfs_mounter
+    release: cf
 - instances: 0
   name: api_z2
   networks:
@@ -263,6 +265,8 @@ jobs:
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
+    release: cf
+  - name: nfs_mounter
     release: cf
 - instances: 1
   name: clock_global
@@ -302,6 +306,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: nfs_mounter
+    release: cf
 - instances: 0
   name: api_worker_z2
   networks:
@@ -323,6 +329,8 @@ jobs:
   - name: cloud_controller_worker
     release: cf
   - name: metron_agent
+    release: cf
+  - name: nfs_mounter
     release: cf
 - instances: 1
   name: hm9000_z1
