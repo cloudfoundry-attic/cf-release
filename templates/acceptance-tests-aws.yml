@@ -59,9 +59,9 @@ properties:
     admin_user: (( cloud_controller_admin_credentials.username ))
     admin_password: (( cloud_controller_admin_credentials.password ))
     skip_ssl_validation: (( properties.ssl.skip_cert_verify ))
-    ginkgo_opts: "-randomizeAllSpecs -v -nodes=4 -keepGoing -slowSpecThreshold=120 -skipPackage='operator'"
+    ginkgo_opts: ~ # use default in job spec unless intentionally overridden in stub
     diego: false
-    include_sso: ~
+    include_sso: ~ # use default in job spec unless intentionally overridden in stub
   ssl: (( merge ))
 
 Resources: (( merge ))
