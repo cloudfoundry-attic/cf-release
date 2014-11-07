@@ -9,7 +9,7 @@ templates:
   cloud_controller_api.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_api_ctl.erb: bin/cloud_controller_ng_ctl
   cloud_controller_api_worker_ctl.erb: bin/cloud_controller_worker_ctl
-  handle_nfs_or_local_blobstore.sh.erb: bin/handle_nfs_or_local_blobstore.sh
+  handle_local_blobstore.sh.erb: bin/handle_local_blobstore.sh
   stacks.yml.erb: config/stacks.yml
   nfs-common: config/nfs-common
   idmapd.conf.erb: config/idmapd.conf
