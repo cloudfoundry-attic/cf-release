@@ -24,9 +24,7 @@ directory_server:
   streaming_timeout: <%= p("dea_next.streaming_timeout") %>
   logging:
     file: /var/vcap/sys/log/dea_next/dir_server.log
-    <% if_p("syslog_aggregator") do %>
     syslog: vcap.directory_server
-    <% end %>
     level: <%= p("dea_next.logging_level") %>
 
 domain: <%= p("domain") %>
@@ -34,9 +32,7 @@ domain: <%= p("domain") %>
 logging:
   file: /var/vcap/sys/log/dea_next/dea_next.log
   level: <%= p("dea_next.logging_level") %>
-  <% if_p("syslog_aggregator.address") do %>
   syslog: vcap.dea_next
-  <% end %>
 
 <% if_p("metron_endpoint.host", "metron_endpoint.port", "metron_endpoint.shared_secret") do |host, port, shared_secret| %>
 loggregator:

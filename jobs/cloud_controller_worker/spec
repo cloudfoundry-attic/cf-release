@@ -18,23 +18,11 @@ packages:
   - mysqlclient
   - sqlite
   - ruby-2.1.3
-  - syslog_aggregator
 
 properties:
   ssl.skip_cert_verify:
     description: "specifies that the job is allowed to skip ssl cert verification"
     default: false
-
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
 
   name:
     default: "vcap"
@@ -88,7 +76,7 @@ properties:
 
   request_timeout_in_seconds:
     description: "Timeout for requests in seconds."
-    default: 300
+    default: 900
 
   cc.external_port:
     description: "External Cloud Controller port"
@@ -315,6 +303,8 @@ properties:
   uaa.url:
     description:
   login.url:
+    description:
+  hm9000.url:
     description:
 
   uaa.jwt.verification_key:

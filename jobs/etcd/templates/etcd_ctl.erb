@@ -18,8 +18,6 @@ case $1 in
     chown -R vcap:vcap $RUN_DIR
     chown -R vcap:vcap $WORK_DIR
 
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-
     echo $$ > $PIDFILE
 
     <% my_ip = spec.networks.send(properties.networks.apps).ip %>

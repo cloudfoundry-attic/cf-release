@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export NFS_JOB_DIR=/var/vcap/jobs/nfs_mounter
+
+RUN_DIR=/var/vcap/sys/run/nfs_mounter
+LOG_DIR=/var/vcap/sys/log/nfs_mounter
+
+export CONFIG_DIR=$NFS_JOB_DIR/config
+export NFS_SHARE=<% properties.nfs_server.share_path %>
+
+source $NFS_JOB_DIR/bin/handle_nfs_blobstore.sh
+
+case $1 in
+
+  start)
+    mkdir -p $LOG_DIR
+    chown vcap:vcap $LOG_DIR
+
+    mount_nfs()
+
+  stop)
+    unmount_nfs()
+    ;;
+
+  *)
+    echo "Usage: nfs_mounter_ctl {start|stop}"
+    ;;
+
+esac

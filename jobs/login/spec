@@ -13,28 +13,16 @@ templates:
   tomcat.server.xml.erb: config/tomcat/server.xml
   # Updates to Tomcat must also check web.xml
   web.xml.erb: config/tomcat/web.xml
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   uaa.crt.erb: config/uaa.crt
+  messages.properties.erb: config/messages.properties
 
 packages:
   - common
   - ruby
-  - syslog_aggregator
   - login
   - git
 
 properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
   login.brand:
     description: "The brand to use for the reset password emails, available values are oss and pivotal"
     default: oss
@@ -44,6 +32,8 @@ properties:
     description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
     description:
+  login.notifications.url:
+    description: "The url for the notifications service (configure to use Notifications Service instead of SMTP server)"
   login.smtp:
     description: "SMTP server configuration, for password reset emails etc."
   login.smtp.host:
@@ -82,6 +72,8 @@ properties:
     description: "Location of the UAA."
   login.signups_enabled:
     description: "Enable account creation flow in the login server. Enabled by default."
+  login.invitations_enabled:
+    description: "Allows users to send invitations to email addresses outside the system and invite them to create an account. Disabled by default."
   domain:
     description: "The domain name for this CloudFoundry deploy"
   env.http_proxy:
@@ -186,3 +178,23 @@ properties:
     description: "Analytics code"
   login.analytics.domain:
     description: "Analytics domain"
+  login.messages:
+    description: |
+      A nested or flat hash of messages that the login server uses to display UI message
+      This will be flattened into a java.util.Properties file. The example below will lead
+      to four properties, where the key is the concatenated value delimited by dot, for example scope.tokens.read=message
+      Nested example:
+      messages:
+        scope:
+          tokens:
+            read: View details of your approvals you have granted to this and other applications
+            write: Cancel the approvals like this one that you have granted to this and other applications
+          cloud_controller:
+            read: View details of your applications and services
+            write: Push applications to your account and create and bind services
+      Flat example:
+      messages:
+        scope.tokens.read: View details of your approvals you have granted to this and other applications
+        scope.tokens.write: Cancel the approvals like this one that you have granted to this and other applications
+        scope.cloud_controller.read: View details of your applications and services
+        scope.cloud_controller.write: Push applications to your account and create and bind services

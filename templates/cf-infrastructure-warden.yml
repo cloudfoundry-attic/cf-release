@@ -17,6 +17,7 @@ update:
   serial: true
 
 properties:
+  <<: (( merge ))
   ssl:
     skip_cert_verify: true
 
@@ -37,6 +38,9 @@ properties:
     user: nats
     password: nats
     address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
+
+  hm9000:
+    url: (( "https://hm9000." jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
 
   cc:
     default_quota_definition: default
@@ -116,7 +120,7 @@ properties:
         secret: doppler-secret
     scim:
       users:
-      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,notification_templates.admin
     no_ssl: true
 
   login:
@@ -188,6 +192,7 @@ properties:
     password: admin
     org: SMOKE_TEST_ORG
     space: SMOKE_TEST_SPACE
+    ginkgo_opts: ~
     skip_ssl_validation: true
 
 jobs:
@@ -288,6 +293,7 @@ jobs:
       - name: cloud_controller_clock
       - name: cloud_controller_worker
       - name: metron_agent
+      - name: nfs_mounter
 
   - name: api_worker_z1
     instances: 0

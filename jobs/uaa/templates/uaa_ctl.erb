@@ -72,8 +72,6 @@ case $1 in
     /var/vcap/jobs/uaa/bin/install_crt ldap.crt ldapcert
     <% end %>
 
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-
     # Generate a random username and password for varz
     username=$RANDOM-$RANDOM-$RANDOM-$RANDOM
     password=$RANDOM-$RANDOM-$RANDOM-$RANDOM

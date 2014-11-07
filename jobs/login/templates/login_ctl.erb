@@ -66,8 +66,6 @@ case $1 in
     /var/vcap/jobs/login/bin/install_crt uaa.crt uaacert
     <% end %>
 
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-
     # Generate a random usernames and passwords
     username="$RANDOM-$RANDOM-$RANDOM-$RANDOM"
     password="$RANDOM-$RANDOM-$RANDOM-$RANDOM"

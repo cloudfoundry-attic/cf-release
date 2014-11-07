@@ -1,9 +1,7 @@
 ---
 logging:
   file: /var/vcap/sys/log/login/cf-registrar.log
-  <% if properties.syslog_aggregator && properties.syslog_aggregator.address %>
   syslog: vcap.login_cf-registrar
-  <% end %>
   level: info
 
 message_bus_servers:

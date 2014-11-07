@@ -26,8 +26,6 @@ case $1 in
 
     export CONFIG_FILE=$JOB_DIR/config/config.yml
 
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-
     cd /var/vcap/packages/collector
 
     exec chpst -u vcap:vcap /var/vcap/packages/ruby/bin/ruby \

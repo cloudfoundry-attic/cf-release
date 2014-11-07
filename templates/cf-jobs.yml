@@ -22,14 +22,18 @@ meta:
 
   api_templates:
   - name: cloud_controller_ng
-    release: (( meta.release.name )) 
+    release: (( meta.release.name ))
   - name: metron_agent
+    release: (( meta.release.name ))
+  - name: nfs_mounter
     release: (( meta.release.name ))
 
   api_worker_templates:
   - name: cloud_controller_worker
     release: (( meta.release.name ))
   - name: metron_agent
+    release: (( meta.release.name ))
+  - name: nfs_mounter
     release: (( meta.release.name ))
 
   clock_templates:
@@ -42,6 +46,8 @@ meta:
   - name: nats
     release: (( meta.release.name ))
   - name: nats_stream_forwarder
+    release: (( meta.release.name ))
+  - name: metron_agent
     release: (( meta.release.name ))
 
   dea_templates:
@@ -61,39 +67,51 @@ meta:
   ha_proxy_templates:
   - name: haproxy
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   etcd_templates:
   - name: etcd
     release: (( meta.release.name ))
   - name: etcd_metrics_server
     release: (( meta.release.name ))
-
-  logs_templates:
-  - name: syslog_aggregator
+  - name: metron_agent
     release: (( meta.release.name ))
 
   stats_templates:
   - name: collector
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   nfs_templates:
   - name: debian_nfs_server
+    release: (( meta.release.name ))
+  - name: metron_agent
     release: (( meta.release.name ))
 
   postgres_templates:
   - name: postgres
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   uaa_templates:
   - name: uaa
+    release: (( meta.release.name ))
+  - name: metron_agent
     release: (( meta.release.name ))
 
   login_templates:
   - name: login
     release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   hm9000_templates:
   - name: hm9000
+    release: (( meta.release.name ))
+  - name: metron_agent
     release: (( meta.release.name ))
 
   loggregator_templates:
@@ -125,6 +143,8 @@ jobs:
         servers:
           z1: (( jobs.router_z1.networks.cf1.static_ips ))
           z2: (( jobs.router_z2.networks.cf2.static_ips ))
+      metron_agent:
+        zone: z1
 
   - name: nats_z1
     templates: (( merge || meta.nats_templates ))
@@ -135,6 +155,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: nats_z2
     templates: (( merge || meta.nats_templates ))
@@ -145,6 +167,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: etcd_z1
     templates: (( merge || meta.etcd_templates ))
@@ -156,6 +180,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: etcd_z2
     templates: (( merge || meta.etcd_templates ))
@@ -167,28 +193,8 @@ jobs:
         static_ips: (( merge ))
     properties:
       networks: (( meta.networks.z2 ))
-
-  - name: logs_z1
-    templates: (( merge || meta.logs_templates ))
-    instances: 0
-    resource_pool: medium_z1
-    persistent_disk: 100000
-    networks:
-      - name: cf1
-        static_ips: (( merge ))
-    properties:
-      networks: (( meta.networks.z1 ))
-
-  - name: logs_z2
-    templates: (( merge || meta.logs_templates ))
-    instances: 0
-    resource_pool: medium_z2
-    persistent_disk: 100000
-    networks:
-      - name: cf2
-        static_ips: (( merge ))
-    properties:
-      networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: stats_z1
     templates: (( merge || meta.stats_templates ))
@@ -198,6 +204,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: nfs_z1
     templates: (( merge || meta.nfs_templates ))
@@ -207,6 +215,9 @@ jobs:
     networks:
       - name: cf1
         static_ips: ~
+    properties:
+      metron_agent:
+        zone: z1
 
   - name: postgres_z1
     templates: (( merge || meta.postgres_templates ))
@@ -216,6 +227,9 @@ jobs:
     networks:
     - name: cf1
       static_ips: ~
+    properties:
+      metron_agent:
+        zone: z1
 
   - name: uaa_z1
     templates: (( merge || meta.uaa_templates ))
@@ -225,6 +239,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: uaa_z2
     templates: (( merge || meta.uaa_templates ))
@@ -234,6 +250,8 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: login_z1
     templates: (( merge || meta.login_templates ))
@@ -243,6 +261,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: login_z2
     templates: (( merge || meta.login_templates ))
@@ -252,6 +272,8 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: api_z1
     templates: (( merge || meta.api_templates ))
@@ -325,6 +347,8 @@ jobs:
       - name: cf1
     properties:
       networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
 
   - name: hm9000_z2
     templates: (( merge || meta.hm9000_templates ))
@@ -334,6 +358,8 @@ jobs:
       - name: cf2
     properties:
       networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
 
   - name: runner_z1
     templates: (( merge || meta.dea_templates ))
@@ -462,6 +488,7 @@ jobs:
       networks: (( meta.networks.z1 ))
 
 properties:
+  <<: (( merge ))
   dropsonde:
     enabled: true
 
@@ -476,7 +503,7 @@ properties:
 
   disk_quota_enabled: true
 
-  request_timeout_in_seconds: 300
+  request_timeout_in_seconds: 900
 
   nats:
     user: (( merge ))
@@ -541,6 +568,8 @@ properties:
   cc: (( merge ))
   ccdb: (( merge ))
 
+  hm9000: (( merge ))
+
   uaa: (( merge ))
   uaadb: (( merge ))
 
@@ -554,7 +583,7 @@ properties:
       user: (( merge ))
       password: (( merge ))
 
-  syslog_aggregator: ~
+  syslog_daemon_config: ~
 
   nfs_server: (( meta.nfs_server ))
 

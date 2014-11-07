@@ -18,6 +18,8 @@ jobs:
     static_ips:
     - 0.0.0.3
   properties:
+    metron_agent:
+      zone: z1
     ha_proxy:
       ssl_pem: null
     networks:
@@ -32,6 +34,8 @@ jobs:
   templates:
   - name: haproxy
     release: cf
+  - name: metron_agent
+    release: cf
 - instances: 1
   name: nats_z1
   networks:
@@ -41,11 +45,15 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: nats
     release: cf
   - name: nats_stream_forwarder
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: nats_z2
@@ -56,11 +64,15 @@ jobs:
   properties:
     networks:
       apps: cf2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: nats
     release: cf
   - name: nats_stream_forwarder
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 2
   name: etcd_z1
@@ -73,11 +85,15 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: etcd
     release: cf
   - name: etcd_metrics_server
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: etcd_z2
@@ -89,39 +105,15 @@ jobs:
   properties:
     networks:
       apps: cf2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: etcd
     release: cf
   - name: etcd_metrics_server
     release: cf
-- instances: 1
-  name: logs_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 0.0.0.0
-  persistent_disk: 8192
-  properties:
-    networks:
-      apps: cf1
-  resource_pool: medium_z1
-  templates:
-  - name: syslog_aggregator
-    release: cf
-- instances: 1
-  name: logs_z2
-  networks:
-  - name: cf2
-    static_ips:
-    - 0.0.1.0
-  persistent_disk: 8192
-  properties:
-    networks:
-      apps: cf2
-  resource_pool: medium_z2
-  templates:
-  - name: syslog_aggregator
+  - name: metron_agent
     release: cf
 - instances: 1
   name: stats_z1
@@ -130,9 +122,13 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: small_z1
   templates:
   - name: collector
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: nfs_z1
@@ -140,10 +136,15 @@ jobs:
   - name: cf1
     static_ips:
     - 0.0.0.2
+  properties:
+    metron_agent:
+      zone: z1
   persistent_disk: 102400
   resource_pool: medium_z1
   templates:
   - name: debian_nfs_server
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: postgres_z1
@@ -151,10 +152,15 @@ jobs:
   - name: cf1
     static_ips:
     - 0.0.0.12
+  properties:
+    metron_agent:
+      zone: z1
   persistent_disk: 4096
   resource_pool: medium_z1
   templates:
   - name: postgres
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: uaa_z1
@@ -163,9 +169,13 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: uaa
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: uaa_z2
@@ -174,9 +184,13 @@ jobs:
   properties:
     networks:
       apps: cf2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: uaa
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: login_z1
@@ -185,9 +199,13 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: login
+  - name: metron_agent
+    release: cf
 - instances: 1
   name: login_z2
   networks:
@@ -195,9 +213,13 @@ jobs:
   properties:
     networks:
       apps: cf2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: login
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: api_z1
@@ -221,6 +243,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: nfs_mounter
+    release: cf
 - instances: 1
   name: api_z2
   networks:
@@ -242,6 +266,8 @@ jobs:
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
+    release: cf
+  - name: nfs_mounter
     release: cf
 - instances: 1
   name: clock_global
@@ -281,6 +307,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: nfs_mounter
+    release: cf
 - instances: 1
   name: api_worker_z2
   networks:
@@ -303,6 +331,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: nfs_mounter
+    release: cf
 - instances: 1
   name: hm9000_z1
   networks:
@@ -310,9 +340,13 @@ jobs:
   properties:
     networks:
       apps: cf1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: hm9000
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: hm9000_z2
@@ -321,9 +355,13 @@ jobs:
   properties:
     networks:
       apps: cf2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: hm9000
+    release: cf
+  - name: metron_agent
     release: cf
 - instances: 1
   name: runner_z1
@@ -523,7 +561,10 @@ properties:
       cdn: null
       fog_connection: null
     bulk_api_password: password
+    internal_api_user: internal_user
     internal_api_password: password
+    logging_level: debug2
+    db_logging_level: debug2
     client_max_body_size: 1536M
     db_encryption_key: the_key
     default_app_disk_in_mb: 1024
@@ -667,6 +708,8 @@ properties:
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
     user_buildpacks: []
+  hm9000:
+    url: https://hm9000.0.0.0.3.xip.io
   ccdb:
     address: 0.0.0.12
     databases:
@@ -747,18 +790,22 @@ properties:
   loggregator_endpoint:
     shared_secret: loggregator_endpoint_secret
   login:
+    enabled: true
     analytics:
       code: null
       domain: null
     asset_base_url: null
     brand: oss
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    invitations_enabled: null
     links:
       home: https://console.0.0.0.3.xip.io
       network: null
       passwd: https://console.0.0.0.3.xip.io/password_resets/new
       signup: https://console.0.0.0.3.xip.io/register
       signup-network: null
+    notifications:
+      url: null
     protocol: http
     saml: null
     signups_enabled: null
@@ -772,6 +819,7 @@ properties:
     uaa_base: null
     uaa_certificate: null
     url: null
+    messages: null
   metron_endpoint:
     shared_secret: loggregator_endpoint_secret
   nats:
@@ -792,7 +840,7 @@ properties:
     - null
     - null
     share: null
-  request_timeout_in_seconds: 300
+  request_timeout_in_seconds: 900
   router:
     requested_route_registration_interval_in_seconds: 20
     status:
@@ -802,7 +850,7 @@ properties:
   ssl:
     skip_cert_verify: false
   support_address: http://support.cloudfoundry.com
-  syslog_aggregator: null
+  syslog_daemon_config: null
   system_domain: 0.0.0.3.xip.io
   system_domain_organization: pivotal
   uaa:
@@ -838,7 +886,7 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
       login:
-        authorities: oauth.login
+        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
         redirect-uri: http://login.0.0.0.3.xip.io
@@ -931,7 +979,7 @@ resource_pools:
     ram: 1024
   name: medium_z1
   network: cf1
-  size: 12
+  size: 11
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
@@ -941,7 +989,7 @@ resource_pools:
     ram: 1024
   name: medium_z2
   network: cf2
-  size: 8
+  size: 7
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
@@ -1031,4 +1079,3 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
-

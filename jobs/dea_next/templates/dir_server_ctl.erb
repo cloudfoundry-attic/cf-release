@@ -24,8 +24,6 @@ case $1 in
 
     ulimit -c unlimited
 
-    /var/vcap/packages/syslog_aggregator/setup_syslog_forwarder.sh $JOB_DIR/config
-
     exec /var/vcap/packages/dea_next/go/bin/runner \
          -conf $JOB_DIR/config/dea.yml
 

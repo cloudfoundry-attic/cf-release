@@ -49,6 +49,7 @@ RUN \
 
 RUN \
   bash -l -c "pip install awscli"; \
+  bash -l -c "pip install s3cmd"; \
   bash -l -c "gem install bundler --no-rdoc --no-ri"; \
   bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
 

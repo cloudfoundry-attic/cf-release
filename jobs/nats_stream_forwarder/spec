@@ -3,24 +3,11 @@ name: nats_stream_forwarder
 templates:
   nats_stream_forwarder.rb: bin/nats_stream_forwarder.rb
   nats_stream_forwarder_ctl.erb: bin/nats_stream_forwarder_ctl
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
   - common
   - ruby
   - nats
-  - syslog_aggregator
 properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
   nats_props:
     description:
     default: "nats"

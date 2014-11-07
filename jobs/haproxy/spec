@@ -2,29 +2,16 @@
 name: haproxy
 packages:
 - haproxy
-- syslog_aggregator
 templates:
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   haproxy.config.erb:        config/haproxy.config
   haproxy_ctl:               bin/haproxy_ctl
   cert.pem.erb:              config/cert.pem
 properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
   ha_proxy.ssl_pem:
     default:
     description: "SSL certificate (PEM file)"
   request_timeout_in_seconds:
-    default: 300
+    default: 900
     description: "Server and client timeouts in seconds"
   router.servers.z1:
     default:

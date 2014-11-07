@@ -14,6 +14,7 @@ meta:
 
 
 properties:
+  <<: (( merge ))
   template_only: (( merge ))
 
   logger_endpoint:

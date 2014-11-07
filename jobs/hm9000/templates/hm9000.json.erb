@@ -16,6 +16,11 @@
     "metrics_server_password": "",
 
     "log_level": "INFO",
+    "api_server_url": "<%= p("hm9000.url", "https://hm9000.#{p("domain")}") %>",
+    "api_server_address": "<%= spec.networks.send(properties.networks.apps).ip %>",
+    "api_server_port": 5155,
+    "api_server_username": "<%= p("cc.internal_api_user") %>",
+    "api_server_password": "<%= p("cc.internal_api_password") %>",
 
     "nats": <%=
   p("nats.machines").collect do |addr|

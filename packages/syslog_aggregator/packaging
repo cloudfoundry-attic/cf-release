@@ -1,3 +1,0 @@
-set -e -x
-
-cp -a syslog_aggregator/* ${BOSH_INSTALL_TARGET}

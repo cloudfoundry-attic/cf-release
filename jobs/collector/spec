@@ -3,24 +3,12 @@ name: collector
 templates:
   collector_ctl.erb: bin/collector_ctl
   config.yml.erb: config/config.yml
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
 packages:
 - common
 - collector
 - ruby
-- syslog_aggregator
-properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
 
+properties:
   collector.aws.access_key_id:
     description: "AWS access key for CloudWatch access"
   collector.aws.secret_access_key:

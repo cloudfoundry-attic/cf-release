@@ -12,27 +12,14 @@ templates:
   varz.log4j.properties.erb: config/varz.log4j.properties
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml
-  syslog_forwarder.conf.erb: config/syslog_forwarder.conf
   ldap.crt.erb: config/ldap.crt
 
 packages:
   - common
   - ruby
-  - syslog_aggregator
   - uaa
 
 properties:
-  syslog_aggregator.address:
-    description: "IP address for syslog aggregator"
-  syslog_aggregator.port:
-    description: "TCP port of syslog aggregator"
-  syslog_aggregator.all:
-    description: "Define whether forwarders should send all their syslog data to our aggregator."
-    default: false
-  syslog_aggregator.transport:
-    description: "Transport to be used when forwarding logs (tcp|udp|relp)."
-    default: "tcp"
-
   uaa.admin.client_secret:
     description:
   uaa.authentication.policy.lockoutAfterFailures:

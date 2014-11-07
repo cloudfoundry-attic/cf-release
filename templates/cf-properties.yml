@@ -29,6 +29,7 @@ meta:
       ports: '53'
 
 properties:
+  <<: (( merge ))
   domain: (( merge ))
 
   loggregator_endpoint:
@@ -80,7 +81,11 @@ properties:
     srv_api_uri: (( "https://" external_host "." domain ))
 
     bulk_api_password: (( merge ))
+    internal_api_user: "internal_user"
     internal_api_password: (( bulk_api_password ))
+    
+    logging_level: debug2
+    db_logging_level: debug2
 
     staging_upload_user: (( merge ))
     staging_upload_password: (( merge ))
@@ -163,7 +168,11 @@ properties:
         restart_if_consistently_above_mb: ~
         restart_if_above_mb: ~
 
+  hm9000:
+    url: (( "https://hm9000." domain ))
+
   login:
+    enabled: true
     analytics:
       code: ~
       domain: ~
@@ -175,7 +184,12 @@ properties:
     asset_base_url: ~
     uaa_base: ~
     signups_enabled: ~
+    invitations_enabled: ~
     spring_profiles: ~
+    messages: ~
+
+    notifications:
+      url: ~
 
     smtp:
       host: ~
@@ -239,7 +253,7 @@ properties:
       login:
         override: true
         scope: openid,oauth.approvals
-        authorities: oauth.login
+        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( properties.login.protocol "://login." domain ))
