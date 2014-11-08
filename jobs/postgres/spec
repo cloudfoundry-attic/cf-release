@@ -20,3 +20,6 @@ properties:
     description: "A list of database roles and associated properties to create"
   databases.max_connections:
     description: "Maximum number of database connections"
+  databases.log_line_prefix:
+    description: "The postgres `printf` style string that is output at the beginning of each log line"
+    default: "%m: "

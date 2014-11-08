@@ -27,6 +27,7 @@ max_files_per_process = 1000
 logging_collector = on
 log_directory = '/var/vcap/sys/log/postgres'
 log_filename = 'postgresql.log'
+log_line_prefix = '<%= p("databases.log_line_prefix") %>'
 
 datestyle = 'iso, mdy'
 
