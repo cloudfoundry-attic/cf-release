@@ -560,6 +560,7 @@ properties:
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
+        region: us-east-1
     bulk_api_password: password
     internal_api_user: internal_user
     internal_api_password: password
@@ -603,6 +604,7 @@ properties:
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
+        region: us-east-1
     external_host: api
     install_buildpacks:
     - name: java_buildpack
@@ -655,6 +657,7 @@ properties:
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
+        region: us-east-1
       max_package_size: 1073741824
     quota_definitions:
       default:
@@ -668,6 +671,7 @@ properties:
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
+        region: us-east-1
       resource_directory_key: example.com-cc-resources
     security_group_definitions:
     - name: public_networks
