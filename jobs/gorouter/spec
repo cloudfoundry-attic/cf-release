@@ -26,6 +26,9 @@ properties:
   router.number_of_cpus:
     description: "Number of CPUs to utilize, the default (-1) will equal the number of available CPUs"
     default: -1
+  router.debug_addr:
+    description: "address at which to serve debug info"
+    default: "0.0.0.0:17001"
   nats.user:
     description:
   nats.password:
