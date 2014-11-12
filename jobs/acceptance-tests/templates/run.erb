@@ -30,8 +30,22 @@ echo '##########################################################################
 echo "Running acceptance tests..."
 
 EXITSTATUS=0
-test_command=<%= properties.acceptance_tests.diego ? "bin/test_diego" : "bin/test_via_ginkgo" %>
-$test_command <%= properties.acceptance_tests.ginkgo_opts %> || EXITSTATUS=$?
+
+test_command="bin/test_via_ginkgo"
+
+nodes=<%= properties.acceptance_tests.nodes %>
+
+skipPackages="-skipPackage="
+skipPackages+=<%= properties.acceptance_tests.include_security_groups ? "" : "security_groups," %>
+skipPackages+=<%= properties.acceptance_tests.include_logging ? "" : "logging," %>
+skipPackages+=<%= properties.acceptance_tests.include_operator ? "" : "operator," %>
+[[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
+
+skips=<%= properties.acceptance_tests.include_sso ? "" : "-skip=SSO"  %>
+
+verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
+
+$test_command -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 
