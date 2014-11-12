@@ -11,6 +11,17 @@ meta:
 
   floating_static_ips: (( merge ))
 
+  resource_pools:
+    small:
+      cloud_properties:
+        instance_type: m1.small
+    medium:
+      cloud_properties:
+          instance_type: m1.medium
+    large:
+      cloud_properties:
+          instance_type: m1.large
+
 networks: (( merge ))
 
 properties:
@@ -79,49 +90,38 @@ properties:
         citext: true
 
 compilation:
-  cloud_properties:
-    instance_type: m1.medium
+  cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties ))
 
 resource_pools:
   - name: small_z1
-    cloud_properties:
-      instance_type: m1.small
+    cloud_properties: (( merge || meta.resource_pools.small.cloud_properties ))
 
   - name: small_z2
-    cloud_properties:
-      instance_type: m1.small
+    cloud_properties: (( merge || meta.resource_pools.small.cloud_properties ))
 
   - name: medium_z1
-    cloud_properties:
-      instance_type: m1.medium
+    cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties ))
 
   - name: medium_z2
-    cloud_properties:
-      instance_type: m1.medium
+    cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties ))
 
   - name: large_z1
-    cloud_properties:
-      instance_type: m1.large
+    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
 
   - name: large_z2
-    cloud_properties:
-      instance_type: m1.large
+    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
 
   - name: runner_z1
-    cloud_properties:
-      instance_type: m1.large
+    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
 
   - name: runner_z2
-    cloud_properties:
-      instance_type: m1.large
+    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
 
   - name: router_z1
-    cloud_properties:
-      instance_type: m1.medium
+    cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties  ))
 
   - name: router_z2
-    cloud_properties:
-      instance_type: m1.medium
+    cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties  ))
 
 # This config is for the simplest Openstack config using just one AZ.
 # All values for "z2" and network "cf2" are set to null. They'll end up
