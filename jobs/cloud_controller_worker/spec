@@ -8,6 +8,7 @@ templates:
   idmapd.conf.erb: config/idmapd.conf
   newrelic.yml.erb: config/newrelic.yml
   stacks.yml.erb: config/stacks.yml
+  ruby_version.sh.erb: bin/ruby_version.sh
 
 packages:
   - common

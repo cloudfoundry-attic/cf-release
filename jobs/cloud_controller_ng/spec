@@ -16,6 +16,8 @@ templates:
   newrelic.yml.erb: config/newrelic.yml
   nginx_newrelic_plugin_ctl.erb: bin/nginx_newrelic_plugin_ctl
   newrelic_plugin.yml.erb: config/newrelic_plugin.yml
+  ruby_version.sh.erb: bin/ruby_version.sh
+  console.erb: bin/console
 
 packages:
   - common

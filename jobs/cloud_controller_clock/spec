@@ -5,6 +5,7 @@ templates:
   cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl
   newrelic.yml.erb: config/newrelic.yml
   stacks.yml.erb: config/stacks.yml
+  ruby_version.sh.erb: bin/ruby_version.sh
 
 packages:
   - common
