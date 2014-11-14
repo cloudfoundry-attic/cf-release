@@ -120,7 +120,7 @@ properties:
         secret: doppler-secret
     scim:
       users:
-      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,notification_templates.admin
     no_ssl: true
 
   login:
