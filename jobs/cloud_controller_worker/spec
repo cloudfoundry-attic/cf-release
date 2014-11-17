@@ -4,8 +4,6 @@ templates:
   cloud_controller_worker.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_worker_ctl.erb: bin/cloud_controller_worker_ctl
   handle_local_blobstore.sh.erb: bin/handle_local_blobstore.sh
-  nfs-common: config/nfs-common
-  idmapd.conf.erb: config/idmapd.conf
   newrelic.yml.erb: config/newrelic.yml
   stacks.yml.erb: config/stacks.yml
   ruby_version.sh.erb: bin/ruby_version.sh
@@ -64,16 +62,6 @@ properties:
 
   nfs_server.address:
     description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
-  nfs_server.share:
-    description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
-  nfs_server.nfsv4:
-    description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
-  nfs_server.idmapd_domain:
-    description: "Domain name for NFS idmapd"
-    default: "localdomain"
-  nfs_server.pipefs_directory:
-    description: "Pipefs directory for NFS idmapd"
-    default: "/var/lib/nfs/rpc_pipefs"
 
   request_timeout_in_seconds:
     description: "Timeout for requests in seconds."
