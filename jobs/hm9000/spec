@@ -35,6 +35,7 @@ properties:
   cc.bulk_api_password:
     description: "Password used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"
   cc.internal_api_user:
+    default: "internal_user"
     description: "Username for hm9000 API"
   cc.internal_api_password:
     description: "Password for hm9000 API"
