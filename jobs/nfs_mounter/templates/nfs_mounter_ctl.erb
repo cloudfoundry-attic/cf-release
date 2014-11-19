@@ -6,7 +6,7 @@ RUN_DIR=/var/vcap/sys/run/nfs_mounter
 LOG_DIR=/var/vcap/sys/log/nfs_mounter
 
 export CONFIG_DIR=$NFS_JOB_DIR/config
-export NFS_SHARE=<% properties.nfs_server.share_path %>
+export NFS_SHARE=<%= properties.nfs_server.share_path %>
 
 source $NFS_JOB_DIR/bin/handle_nfs_blobstore.sh
 
@@ -17,6 +17,7 @@ case $1 in
     chown vcap:vcap $LOG_DIR
 
     mount_nfs()
+    ;;
 
   stop)
     unmount_nfs()
