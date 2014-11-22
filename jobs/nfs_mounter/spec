@@ -13,7 +13,7 @@ properties:
   nfs_server.address:
     description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
   nfs_server.share:
-    description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
+    description: "Path to share from the remote NFS server (not used in an AWS deploy, use s3 instead)"
   nfs_server.nfsv4:
     description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
   nfs_server.idmapd_domain:

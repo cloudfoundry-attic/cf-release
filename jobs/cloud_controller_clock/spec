@@ -6,6 +6,7 @@ templates:
   newrelic.yml.erb: config/newrelic.yml
   stacks.yml.erb: config/stacks.yml
   ruby_version.sh.erb: bin/ruby_version.sh
+  console.erb: bin/console
 
 packages:
   - common
@@ -58,19 +59,6 @@ properties:
     description: "IP port of Cloud Foundry NATS server"
   nats.machines:
     description: "IP of each NATS cluster member."
-
-  nfs_server.address:
-    description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
-  nfs_server.share:
-    description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
-  nfs_server.nfsv4:
-    description: "bool to use NFS4 (not used in an AWS deploy, use s3 instead)"
-  nfs_server.idmapd_domain:
-    description: "Domain name for NFS idmapd"
-    default: "localdomain"
-  nfs_server.pipefs_directory:
-    description: "Pipefs directory for NFS idmapd"
-    default: "/var/lib/nfs/rpc_pipefs"
 
   request_timeout_in_seconds:
     description: "Timeout for requests in seconds."
