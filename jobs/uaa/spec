@@ -54,6 +54,8 @@ properties:
       - uaa.user
       - approvals.me
       - oauth.approvals
+      - notification_preferences.read
+      - notification_preferences.write
   uaa.clients:
     description:
   uaa.jwt.signing_key:
