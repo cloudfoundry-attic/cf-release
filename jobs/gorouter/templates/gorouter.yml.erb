@@ -33,7 +33,7 @@ loggregatorConfig:
 port: <%= p("router.port") %>
 index: <%= p("router.offset") + spec.index %>
 pidfile: /var/vcap/sys/run/gorouter/gorouter.pid
-go_max_procs: 8
+go_max_procs: <%= p("router.number_of_cpus") %>
 trace_key: <%= p("router.trace_key") %>
 access_log: /var/vcap/sys/log/gorouter/access.log
 
