@@ -72,6 +72,8 @@ properties:
     description: "Location of the UAA."
   login.self_service_links_enabled:
     description: "Enable account creation and password reset links in the login server. Enabled by default."
+  login.signups_enabled:
+      description: "Enable account creation and password reset links in the login server. Enabled by default. (DEPRECATED: Use login.self_service_links_enabled instead)"
   login.invitations_enabled:
     description: "Allows users to send invitations to email addresses outside the system and invite them to create an account. Disabled by default."
   domain:
