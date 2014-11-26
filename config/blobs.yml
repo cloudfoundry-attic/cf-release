@@ -252,16 +252,6 @@ rootfs/lucid64.tar.gz:
   sha: !binary |-
     OWQ4YTgyMjI3YTU1ZjI4YmE2ZWE2ZGE5ZTJjOWQ2NGM2NGJhMzhkNg==
   size: 202427263
-java-buildpack/java-buildpack-offline-v2.5.zip:
-  object_id: 2c6c5479-4adb-44a3-b068-e015dee20d80
-  sha: !binary |-
-    ZTg3NjEzZTM2YzZmN2QzM2I0ZDNkNDQ0NDc5YTBlZDQ2YzRmNmM0Ng==
-  size: 260373206
-java-buildpack/java-buildpack-v2.5.zip:
-  object_id: 2c4ed48f-4154-49af-b98d-199558fc8ea0
-  sha: !binary |-
-    YjRhZGVkNDY5NTg4MzA1YmU2NWM2NDU1MGNjZjAxMTU5MzQyNDk0ZQ==
-  size: 138186
 nodejs-buildpack/nodejs_buildpack-offline-v1.0.4.zip:
   object_id: c38a663c-04b8-4a56-a5aa-217deb3b7b75
   sha: !binary |-
@@ -307,3 +297,13 @@ ruby-buildpack/ruby_buildpack-offline-v1.1.4.zip:
   sha: !binary |-
     MDk4MTM0NWVhNjMyMTYwN2Y1Nzk1OWFlYWU1NDZlODFlNWM3YzQyYw==
   size: 801585761
+java-buildpack/java-buildpack-offline-v2.6.zip:
+  object_id: 9cee25a1-ddef-42c8-8b42-00631eb83414
+  sha: !binary |-
+    NWEyNGI3MGIzNDQ5YmFkNmU1NDY2YTg1ZGJiNDUyMTg3Mzg5ZDlmMg==
+  size: 260620470
+java-buildpack/java-buildpack-v2.6.zip:
+  object_id: 35e3995c-d12d-41ae-b0c3-e817f9837415
+  sha: !binary |-
+    MjM1NDBlOGM4MjBlYjM2NTc1N2Y0M2IxM2ZmNjU1NDY4YzE1YjI1Mg==
+  size: 138301
