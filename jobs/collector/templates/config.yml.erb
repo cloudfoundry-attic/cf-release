@@ -2,7 +2,7 @@
 logging:
   file: /var/vcap/sys/log/collector/collector.log
   syslog: vcap.collector
-  level: info
+  level: <%= properties.collector.logging_level %>
 
 deployment_name: <%= properties.collector.deployment_name %>
 

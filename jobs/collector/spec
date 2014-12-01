@@ -19,6 +19,9 @@ properties:
     description: "Datadog application key"
   collector.deployment_name:
     description: "name for this bosh deployment. All metrics will be tagged with deployment:XXX when sending them to CloudWatch, Datadog and Graphite"
+  collector.logging_level:
+    description: "the logging level for the collector"
+    default: info
   collector.intervals.discover:
     description: "the interval in seconds that the collector attempts to discover components"
     default: 60
