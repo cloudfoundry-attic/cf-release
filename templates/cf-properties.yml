@@ -208,6 +208,8 @@ properties:
 
     saml: ~
 
+    restricted_ips_regex: ~
+
   uaa:
     catalina_opts: (( merge ))
 
@@ -305,3 +307,5 @@ properties:
         override: true
         authorities: uaa.resource
         secret: (( merge ))
+
+    restricted_ips_regex: ~
