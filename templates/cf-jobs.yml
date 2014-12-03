@@ -543,7 +543,7 @@ properties:
     default_health_check_timeout: 60
     advertise_interval_in_seconds: 5
     heartbeat_interval_in_seconds: 10
-    rlimit_core: ~
+    rlimit_core: (( merge || 0 ))
 
   loggregator_endpoint:
     shared_secret: (( merge ))
