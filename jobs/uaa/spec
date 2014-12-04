@@ -16,6 +16,9 @@ templates:
   tomcat.logging.properties: config/tomcat/logging.properties
   tomcat.server.xml.erb: config/tomcat/server.xml
   ldap.crt.erb: config/ldap.crt
+  login.yml.erb: config/login.yml
+  messages.properties.erb: config/messages.properties
+
 
 packages:
   - common
@@ -234,8 +237,121 @@ properties:
     description: "See uaa.ldap.sslCertificateAlias - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
   login.spring_profiles:
     description: "See uaa.spring_profiles - login.spring_profiles is used for backwards compatibility to enable ldap from login config"
-  login.protocol:
-    description: "The protocol that the Login Server uses. http/https"
   uaa.restricted_ips_regex:
     description: "A pipe delimited set of regular expressions of IP addresses that can reach the listening HTTP port of the server."
     default: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
+  login.brand:
+    description: "The brand to use for the reset password emails, available values are oss and pivotal"
+    default: oss
+  login.asset_base_url:
+    description: "Base url for static assets, allows custom styling of the login server.  Use '/resources/pivotal' for Pivotal style."
+  login.uaa_certificate:
+    description: "Certificate to import if the UAA is using self-signed certificates"
+  login.catalina_opts:
+    description:
+  login.notifications.url:
+    description: "The url for the notifications service (configure to use Notifications Service instead of SMTP server)"
+  login.smtp:
+    description: "SMTP server configuration, for password reset emails etc."
+  login.smtp.host:
+    description: "SMTP server host address"
+    default: localhost
+  login.smtp.port:
+    description: "SMTP server port"
+    default: 2525
+  login.smtp.user:
+    description: "SMTP server username"
+  login.smtp.password:
+    description: "SMTP server password"
+  login.links:
+    description: "A hash of home/passwd/signup URLS (see commented examples below)"
+  login.links.home:
+    description: URL for primary console/dashboard for users
+    default: https://console.run.pivotal.io
+  login.links.passwd:
+    description: URL for requesting password reset
+    default: https://console.run.pivotal.io/password_resets/new
+  login.links.signup:
+    description: URL for requesting to signup/register for an account
+    default: https://console.run.pivotal.io/register
+  login.links.network:
+    description: URL for Pivotal Network
+    default: https://network.gopivotal.com/login
+  login.links.signup-network:
+    description: URL for requesting to signup/register for an account at Pivotal Network
+    default: https://network.gopivotal.com/registrations/new
+  login.tiles:
+    description: "A list of links to other services to show on the landing page after logging in and/or signing up, depending on whether login-link and/or signup-link is specified."
+  login.port:
+    default: 8080
+    description:
+  login.uaa_base:
+    description: "Location of the UAA."
+  login.signups_enabled:
+    description: "Enable account creation flow in the login server. Enabled by default."
+  login.invitations_enabled:
+    description: "Allows users to send invitations to email addresses outside the system and invite them to create an account. Disabled by default."
+  login.saml.idpMetadataURL:
+    description: "Deprecated: Use login.saml.providers list objects"
+  login.saml.idp_metadata_file:
+    description: "Deprecated: Use login.saml.providers list objects"
+  login.saml.entityid:
+    description: "The ID to represent this server"
+  login.saml.idpEntityAlias:
+    description: "Deprecated: Use login.saml.providers list objects"
+  login.entity_id:
+    description: "Deprecated: Use login.saml.entityid"
+  login.saml.keystore_name:
+    description: "Name of the SAML login server keystore."
+    default: "samlKeystore.jks"
+  login.saml.keystore_key:
+    description: "Key name of the SAML login server keystore."
+    default: "selfsigned"
+  login.saml.keystore_password:
+    description: "Key password to the SAML login server keystore."
+    default: "password"
+  login.saml.serviceProviderKey:
+    description: "Private key for the service provider certificate."
+  login.saml.serviceProviderKeyPassword:
+    description: "Password to protect the service provider private key."
+  login.saml.serviceProviderCertificate:
+    description: "Service provider certificate."
+  login.saml.assertion_consumer_index:
+    description: "Deprecated: Use login.saml.providers list objects"
+    default: 1
+  login.saml.nameidFormat:
+    description: "Deprecated: Use login.saml.providers list objects"
+    default: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+  login.saml.metadataTrustCheck:
+    description: "Deprecated: Use login.saml.providers list objects"
+    default: true
+  login.saml.providers:
+    description: "Contains a hash of SAML Identity Providers, the key is the IDP Alias, followed by key/value pairs for idpMetadata, nameID, assertionConsumerIndex, metadataTrustCheck, showSamlLoginLink, linkText, iconUrl"
+  login.saml.socket.connectionManagerTimeout:
+    description: "Timeout in milliseconds for connection pooling for SAML metadata HTTP requests"
+  login.saml.socket.soTimeout:
+    description: "Read timeout in milliseconds for SAML metadata HTTP requests"
+  login.analytics.code:
+    description: "Analytics code"
+  login.analytics.domain:
+    description: "Analytics domain"
+  login.messages:
+    description: |
+      A nested or flat hash of messages that the login server uses to display UI message
+      This will be flattened into a java.util.Properties file. The example below will lead
+      to four properties, where the key is the concatenated value delimited by dot, for example scope.tokens.read=message
+      Nested example:
+      messages:
+        scope:
+          tokens:
+            read: View details of your approvals you have granted to this and other applications
+            write: Cancel the approvals like this one that you have granted to this and other applications
+          cloud_controller:
+            read: View details of your applications and services
+            write: Push applications to your account and create and bind services
+      Flat example:
+      messages:
+        scope.tokens.read: View details of your approvals you have granted to this and other applications
+        scope.tokens.write: Cancel the approvals like this one that you have granted to this and other applications
+        scope.cloud_controller.read: View details of your applications and services
+        scope.cloud_controller.write: Push applications to your account and create and bind services

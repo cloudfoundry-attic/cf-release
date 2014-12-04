@@ -35,9 +35,6 @@ properties:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     clients: (( merge ))
 
-  login:
-    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
-
   dea_next:
     deny_networks: (( merge || nil ))
     allow_networks: (( merge || nil ))
