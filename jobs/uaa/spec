@@ -54,6 +54,9 @@ properties:
       - uaa.user
       - approvals.me
       - oauth.approvals
+  uaa.openid.fallbackToAuthcode:
+    description: When using the hybrid flow to get a id_token, suppress the exception if the client doesn't have the implicit grant. Defaults to false.
+    default: true
   uaa.clients:
     description:
   uaa.jwt.signing_key:
