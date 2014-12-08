@@ -122,8 +122,8 @@ login:
     -----END RSA PRIVATE KEY-----
   <% end %>
   serviceProviderKeyPassword: <%= properties.login.saml.serviceProviderKeyPassword ? properties.login.saml.serviceProviderKeyPassword : 'password' %>
-  <% if !properties.login.signups_enabled.nil? %>
-  signupsEnabled: <%= properties.login.signups_enabled %>
+  <% if !properties.login.self_service_links_enabled.nil? || !properties.login.signups_enabled.nil? %>
+  selfServiceLinksEnabled: <%= properties.login.self_service_links_enabled.nil? ? properties.login.signups_enabled : properties.login.self_service_links_enabled %>
   <% end %>
   saml:
     providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.each do |idpAlias,idpProvider| %>
