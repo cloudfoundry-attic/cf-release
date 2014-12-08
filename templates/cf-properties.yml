@@ -99,18 +99,18 @@ properties:
     broker_client_timeout_seconds: 70
 
     resource_pool:
-      resource_directory_key: (( domain "-cc-resources" ))
+      resource_directory_key: (( meta.environment "-cc-resources" ))
       fog_connection: ~
       cdn: ~
 
     packages:
-      app_package_directory_key: (( domain "-cc-packages" ))
+      app_package_directory_key: (( meta.environment "-cc-packages" ))
       fog_connection: ~
       cdn: ~
       max_package_size: 1073741824
 
     droplets:
-      droplet_directory_key: (( domain "-cc-droplets" ))
+      droplet_directory_key: (( meta.environment "-cc-droplets" ))
       fog_connection: ~
       cdn: ~
 
