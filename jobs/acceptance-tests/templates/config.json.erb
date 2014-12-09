@@ -22,12 +22,5 @@
   "skip_ssl_validation": <%= properties.acceptance_tests.skip_ssl_validation %>,
   "artifacts_directory": "/var/vcap/sys/log/acceptance_tests/",
   "syslog_drain_port"  : 1234,
-  "syslog_ip_address"  : "<%= my_ip %>",
-  "suite_name"         : "CF_OPERATOR_TESTS",
-  "user"               : "<%= properties.acceptance_tests.admin_user %>",
-  "password"           : "<%= properties.acceptance_tests.admin_password %>",
-  "org"                : "CF-OPERATOR-ORG",
-  "space"              : "CF-OPERATOR-SPACE",
-  "use_existing_org"   : false,
-  "use_existing_space" : false
+  "syslog_ip_address"  : "<%= my_ip %>"
 }
