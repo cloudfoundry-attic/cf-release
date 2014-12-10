@@ -9,8 +9,10 @@ global
 defaults
     log global
     timeout connect 30000ms
-    timeout client <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
-    timeout server <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
+    <% if p("request_timeout_in_seconds").to_i > 0 %>
+        timeout client <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
+        timeout server <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
+    <% end %>
 
 frontend http-in
     mode http
