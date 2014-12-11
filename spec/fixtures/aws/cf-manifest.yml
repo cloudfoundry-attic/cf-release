@@ -890,7 +890,7 @@ properties:
       login:
         override: true
         scope: openid,oauth.approvals
-        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
+        authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
         redirect-uri: https://login.example.com

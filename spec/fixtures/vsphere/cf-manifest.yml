@@ -889,7 +889,7 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
       login:
-        authorities: oauth.login,notifications.write,critical_notifications.write,emails.write
+        authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
         redirect-uri: http://login.0.0.0.3.xip.io
