@@ -110,7 +110,7 @@ properties:
     description: "The Availability Zone"
     default: "default"
   dea_next.rlimit_core:
-    description: "Maximum size of core file. 0 represents no core dump files can be created, and -1 represents no size limits."
+    description: "Maximum size of core file in bytes. 0 represents no core dump files can be created, and -1 represents no size limits."
     default: 0
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
