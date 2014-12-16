@@ -44,7 +44,8 @@ case $1 in
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/hm9000 \
         fetch_desired \
         --config=/var/vcap/jobs/hm9000/config/hm9000.json \
-        --poll
+        --poll \
+        --debugAddr="0.0.0.0:17004"
 
     ;;
 

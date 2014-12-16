@@ -22,6 +22,7 @@ case $1 in
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/hm9000 \
         analyze \
         --config=/var/vcap/jobs/hm9000/config/hm9000.json \
+        --debugAddr="0.0.0.0:17001" \
         --poll
     ;;
 
