@@ -87,7 +87,7 @@ case "$1" in
                                 WITH LOGIN PASSWORD '<%= role["password"] %>'"
 
       <% if role["permissions"] %>
-        echo "Adding permissions <%= role["permissions"].join(' ') %>  for for role <%= role["name"] %>..."
+        echo "Adding permissions <%= role["permissions"].join(' ') %> for role <%= role["name"] %>..."
         $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
                           -c "ALTER ROLE \"<%= role["name"] %>\" \
                               WITH <%= role["permissions"].join(' ') %>"
