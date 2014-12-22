@@ -38,6 +38,7 @@ skipPackages="-skipPackage="
 skipPackages+=<%= properties.acceptance_tests.include_security_groups ? "" : "security_groups," %>
 skipPackages+=<%= properties.acceptance_tests.include_logging ? "" : "logging," %>
 skipPackages+=<%= properties.acceptance_tests.include_operator ? "" : "operator," %>
+skipPackages+=<%= properties.acceptance_tests.include_internet_dependent ? "" : "internet_dependent," %>
 [[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
 
 skips=<%= properties.acceptance_tests.include_sso ? "" : "-skip=SSO"  %>
