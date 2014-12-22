@@ -252,6 +252,11 @@ rootfs/lucid64.tar.gz:
   sha: !binary |-
     YTE4N2NmMDA1OTU3YTNlYTIwMDBlYzQ0ZDlkZTExN2IwMTA5NWNmYg==
   size: 202756561
+nodejs-buildpack/nodejs_buildpack-offline-v1.0.4.zip:
+  object_id: c38a663c-04b8-4a56-a5aa-217deb3b7b75
+  sha: !binary |-
+    ZjdlMzUzMjJmNWMyMGYxZTNmNzk2NDlmNDQzZDNjMzQzZDlkNjdlMw==
+  size: 432322734
 php-buildpack/php_buildpack-offline-v1.0.2.zip:
   object_id: e4c91c19-a19d-4c50-82b4-616796375957
   sha: !binary |-
@@ -297,11 +302,6 @@ go-buildpack/go_buildpack-offline-v1.1.1.zip:
   sha: !binary |-
     ODAwYzcyYWQ1ZDBhODA3ZjdlMTA4YzM5YTI2ZjQ4NmEwMjlkZTUzMw==
   size: 601475619
-nodejs-buildpack/nodejs_buildpack-offline-v1.1.0.zip:
-  object_id: b4bab69e-ee4c-4800-af14-06750b181789
-  sha: !binary |-
-    ODIxZDUyODU3NWI4ZjEzNzc5OGJkZjNkZTdkNzlhYWMwZTJmZTQ5ZQ==
-  size: 437952369
 python-buildpack/python_buildpack-offline-v1.1.1.zip:
   object_id: 1ad1a5e5-0521-489b-9dc4-8f915889e02a
   sha: !binary |-
