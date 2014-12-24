@@ -583,7 +583,7 @@ properties:
     status:
       user: (( merge ))
       password: (( merge ))
-    secure_cookies: true
+    secure_cookies: false
 
   syslog_daemon_config: ~
 

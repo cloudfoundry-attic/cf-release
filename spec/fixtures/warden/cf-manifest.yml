@@ -2579,7 +2579,7 @@ properties:
     status:
       password: router
       user: router
-    secure_cookies: true
+    secure_cookies: false
   smoke_tests:
     api: api.10.244.0.34.xip.io
     apps_domain: 10.244.0.34.xip.io

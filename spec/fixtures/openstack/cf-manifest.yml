@@ -838,7 +838,7 @@ properties:
     status:
       password: router_password
       user: router_user
-    secure_cookies: false
+    secure_cookies: true
   smoke_tests: null
   ssl:
     skip_cert_verify: false

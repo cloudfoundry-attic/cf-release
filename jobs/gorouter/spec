@@ -31,7 +31,7 @@ properties:
     default: "0.0.0.0:17001"
   router.secure_cookies:
     description: "set secure flag on http cookies"
-    default: true
+    default: false
   nats.user:
     description:
   nats.password:
