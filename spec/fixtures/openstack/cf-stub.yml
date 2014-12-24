@@ -52,6 +52,7 @@ properties:
     status:
       user: router_user
       password: router_password
+    secure_cookies: false
   uaa:
     admin:
       client_secret: admin_secret

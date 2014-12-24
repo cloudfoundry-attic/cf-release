@@ -29,6 +29,9 @@ properties:
   router.debug_addr:
     description: "address at which to serve debug info"
     default: "0.0.0.0:17001"
+  router.secure_cookies:
+    description: "set secure flag on http cookies"
+    default: true
   nats.user:
     description:
   nats.password:
