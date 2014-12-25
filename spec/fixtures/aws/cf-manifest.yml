@@ -20,6 +20,7 @@ jobs:
       zone: z1
     ha_proxy:
       ssl_pem: null
+      disable_http: false
     networks:
       apps: cf1
     router:
@@ -606,6 +607,7 @@ properties:
         provider: AWS
         region: us-east-1
     external_host: api
+    external_protocol: http
     install_buildpacks:
     - name: java_buildpack
       package: buildpack_java

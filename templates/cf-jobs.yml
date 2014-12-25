@@ -139,6 +139,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       ha_proxy:
         ssl_pem: ~
+        disable_http: false
       router:
         servers:
           z1: (( jobs.router_z1.networks.cf1.static_ips ))

@@ -16,6 +16,7 @@ properties:
     diego:
       staging: required
       running: disabled
+    external_protocol: https
     security_group_definitions:
       - name: public_networks
         rules:

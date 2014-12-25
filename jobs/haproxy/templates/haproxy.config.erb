@@ -14,6 +14,7 @@ defaults
         timeout server <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
     <% end %>
 
+<% unless p("ha_proxy.disable_http") %>
 frontend http-in
     mode http
     bind :80
@@ -21,6 +22,7 @@ frontend http-in
     option forwardfor
     reqadd X-Forwarded-Proto:\ http
     default_backend http-routers
+<% end %>
 
 <% if p("ha_proxy.ssl_pem") %>
 frontend https-in

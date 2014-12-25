@@ -13,7 +13,9 @@ properties:
   ha_proxy.ssl_pem:
     description: "SSL certificate (PEM file)"
     default: ~
-
+  ha_proxy.disable_http:
+    description: "Disable port 80 traffic"
+    default: false
   request_timeout_in_seconds:
     description: "Server and client timeouts in seconds"
     default: 900
