@@ -3,6 +3,11 @@ check process uaa
   start program "/var/vcap/jobs/uaa/bin/uaa_ctl start"
   stop program "/var/vcap/jobs/uaa/bin/uaa_ctl stop"
   group vcap
+  if failed
+    port <%= p('uaa.port') %>
+    protocol http
+    request "/healthz"
+  then exec "/var/vcap/jobs/uaa/bin/uaa_ctl stop"
 
 check process uaa_cf-registrar
   with pidfile /var/vcap/sys/run/uaa/cf-registrar.pid
