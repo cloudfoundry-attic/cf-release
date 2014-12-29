@@ -166,7 +166,7 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(5) ))
 
-  - name: loggregator_z1
+  - name: doppler_z1
     instances: 1
     networks:
       - name: cf1
@@ -206,7 +206,7 @@ jobs:
       - name: cf2
         static_ips: []
 
-  - name: loggregator_z2
+  - name: doppler_z2
     instances: 0
     networks:
      - name: cf2

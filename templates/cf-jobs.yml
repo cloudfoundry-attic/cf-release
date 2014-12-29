@@ -114,7 +114,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
-  loggregator_templates:
+  doppler_templates:
   - name: doppler
     release: (( meta.release.name ))
 
@@ -394,8 +394,8 @@ jobs:
       metron_agent:
         zone: z2
 
-  - name: loggregator_z1
-    templates: (( merge || meta.loggregator_templates ))
+  - name: doppler_z1
+    templates: (( merge || meta.doppler_templates ))
     instances: 2
     resource_pool: medium_z1
     networks:
@@ -405,8 +405,8 @@ jobs:
       doppler:
         zone: z1
 
-  - name: loggregator_z2
-    templates: (( merge || meta.loggregator_templates ))
+  - name: doppler_z2
+    templates: (( merge || meta.doppler_templates ))
     instances: 2
     resource_pool: medium_z2
     networks:
