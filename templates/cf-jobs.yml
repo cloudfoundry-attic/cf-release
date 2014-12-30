@@ -557,11 +557,6 @@ properties:
 
   logger_endpoint: ~
 
-  loggregator:
-    maxRetainedLogMessages: 100
-    debug: (( merge || false ))
-    blacklisted_syslog_ranges: ~
-
   doppler:
     maxRetainedLogMessages: 100
     debug: (( merge || false ))

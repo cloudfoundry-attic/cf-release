@@ -29,7 +29,7 @@ properties:
   logger_endpoint:
     port: 4443
 
-  loggregator:
+  doppler:
     blacklisted_syslog_ranges: (( merge || [] ))
 
   cc: (( merge ))

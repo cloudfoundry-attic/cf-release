@@ -786,10 +786,6 @@ properties:
       password: nats_password
       username: nats_user
   logger_endpoint: null
-  loggregator:
-    blacklisted_syslog_ranges: null
-    debug: false
-    maxRetainedLogMessages: 100
   loggregator_endpoint:
     shared_secret: loggregator_endpoint_secret
   login:
