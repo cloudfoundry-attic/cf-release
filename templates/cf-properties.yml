@@ -261,14 +261,6 @@ properties:
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( properties.login.protocol "://login." domain ))
-      app-direct:
-        override: true
-        authorities: app_direct_invoice.write
-        secret: (( merge ))
-        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
-        access-token-validity: 1209600
-        refresh-token-validity: 1209600
-        redirect-uri: (( properties.login.links.home ))
       support-services:
         scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
         secret: (( merge ))
