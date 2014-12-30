@@ -409,7 +409,7 @@ jobs:
   update:
     max_in_flight: 1
 - instances: 2
-  name: loggregator_z1
+  name: doppler_z1
   networks:
   - name: cf1
   properties:
@@ -422,7 +422,7 @@ jobs:
   - name: doppler
     release: cf
 - instances: 2
-  name: loggregator_z2
+  name: doppler_z2
   networks:
   - name: cf2
   properties:
