@@ -3,10 +3,9 @@ check process uaa
   start program "/var/vcap/jobs/uaa/bin/uaa_ctl start"
   stop program "/var/vcap/jobs/uaa/bin/uaa_ctl stop"
   group vcap
-  if failed
-    port <%= p('uaa.port') %>
-    protocol http
+  if failed port <%= p('uaa.port') %> protocol http
     request "/healthz"
+    with timeout 60 seconds for 3 cycles
   then exec "/var/vcap/jobs/uaa/bin/uaa_ctl stop"
 
 check process uaa_cf-registrar
