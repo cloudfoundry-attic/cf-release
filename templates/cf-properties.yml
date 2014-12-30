@@ -261,15 +261,6 @@ properties:
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( properties.login.protocol "://login." domain ))
-      developer_console:
-        override: true
-        scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
-        authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
-        secret: (( merge ))
-        authorized-grant-types: authorization_code,client_credentials
-        access-token-validity: 1209600
-        refresh-token-validity: 1209600
-        redirect-uri: (( "https://console." domain "/oauth/callback" ))
       app-direct:
         override: true
         authorities: app_direct_invoice.write
