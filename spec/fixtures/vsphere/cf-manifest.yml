@@ -875,21 +875,8 @@ properties:
       client_secret: cc_client_secret
     clients:
       app-direct:
-        access-token-validity: 1209600
-        authorities: app_direct_invoice.write
-        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
-        override: true
-        redirect-uri: https://console.0.0.0.3.xip.io
-        refresh-token-validity: 1209600
         secret: app-direct_secret
       developer_console:
-        access-token-validity: 1209600
-        authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
-        authorized-grant-types: authorization_code,client_credentials
-        override: true
-        redirect-uri: https://console.0.0.0.3.xip.io/oauth/callback
-        refresh-token-validity: 1209600
-        scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: developer_console_secret
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
@@ -910,13 +897,6 @@ properties:
         redirect-uri: http://servicesmgmt.0.0.0.3.xip.io/auth/cloudfoundry/callback
         scope: openid,cloud_controller.read,cloud_controller.write
         secret: service_mgmt_secret
-      space-mail:
-        access-token-validity: 1209600
-        authorities: scim.read,scim.write,cloud_controller.admin
-        authorized-grant-types: client_credentials
-        override: true
-        refresh-token-validity: 1209600
-        secret: space-mail_secret
       support-services:
         access-token-validity: 1209600
         authorities: portal.users.read

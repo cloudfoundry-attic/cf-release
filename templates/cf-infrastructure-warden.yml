@@ -114,13 +114,17 @@ properties:
         redirect-uri: (( "https://console." domain "/oauth/callback" ))
         secret: console-secret
       app-direct:
+        override: true
+        authorities: app_direct_invoice.write
+        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
+        access-token-validity: 1209600
+        refresh-token-validity: 1209600
+        redirect-uri: (( properties.login/links.home ))
         secret: app-direct-secret
       support-services:
         secret: support-services-secret
       servicesmgmt:
         secret: servicesmgmt-secret
-      space-mail:
-        secret: space-mail-secret
       notifications:
         secret: notification-secret
       doppler:
@@ -133,6 +137,8 @@ properties:
   login:
     catalina_opts: -Xmx96m -XX:MaxPermSize=64m
     protocol: http
+    links:
+      home: (( "https://console." domain ))
     uaa_certificate: |
           -----BEGIN CERTIFICATE-----
           MIIDETCCAfmgAwIBAgIJANZuykf1uh3LMA0GCSqGSIb3DQEBBQUAMB8xHTAbBgNV

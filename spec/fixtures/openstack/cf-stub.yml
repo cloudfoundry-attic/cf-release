@@ -72,8 +72,6 @@ properties:
         secret: login_client_secret
       servicesmgmt:
         secret: service_mgmt_secret
-      space-mail:
-        secret: space-mail_secret
       support-services:
         secret: support-services_secret
       doppler:

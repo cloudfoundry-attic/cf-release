@@ -45,6 +45,25 @@ properties:
         - protocol: all
           destination: 10.244.3.0/24
     default_running_security_groups: ["public_networks", "dns", "services"]
+  uaa:
+    clients:
+      app-direct:
+        access-token-validity: 1209600
+        authorities: app_direct_invoice.write
+        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
+        override: true
+        redirect-uri: https://console.10.244.0.34.xip.io
+        refresh-token-validity: 1209600
+        secret: app-direct-secret
+      developer_console:
+        access-token-validity: 1209600
+        authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
+        authorized-grant-types: authorization_code,client_credentials
+        override: true
+        redirect-uri: https://console.10.244.0.34.xip.io/oauth/callback
+        refresh-token-validity: 1209600
+        scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
+        secret: console-secret
 
 # code_snippet cf-stub-warden end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

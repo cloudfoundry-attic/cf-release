@@ -2662,13 +2662,6 @@ properties:
         redirect-uri: http://servicesmgmt.10.244.0.34.xip.io/auth/cloudfoundry/callback
         scope: openid,cloud_controller.read,cloud_controller.write
         secret: servicesmgmt-secret
-      space-mail:
-        access-token-validity: 1209600
-        authorities: scim.read,scim.write,cloud_controller.admin
-        authorized-grant-types: client_credentials
-        override: true
-        refresh-token-validity: 1209600
-        secret: space-mail-secret
       support-services:
         access-token-validity: 1209600
         authorities: portal.users.read
