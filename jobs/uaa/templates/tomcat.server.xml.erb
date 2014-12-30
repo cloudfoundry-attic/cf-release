@@ -8,7 +8,7 @@
 
   <Service name="Catalina">
 
-    <Connector class="org.apache.coyote.http11.Http11NioProtocol" port="<%= (properties.uaa && properties.uaa.port) ? properties.uaa.port : 8080 %>" protocol="HTTP/1.1" connectionTimeout="20000"/>
+    <Connector class="org.apache.coyote.http11.Http11NioProtocol" port="<%= p("uaa.port") %>" protocol="HTTP/1.1" connectionTimeout="20000"/>
     <Engine name="Catalina" defaultHost="localhost">
 
       <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="false">

@@ -66,7 +66,8 @@ properties:
   uaa.jwt.verification_key:
     description:
   uaa.port:
-    description:
+    description: Port that uaa will accept connections on
+    default: 8080
   uaa.scim.user:
     description:
   uaa.scim.user.override:

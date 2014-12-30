@@ -13,7 +13,7 @@ uri:
   - uaa.<%= properties.domain %>
 host: <%= spec.networks.send(properties.networks.apps).ip %>
 index: <%= spec.index %>
-port: <%= (properties.uaa && properties.uaa.port) ? properties.uaa.port : 8080 %>
+port: <%= p("uaa.port") %>
 tags:
   component: uaa
 varz:
