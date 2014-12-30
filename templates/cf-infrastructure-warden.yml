@@ -119,7 +119,7 @@ properties:
         authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
         access-token-validity: 1209600
         refresh-token-validity: 1209600
-        redirect-uri: (( properties.login/links.home ))
+        redirect-uri: (( properties.login.links.home ))
         secret: app-direct-secret
       support-services:
         secret: support-services-secret
