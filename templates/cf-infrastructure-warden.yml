@@ -180,8 +180,8 @@ properties:
   acceptance_tests:
     api:  (( "api." domain ))
     apps_domain: (( domain ))
-    admin_user: admin
-    admin_password: admin
+    user: admin
+    password: admin
     skip_ssl_validation: true
     nodes: 1
 

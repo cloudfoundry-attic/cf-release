@@ -12,9 +12,9 @@ properties:
     description: The Elastic Runtime API endpoint URL
   acceptance_tests.apps_domain:
     description: The Elastic Runtime Appliction Domain
-  acceptance_tests.admin_user:
+  acceptance_tests.user:
     description: The Elastic Runtime API admin user
-  acceptance_tests.admin_password:
+  acceptance_tests.password:
     description: The Elastic Runtime API admin user's password
   acceptance_tests.skip_ssl_validation:
     default: false
