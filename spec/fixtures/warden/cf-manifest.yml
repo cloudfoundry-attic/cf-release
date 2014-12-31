@@ -2257,8 +2257,8 @@ networks:
     static: []
 properties:
   acceptance_tests:
-    admin_password: admin
-    admin_user: admin
+    password: admin
+    user: admin
     api: api.10.244.0.34.xip.io
     apps_domain: 10.244.0.34.xip.io
     nodes: 1
