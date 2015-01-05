@@ -281,6 +281,8 @@ jobs:
     instances: 1
     resource_pool: large_z1
     persistent_disk: 0
+    update:
+      max_in_flight: 1
     networks:
       - name: cf1
     properties:
@@ -294,6 +296,8 @@ jobs:
     instances: 1
     resource_pool: large_z2
     persistent_disk: 0
+    update:
+      max_in_flight: 1
     networks:
       - name: cf2
     properties:

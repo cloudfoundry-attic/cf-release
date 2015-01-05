@@ -285,6 +285,8 @@ jobs:
   - name: cloud_controller_worker
   - name: metron_agent
   - name: nfs_mounter
+  update:
+    max_in_flight: 1
 - instances: 0
   name: api_z2
   networks:
@@ -309,6 +311,8 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  update:
+    max_in_flight: 1
 - instances: 0
   name: clock_global
   networks:
