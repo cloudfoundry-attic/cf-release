@@ -37,6 +37,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: nats_z1
   networks:
@@ -56,6 +57,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: nats_z2
   networks:
@@ -75,6 +77,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 2
   name: etcd_z1
   networks:
@@ -96,6 +99,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: etcd_z2
   networks:
@@ -116,6 +120,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: stats_z1
   networks:
@@ -131,6 +136,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: nfs_z1
   networks:
@@ -147,6 +153,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: postgres_z1
   networks:
@@ -163,6 +170,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: uaa_z1
   networks:
@@ -178,6 +186,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: uaa_z2
   networks:
@@ -193,6 +202,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: login_z1
   networks:
@@ -207,6 +217,7 @@ jobs:
   - name: login
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: login_z2
   networks:
@@ -222,6 +233,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: api_z1
   networks:
@@ -246,6 +258,7 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  update: {}
 - instances: 1
   name: api_z2
   networks:
@@ -270,6 +283,7 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  update: {}
 - instances: 1
   name: clock_global
   networks:
@@ -286,6 +300,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: api_worker_z1
   networks:
@@ -310,6 +325,7 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  update: {}
 - instances: 1
   name: api_worker_z2
   networks:
@@ -334,6 +350,7 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  update: {}
 - instances: 1
   name: hm9000_z1
   networks:
@@ -349,6 +366,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: hm9000_z2
   networks:
@@ -364,6 +382,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: runner_z1
   networks:
@@ -421,6 +440,7 @@ jobs:
   templates:
   - name: doppler
     release: cf
+  update: {}
 - instances: 2
   name: loggregator_z2
   networks:
@@ -434,6 +454,7 @@ jobs:
   templates:
   - name: doppler
     release: cf
+  update: {}
 - instances: 1
   name: loggregator_trafficcontroller_z1
   networks:
@@ -451,6 +472,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: loggregator_trafficcontroller_z2
   networks:
@@ -468,6 +490,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: router_z1
   networks:
@@ -485,6 +508,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   name: router_z2
   networks:
@@ -502,6 +526,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  update: {}
 - instances: 1
   lifecycle: errand
   name: acceptance_tests
