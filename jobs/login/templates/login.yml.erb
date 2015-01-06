@@ -126,7 +126,7 @@ login:
   selfServiceLinksEnabled: <%= properties.login.self_service_links_enabled.nil? ? properties.login.signups_enabled : properties.login.self_service_links_enabled %>
   <% end %>
   saml:
-    providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.each do |idpAlias,idpProvider| %>
+    providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.reject {|k,_| k.to_s == ''}.each do |idpAlias,idpProvider| %>
       <%= idpAlias %>: <% idpProvider.marshal_dump.each do |key,value|%>
         <%= key %>: <%= value.is_a?(String) && value.match("\n") ? "| \n          " + value.gsub("\n", "\n          ") + "" : value %><% end %><% end %>
     <% end %><% if properties.login.saml.idpEntityAlias && (properties.login.saml.idpMetadataURL || properties.login.saml.idp_metadata_file) %>
