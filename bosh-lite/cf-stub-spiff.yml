@@ -33,9 +33,11 @@ properties:
       - name: services
         rules:
         - protocol: all
-          destination: 10.244.0.34
-        - protocol: all
           destination: 10.244.1.0/24
         - protocol: all
           destination: 10.244.3.0/24
-    default_running_security_groups: ["public_networks", "dns", "services"]
+      - name: load_balancer
+        rules:
+        - procotol: all
+          destination: 10.244.0.34
+    default_running_security_groups: ["public_networks", "dns", "services", "load_balancer"]
