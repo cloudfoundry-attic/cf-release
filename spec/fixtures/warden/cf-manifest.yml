@@ -2856,7 +2856,6 @@ resource_pools:
     name: random
   name: small_errand
   network: cf1
-  size: 2
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
@@ -2864,7 +2863,6 @@ resource_pools:
     name: random
   name: xlarge_errand
   network: cf1
-  size: 0
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest

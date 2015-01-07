@@ -1072,7 +1072,6 @@ resource_pools:
     instance_type: m1.small
   name: small_errand
   network: cf1
-  size: 2
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
@@ -1081,7 +1080,6 @@ resource_pools:
     instance_type: c3.xlarge
   name: xlarge_errand
   network: cf1
-  size: 0
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest

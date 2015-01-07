@@ -99,12 +99,10 @@ resource_pools:
 
   - name: small_errand
     network: cf1
-    size: (( auto ))
     stemcell: (( meta.stemcell ))
     cloud_properties: (( merge || resource_pools.small_z1.cloud_properties ))
 
   - name: xlarge_errand
     network: cf1
-    size: (( auto ))
     stemcell: (( meta.stemcell ))
     cloud_properties: (( merge || resource_pools.large_z1.cloud_properties ))
