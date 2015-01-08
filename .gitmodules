@@ -87,7 +87,7 @@
 	url = https://github.com/coreos/etcd.git
 [submodule "src/smoke-tests"]
 	path = src/smoke-tests
-	url = https://github.com/cloudfoundry-incubator/cf-smoke-tests
+	url = https://github.com/cloudfoundry/cf-smoke-tests
 [submodule "packages/ruby-2.1.3"]
 	path = packages/ruby-2.1.3
 	url = https://github.com/cloudfoundry/ruby-package.git

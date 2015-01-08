@@ -1,6 +1,6 @@
 set -e -x
 
-REPO_DIR=${BOSH_INSTALL_TARGET}/src/github.com/cloudfoundry-incubator/cf-smoke-tests
+REPO_DIR=${BOSH_INSTALL_TARGET}/src/github.com/cloudfoundry/cf-smoke-tests
 
 mkdir -p ${REPO_DIR}
 
