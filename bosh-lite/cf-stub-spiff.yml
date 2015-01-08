@@ -38,6 +38,6 @@ properties:
           destination: 10.244.3.0/24
       - name: load_balancer
         rules:
-        - procotol: all
+        - protocol: all
           destination: 10.244.0.34
     default_running_security_groups: ["public_networks", "dns", "services", "load_balancer"]
