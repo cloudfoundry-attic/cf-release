@@ -76,6 +76,8 @@ properties:
         secret: support-services_secret
       doppler:
         secret: doppler_secret
+      cloud_controller_username_lookup:
+        secret: cloud_controller_username_lookup_secret
     jwt:
       verification_key: vk
       signing_key: sk

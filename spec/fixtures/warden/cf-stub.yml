@@ -64,6 +64,8 @@ properties:
         refresh-token-validity: 1209600
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
+      cloud_controller_username_lookup:
+        secret: cloud_controller_username_lookup_secret
 
 # code_snippet cf-stub-warden end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

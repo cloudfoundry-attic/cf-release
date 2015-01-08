@@ -129,6 +129,8 @@ properties:
         secret: notification-secret
       doppler:
         secret: doppler-secret
+      cloud_controller_username_lookup:
+        secret: cloud-controller-username-lookup-secret
     scim:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,notification_templates.admin

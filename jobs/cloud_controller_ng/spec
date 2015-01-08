@@ -448,6 +448,11 @@ properties:
     description: "Used to grant scope for SSO clients for service brokers"
     default: "openid,cloud_controller_service_permissions.read"
 
+  uaa.clients.cloud_controller_username_lookup.client:
+    description: "Used for fetching usernames from UAA."
+  uaa.clients.cloud_controller_username_lookup.secret:
+    description: "Used for fetching usernames from UAA."
+
   cc.install_buildpacks:
     description: "Set of buildpacks to install during deploy"
   cc.app_bits_upload_grace_period_in_seconds:
