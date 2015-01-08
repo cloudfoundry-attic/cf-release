@@ -17,6 +17,8 @@ export CF_COLOR=false
 export CONFIG=/var/vcap/jobs/acceptance-tests/bin/config.json
 
 mkdir -p /var/vcap/sys/log/acceptance_tests
+rm -rf /var/vcap/sys/log/acceptance_tests/*
+
 cd /var/vcap/packages/acceptance-tests/src/github.com/cloudfoundry/cf-acceptance-tests
 
 echo '################################################################################################################'
