@@ -62,7 +62,7 @@ properties:
       - notification_preferences.read
       - notification_preferences.write
   uaa.openid.fallbackToAuthcode:
-    description: When using the hybrid flow to get a id_token, suppress the exception if the client doesn't have the implicit grant. Defaults to false.
+    description: When using the hybrid flow to get a id_token, suppress the exception if the client doesn't have the implicit grant.
     default: true
   uaa.clients:
     description:
