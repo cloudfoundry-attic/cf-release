@@ -1,7 +1,7 @@
 set -e -x
 
 echo "Extracting pcre..."
-tar xzvf nginx/pcre-8.34.tar.gz
+tar xzvf nginx/pcre-8.36.tar.gz
 
 echo "Extracting headers-more module..."
 tar xzvf nginx/headers-more-v0.25.tgz
@@ -15,13 +15,13 @@ pushd nginx-upload-module-2.2
 popd
 
 echo "Extracting nginx..."
-tar xzvf nginx/nginx-1.4.5.tar.gz
+tar xzvf nginx/nginx-1.6.2.tar.gz
 
 echo "Building nginx..."
-pushd nginx-1.4.5
+pushd nginx-1.6.2
   ./configure \
     --prefix=${BOSH_INSTALL_TARGET} \
-    --with-pcre=../pcre-8.34 \
+    --with-pcre=../pcre-8.36 \
     --add-module=../headers-more-nginx-module-0.25 \
     --add-module=../nginx-upload-module-2.2 \
     --with-http_stub_status_module
