@@ -119,6 +119,10 @@ meta:
   loggregator_templates:
   - name: doppler
     release: (( meta.release.name ))
+  - name: syslog_drain_binder
+    release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
 
   loggregator_trafficcontroller_templates:
   - name: loggregator_trafficcontroller
@@ -426,6 +430,8 @@ jobs:
       networks: (( meta.networks.z1 ))
       doppler:
         zone: z1
+      metron_agent:
+        zone: z1
     update: (( merge || empty_hash ))
 
   - name: loggregator_z2
@@ -437,6 +443,8 @@ jobs:
     properties:
       networks: (( meta.networks.z2 ))
       doppler:
+        zone: z2
+      metron_agent:
         zone: z2
     update: (( merge || empty_hash ))
 
