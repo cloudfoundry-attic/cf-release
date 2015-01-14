@@ -55,7 +55,7 @@ oauth:
 <% if !properties.uaa.clients || !properties.uaa.clients.admin %>
     admin:
       authorized-grant-types: client_credentials
-      authorities: clients.read,clients.write,clients.secret,uaa.admin,scim.read,password.write
+      authorities: clients.read,clients.write,clients.secret,uaa.admin,scim.read,scim.write,password.write
       id: admin
       secret: "<%= properties.uaa.admin.client_secret %>"
 <% end %>
