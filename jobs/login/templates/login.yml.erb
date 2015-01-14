@@ -127,9 +127,9 @@ login:
   <% end %>
   saml:
     providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.reject {|k,_| k.to_s == ''}.each do |idpAlias,idpProvider| %>
-      <%= idpAlias %>: <% idpProvider.marshal_dump.each do |key,value|%>
-        <%= key %>: <%= value.is_a?(String) && value.match("\n") ? "| \n          " + value.gsub("\n", "\n          ") + "" : value %><% end %><% end %>
-    <% end %><% if properties.login.saml.idpEntityAlias && (properties.login.saml.idpMetadataURL || properties.login.saml.idp_metadata_file) %>
+      <%= idpAlias %>: <% idpProvider.marshal_dump.reject {|k,_| ["idpMetadata", "idpMetadataXML", "idpMetadataURL"].include?(k.to_s)}.each do |key,value|%>
+        <%= key %>: <%= value.is_a?(String) && value.match("\n") ? "| \n          " + value.gsub("\n", "\n          ") + "" : value %><% end %>
+        idpMetadata: <%= (idpProvider.idpMetadataURL || idpProvider.idpMetadataXML || idpProvider.idpMetadata).inspect %><% end %><% end %><% if properties.login.saml.idpEntityAlias && (properties.login.saml.idpMetadataURL || properties.login.saml.idp_metadata_file) %>
       <%= properties.login.saml.idpEntityAlias %>: 
         idpMetadata: <%= properties.login.saml.idpMetadataURL ? properties.login.saml.idpMetadataURL : "/var/vcap/jobs/login/" + properties.login.saml.idp_metadata_file %>
         assertionConsumerIndex: <%= (properties.login && properties.login.saml.assertionConsumerIndex) ? properties.login.saml.assertionConsumerIndex : 1 %>
