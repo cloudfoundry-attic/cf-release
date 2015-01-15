@@ -20,6 +20,7 @@ jobs:
       zone: z1
     ha_proxy:
       disable_http: false
+      ssl_ciphers: null
       ssl_pem: |
           -----BEGIN CERTIFICATE-----
           MIIDETCCAfmgAwIBAgIJANZuykf1uh3LMA0GCSqGSIb3DQEBBQUAMB8xHTAbBgNV
