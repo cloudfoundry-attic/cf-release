@@ -25,7 +25,7 @@ frontend http-in
 <% if p("ha_proxy.ssl_pem") %>
 frontend https-in
     mode http
-    bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3
+    bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3 ciphers <%= p("ha_proxy.ssl_ciphers") %>
     option httplog
     option forwardfor
     option http-server-close
@@ -34,7 +34,7 @@ frontend https-in
 
 frontend ssl-in
     mode tcp
-    bind :4443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3
+    bind :4443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3 ciphers <%= p("ha_proxy.ssl_ciphers") %>
     default_backend tcp-routers
 <% end %>
 

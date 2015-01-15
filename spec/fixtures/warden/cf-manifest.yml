@@ -19,6 +19,7 @@ jobs:
     metron_agent:
       zone: z1
     ha_proxy:
+      ssl_ciphers: null
       ssl_pem: '-----BEGIN CERTIFICATE-----
 
         MIICLzCCAZgCCQCSoIG3LoeSMTANBgkqhkiG9w0BAQUFADBcMQswCQYDVQQGEwJV
