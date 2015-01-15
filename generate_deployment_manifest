@@ -19,4 +19,4 @@ spiff merge \
   $templates/cf-jobs.yml \
   $templates/cf-properties.yml \
   $templates/cf-infrastructure-${infrastructure}.yml \
-  $*
+  "$@"
