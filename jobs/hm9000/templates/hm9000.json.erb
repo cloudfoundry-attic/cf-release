@@ -16,6 +16,8 @@
     "metrics_server_password": "",
 
     "log_level": "INFO",
+    "log_directory": "/var/vcap/sys/log/hm9000",
+
     "api_server_url": "<%= p("hm9000.url", "https://hm9000.#{p("domain")}") %>",
     "api_server_address": "<%= spec.networks.send(properties.networks.apps).ip %>",
     "api_server_port": 5155,

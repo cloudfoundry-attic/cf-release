@@ -22,10 +22,7 @@ case $1 in
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/hm9000 \
         analyze \
         --config=/var/vcap/jobs/hm9000/config/hm9000.json \
-        --poll \
-         1>>$LOG_DIR/hm9000_analyzer.stdout.log \
-         2>>$LOG_DIR/hm9000_analyzer.stderr.log
-
+        --poll
     ;;
 
   stop)

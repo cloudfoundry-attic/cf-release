@@ -21,9 +21,7 @@ case $1 in
 
     exec chpst -u vcap:vcap /var/vcap/packages/hm9000/hm9000 \
         listen \
-        --config=/var/vcap/jobs/hm9000/config/hm9000.json \
-         1>>$LOG_DIR/hm9000_listener.stdout.log \
-         2>>$LOG_DIR/hm9000_listener.stderr.log
+        --config=/var/vcap/jobs/hm9000/config/hm9000.json
 
     ;;
 
