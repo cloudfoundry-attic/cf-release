@@ -1,37 +1,36 @@
 ---
 name: cf
 director_uuid: REPLACE_WITH_DIRECTOR_ID
+
 releases:
-- name: cf
-  version: latest
+- {name: cf, version: latest}
+
 networks:
 - name: cf_private
   type: manual
   subnets:
   - range: 10.0.16.0/24
     gateway: 10.0.16.1
-    dns:
-    - 10.0.0.2
-    reserved:
-    - 10.0.16.2 - 10.0.16.3
-    static:
-    - 10.0.16.100 - 10.0.16.105
+    dns: [10.0.0.2]
+    reserved: ["10.0.16.2 - 10.0.16.3"]
+    static: ["10.0.16.100 - 10.0.16.105"]
     cloud_properties:
       subnet: REPLACE_WITH_PRIVATE_SUBNET_ID
+
 - name: cf_public
   type: manual
   subnets:
   - range: 10.0.0.0/24
     gateway: 10.0.0.1
-    dns:
-    - 10.0.0.2
-    reserved:
-    - 10.0.0.2 - 10.0.0.10
+    dns: [10.0.0.2]
+    reserved: ["10.0.0.2 - 10.0.0.10"]
     cloud_properties:
       subnet: REPLACE_WITH_PUBLIC_SUBNET_ID
+
 - name: elastic
   type: vip
   cloud_properties: {}
+
 resource_pools:
 - name: small_z1
   network: cf_private
@@ -41,6 +40,7 @@ resource_pools:
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
     instance_type: m1.small
+
 compilation:
   workers: 6
   network: cf_private
@@ -48,268 +48,145 @@ compilation:
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
     instance_type: c3.large
+
 update:
   canaries: 1
   max_in_flight: 1
   serial: false
   canary_watch_time: 30000-600000
   update_watch_time: 5000-600000
+
 jobs:
 - name: nats_z1
   instances: 1
-  networks:
-  - name: cf_private
-    static_ips:
-    - 10.0.16.103
-  properties:
-    networks:
-      apps: cf_private
   resource_pool: small_z1
   templates:
-  - name: nats
-    release: cf
-  - name: nats_stream_forwarder
-    release: cf
-  - name: metron_agent
-    release: cf
-- name: etcd_z1
-  instances: 1
+  - {name: nats, release: cf}
+  - {name: nats_stream_forwarder, release: cf}
+  - {name: metron_agent, release: cf}
   networks:
   - name: cf_private
-    static_ips:
-    - 10.0.16.104
+    static_ips: [10.0.16.103]
+
+- name: etcd_z1
+  instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: etcd, release: cf}
+  - {name: etcd_metrics_server, release: cf}
+  - {name: metron_agent, release: cf}
+  networks:
+  - name: cf_private
+    static_ips: [10.0.16.104]
   properties:
     etcd_metrics_server:
       nats:
-        machines:
-        - 10.0.16.103
+        machines: [10.0.16.103]
         password: PASSWORD
         username: nats
-    networks:
-      apps: cf_private
-  resource_pool: small_z1
-  templates:
-  - name: etcd
-    release: cf
-  - name: etcd_metrics_server
-    release: cf
-  - name: metron_agent
-    release: cf
+
 - name: nfs_z1
   instances: 1
-  networks:
-  - name: cf_private
-    static_ips:
-    - 10.0.16.105
   persistent_disk: 102400
   resource_pool: small_z1
   templates:
-  - name: debian_nfs_server
-    release: cf
-  - name: metron_agent
-    release: cf
-- name: postgres_z1
-  instances: 1
+  - {name: debian_nfs_server, release: cf}
+  - {name: metron_agent, release: cf}
   networks:
   - name: cf_private
-    static_ips:
-    - 10.0.16.101
+    static_ips: [10.0.16.105]
+
+- name: postgres_z1
+  instances: 1
   persistent_disk: 1024
   resource_pool: small_z1
   templates:
-  - name: postgres
-    release: cf
-  - name: metron_agent
-    release: cf
+  - {name: postgres, release: cf}
+  - {name: metron_agent, release: cf}
+  networks:
+  - name: cf_private
+    static_ips: [10.0.16.101]
   update:
     serial: true
+
 - name: api_z1
   instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: cloud_controller_ng, release: cf}
+  - {name: cloud_controller_worker, release: cf}
+  - {name: cloud_controller_clock, release: cf}
+  - {name: metron_agent, release: cf}
+  - {name: nfs_mounter, release: cf}
   networks:
   - name: cf_private
   properties:
-    networks:
-      apps: cf_private
     nfs_server:
       address: 10.0.16.105
-      allow_from_entries:
-      - 10.0.16.0/24
-      share:
-  resource_pool: small_z1
-  templates:
-  - name: cloud_controller_ng
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: nfs_mounter
-    release: cf
-- name: api_worker_z1
-  instances: 1
-  networks:
-  - name: cf_private
-  properties:
-    networks:
-      apps: cf_private
-    nfs_server:
-      address: 10.0.16.105
-      allow_from_entries:
-      - 10.0.16.0/24
-      share:
-  resource_pool: small_z1
-  templates:
-  - name: cloud_controller_worker
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: nfs_mounter
-    release: cf
-- name: clock_global
-  instances: 1
-  networks:
-  - name: cf_private
-  properties:
-    networks:
-      apps: cf_private
-  resource_pool: small_z1
-  templates:
-  - name: cloud_controller_clock
-    release: cf
-  - name: metron_agent
-    release: cf
+      allow_from_entries: [10.0.16.0/24]
+
 - name: ha_proxy_z1
   instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: haproxy, release: cf}
+  - {name: metron_agent, release: cf}
   networks:
   - name: elastic
-    static_ips:
-    - REPLACE_WITH_ELASTIC_IP
+    static_ips: [REPLACE_WITH_ELASTIC_IP]
   - name: cf_public
     default: [gateway, dns]
   properties:
     ha_proxy:
-      ssl_pem: |
-        REPLACE_WITH_SSL_CERT_AND_KEY
-    networks:
-      apps: cf_private
+      ssl_pem: REPLACE_WITH_SSL_CERT_AND_KEY
     router:
       servers:
-        z1:
-        - 10.0.16.102
-  resource_pool: small_z1
-  templates:
-  - name: haproxy
-    release: cf
-  - name: metron_agent
-    release: cf
+        z1: [10.0.16.102]
+
 - name: hm9000_z1
   instances: 1
-  networks:
-  - name: cf_private
-  properties:
-    networks:
-      apps: cf_private
   resource_pool: small_z1
   templates:
-  - name: hm9000
-    release: cf
-  - name: metron_agent
-    release: cf
+  - {name: hm9000, release: cf}
+  - {name: metron_agent, release: cf}
+  networks:
+  - name: cf_private
+
 - name: loggregator_z1
   instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: doppler, release: cf}
   networks:
   - name: cf_private
   properties:
-    doppler:
-      zone: z1
+    doppler: {zone: z1}
     doppler_endpoint:
       shared_secret: PASSWORD
-  resource_pool: small_z1
-  templates:
-  - name: doppler
-    release: cf
+
 - name: loggregator_trafficcontroller_z1
   instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: loggregator_trafficcontroller, release: cf}
+  - {name: metron_agent, release: cf}
   networks:
   - name: cf_private
   properties:
-    traffic_controller:
-      zone: z1
-  resource_pool: small_z1
-  templates:
-  - name: loggregator_trafficcontroller
-    release: cf
-  - name: metron_agent
-    release: cf
+    traffic_controller: {zone: z1}
+
 - name: login_z1
   instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: login, release: cf}
+  - {name: uaa, release: cf}
+  - {name: metron_agent, release: cf}
   networks:
   - name: cf_private
   properties:
     login:
       catalina_opts: -Xmx768m -XX:MaxPermSize=256m
-    networks:
-      apps: cf_private
-  resource_pool: small_z1
-  templates:
-  - name: login
-    release: cf
-  - name: metron_agent
-    release: cf
-- name: router_z1
-  instances: 1
-  networks:
-  - name: cf_private
-    static_ips:
-    - 10.0.16.102
-  properties:
-    dropsonde:
-      enabled: true
-    networks:
-      apps: cf_private
-  resource_pool: small_z1
-  templates:
-  - name: gorouter
-    release: cf
-  - name: metron_agent
-    release: cf
-- name: runner_z1
-  instances: 1
-  networks:
-  - name: cf_private
-  properties:
-    dea_next:
-      zone: z1
-    networks:
-      apps: cf_private
-  resource_pool: small_z1
-  templates:
-  - name: dea_next
-    release: cf
-  - name: dea_logging_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-- name: stats_z1
-  instances: 1
-  networks:
-  - name: cf_private
-  properties:
-    networks:
-      apps: cf_private
-    collector:
-      deployment_name: CF
-  resource_pool: small_z1
-  templates:
-  - name: collector
-    release: cf
-  - name: metron_agent
-    release: cf
-- name: uaa_z1
-  instances: 1
-  networks:
-  - name: cf_private
-  properties:
-    networks:
-      apps: cf_private
     uaa:
       admin:
         client_secret: PASSWORD
@@ -325,46 +202,63 @@ jobs:
     uaadb:
       address: 10.0.16.101
       databases:
-      - name: uaadb
-        tag: uaa
+      - {name: uaadb, tag: uaa}
       db_scheme: postgresql
       port: 5524
       roles:
-      - name: uaaadmin
-        password: PASSWORD
-        tag: admin
+      - {name: uaaadmin, password: PASSWORD, tag: admin}
+
+- name: router_z1
+  instances: 1
   resource_pool: small_z1
   templates:
-  - name: uaa
-    release: cf
-  - name: metron_agent
-    release: cf
+  - {name: gorouter, release: cf}
+  - {name: metron_agent, release: cf}
+  networks:
+  - name: cf_private
+    static_ips: [10.0.16.102]
+  properties:
+    dropsonde: {enabled: true}
+
+- name: runner_z1
+  instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: dea_next, release: cf}
+  - {name: dea_logging_agent, release: cf}
+  - {name: metron_agent, release: cf}
+  networks:
+  - name: cf_private
+  properties:
+    dea_next: {zone: z1}
+
+- name: stats_z1
+  instances: 1
+  resource_pool: small_z1
+  templates:
+  - {name: collector, release: cf}
+  - {name: metron_agent, release: cf}
+  networks:
+  - name: cf_private
+  properties:
+    collector: {deployment_name: CF}
+
 properties:
-  app_domains:
-  - REPLACE_WITH_SYSTEM_DOMAIN
+  networks: {apps: cf_private}
+  app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
   cc:
     billing_event_writing_enabled: false
     bulk_api_password: PASSWORD
     db_encryption_key: PASSWORD
-    default_running_security_groups:
-    - public_networks
-    - dns
-    default_staging_security_groups:
-    - public_networks
-    - dns
+    default_running_security_groups: [public_networks, dns]
+    default_staging_security_groups: [public_networks, dns]
     install_buildpacks:
-    - name: java_buildpack
-      package: buildpack_java
-    - name: ruby_buildpack
-      package: buildpack_ruby
-    - name: nodejs_buildpack
-      package: buildpack_nodejs
-    - name: go_buildpack
-      package: buildpack_go
-    - name: python_buildpack
-      package: buildpack_python
-    - name: php_buildpack
-      package: buildpack_php
+    - {name: java_buildpack, package: buildpack_java}
+    - {name: ruby_buildpack, package: buildpack_ruby}
+    - {name: nodejs_buildpack, package: buildpack_nodejs}
+    - {name: go_buildpack, package: buildpack_go}
+    - {name: python_buildpack, package: buildpack_python}
+    - {name: php_buildpack, package: buildpack_php}
     internal_api_password: PASSWORD
     quota_definitions:
       default:
@@ -375,54 +269,34 @@ properties:
     security_group_definitions:
     - name: public_networks
       rules:
-      - destination: 0.0.0.0-9.255.255.255
-        protocol: all
-      - destination: 11.0.0.0-169.253.255.255
-        protocol: all
-      - destination: 169.255.0.0-172.15.255.255
-        protocol: all
-      - destination: 172.32.0.0-192.167.255.255
-        protocol: all
-      - destination: 192.169.0.0-255.255.255.255
-        protocol: all
+      - {destination: 0.0.0.0-9.255.255.255, protocol: all}
+      - {destination: 11.0.0.0-169.253.255.255, protocol: all}
+      - {destination: 169.255.0.0-172.15.255.255, protocol: all}
+      - {destination: 172.32.0.0-192.167.255.255, protocol: all}
+      - {destination: 192.169.0.0-255.255.255.255, protocol: all}
     - name: dns
       rules:
-      - destination: 0.0.0.0/0
-        ports: '53'
-        protocol: tcp
-      - destination: 0.0.0.0/0
-        ports: '53'
-        protocol: udp
+      - {destination: 0.0.0.0/0, ports: '53', protocol: tcp}
+      - {destination: 0.0.0.0/0, ports: '53', protocol: udp}
     srv_api_uri: http://api.REPLACE_WITH_SYSTEM_DOMAIN
     staging_upload_password: PASSWORD
     staging_upload_user: staging_upload_user
   ccdb:
     address: 10.0.16.101
     databases:
-    - name: ccdb
-      tag: cc
+    - {name: ccdb, tag: cc}
     db_scheme: postgres
     port: 5524
     roles:
-    - name: ccadmin
-      password: PASSWORD
-      tag: admin
+    - {name: ccadmin, password: PASSWORD, tag: admin}
   databases:
     databases:
-    - citext: true
-      name: ccdb
-      tag: cc
-    - citext: true
-      name: uaadb
-      tag: uaa
+    - {name: ccdb, tag: cc, citext: true}
+    - {name: uaadb, tag: uaa, citext: true}
     port: 5524
     roles:
-    - name: ccadmin
-      password: PASSWORD
-      tag: admin
-    - name: uaaadmin
-      password: PASSWORD
-      tag: admin
+    - {name: ccadmin, password: PASSWORD, tag: admin}
+    - {name: uaaadmin, password: PASSWORD, tag: admin}
   dea_next:
     advertise_interval_in_seconds: 5
     heartbeat_interval_in_seconds: 10
@@ -430,8 +304,7 @@ properties:
   description: Cloud Foundry sponsored by Pivotal
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
-    machines:
-    - 10.0.16.104
+    machines: [10.0.16.104]
   hm9000:
     url: http://hm9000.REPLACE_WITH_SYSTEM_DOMAIN
   logger_endpoint:
@@ -445,15 +318,13 @@ properties:
   metron_endpoint:
     shared_secret: PASSWORD
   nats:
-    machines:
-    - 10.0.16.103
+    machines: [10.0.16.103]
     password: PASSWORD
     port: 4222
     user: nats
   nfs_server:
     address: 10.0.16.105
-    allow_from_entries:
-    - 10.0.16.0/24
+    allow_from_entries: [10.0.16.0/24]
   ssl:
     skip_cert_verify: true
   system_domain: REPLACE_WITH_SYSTEM_DOMAIN
