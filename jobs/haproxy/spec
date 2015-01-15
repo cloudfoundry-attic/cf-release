@@ -13,6 +13,9 @@ properties:
   ha_proxy.ssl_pem:
     description: "SSL certificate (PEM file)"
     default: ~
+  ha_proxy.ssl_ciphers:
+    default: ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:DES-CBC3-SHA:!NULL:!aNULL:!RC4:!RC2:!MEDIUM:!LOW:!EXPORT:!DES:!MD5:!PSK:!3DES
+    description: "List of SSL Ciphers that are passed to HAProxy"
 
   request_timeout_in_seconds:
     description: "Server and client timeouts in seconds"
