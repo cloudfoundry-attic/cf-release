@@ -1,12 +1,17 @@
 ---
 name: postgres
+
+description: "The Postgres server provides a single instance Postgres database that can be used with the Cloud Controller or the UAA. It does not provide highly-available configuration."
+
 templates:
   postgres_ctl.erb: bin/postgres_ctl
   postgresql.conf.erb: config/postgresql.conf
   pg_hba.conf.erb: config/pg_hba.conf
+
 packages:
   - common
   - postgres
+
 properties:
   databases.db_scheme:
     description: "The database scheme"

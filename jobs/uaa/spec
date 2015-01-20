@@ -1,5 +1,8 @@
 ---
 name: uaa
+
+description: "The UAA is the identity management service for Cloud Foundry. It's primary role is as an OAuth2 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users. It can also authenticate users with their Cloud Foundry credentials, and can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth2 clients, as well as various other management functions."
+
 templates:
   uaa_ctl.erb: bin/uaa_ctl
   cf-registrar_ctl: bin/uaa_cf-registrar_ctl
@@ -42,7 +45,7 @@ properties:
   uaa.client.autoapprove:
     description:
   uaa.user.authorities:
-    description: 'Contains a list of the default authorities/scopes assigned to a user.'  
+    description: 'Contains a list of the default authorities/scopes assigned to a user.'
     default:
       - openid
       - scim.me
@@ -228,7 +231,7 @@ properties:
   login.ldap.sslCertificate:
     description: "See uaa.ldap.sslCertificate - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
   login.ldap.sslCertificateAlias:
-    description: "See uaa.ldap.sslCertificateAlias - login.ldap prefix is used for backwards compatibility to enable ldap from login config"  
+    description: "See uaa.ldap.sslCertificateAlias - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
   login.spring_profiles:
     description: "See uaa.spring_profiles - login.spring_profiles is used for backwards compatibility to enable ldap from login config"
   login.protocol:

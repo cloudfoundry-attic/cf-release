@@ -1,5 +1,8 @@
 ---
 name: cloud_controller_clock
+
+description: "The Cloud Controller clock periodically schedules Cloud Controller clean up tasks for app usage events, audit events, failed jobs, and more. Only single instance of this job is necessary."
+
 templates:
   cloud_controller_clock.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_clock_ctl.erb: bin/cloud_controller_clock_ctl

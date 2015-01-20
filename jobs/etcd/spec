@@ -1,7 +1,11 @@
 ---
 name: etcd
+
+description: "The ETCD server provides a highly-available key value store that is used by the HM9000 and the Doppler server."
+
 templates:
   etcd_ctl.erb: bin/etcd_ctl
+
 packages:
   - common
   - etcd

@@ -1,12 +1,17 @@
 ---
 name: smoke-tests
+
+description: "The smoke tests errand can be configured to run quick set of tests against a specific Cloud Foundry API endpoint to determine is basic push-application functionality works. Consider running the acceptance tests errand for a more extensive set of tests."
+
 packages:
   - golang1.3
   - cli
   - smoke-tests
+
 templates:
   run.erb: bin/run
   config.json.erb: bin/config.json
+
 properties:
   smoke_tests.suite_name:
     default: CF_SMOKE_TESTS

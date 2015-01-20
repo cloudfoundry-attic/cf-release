@@ -1,5 +1,8 @@
 ---
 name: login
+
+description: "Handles authentication in Cloud Foundry and delegates all other identity management tasks to the UAA. Also provides OAuth2 endpoints issuing tokens to client apps for Cloud Foundry (the tokens come from the UAA and no data are stored locally)."
+
 templates:
   login_ctl.erb: bin/login_ctl
   cf-registrar_ctl: bin/login_cf-registrar_ctl
