@@ -1,17 +1,22 @@
 ---
 name: acceptance-tests
+
+description: "The acceptance tests errand can be configured to run full acceptance test suite against a specific Cloud Foundry API endpoint. Consider running smoke tests errand for a smaller set of tests."
+
 packages:
   - golang1.3
   - cli
   - acceptance-tests
+
 templates:
   run.erb: bin/run
   config.json.erb: bin/config.json
+
 properties:
   acceptance_tests.api:
     description: The Elastic Runtime API endpoint URL
   acceptance_tests.apps_domain:
-    description: The Elastic Runtime Appliction Domain
+    description: The Elastic Runtime Application Domain
   acceptance_tests.admin_user:
     description: The Elastic Runtime API admin user
   acceptance_tests.admin_password:

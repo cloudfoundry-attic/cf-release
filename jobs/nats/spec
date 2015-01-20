@@ -1,11 +1,16 @@
 ---
 name: nats
+
+description: "The NATS server provides publish-subscribe messaging system for the Cloud Controller, the DEA , HM9000, and other Cloud Foundry components."
+
 templates:
   nats_ctl.erb: bin/nats_ctl
   nats.conf.erb: config/nats.conf
+
 packages:
   - common
   - gnatsd
+
 properties:
   networks.apps:
     description: "NATS network information"

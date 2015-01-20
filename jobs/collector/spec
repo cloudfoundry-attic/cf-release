@@ -1,8 +1,12 @@
 ---
 name: collector
+
+description: "The collector will discover the various components on the message bus and query their `/healthz` and `/varz` interfaces. The metric data collected is published to collector plugins such as OpenTSDB, AWS CloudWatch and DataDog."
+
 templates:
   collector_ctl.erb: bin/collector_ctl
   config.yml.erb: config/config.yml
+
 packages:
 - common
 - collector

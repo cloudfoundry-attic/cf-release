@@ -1,6 +1,8 @@
 ---
 name: etcd_metrics_server
 
+description: "The ETCD Metrics Server is meant to be collocated with the ETCD server to collect and expose runtime statistics for the Collector."
+
 templates:
   etcd_metrics_server_ctl.erb: bin/etcd_metrics_server_ctl
 

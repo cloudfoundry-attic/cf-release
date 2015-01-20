@@ -1,5 +1,8 @@
 ---
 name: cloud_controller_worker
+
+description: "Cloud Controller worker processes background tasks submitted via the."
+
 templates:
   cloud_controller_worker.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_worker_ctl.erb: bin/cloud_controller_worker_ctl

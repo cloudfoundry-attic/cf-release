@@ -1,12 +1,17 @@
 ---
 name: nats_stream_forwarder
+
+description: "The NATS Stream Forwarder listens to a configured NATS server and logs all messages."
+
 templates:
   nats_stream_forwarder.rb: bin/nats_stream_forwarder.rb
   nats_stream_forwarder_ctl.erb: bin/nats_stream_forwarder_ctl
+
 packages:
   - common
   - ruby
   - nats
+
 properties:
   nats_props:
     description:

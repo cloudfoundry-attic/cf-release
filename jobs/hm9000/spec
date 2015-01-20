@@ -1,5 +1,8 @@
 ---
 name: hm9000
+
+description: "The HM9000 periodically compares expected list of running applications as specified by the Cloud Controller against a list of actually running applications as reported by the DEAs. It tries to reconcile found  differences."
+
 templates:
   hm9000_listener_ctl: bin/hm9000_listener_ctl
   hm9000_fetcher_ctl: bin/hm9000_fetcher_ctl
