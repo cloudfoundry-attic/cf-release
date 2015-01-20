@@ -11,10 +11,9 @@ it doesn't include features such as high availability and security.
 # Setup
 
 ## Create MicroBOSH in AWS
-
 - http://docs.cloudfoundry.org/bosh/deploy-microbosh-to-aws.html
 
-Update the microbosh Security Group to allow "cf logs" to work
+##Update the microbosh Security Group to allow "cf logs" to work
 - Click on "VPC" from the Amazon Web Services Dashboard
 - Click on "Security Groups" from the VPC Dashboard
 - Select the "bosh" Security Group
@@ -30,7 +29,6 @@ Update the microbosh Security Group to allow "cf logs" to work
 - Replace REPLACE_WITH_DIRECTOR_ID in the example manifest with the bosh directory id (return by running "bosh status --uuid")
 
 ## Create a NAT Machine in the bosh subnet
-
 - Click on "EC2" from the Amazon Web Services Dashboard
 - Click "Launch Instance"
 - Click "Community AMIs"
@@ -64,7 +62,6 @@ Update the microbosh Security Group to allow "cf logs" to work
 - Click "Yes, Disable"
 
 ## Create New Subnet For Cloud Foundry Deployment
-
 - Click on "Subnets" from the VPC Dashboard
 - Click "Create Subnet"
 - Fill in
@@ -90,9 +87,11 @@ Update the microbosh Security Group to allow "cf logs" to work
 - Click "Allocate New Address"
 - Replace REPLACE_WITH_ELASTIC_IP in the example manifest with the new IP address
 
+## DNS Configuration
 If you have a domain you plan to use for your Cloud Foundry System Domain. Set up the DNS as follows:
 
 Create a wildcard DNS entry for your root System Domain (\*.your-cf-domain.com) to point at the above Elastic IP address
+
 - Click on "Route 53" from the Amazon Web Services Dashboard
 - Click on "Hosted Zones"
 - Select your zone
@@ -109,16 +108,25 @@ If you do NOT have a domain, you can use 0.0.0.0.xip.io for your System Domain a
 - Replace REPLACE_WITH_SYSTEM_DOMAIN with your system domain
 
 Generate a SSL certificate for your System Domain
+
 - Run "openssl genrsa -out cf.key 1024"
 - Run "openssl req -new -key cf.key -out cf.csr"
   - For the Common Name, you must enter "\*." followed by your System Domain
 - Run "openssl x509 -req -in cf.csr -signkey cf.key -out cf.crt"
 - Run "cat cf.crt && cat cf.key" and replace REPLACE_WITH_SSL_CERT_AND_KEY with this value.
 
+
+## Create and Deploy CF Release
 ```sh
 bosh upload stemcell https://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/aws/light-bosh-stemcell-2811-aws-xen-ubuntu-trusty-go_agent.tgz
 
+git clone https://github.com/cloudfoundry/cf-release.git
+cd cf-release
+./update
+
 bosh create release
 bosh upload release
+
+bosh deployment LOCATION_OF_YOUR_MODIFIED_EXAMPLE_MANIFEST
 bosh deploy
 ```
