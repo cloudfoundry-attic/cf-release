@@ -261,22 +261,6 @@ properties:
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( properties.login.protocol "://login." domain ))
-      support-services:
-        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
-        secret: (( merge ))
-        authorized-grant-types: authorization_code,client_credentials
-        redirect-uri: (( "http://support-signon." domain ))
-        authorities: portal.users.read
-        access-token-validity: 1209600
-        refresh-token-validity: 1209600
-      servicesmgmt:
-        secret: (( merge ))
-        scope: openid,cloud_controller.read,cloud_controller.write
-        authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
-        authorized-grant-types: authorization_code,client_credentials,password,implicit
-        redirect-uri: (( "http://servicesmgmt." domain "/auth/cloudfoundry/callback" ))
-        override: true
-        autoapprove: true
       notifications:
         secret: (( merge ))
         authorities: cloud_controller.admin,scim.read

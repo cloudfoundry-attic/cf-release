@@ -121,10 +121,6 @@ properties:
         refresh-token-validity: 1209600
         redirect-uri: (( properties.login.links.home ))
         secret: app-direct-secret
-      support-services:
-        secret: support-services-secret
-      servicesmgmt:
-        secret: servicesmgmt-secret
       notifications:
         secret: notification-secret
       doppler:
