@@ -2680,22 +2680,6 @@ properties:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
         secret: notification-secret
-      servicesmgmt:
-        authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
-        authorized-grant-types: authorization_code,client_credentials,password,implicit
-        autoapprove: true
-        override: true
-        redirect-uri: http://servicesmgmt.10.244.0.34.xip.io/auth/cloudfoundry/callback
-        scope: openid,cloud_controller.read,cloud_controller.write
-        secret: servicesmgmt-secret
-      support-services:
-        access-token-validity: 1209600
-        authorities: portal.users.read
-        authorized-grant-types: authorization_code,client_credentials
-        redirect-uri: http://support-signon.10.244.0.34.xip.io
-        refresh-token-validity: 1209600
-        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
-        secret: support-services-secret
       doppler:
         override: true
         authorities: uaa.resource

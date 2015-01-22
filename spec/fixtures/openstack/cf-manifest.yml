@@ -906,22 +906,6 @@ properties:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
         secret: notification_secret
-      servicesmgmt:
-        authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
-        authorized-grant-types: authorization_code,client_credentials,password,implicit
-        autoapprove: true
-        override: true
-        redirect-uri: http://servicesmgmt.example.com/auth/cloudfoundry/callback
-        scope: openid,cloud_controller.read,cloud_controller.write
-        secret: service_mgmt_secret
-      support-services:
-        access-token-validity: 1209600
-        authorities: portal.users.read
-        authorized-grant-types: authorization_code,client_credentials
-        redirect-uri: http://support-signon.example.com
-        refresh-token-validity: 1209600
-        scope: scim.write,scim.read,openid,cloud_controller.read,cloud_controller.write
-        secret: support-services_secret
       doppler:
         override: true
         authorities: uaa.resource
