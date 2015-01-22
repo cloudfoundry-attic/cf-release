@@ -167,9 +167,12 @@ properties:
   cc.staging_timeout_in_seconds:
     default: 900
     description: "Timeout for staging a droplet"
+  cc.default_health_check_timeout:
+    default: 60
+    description: "Default health check timeout (in seconds) that can be set for the app"
   cc.maximum_health_check_timeout:
     default: 180
-    description: "Maximum health check timeout that can be set for the app"
+    description: "Maximum health check timeout (in seconds) that can be set for the app"
 
   cc.stacks:
     default:
@@ -399,6 +402,10 @@ properties:
   dea_next.staging_disk_limit_mb:
     description: "Disk limit in mb for staging tasks"
     default: 4096
+  cc.staging_file_descriptor_limit:
+    description: "File descriptor limit for staging tasks"
+    default: 16384
+
   cc.renderer.max_results_per_page:
     description: "Maximum number of results returned per page"
     default: 100

@@ -2318,6 +2318,7 @@ properties:
       package: buildpack_python
     - name: php_buildpack
       package: buildpack_php
+    default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
     - public_networks
@@ -2376,6 +2377,7 @@ properties:
       model_deletion:
         timeout_in_seconds: null
     maximum_app_disk_in_mb: 2048
+    maximum_health_check_timeout: 180
     newrelic:
       capture_params: false
       developer_mode: false
