@@ -34,6 +34,7 @@ jobs:
         - 0.0.1.5
   resource_pool: router_z1
   templates:
+  - {}
   - name: haproxy
     release: cf
   - name: metron_agent
@@ -52,6 +53,7 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
+  - {}
   - name: nats
     release: cf
   - name: nats_stream_forwarder
@@ -72,6 +74,7 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
+  - {}
   - name: nats
     release: cf
   - name: nats_stream_forwarder
@@ -94,6 +97,7 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
+  - {}
   - name: etcd
     release: cf
   - name: etcd_metrics_server
@@ -115,6 +119,7 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
+  - {}
   - name: etcd
     release: cf
   - name: etcd_metrics_server
@@ -133,6 +138,7 @@ jobs:
       zone: z1
   resource_pool: small_z1
   templates:
+  - {}
   - name: collector
     release: cf
   - name: metron_agent
@@ -150,6 +156,7 @@ jobs:
   persistent_disk: 102400
   resource_pool: medium_z1
   templates:
+  - {}
   - name: debian_nfs_server
     release: cf
   - name: metron_agent
@@ -167,6 +174,7 @@ jobs:
   persistent_disk: 4096
   resource_pool: medium_z1
   templates:
+  - {}
   - name: postgres
     release: cf
   - name: metron_agent
@@ -183,6 +191,7 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
+  - {}
   - name: uaa
     release: cf
   - name: metron_agent
@@ -199,6 +208,7 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
+  - {}
   - name: uaa
     release: cf
   - name: metron_agent
@@ -215,6 +225,7 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
+  - {}
   - name: login
   - name: metron_agent
     release: cf
@@ -230,6 +241,7 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
+  - {}
   - name: login
     release: cf
   - name: metron_agent
@@ -253,6 +265,7 @@ jobs:
       share: null
   resource_pool: large_z1
   templates:
+  - {}
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
@@ -278,6 +291,7 @@ jobs:
       share: null
   resource_pool: large_z2
   templates:
+  - {}
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
@@ -297,6 +311,7 @@ jobs:
       apps: cf1
   resource_pool: medium_z1
   templates:
+  - {}
   - name: cloud_controller_clock
     release: cf
   - name: metron_agent
@@ -320,6 +335,7 @@ jobs:
       share: null
   resource_pool: small_z1
   templates:
+  - {}
   - name: cloud_controller_worker
     release: cf
   - name: metron_agent
@@ -345,6 +361,7 @@ jobs:
       share: null
   resource_pool: small_z2
   templates:
+  - {}
   - name: cloud_controller_worker
     release: cf
   - name: metron_agent
@@ -363,6 +380,7 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
+  - {}
   - name: hm9000
     release: cf
   - name: metron_agent
@@ -379,6 +397,7 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
+  - {}
   - name: hm9000
     release: cf
   - name: metron_agent
@@ -398,6 +417,7 @@ jobs:
       apps: cf1
   resource_pool: runner_z1
   templates:
+  - {}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -420,6 +440,7 @@ jobs:
       apps: cf2
   resource_pool: runner_z2
   templates:
+  - {}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -439,6 +460,7 @@ jobs:
       apps: cf1
   resource_pool: medium_z1
   templates:
+  - {}
   - name: doppler
     release: cf
   update: {}
@@ -453,6 +475,7 @@ jobs:
       apps: cf2
   resource_pool: medium_z2
   templates:
+  - {}
   - name: doppler
     release: cf
   update: {}
@@ -469,6 +492,7 @@ jobs:
       zone: z1
   resource_pool: small_z1
   templates:
+  - {}
   - name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
@@ -487,6 +511,7 @@ jobs:
       zone: z2
   resource_pool: small_z2
   templates:
+  - {}
   - name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
@@ -505,6 +530,7 @@ jobs:
       apps: cf1
   resource_pool: router_z1
   templates:
+  - {}
   - name: gorouter
     release: cf
   - name: metron_agent
@@ -523,6 +549,7 @@ jobs:
       apps: cf2
   resource_pool: router_z2
   templates:
+  - {}
   - name: gorouter
     release: cf
   - name: metron_agent

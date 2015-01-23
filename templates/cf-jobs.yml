@@ -23,6 +23,7 @@ meta:
     share: ~
 
   api_templates:
+  - <<: (( merge ))
   - name: cloud_controller_ng
     release: (( meta.release.name ))
   - name: metron_agent
@@ -31,6 +32,7 @@ meta:
     release: (( meta.release.name ))
 
   api_worker_templates:
+  - <<: (( merge ))
   - name: cloud_controller_worker
     release: (( meta.release.name ))
   - name: metron_agent
@@ -39,12 +41,14 @@ meta:
     release: (( meta.release.name ))
 
   clock_templates:
+  - <<: (( merge ))
   - name: cloud_controller_clock
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   nats_templates:
+  - <<: (( merge ))
   - name: nats
     release: (( meta.release.name ))
   - name: nats_stream_forwarder
@@ -53,6 +57,7 @@ meta:
     release: (( meta.release.name ))
 
   dea_templates:
+  - <<: (( merge ))
   - name: dea_next
     release: (( meta.release.name ))
   - name: dea_logging_agent
@@ -61,18 +66,21 @@ meta:
     release: (( meta.release.name ))
 
   router_templates:
+  - <<: (( merge ))
   - name: gorouter
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   ha_proxy_templates:
+  - <<: (( merge ))
   - name: haproxy
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   etcd_templates:
+  - <<: (( merge ))
   - name: etcd
     release: (( meta.release.name ))
   - name: etcd_metrics_server
@@ -81,46 +89,54 @@ meta:
     release: (( meta.release.name ))
 
   stats_templates:
+  - <<: (( merge ))
   - name: collector
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   nfs_templates:
+  - <<: (( merge ))
   - name: debian_nfs_server
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   postgres_templates:
+  - <<: (( merge ))
   - name: postgres
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   uaa_templates:
+  - <<: (( merge ))
   - name: uaa
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   login_templates:
+  - <<: (( merge ))
   - name: login
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   hm9000_templates:
+  - <<: (( merge ))
   - name: hm9000
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   loggregator_templates:
+  - <<: (( merge ))
   - name: doppler
     release: (( meta.release.name ))
 
   loggregator_trafficcontroller_templates:
+  - <<: (( merge ))
   - name: loggregator_trafficcontroller
     release: (( meta.release.name ))
   - name: metron_agent
