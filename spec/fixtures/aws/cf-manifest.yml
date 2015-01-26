@@ -554,6 +554,9 @@ meta:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  default_env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 name: null
 networks:
 - name: cf1
@@ -973,6 +976,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
     instance_type: m1.small
@@ -982,6 +988,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
     instance_type: m1.medium
@@ -991,6 +1000,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
     instance_type: m1.medium
@@ -1000,6 +1012,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
     instance_type: m1.large
@@ -1009,6 +1024,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
     instance_type: m1.large
@@ -1018,6 +1036,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
     instance_type: m1.large
@@ -1027,6 +1048,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
     instance_type: m1.large
@@ -1036,6 +1060,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
     elbs:
@@ -1047,6 +1074,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
     elbs:
@@ -1058,6 +1088,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
     instance_type: m1.small
@@ -1067,6 +1100,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
     instance_type: c3.xlarge
@@ -1076,6 +1112,9 @@ resource_pools:
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 update:
   canaries: 1
   canary_watch_time: 30000-600000

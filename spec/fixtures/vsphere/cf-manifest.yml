@@ -557,6 +557,9 @@ meta:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  default_env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 name: null
 networks:
 - name: cf1
@@ -966,6 +969,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 4096
@@ -976,6 +982,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 4096
@@ -986,6 +995,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 4096
@@ -996,6 +1008,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 10240
@@ -1006,6 +1021,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 10240
@@ -1016,6 +1034,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 2
     disk: 32768
@@ -1026,6 +1047,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 2
     disk: 32768
@@ -1036,6 +1060,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 2048
@@ -1046,6 +1073,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 2048
@@ -1056,6 +1086,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 2048
@@ -1066,6 +1099,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     cpu: 1
     disk: 10240
@@ -1076,6 +1112,9 @@ resource_pools:
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 update:
   canaries: 1
   canary_watch_time: 30000-600000

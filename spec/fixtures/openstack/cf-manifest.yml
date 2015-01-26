@@ -555,6 +555,9 @@ meta:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  default_env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 name: null
 networks:
 - name: cf1
@@ -954,6 +957,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.small
   name: small_z2
@@ -962,6 +968,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.medium
   name: medium_z1
@@ -970,6 +979,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.medium
   name: medium_z2
@@ -978,6 +990,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.large
   name: large_z1
@@ -986,6 +1001,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.large
   name: large_z2
@@ -994,6 +1012,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.large
   name: runner_z1
@@ -1002,6 +1023,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.large
   name: runner_z2
@@ -1010,6 +1034,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.medium
   name: router_z1
@@ -1018,6 +1045,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.medium
   name: router_z2
@@ -1026,6 +1056,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.small
   name: small_errand
@@ -1034,6 +1067,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     instance_type: m1.large
   name: xlarge_errand
@@ -1042,6 +1078,9 @@ resource_pools:
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
+  env:
+    bosh:
+      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 update:
   canaries: 1
   canary_watch_time: 30000-600000
