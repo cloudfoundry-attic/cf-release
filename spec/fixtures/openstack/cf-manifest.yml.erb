@@ -432,77 +432,48 @@ jobs:
   networks:
   - name: cf1
   properties:
-    doppler:
-      zone: z1
-    metron_agent:
-      zone: z1
+<%= loggregator_z1_properties %>
     networks:
       apps: cf1
   resource_pool: medium_z1
   templates:
-  - name: doppler
-    release: cf
-  - name: syslog_drain_binder
-    release: cf
-  - name: metron_agent
-    release: cf
+<%= loggregator_templates %>
   update: {}
 - instances: 0
   name: loggregator_z2
   networks:
   - name: cf2
   properties:
-    doppler:
-      zone: z2
-    metron_agent:
-      zone: z2
+<%= loggregator_z2_properties %>
     networks:
       apps: cf2
   resource_pool: medium_z2
   templates:
-  - name: doppler
-    release: cf
-    release: cf
-  - name: syslog_drain_binder
-    release: cf
-  - name: metron_agent
-    release: cf
+<%= loggregator_templates %>
   update: {}
 - instances: 1
   name: loggregator_trafficcontroller_z1
   networks:
   - name: cf1
   properties:
-    metron_agent:
-      zone: z1
+<%= loggregator_trafficcontroller_z1_properties %>
     networks:
       apps: cf1
-    traffic_controller:
-      zone: z1
   resource_pool: small_z1
   templates:
-  - name: loggregator_trafficcontroller
-    release: cf
-  - name: metron_agent
-    release: cf
+<%= loggregator_trafficcontroller_templates %>
   update: {}
 - instances: 0
   name: loggregator_trafficcontroller_z2
   networks:
   - name: cf2
   properties:
-    metron_agent:
-      zone: z2
+<%= loggregator_trafficcontroller_z2_properties %>
     networks:
       apps: cf2
-    traffic_controller:
-      zone: z2
   resource_pool: small_z2
   templates:
-  - name: loggregator_trafficcontroller
-    release: cf
-  - name: metron_agent
-    release: cf
+<%= loggregator_trafficcontroller_templates %>
   update: {}
 - instances: 1
   name: router_z1
@@ -801,10 +772,6 @@ properties:
   description: Cloud Foundry sponsored by Pivotal
   disk_quota_enabled: true
   domain: example.com
-  doppler:
-    blacklisted_syslog_ranges: null
-    debug: false
-    maxRetainedLogMessages: 100
   doppler_endpoint:
     shared_secret: loggregator_endpoint_secret
   dropsonde:
@@ -820,10 +787,7 @@ properties:
       username: nats_user
   logger_endpoint:
     port: 4443
-  loggregator:
-    blacklisted_syslog_ranges: []
-    debug: false
-    maxRetainedLogMessages: 100
+<%= lamb_properties %>
   loggregator_endpoint:
     shared_secret: loggregator_endpoint_secret
   login:
