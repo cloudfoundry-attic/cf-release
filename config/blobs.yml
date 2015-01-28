@@ -274,11 +274,6 @@ nodejs-buildpack/nodejs_buildpack-offline-v1.1.1.zip:
   sha: !binary |-
     ZGZjNGVlYjIxZTY5MjVkM2NlNWNkMGU1MDBjZGJlODU4NjljZGMxNg==
   size: 437952578
-ruby-buildpack/ruby_buildpack-offline-v1.2.0.zip:
-  object_id: a5b72b99-fad8-4bcf-b7e9-36aaf903e93b
-  sha: !binary |-
-    ZGI2MWVkZDFmY2ZlMzk2MGM1YWUwNGZiMjlkZjY3ZmRlY2NmYjQwMQ==
-  size: 801595381
 nginx/nginx-1.6.2.tar.gz:
   object_id: 041b7bdb-b770-4c6c-b797-565b7b1a423d
   sha: !binary |-
@@ -299,3 +294,8 @@ haproxy/pcre-8.36.tar.gz:
   sha: !binary |-
     ZmI1Mzc3NTc3NTY4MTgxMzNkODE1N2VjODc4YmMxMWY1YTkzZWY0ZA==
   size: 2009464
+ruby-buildpack/ruby_buildpack-offline-v1.2.1.zip:
+  object_id: 76285ca5-30a1-4952-be12-6282fdc47ac4
+  sha: !binary |-
+    MjRlOGIyZjQyNmQwZDM3MjlhYjkxYjI4YjBlMTkyYTIxMThmOGUyMw==
+  size: 864863823
