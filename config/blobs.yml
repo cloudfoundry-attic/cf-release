@@ -249,16 +249,6 @@ ruby-2.1.4/yaml-0.1.6.tar.gz:
   sha: !binary |-
     ZjNkNDA0ZTExYmVjM2M0ZWZjZGRmZDE0YzQyZDQ2ZjFhYWJlMGI1ZA==
   size: 503012
-java-buildpack/java-buildpack-offline-v2.6.zip:
-  object_id: 9cee25a1-ddef-42c8-8b42-00631eb83414
-  sha: !binary |-
-    NWEyNGI3MGIzNDQ5YmFkNmU1NDY2YTg1ZGJiNDUyMTg3Mzg5ZDlmMg==
-  size: 260620470
-java-buildpack/java-buildpack-v2.6.zip:
-  object_id: 35e3995c-d12d-41ae-b0c3-e817f9837415
-  sha: !binary |-
-    MjM1NDBlOGM4MjBlYjM2NTc1N2Y0M2IxM2ZmNjU1NDY4YzE1YjI1Mg==
-  size: 138301
 go-buildpack/go_buildpack-offline-v1.1.1.zip:
   object_id: dd567f9f-5bae-4cee-b9d2-c9c42da942e1
   sha: !binary |-
@@ -299,3 +289,13 @@ haproxy/pcre-8.36.tar.gz:
   sha: !binary |-
     ZmI1Mzc3NTc3NTY4MTgxMzNkODE1N2VjODc4YmMxMWY1YTkzZWY0ZA==
   size: 2009464
+java-buildpack/java-buildpack-offline-v2.6.1.zip:
+  object_id: a1ee33ef-7a83-4b69-b057-7e56f511b222
+  sha: !binary |-
+    M2M4NmI2OGQwOWE5ODJiOWNkMTVmNDU1MzhlOTNkMDU4YWMzZGE4OQ==
+  size: 260751567
+java-buildpack/java-buildpack-v2.6.1.zip:
+  object_id: 56391cea-0ed8-4f25-9c6e-0e127b34de3c
+  sha: !binary |-
+    YWQ4MzlkYWQxYWRmY2Q5OTBkNTA4ZmMyMjQ2NzZhMTcwY2VhZDljMQ==
+  size: 138303
