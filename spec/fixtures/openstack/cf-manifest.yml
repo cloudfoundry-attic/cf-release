@@ -1076,7 +1076,6 @@ resource_pools:
     instance_type: m1.small
   name: small_errand
   network: cf1
-  size: 0
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
@@ -1087,7 +1086,6 @@ resource_pools:
     instance_type: m1.large
   name: xlarge_errand
   network: cf1
-  size: 0
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
