@@ -138,7 +138,8 @@ jobs:
     default: [gateway, dns]
   properties:
     ha_proxy:
-      ssl_pem: REPLACE_WITH_SSL_CERT_AND_KEY
+      ssl_pem: |
+        REPLACE_WITH_SSL_CERT_AND_KEY
     router:
       servers:
         z1: [10.0.16.102]

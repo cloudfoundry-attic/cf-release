@@ -26,7 +26,7 @@ it doesn't include features such as high availability and security.
   - Source: 0.0.0.0/0
 - Click "Save"
 
-- Replace REPLACE_WITH_DIRECTOR_ID in the example manifest with the bosh directory id (return by running "bosh status --uuid")
+- Replace REPLACE_WITH_DIRECTOR_ID in the example manifest with the bosh director id (return by running "bosh status --uuid")
 
 ## Create a NAT Machine in the bosh subnet
 - Click on "EC2" from the Amazon Web Services Dashboard
@@ -117,16 +117,55 @@ Generate a SSL certificate for your System Domain
 
 
 ## Create and Deploy CF Release
-```sh
-bosh upload stemcell https://bosh-jenkins-artifacts.s3.amazonaws.com/bosh-stemcell/aws/light-bosh-stemcell-2811-aws-xen-ubuntu-trusty-go_agent.tgz
+Download a copy of the latest bosh stemcell.
 
+```sh
+bosh public stemcells
+bosh download public stemcell light-bosh-stemcell-[GREATEST_NUMBER]-aws-xen-ubuntu-trusty-go_agent.tgz
+
+```
+
+Upload the new stemcell.
+
+```sh
+bosh upload stemcell light-bosh-stemcell-[GREATEST_NUMBER]-aws-xen-ubuntu-trusty-go_agent.tgz
+```
+
+Upload the latest stable version of Cloud Foundry.
+
+```sh
 git clone https://github.com/cloudfoundry/cf-release.git
 cd cf-release
-./update
 
-bosh create release
-bosh upload release
+bosh upload release releases/cf-GREATEST_NUMBER.yml
 
 bosh deployment LOCATION_OF_YOUR_MODIFIED_EXAMPLE_MANIFEST
 bosh deploy
 ```
+
+## Pushing your first application
+When interacting with your Cloud Foundry deployment, you will need to download the latest stable version of the
+[cf cli](https://github.com/cloudfoundry/cli). You can download a few simple applications with the following commands:
+
+```sh
+cd $HOME/workspace
+git clone https://github.com/cloudfoundry/cf-acceptance-tests.git
+```
+
+For a first application, you can push a light weight ruby application called 
+[Dora](https://github.com/cloudfoundry/cf-acceptance-tests/tree/master/assets/dora)
+which is found at `$HOME/workspace/cf-acceptance-tests/assets/dora`. Lastly you can follow the 
+[application deploy instructions](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html) and 
+push dora into your Cloud Foundry deployment.
+
+## SSH onto your CF Machines
+Every once and a while you might want to ssh onto one of your cloud foundry deployment vms and obtain the logs
+or perform some other actions. To do this you first need to get a list of vms with the command `bosh vms`. You can then
+acccess your machines with the following command:
+
+```sh
+bosh ssh VM_FROM_BOSH_VMS_COMMAND/INSTANCE_NUMBER --gateway_host YOUR_PUBLIC_MICROBOSH_ADDRESS --gateway_user vcap
+```
+
+Note that this command will ask you to setup the password for sudo during the login processs.
+
