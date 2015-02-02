@@ -155,7 +155,7 @@ git clone https://github.com/cloudfoundry/cf-acceptance-tests.git
 For a first application, you can push a light weight ruby application called 
 [Dora](https://github.com/cloudfoundry/cf-acceptance-tests/tree/master/assets/dora)
 which is found at `$HOME/workspace/cf-acceptance-tests/assets/dora`. Lastly you can follow the 
-[application deploy instructions](http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/deploy-app.html) and 
+[application deploy instructions](http://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html) and 
 push dora into your Cloud Foundry deployment.
 
 ## SSH onto your CF Machines
