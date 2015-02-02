@@ -259,11 +259,6 @@ java-buildpack/java-buildpack-v2.6.zip:
   sha: !binary |-
     MjM1NDBlOGM4MjBlYjM2NTc1N2Y0M2IxM2ZmNjU1NDY4YzE1YjI1Mg==
   size: 138301
-go-buildpack/go_buildpack-offline-v1.1.1.zip:
-  object_id: dd567f9f-5bae-4cee-b9d2-c9c42da942e1
-  sha: !binary |-
-    ODAwYzcyYWQ1ZDBhODA3ZjdlMTA4YzM5YTI2ZjQ4NmEwMjlkZTUzMw==
-  size: 601475619
 python-buildpack/python_buildpack-offline-v1.1.1.zip:
   object_id: 1ad1a5e5-0521-489b-9dc4-8f915889e02a
   sha: !binary |-
@@ -299,3 +294,8 @@ haproxy/pcre-8.36.tar.gz:
   sha: !binary |-
     ZmI1Mzc3NTc3NTY4MTgxMzNkODE1N2VjODc4YmMxMWY1YTkzZWY0ZA==
   size: 2009464
+go-buildpack/go_buildpack-offline-v1.1.2.zip:
+  object_id: d2ca131c-795f-4fe8-9885-80382b2c1e43
+  sha: !binary |-
+    YWEzY2ViNzZmMDE3NDIxZGRiNzczMzM1MjEyM2Y3YzgxZTQxYjE0Yw==
+  size: 663441909
