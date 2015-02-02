@@ -429,7 +429,7 @@ jobs:
   update:
     max_in_flight: 1
 - instances: 2
-  name: loggregator_z1
+  name: doppler_z1
   networks:
   - name: cf1
   properties:
@@ -449,7 +449,7 @@ jobs:
     release: cf
   update: {}
 - instances: 2
-  name: loggregator_z2
+  name: doppler_z2
   networks:
   - name: cf2
   properties:
@@ -829,10 +829,6 @@ properties:
       password: nats_password
       username: nats_user
   logger_endpoint: null
-  loggregator:
-    blacklisted_syslog_ranges: null
-    debug: false
-    maxRetainedLogMessages: 100
   loggregator_endpoint:
     shared_secret: loggregator_endpoint_secret
   login:

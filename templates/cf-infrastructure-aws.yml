@@ -21,7 +21,7 @@ properties:
   logger_endpoint:
     port: 4443
 
-  loggregator:
+  doppler:
     blacklisted_syslog_ranges:
     - start: 10.10.0.0
       end: 10.10.255.255
@@ -158,12 +158,12 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
 
-  - name: loggregator_z1
+  - name: doppler_z1
     instances: 2
     networks:
       - name: cf1
 
-  - name: loggregator_z2
+  - name: doppler_z2
     instances: 2
     networks:
       - name: cf2

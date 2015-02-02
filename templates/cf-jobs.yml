@@ -116,7 +116,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
-  loggregator_templates:
+  doppler_templates:
   - name: doppler
     release: (( meta.release.name ))
   - name: syslog_drain_binder
@@ -420,8 +420,8 @@ jobs:
     update:
       max_in_flight: 1
 
-  - name: loggregator_z1
-    templates: (( merge || meta.loggregator_templates ))
+  - name: doppler_z1
+    templates: (( merge || meta.doppler_templates ))
     instances: 2
     resource_pool: medium_z1
     networks:
@@ -434,8 +434,8 @@ jobs:
         zone: z1
     update: (( merge || empty_hash ))
 
-  - name: loggregator_z2
-    templates: (( merge || meta.loggregator_templates ))
+  - name: doppler_z2
+    templates: (( merge || meta.doppler_templates ))
     instances: 2
     resource_pool: medium_z2
     networks:
@@ -592,11 +592,6 @@ properties:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
 
   logger_endpoint: ~
-
-  loggregator:
-    maxRetainedLogMessages: 100
-    debug: (( merge || false ))
-    blacklisted_syslog_ranges: ~
 
   doppler:
     maxRetainedLogMessages: 100

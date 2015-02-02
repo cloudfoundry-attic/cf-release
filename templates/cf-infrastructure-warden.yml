@@ -250,12 +250,12 @@ jobs:
     networks:
       - name: cf2
 
-  - name: loggregator_z1
+  - name: doppler_z1
     instances: 1
     networks:
       - name: cf1
 
-  - name: loggregator_z2
+  - name: doppler_z2
     instances: 0
     networks:
       - name: cf2

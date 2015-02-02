@@ -426,7 +426,7 @@ jobs:
   update:
     max_in_flight: 1
 - instances: 2
-  name: loggregator_z1
+  name: doppler_z1
   networks:
   - name: cf1
   properties:
@@ -446,7 +446,7 @@ jobs:
     release: cf
   update: {}
 - instances: 2
-  name: loggregator_z2
+  name: doppler_z2
   networks:
   - name: cf2
   properties:
@@ -805,7 +805,9 @@ properties:
   disk_quota_enabled: true
   domain: example.com
   doppler:
-    blacklisted_syslog_ranges: null
+    blacklisted_syslog_ranges:
+    - end: 10.10.255.255
+      start: 10.10.0.0
     debug: false
     maxRetainedLogMessages: 100
   doppler_endpoint:
@@ -826,12 +828,6 @@ properties:
       username: nats_user
   logger_endpoint:
     port: 4443
-  loggregator:
-    blacklisted_syslog_ranges:
-    - end: 10.10.255.255
-      start: 10.10.0.0
-    debug: false
-    maxRetainedLogMessages: 100
   loggregator_endpoint:
     shared_secret: secret
   login:
