@@ -87,6 +87,21 @@ it doesn't include features such as high availability and security.
 - Click "Allocate New Address"
 - Replace REPLACE_WITH_ELASTIC_IP in the example manifest with the new IP address
 
+- Click on "Security Groups" from the VPC Dashboard
+- Click "Create Security Group"
+- Name: cf-public
+- Description: cf-public
+- VPC: Select the bosh VPC
+- Add in the follwing inbound rules:
+
+  | Type  | Protocol | Port Range | Source   |
+  |-------|----------|------------|----------|
+  | HTTP  | TCP      | 80         | Anywhere |
+  | HTTPS | TCP      | 443        | Anywhere |
+  | TCP   | TCP      | 4443       | Anywhere |
+
+- Replace REPLACE_WITH_PUBLIC_SECURITY_GROUP in the example manifest with the new security group
+
 ## DNS Configuration
 If you have a domain you plan to use for your Cloud Foundry System Domain. Set up the DNS as follows:
 
