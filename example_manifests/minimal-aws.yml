@@ -26,6 +26,9 @@ networks:
     reserved: ["10.0.0.2 - 10.0.0.10"]
     cloud_properties:
       subnet: REPLACE_WITH_PUBLIC_SUBNET_ID
+      security_groups:
+        - cf-public
+        - bosh
 
 - name: elastic
   type: vip
