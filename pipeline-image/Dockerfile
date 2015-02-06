@@ -13,6 +13,7 @@ RUN \
     bison \
     build-essential \
     curl \
+    debconf-utils \
     gemnasium-toolbelt \
     git \
     libcurl4-openssl-dev \
@@ -29,7 +30,23 @@ RUN \
     python-pip \
     unzip \
     wget \
+    zip \
     zlib1g-dev
+
+RUN  \
+  echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections; \
+  echo 'mysql-server mysql-server/root_password_again password password' | debconf-set-selections; \
+  apt-get -y install \
+    mysql-server \
+    postgresql-contrib-9.3 \
+    postgresql; \
+  chmod 755 /var/lib/mysql; \
+  sed -i 's/peer/trust/' /etc/postgresql/9.3/main/pg_hba.conf; \
+  sed -i 's/md5/trust/' /etc/postgresql/9.3/main/pg_hba.conf; \
+  service mysql restart; \
+  service postgresql restart; \
+  echo 'CREATE DATABASE cc_test;' | mysql -u root -ppassword; \
+  createdb -U postgres cc_test
 
 RUN \
   wget https://github.com/postmodern/ruby-install/archive/v0.4.1.tar.gz -P /tmp; \
