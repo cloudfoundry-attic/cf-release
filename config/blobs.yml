@@ -219,11 +219,6 @@ uaa/apache-tomcat-7.0.55.tar.gz:
   sha: !binary |-
     NGUyM2YxZTNkNmQyNGUwYWZmZWJlNzhmNmY1YzVkNWE0OWViNGUzNw==
   size: 8941662
-rootfs/lucid64.tar.gz:
-  object_id: 381ae1be-93a9-45b0-a773-67131c06632c
-  sha: !binary |-
-    NjNlMGQwMTQzYTk3N2I3Y2NjNGJlZjVkNTQzYjM1MjkzZTNlZjAwMA==
-  size: 202902955
 php-buildpack/php_buildpack-offline-v1.0.2.zip:
   object_id: e4c91c19-a19d-4c50-82b4-616796375957
   sha: !binary |-
@@ -299,3 +294,8 @@ python-buildpack/python_buildpack-offline-v1.1.2.zip:
   sha: !binary |-
     MWRkOTc2YmVhYjE1YzVlYzNlZmU1YWQwNWYyYTAzYzI4Y2VjMDQ4ZQ==
   size: 329659965
+rootfs/lucid64.tar.gz:
+  object_id: 059fe583-41ca-4094-85b7-9661ff8e5258
+  sha: !binary |-
+    NmRhNjY5MGU1MDE5NjBmNWFmMGI2MmQ0NWZmOGVhMDExZGEwNThjMQ==
+  size: 202940087
