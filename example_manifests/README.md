@@ -27,6 +27,8 @@ it doesn't include features such as high availability and security.
 - Click "Save"
 
 - Replace REPLACE_WITH_DIRECTOR_ID in the example manifest with the bosh director id (return by running "bosh status --uuid")
+- Replace REPLACE_WITH_BOSH_SECURITY_GROUP in the example manifest with the security group created for microbosh
+
 
 ## Create a NAT Machine in the bosh subnet
 - Click on "EC2" from the Amazon Web Services Dashboard
