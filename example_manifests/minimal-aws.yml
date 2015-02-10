@@ -27,8 +27,8 @@ networks:
     cloud_properties:
       subnet: REPLACE_WITH_PUBLIC_SUBNET_ID
       security_groups:
-        - cf-public
-        - bosh
+        - REPLACE_WITH_PUBLIC_SECURITY_GROUP
+        - REPLACE_WITH_BOSH_SECURITY_GROUP
 
 - name: elastic
   type: vip
