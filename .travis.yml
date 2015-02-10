@@ -12,6 +12,3 @@ before_install:
   - export PATH=$PATH:$PWD
 script:
   - bundle exec rspec spec
-  - rm spiff
-  - bundle exec bosh -n sync blobs
-  - ./scripts/unused_blobs

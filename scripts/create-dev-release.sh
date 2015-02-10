@@ -4,7 +4,9 @@ set -e -x
 
 CF_RELEASE_OUT="../create-release.out"
 
-bosh -n --parallel 5 create release --with-tarball | tee $CF_RELEASE_OUT
+bosh -n --parallel 10 sync blobs
+./scripts/unused_blobs
+bosh -n create release --with-tarball | tee $CF_RELEASE_OUT
 
 EXIT_STATUS=${PIPESTATUS[0]}
 if [ ! "$EXIT_STATUS" = "0" ]; then
