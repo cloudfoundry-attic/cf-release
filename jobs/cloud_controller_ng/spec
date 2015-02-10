@@ -481,3 +481,7 @@ properties:
   cc.allowed_cors_domains:
     description: "List of domains (including scheme) from which Cross-Origin requests will be accepted, a * can be used as a wildcard for any part of a domain"
     default: []
+
+  cc.instance_file_descriptor_limit:
+    description: "The file descriptors made available to each app instance"
+    default: 16384
