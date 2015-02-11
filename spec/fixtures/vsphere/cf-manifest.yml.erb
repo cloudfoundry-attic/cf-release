@@ -145,6 +145,8 @@ jobs:
     static_ips:
     - 0.0.0.2
   properties:
+    networks:
+      apps: cf1
     metron_agent:
       zone: z1
   persistent_disk: 102400
@@ -162,6 +164,8 @@ jobs:
     static_ips:
     - 0.0.0.12
   properties:
+    networks:
+      apps: cf1
     metron_agent:
       zone: z1
   persistent_disk: 4096
