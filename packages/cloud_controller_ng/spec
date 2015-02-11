@@ -3,7 +3,6 @@ name: cloud_controller_ng
 dependencies:
 - libpq
 - mysqlclient
-- sqlite
 - ruby-2.1.4
 files:
 - cloud_controller_ng/{Rakefile,Gemfile,Gemfile.lock}
