@@ -31,10 +31,6 @@ properties:
     description: "Number of seconds in which lockoutAfterFailures failures must occur in order for account to be locked"
   uaa.authentication.policy.lockoutPeriodSeconds:
     description: "Number of seconds to lock out an account when lockoutAfterFailures failures is exceeded"
-  uaa.batch.password:
-    description: "Deprecated"
-  uaa.batch.username:
-    description: "Deprecated"
   uaa.catalina_opts:
     description:
     default: -Xmx768m -XX:MaxPermSize=256m
@@ -81,16 +77,6 @@ properties:
     description:
   uaa.scim.external_groups:
     description: "A list of external group mappings. Pipe delimited. A value may look as '- internal.read|cn=developers,ou=scopes,dc=test,dc=com'"
-  ccdb.address:
-    description: "The CloudController database IP address"
-  ccdb.databases:
-    description: "The list of databases used in CloudController database including tag/name"
-  ccdb.db_scheme:
-    description: "Database scheme for CloudController DB"
-  ccdb.port:
-    description: "The CloudController database Port"
-  ccdb.roles:
-    description: "The list of database Roles used in CloudController database including tag/name/password"
   domain:
     description: "The domain name for this CloudFoundry deploy"
   env.http_proxy:
@@ -131,10 +117,6 @@ properties:
   uaa.clients.login.secret:
     description: 'Login client secret - overrides uaa.login.client_secret'
   uaa.require_https:
-    description:
-  uaa_client_auth_credentials.password:
-    description:
-  uaa_client_auth_credentials.username:
     description:
   uaa.spring_profiles:
     description: "Deprecated. Use 'uaa.ldap.enabled'. Sets the Spring profiles on the UAA web application. This gets combined with the 'uaadb.db_scheme' property if and only if the value is exactly 'ldap' in order to setup the database, for example 'ldap,mysql'. If spring_profiles contains more than just 'ldap' it will be used to overwrite spring_profiles and db_scheme ignored. See uaa.yml.erb."
