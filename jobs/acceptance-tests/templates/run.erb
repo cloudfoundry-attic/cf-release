@@ -49,7 +49,7 @@ skips=<%= properties.acceptance_tests.include_sso ? "" : "-skip=SSO"  %>
 
 verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
 
-$test_command -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?
+$test_command -noColor -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 
