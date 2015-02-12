@@ -39,7 +39,7 @@ resource_pools:
   network: cf_private
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
-    version: 2811
+    version: REPLACE_WITH_BOSH_STEMCELL_VERSION
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
     instance_type: m1.small
