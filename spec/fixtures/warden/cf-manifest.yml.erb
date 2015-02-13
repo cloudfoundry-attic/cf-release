@@ -244,38 +244,6 @@ jobs:
     release: cf
   update: {}
 - instances: 1
-  name: login_z1
-  networks:
-  - name: cf1
-  properties:
-    networks:
-      apps: cf1
-    metron_agent:
-      zone: z1
-  resource_pool: medium_z1
-  templates:
-  - name: login
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- instances: 0
-  name: login_z2
-  networks:
-  - name: cf2
-  properties:
-    networks:
-      apps: cf2
-    metron_agent:
-      zone: z2
-  resource_pool: medium_z2
-  templates:
-  - name: login
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- instances: 1
   name: api_z1
   networks:
   - name: cf1
@@ -2526,7 +2494,7 @@ properties:
       domain: null
     asset_base_url: null
     brand: oss
-    catalina_opts: -Xmx96m -XX:MaxPermSize=64m
+    catalina_opts: null
     invitations_enabled: null
     links:
       home: https://console.10.244.0.34.xip.io
@@ -2769,7 +2737,7 @@ resource_pools:
     name: random
   name: medium_z1
   network: cf1
-  size: 7
+  size: 6
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest

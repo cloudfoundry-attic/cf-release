@@ -105,12 +105,6 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
-  login_templates:
-  - name: login
-    release: (( meta.release.name ))
-  - name: metron_agent
-    release: (( meta.release.name ))
-
   hm9000_templates:
   - name: hm9000
     release: (( meta.release.name ))
@@ -246,30 +240,6 @@ jobs:
 
   - name: uaa_z2
     templates: (( merge || meta.uaa_templates ))
-    instances: 1
-    resource_pool: medium_z2
-    networks:
-      - name: cf2
-    properties:
-      networks: (( meta.networks.z2 ))
-      metron_agent:
-        zone: z2
-    update: (( merge || empty_hash ))
-
-  - name: login_z1
-    templates: (( merge || meta.login_templates ))
-    instances: 1
-    resource_pool: medium_z1
-    networks:
-      - name: cf1
-    properties:
-      networks: (( meta.networks.z1 ))
-      metron_agent:
-        zone: z1
-    update: (( merge || empty_hash ))
-
-  - name: login_z2
-    templates: (( merge || meta.login_templates ))
     instances: 1
     resource_pool: medium_z2
     networks:
@@ -575,8 +545,6 @@ properties:
   uaadb: (( merge ))
 
   databases: ~
-
-  login: (( merge ))
 
   router:
     requested_route_registration_interval_in_seconds: 20
