@@ -435,6 +435,7 @@ properties:
 
   dea_next.advertise_interval_in_seconds:
     description: "Advertise interval for DEAs"
+    default: 5
   cc.renderer.max_results_per_page:
     description: "Maximum number of results returned per page"
     default: 100
