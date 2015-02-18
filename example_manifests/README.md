@@ -29,7 +29,6 @@ it doesn't include features such as high availability and security.
 - Replace REPLACE_WITH_DIRECTOR_ID in the example manifest with the bosh director id (return by running "bosh status --uuid")
 - Replace REPLACE_WITH_BOSH_SECURITY_GROUP in the example manifest with the security group created for microbosh
 
-
 ## Create a NAT Machine in the bosh subnet
 - Click on "EC2" from the Amazon Web Services Dashboard
 - Click "Launch Instance"
@@ -147,6 +146,8 @@ Upload the new stemcell.
 ```sh
 bosh upload stemcell light-bosh-stemcell-[GREATEST_NUMBER]-aws-xen-ubuntu-trusty-go_agent.tgz
 ```
+
+Replace REPLACE_WITH_BOSH_STEMCELL_VERSION in the example manifest with the BOSH stemcell version you downloaded above
 
 Upload the latest stable version of Cloud Foundry.
 
