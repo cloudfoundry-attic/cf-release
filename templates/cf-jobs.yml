@@ -215,6 +215,7 @@ jobs:
       - name: cf1
         static_ips: ~
     properties:
+      networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
     update: (( merge || empty_hash ))
@@ -228,6 +229,7 @@ jobs:
     - name: cf1
       static_ips: ~
     properties:
+      networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
     update: (( merge || empty_hash ))
