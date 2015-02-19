@@ -215,11 +215,6 @@ uaa/apache-tomcat-7.0.55.tar.gz:
   sha: !binary |-
     NGUyM2YxZTNkNmQyNGUwYWZmZWJlNzhmNmY1YzVkNWE0OWViNGUzNw==
   size: 8941662
-php-buildpack/php_buildpack-offline-v1.0.2.zip:
-  object_id: e4c91c19-a19d-4c50-82b4-616796375957
-  sha: !binary |-
-    YjMwZGQ4YzgwMDE2ZWZmNzA0NTAyZWNlNjQxYTQ5N2I4N2EyMTc3NA==
-  size: 295649665
 ruby-2.1.4/bundler-1.7.4.gem:
   object_id: bef69ead-5089-44e4-bf9c-113737aeb4c9
   sha: !binary |-
@@ -295,3 +290,8 @@ rootfs/lucid64.tar.gz:
   sha: !binary |-
     NmRhNjY5MGU1MDE5NjBmNWFmMGI2MmQ0NWZmOGVhMDExZGEwNThjMQ==
   size: 202940087
+php-buildpack/php_buildpack-offline-v3.0.4.zip:
+  object_id: 2b135453-7f79-4de6-b8b7-d3c8fbbe75d8
+  sha: !binary |-
+    M2IxYjhmNDI2YmI5NmY0YTJhNDdkYWZmNmQ4N2FhNGFlZmIzNTg1Zg==
+  size: 479764812
