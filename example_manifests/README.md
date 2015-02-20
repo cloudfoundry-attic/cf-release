@@ -42,6 +42,7 @@ it doesn't include features such as high availability and security.
   - Subnet: microbosh
   - Auto-assign Public IP: Enable
 - Click "Next: Add Storage"
+  - If asked to choose boot volume for instance, select the "Continue with Magnetic..." option.
 - Click "Next: Tag Instance"
 - Enter "NAT" for the Name value
 - Click "Next: Configure Security Group"
