@@ -219,6 +219,7 @@ properties:
     catalina_opts: (( merge ))
 
     url: (( "https://uaa." domain ))
+    issuer: (( url ))
 
     no_ssl: false
 

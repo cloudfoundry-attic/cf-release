@@ -110,6 +110,8 @@ properties:
     default: false
   uaa.url:
     description:
+  uaa.issuer:
+    description: "The url to use as the issuer URI"
   uaa.dump_requests:
     description:
   uaa.login.client_secret:
