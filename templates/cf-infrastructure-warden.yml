@@ -319,7 +319,7 @@ jobs:
 
   # add a persistent disk to the CC, and only need one
   - name: api_z1
-    persistent_disk: 4096
+    persistent_disk: 8192
     templates:
       - name: cloud_controller_ng
       - name: cloud_controller_clock
