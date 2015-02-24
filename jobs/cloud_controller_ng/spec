@@ -380,6 +380,10 @@ properties:
     default: 60
     description: "For requests to service brokers, this is the HTTP (open and read) timeout setting."
 
+  cc.broker_client_default_async_poll_interval_seconds:
+    default: 60
+    description: "Specifies interval on which the CC will poll a service broker for asynchronous actions"
+
   cc.development_mode:
     default: false
     description: "Enable development features for monitoring and insight"
