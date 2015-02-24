@@ -1,0 +1,4 @@
+set -e -x
+
+echo "Extracting rootfs"
+tar xzf rootfs/cflinuxfs2.tar.gz -C ${BOSH_INSTALL_TARGET}

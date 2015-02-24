@@ -18,6 +18,7 @@ packages:
 - dea_next
 - warden
 - rootfs_lucid64
+- rootfs_cflinuxfs2
 - ruby
 - buildpack_cache
 
@@ -57,10 +58,6 @@ properties:
   dea_next.memory_overcommit_factor:
     description:
     default: 1
-  dea_next.stacks:
-    default:
-    - "lucid64"
-    description:
   dea_next.streaming_timeout:
     description:
     default: 60
