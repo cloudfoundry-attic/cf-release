@@ -453,3 +453,7 @@ properties:
   cc.instance_file_descriptor_limit:
     description: "The file descriptors made available to each app instance"
     default: 16384
+
+  cc.broker_client_default_async_poll_interval_seconds:
+    default: 60
+    description: "Specifies interval on which the CC will poll a service broker for asynchronous actions"
