@@ -451,3 +451,8 @@ properties:
   cc.broker_client_default_async_poll_interval_seconds:
     default: 60
     description: "Specifies interval on which the CC will poll a service broker for asynchronous actions"
+
+  cc.broker_client_max_async_poll_attempts:
+    default: 25
+    description: "The max number of attempts the CC will fetch service instance state from a service broker. 24 hours times this value is the maximum time a service broker can asynchronous provision an instance."
+
