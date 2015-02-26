@@ -338,12 +338,6 @@ properties:
   cc.maximum_app_disk_in_mb:
     default: 2048
     description: "The maximum amount of disk a user can request"
-  cc.diego.staging:
-    default: disabled
-    description: "Diego staging support: 'disabled', 'optional', or 'required'"
-  cc.diego.running:
-    default: disabled
-    description: "Diego running support: 'disabled', 'optional', or 'required'"
   cc.diego_docker:
     default: false
     description: "Enable diego docker support"
