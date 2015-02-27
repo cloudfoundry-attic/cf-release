@@ -1,7 +1,7 @@
 ---
 name: gorouter
 dependencies:
-- golang1.3
+- golang1.4
 files:
 - gorouter/**/*.{go,golden,proto,c,h,}
 - gorouter/**/Makefile
