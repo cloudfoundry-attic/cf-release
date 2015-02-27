@@ -1,0 +1,9 @@
+# Send HAProxy logs to file if configured
+#
+<% if p("ha_proxy.log_to_file") %>
+$template VcapComponentLogFile, "/var/vcap/sys/log/haproxy/haproxy.log"
+$template VcapComponentLogFormat, "%msg%\n"
+
+:programname, startswith, "haproxy" -?VcapComponentLogFile;VcapComponentLogFormat
+:programname, startswith, "haproxy" ~
+<% end %>
