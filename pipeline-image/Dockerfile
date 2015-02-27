@@ -63,14 +63,16 @@ RUN \
   cd /tmp/chruby && git reset --hard 310bd34d1fcbb3365814c85018114123cef5a41f; \
   cd /tmp/chruby && ./scripts/setup.sh; \
   echo 'source /usr/local/share/chruby/chruby.sh' >> $HOME/.bashrc; \
-  echo 'chruby 1.9.3-p547' >> $HOME/.bashrc; \
+  echo 'chruby 2.1.4' >> $HOME/.bashrc; \
   rm -rf /tmp/*
 
 RUN \
   bash -l -c "pip install awscli==1.6.6"; \
   bash -l -c "pip install s3cmd"; \
   bash -l -c "gem install bundler --no-rdoc --no-ri"; \
-  bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
+  bash -l -c "gem install bosh_cli --no-rdoc --no-ri"; \
+  bash -l -c "chruby 1.9.3-p547; gem install bundler --no-rdoc --no-ri"; \
+  bash -l -c "chruby 1.9.3-p547; gem install bosh_cli --no-rdoc --no-ri"
 
 ENV GOPATH $HOME/go
 ENV PATH $HOME/go/bin:/usr/local/go/bin:$PATH
