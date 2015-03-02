@@ -1,3 +1,3 @@
 set -e
 
-cp java-buildpack/java-buildpack-offline-v2.6.1.zip ${BOSH_INSTALL_TARGET}
+cp java-buildpack/java-buildpack-offline-v2.7.zip ${BOSH_INSTALL_TARGET}

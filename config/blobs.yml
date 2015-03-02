@@ -227,14 +227,6 @@ ruby-buildpack/ruby_buildpack-offline-v1.2.1.zip:
   object_id: 76285ca5-30a1-4952-be12-6282fdc47ac4
   sha: 24e8b2f426d0d3729ab91b28b0e192a2118f8e23
   size: 864863823
-java-buildpack/java-buildpack-offline-v2.6.1.zip:
-  object_id: a1ee33ef-7a83-4b69-b057-7e56f511b222
-  sha: 3c86b68d09a982b9cd15f45538e93d058ac3da89
-  size: 260751567
-java-buildpack/java-buildpack-v2.6.1.zip:
-  object_id: 56391cea-0ed8-4f25-9c6e-0e127b34de3c
-  sha: ad839dad1adfcd990d508fc224676a170cead9c1
-  size: 138303
 go-buildpack/go_buildpack-offline-v1.1.2.zip:
   object_id: d2ca131c-795f-4fe8-9885-80382b2c1e43
   sha: aa3ceb76f017421ddb7733352123f7c81e41b14c
@@ -260,3 +252,11 @@ golang/go1.4.2.linux-amd64.tar.gz:
   sha: !binary |-
     NTAyMGFmOTRiNTJiNjVjYzliNmYxMWQ1MGE2N2U0YmFlMDdiMGFmZg==
   size: 62442704
+java-buildpack/java-buildpack-offline-v2.7.zip:
+  object_id: 94d62653-6eef-4067-8617-592637ad4ca2
+  sha: e724ff3a87f7a549206dce8438d14ff9327b9168
+  size: 295400134
+java-buildpack/java-buildpack-v2.7.zip:
+  object_id: f669ef7e-31bf-4ceb-b775-4ea029c73c63
+  sha: cb523dc4095c894cf5f558fb794bc92a57ddc372
+  size: 149529
