@@ -21,9 +21,6 @@ jobs:
         disable_http: true
 properties:
   cc:
-    diego:
-      staging: disabled
-      running: disabled
     droplets:
       droplet_directory_key: the_key
     buildpacks:
