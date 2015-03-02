@@ -1,3 +1,5 @@
+# The following line helps maintain current documentation at http://docs.cloudfoundry.org.
+# code_snippet cf-minimal-aws start
 ---
 name: cf
 director_uuid: REPLACE_WITH_DIRECTOR_ID
@@ -387,3 +389,5 @@ properties:
 
     no_ssl: true
     url: http://uaa.REPLACE_WITH_SYSTEM_DOMAIN
+# code_snippet cf-minimal-aws end
+# The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
