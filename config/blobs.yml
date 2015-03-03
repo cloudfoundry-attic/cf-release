@@ -164,13 +164,13 @@ uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz:
   sha: ac7febc5bbff2dedf8add624a727a4c0ac6c3d10
   size: 65991397
 cli/cf-darwin-amd64.tgz:
-  object_id: 5f6ec80a-6353-403f-bb51-5cd9e6051c9f
-  sha: 6dbcc88613bd93e06db3a67070eb51bc4a2d8359
-  size: 4697857
+  object_id: 5de011ed-b541-411f-bc22-dd8723567ee1
+  sha: 01590797213107447a54cc68f9fec4de50ed3ddd
+  size: 4753530
 cli/cf-linux-amd64.tgz:
-  object_id: 7409e548-e57a-4f8d-9a78-322c53bad231
-  sha: 0abe4fe2a4ad6a1b610009c5b959fdaadf1219a2
-  size: 4743214
+  object_id: 67983167-946b-423b-8d41-18b678f9051c
+  sha: f845800310e4b702a39a2f1191e3d71862630103
+  size: 4803309
 ruby/yaml-0.1.6.tar.gz:
   object_id: 3b33cc37-7522-44cd-a068-ab61c5df746e
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
@@ -249,8 +249,7 @@ rootfs/lucid64.tar.gz:
   size: 203019535
 golang/go1.4.2.linux-amd64.tar.gz:
   object_id: bfaf73b1-de68-4c94-9a02-555245b2eb8d
-  sha: !binary |-
-    NTAyMGFmOTRiNTJiNjVjYzliNmYxMWQ1MGE2N2U0YmFlMDdiMGFmZg==
+  sha: 5020af94b52b65cc9b6f11d50a67e4bae07b0aff
   size: 62442704
 java-buildpack/java-buildpack-offline-v2.7.zip:
   object_id: 94d62653-6eef-4067-8617-592637ad4ca2
