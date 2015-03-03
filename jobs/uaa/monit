@@ -3,8 +3,9 @@ check process uaa
   start program "/var/vcap/jobs/uaa/bin/uaa_ctl start"
   stop program "/var/vcap/jobs/uaa/bin/uaa_ctl stop"
   group vcap
-  if failed port <%= p('uaa.port') %> protocol http
-    request "/healthz"
+  if failed port <%= p('uaa.port') %>
+    send "GET /healthz HTTP/1.1\r\nHost: 127.0.0.1\r\nX-Forwarded-Proto: https\r\nConnection: close\r\n\r\n\"
+    expect "ok"
     with timeout 60 seconds for 10 cycles
   then restart
 
