@@ -1,7 +1,7 @@
 ---
 name: uaa
 dependencies:
-- ruby
+- ruby-2.1.4
 files:
 - uaa/**/*
 - cf-registrar-bundle-for-identity/**/*

@@ -10,7 +10,7 @@ templates:
 packages:
 - common
 - collector
-- ruby
+- ruby-2.1.4
 
 properties:
   collector.aws.access_key_id:
