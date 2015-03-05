@@ -53,9 +53,6 @@ jwt:
     verification-key: "<%= properties.uaa.cc.token_secret %>"
 <% end %>
 
-<% scheme = p("uaa.no_ssl") ? "http" : "https"
-   domain = p("domain") %>
-
 <% if properties.uaa.authentication && properties.uaa.authentication.policy %>
 authentication:
   policy:
@@ -64,7 +61,8 @@ authentication:
     lockoutPeriodSeconds: <%= properties.uaa.authentication.policy.lockoutPeriodSeconds ? properties.uaa.authentication.policy.lockoutPeriodSeconds : 300%>
 <% end %>
 
-issuer.uri: <%= p("uaa.url", "#{scheme}://uaa.#{domain}") %>
+<% scheme = p("uaa.no_ssl") ? "http" : "https" %>
+issuer.uri: <%= p("uaa.issuer", p("uaa.url", "#{scheme}://uaa.#{properties.domain}")) %>
 
 oauth:
   <% unless properties.uaa.no_ssl %>
