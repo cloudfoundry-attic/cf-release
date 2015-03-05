@@ -610,6 +610,7 @@ properties:
     default_staging_security_groups:
     - public_networks
     - dns
+    default_to_diego_backend: false
     development_mode: false
     diego_docker: false
     directories: null
@@ -740,6 +741,7 @@ properties:
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
     user_buildpacks: []
+    users_can_select_backend: true
   ccdb:
     address: ccdb.example.com
     databases:

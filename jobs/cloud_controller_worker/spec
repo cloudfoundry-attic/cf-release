@@ -338,9 +338,15 @@ properties:
   cc.maximum_app_disk_in_mb:
     default: 2048
     description: "The maximum amount of disk a user can request"
+  cc.users_can_select_backend:
+    default: true
+    description: "Allow non-admin users to switch their apps between DEA and Diego backends"
   cc.diego_docker:
     default: false
     description: "Enable diego docker support"
+  cc.default_to_diego_backend:
+    default: false
+    description: "Use Diego backend by default for new apps"
   cc.flapping_crash_count_threshold:
     default: 3
     description: "The threshold of crashes after which the app is marked as flapping"
