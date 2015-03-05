@@ -19,7 +19,7 @@ update:
 properties:
   <<: (( merge ))
   ssl:
-    skip_cert_verify: true
+    skip_cert_verify: false
 
   domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
 
@@ -326,6 +326,7 @@ jobs:
       - name: cloud_controller_worker
       - name: metron_agent
       - name: nfs_mounter
+      - name: ca_truster
 
   - name: api_worker_z1
     instances: 0

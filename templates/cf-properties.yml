@@ -35,6 +35,9 @@ properties:
   loggregator_endpoint:
     shared_secret: (( merge ))
 
+  ca_truster:
+    certificates: (( merge || [] ))
+
   cc:
     jobs:
       global:

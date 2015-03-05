@@ -39,6 +39,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 1
   name: nats_z1
@@ -59,6 +61,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: nats_z2
@@ -77,6 +81,8 @@ jobs:
   - name: nats_stream_forwarder
     release: cf
   - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -99,6 +105,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: etcd_z2
@@ -119,6 +127,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 1
   name: stats_z1
@@ -134,6 +144,8 @@ jobs:
   - name: collector
     release: cf
   - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -154,6 +166,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 1
   name: postgres_z1
@@ -173,6 +187,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 1
   name: uaa_z1
@@ -188,6 +204,8 @@ jobs:
   - name: uaa
     release: cf
   - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update: {}
 - instances: 0
@@ -205,6 +223,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 1
   name: login_z1
@@ -221,6 +241,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: login_z2
@@ -236,6 +258,8 @@ jobs:
   - name: login
     release: cf
   - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -262,6 +286,8 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: api_z2
@@ -287,6 +313,8 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 1
   name: clock_global
@@ -303,6 +331,8 @@ jobs:
   - name: cloud_controller_clock
     release: cf
   - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -329,6 +359,8 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: api_worker_z2
@@ -354,6 +386,8 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 1
   name: hm9000_z1
@@ -370,6 +404,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: hm9000_z2
@@ -385,6 +421,8 @@ jobs:
   - name: hm9000
     release: cf
   - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -407,6 +445,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update:
     max_in_flight: 1
 - instances: 0
@@ -428,6 +468,8 @@ jobs:
   - name: dea_logging_agent
     release: cf
   - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update:
     max_in_flight: 1
@@ -496,6 +538,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: router_z2
@@ -513,6 +557,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   lifecycle: errand
@@ -522,6 +568,8 @@ jobs:
   resource_pool: small_errand
   templates:
   - name: acceptance-tests
+    release: cf
+  - name: ca_truster
     release: cf
 - instances: 0
   lifecycle: errand
@@ -534,6 +582,8 @@ jobs:
   resource_pool: small_errand
   templates:
   - name: smoke-tests
+    release: cf
+  - name: ca_truster
     release: cf
 meta:
   environment: null
@@ -557,6 +607,8 @@ properties:
   acceptance_tests: null
   app_domains:
   - example.com
+  ca_truster:
+    certificates: []
   cc:
     allowed_cors_domains: []
     app_events:
