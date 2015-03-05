@@ -9,6 +9,8 @@ templates:
   gorouter_logrotate.cron.erb: config/gorouter_logrotate.cron
   logrotate.conf.erb: config/logrotate.conf
   drain: bin/drain
+  cert.pem.erb: config/cert.pem
+  key.pem.erb: config/key.pem
 
 packages:
   - common
@@ -32,11 +34,24 @@ properties:
     description: "Number of CPUs to utilize, the default (-1) will equal the number of available CPUs"
     default: -1
   router.debug_addr:
-    description: "address at which to serve debug info"
+    description: "Address at which to serve debug info"
     default: "0.0.0.0:17001"
   router.secure_cookies:
-    description: "set secure flag on http cookies"
+    description: "Set secure flag on http cookies"
     default: false
+  router.enable_ssl:
+    description: "Enable ssl termination on the router"
+    default: false
+  router.ssl_cert:
+    description: "The public ssl cert for ssl termination"
+    default: ""
+  router.ssl_key:
+    description: "The private ssl key for ssl termination"
+    default: ""
+  router.cipher_suites:
+    description: "Valid ssl cipher suites, golang tls constants separated by commas"
+    default: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA:TLS_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_RC4_128_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_RSA_WITH_RC4_128_SHA
+
   nats.user:
     description:
   nats.password:
