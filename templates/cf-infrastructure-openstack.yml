@@ -163,6 +163,18 @@ jobs:
       - name: cf1
         static_ips: (( static_ips(5) ))
 
+  - name: routing_api_z1
+    instances: 0
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(11) ))
+
+  - name: routing_api_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: []
+
   - name: loggregator_z1
     instances: 1
     networks:

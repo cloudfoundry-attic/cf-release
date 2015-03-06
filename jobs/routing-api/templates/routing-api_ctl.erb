@@ -1,0 +1,43 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/routing-api
+LOG_DIR=/var/vcap/sys/log/routing-api
+PIDFILE=$RUN_DIR/routing-api.pid
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "routing-api"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown -R vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    # Allowed number of open file descriptors
+    # ulimit -n 100000
+
+    exec chpst -u vcap:vcap /var/vcap/packages/routing-api/bin/routing-api \
+         -config /var/vcap/jobs/routing-api/config/routing-api.yml \
+         -port <%= p("routing-api.port") %> \
+         -maxTTL <%= p("routing-api.max_ttl") %> \
+         <%= p("etcd.machines").map{|addr| "http://#{addr}:4001"}.join(" ")%>
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: routing-api_ctl {start|stop}"
+
+    ;;
+
+esac

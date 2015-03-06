@@ -94,3 +94,6 @@
 [submodule "packages/ruby-2.1.4"]
 	path = packages/ruby-2.1.4
 	url = https://github.com/cloudfoundry/ruby-package
+[submodule "src/routing-api"]
+	path = src/routing-api
+	url = https://github.com/cloudfoundry-incubator/routing-api.git

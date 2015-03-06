@@ -1,0 +1,21 @@
+---
+name: routing-api
+templates:
+  routing-api_ctl.erb: bin/routing-api_ctl
+  routing-api.yml.erb: config/routing-api.yml
+
+packages:
+- routing-api
+- common
+
+properties:
+  routing-api.max_ttl:
+    description: "The maximum ttl"
+    default: 60
+  routing-api.port:
+    description: "The port to run the routing api on"
+    default: 3000
+  etcd.machines:
+    description: "The IPs of etcd hosts"
+  uaa.jwt.verification_key:
+    description: "The verification key for UAA"

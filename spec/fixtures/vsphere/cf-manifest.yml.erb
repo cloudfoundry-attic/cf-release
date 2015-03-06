@@ -563,6 +563,32 @@ jobs:
   - name: ca_truster
     release: cf
   update: {}
+- instances: 0
+  name: routing_api_z1
+  networks:
+  - name: cf1
+    static_ips: []
+  properties:
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+  - name: routing-api
+    release: cf
+  update: {}
+- instances: 0
+  name: routing_api_z2
+  networks:
+  - name: cf2
+    static_ips: []
+  properties:
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+  - name: routing-api
+    release: cf
+  update: {}
 - instances: 1
   lifecycle: errand
   name: acceptance_tests
@@ -605,12 +631,12 @@ networks:
   subnets:
   - cloud_properties: null
     static:
-    - 0.0.0.0 - 0.0.0.25
+    - 0.0.0.0 - 0.0.0.26
 - name: cf2
   subnets:
   - cloud_properties: null
     static:
-    - 0.0.1.0 - 0.0.1.25
+    - 0.0.1.0 - 0.0.1.26
 properties:
   acceptance_tests: null
   app_domains:
