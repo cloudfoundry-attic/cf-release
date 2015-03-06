@@ -166,6 +166,11 @@ properties:
   cc.internal_api_password:
     description: "Password used by Diego to access internal endpoints"
 
+  cc.min_cli_version:
+    description: "Minimum version of the CF CLI to work with the API."
+  cc.min_recommended_cli_version:
+    description: "Minimum recommended version of the CF CLI."
+
   cc.uaa_resource_id:
     default: "cloud_controller,cloud_controller_service_permissions"
     description: "Name of service to register to UAA"

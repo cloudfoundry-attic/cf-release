@@ -32,6 +32,8 @@ properties:
           -----END CERTIFICATE-----
 
   cc:
+    min_cli_version: "6.0.0"
+    min_recommended_cli_version: "6.10.0"
     security_group_definitions:
       - name: public_networks
         rules:

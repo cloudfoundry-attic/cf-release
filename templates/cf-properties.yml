@@ -81,6 +81,9 @@ properties:
     default_health_check_timeout: 60
     maximum_health_check_timeout: 180
 
+    min_cli_version: ~
+    min_recommended_cli_version: ~
+
     external_host: api
     srv_api_uri: (( "https://" external_host "." domain ))
 
