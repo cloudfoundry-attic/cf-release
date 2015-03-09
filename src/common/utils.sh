@@ -135,3 +135,7 @@ file_must_include() {
     exit 1
   fi
 }
+
+running_in_container() {
+  grep -q '/instance' /proc/self/cgroup
+}

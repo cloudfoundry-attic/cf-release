@@ -24,7 +24,7 @@ case $1 in
 
     echo $$ > $PIDFILE
 
-    if grep -q '/instance' /proc/self/cgroup; then
+    if running_in_container; then
         echo "Not setting /proc/sys/net/ipv4 parameters, since I'm running inside a linux container"
     else
         # Ephemeral port range
