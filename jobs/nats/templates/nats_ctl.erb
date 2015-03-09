@@ -22,6 +22,9 @@ case $1 in
     echo $$ > $PIDFILE
     chown vcap:vcap $PIDFILE
 
+    # Allowed number of open file descriptors
+    ulimit -n 100000
+
     # Avoid Neighbour table overflow
     # gc_thresh2 and gc_thresh3 are the soft and hard limits for arp table gc
     sysctl -w net.ipv4.neigh.default.gc_thresh3=4096

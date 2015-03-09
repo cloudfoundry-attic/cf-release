@@ -20,6 +20,9 @@ case $1 in
 
     echo $$ > $PIDFILE
 
+    # Allowed number of open file descriptors
+    ulimit -n 100000
+
     <% my_ip = spec.networks.send(properties.networks.apps).ip %>
     <% my_host = spec.networks.send(properties.networks.apps).dns_record_name %>
 
