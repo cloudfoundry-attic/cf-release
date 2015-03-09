@@ -201,6 +201,9 @@ properties:
       - name: "cflinuxfs2"
         description: "Cloud Foundry Linux-based filesystem"
     description: "Tag used by the DEA to describe capabilities (i.e. 'Windows7', 'python-linux'). DEA and CC must agree."
+  cc.default_stack:
+    default: "lucid64"
+    description: "The default stack to use if no custom stack is specified by an app."
 
   cc.staging_upload_user:
     default: ""
