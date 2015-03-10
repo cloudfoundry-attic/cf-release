@@ -475,7 +475,7 @@ jobs:
     release: cf
   update:
     max_in_flight: 1
-- instances: 2
+- instances: 1
   name: loggregator_z1
   networks:
   - name: cf1
@@ -487,7 +487,7 @@ jobs:
   templates:
 <%= loggregator_templates %>
   update: {}
-- instances: 2
+- instances: 1
   name: loggregator_z2
   networks:
   - name: cf2
@@ -1054,7 +1054,7 @@ resource_pools:
     ram: 1024
   name: medium_z1
   network: cf1
-  size: 11
+  size: 10
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest
@@ -1067,7 +1067,7 @@ resource_pools:
     ram: 1024
   name: medium_z2
   network: cf2
-  size: 7
+  size: 6
   stemcell:
     name: bosh-vsphere-esxi-ubuntu
     version: latest

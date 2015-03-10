@@ -471,7 +471,7 @@ jobs:
     release: cf
   update:
     max_in_flight: 1
-- instances: 2
+- instances: 1
   name: loggregator_z1
   networks:
   - name: cf1
@@ -483,7 +483,7 @@ jobs:
   templates:
 <%= loggregator_templates %>
   update: {}
-- instances: 2
+- instances: 1
   name: loggregator_z2
   networks:
   - name: cf2
@@ -1056,7 +1056,7 @@ resource_pools:
     instance_type: m1.medium
   name: medium_z1
   network: cf1
-  size: 9
+  size: 8
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
@@ -1068,7 +1068,7 @@ resource_pools:
     instance_type: m1.medium
   name: medium_z2
   network: cf2
-  size: 7
+  size: 6
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest

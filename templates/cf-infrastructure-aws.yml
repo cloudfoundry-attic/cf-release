@@ -171,12 +171,12 @@ jobs:
         static_ips: (( static_ips(26) ))
 
   - name: loggregator_z1
-    instances: 2
+    instances: 1
     networks:
       - name: cf1
 
   - name: loggregator_z2
-    instances: 2
+    instances: 1
     networks:
       - name: cf2
 
