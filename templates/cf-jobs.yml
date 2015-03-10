@@ -639,6 +639,10 @@ properties:
   login: (( merge ))
 
   router:
+    enable_ssl: (( merge || nil ))
+    ssl_cert: (( merge || nil ))
+    ssl_key: (( merge || nil ))
+    cipher_suites: (( merge || nil ))
     requested_route_registration_interval_in_seconds: 20
     status:
       user: (( merge ))
