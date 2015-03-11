@@ -522,8 +522,6 @@ jobs:
     templates: (( merge || meta.routing_api_templates ))
     properties:
       networks: (( meta.networks.z1 ))
-      metron_agent:
-        zone: z1
     update: (( merge || empty_hash ))
 
   - name: routing_api_z2

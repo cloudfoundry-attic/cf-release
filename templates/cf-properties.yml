@@ -31,9 +31,6 @@ meta:
 properties:
   <<: (( merge ))
   domain: (( merge ))
-  syslog_daemon_config:
-    address: localhost
-    port: 8085
 
   loggregator_endpoint:
     shared_secret: (( merge ))

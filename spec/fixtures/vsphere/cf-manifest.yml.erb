@@ -575,6 +575,10 @@ jobs:
   templates:
   - name: routing-api
     release: cf
+  - name: metron_agent
+    release: cf
+  - name: ca_truster
+    release: cf
   update: {}
 - instances: 0
   name: routing_api_z2
@@ -587,6 +591,10 @@ jobs:
   resource_pool: medium_z2
   templates:
   - name: routing-api
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
