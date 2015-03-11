@@ -19,3 +19,10 @@ properties:
     description: "The IPs of etcd hosts"
   uaa.jwt.verification_key:
     description: "The verification key for UAA"
+
+  metron_endpoint.host:
+    description: "The host used to emit messages to the Metron agent."
+    default: "127.0.0.1"
+  metron_endpoint.dropsonde_port:
+    description: "The port used to emit dropsonde messages to the Metron agent."
+    default: 3457

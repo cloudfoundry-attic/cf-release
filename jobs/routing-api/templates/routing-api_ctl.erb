@@ -9,6 +9,9 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
+    export DROPSONDE_ORIGIN=<%= name %>/<%= index %>
+    export DROPSONDE_DESTINATION=<%= p("metron_endpoint.host") %>:<%= p("metron_endpoint.dropsonde_port") %>
+
     pid_guard $PIDFILE "routing-api"
 
     mkdir -p $RUN_DIR
