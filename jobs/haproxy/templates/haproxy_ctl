@@ -4,12 +4,10 @@
 set -e
 
 PATH=/var/vcap/packages/haproxy/bin:$PATH
-LOG_DIR=/var/vcap/sys/log/haproxy
 
 NAME=haproxy
 DAEMON=$(which haproxy)
 CONFIG=/var/vcap/jobs/haproxy/config/haproxy.config
-SYSLOG_CONFIG=/var/vcap/jobs/haproxy/config/haproxy_syslog.conf
 DESC="HAProxy"
 USER=vcap
 
@@ -40,20 +38,6 @@ remove_pid() {
     rmdir "$(dirname "${PID_FILE}")" || :
 }
 
-configure_syslog() {
-    chmod 755 /var/vcap/sys
-    chmod 755 /var/vcap/sys/log
-
-    if [ ! -d "${LOG_DIR}" ] ; then
-        mkdir -p "${LOG_DIR}"
-        chown -R "syslog":"adm" "${LOG_DIR}"
-        chmod 755 "${LOG_DIR}"
-    fi
-
-    cp $SYSLOG_CONFIG /etc/rsyslog.d/01-haproxy_syslog.conf
-    /usr/sbin/service rsyslog restart
-}
-
 start_haproxy() {
     status_haproxy
     if [ "${RETVAL}" = 0 ]; then
@@ -61,7 +45,6 @@ start_haproxy() {
     else
         RETVAL=0
         ensure_dirs
-        configure_syslog
         echo "$("${TIMESTAMP}"): Starting HAProxy"
         set +e
         "${DAEMON}" -f "${CONFIG}" -D -p "${PID_FILE}" 0<&-

@@ -8,7 +8,6 @@ packages:
 
 templates:
   haproxy.config.erb:        config/haproxy.config
-  haproxy_syslog.conf.erb:   config/haproxy_syslog.conf
   haproxy_ctl:               bin/haproxy_ctl
   cert.pem.erb:              config/cert.pem
 
@@ -22,18 +21,6 @@ properties:
   ha_proxy.ssl_ciphers:
     default: ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:ECDHE-RSA-RC4-SHA:ECDHE-ECDSA-RC4-SHA:AES128:AES256:RC4-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!3DES:!MD5:!PSK
     description: "List of SSL Ciphers that are passed to HAProxy"
-  ha_proxy.log_to_file:
-    description: "Whether to send logs to a file instead of the default syslog"
-    default: false
-  ha_proxy.dontlognull:
-    description: "Whether to disable logging of requests with no traffic (usually load-balancer TCP checks)"
-    default: false
-  ha_proxy.buffer_size:
-    description: "Buffer size to use for requests, any requests larger than this (large cookies or query strings) will result in a gateway error"
-    default: 16384
-  ha_proxy.enable_stats_socket:
-    description: "Whether to enable a socket that can be used to query errors and status"
-    default: false
   request_timeout_in_seconds:
     description: "Server and client timeouts in seconds"
     default: 900
