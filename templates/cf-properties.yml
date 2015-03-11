@@ -31,6 +31,9 @@ meta:
 properties:
   <<: (( merge ))
   domain: (( merge ))
+  syslog_daemon_config:
+    address: localhost
+    port: 8085
 
   loggregator_endpoint:
     shared_secret: (( merge ))
@@ -90,7 +93,7 @@ properties:
     bulk_api_password: (( merge ))
     internal_api_user: "internal_user"
     internal_api_password: (( bulk_api_password ))
-    
+
     logging_level: debug2
     db_logging_level: debug2
 
