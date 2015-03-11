@@ -41,6 +41,9 @@ remove_pid() {
 }
 
 configure_syslog() {
+    chmod 755 /var/vcap/sys
+    chmod 755 /var/vcap/sys/log
+
     if [ ! -d "${LOG_DIR}" ] ; then
         mkdir -p "${LOG_DIR}"
         chown -R "syslog":"adm" "${LOG_DIR}"
