@@ -35,6 +35,9 @@ properties:
     description: "IP of each NATS cluster member."
   dea_next.allow_networks:
     description:
+  dea_next.allow_host_access:
+    description:
+    default: false
   dea_next.deny_networks:
     description:
   dea_next.disk_mb:
