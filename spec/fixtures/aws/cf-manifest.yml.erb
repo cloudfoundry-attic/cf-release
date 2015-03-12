@@ -565,6 +565,8 @@ jobs:
   - name: cf1
     static_ips: []
   properties:
+    metron_agent:
+      zone: z1
     networks:
       apps: cf1
   resource_pool: medium_z1
@@ -582,6 +584,8 @@ jobs:
   - name: cf2
     static_ips: []
   properties:
+    metron_agent:
+      zone: z2
     networks:
       apps: cf2
   resource_pool: medium_z2

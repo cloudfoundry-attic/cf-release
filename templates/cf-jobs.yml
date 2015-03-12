@@ -521,6 +521,8 @@ jobs:
     resource_pool: medium_z1
     templates: (( merge || meta.routing_api_templates ))
     properties:
+      metron_agent:
+        zone: z1
       networks: (( meta.networks.z1 ))
     update: (( merge || empty_hash ))
 
@@ -532,6 +534,8 @@ jobs:
     resource_pool: medium_z2
     templates: (( merge || meta.routing_api_templates ))
     properties:
+      metron_agent:
+        zone: z2
       networks: (( meta.networks.z2 ))
     update: (( merge || empty_hash ))
 
