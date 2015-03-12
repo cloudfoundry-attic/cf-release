@@ -622,6 +622,7 @@ properties:
     advertise_interval_in_seconds: 5
     heartbeat_interval_in_seconds: 10
     rlimit_core: (( merge || 0 ))
+    allow_host_access: ~
 
   loggregator_endpoint:
     shared_secret: (( merge ))
