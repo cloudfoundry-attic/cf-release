@@ -1,7 +1,8 @@
 RSpec::Matchers.define :yaml_eq do |expected|
   match do |actual|
-    spiff_diff(actual, expected)
-    YAML.load(actual) == YAML.load(expected)
+    ok = YAML.load(actual) == YAML.load(expected)
+    spiff_diff(actual, expected) unless ok
+    ok
   end
 
   failure_message do |actual|
@@ -20,6 +21,7 @@ RSpec::Matchers.define :yaml_eq do |expected|
         file.print expected
       end
 
+      puts
       puts `spiff diff #{expected_manifest.path} #{actual_manifest.path}`
   end
 
