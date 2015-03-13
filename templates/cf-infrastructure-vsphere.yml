@@ -180,6 +180,18 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(13) ))
 
+  - name: consul_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(16, 18, 19) ))
+
+  - name: consul_z2
+    instances: 2
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(17, 18, 19) ))
+
   - name: acceptance_tests
     instances: 1
 

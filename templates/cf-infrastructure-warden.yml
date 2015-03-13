@@ -276,6 +276,18 @@ jobs:
       - name: cf2
         static_ips: (( static_ips(9) ))
 
+  - name: consul_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(13, 14, 15) ))
+
+  - name: consul_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(13, 14, 15) ))
+
   # only need one router, and set up static IPs
   - name: router_z1
     instances: 1

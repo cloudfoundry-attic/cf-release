@@ -1,0 +1,92 @@
+#!/bin/bash -e
+# vim: set ft=sh
+
+LOG_DIR=/var/vcap/sys/log/consul-agent
+RUN_DIR=/var/vcap/sys/run/consul-agent
+DATA_DIR=/var/vcap/store/consul-agent
+CONF_DIR=/var/vcap/jobs/consul-agent/config
+
+PKG=/var/vcap/packages/consul
+
+mkdir -p /var/vcap/sys/log/monit
+exec 1>> /var/vcap/sys/log/monit/consul-agent.out.log
+exec 2>> /var/vcap/sys/log/monit/consul-agent.err.log
+
+case $1 in
+  start)
+    mkdir -p $LOG_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    mkdir -p $RUN_DIR
+    chown -R vcap:vcap $RUN_DIR
+
+    mkdir -p $DATA_DIR
+    chown -R vcap:vcap $DATA_DIR
+
+    <% p("consul.agent.services").each do |service_name| %>
+    cat > $CONF_DIR/service-<%= service_name %>.json <<EOF
+<%=
+{
+  "service" => {
+    "name" => service_name,
+    "check" => {
+      "script" => "/var/vcap/jobs/#{service_name}/bin/dns_health_check",
+      "interval" => "3s"
+    }
+  }
+}.to_json
+%>
+EOF
+    <% end %>
+
+    # "Consul uses a significant amount of virtual memory, since LMDB uses
+    # mmap() underneath. It uses about 700MB of a 32bit system and 40GB on a
+    # 64bit system."
+    #
+    # this mainly applies to bosh-lite
+    ulimit -v unlimited
+
+    # add consul agent's dns to resolv.conf
+    #
+    # /etc/resolv.conf will probably be regenerated all the time, so add the
+    # local dns server to /head, which will be prepended when regenerated.
+    echo 'nameserver 127.0.0.1' > /etc/resolvconf/resolv.conf.d/head
+
+    if resolvconf --updates-are-enabled; then
+      resolvconf -u
+    else
+      # updates are disabled in bosh-lite; in this case just add to
+      # /etc/resolv.conf directly.
+      #
+      # enabling updates and then updating it with resolvconf -u seems to add
+      # dns entries from where the box was generated.
+      if ! grep -q 127.0.0.1 /etc/resolv.conf; then
+        sed -i -e '1i nameserver 127.0.0.1' /etc/resolv.conf
+      fi
+    fi
+
+    setcap cap_net_bind_service=+ep $PKG/bin/consul
+
+    GOMAXPROCS=$(nproc)
+    if [ "$GOMAXPROCS" = "1" ]; then
+      GOMAXPROCS=2
+    fi
+
+    export GOMAXPROCS
+
+    exec chpst -u vcap:vcap $PKG/bin/consul agent \
+      -pid-file=${RUN_DIR}/consul-agent.pid \
+      -config-dir=$CONF_DIR \
+      1>>$LOG_DIR/consul-agent.stdout.log \
+      2>>$LOG_DIR/consul-agent.stderr.log
+
+    ;;
+
+  stop)
+    $PKG/bin/consul leave
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}"
+    ;;
+esac

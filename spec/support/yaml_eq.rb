@@ -1,11 +1,26 @@
 RSpec::Matchers.define :yaml_eq do |expected|
   match do |actual|
+    spiff_diff(actual, expected)
     YAML.load(actual) == YAML.load(expected)
   end
 
   failure_message do |actual|
     object_eq(YAML.load(actual), YAML.load(expected))
     @error_message.join("\n")
+  end
+
+  def spiff_diff(actual, expected)
+      actual_manifest = Tempfile.new("actual-manifest.yml")
+      File.open(actual_manifest, "w") do |file|
+        file.print actual
+      end
+
+      expected_manifest = Tempfile.new("expected-manifest.yml")
+      File.open(expected_manifest, "w") do |file|
+        file.print expected
+      end
+
+      puts `spiff diff #{expected_manifest.path} #{actual_manifest.path}`
   end
 
   def object_eq(actual, expected, path=[])

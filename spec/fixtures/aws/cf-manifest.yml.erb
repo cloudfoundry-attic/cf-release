@@ -83,6 +83,65 @@ jobs:
   - name: ca_truster
     release: cf
   update: {}
+- instances: 1
+  name: consul_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.27
+  persistent_disk: 1024
+  properties:
+    consul:
+      agent:
+        mode: server
+        servers:
+          lan:
+          - 0.0.0.27
+          - 0.0.1.27
+          - 0.0.1.28
+    metron_agent:
+      zone: z1
+  resource_pool: medium_z1
+  templates:
+  - name: consul-agent
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: ca_truster
+    release: cf
+  update:
+    max_in_flight: 1
+    serial: true
+- instances: 2
+  name: consul_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.27
+    - 0.0.1.28
+  persistent_disk: 1024
+  properties:
+    consul:
+      agent:
+        mode: server
+        servers:
+          lan:
+          - 0.0.0.27
+          - 0.0.1.27
+          - 0.0.1.28
+    metron_agent:
+      zone: z2
+  resource_pool: medium_z2
+  templates:
+  - name: consul-agent
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: ca_truster
+    release: cf
+  update:
+    max_in_flight: 1
+    serial: true
 - instances: 2
   name: etcd_z1
   networks:
@@ -639,12 +698,12 @@ networks:
   subnets:
   - cloud_properties: null
     static:
-    - 0.0.0.0 - 0.0.0.26
+    - 0.0.0.0 - 0.0.0.29
 - name: cf2
   subnets:
   - cloud_properties: null
     static:
-    - 0.0.1.0 - 0.0.1.26
+    - 0.0.1.0 - 0.0.1.29
 properties:
   acceptance_tests: null
   app_domains:
@@ -1119,7 +1178,7 @@ resource_pools:
     instance_type: m1.medium
   name: medium_z1
   network: cf1
-  size: 8
+  size: 9
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest
@@ -1131,7 +1190,7 @@ resource_pools:
     instance_type: m1.medium
   name: medium_z2
   network: cf2
-  size: 6
+  size: 8
   stemcell:
     name: bosh-aws-xen-ubuntu-trusty-go_agent
     version: latest

@@ -3,6 +3,9 @@ empty_hash: {}
 networks: (( merge ))
 
 lamb_meta: (( merge ))
+
+consul_servers: (( jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
+
 meta:
   environment: ~
 
@@ -153,6 +156,14 @@ meta:
   - name: ca_truster
     release: (( meta.release.name ))
 
+  consul_templates:
+  - name: consul-agent
+    release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
+  - name: ca_truster
+    release: (( meta.release.name ))
+
 jobs:
   - name: ha_proxy_z1
     templates: (( merge || meta.ha_proxy_templates ))
@@ -201,6 +212,46 @@ jobs:
       metron_agent:
         zone: z2
     update: (( merge || empty_hash ))
+
+  - name: consul_z1
+    templates: (( merge || meta.consul_templates ))
+    instances: 1
+    persistent_disk: 1024
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+        static_ips: (( merge ))
+    update:
+      serial: true
+      max_in_flight: 1
+    properties:
+      consul:
+        agent:
+          mode: server
+          servers:
+            lan: (( consul_servers ))
+      metron_agent:
+        zone: z1
+
+  - name: consul_z2
+    templates: (( merge || meta.consul_templates ))
+    instances: 1
+    persistent_disk: 1024
+    resource_pool: medium_z2
+    networks:
+      - name: cf2
+        static_ips: (( merge ))
+    update:
+      serial: true
+      max_in_flight: 1
+    properties:
+      consul:
+        agent:
+          mode: server
+          servers:
+            lan: (( consul_servers ))
+      metron_agent:
+        zone: z2
 
   - name: etcd_z1
     templates: (( merge || meta.etcd_templates ))
