@@ -3,8 +3,6 @@ meta:
   environment: ~
   networks: ~
 
-  openstack: (( merge ))
-
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
