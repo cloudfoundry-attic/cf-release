@@ -19,6 +19,7 @@ templates:
   newrelic_plugin.yml.erb: config/newrelic_plugin.yml
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console
+  dns_health_check.erb: bin/dns_health_check
 
 packages:
   - common
@@ -35,6 +36,7 @@ packages:
   - buildpack_go
   - buildpack_python
   - buildpack_php
+  - consul
 
 properties:
   ssl.skip_cert_verify:

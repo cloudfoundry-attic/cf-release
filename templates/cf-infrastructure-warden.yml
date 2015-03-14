@@ -346,11 +346,19 @@ jobs:
     persistent_disk: 8192
     templates:
       - name: cloud_controller_ng
+        release: cf
       - name: cloud_controller_clock
+        release: cf
       - name: cloud_controller_worker
+        release: cf
       - name: metron_agent
+        release: cf
       - name: nfs_mounter
+        release: cf
       - name: ca_truster
+        release: cf
+      - name: consul-agent
+        release: cf
 
   - name: api_worker_z1
     instances: 0

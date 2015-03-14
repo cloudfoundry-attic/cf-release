@@ -321,6 +321,13 @@ jobs:
   - name: cf1
   persistent_disk: 0
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.12
+        services:
+        - cloud_controller_ng
     metron_agent:
       zone: z1
     networks:
@@ -341,6 +348,8 @@ jobs:
     release: cf
   - name: ca_truster
     release: cf
+  - name: consul-agent
+    release: cf
   update: {}
 - instances: 0
   name: api_z2
@@ -348,6 +357,13 @@ jobs:
   - name: cf2
   persistent_disk: 0
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.12
+        services:
+        - cloud_controller_ng
     metron_agent:
       zone: z2
     networks:
@@ -367,6 +383,8 @@ jobs:
   - name: nfs_mounter
     release: cf
   - name: ca_truster
+    release: cf
+  - name: consul-agent
     release: cf
   update: {}
 - instances: 1
