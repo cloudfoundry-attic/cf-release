@@ -35,7 +35,7 @@ meta:
     release: (( meta.release.name ))
   - name: ca_truster
     release: (( meta.release.name ))
-  - name: consul-agent
+  - name: consul_agent
     release: (( meta.release.name ))
 
   api_worker_templates:
@@ -159,7 +159,7 @@ meta:
     release: (( meta.release.name ))
 
   consul_templates:
-  - name: consul-agent
+  - name: consul_agent
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))

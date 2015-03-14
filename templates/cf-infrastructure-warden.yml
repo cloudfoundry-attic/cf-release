@@ -357,7 +357,7 @@ jobs:
         release: cf
       - name: ca_truster
         release: cf
-      - name: consul-agent
+      - name: consul_agent
         release: cf
 
   - name: api_worker_z1

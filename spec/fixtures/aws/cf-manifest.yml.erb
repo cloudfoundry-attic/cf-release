@@ -103,7 +103,7 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
-  - name: consul-agent
+  - name: consul_agent
     release: cf
   - name: metron_agent
     release: cf
@@ -133,7 +133,7 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
-  - name: consul-agent
+  - name: consul_agent
     release: cf
   - name: metron_agent
     release: cf
@@ -354,7 +354,7 @@ jobs:
     release: cf
   - name: ca_truster
     release: cf
-  - name: consul-agent
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
@@ -392,7 +392,7 @@ jobs:
     release: cf
   - name: ca_truster
     release: cf
-  - name: consul-agent
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1

@@ -1,16 +1,16 @@
 #!/bin/bash -e
 # vim: set ft=sh
 
-LOG_DIR=/var/vcap/sys/log/consul-agent
-RUN_DIR=/var/vcap/sys/run/consul-agent
-DATA_DIR=/var/vcap/store/consul-agent
-CONF_DIR=/var/vcap/jobs/consul-agent/config
+LOG_DIR=/var/vcap/sys/log/consul_agent
+RUN_DIR=/var/vcap/sys/run/consul_agent
+DATA_DIR=/var/vcap/store/consul_agent
+CONF_DIR=/var/vcap/jobs/consul_agent/config
 
 PKG=/var/vcap/packages/consul
 
 mkdir -p /var/vcap/sys/log/monit
-exec 1>> /var/vcap/sys/log/monit/consul-agent.out.log
-exec 2>> /var/vcap/sys/log/monit/consul-agent.err.log
+exec 1>> /var/vcap/sys/log/monit/consul_agent.out.log
+exec 2>> /var/vcap/sys/log/monit/consul_agent.err.log
 
 case $1 in
   start)
@@ -75,10 +75,10 @@ EOF
     export GOMAXPROCS
 
     exec chpst -u vcap:vcap $PKG/bin/consul agent \
-      -pid-file=${RUN_DIR}/consul-agent.pid \
+      -pid-file=${RUN_DIR}/consul_agent.pid \
       -config-dir=$CONF_DIR \
-      1>>$LOG_DIR/consul-agent.stdout.log \
-      2>>$LOG_DIR/consul-agent.stderr.log
+      1>>$LOG_DIR/consul_agent.stdout.log \
+      2>>$LOG_DIR/consul_agent.stderr.log
 
     ;;
 

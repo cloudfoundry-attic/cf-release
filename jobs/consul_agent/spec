@@ -1,5 +1,5 @@
 ---
-name: consul-agent
+name: consul_agent
 
 templates:
   agent_ctl.sh.erb: bin/agent_ctl
