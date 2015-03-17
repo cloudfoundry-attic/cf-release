@@ -48,3 +48,6 @@ properties:
   acceptance_tests.include_services:
     default: false
     description: Flag to include the services API test suite.
+  acceptance_tests.include_v3:
+    default: false
+    description: Flag to include the v3 API test suite.
