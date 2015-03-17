@@ -130,7 +130,7 @@ properties:
         secret: cloud-controller-username-lookup-secret
     scim:
       users:
-      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,notification_templates.admin
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose
     no_ssl: true
 
   login:
