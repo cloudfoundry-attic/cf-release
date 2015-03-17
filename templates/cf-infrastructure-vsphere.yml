@@ -191,6 +191,12 @@ jobs:
     networks:
       - name: cf2
         static_ips: (( static_ips(17, 18, 19) ))
+  # using login template, that supports self-signed certs
+  - name: login_z1
+    templates: 
+    - name: login
+    - name: metron_agent
+      release: cf
 
   - name: acceptance_tests
     instances: 1

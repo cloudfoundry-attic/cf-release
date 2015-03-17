@@ -1,5 +1,0 @@
-check process ca_truster with pidfile /var/vcap/sys/run/ca_truster/ca_truster.pid 
-  start program "/var/vcap/jobs/ca_truster/bin/ca_truster_ctl start"
-  stop program "/var/vcap/jobs/ca_truster/bin/ca_truster_ctl stop"
-
-

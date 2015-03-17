@@ -81,8 +81,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 1
   name: nats_z1
@@ -103,8 +101,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 0
   name: nats_z2
@@ -123,8 +119,6 @@ jobs:
   - name: nats_stream_forwarder
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -148,8 +142,6 @@ jobs:
   - name: consul_agent
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update:
     max_in_flight: 1
@@ -175,8 +167,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update:
     max_in_flight: 1
     serial: true
@@ -200,8 +190,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 0
   name: etcd_z2
@@ -222,8 +210,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 0
   name: stats_z1
@@ -239,8 +225,6 @@ jobs:
   - name: collector
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update: {}
 - instances: 0
@@ -260,8 +244,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 1
   name: postgres_z1
@@ -280,8 +262,6 @@ jobs:
   - name: postgres
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -305,8 +285,6 @@ jobs:
   - name: uaa
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   - name: consul_agent
     release: cf
@@ -333,8 +311,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   - name: consul_agent
     release: cf
   update: {}
@@ -353,8 +329,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 0
   name: login_z2
@@ -370,8 +344,6 @@ jobs:
   - name: login
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -409,8 +381,6 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
-  - name: ca_truster
-    release: cf
   - name: consul_agent
     release: cf
   update: {}
@@ -445,8 +415,6 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
-  - name: ca_truster
-    release: cf
   - name: consul_agent
     release: cf
   update: {}
@@ -465,8 +433,6 @@ jobs:
   - name: cloud_controller_clock
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update: {}
 - instances: 0
@@ -493,8 +459,6 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 0
   name: api_worker_z2
@@ -520,8 +484,6 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 1
   name: hm9000_z1
@@ -538,8 +500,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update: {}
 - instances: 0
   name: hm9000_z2
@@ -555,8 +515,6 @@ jobs:
   - name: hm9000
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update: {}
 - instances: 1
@@ -580,8 +538,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   update:
     max_in_flight: 1
 - instances: 0
@@ -603,8 +559,6 @@ jobs:
   - name: dea_logging_agent
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   update:
     max_in_flight: 1
@@ -680,8 +634,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   - name: consul_agent
     release: cf
   update: {}
@@ -707,8 +659,6 @@ jobs:
   - name: gorouter
     release: cf
   - name: metron_agent
-    release: cf
-  - name: ca_truster
     release: cf
   - name: consul_agent
     release: cf
@@ -736,8 +686,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   - name: consul_agent
     release: cf
   update: {}
@@ -764,8 +712,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: ca_truster
-    release: cf
   - name: consul_agent
     release: cf
   update: {}
@@ -778,8 +724,6 @@ jobs:
   templates:
   - name: acceptance-tests
     release: cf
-  - name: ca_truster
-    release: cf
 - instances: 1
   lifecycle: errand
   name: smoke_tests
@@ -791,8 +735,6 @@ jobs:
   resource_pool: small_errand
   templates:
   - name: smoke-tests
-    release: cf
-  - name: ca_truster
     release: cf
 meta:
   environment: cf-warden
@@ -2489,8 +2431,6 @@ properties:
     skip_ssl_validation: true
   app_domains:
   - 10.244.0.34.xip.io
-  ca_truster:
-    certificates: []
   cc:
     allowed_cors_domains: []
     app_events:
