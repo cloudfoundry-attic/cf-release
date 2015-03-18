@@ -83,6 +83,8 @@ meta:
     release: (( meta.release.name ))
   - name: ca_truster
     release: (( meta.release.name ))
+  - name: consul_agent
+    release: (( meta.release.name ))
 
   routing_api_templates:
   - name: routing-api
@@ -90,6 +92,8 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: ca_truster
+    release: (( meta.release.name ))
+  - name: consul_agent
     release: (( meta.release.name ))
 
   ha_proxy_templates:
@@ -560,6 +564,12 @@ jobs:
       - name: cf1
         static_ips: (( merge ))
     properties:
+      consul:
+        agent:
+          services:
+            - gorouter
+          servers:
+            lan: (( consul_servers ))
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -573,6 +583,12 @@ jobs:
       - name: cf2
         static_ips: (( merge ))
     properties:
+      consul:
+        agent:
+          services:
+            - gorouter
+          servers:
+            lan: (( consul_servers ))
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
@@ -586,6 +602,12 @@ jobs:
     resource_pool: medium_z1
     templates: (( merge || meta.routing_api_templates ))
     properties:
+      consul:
+        agent:
+          services:
+            - routing-api
+          servers:
+            lan: (( consul_servers ))
       metron_agent:
         zone: z1
       networks: (( meta.networks.z1 ))
@@ -599,6 +621,12 @@ jobs:
     resource_pool: medium_z2
     templates: (( merge || meta.routing_api_templates ))
     properties:
+      consul:
+        agent:
+          services:
+            - routing-api
+          servers:
+            lan: (( consul_servers ))
       metron_agent:
         zone: z2
       networks: (( meta.networks.z2 ))

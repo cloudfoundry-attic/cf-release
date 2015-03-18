@@ -611,6 +611,15 @@ jobs:
     static_ips:
     - 0.0.0.5
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.16
+          - 0.0.1.17
+          - 0.0.1.18
+        services:
+        - gorouter
     metron_agent:
       zone: z1
     networks:
@@ -623,6 +632,8 @@ jobs:
     release: cf
   - name: ca_truster
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 1
   name: router_z2
@@ -631,6 +642,15 @@ jobs:
     static_ips:
     - 0.0.1.5
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.16
+          - 0.0.1.17
+          - 0.0.1.18
+        services:
+        - gorouter
     metron_agent:
       zone: z2
     networks:
@@ -643,6 +663,8 @@ jobs:
     release: cf
   - name: ca_truster
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 0
   name: routing_api_z1
@@ -650,6 +672,15 @@ jobs:
   - name: cf1
     static_ips: []
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.16
+          - 0.0.1.17
+          - 0.0.1.18
+        services:
+        - routing-api
     metron_agent:
       zone: z1
     networks:
@@ -662,6 +693,8 @@ jobs:
     release: cf
   - name: ca_truster
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 0
   name: routing_api_z2
@@ -669,6 +702,15 @@ jobs:
   - name: cf2
     static_ips: []
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.16
+          - 0.0.1.17
+          - 0.0.1.18
+        services:
+        - routing-api
     metron_agent:
       zone: z2
     networks:
@@ -680,6 +722,8 @@ jobs:
   - name: metron_agent
     release: cf
   - name: ca_truster
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
