@@ -207,10 +207,6 @@ haproxy/pcre-8.36.tar.gz:
   object_id: 14452555-3661-413e-b65b-2d062bb4281e
   sha: fb537757756818133d8157ec878bc11f5a93ef4d
   size: 2009464
-ruby-buildpack/ruby_buildpack-offline-v1.2.1.zip:
-  object_id: 76285ca5-30a1-4952-be12-6282fdc47ac4
-  sha: 24e8b2f426d0d3729ab91b28b0e192a2118f8e23
-  size: 864863823
 go-buildpack/go_buildpack-offline-v1.1.2.zip:
   object_id: d2ca131c-795f-4fe8-9885-80382b2c1e43
   sha: aa3ceb76f017421ddb7733352123f7c81e41b14c
@@ -247,3 +243,8 @@ consul/consul_0.5.0_linux_amd64.zip:
   object_id: 3e6c1e47-95a5-45ef-aeec-2cb4cc4c529a
   sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
   size: 4669655
+ruby-buildpack/ruby_buildpack-cached-v1.3.0.zip:
+  object_id: 3d8d4bfc-91b2-419b-857d-9f26e31340bd
+  sha: !binary |-
+    NWRkZTNlYTBlMTU5MDg1NTRlYWE1YjEyZGYzODY1MjQzNmM0NjliNQ==
+  size: 966348817
