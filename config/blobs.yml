@@ -215,10 +215,6 @@ go-buildpack/go_buildpack-offline-v1.1.2.zip:
   object_id: d2ca131c-795f-4fe8-9885-80382b2c1e43
   sha: aa3ceb76f017421ddb7733352123f7c81e41b14c
   size: 663441909
-python-buildpack/python_buildpack-offline-v1.1.2.zip:
-  object_id: 1209751c-3cc3-4f58-94b9-88f4bfc08714
-  sha: 1dd976beab15c5ec3efe5ad05f2a03c28cec048e
-  size: 329659965
 php-buildpack/php_buildpack-offline-v3.0.4.zip:
   object_id: 2b135453-7f79-4de6-b8b7-d3c8fbbe75d8
   sha: 3b1b8f426bb96f4a2a47daff6d87aa4aefb3585f
@@ -247,3 +243,8 @@ consul/consul_0.5.0_linux_amd64.zip:
   object_id: 3e6c1e47-95a5-45ef-aeec-2cb4cc4c529a
   sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
   size: 4669655
+python-buildpack/python_buildpack-cached-v1.2.0.zip:
+  object_id: 3e8561a1-7cdc-45c2-9eff-b8d49ebc4e88
+  sha: !binary |-
+    MmNhNDU0NWFiOTlhYzJhMmU0MzBmNThmZTFlYzU1ZmU2Yjk2YTdiMw==
+  size: 685706721
