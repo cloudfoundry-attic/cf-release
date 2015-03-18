@@ -211,10 +211,6 @@ ruby-buildpack/ruby_buildpack-offline-v1.2.1.zip:
   object_id: 76285ca5-30a1-4952-be12-6282fdc47ac4
   sha: 24e8b2f426d0d3729ab91b28b0e192a2118f8e23
   size: 864863823
-go-buildpack/go_buildpack-offline-v1.1.2.zip:
-  object_id: d2ca131c-795f-4fe8-9885-80382b2c1e43
-  sha: aa3ceb76f017421ddb7733352123f7c81e41b14c
-  size: 663441909
 python-buildpack/python_buildpack-offline-v1.1.2.zip:
   object_id: 1209751c-3cc3-4f58-94b9-88f4bfc08714
   sha: 1dd976beab15c5ec3efe5ad05f2a03c28cec048e
@@ -247,3 +243,8 @@ consul/consul_0.5.0_linux_amd64.zip:
   object_id: 3e6c1e47-95a5-45ef-aeec-2cb4cc4c529a
   sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
   size: 4669655
+go-buildpack/go_buildpack-cached-v1.2.0.zip:
+  object_id: da609e02-aec5-4d54-93bc-86ca0b44eed7
+  sha: !binary |-
+    ZTU4Nzg4Yzg3M2RkYmVjZDY0MTUzMmYzMmNlNGQ1MzViMmE3OWY4MQ==
+  size: 663443569
