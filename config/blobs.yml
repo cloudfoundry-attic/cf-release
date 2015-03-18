@@ -203,10 +203,6 @@ haproxy/pcre-8.36.tar.gz:
   object_id: 14452555-3661-413e-b65b-2d062bb4281e
   sha: fb537757756818133d8157ec878bc11f5a93ef4d
   size: 2009464
-php-buildpack/php_buildpack-offline-v3.0.4.zip:
-  object_id: 2b135453-7f79-4de6-b8b7-d3c8fbbe75d8
-  sha: 3b1b8f426bb96f4a2a47daff6d87aa4aefb3585f
-  size: 479764812
 rootfs/cflinuxfs2.tar.gz:
   object_id: 1ae554f7-0336-48f8-bce9-f5f852a50f00
   sha: 6a7007231edc1c64c10aeb3508a5fe827c3d6c04
@@ -251,3 +247,8 @@ ruby-buildpack/ruby_buildpack-cached-v1.3.0.zip:
   sha: !binary |-
     NWRkZTNlYTBlMTU5MDg1NTRlYWE1YjEyZGYzODY1MjQzNmM0NjliNQ==
   size: 966348817
+php-buildpack/php_buildpack-offline-v3.1.0.zip:
+  object_id: b817bdc3-4765-423c-aebd-195b980550a3
+  sha: !binary |-
+    OWJiNmMzNmUxMzk3NjI4OGM2Mjc5NGY4ZGNiMDY5NjVlZjg5ODAzMw==
+  size: 1089981446
