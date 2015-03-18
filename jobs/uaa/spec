@@ -7,6 +7,7 @@ templates:
   uaa_ctl.erb: bin/uaa_ctl
   cf-registrar_ctl: bin/uaa_cf-registrar_ctl
   install_crt.erb: bin/install_crt
+  dns_health_check.erb: bin/dns_health_check
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   uaa.yml.erb: config/uaa.yml

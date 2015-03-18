@@ -252,6 +252,15 @@ jobs:
   networks:
   - name: cf1
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.27
+          - 0.0.1.27
+          - 0.0.1.28
+        services:
+        - uaa
     networks:
       apps: cf1
     metron_agent:
@@ -264,12 +273,23 @@ jobs:
     release: cf
   - name: ca_truster
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 1
   name: uaa_z2
   networks:
   - name: cf2
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.27
+          - 0.0.1.27
+          - 0.0.1.28
+        services:
+        - uaa
     networks:
       apps: cf2
     metron_agent:
@@ -281,6 +301,8 @@ jobs:
   - name: metron_agent
     release: cf
   - name: ca_truster
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
