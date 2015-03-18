@@ -187,10 +187,6 @@ ruby-2.1.4/yaml-0.1.6.tar.gz:
   object_id: b3ed7d5e-4c46-4c81-8ac7-04d070dd9cc8
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
-nodejs-buildpack/nodejs_buildpack-offline-v1.1.1.zip:
-  object_id: 7a59cde0-c278-444c-b860-dc8b9b649f45
-  sha: dfc4eeb21e6925d3ce5cd0e500cdbe85869cdc16
-  size: 437952578
 nginx/nginx-1.6.2.tar.gz:
   object_id: 041b7bdb-b770-4c6c-b797-565b7b1a423d
   sha: 1a5458bc15acf90eea16353a1dd17285cf97ec35
@@ -248,3 +244,8 @@ go-buildpack/go_buildpack-cached-v1.2.0.zip:
   sha: !binary |-
     ZTU4Nzg4Yzg3M2RkYmVjZDY0MTUzMmYzMmNlNGQ1MzViMmE3OWY4MQ==
   size: 663443569
+nodejs-buildpack/nodejs_buildpack-cached-v1.2.0.zip:
+  object_id: 65aa732c-8fd6-448c-9eb3-3d27d7c18434
+  sha: !binary |-
+    YWMyNzYyMmIzYTcxZTc5MjU0NGVhYjAwMGNlNTNiNTM0MjRkNjMzZQ==
+  size: 422081161
