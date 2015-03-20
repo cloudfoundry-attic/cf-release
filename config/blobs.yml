@@ -204,13 +204,13 @@ haproxy/pcre-8.36.tar.gz:
   sha: fb537757756818133d8157ec878bc11f5a93ef4d
   size: 2009464
 rootfs/cflinuxfs2.tar.gz:
-  object_id: 1ae554f7-0336-48f8-bce9-f5f852a50f00
-  sha: 6a7007231edc1c64c10aeb3508a5fe827c3d6c04
-  size: 221349766
+  object_id: f1189290-8e9c-4c94-b20c-2b79c7547fdd
+  sha: da0378a24b2671015c1b9fd91c20a15cc6096bb6
+  size: 221338161
 rootfs/lucid64.tar.gz:
-  object_id: 1397df05-1b9f-4933-aadb-efb7aa7f3c3a
-  sha: aea5174db9c868205c7c0c0aab31962a9cbd46b6
-  size: 148086039
+  object_id: 19595654-3ee8-4691-8adb-212c18c7bb2c
+  sha: 6079fbd56bed5c46fa01ccccf37d445670278947
+  size: 148066034
 golang/go1.4.2.linux-amd64.tar.gz:
   object_id: bfaf73b1-de68-4c94-9a02-555245b2eb8d
   sha: 5020af94b52b65cc9b6f11d50a67e4bae07b0aff
@@ -229,26 +229,21 @@ consul/consul_0.5.0_linux_amd64.zip:
   size: 4669655
 go-buildpack/go_buildpack-cached-v1.2.0.zip:
   object_id: da609e02-aec5-4d54-93bc-86ca0b44eed7
-  sha: !binary |-
-    ZTU4Nzg4Yzg3M2RkYmVjZDY0MTUzMmYzMmNlNGQ1MzViMmE3OWY4MQ==
+  sha: e58788c873ddbecd641532f32ce4d535b2a79f81
   size: 663443569
 nodejs-buildpack/nodejs_buildpack-cached-v1.2.0.zip:
   object_id: 65aa732c-8fd6-448c-9eb3-3d27d7c18434
-  sha: !binary |-
-    YWMyNzYyMmIzYTcxZTc5MjU0NGVhYjAwMGNlNTNiNTM0MjRkNjMzZQ==
+  sha: ac27622b3a71e792544eab000ce53b53424d633e
   size: 422081161
 python-buildpack/python_buildpack-cached-v1.2.0.zip:
   object_id: 3e8561a1-7cdc-45c2-9eff-b8d49ebc4e88
-  sha: !binary |-
-    MmNhNDU0NWFiOTlhYzJhMmU0MzBmNThmZTFlYzU1ZmU2Yjk2YTdiMw==
+  sha: 2ca4545ab99ac2a2e430f58fe1ec55fe6b96a7b3
   size: 685706721
 ruby-buildpack/ruby_buildpack-cached-v1.3.0.zip:
   object_id: 3d8d4bfc-91b2-419b-857d-9f26e31340bd
-  sha: !binary |-
-    NWRkZTNlYTBlMTU5MDg1NTRlYWE1YjEyZGYzODY1MjQzNmM0NjliNQ==
+  sha: 5dde3ea0e15908554eaa5b12df38652436c469b5
   size: 966348817
 php-buildpack/php_buildpack-offline-v3.1.0.zip:
   object_id: b817bdc3-4765-423c-aebd-195b980550a3
-  sha: !binary |-
-    OWJiNmMzNmUxMzk3NjI4OGM2Mjc5NGY4ZGNiMDY5NjVlZjg5ODAzMw==
+  sha: 9bb6c36e13976288c62794f8dcb06965ef898033
   size: 1089981446
