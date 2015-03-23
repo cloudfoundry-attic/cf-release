@@ -88,3 +88,13 @@ properties:
   dropsonde.enabled:
     default: false
     description: "Enable the dropsonde emitter library"
+  
+  uaa.clients.gorouter.secret:
+    description: "Password for UAA client for the gorouter."
+  uaa.port:
+    description: "Port on which UAA is running."
+    default: 8080
+
+  routing-api.port:
+    description: "Port on which routing-api is running."
+    default: 3000
