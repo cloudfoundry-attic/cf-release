@@ -20,6 +20,7 @@ frontend http-in
     mode http
     bind :80
     option httplog
+    option httpclose
     option forwardfor
     reqadd X-Forwarded-Proto:\ http
     default_backend http-routers
