@@ -124,6 +124,8 @@ properties:
         secret: doppler_secret
       cloud_controller_username_lookup:
         secret: cloud_controller_username_lookup_secret
+      gorouter:
+        secret: gorouter_secret
     jwt:
       verification_key: vk
       signing_key: sk

@@ -345,6 +345,11 @@ properties:
         secret: PASSWORD
       cloud_controller_username_lookup:
         secret: PASSWORD
+      gorouter:
+        authorities: clients.read,clients.write,clients.admin,route.admin,route.advertise
+        authorized-grant-types: client_credentials,refresh_token
+        scope: openid,cloud_controller_service_permissions.read
+        secret: PASSWORD
       doppler:
         authorities: uaa.resource
         secret: PASSWORD

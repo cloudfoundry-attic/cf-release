@@ -2946,8 +2946,13 @@ properties:
         secret: doppler-secret
       cloud_controller_username_lookup:
         authorities: scim.userids
-        secret: cloud_controller_username_lookup_secret
+        secret: cloud-controller-username-lookup-secret
         authorized-grant-types: client_credentials
+      gorouter:
+        authorities: clients.read,clients.write,clients.admin,route.admin,route.advertise
+        authorized-grant-types: client_credentials,refresh_token
+        scope: openid,cloud_controller_service_permissions.read
+        secret: gorouter-secret
     issuer: https://uaa.10.244.0.34.xip.io
     jwt:
       signing_key: '-----BEGIN RSA PRIVATE KEY-----
