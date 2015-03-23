@@ -53,9 +53,6 @@ resources:
   disk_mb: <%= p("dea_next.disk_mb") %>
   disk_overcommit_factor: <%= p("dea_next.disk_overcommit_factor") %>
 
-bind_mounts:
-- src_path: /var/vcap/packages/buildpack_cache
-
 staging:
   enabled: true
   max_staging_duration: <%= p("dea_next.max_staging_duration") %>
@@ -63,8 +60,6 @@ staging:
   disk_limit_mb: <%= p("dea_next.staging_disk_limit_mb") %>
   cpu_limit_shares: <%= p("dea_next.staging_cpu_limit_shares") %>
   disk_inode_limit: <%= p("dea_next.staging_disk_inode_limit") %>
-  environment:
-    BUILDPACK_CACHE: "/var/vcap/packages/buildpack_cache"
 
 instance:
   memory_to_cpu_share_ratio: <%= p("dea_next.instance_memory_to_cpu_share_ratio") %>
