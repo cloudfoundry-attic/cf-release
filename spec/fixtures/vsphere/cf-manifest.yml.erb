@@ -411,6 +411,13 @@ jobs:
   - name: cf1
   persistent_disk: 0
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.16
+          - 0.0.1.17
+          - 0.0.1.18
     metron_agent:
       zone: z1
     networks:
@@ -438,6 +445,13 @@ jobs:
   - name: cf2
   persistent_disk: 0
   properties:
+    consul:
+      agent:
+        servers:
+          lan:
+          - 0.0.0.16
+          - 0.0.1.17
+          - 0.0.1.18
     metron_agent:
       zone: z2
     networks:

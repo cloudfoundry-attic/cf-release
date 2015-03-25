@@ -420,6 +420,10 @@ jobs:
     networks:
       - name: cf1
     properties:
+      consul:
+        agent:
+          servers:
+            lan: (( consul_servers ))
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -434,6 +438,10 @@ jobs:
     networks:
       - name: cf2
     properties:
+      consul:
+        agent:
+          servers:
+            lan: (( consul_servers ))
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
