@@ -117,6 +117,12 @@ properties:
     description: "Deprecated: Use login.saml.providers list objects"
   login.entity_id:
     description: "Deprecated: Use login.saml.entityid"
+  login.saml.signMetaData:
+    description: "Whether to sign XML metadata"
+    default: true
+  login.saml.signRequest:
+    description: "Whether to sign authentication requests"
+    default:true
   login.saml.keystore_name:
     description: "Name of the SAML login server keystore."
     default: "samlKeystore.jks"
