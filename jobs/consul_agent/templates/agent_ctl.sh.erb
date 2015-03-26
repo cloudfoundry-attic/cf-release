@@ -28,7 +28,7 @@ case $1 in
 <%=
 {
   "service" => {
-    "name" => service_name,
+    "name" => service_name.tr('_', '-'),
     "check" => {
       "script" => "/var/vcap/jobs/#{service_name}/bin/dns_health_check",
       "interval" => "3s"
