@@ -66,6 +66,9 @@ properties:
     description: "Timeout for requests in seconds."
     default: 900
 
+  cc.internal_service_hostname:
+    description: "DNS hostname that can resolve to any CC within the deployment"
+    default: ~
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022
