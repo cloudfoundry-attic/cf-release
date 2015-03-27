@@ -220,10 +220,10 @@ jobs:
         static_ips: []
 
   - name: consul_z2
-    instances: 2
+    instances: 0
     networks:
       - name: cf2
-        static_ips: (( static_ips(12, 13, 14) ))
+        static_ips: []
 
   - name: loggregator_z2
     instances: 0
