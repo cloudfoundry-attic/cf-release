@@ -2683,8 +2683,8 @@ properties:
     default_health_check_timeout: 60
     deny_networks: []
     directory_server_protocol: https
-    disk_mb: 16384
-    disk_overcommit_factor: 2
+    disk_mb: 32768
+    disk_overcommit_factor: 3
     evacuation_bail_out_time_in_seconds: 0
     heartbeat_interval_in_seconds: 10
     instance_disk_inode_limit: 200000
@@ -2693,7 +2693,7 @@ properties:
     memory_mb: 8192
     memory_overcommit_factor: 3
     staging_disk_inode_limit: 200000
-    staging_disk_limit_mb: 4096
+    staging_disk_limit_mb: 6144
     staging_memory_limit_mb: 1024
     rlimit_core: 0
   description: Cloud Foundry sponsored by Pivotal

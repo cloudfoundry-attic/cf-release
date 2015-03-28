@@ -707,7 +707,7 @@ properties:
     directory_server_protocol: https
     evacuation_bail_out_time_in_seconds: 600
     logging_level: debug
-    staging_disk_limit_mb: 4096
+    staging_disk_limit_mb: 6144
     staging_memory_limit_mb: 1024
     default_health_check_timeout: 60
     advertise_interval_in_seconds: 5

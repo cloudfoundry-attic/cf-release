@@ -450,7 +450,7 @@ properties:
     default: 1024
   dea_next.staging_disk_limit_mb:
     description: "Disk limit in mb for staging tasks"
-    default: 4096
+    default: 6144
   cc.staging_file_descriptor_limit:
     description: "File descriptor limit for staging tasks"
     default: 16384
