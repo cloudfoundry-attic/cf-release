@@ -184,7 +184,7 @@ jobs:
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(16, 18, 19) ))
+        static_ips: (( static_ips(17, 18, 19) ))
 
   - name: consul_z2
     instances: 2

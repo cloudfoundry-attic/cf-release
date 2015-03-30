@@ -215,7 +215,7 @@ jobs:
 
   - name: consul_z2
     templates: (( merge || meta.consul_templates ))
-    instances: 1
+    instances: 2
     persistent_disk: 1024
     resource_pool: medium_z2
     networks:
