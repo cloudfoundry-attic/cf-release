@@ -508,13 +508,6 @@ jobs:
   - name: cf1
     static_ips: null
   properties:
-    consul:
-      agent:
-        servers:
-          lan:
-          - 0.0.0.27
-          - 0.0.1.27
-          - 0.0.1.28
     dea_next:
       zone: z1
     metron_agent:
@@ -529,8 +522,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: consul_agent
-    release: cf
   update:
     max_in_flight: 1
 - instances: 1
@@ -539,13 +530,6 @@ jobs:
   - name: cf2
     static_ips: null
   properties:
-    consul:
-      agent:
-        servers:
-          lan:
-          - 0.0.0.27
-          - 0.0.1.27
-          - 0.0.1.28
     dea_next:
       zone: z2
     metron_agent:
@@ -559,8 +543,6 @@ jobs:
   - name: dea_logging_agent
     release: cf
   - name: metron_agent
-    release: cf
-  - name: consul_agent
     release: cf
   update:
     max_in_flight: 1

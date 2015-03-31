@@ -67,8 +67,6 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.release.name ))
 
   router_templates:
   - name: gorouter
@@ -482,10 +480,6 @@ jobs:
       - name: cf1
         static_ips: ~
     properties:
-      consul:
-        agent:
-          servers:
-            lan: (( consul_servers ))
       dea_next:
         zone: (( merge || "z1" ))
       networks: (( meta.networks.z1 ))
@@ -502,10 +496,6 @@ jobs:
       - name: cf2
         static_ips: ~
     properties:
-      consul:
-        agent:
-          servers:
-            lan: (( consul_servers ))
       dea_next:
         zone: (( merge || "z2" ))
       networks: (( meta.networks.z2 ))
