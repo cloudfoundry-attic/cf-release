@@ -33,8 +33,6 @@ meta:
     release: (( meta.release.name ))
   - name: nfs_mounter
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.release.name ))
 
   api_worker_templates:
   - name: cloud_controller_worker
@@ -42,8 +40,6 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: nfs_mounter
-    release: (( meta.release.name ))
-  - name: consul_agent
     release: (( meta.release.name ))
 
   clock_templates:
@@ -73,15 +69,13 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.release.name ))
 
   routing_api_templates:
+  - name: consul_agent
+    release: (( meta.release.name ))
   - name: routing-api
     release: (( meta.release.name ))
   - name: metron_agent
-    release: (( meta.release.name ))
-  - name: consul_agent
     release: (( meta.release.name ))
 
   ha_proxy_templates:
@@ -120,8 +114,6 @@ meta:
   - name: uaa
     release: (( meta.release.name ))
   - name: metron_agent
-    release: (( meta.release.name ))
-  - name: consul_agent
     release: (( meta.release.name ))
 
   login_templates:
@@ -193,7 +185,7 @@ jobs:
 
   - name: consul_z1
     templates: (( merge || meta.consul_templates ))
-    instances: 1
+    instances: 0
     persistent_disk: 1024
     resource_pool: medium_z1
     networks:
@@ -213,7 +205,7 @@ jobs:
 
   - name: consul_z2
     templates: (( merge || meta.consul_templates ))
-    instances: 2
+    instances: 0
     persistent_disk: 1024
     resource_pool: medium_z2
     networks:

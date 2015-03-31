@@ -191,13 +191,13 @@ jobs:
       - name: cf2
 
   - name: consul_z1
-    instances: 1
+    instances: 0
     networks:
       - name: cf1
         static_ips: (( static_ips(27, 28, 29) ))
 
   - name: consul_z2
-    instances: 2
+    instances: 0
     networks:
       - name: cf2
         static_ips: (( static_ips(27, 28, 29) ))
