@@ -113,7 +113,7 @@ properties:
     default: 1200
   cc.billing_event_writing_enabled:
     description: "If true, billing events are written to the CCDB."
-    default: true
+    default: false
   cc.info.name:
     description: "name attribute in the /info endpoint"
   cc.info.build:
