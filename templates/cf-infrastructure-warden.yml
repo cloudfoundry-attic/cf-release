@@ -280,7 +280,7 @@ jobs:
         static_ips: (( static_ips(9) ))
 
   - name: consul_z1
-    instances: 0
+    instances: 1
     networks:
       - name: cf1
         static_ips: (( static_ips(13, 14, 15) ))
@@ -357,6 +357,8 @@ jobs:
       - name: metron_agent
         release: cf
       - name: nfs_mounter
+        release: cf
+      - name: consul_agent
         release: cf
 
   - name: api_worker_z1

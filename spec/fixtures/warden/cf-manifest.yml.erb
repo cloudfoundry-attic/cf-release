@@ -121,18 +121,20 @@ jobs:
   - name: metron_agent
     release: cf
   update: {}
-- instances: 0
+- instances: 1
   name: consul_z1
   networks:
   - name: cf1
-    static_ips: []
+    static_ips:
+    - 10.244.0.54
   persistent_disk: 1024
   properties:
     consul:
       agent:
         mode: server
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
     metron_agent:
       zone: z1
   resource_pool: medium_z1
@@ -155,7 +157,8 @@ jobs:
       agent:
         mode: server
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
     metron_agent:
       zone: z2
   resource_pool: medium_z2
@@ -269,7 +272,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - uaa
     networks:
@@ -282,6 +286,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 0
   name: uaa_z2
@@ -291,7 +297,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - uaa
     networks:
@@ -303,6 +310,8 @@ jobs:
   - name: uaa
     release: cf
   - name: metron_agent
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
@@ -346,7 +355,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - cloud_controller_ng
     metron_agent:
@@ -371,6 +381,8 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 0
   name: api_z2
@@ -381,7 +393,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - cloud_controller_ng
     metron_agent:
@@ -401,6 +414,8 @@ jobs:
   - name: metron_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 0
@@ -429,7 +444,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
     metron_agent:
       zone: z1
     networks:
@@ -448,6 +464,8 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 0
   name: api_worker_z2
@@ -458,7 +476,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
     metron_agent:
       zone: z2
     networks:
@@ -476,6 +495,8 @@ jobs:
   - name: metron_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
@@ -613,7 +634,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - gorouter
     metron_agent:
@@ -626,6 +648,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 0
   name: router_z2
@@ -636,7 +660,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - gorouter
     metron_agent:
@@ -649,6 +674,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 0
   name: routing_api_z1
@@ -659,7 +686,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - routing-api
     metron_agent:
@@ -668,11 +696,11 @@ jobs:
       apps: cf1
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
-    release: cf
   - name: routing-api
     release: cf
   - name: metron_agent
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 0
@@ -684,7 +712,8 @@ jobs:
     consul:
       agent:
         servers:
-          lan: []
+          lan:
+          - 10.244.0.54
         services:
         - routing-api
     metron_agent:
@@ -693,11 +722,11 @@ jobs:
       apps: cf2
   resource_pool: medium_z2
   templates:
-  - name: consul_agent
-    release: cf
   - name: routing-api
     release: cf
   - name: metron_agent
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
@@ -2437,6 +2466,7 @@ properties:
     bulk_api_password: bulk-password
     internal_api_user: internal_user
     internal_api_password: internal-password
+    internal_service_hostname: cloud-controller-ng.service.consul
     logging_level: debug2
     db_logging_level: debug2
     client_max_body_size: 1536M
@@ -2978,7 +3008,7 @@ resource_pools:
     name: random
   name: medium_z1
   network: cf1
-  size: 7
+  size: 8
   stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
