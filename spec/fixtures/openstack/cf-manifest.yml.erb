@@ -79,18 +79,18 @@ jobs:
   - name: metron_agent
     release: cf
   update: {}
-- instances: 1
+- instances: 0
   name: consul_z1
   networks:
   - name: cf1
-    static_ips: ['0.0.0.12']
+    static_ips: []
   persistent_disk: 1024
   properties:
     consul:
       agent:
         mode: server
         servers:
-          lan: ['0.0.0.12']
+          lan: []
     metron_agent:
       zone: z1
   resource_pool: medium_z1
@@ -113,7 +113,7 @@ jobs:
       agent:
         mode: server
         servers:
-          lan: ['0.0.0.12']
+          lan: []
     metron_agent:
       zone: z2
   resource_pool: medium_z2
@@ -228,7 +228,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - uaa
     networks:
@@ -252,7 +252,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - uaa
     networks:
@@ -309,7 +309,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - cloud_controller_ng
     metron_agent:
@@ -342,7 +342,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - cloud_controller_ng
     metron_agent:
@@ -392,7 +392,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
     metron_agent:
       zone: z1
     networks:
@@ -423,7 +423,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
     metron_agent:
       zone: z2
     networks:
@@ -579,7 +579,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - gorouter
     metron_agent:
@@ -604,7 +604,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - gorouter
     metron_agent:
@@ -629,7 +629,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - routing-api
     metron_agent:
@@ -654,7 +654,7 @@ jobs:
     consul:
       agent:
         servers:
-          lan: ['0.0.0.12']
+          lan: []
         services:
         - routing-api
     metron_agent:
@@ -1173,7 +1173,7 @@ resource_pools:
     instance_type: m1.medium
   name: medium_z1
   network: cf1
-  size: 10
+  size: 9
   stemcell:
     name: bosh-openstack-kvm-ubuntu-lucid-go_agent
     version: latest
