@@ -40,11 +40,11 @@ resource_pools:
 - name: small_z1
   network: cf_private
   stemcell:
-    name: bosh-aws-xen-ubuntu-trusty-go_agent
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
     version: REPLACE_WITH_BOSH_STEMCELL_VERSION
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
-    instance_type: m1.small
+    instance_type: c3.large
 
 compilation:
   workers: 6
