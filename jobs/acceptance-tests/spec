@@ -51,3 +51,6 @@ properties:
   acceptance_tests.include_v3:
     default: false
     description: Flag to include the v3 API test suite.
+  acceptance_tests.slow_spec_threshold:
+    default: 120
+    description: Maximum number of seconds before a testcase times out.
