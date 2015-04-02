@@ -131,8 +131,6 @@ jobs:
     consul:
       agent:
         mode: server
-        servers:
-          lan: []
     metron_agent:
       zone: z1
   resource_pool: medium_z1
@@ -154,8 +152,6 @@ jobs:
     consul:
       agent:
         mode: server
-        servers:
-          lan: []
     metron_agent:
       zone: z2
   resource_pool: medium_z2
@@ -268,8 +264,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - uaa
     networks:
@@ -292,8 +286,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - uaa
     networks:
@@ -349,8 +341,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - cloud_controller_ng
     metron_agent:
@@ -386,8 +376,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - cloud_controller_ng
     metron_agent:
@@ -434,10 +422,6 @@ jobs:
   - name: cf1
   persistent_disk: 0
   properties:
-    consul:
-      agent:
-        servers:
-          lan: []
     metron_agent:
       zone: z1
     networks:
@@ -465,10 +449,6 @@ jobs:
   - name: cf2
   persistent_disk: 0
   properties:
-    consul:
-      agent:
-        servers:
-          lan: []
     metron_agent:
       zone: z2
     networks:
@@ -624,8 +604,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - gorouter
     metron_agent:
@@ -649,8 +627,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - gorouter
     metron_agent:
@@ -674,8 +650,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - routing-api
     metron_agent:
@@ -699,8 +673,6 @@ jobs:
   properties:
     consul:
       agent:
-        servers:
-          lan: []
         services:
         - routing-api
     metron_agent:
@@ -2631,6 +2603,10 @@ properties:
       password: admin
       tag: admin
   collector: null
+  consul:
+    agent:
+      servers:
+        lan: []
   databases:
     address: 10.244.0.30
     databases:

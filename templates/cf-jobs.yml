@@ -206,8 +206,6 @@ jobs:
       consul:
         agent:
           mode: server
-          servers:
-            lan: (( consul_servers ))
       metron_agent:
         zone: z1
 
@@ -226,8 +224,6 @@ jobs:
       consul:
         agent:
           mode: server
-          servers:
-            lan: (( consul_servers ))
       metron_agent:
         zone: z2
 
@@ -310,8 +306,6 @@ jobs:
         agent:
           services:
             - uaa
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -328,8 +322,6 @@ jobs:
         agent:
           services:
             - uaa
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
@@ -371,8 +363,6 @@ jobs:
         agent:
           services:
             - cloud_controller_ng
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -391,8 +381,6 @@ jobs:
         agent:
           services:
             - cloud_controller_ng
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
@@ -420,10 +408,6 @@ jobs:
     networks:
       - name: cf1
     properties:
-      consul:
-        agent:
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -438,10 +422,6 @@ jobs:
     networks:
       - name: cf2
     properties:
-      consul:
-        agent:
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
@@ -560,8 +540,6 @@ jobs:
         agent:
           services:
             - gorouter
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -579,8 +557,6 @@ jobs:
         agent:
           services:
             - gorouter
-          servers:
-            lan: (( consul_servers ))
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
@@ -598,8 +574,6 @@ jobs:
         agent:
           services:
             - routing-api
-          servers:
-            lan: (( consul_servers ))
       metron_agent:
         zone: z1
       networks: (( meta.networks.z1 ))
@@ -617,8 +591,6 @@ jobs:
         agent:
           services:
             - routing-api
-          servers:
-            lan: (( consul_servers ))
       metron_agent:
         zone: z2
       networks: (( meta.networks.z2 ))
@@ -648,6 +620,11 @@ jobs:
 
 properties:
   <<: (( merge ))
+  consul:
+    agent:
+      servers:
+        lan: (( consul_servers ))
+
   dropsonde:
     enabled: true
 
