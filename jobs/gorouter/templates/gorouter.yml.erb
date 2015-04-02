@@ -50,9 +50,11 @@ oauth:
   client_secret: <%= p("uaa.clients.gorouter.secret") %>
   port: <%= p("uaa.port") %>
 
+<% if p("routing-api.enabled") %>
 routing_api:
   uri: "http://routing-api.service.consul"
   port: <%= p("routing-api.port") %>
+<% end %>
 
 endpoint_timeout: <%= p("request_timeout_in_seconds") %>
 

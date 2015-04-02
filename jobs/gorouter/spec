@@ -98,3 +98,6 @@ properties:
   routing-api.port:
     description: "Port on which routing-api is running."
     default: 3000
+  routing-api.enabled:
+    description: Determines whether or not the Routing Api is enabled
+    default: false
