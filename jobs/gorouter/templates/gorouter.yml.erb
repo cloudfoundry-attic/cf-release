@@ -45,14 +45,14 @@ droplet_stale_threshold: 120
 publish_active_apps_interval: 0 # 0 means disabled
 
 oauth:
-  token_endpoint: "http://uaa.service.consul"
+  token_endpoint: http://uaa.service.<%=p("consul.domain")%>
   client_name: "gorouter"
   client_secret: <%= p("uaa.clients.gorouter.secret") %>
   port: <%= p("uaa.port") %>
 
 <% if p("routing-api.enabled") %>
 routing_api:
-  uri: "http://routing-api.service.consul"
+  uri: http://routing-api.service.<%=p("consul.domain")%>
   port: <%= p("routing-api.port") %>
 <% end %>
 
