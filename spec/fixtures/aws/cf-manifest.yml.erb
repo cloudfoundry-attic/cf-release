@@ -1,7 +1,7 @@
 compilation:
   cloud_properties:
     availability_zone: zone_1
-    instance_type: c1.medium
+    instance_type: c3.medium
   network: cf1
   reuse_compilation_vms: true
   workers: 6
@@ -1174,7 +1174,7 @@ releases:
 resource_pools:
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m1.small
+    instance_type: m3.medium
   name: small_z1
   network: cf1
   size: 3
@@ -1186,7 +1186,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m1.small
+    instance_type: m3.medium
   name: small_z2
   network: cf2
   size: 2
@@ -1198,7 +1198,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m1.medium
+    instance_type: m3.medium
   name: medium_z1
   network: cf1
   size: 9
@@ -1210,7 +1210,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m1.medium
+    instance_type: m3.medium
   name: medium_z2
   network: cf2
   size: 8
@@ -1222,7 +1222,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m1.large
+    instance_type: m3.large
   name: large_z1
   network: cf1
   size: 1
@@ -1234,7 +1234,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m1.large
+    instance_type: m3.large
   name: large_z2
   network: cf2
   size: 1
@@ -1246,7 +1246,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m1.large
+    instance_type: m3.large
   name: runner_z1
   network: cf1
   size: 1
@@ -1258,7 +1258,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_2
-    instance_type: m1.large
+    instance_type: m3.large
   name: runner_z2
   network: cf2
   size: 1
@@ -1272,7 +1272,7 @@ resource_pools:
     availability_zone: zone_1
     elbs:
     - cfrouter
-    instance_type: m1.medium
+    instance_type: m3.medium
   name: router_z1
   network: cf1
   size: 1
@@ -1286,7 +1286,7 @@ resource_pools:
     availability_zone: zone_2
     elbs:
     - cfrouter
-    instance_type: m1.medium
+    instance_type: m3.medium
   name: router_z2
   network: cf2
   size: 1
@@ -1298,7 +1298,7 @@ resource_pools:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
 - cloud_properties:
     availability_zone: zone_1
-    instance_type: m1.small
+    instance_type: m3.medium
   name: small_errand
   network: cf1
   stemcell:
