@@ -50,7 +50,7 @@ properties:
 
 compilation:
   cloud_properties:
-    instance_type: c1.medium
+    instance_type: c3.medium
     availability_zone: (( meta.zones.z1 ))
 
 
@@ -60,59 +60,59 @@ networks: (( merge ))
 resource_pools:
   - name: small_z1
     cloud_properties:
-      instance_type: m1.small
+      instance_type: m3.medium
       availability_zone: (( meta.zones.z1 ))
 
   - name: small_z2
     cloud_properties:
-      instance_type: m1.small
+      instance_type: m3.medium
       availability_zone: (( meta.zones.z2 ))
 
   - name: medium_z1
     cloud_properties:
-      instance_type: m1.medium
+      instance_type: m3.medium
       availability_zone: (( meta.zones.z1 ))
 
   - name: medium_z2
     cloud_properties:
-      instance_type: m1.medium
+      instance_type: m3.medium
       availability_zone: (( meta.zones.z2 ))
 
   - name: large_z1
     cloud_properties:
-      instance_type: m1.large
+      instance_type: m3.large
       availability_zone: (( meta.zones.z1 ))
 
   - name: large_z2
     cloud_properties:
-      instance_type: m1.large
+      instance_type: m3.large
       availability_zone: (( meta.zones.z2 ))
 
   - name: runner_z1
     cloud_properties:
-      instance_type: m1.large
+      instance_type: m3.large
       availability_zone: (( meta.zones.z1 ))
 
   - name: runner_z2
     cloud_properties:
-      instance_type: m1.large
+      instance_type: m3.large
       availability_zone: (( meta.zones.z2 ))
 
   - name: router_z1
     cloud_properties:
-      instance_type: m1.medium
+      instance_type: m3.medium
       availability_zone: (( meta.zones.z1 ))
       elbs: (( merge || ["cfrouter"] ))
 
   - name: router_z2
     cloud_properties:
-      instance_type: m1.medium
+      instance_type: m3.medium
       availability_zone: (( meta.zones.z2 ))
       elbs: (( merge || ["cfrouter"] ))
 
   - name: small_errand
     cloud_properties:
-      instance_type: m1.small
+      instance_type: m3.medium
       availability_zone: (( meta.zones.z1 ))
 
   - name: xlarge_errand
