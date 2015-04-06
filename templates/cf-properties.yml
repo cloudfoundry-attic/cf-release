@@ -68,7 +68,7 @@ properties:
     audit_events:
       cutoff_age_in_days: 31
 
-    billing_event_writing_enabled: true
+    billing_event_writing_enabled: false
 
     users_can_select_backend: true
     diego_docker: false
