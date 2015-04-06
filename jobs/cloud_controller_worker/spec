@@ -470,3 +470,6 @@ properties:
     default: 25
     description: "The max number of attempts the CC will fetch service instance state from a service broker. 24 hours times this value is the maximum time a service broker can asynchronous provision an instance."
 
+  consul.domain:
+    description: "Domain name to be used for consul"
+    default: "consul"
