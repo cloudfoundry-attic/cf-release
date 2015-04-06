@@ -50,7 +50,7 @@ properties:
 
 compilation:
   cloud_properties:
-    instance_type: c3.medium
+    instance_type: c3.large
     availability_zone: (( meta.zones.z1 ))
 
 
