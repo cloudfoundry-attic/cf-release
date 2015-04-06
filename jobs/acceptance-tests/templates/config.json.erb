@@ -23,8 +23,8 @@
   "artifacts_directory" : "/var/vcap/sys/log/acceptance_tests/",
   "syslog_drain_port"   : 1234,
   "syslog_ip_address"   : "<%= my_ip %>",
-  "default_timeout"     : "<%= properties.acceptance_tests.default_timeout %>",
-  "cf_push_timeout"     : "<%= properties.acceptance_tests.cf_push_timeout %>",
-  "long_curl_timeout"   : "<%= properties.acceptance_tests.long_curl_timeout %>",
-  "broker_start_timeout": "<%= properties.acceptance_tests.broker_start_timeout %>"
+  "default_timeout"     : <%= properties.acceptance_tests.default_timeout %>,
+  "cf_push_timeout"     : <%= properties.acceptance_tests.cf_push_timeout %>,
+  "long_curl_timeout"   : <%= properties.acceptance_tests.long_curl_timeout %>,
+  "broker_start_timeout": <%= properties.acceptance_tests.broker_start_timeout %>
 }
