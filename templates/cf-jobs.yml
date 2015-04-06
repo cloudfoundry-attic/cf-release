@@ -621,6 +621,7 @@ jobs:
 properties:
   <<: (( merge ))
   consul:
+    domain: (( merge || nil ))
     agent:
       servers:
         lan: (( consul_servers ))

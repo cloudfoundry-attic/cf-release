@@ -510,4 +510,5 @@ properties:
 
   consul.domain:
     description: "Domain name to be used for consul"
-    default: "consul"
+  cc.service_name:
+    description: "Service name to be advertised by Cloud Controller to consul"
