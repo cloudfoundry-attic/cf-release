@@ -61,58 +61,91 @@ resource_pools:
   - name: small_z1
     cloud_properties:
       instance_type: c3.large
+      ephemeral_disk:
+        size: 163_840
+        type: gp2
       availability_zone: (( meta.zones.z1 ))
 
   - name: small_z2
     cloud_properties:
       instance_type: c3.large
+      ephemeral_disk:
+        size: 163_840
+        type: gp2
       availability_zone: (( meta.zones.z2 ))
 
   - name: medium_z1
     cloud_properties:
       instance_type: c3.large
+      ephemeral_disk:
+        size: 419_840
+        type: gp2
       availability_zone: (( meta.zones.z1 ))
 
   - name: medium_z2
     cloud_properties:
       instance_type: c3.large
+      ephemeral_disk:
+        size: 419_840
+        type: gp2
       availability_zone: (( meta.zones.z2 ))
 
   - name: large_z1
     cloud_properties:
       instance_type: m3.large
+      ephemeral_disk:
+        size: 860_160
+        type: gp2
       availability_zone: (( meta.zones.z1 ))
 
   - name: large_z2
     cloud_properties:
       instance_type: m3.large
+      ephemeral_disk:
+        size: 860_160
+        type: gp2
       availability_zone: (( meta.zones.z2 ))
 
   - name: runner_z1
     cloud_properties:
       instance_type: m3.large
+      ephemeral_disk:
+        size: 860_160
+        type: gp2
       availability_zone: (( meta.zones.z1 ))
 
   - name: runner_z2
     cloud_properties:
       instance_type: m3.large
+      ephemeral_disk:
+        size: 860_160
+        type: gp2
       availability_zone: (( meta.zones.z2 ))
 
   - name: router_z1
     cloud_properties:
       instance_type: c3.large
+      ephemeral_disk:
+        size: 419_840
+        type: gp2
       availability_zone: (( meta.zones.z1 ))
       elbs: (( merge || ["cfrouter"] ))
 
   - name: router_z2
     cloud_properties:
       instance_type: c3.large
+      ephemeral_disk:
+        size: 419_840
+        type: gp2
       availability_zone: (( meta.zones.z2 ))
       elbs: (( merge || ["cfrouter"] ))
 
   - name: small_errand
     cloud_properties:
       instance_type: c3.large
+      ephemeral_disk:
+        size: 163_840
+        type: gp2
       availability_zone: (( meta.zones.z1 ))
 
   - name: xlarge_errand

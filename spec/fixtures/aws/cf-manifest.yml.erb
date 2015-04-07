@@ -1144,6 +1144,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_1
     instance_type: c3.large
+    ephemeral_disk:
+      size: 163_840
+      type: gp2
   name: small_z1
   network: cf1
   size: 3
@@ -1156,6 +1159,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_2
     instance_type: c3.large
+    ephemeral_disk:
+      size: 163_840
+      type: gp2
   name: small_z2
   network: cf2
   size: 2
@@ -1168,6 +1174,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_1
     instance_type: c3.large
+    ephemeral_disk:
+      size: 419_840
+      type: gp2
   name: medium_z1
   network: cf1
   size: 8
@@ -1180,6 +1189,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_2
     instance_type: c3.large
+    ephemeral_disk:
+      size: 419_840
+      type: gp2
   name: medium_z2
   network: cf2
   size: 6
@@ -1192,6 +1204,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_1
     instance_type: m3.large
+    ephemeral_disk:
+      size: 860_160
+      type: gp2
   name: large_z1
   network: cf1
   size: 1
@@ -1204,6 +1219,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_2
     instance_type: m3.large
+    ephemeral_disk:
+      size: 860_160
+      type: gp2
   name: large_z2
   network: cf2
   size: 1
@@ -1216,6 +1234,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_1
     instance_type: m3.large
+    ephemeral_disk:
+      size: 860_160
+      type: gp2
   name: runner_z1
   network: cf1
   size: 1
@@ -1228,6 +1249,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_2
     instance_type: m3.large
+    ephemeral_disk:
+      size: 860_160
+      type: gp2
   name: runner_z2
   network: cf2
   size: 1
@@ -1242,6 +1266,9 @@ resource_pools:
     elbs:
     - cfrouter
     instance_type: c3.large
+    ephemeral_disk:
+      size: 419_840
+      type: gp2
   name: router_z1
   network: cf1
   size: 1
@@ -1256,6 +1283,9 @@ resource_pools:
     elbs:
     - cfrouter
     instance_type: c3.large
+    ephemeral_disk:
+      size: 419_840
+      type: gp2
   name: router_z2
   network: cf2
   size: 1
@@ -1268,6 +1298,9 @@ resource_pools:
 - cloud_properties:
     availability_zone: zone_1
     instance_type: c3.large
+    ephemeral_disk:
+      size: 163_840
+      type: gp2
   name: small_errand
   network: cf1
   stemcell:
