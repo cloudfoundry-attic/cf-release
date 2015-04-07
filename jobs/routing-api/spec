@@ -27,3 +27,7 @@ properties:
   metron_endpoint.dropsonde_port:
     description: "The port used to emit dropsonde messages to the Metron agent."
     default: 3457
+
+  system_domain:
+    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
+
