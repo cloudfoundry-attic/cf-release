@@ -106,7 +106,7 @@ properties:
 
     broker_client_timeout_seconds: 70
     broker_client_default_async_poll_interval_seconds: (( merge || 60 ))
-    broker_client_max_async_poll_attempts: (( merge || 25 ))
+    broker_client_max_async_poll_duration_minutes: (( merge || 10080 ))
 
     resource_pool:
       resource_directory_key: (( domain "-cc-resources" ))
