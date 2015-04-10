@@ -111,14 +111,6 @@ golang/go1.4.2.linux-amd64.tar.gz:
   object_id: bfaf73b1-de68-4c94-9a02-555245b2eb8d
   sha: 5020af94b52b65cc9b6f11d50a67e4bae07b0aff
   size: 62442704
-java-buildpack/java-buildpack-offline-v2.7.1.zip:
-  object_id: 32b45915-97ab-409f-ba5e-03ee1b8395f8
-  sha: 76020e0ce6797418e4e486a6477b86f771417da1
-  size: 298273819
-java-buildpack/java-buildpack-v2.7.1.zip:
-  object_id: 33190dc8-e960-4b91-8892-e94c1cca672b
-  sha: cf07d48f2d45a0eeb02b56c56e9a39cee81044b3
-  size: 149526
 consul/consul_0.5.0_linux_amd64.zip:
   object_id: 3e6c1e47-95a5-45ef-aeec-2cb4cc4c529a
   sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
@@ -144,3 +136,11 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.2.1.zip:
   sha: !binary |-
     OGM1MzQwNTdmYzFmZTBjY2JkZmE1NTQ3YzI1ZjMwYWQ3OWRkMzY4ZA==
   size: 437119230
+java-buildpack/java-buildpack-offline-v3.0.zip:
+  object_id: 8fe6e89a-aa63-4119-8fd0-23715820f31d
+  sha: a300c3fca530dc16345dbd6feb26b13897d05265
+  size: 324816174
+java-buildpack/java-buildpack-v3.0.zip:
+  object_id: 34bff29b-9ec3-42aa-891f-db301f7f978d
+  sha: 177715b012505051d14611bf706f0ebe50cc55f0
+  size: 150091
