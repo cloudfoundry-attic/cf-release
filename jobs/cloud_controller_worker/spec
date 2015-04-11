@@ -469,8 +469,3 @@ properties:
   cc.broker_client_max_async_poll_duration_minutes:
     default: 10080
     description: "The max duration the CC will fetch service instance state from a service broker. Default is 1 week"
-
-  consul.domain:
-    description: "Domain name to be used for consul"
-  cc.service_name:
-    description: "Service name to be advertised by Cloud Controller to consul"

@@ -101,5 +101,3 @@ properties:
   routing-api.enabled:
     description: Determines whether or not the Routing Api is enabled
     default: false
-  consul.domain:
-    description: "Domain name to be used for consul"

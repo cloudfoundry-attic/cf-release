@@ -32,9 +32,6 @@ properties:
   <<: (( merge ))
   domain: (( merge ))
 
-  consul:
-    domain: "consul"
-
   loggregator_endpoint:
     shared_secret: (( merge ))
 
@@ -90,7 +87,6 @@ properties:
     bulk_api_password: (( merge ))
     internal_api_user: "internal_user"
     internal_api_password: (( bulk_api_password ))
-    service_name: "cloud-controller-ng"
 
     logging_level: debug2
     db_logging_level: debug2

@@ -460,7 +460,3 @@ properties:
     description: "The file descriptors made available to each app instance"
     default: 16384
 
-  consul.domain:
-    description: "Domain name to be used for consul"
-  cc.service_name:
-    description: "Service name to be advertised by Cloud Controller to consul"
