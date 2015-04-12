@@ -51,3 +51,15 @@ properties:
   acceptance_tests.include_v3:
     default: false
     description: Flag to include the v3 API test suite.
+  acceptance_tests.default_timeout:
+    default: 30
+    description: Seconds to wait before cf cli interactions will time out.
+  acceptance_tests.cf_push_timeout:
+    default: 120
+    description: Seconds to wait before cf cli interactions against an app will time out.
+  acceptance_tests.long_curl_timeout:
+    default: 120
+    description: Seconds to wait before a curl against an app will time out.
+  acceptance_tests.broker_start_timeout:
+    default: 300
+    description: Seconds to wait before cf cli interations in the context of service brokers will time out
