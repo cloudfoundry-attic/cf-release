@@ -22,5 +22,6 @@
   "skip_ssl_validation": <%= properties.acceptance_tests.skip_ssl_validation %>,
   "artifacts_directory": "/var/vcap/sys/log/acceptance_tests/",
   "syslog_drain_port"  : 1234,
-  "syslog_ip_address"  : "<%= my_ip %>"
+  "syslog_ip_address"  : "<%= my_ip %>",
+  "use_diego"          : "<%= properties.acceptance_tests.use_diego %>"
 }
