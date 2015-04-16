@@ -42,4 +42,8 @@ properties:
         rules:
         - protocol: all
           destination: (( merge || "10.244.0.34" ))
-    default_running_security_groups: ["public_networks", "dns", "services", "load_balancer"]
+      - name: cf_mysql
+        rules:
+        - protocol: all
+        destination: 10.244.7.0-10.244.9.255
+    default_running_security_groups: ["public_networks", "dns", "services", "load_balancer", "cf_mysql"]
