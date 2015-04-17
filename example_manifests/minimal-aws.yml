@@ -322,6 +322,7 @@ properties:
     protocol: http
   metron_agent:
     zone: z1
+    deployment: minimal-aws
   metron_endpoint:
     shared_secret: PASSWORD
   nats:
