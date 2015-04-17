@@ -187,7 +187,7 @@ properties:
       code: ~
       domain: ~
     url: ~
-    catalina_opts: (( merge ))
+    catalina_opts: ~
     uaa_certificate: ~
     protocol: https
     brand: oss
