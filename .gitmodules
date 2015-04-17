@@ -97,3 +97,6 @@
 [submodule "src/routing-api"]
 	path = src/routing-api
 	url = https://github.com/cloudfoundry-incubator/routing-api.git
+[submodule "src/etcd-release"]
+	path = src/etcd-release
+	url = https://github.com/cloudfoundry-incubator/etcd-release.git
