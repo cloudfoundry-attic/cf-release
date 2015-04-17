@@ -131,11 +131,6 @@ php-buildpack/php_buildpack-offline-v3.1.0.zip:
   object_id: b817bdc3-4765-423c-aebd-195b980550a3
   sha: 9bb6c36e13976288c62794f8dcb06965ef898033
   size: 1089981446
-nodejs-buildpack/nodejs_buildpack-cached-v1.2.1.zip:
-  object_id: 21a8eb83-97b9-49cd-ba57-bd2cca1f9133
-  sha: !binary |-
-    OGM1MzQwNTdmYzFmZTBjY2JkZmE1NTQ3YzI1ZjMwYWQ3OWRkMzY4ZA==
-  size: 437119230
 java-buildpack/java-buildpack-offline-v3.0.zip:
   object_id: 8fe6e89a-aa63-4119-8fd0-23715820f31d
   sha: a300c3fca530dc16345dbd6feb26b13897d05265
@@ -144,3 +139,7 @@ java-buildpack/java-buildpack-v3.0.zip:
   object_id: 34bff29b-9ec3-42aa-891f-db301f7f978d
   sha: 177715b012505051d14611bf706f0ebe50cc55f0
   size: 150091
+nodejs-buildpack/nodejs_buildpack-cached-v1.3.0.zip:
+  object_id: 1de21d29-203b-493f-bba7-4a935b35daf5
+  sha: 59bd0953fe54daf2bd2e2b6a25a8c686b57e0662
+  size: 72725029
