@@ -53,9 +53,9 @@ RUN \
   tar zxf /tmp/v0.4.1.tar.gz -C /tmp && \
   cd /tmp/ruby-install-0.4.1 && make install && \
   ruby-install ruby 1.9.3-p547 && \
-  ruby-install ruby 2.1.4 && \
+  ruby-install ruby 2.1.6 && \
   rm -rf /usr/local/src/ruby-1.9.3-p547 && \
-  rm -rf /usr/local/src/ruby-2.1.4 && \
+  rm -rf /usr/local/src/ruby-2.1.6 && \
   rm -rf /tmp/*
 
 RUN \
@@ -63,7 +63,7 @@ RUN \
   cd /tmp/chruby && git reset --hard 310bd34d1fcbb3365814c85018114123cef5a41f && \
   cd /tmp/chruby && ./scripts/setup.sh && \
   echo 'source /usr/local/share/chruby/chruby.sh' >> $HOME/.bashrc && \
-  echo 'chruby 2.1.4' >> $HOME/.bashrc && \
+  echo 'chruby 2.1.6' >> $HOME/.bashrc && \
   rm -rf /tmp/*
 
 RUN \
