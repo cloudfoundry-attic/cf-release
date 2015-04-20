@@ -19,7 +19,7 @@ packages:
   - nginx_newrelic_plugin
   - libpq
   - mysqlclient
-  - ruby-2.1.4
+  - ruby-2.1.6
 
 properties:
   ssl.skip_cert_verify:

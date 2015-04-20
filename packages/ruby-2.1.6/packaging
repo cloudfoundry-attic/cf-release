@@ -1,0 +1,43 @@
+# abort script on any command that exits with a non zero value
+set -e
+
+# We grab the latest versions that are in the directory
+RUBY_VERSION=`ls -r ruby-2.1.6/ruby-* | sed 's/ruby-2.1.6\/ruby-\(.*\)\.tar\.gz/\1/' | head -1`
+RUBYGEMS_VERSION=`ls -r ruby-2.1.6/rubygems-* | sed 's/ruby-2.1.6\/rubygems-\(.*\)\.tgz/\1/' | head -1`
+BUNDLER_VERSION=`ls -r ruby-2.1.6/bundler-* | sed 's/ruby-2.1.6\/bundler-\(.*\)\.gem/\1/' | head -1`
+LIBYAML_VERSION=`ls -r ruby-2.1.6/yaml-* | sed 's/ruby-2.1.6\/yaml-\(.*\)\.tar\.gz/\1/' | head -1`
+
+# Install libyaml >= 0.1.5 to fix http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-6393
+tar xzf ruby-2.1.6/yaml-${LIBYAML_VERSION}.tar.gz
+(
+  set -e
+  cd yaml-${LIBYAML_VERSION}/
+  ./configure --prefix=${BOSH_INSTALL_TARGET}
+  make -j 3   # Use 3 CPUs, which is 1.5 x 2 (the normal number of compile CPUs)
+  make install
+  ldconfig
+)
+
+tar xzf ruby-2.1.6/ruby-${RUBY_VERSION}.tar.gz
+(
+  set -e
+  cd ruby-${RUBY_VERSION}
+  LDFLAGS="-Wl,-rpath -Wl,${BOSH_INSTALL_TARGET}" ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=${BOSH_INSTALL_TARGET}
+  make
+  make install
+)
+
+tar zxvf ruby-2.1.6/rubygems-${RUBYGEMS_VERSION}.tgz
+(
+  set -e
+  cd rubygems-${RUBYGEMS_VERSION}
+
+  ${BOSH_INSTALL_TARGET}/bin/ruby setup.rb
+
+  if [[ $? != 0 ]] ; then
+    echo "Cannot install rubygems"
+    exit 1
+  fi
+)
+
+${BOSH_INSTALL_TARGET}/bin/gem install ruby-2.1.6/bundler-${BUNDLER_VERSION}.gem --no-ri --no-rdoc

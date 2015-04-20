@@ -133,8 +133,7 @@ php-buildpack/php_buildpack-offline-v3.1.0.zip:
   size: 1089981446
 nodejs-buildpack/nodejs_buildpack-cached-v1.2.1.zip:
   object_id: 21a8eb83-97b9-49cd-ba57-bd2cca1f9133
-  sha: !binary |-
-    OGM1MzQwNTdmYzFmZTBjY2JkZmE1NTQ3YzI1ZjMwYWQ3OWRkMzY4ZA==
+  sha: 8c534057fc1fe0ccbdfa5547c25f30ad79dd368d
   size: 437119230
 java-buildpack/java-buildpack-offline-v3.0.zip:
   object_id: 8fe6e89a-aa63-4119-8fd0-23715820f31d
@@ -144,3 +143,19 @@ java-buildpack/java-buildpack-v3.0.zip:
   object_id: 34bff29b-9ec3-42aa-891f-db301f7f978d
   sha: 177715b012505051d14611bf706f0ebe50cc55f0
   size: 150091
+ruby-2.1.6/bundler-1.9.4.gem:
+  object_id: 567b4de7-54cd-473e-870a-680ab5d6632c
+  sha: ea3f17a76a8249049b5589c9b5421af72189babc
+  size: 244224
+ruby-2.1.6/ruby-2.1.6.tar.gz:
+  object_id: 97c9a690-a164-42c4-8755-6af2f114845b
+  sha: 426289b6647ce35ad101091825b6e7e5fce207f3
+  size: 15141710
+ruby-2.1.6/rubygems-2.4.6.tgz:
+  object_id: 250b97aa-7419-4982-ab5f-8cd45f2a6857
+  sha: bf59306c0f6c37551875e70ce8ccfb1cbc60c28b
+  size: 447588
+ruby-2.1.6/yaml-0.1.6.tar.gz:
+  object_id: 9b62536a-3cae-416d-a243-78e97b41e346
+  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
+  size: 503012
