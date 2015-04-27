@@ -329,7 +329,7 @@ jobs:
 
   - name: login_z1
     templates: (( merge || meta.login_templates ))
-    instances: 1
+    instances: 0
     resource_pool: medium_z1
     networks:
       - name: cf1
@@ -341,7 +341,7 @@ jobs:
 
   - name: login_z2
     templates: (( merge || meta.login_templates ))
-    instances: 1
+    instances: 0
     resource_pool: medium_z2
     networks:
       - name: cf2
