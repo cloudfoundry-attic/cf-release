@@ -6,7 +6,10 @@ Cloud Foundry is an open platform as a service (PaaS) that provides a choice of 
 
 This repository contains the Cloud Foundry source code.
 
-Our documentation (currently a work in progress) is available here: [http://docs.cloudfoundry.org/](http://docs.cloudfoundry.org/).
+Our documentation (currently a work in progress) is available here: [http://docs.cloudfoundry.org/](http://docs.cloudfoundry.org/)
+
+Release notes for final releases are available here:
+[https://github.com/cloudfoundry/cf-release/releases](https://github.com/cloudfoundry/cf-release/releases)
 
 ## About Branches
 
@@ -44,7 +47,10 @@ In order to deploy Cloud Foundry with BOSH, you will need to create a manifest.
 To do so, ensure that you have installed [Spiff](https://github.com/cloudfoundry-incubator/spiff) before running `./generate_deployment_manifest <infrastructure-type>`; where `<infrastructure-type>` is one of `aws`, `vsphere`, or `warden`.
 This script merges together several manifest stubs from the templates directory using Spiff. Consult the [spiff repository](https://github.com/cloudfoundry-incubator/spiff) for more information on installing and using spiff.
 
+A complete [minimal example manifest for AWS](https://github.com/cloudfoundry/cf-release/tree/master/example_manifests) and instructions suitable for getting started with Cloud Foundry is available.
+
 A complete [sample manifest for vSphere](http://docs.cloudfoundry.org/deploying/vsphere/cloud-foundry-example-manifest.html) is also available in the Cloud Foundry documentation.
+
 
 ## Cloud Foundry Components (V2)
 
@@ -54,7 +60,7 @@ The components in a V2 deployment are:
 
 | Component                                                                     | Description                                                                                                                                                         | Build Status                                                                                                                                                 |
 |-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Cloud Controller (cc)](http://github.com/cloudfoundry/cloud_controller_ng) | The primary API entry point for Cloud Foundry.                                                                                                                      |<a href="https://travis-ci.org/cloudfoundry/cloud_controller_ng"><img src="https://travis-ci.org/cloudfoundry/cloud_controller_ng.png" alt="Build Status"></a>|
+| [Cloud Controller (cc)](http://github.com/cloudfoundry/cloud_controller_ng) | The primary API entry point for Cloud Foundry. Api documentation [here.](http://apidocs.cloudfoundry.org)                                                                                                                     |<a href="https://travis-ci.org/cloudfoundry/cloud_controller_ng"><img src="https://travis-ci.org/cloudfoundry/cloud_controller_ng.png" alt="Build Status"></a>|
 | [gorouter](https://github.com/cloudfoundry/gorouter)                          | The central router that manages traffic to applications deployed on Cloud Foundry.                                                                                  |<a href="https://travis-ci.org/cloudfoundry/gorouter"><img src="https://travis-ci.org/cloudfoundry/gorouter.png" alt="Build Status"></a>                      |
 | [DEA (dea_next)](https://github.com/cloudfoundry/dea_ng)                      | The droplet execution agent (DEA) performs two key activities in Cloud Foundry: staging and hosting applications.                                                   |<a href="https://travis-ci.org/cloudfoundry/dea_ng"><img src="https://travis-ci.org/cloudfoundry/dea_ng.png" alt="Build Status"></a>                          |
 | [Health Manager](https://github.com/cloudfoundry/hm9000)                      | The health manager monitors the state of the applications and ensures that started applications are indeed running, their versions and number of instances correct. |<a href="https://travis-ci.org/cloudfoundry/health_manager"><img src="https://travis-ci.org/cloudfoundry/health_manager.png" alt="Build Status"></a>          |
