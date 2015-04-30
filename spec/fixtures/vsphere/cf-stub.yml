@@ -91,6 +91,11 @@ properties:
     status:
       user: router_user
       password: router_password
+  login:
+    logout:
+      redirect:
+        parameter:
+          disable: false
   uaa:
     admin:
       client_secret: admin_secret
@@ -121,6 +126,11 @@ properties:
     scim:
       users:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
+    zones:
+      internal:
+        hostnames:
+          - host2
+          - host3.test.com
 
 # code_snippet cf-stub-vsphere end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

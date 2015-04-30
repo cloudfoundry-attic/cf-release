@@ -42,6 +42,12 @@ properties:
         - protocol: all
           destination: 10.244.3.0/24
     default_running_security_groups: ["public_networks", "dns", "services"]
+  login:
+    logout:
+      redirect:
+        url: "/login?template=warden"
+        parameter:
+          disable: false
   uaa:
     clients:
       app-direct:
@@ -61,7 +67,11 @@ properties:
         refresh-token-validity: 1209600
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
-
+    zones:
+      internal:
+        hostnames:
+          - host4
+          - host5.test.com
   router:
     enable_ssl: true
     ssl_cert: |

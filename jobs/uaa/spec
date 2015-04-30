@@ -191,6 +191,22 @@ properties:
   uaa.ldap.groups.maxSearchDepth:
     description: "Set to number of levels a nested group search should go. Set to 1 to disable nested groups (default)"
     default: "1"
+  uaa.zones.internal.hostnames:
+    description: |
+      A list of hostnames that are routed to the UAA, specifically the default zone in the UAA. The UAA will reject any Host headers that it doesn't recognize.
+      By default the UAA recognizes
+      uaa.<domain> - the default UAA route
+      login.<domain> - the login-server route that the UAA now also serves.
+      localhost - in order to accept health checks
+      Any hostnames added as a list are additive to the default hostnames allowed.
+      Example
+      uaa:
+        zones:
+          internal:
+            hostnames:
+              - hostname1
+              - hostname2.localhost
+              - hostname3.example.com
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
   login.ldap.profile_type:
@@ -342,3 +358,7 @@ properties:
         scope.tokens.write: Cancel the approvals like this one that you have granted to this and other applications
         scope.cloud_controller.read: View details of your applications and services
         scope.cloud_controller.write: Push applications to your account and create and bind services
+  login.logout.redirect.url:
+    description: "The Location of the redirect header following a logout of the the UAA (/logout.do). Default value is back to login page (/login)"
+  login.logout.redirect.parameter.disable:
+    description: "When set to false, this allows an operator to leverage an open redirect on the UAA (/logout.do?redirect=google.com). Default value is true. No open redirect enabled"

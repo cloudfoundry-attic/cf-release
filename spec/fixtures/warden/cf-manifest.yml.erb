@@ -2686,6 +2686,11 @@ properties:
       passwd: https://console.10.244.0.34.xip.io/password_resets/new
       signup: https://console.10.244.0.34.xip.io/register
       signup-network: null
+    logout:
+      redirect:
+        url: "/login?template=warden"
+        parameter:
+          disable: false
     notifications:
       url: null
     protocol: http
@@ -2935,6 +2940,11 @@ properties:
     spring_profiles: null
     url: https://uaa.10.244.0.34.xip.io
     user: null
+    zones:
+      internal:
+        hostnames:
+          - host4
+          - host5.test.com
   uaadb:
     address: 10.244.0.30
     databases:

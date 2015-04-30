@@ -71,6 +71,14 @@ notifications:
   url: <%= properties.login.notifications.url %>
 <% end %>
 
+<% if properties.login && properties.login.logout && properties.login.logout.redirect %>
+logout:
+  redirect:
+    url: <%= (properties.login.logout.redirect.url) ? properties.login.logout.redirect.url : "/login" %>
+    parameter:
+      disable: <%= (properties.login.logout.redirect.parameter && (!properties.login.logout.redirect.parameter.disable.nil?)) ? properties.login.logout.redirect.parameter.disable : "true" %> 
+<% end %>
+
 login:
   brand: <%= (properties.login && properties.login.brand) ? properties.login.brand : "oss" %>
   url: <%= "#{protocol}://login.#{properties.domain}" %>

@@ -952,6 +952,9 @@ properties:
       passwd: https://console.example.com/password_resets/new
       signup: https://console.example.com/register
       signup-network: null
+    logout:
+      redirect:
+        url: "/login?template=openstack"
     notifications:
       url: null
     protocol: https
@@ -1114,6 +1117,10 @@ properties:
     spring_profiles: null
     url: https://uaa.example.com
     user: null
+    zones:
+      internal:
+        hostnames:
+          - host1
   uaadb:
     address: 0.0.0.4
     databases:
