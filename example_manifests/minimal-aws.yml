@@ -185,7 +185,6 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
-  - {name: login, release: cf}
   - {name: uaa, release: cf}
   - {name: metron_agent, release: cf}
   networks:
@@ -194,7 +193,6 @@ jobs:
     login:
       catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     uaa:
-      port: 8081
       admin:
         client_secret: PASSWORD
       batch:
