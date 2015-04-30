@@ -1,0 +1,3 @@
+set -e -x
+
+cp staticfile-buildpack/staticfile_buildpack-cached-v1.0.0.zip ${BOSH_INSTALL_TARGET}
