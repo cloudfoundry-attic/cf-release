@@ -62,7 +62,7 @@ resource_pools:
     cloud_properties:
       instance_type: c3.large
       ephemeral_disk:
-        size: 163_840
+        size: 4_096
         type: gp2
       availability_zone: (( meta.zones.z1 ))
 
@@ -70,7 +70,7 @@ resource_pools:
     cloud_properties:
       instance_type: c3.large
       ephemeral_disk:
-        size: 163_840
+        size: 4_096
         type: gp2
       availability_zone: (( meta.zones.z2 ))
 
@@ -78,7 +78,7 @@ resource_pools:
     cloud_properties:
       instance_type: c3.large
       ephemeral_disk:
-        size: 419_840
+        size: 4_096
         type: gp2
       availability_zone: (( meta.zones.z1 ))
 
@@ -86,7 +86,7 @@ resource_pools:
     cloud_properties:
       instance_type: c3.large
       ephemeral_disk:
-        size: 419_840
+        size: 4_096
         type: gp2
       availability_zone: (( meta.zones.z2 ))
 
@@ -94,7 +94,7 @@ resource_pools:
     cloud_properties:
       instance_type: m3.large
       ephemeral_disk:
-        size: 860_160
+        size: 32_768
         type: gp2
       availability_zone: (( meta.zones.z1 ))
 
@@ -102,7 +102,7 @@ resource_pools:
     cloud_properties:
       instance_type: m3.large
       ephemeral_disk:
-        size: 860_160
+        size: 32_768
         type: gp2
       availability_zone: (( meta.zones.z2 ))
 
@@ -110,7 +110,7 @@ resource_pools:
     cloud_properties:
       instance_type: m3.large
       ephemeral_disk:
-        size: 860_160
+        size: 32_768
         type: gp2
       availability_zone: (( meta.zones.z1 ))
 
@@ -118,7 +118,7 @@ resource_pools:
     cloud_properties:
       instance_type: m3.large
       ephemeral_disk:
-        size: 860_160
+        size: 32_768
         type: gp2
       availability_zone: (( meta.zones.z2 ))
 
@@ -126,7 +126,7 @@ resource_pools:
     cloud_properties:
       instance_type: c3.large
       ephemeral_disk:
-        size: 419_840
+        size: 4_096
         type: gp2
       availability_zone: (( meta.zones.z1 ))
       elbs: (( merge || ["cfrouter"] ))
@@ -135,7 +135,7 @@ resource_pools:
     cloud_properties:
       instance_type: c3.large
       ephemeral_disk:
-        size: 419_840
+        size: 4_096
         type: gp2
       availability_zone: (( meta.zones.z2 ))
       elbs: (( merge || ["cfrouter"] ))
@@ -144,7 +144,7 @@ resource_pools:
     cloud_properties:
       instance_type: c3.large
       ephemeral_disk:
-        size: 163_840
+        size: 4_096
         type: gp2
       availability_zone: (( meta.zones.z1 ))
 
