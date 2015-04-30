@@ -54,3 +54,15 @@ properties:
   acceptance_tests.use_diego:
     default: false
     description: Services tests push their apps using diego if enabled
+  acceptance_tests.default_timeout:
+    default: 30
+    description: Default Timeout
+  acceptance_tests.cf_push_timeout:
+    default: 120
+    description: Timeout for cf push
+  acceptance_tests.long_curl_timeout:
+    default: 120
+    description: Timeout for long curls
+  acceptance_tests.broker_start_timeout:
+    default: 300
+    description: Timeout for broker starts
