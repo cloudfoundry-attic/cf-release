@@ -1101,6 +1101,13 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         scope: openid,cloud_controller_service_permissions.read
         secret: gorouter_secret
+    database:
+      max_connections: 100
+      max_idle_connections: 10
+      remove_abandoned: true
+      abandoned_timeout: 600
+      log_abandoned: true
+
     issuer: https://uaa.example.com
     jwt:
       signing_key: sk

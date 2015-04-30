@@ -109,6 +109,21 @@ properties:
     description: "The UAA database Port"
   uaadb.roles:
     description: "The list of database Roles used in UAA database including tag/name/password"
+  uaa.database.max_connections:
+    description: "The max number of open connections to the DB from a running UAA instance"
+    default: 100
+  uaa.database.max_idle_connections:
+    description: "The max number of open idle connections to the DB from a running UAA instance"
+    default: 10
+  uaa.database.remove_abandoned:
+    description: "True if connections that are left open longer then abandoned_timeout seconds during a session(time between borrow and return from pool)  should be forcibly closed"
+    default: false
+  uaa.database.abandoned_timeout:
+    description: "Timeout in seconds for the longest running queries. Take into DB migrations for this timeout as they may run during a long period of time."
+    default: 300
+  uaa.database.log_abandoned:
+    description: "Should connections that are forcibly closed be logged."
+    default: true
   uaa.no_ssl:
     description: "when true, uaa uses http, otherwise it uses https"
     default: false
