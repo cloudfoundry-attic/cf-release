@@ -155,6 +155,8 @@ properties:
         package: buildpack_python
       - name: php_buildpack
         package: buildpack_php
+      - name: staticfile_buildpack
+        package: buildpack_staticfile
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
