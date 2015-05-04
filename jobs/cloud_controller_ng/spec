@@ -380,7 +380,7 @@ properties:
   cc.default_to_diego_backend:
     default: false
     description: "Use Diego backend by default for new apps"
-  cc.enable_allow_ssh:
+  cc.allow_app_ssh_access:
     default: true
     description: "Allow users to change the value of the app-level allow_ssh attribute"
   cc.flapping_crash_count_threshold:

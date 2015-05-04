@@ -70,7 +70,7 @@ properties:
     users_can_select_backend: true
     diego_docker: false
     default_to_diego_backend: false
-    enable_allow_ssh: true
+    allow_app_ssh_access: true
     default_app_memory: 1024
     default_app_disk_in_mb: 1024
     maximum_app_disk_in_mb: 2048
