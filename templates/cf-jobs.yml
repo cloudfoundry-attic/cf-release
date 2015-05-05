@@ -89,6 +89,8 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
+  - name: consul_agent
+    release: (( meta.release.name ))
 
   etcd_templates:
   - name: etcd
@@ -143,6 +145,42 @@ meta:
     release: (( meta.release.name ))
 
 jobs:
+  - name: consul_z1
+    templates: (( merge || meta.consul_templates ))
+    instances: 0
+    persistent_disk: 1024
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+        static_ips: (( merge ))
+    update:
+      serial: true
+      max_in_flight: 1
+    properties:
+      consul:
+        agent:
+          mode: server
+      metron_agent:
+        zone: z1
+
+  - name: consul_z2
+    templates: (( merge || meta.consul_templates ))
+    instances: 0
+    persistent_disk: 1024
+    resource_pool: medium_z2
+    networks:
+      - name: cf2
+        static_ips: (( merge ))
+    update:
+      serial: true
+      max_in_flight: 1
+    properties:
+      consul:
+        agent:
+          mode: server
+      metron_agent:
+        zone: z2
+
   - name: ha_proxy_z1
     templates: (( merge || meta.ha_proxy_templates ))
     instances: 0
@@ -190,42 +228,6 @@ jobs:
       metron_agent:
         zone: z2
     update: (( merge || empty_hash ))
-
-  - name: consul_z1
-    templates: (( merge || meta.consul_templates ))
-    instances: 0
-    persistent_disk: 1024
-    resource_pool: medium_z1
-    networks:
-      - name: cf1
-        static_ips: (( merge ))
-    update:
-      serial: true
-      max_in_flight: 1
-    properties:
-      consul:
-        agent:
-          mode: server
-      metron_agent:
-        zone: z1
-
-  - name: consul_z2
-    templates: (( merge || meta.consul_templates ))
-    instances: 0
-    persistent_disk: 1024
-    resource_pool: medium_z2
-    networks:
-      - name: cf2
-        static_ips: (( merge ))
-    update:
-      serial: true
-      max_in_flight: 1
-    properties:
-      consul:
-        agent:
-          mode: server
-      metron_agent:
-        zone: z2
 
   - name: etcd_z1
     templates: (( merge || meta.etcd_templates ))

@@ -1,0 +1,46 @@
+#!/bin/bash -e
+
+PATH=/var/vcap/packages/haproxy/bin:$PATH
+RUN_DIR=/var/vcap/sys/run/consul_template
+LOG_DIR=/var/vcap/sys/log/consul_template
+
+TEMPLATE=/var/vcap/jobs/haproxy/config/haproxy.ctmpl
+CONFIG=/var/vcap/jobs/haproxy/config/haproxy.conf
+USER=vcap
+
+PIDFILE=$RUN_DIR/pid
+CMD=/var/vcap/packages/consul/bin/consul-template
+HAPROXY=/var/vcap/jobs/haproxy/bin/haproxy_ctl
+
+source /var/vcap/packages/common/utils.sh
+
+case "$1" in
+  start)
+    pid_guard $PIDFILE "consul_template"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown -R vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    echo -n "Starting consul_template: "
+    exec $CMD \
+      -consul 127.0.0.1:8500 \
+      -template "$TEMPLATE:$CONFIG"
+    ;;
+
+  stop)
+    echo -n "Stopping consul_template: "
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}" >&2
+    RETVAL=1
+    ;;
+esac
+
+exit "${RETVAL}"

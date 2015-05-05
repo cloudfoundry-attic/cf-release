@@ -7,7 +7,7 @@ PATH=/var/vcap/packages/haproxy/bin:$PATH
 
 NAME=haproxy
 DAEMON=$(which haproxy)
-CONFIG=/var/vcap/jobs/haproxy/config/haproxy.config
+CONFIG=/var/vcap/jobs/haproxy/config/haproxy.conf
 DESC="HAProxy"
 USER=vcap
 
@@ -107,6 +107,34 @@ restart_haproxy() {
     start_haproxy
 }
 
+reload_haproxy() {
+    status_haproxy
+    if [ "${RETVAL}" = 0 ]; then
+        RETVAL=0
+        ensure_dirs
+        echo "$("${TIMESTAMP}"): reloading HAProxy"
+        set +e
+        "${DAEMON}" -f "${CONFIG}" -p "${PID_FILE}" -D -sf $(cat $PID_FILE) 0<&-
+        RETVAL=$?
+        set -e
+        case "${RETVAL}" in
+            0)
+                echo "$("${TIMESTAMP}"): Finished reloading HAProxy"
+                echo "SUCCESS"
+                ;;
+            *)
+                echo "$("${TIMESTAMP}"): Errored reloading HAProxy"
+                echo "$("${TIMESTAMP}"): Errored reloading HAProxy" >&2
+                remove_pid
+                echo "FAILED - check logs"
+                RETVAL=1
+                ;;
+        esac
+    else
+        echo "HAProxy is not currently running"
+    fi
+}
+
 case "$1" in
     start)
         echo -n "Starting ${DESC}: "
@@ -121,7 +149,12 @@ case "$1" in
     status)
         status_haproxy
         ;;
-    force-reload|reload|restart)
+    reload)
+        echo -n "Reloading ${DESC}: "
+        reload_haproxy
+        echo "${NAME}."
+        ;;
+    force-reload|restart)
         echo -n "Restarting ${DESC}: "
         restart_haproxy
         echo "${NAME}."

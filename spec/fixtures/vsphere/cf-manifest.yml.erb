@@ -8,77 +8,6 @@ compilation:
   workers: 6
 director_uuid: DIRECTOR_UUID
 jobs:
-- default_networks:
-  - name: cf1
-    static_ips: null
-  instances: 1
-  name: ha_proxy_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 0.0.0.3
-  properties:
-    metron_agent:
-      zone: z1
-    ha_proxy:
-      ssl_ciphers: null
-      ssl_pem: null
-      disable_http: true
-    networks:
-      apps: cf1
-    router:
-      servers:
-        z1:
-        - 0.0.0.5
-        z2:
-        - 0.0.1.5
-  resource_pool: router_z1
-  templates:
-  - name: haproxy
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- instances: 1
-  name: nats_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 0.0.0.1
-  properties:
-    networks:
-      apps: cf1
-    metron_agent:
-      zone: z1
-  resource_pool: medium_z1
-  templates:
-  - name: nats
-    release: cf
-  - name: nats_stream_forwarder
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- instances: 1
-  name: nats_z2
-  networks:
-  - name: cf2
-    static_ips:
-    - 0.0.1.1
-  properties:
-    networks:
-      apps: cf2
-    metron_agent:
-      zone: z2
-  resource_pool: medium_z2
-  templates:
-  - name: nats
-    release: cf
-  - name: nats_stream_forwarder
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
 - instances: 0
   name: consul_z1
   networks:
@@ -121,6 +50,79 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
+- default_networks:
+  - name: cf1
+    static_ips: null
+  instances: 1
+  name: ha_proxy_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.3
+  properties:
+    metron_agent:
+      zone: z1
+    ha_proxy:
+      ssl_ciphers: null
+      ssl_pem: null
+      disable_http: true
+    networks:
+      apps: cf1
+    router:
+      servers:
+        z1:
+        - 0.0.0.5
+        z2:
+        - 0.0.1.5
+  resource_pool: router_z1
+  templates:
+  - name: haproxy
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: consul_agent
+    release: cf
+  update: {}
+- instances: 1
+  name: nats_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.1
+  properties:
+    networks:
+      apps: cf1
+    metron_agent:
+      zone: z1
+  resource_pool: medium_z1
+  templates:
+  - name: nats
+    release: cf
+  - name: nats_stream_forwarder
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- instances: 1
+  name: nats_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.1
+  properties:
+    networks:
+      apps: cf2
+    metron_agent:
+      zone: z2
+  resource_pool: medium_z2
+  templates:
+  - name: nats
+    release: cf
+  - name: nats_stream_forwarder
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
 - instances: 2
   name: etcd_z1
   networks:
