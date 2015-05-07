@@ -379,3 +379,7 @@ properties:
     description: "The Location of the redirect header following a logout of the the UAA (/logout.do). Default value is back to login page (/login)"
   login.logout.redirect.parameter.disable:
     description: "When set to false, this allows an operator to leverage an open redirect on the UAA (/logout.do?redirect=google.com). Default value is true. No open redirect enabled"
+  login.logout.redirect.parameter.whitelist:
+    description: "A list of URLs. When this list is non null, including empty, and disable=false, 
+    logout redirects are allowed, but limited to the whitelist URLs. If a redirect parameter value is not white
+    listed, redirect will be to the default URL."
