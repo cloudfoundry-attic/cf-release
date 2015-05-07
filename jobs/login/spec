@@ -33,7 +33,7 @@ properties:
   login.uaa_certificate:
     description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
-    description:
+    description: "Java runtime options set for CATALINA_OPTS used by Tomcat start"
   login.notifications.url:
     description: "The url for the notifications service (configure to use Notifications Service instead of SMTP server)"
   login.smtp:
@@ -69,7 +69,7 @@ properties:
     description: "A list of links to other services to show on the landing page after logging in and/or signing up, depending on whether login-link and/or signup-link is specified."
   login.port:
     default: 8080
-    description:
+    description: "Port that login server will accept connections on"
   login.uaa_base:
     description: "Location of the UAA."
   login.self_service_links_enabled:
@@ -97,13 +97,13 @@ properties:
   networks.apps:
     description: "The Login network name"
   uaa.dump_requests:
-    description:
+    description: "Flag to dump the request information"
   uaa.login.client_secret:
     description: 'Deprecated. Default login client secret if no login client is defined'
   uaa.clients.login.secret:
     description: 'Login client secret - overrides uaa.login.client_secret'
   uaa.require_https:
-    description:
+    description: "Flag to use https for login"
   login.protocol:
     default: "http"
     description: "The scheme in which login server should use to contact the UAA"

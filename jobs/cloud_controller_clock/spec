@@ -27,19 +27,19 @@ properties:
 
   name:
     default: "vcap"
-    description:
+    description: "Name showing at /info endpoint"
   build:
     default: "2222"
-    description:
+    description: "build number of cloud foundry"
   version:
     default: "2"
-    description:
+    description: "version number of cloud foundry"
   support_address:
     default: "http://support.cloudfoundry.com"
-    description:
+    description: "URL for support"
   description:
     default: "Cloud Foundry sponsored by Pivotal"
-    description:
+    description: "Description showing at /info endpoint"
   domain:
     description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
   system_domain:
@@ -51,7 +51,7 @@ properties:
     description: "Array of domains for user apps (example: 'user.app.space.foo', a user app called 'neat' will listen at 'http://neat.user.app.space.foo')"
 
   networks.apps:
-    description: "TODO"
+    description: "Cloud controller network information"
 
   nats.user:
     description: "Username for cc client to connect to NATS"
@@ -280,16 +280,16 @@ properties:
     default: ""
 
   ccdb.databases:
-    description:
+    description: "A list of databases and associated properties to create"
   ccdb.roles:
-    description:
+    description: "A list of database roles and associated properties to create"
   ccdb.db_scheme:
-    description:
+    description: "The database scheme"
     default: postgres
   ccdb.address:
-    description:
+    description: "The database address"
   ccdb.port:
-    description:
+    description: "The database port"
   ccdb.max_connections:
     default: 25
     description: "Maximum connections for Sequel"
@@ -298,19 +298,19 @@ properties:
     description: "Maximum connections for ActiveRecord"
   ccdb.pool_timeout:
     default: 10
-    description:
+    description: "Number of seconds to wait if a connection cannot be acquired before  raising an error"
 
   uaa.cc.token_secret:
-    description:
+    description: "Key used by UAA key encryption/decryption"
   uaa.no_ssl:
     description: "when true, uaa uses http, otherwise it uses https"
     default: false
   uaa.url:
-    description:
+    description: "URL of UAA"
   login.url:
-    description:
+    description: "URL that Login will register with gorouter"
   hm9000.url:
-    description:
+    description: "URL that HM9000 will register with gorouter"
 
   uaa.jwt.verification_key:
     default: ""

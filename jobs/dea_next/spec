@@ -33,35 +33,35 @@ properties:
   nats.machines:
     description: "IP of each NATS cluster member."
   dea_next.allow_networks:
-    description:
+    description: "List of network CIDR for DEAs to allow communication between system components and applications"
   dea_next.allow_host_access:
     description: "Allows warden containers to access the DEA host via its IP"
     default: false
   dea_next.deny_networks:
-    description:
+    description: "List of network CIDR for DEAs to prohibit communication between system components and applications"
   dea_next.disk_mb:
-    description:
+    description: "Maximum disk capacity allocated for each app in Megabyte"
     default: 32000
   dea_next.disk_overcommit_factor:
-    description:
+    description: "Factor timed by disk_mb to calculate the virtual disk with no guarantee that physical storage for it exists"
     default: 1
   dea_next.logging_level:
     description: "Log level for DEA."
     default: debug
   dea_next.max_staging_duration:
-    description:
+    description: "Maximum seconds wait before staging timeout"
     default: 900
   dea_next.default_health_check_timeout:
     description: "Default timeout for application to start"
     default: 60
   dea_next.memory_mb:
-    description:
+    description: "Maximum memory capacity allocated for each app in Megabyte"
     default: 8000
   dea_next.memory_overcommit_factor:
-    description:
+    description: "Factor timed by memory_mb to calculate the virtual memory with no guarantee that physical memory for it exists"
     default: 1
   dea_next.streaming_timeout:
-    description:
+    description: "Number of seconds to wait if the stream cannot be read before raising an error"
     default: 60
   dea_next.crash_lifetime_secs:
     description: "Crashed app lifetime in seconds"
