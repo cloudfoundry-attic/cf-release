@@ -76,7 +76,10 @@ logout:
   redirect:
     url: <%= (properties.login.logout.redirect.url) ? properties.login.logout.redirect.url : "/login" %>
     parameter:
-      disable: <%= (properties.login.logout.redirect.parameter && (!properties.login.logout.redirect.parameter.disable.nil?)) ? properties.login.logout.redirect.parameter.disable : "true" %> 
+      disable: <%= (properties.login.logout.redirect.parameter && (!properties.login.logout.redirect.parameter.disable.nil?)) ? properties.login.logout.redirect.parameter.disable : "true" %><% if (properties.login.logout.redirect.parameter && (!properties.login.logout.redirect.parameter.whitelist.nil?)) %>
+      whitelist: <% properties.login.logout.redirect.parameter.whitelist.each do |whitelistedurl| %>
+      - <%= whitelistedurl %><% end %>
+   <% end %>   
 <% end %>
 
 login:
