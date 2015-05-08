@@ -1,0 +1,11 @@
+set -e
+
+cd rtr
+
+tar xzf routing_api_cli.tgz
+
+BIN_DIR=${BOSH_INSTALL_TARGET}/bin
+
+mkdir -p ${BIN_DIR}
+
+cp rtr ${BIN_DIR}/rtr

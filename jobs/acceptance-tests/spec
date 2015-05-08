@@ -4,9 +4,10 @@ name: acceptance-tests
 description: "The acceptance tests errand can be configured to run full acceptance test suite against a specific Cloud Foundry API endpoint. Consider running smoke tests errand for a smaller set of tests."
 
 packages:
-  - golang1.3
+  - golang1.4
   - cli
   - acceptance-tests
+  - rtr
 
 templates:
   run.erb: bin/run
@@ -24,6 +25,10 @@ properties:
   acceptance_tests.skip_ssl_validation:
     default: false
     description: Toggles cli verification of the Elastic Runtime API SSL certificate
+  acceptance_tests.system_domain:
+    description: The system domain for your CF release
+  acceptance_tests.oauth_password:
+    description: The password for the uaa gorouter client
   acceptance_tests.nodes:
     default: 2
     description: The number of parallel test executors to spawn. The larger the number the higher the stress on the system.
@@ -51,6 +56,9 @@ properties:
   acceptance_tests.include_v3:
     default: false
     description: Flag to include the v3 API test suite.
+  acceptance_tests.include_routing_api:
+    default: false
+    description: Flag to include the routing API test suite.
   acceptance_tests.use_diego:
     default: false
     description: Services tests push their apps using diego if enabled

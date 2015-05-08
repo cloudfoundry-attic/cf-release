@@ -7,6 +7,13 @@ releases:
 properties:
   loggregator_endpoint:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+  routing-api:
+    enabled: true
+  uaa:
+    zones:
+      internal:
+        hostnames:
+          - uaa.service.consul
 
   cc:
     min_cli_version: "6.0.0"
@@ -43,3 +50,8 @@ properties:
         - protocol: all
           destination: (( merge || "10.244.0.34" ))
     default_running_security_groups: ["public_networks", "dns", "services", "load_balancer"]
+jobs:
+- instances: 1
+  name: routing_api_z1
+- instances: 1
+  name: consul_z1

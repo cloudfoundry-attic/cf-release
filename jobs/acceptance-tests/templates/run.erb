@@ -2,7 +2,7 @@
 
 set -e -x
 
-export GOROOT=$(readlink -nf /var/vcap/packages/golang1.3)
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.4)
 export PATH=${GOROOT}/bin:${PATH}
 
 export PATH=/var/vcap/packages/cli/bin:${PATH} # put the cli on the path
@@ -43,6 +43,7 @@ skipPackages+=<%= properties.acceptance_tests.include_logging ? "" : "logging," 
 skipPackages+=<%= properties.acceptance_tests.include_operator ? "" : "operator," %>
 skipPackages+=<%= properties.acceptance_tests.include_internet_dependent ? "" : "internet_dependent," %>
 skipPackages+=<%= properties.acceptance_tests.include_services ? "" : "services," %>
+skipPackages+=<%= properties.acceptance_tests.include_routing_api ? "" : "routing_api," %>
 [[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
 
 skips=<%= properties.acceptance_tests.include_sso ? "" : "-skip=SSO"  %>
