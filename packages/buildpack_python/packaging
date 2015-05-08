@@ -1,3 +1,3 @@
 set -e -x
 
-cp python-buildpack/python_buildpack-cached-v1.2.0.zip ${BOSH_INSTALL_TARGET}
+cp python-buildpack/python_buildpack-cached-v1.3.1.zip ${BOSH_INSTALL_TARGET}
