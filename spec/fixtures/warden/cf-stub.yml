@@ -69,6 +69,63 @@ properties:
         refresh-token-validity: 1209600
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
+    newrelic:
+      common: &default_settings
+        license_key: '<yourlicensekeyhere>'
+        agent_enabled: true
+        app_name: UAA Identity Acceptance
+        high_security: false
+        enable_auto_app_naming: false
+        enable_auto_transaction_naming: true
+        log_level: info
+        audit_mode: false
+        log_file_count: 1
+        log_limit_in_kbytes: 0
+        log_daily: false
+        log_file_name: newrelic_agent.log
+        #log_file_path:
+        ssl: true
+        max_stack_trace_lines: 30
+        attributes:
+          enabled: true
+        transaction_tracer:
+          enabled: true
+          transaction_threshold: apdex_f
+          record_sql: obfuscated
+          log_sql: false
+          stack_trace_threshold: 0.5
+          explain_enabled: true
+          explain_threshold: 0.5
+          top_n: 20
+        error_collector:
+          enabled: true
+          ignore_errors: akka.actor.ActorKilledException
+          ignore_status_codes: 404
+        analytics_events:
+          enabled: true
+          max_samples_stored: 2000
+        cross_application_tracer:
+          enabled: true
+        thread_profiler:
+          enabled: true
+        browser_monitoring:
+          auto_instrument: true
+      development:
+        <<: *default_settings
+        app_name: UAA Identity Acceptance (Development)
+      test:
+        <<: *default_settings
+        app_name: UAA Identity Acceptance (Test)
+      production:
+        <<: *default_settings
+      staging:
+        <<: *default_settings
+        app_name: UAA Identity Acceptance (Staging)
+    zones:
+      internal:
+        hostnames:
+          - host4
+          - host5.test.com
   router:
     enable_ssl: true
     ssl_cert: |
