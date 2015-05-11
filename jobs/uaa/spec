@@ -11,6 +11,7 @@ templates:
 
   cf-registrar.config.yml.erb: config/cf-registrar/config.yml
   uaa.yml.erb: config/uaa.yml
+  newrelic.yml.erb: config/newrelic.yml
   varz.yml.erb: config/varz.yml
   log4j.properties.erb: config/log4j.properties
   varz.log4j.properties.erb: config/varz.log4j.properties
@@ -224,6 +225,14 @@ properties:
               - hostname3.example.com
     default:
       - uaa.service.consul
+  uaa.newrelic:
+    description: |
+      To enable newrelic monitoring, the sub element of this property will be placed in
+      a configuration file called newrelic.yml in the jobs config directory.
+      The syntax that must adhere to documentation in https://docs.newrelic.com/docs/agents/java-agent/configuration/java-agent-configuration-config-file
+      The JVM option -javaagent:/path/to/newrelic.jar will be added to Apache Tomcat's startup script
+      The enablement of the NewRelic agent in the UAA is triggered by the property uaa.newrelic.common.license_key
+      The property uaa.newrelic.common.license_key must be set!
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
   login.ldap.profile_type:

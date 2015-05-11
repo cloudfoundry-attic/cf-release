@@ -1,0 +1,3 @@
+<% if properties.uaa && properties.uaa.newrelic && properties.uaa.newrelic.common && properties.uaa.newrelic.common.license_key %>
+<%= require 'yaml'; YAML.dump(p('uaa.newrelic')) %>
+<% end %>
