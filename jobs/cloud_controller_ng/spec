@@ -37,6 +37,7 @@ packages:
   - buildpack_python
   - buildpack_php
   - buildpack_staticfile
+  - buildpack_binary
 
 properties:
   ssl.skip_cert_verify:

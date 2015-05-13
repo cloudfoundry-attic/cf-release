@@ -733,6 +733,8 @@ properties:
       package: buildpack_php
     - name: staticfile_buildpack
       package: buildpack_staticfile
+    - name: binary_buildpack
+      package: buildpack_binary
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
@@ -772,6 +774,8 @@ properties:
       package: buildpack_php
     - name: staticfile_buildpack
       package: buildpack_staticfile
+    - name: binary_buildpack
+      package: buildpack_binary
     jobs:
       app_bits_packer:
         timeout_in_seconds: null
@@ -869,6 +873,8 @@ properties:
       package: buildpack_php
     - name: staticfile_buildpack
       package: buildpack_staticfile
+    - name: binary_buildpack
+      package: buildpack_binary
     thresholds:
       api:
         alert_if_above_mb: null
