@@ -95,10 +95,6 @@ consul/consul_0.5.0_linux_amd64.zip:
   object_id: 3e6c1e47-95a5-45ef-aeec-2cb4cc4c529a
   sha: 00e4c6e9ff2fb326d3b586fd86c3037f3b7e0974
   size: 4669655
-go-buildpack/go_buildpack-cached-v1.2.0.zip:
-  object_id: da609e02-aec5-4d54-93bc-86ca0b44eed7
-  sha: e58788c873ddbecd641532f32ce4d535b2a79f81
-  size: 663443569
 java-buildpack/java-buildpack-offline-v3.0.zip:
   object_id: 8fe6e89a-aa63-4119-8fd0-23715820f31d
   sha: a300c3fca530dc16345dbd6feb26b13897d05265
@@ -147,3 +143,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.4.1.zip:
   object_id: 19ed8d99-37ff-4a35-8a38-dcb4dfc7b062
   sha: d632db981a1d535f86f60897883bb744d7b85713
   size: 383003608
+go-buildpack/go_buildpack-cached-v1.3.1.zip:
+  object_id: 5e671c4a-4b81-41fe-a4a7-9bb6cabe933a
+  sha: 82d19816c39e0e77b25ce599117fa07b2e06efe8
+  size: 463782558
