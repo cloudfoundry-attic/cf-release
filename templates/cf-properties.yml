@@ -30,7 +30,6 @@ meta:
 
 properties:
   <<: (( merge ))
-  app_ssh: ~
   domain: (( merge ))
 
   loggregator_endpoint:

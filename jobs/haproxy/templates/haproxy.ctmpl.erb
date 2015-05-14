@@ -70,7 +70,7 @@ backend tcp-routers
 {{if $services}}
 frontend ssh
     mode tcp
-    bind :<%= p("app_ssh.port") %>
+    bind :2222
     default_backend ssh
 
 backend ssh
