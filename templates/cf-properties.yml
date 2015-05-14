@@ -144,6 +144,8 @@ properties:
     user_buildpacks: (( merge || [] ))
     system_buildpacks: (( merge || default_buildpacks ))
     default_buildpacks:
+      - name: staticfile_buildpack
+        package: buildpack_staticfile
       - name: java_buildpack
         package: buildpack_java
       - name: ruby_buildpack
@@ -156,8 +158,6 @@ properties:
         package: buildpack_python
       - name: php_buildpack
         package: buildpack_php
-      - name: staticfile_buildpack
-        package: buildpack_staticfile
       - name: binary_buildpack
         package: buildpack_binary
 
