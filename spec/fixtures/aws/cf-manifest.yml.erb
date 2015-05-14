@@ -1133,7 +1133,10 @@ properties:
     spring_profiles: null
     url: https://uaa.example.com
     user: null
-    zones: null
+    zones:
+      internal:
+        hostnames:
+          - uaa.service.consul
   hm9000:
     url: https://hm9000.example.com
   template_only:

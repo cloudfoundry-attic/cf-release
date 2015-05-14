@@ -142,10 +142,6 @@ properties:
     scim:
       users:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
-    zones:
-      internal:
-        hostnames:
-          - host1
   uaadb:
     roles:
     - name: uaaadmin

@@ -126,11 +126,6 @@ properties:
     scim:
       users:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
-    zones:
-      internal:
-        hostnames:
-          - host2
-          - host3.test.com
 
 # code_snippet cf-stub-vsphere end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
