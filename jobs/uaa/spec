@@ -222,6 +222,8 @@ properties:
               - hostname1
               - hostname2.localhost
               - hostname3.example.com
+    default:
+      - uaa.service.consul
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
   login.ldap.profile_type:
