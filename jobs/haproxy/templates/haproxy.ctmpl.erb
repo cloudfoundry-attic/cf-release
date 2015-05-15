@@ -64,3 +64,20 @@ backend tcp-routers
     <% p("router.servers.z2").each_with_index do |ip, index| %>
         server node<%= index + size %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>
+
+<% if p("cc.allow_app_ssh_access") %>
+{{$services := service "ssh-proxy" "passing"}}
+{{if $services}}
+frontend ssh
+    mode tcp
+    bind :2222
+    default_backend ssh
+
+backend ssh
+    mode tcp
+    balance leastconn
+    option tcplog{{range $services}}
+    server {{.Node}} {{.Address}}:2222{{end}}
+    timeout server 2h
+{{end}}
+<% end %>

@@ -6,6 +6,48 @@ compilation:
   workers: 6
 director_uuid: DIRECTOR_UUID
 jobs:
+- instances: 0
+  name: consul_z1
+  networks:
+  - name: cf1
+    static_ips: []
+  persistent_disk: 1024
+  properties:
+    consul:
+      agent:
+        mode: server
+    metron_agent:
+      zone: z1
+  resource_pool: medium_z1
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: metron_agent
+    release: cf
+  update:
+    max_in_flight: 1
+    serial: true
+- instances: 0
+  name: consul_z2
+  networks:
+  - name: cf2
+    static_ips: []
+  persistent_disk: 1024
+  properties:
+    consul:
+      agent:
+        mode: server
+    metron_agent:
+      zone: z2
+  resource_pool: medium_z2
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: metron_agent
+    release: cf
+  update:
+    max_in_flight: 1
+    serial: true
 - default_networks:
   - name: cf1
     static_ips: null
@@ -81,6 +123,8 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 1
   name: nats_z1
@@ -121,48 +165,6 @@ jobs:
   - name: metron_agent
     release: cf
   update: {}
-- instances: 0
-  name: consul_z1
-  networks:
-  - name: cf1
-    static_ips: []
-  persistent_disk: 1024
-  properties:
-    consul:
-      agent:
-        mode: server
-    metron_agent:
-      zone: z1
-  resource_pool: medium_z1
-  templates:
-  - name: consul_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-  update:
-    max_in_flight: 1
-    serial: true
-- instances: 0
-  name: consul_z2
-  networks:
-  - name: cf2
-    static_ips: []
-  persistent_disk: 1024
-  properties:
-    consul:
-      agent:
-        mode: server
-    metron_agent:
-      zone: z2
-  resource_pool: medium_z2
-  templates:
-  - name: consul_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-  update:
-    max_in_flight: 1
-    serial: true
 - instances: 1
   name: etcd_z1
   networks:
