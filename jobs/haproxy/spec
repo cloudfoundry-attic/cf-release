@@ -42,3 +42,7 @@ properties:
 
   networks.apps:
     description: "HAProxy network information."
+
+  app_ssh.port:
+    description: "External port for SSH access for applications"
+    default: 2222
