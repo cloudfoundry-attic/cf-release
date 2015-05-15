@@ -16,5 +16,4 @@ check process haproxy
   start program "/var/vcap/jobs/haproxy/bin/haproxy_ctl start"
   stop program "/var/vcap/jobs/haproxy/bin/haproxy_ctl stop"
   group vcap
-  depends on consul_template
 
