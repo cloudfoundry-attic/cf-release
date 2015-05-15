@@ -29,7 +29,7 @@ packages:
 
 properties:
   uaa.admin.client_secret:
-    description:
+    description: "Secret of the admin client - a client named admin with uaa.admin as an authority"
   uaa.authentication.policy.lockoutAfterFailures:
     description: "Number of allowed failures before account is locked"
   uaa.authentication.policy.countFailuresWithinSeconds:

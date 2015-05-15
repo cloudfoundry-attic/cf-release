@@ -13,12 +13,12 @@ export PATH=$PATH:/bin:/usr/bin
 if [ `uname` = "Darwin" ]; then
   mkdir java
   cd java
-  tar zxvf ../uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz --exclude="._*"
+  tar zxvf ../openjdk/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz --exclude="._*"
   export JAVA_HOME=${BUILD_DIR}/java/Contents/Home
 elif [ `uname` = "Linux" ]; then
   mkdir java
   cd java
-  tar zxvf ../uaa/openjdk-1.7.0-u40-unofficial-linux-amd64.tgz
+  tar zxvf ../openjdk/openjdk-1.7.0-u40-unofficial-linux-amd64.tgz
   export JAVA_HOME=${BUILD_DIR}/java
 else
   if [ ! -d $JAVA_HOME ]; then
@@ -39,6 +39,6 @@ cp uaa/build/libs/cloudfoundry-identity-uaa-*.war ${BUILD_DIR}/uaa/cloudfoundry-
 #clean build data
 ./gradlew clean
 rm -rf java
-rm -rf uaa/openjdk-1.7.0-u40-unofficial-linux-amd64.tgz
-rm -rf uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz
+rm -rf openjdk/openjdk-1.7.0-u40-unofficial-linux-amd64.tgz
+rm -rf openjdk/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz
 ${BUILD_DIR}/uaa/.clean-cf-release-build
