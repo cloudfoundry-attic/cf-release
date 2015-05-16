@@ -2943,7 +2943,7 @@ properties:
     ldap: null
     login: null
     newrelic:
-      common: &default_settings
+      production:
         license_key: '<yourlicensekeyhere>'
         agent_enabled: true
         app_name: UAA Identity Acceptance
@@ -2983,18 +2983,6 @@ properties:
           enabled: true
         browser_monitoring:
           auto_instrument: true
-      development:
-        <<: *default_settings
-        app_name: UAA Identity Acceptance (Development)
-      test:
-        <<: *default_settings
-        app_name: UAA Identity Acceptance (Test)
-      production:
-        <<: *default_settings
-      staging:
-        <<: *default_settings
-        app_name: UAA Identity Acceptance (Staging)
-
     no_ssl: true
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
     scim:
@@ -3006,6 +2994,11 @@ properties:
     url: https://uaa.10.244.0.34.xip.io
     user: null
     zones:
+      internal:
+        hostnames:
+          - host4
+          - host5.test.com
+
   uaadb:
     address: 10.244.0.30
     databases:

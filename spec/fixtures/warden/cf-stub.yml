@@ -70,7 +70,7 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
     newrelic:
-      common: &default_settings
+      production:
         license_key: '<yourlicensekeyhere>'
         agent_enabled: true
         app_name: UAA Identity Acceptance
@@ -110,17 +110,6 @@ properties:
           enabled: true
         browser_monitoring:
           auto_instrument: true
-      development:
-        <<: *default_settings
-        app_name: UAA Identity Acceptance (Development)
-      test:
-        <<: *default_settings
-        app_name: UAA Identity Acceptance (Test)
-      production:
-        <<: *default_settings
-      staging:
-        <<: *default_settings
-        app_name: UAA Identity Acceptance (Staging)
     zones:
       internal:
         hostnames:
