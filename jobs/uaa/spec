@@ -28,7 +28,7 @@ packages:
 
 properties:
   uaa.admin.client_secret:
-    description:
+    description: "Password for UAA admin"
   uaa.authentication.policy.lockoutAfterFailures:
     description: "Number of allowed failures before account is locked"
   uaa.authentication.policy.countFailuresWithinSeconds:
@@ -36,14 +36,14 @@ properties:
   uaa.authentication.policy.lockoutPeriodSeconds:
     description: "Number of seconds to lock out an account when lockoutAfterFailures failures is exceeded"
   uaa.catalina_opts:
-    description:
+    description: "Java runtime options set for CATALINA_OPTS used by Tomcat start"
     default: -Xmx768m -XX:MaxPermSize=256m
   uaa.cc.client_secret:
-    description:
+    description: "Password for Cloud Controller client user cloud_controller"
   uaa.cc.token_secret:
-    description:
+    description: "Key used by UAA key encryption/decreption"
   uaa.client.autoapprove:
-    description:
+    description: "UAA Client Users which should not be asked to approve a token grant expicitly"
   uaa.user.authorities:
     description: 'Contains a list of the default authorities/scopes assigned to a user.'
     default:
@@ -64,21 +64,21 @@ properties:
   uaa.clients:
     description:
   uaa.jwt.signing_key:
-    description:
+    description: "RSA private key for JWT (Json Web Token)"
   uaa.jwt.verification_key:
-    description:
+    description: "RSA public key for JWT (Json Web Token)"
   uaa.port:
     description: Port that uaa will accept connections on
     default: 8080
   uaa.scim.user:
     description:
   uaa.scim.user.override:
-    description:
+    description: "Flag to override the user setting saved previously"
   uaa.scim.userids_enabled:
-    description:
+    description: "Flag to convert UserIds to Names"
     default: false
   uaa.scim.users:
-    description:
+    description: "List of UAA scim bootstrapping users with the information (Login, password, and groups)"
   uaa.scim.external_groups:
     description: "A list of external group mappings. Pipe delimited. A value may look as '- internal.read|cn=developers,ou=scopes,dc=test,dc=com'"
   domain:
@@ -128,17 +128,17 @@ properties:
     description: "when true, uaa uses http, otherwise it uses https"
     default: false
   uaa.url:
-    description:
+    description: "URL of UAA"
   uaa.issuer:
     description: "The url to use as the issuer URI"
   uaa.dump_requests:
-    description:
+    description: "Flag to dump the request information"
   uaa.login.client_secret:
     description: 'Deprecated. Default login client secret if no login client is defined'
   uaa.clients.login.secret:
     description: 'Login client secret - overrides uaa.login.client_secret'
   uaa.require_https:
-    description:
+    description: "Flag to use https for login"
   uaa.spring_profiles:
     description: "Deprecated. Use 'uaa.ldap.enabled'. Sets the Spring profiles on the UAA web application. This gets combined with the 'uaadb.db_scheme' property if and only if the value is exactly 'ldap' in order to setup the database, for example 'ldap,mysql'. If spring_profiles contains more than just 'ldap' it will be used to overwrite spring_profiles and db_scheme ignored. See uaa.yml.erb."
   uaa.ldap.enabled:

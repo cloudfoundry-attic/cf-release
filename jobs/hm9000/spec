@@ -23,15 +23,15 @@ properties:
     description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
 
   nats.user:
-    description:
+    description: "User name for NATS login"
   nats.password:
-    description:
+    description: "Password for NATS login"
   nats.port:
-    description:
+    description: "TCP port of NATS server"
   nats.machines:
-    description:
+    description: "IP of each NATS cluster member"
   cc.srv_api_uri:
-    description:
+    description: "API URI of cloud controller"
   cc.bulk_api_user:
     default: "bulk_api"
     description: "User used to access the bulk_api, health_manager uses it to connect to the cc, announced over NATS"

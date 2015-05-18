@@ -54,15 +54,15 @@ properties:
     default: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA:TLS_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_RC4_128_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_RSA_WITH_RC4_128_SHA
 
   nats.user:
-    description:
+    description: "User name for NATS login"
   nats.password:
-    description:
+    description: "Password for NATS login"
   nats.port:
-    description:
+    description: "TCP port of NATS server"
   nats.machines:
-    description: "IP of each NATS cluster member."
+    description: "IP of each NATS cluster member"
   router.offset:
-    description:
+    description: "Offset for Router indexes"
     default: 0
   router.trace_key:
     description:
