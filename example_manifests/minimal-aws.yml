@@ -76,6 +76,7 @@ jobs:
 - name: etcd_z1
   instances: 1
   resource_pool: small_z1
+  persistent_disk: 102400
   templates:
   - {name: etcd, release: cf}
   - {name: etcd_metrics_server, release: cf}
