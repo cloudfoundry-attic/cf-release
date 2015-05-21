@@ -1,6 +1,6 @@
-Rootfs SHASUM: 6f4de6e0e721cd60d9d3dbebe57d2708627ca4ac  cflinuxfs2.tar.gz
-Docker Image: 094cf5e6d84d
-S3 ETag: 9be233b6a97b7bb62bbed7e2ee304fae
+Rootfs SHASUM: c8d1e8163844333a37f4848194d3e26e044af12b  cflinuxfs2.tar.gz
+Docker Image: 1aa9d8ce0dad
+S3 ETag: 1f190fdab7a9cbd51b0164a807d986ee
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -30,7 +30,7 @@ ii  cpio                               2.11+dfsg-1ubuntu1.1                amd64
 ii  cpp                                4:4.8.2-1ubuntu6                    amd64        GNU C preprocessor (cpp)
 ii  cpp-4.8                            4.8.2-19ubuntu1                     amd64        GNU C preprocessor
 ii  cron                               3.0pl1-124ubuntu2                   amd64        process scheduling daemon
-ii  curl                               7.35.0-1ubuntu2.3                   amd64        command line tool for transferring data with URL syntax
+ii  curl                               7.35.0-1ubuntu2.5                   amd64        command line tool for transferring data with URL syntax
 ii  dash                               0.5.7-4ubuntu1                      amd64        POSIX-compliant shell
 ii  dconf-gsettings-backend:amd64      0.20.0-1                            amd64        simple configuration storage system - GSettings back-end
 ii  dconf-service                      0.20.0-1                            amd64        simple configuration storage system - D-Bus service
@@ -54,7 +54,7 @@ ii  flex                               2.5.35-10.1ubuntu2                  amd64
 ii  fontconfig                         2.11.0-0ubuntu4.1                   amd64        generic font configuration library - support binaries
 ii  fontconfig-config                  2.11.0-0ubuntu4.1                   all          generic font configuration library - configuration
 ii  fonts-dejavu-core                  2.34-1ubuntu1                       all          Vera font family derivate with additional characters
-ii  fuse                               2.9.2-4ubuntu4                      amd64        Filesystem in Userspace
+ii  fuse                               2.9.2-4ubuntu4.14.04.1              amd64        Filesystem in Userspace
 ii  fuse-emulator-utils                1.1.1-1build1                       amd64        The Free Unix Spectrum Emulator - Utilities
 ii  g++                                4:4.8.2-1ubuntu6                    amd64        GNU C++ compiler
 ii  g++-4.8                            4.8.2-19ubuntu1                     amd64        GNU C++ compiler
@@ -78,7 +78,7 @@ ii  gsfonts                            1:8.11+urwcyr1.0.7~pre44-4.2ubuntu1 all  
 ii  gzip                               1.6-3ubuntu1                        amd64        GNU compression utilities
 ii  hicolor-icon-theme                 0.13-1                              all          default fallback theme for FreeDesktop.org icon themes
 ii  hostname                           3.15ubuntu1                         amd64        utility to set/show the host name or domain name
-ii  icu-devtools                       52.1-3ubuntu0.2                     amd64        Development utilities for International Components for Unicode
+ii  icu-devtools                       52.1-3ubuntu0.3                     amd64        Development utilities for International Components for Unicode
 ii  ifupdown                           0.7.47.2ubuntu4.1                   amd64        high level tools to configure network interfaces
 ii  imagemagick                        8:6.7.7.10-6ubuntu3                 amd64        image manipulation programs
 ii  imagemagick-common                 8:6.7.7.10-6ubuntu3                 all          image manipulation programs -- infrastructure
@@ -151,9 +151,9 @@ ii  libcolord1:amd64                   1.0.6-1                             amd64
 ii  libcomerr2:amd64                   1.42.9-3ubuntu1.2                   amd64        common error description library
 ii  libcroco3:amd64                    0.6.8-2ubuntu1                      amd64        Cascading Style Sheet (CSS) parsing and manipulation toolkit
 ii  libcups2:amd64                     1.7.2-0ubuntu1.5                    amd64        Common UNIX Printing System(tm) - Core library
-ii  libcurl3:amd64                     7.35.0-1ubuntu2.3                   amd64        easy-to-use client-side URL transfer library (OpenSSL flavour)
-ii  libcurl3-gnutls:amd64              7.35.0-1ubuntu2.3                   amd64        easy-to-use client-side URL transfer library (GnuTLS flavour)
-ii  libcurl4-openssl-dev:amd64         7.35.0-1ubuntu2.3                   amd64        development files and documentation for libcurl (OpenSSL flavour)
+ii  libcurl3:amd64                     7.35.0-1ubuntu2.5                   amd64        easy-to-use client-side URL transfer library (OpenSSL flavour)
+ii  libcurl3-gnutls:amd64              7.35.0-1ubuntu2.5                   amd64        easy-to-use client-side URL transfer library (GnuTLS flavour)
+ii  libcurl4-openssl-dev:amd64         7.35.0-1ubuntu2.5                   amd64        development files and documentation for libcurl (OpenSSL flavour)
 ii  libcwidget3                        0.5.16-3.5ubuntu1                   amd64        high-level terminal interface library for C++ (runtime files)
 ii  libdatrie1:amd64                   0.2.8-1                             amd64        Double-array trie library
 ii  libdb5.3:amd64                     5.3.28-3ubuntu3                     amd64        Berkeley v5.3 Database Libraries [runtime]
@@ -167,10 +167,10 @@ ii  libdjvulibre-text                  3.5.25.4-3                          all  
 ii  libdjvulibre21:amd64               3.5.25.4-3                          amd64        Runtime support for the DjVu image format
 ii  libdns100                          1:9.9.5.dfsg-3ubuntu0.2             amd64        DNS Shared Library used by BIND
 ii  libdpkg-perl                       1.17.5ubuntu5.4                     all          Dpkg perl modules
-ii  libdrm-intel1:amd64                2.4.56-1~ubuntu2                    amd64        Userspace interface to intel-specific kernel DRM services -- runtime
-ii  libdrm-nouveau2:amd64              2.4.56-1~ubuntu2                    amd64        Userspace interface to nouveau-specific kernel DRM services -- runtime
-ii  libdrm-radeon1:amd64               2.4.56-1~ubuntu2                    amd64        Userspace interface to radeon-specific kernel DRM services -- runtime
-ii  libdrm2:amd64                      2.4.56-1~ubuntu2                    amd64        Userspace interface to kernel DRM services -- runtime
+ii  libdrm-intel1:amd64                2.4.60-2~ubuntu14.04.1              amd64        Userspace interface to intel-specific kernel DRM services -- runtime
+ii  libdrm-nouveau2:amd64              2.4.60-2~ubuntu14.04.1              amd64        Userspace interface to nouveau-specific kernel DRM services -- runtime
+ii  libdrm-radeon1:amd64               2.4.60-2~ubuntu14.04.1              amd64        Userspace interface to radeon-specific kernel DRM services -- runtime
+ii  libdrm2:amd64                      2.4.60-2~ubuntu14.04.1              amd64        Userspace interface to kernel DRM services -- runtime
 ii  libedit2:amd64                     3.1-20130712-2                      amd64        BSD editline and history libraries
 ii  libelfg0:amd64                     0.8.13-5                            amd64        an ELF object file access library
 ii  libept1.4.12:amd64                 1.0.12                              amd64        High-level library for managing Debian package information
@@ -190,8 +190,8 @@ ii  libfontconfig1-dev                 2.11.0-0ubuntu4.1                   amd64
 ii  libfreetype6:amd64                 2.5.2-1ubuntu2.4                    amd64        FreeType 2 font engine, shared library files
 ii  libfreetype6-dev                   2.5.2-1ubuntu2.4                    amd64        FreeType 2 font engine, development files
 ii  libfribidi0:amd64                  0.19.6-1                            amd64        Free Implementation of the Unicode BiDi algorithm
-ii  libfuse-dev                        2.9.2-4ubuntu4                      amd64        Filesystem in Userspace (development)
-ii  libfuse2:amd64                     2.9.2-4ubuntu4                      amd64        Filesystem in Userspace (library)
+ii  libfuse-dev                        2.9.2-4ubuntu4.14.04.1              amd64        Filesystem in Userspace (development)
+ii  libfuse2:amd64                     2.9.2-4ubuntu4.14.04.1              amd64        Filesystem in Userspace (library)
 ii  libgcc-4.8-dev:amd64               4.8.2-19ubuntu1                     amd64        GCC support library (development files)
 ii  libgcc1:amd64                      1:4.9.1-0ubuntu1                    amd64        GCC support library
 ii  libgcrypt11:amd64                  1.5.3-2ubuntu4.2                    amd64        LGPL Crypto library - runtime library
@@ -235,8 +235,8 @@ ii  libheimntlm0-heimdal:amd64         1.6~git20131207+dfsg-1ubuntu1.1     amd64
 ii  libhx509-5-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - X509 support library
 ii  libice-dev:amd64                   2:1.0.8-2                           amd64        X11 Inter-Client Exchange library (development headers)
 ii  libice6:amd64                      2:1.0.8-2                           amd64        X11 Inter-Client Exchange library
-ii  libicu-dev:amd64                   52.1-3ubuntu0.2                     amd64        Development files for International Components for Unicode
-ii  libicu52:amd64                     52.1-3ubuntu0.2                     amd64        International Components for Unicode
+ii  libicu-dev:amd64                   52.1-3ubuntu0.3                     amd64        Development files for International Components for Unicode
+ii  libicu52:amd64                     52.1-3ubuntu0.3                     amd64        International Components for Unicode
 ii  libidn11:amd64                     1.28-1ubuntu2                       amd64        GNU Libidn library, implementation of IETF IDN specifications
 ii  libidn11-dev                       1.28-1ubuntu2                       amd64        Development files for GNU Libidn, an IDN library
 ii  libilmbase-dev                     1.0.1-6ubuntu1                      amd64        development files for IlmBase
@@ -391,8 +391,8 @@ ii  libstdc++6:amd64                   4.8.2-19ubuntu1                     amd64
 ii  libsub-name-perl                   0.05-1build4                        amd64        module for assigning a new name to referenced sub
 ii  libswscale2:amd64                  6:9.18-0ubuntu0.14.04.1             amd64        Libav video scaling library
 ii  libsysfs2:amd64                    2.1.0+repack-3ubuntu1               amd64        interface library to sysfs
-ii  libtasn1-6:amd64                   3.4-3ubuntu0.2                      amd64        Manage ASN.1 structures (runtime)
-ii  libtasn1-6-dev                     3.4-3ubuntu0.2                      amd64        Manage ASN.1 structures (development)
+ii  libtasn1-6:amd64                   3.4-3ubuntu0.3                      amd64        Manage ASN.1 structures (runtime)
+ii  libtasn1-6-dev                     3.4-3ubuntu0.3                      amd64        Manage ASN.1 structures (development)
 ii  libterm-ui-perl                    0.42-1                              all          Term::ReadLine UI made easy
 ii  libtext-charwidth-perl             0.04-7build3                        amd64        get display widths of characters on the terminal
 ii  libtext-iconv-perl                 1.7-5build2                         amd64        converts between character sets in Perl
@@ -465,7 +465,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-49.83                        amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-53.89                        amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9                  amd64        system login tools
@@ -518,7 +518,7 @@ ii  quota                              4.01-3                              amd64
 ii  readline-common                    6.3-4ubuntu2                        all          GNU readline and history libraries, common files
 ii  resolvconf                         1.69ubuntu1.1                       all          name server information handler
 ii  rsync                              3.1.0-2ubuntu0.1                    amd64        fast, versatile, remote (and local) file-copying tool
-ii  rsyslog                            7.4.4-1ubuntu2.5                    amd64        reliable system and kernel logging daemon
+ii  rsyslog                            7.4.4-1ubuntu2.6                    amd64        reliable system and kernel logging daemon
 ii  sed                                4.2.2-4ubuntu1                      amd64        The GNU sed stream editor
 ii  sensible-utils                     0.0.9                               all          Utilities for sensible alternative selection
 ii  shared-mime-info                   1.2-0ubuntu3                        amd64        FreeDesktop.org shared MIME database and spec
@@ -556,7 +556,7 @@ ii  x11proto-render-dev                2:0.11.1-2                          all  
 ii  x11proto-xext-dev                  7.3.0-1                             all          X11 various extension wire protocol
 ii  xkb-data                           2.10.1-1ubuntu1                     all          X Keyboard Extension (XKB) configuration data
 ii  xorg-sgml-doctools                 1:1.11-1                            all          Common tools for building X.Org SGML documentation
-ii  xtrans-dev                         1.3.4-1~ubuntu2                     all          X transport library (development files)
+ii  xtrans-dev                         1.3.5-1~ubuntu14.04.1               all          X transport library (development files)
 ii  xz-utils                           5.1.1alpha+20120614-2ubuntu2        amd64        XZ-format compression utilities
 ii  zip                                3.0-8                               amd64        Archiver for .zip files
 ii  zlib1g:amd64                       1:1.2.8.dfsg-1ubuntu1               amd64        compression library - runtime
