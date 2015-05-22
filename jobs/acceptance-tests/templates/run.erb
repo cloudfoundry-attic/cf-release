@@ -46,7 +46,10 @@ skipPackages+=<%= properties.acceptance_tests.include_services ? "" : "services,
 skipPackages+=<%= properties.acceptance_tests.include_routing_api ? "" : "routing_api," %>
 [[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
 
-skips=<%= properties.acceptance_tests.include_sso ? "" : "-skip=SSO"  %>
+<% skips = [] %>
+<% skips.push("SSO") unless properties.acceptance_tests.include_sso %>
+<% skips.push properties.acceptance_tests.skip_regex unless properties.acceptance_tests.skip_regex.empty? %>
+skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
 
 verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
 
