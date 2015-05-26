@@ -67,11 +67,7 @@ instance:
   max_cpu_share_limit: <%= p("dea_next.instance_max_cpu_share_limit") %>
   disk_inode_limit: <%= p("dea_next.instance_disk_inode_limit") %>
 
-stacks:
-  - name: lucid64
-    package_path: /var/vcap/packages/rootfs_lucid64
-  - name: cflinuxfs2
-    package_path: /var/vcap/packages/rootfs_cflinuxfs2
+stacks: <%= p("dea_next.stacks", []).to_yaml.gsub("---", "") %>
 
 placement_properties:
   zone: <%= p("dea_next.zone") %>
