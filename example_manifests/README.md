@@ -27,7 +27,7 @@ it doesn't include features such as high availability and security.
 - Click "Save"
 
 - Replace REPLACE_WITH_DIRECTOR_ID in the example manifest with the bosh director id (return by running "bosh status --uuid")
-- Replace REPLACE_WITH_BOSH_SECURITY_GROUP in the example manifest with the security group created for microbosh
+- Replace REPLACE_WITH_BOSH_SECURITY_GROUP in the example manifest with the **name** of the security group created for microbosh (using the security group id will cause the error `Error 100: Received unknown error from cpi: Unknown with message When specifying a security group you must specify a group id for each item` to be thrown)
 
 ## Create a NAT Machine in the bosh subnet
 - Click on "EC2" from the Amazon Web Services Dashboard
@@ -102,7 +102,7 @@ it doesn't include features such as high availability and security.
   | HTTPS | TCP      | 443        | Anywhere |
   | TCP   | TCP      | 4443       | Anywhere |
 
-- Replace REPLACE_WITH_PUBLIC_SECURITY_GROUP in the example manifest with the new security group
+- Replace REPLACE_WITH_PUBLIC_SECURITY_GROUP in the example manifest with the **name** of the new security group (using the security group id will cause the error `Error 100: Received unknown error from cpi: Unknown with message When specifying a security group you must specify a group id for each item` to be thrown)
 
 ## DNS Configuration
 If you have a domain you plan to use for your Cloud Foundry System Domain. Set up the DNS as follows:
