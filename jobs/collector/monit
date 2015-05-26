@@ -3,4 +3,4 @@ check process collector
   start program "/var/vcap/jobs/collector/bin/collector_ctl start"
   stop program "/var/vcap/jobs/collector/bin/collector_ctl stop"
   group vcap
-  if totalmem > 800 Mb for 15 cycles then restart
+  if totalmem > <%= p("collector.memory_threshold") %> Mb for 15 cycles then restart
