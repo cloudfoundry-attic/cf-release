@@ -1,9 +1,9 @@
 set -e -x
 
-pgversion="postgresql-9.3.1"
+pgversion="postgresql-9.4.2"
 archive="$pgversion.tar.gz"
 
-if [[ -f postgres9/$archive ]] ; then
+if [[ -f postgres/$archive ]] ; then
   echo "Archive found"
 else
   echo "Archive not found"
@@ -11,7 +11,7 @@ else
 fi
 
 echo "Extracting archive..."
-tar xzf postgres9/$archive
+tar xzf postgres/$archive
 
 cd $pgversion
 
@@ -41,4 +41,3 @@ pushd contrib
 make
 make install
 popd
-
