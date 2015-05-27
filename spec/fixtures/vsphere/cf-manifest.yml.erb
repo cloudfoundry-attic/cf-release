@@ -721,6 +721,8 @@ properties:
     default_app_disk_in_mb: 1024
     default_app_memory: 1024
     default_buildpacks:
+    - name: staticfile_buildpack
+      package: buildpack_staticfile
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
@@ -733,8 +735,6 @@ properties:
       package: buildpack_python
     - name: php_buildpack
       package: buildpack_php
-    - name: staticfile_buildpack
-      package: buildpack_staticfile
     - name: binary_buildpack
       package: buildpack_binary
     default_health_check_timeout: 60
@@ -758,6 +758,8 @@ properties:
     external_host: api
     external_protocol: http
     install_buildpacks:
+    - name: staticfile_buildpack
+      package: buildpack_staticfile
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
@@ -770,8 +772,6 @@ properties:
       package: buildpack_python
     - name: php_buildpack
       package: buildpack_php
-    - name: staticfile_buildpack
-      package: buildpack_staticfile
     - name: binary_buildpack
       package: buildpack_binary
     jobs:
@@ -849,6 +849,8 @@ properties:
     staging_upload_password: password
     staging_upload_user: username
     system_buildpacks:
+    - name: staticfile_buildpack
+      package: buildpack_staticfile
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
@@ -861,8 +863,6 @@ properties:
       package: buildpack_python
     - name: php_buildpack
       package: buildpack_php
-    - name: staticfile_buildpack
-      package: buildpack_staticfile
     - name: binary_buildpack
       package: buildpack_binary
     thresholds:
