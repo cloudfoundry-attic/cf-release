@@ -258,6 +258,5 @@ properties:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
 
   login:
-    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     protocol: http
 

@@ -137,7 +137,6 @@ properties:
     no_ssl: true
 
   login:
-    catalina_opts: -Xmx96m -XX:MaxPermSize=64m
     protocol: http
     links:
       home: (( "https://console." domain ))
@@ -314,11 +313,6 @@ jobs:
     networks:
       - name: cf2
         static_ips: (( static_ips(12) ))
-
-  - name: login_z2
-    instances: 0
-    networks:
-      - name: cf2
 
   # only need one runner
   #
