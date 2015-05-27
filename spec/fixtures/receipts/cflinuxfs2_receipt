@@ -1,6 +1,6 @@
-Rootfs SHASUM: c8d1e8163844333a37f4848194d3e26e044af12b  cflinuxfs2.tar.gz
-Docker Image: 1aa9d8ce0dad
-S3 ETag: 1f190fdab7a9cbd51b0164a807d986ee
+Rootfs SHASUM: 2e5af30ef86aa9e2f538a0df6f229703e97e4ee8  cflinuxfs2.tar.gz
+Docker Image: 8ce0e985cab2
+S3 ETag: f09f9d21ab52ceb0b6774265f15cda7b
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -12,6 +12,7 @@ ii  apt                                1.0.1ubuntu2.7                      amd64
 ii  apt-utils                          1.0.1ubuntu2.7                      amd64        package management related utility programs
 ii  aptitude                           0.6.8.2-1ubuntu4                    amd64        terminal-based package manager
 ii  aptitude-common                    0.6.8.2-1ubuntu4                    all          architecture indepedent files for the aptitude package manager
+ii  autoconf                           2.69-6                              all          automatic configure script builder
 ii  base-files                         7.2ubuntu5.2                        amd64        Debian base system miscellaneous files
 ii  base-passwd                        3.5.33                              amd64        Debian base system master password and group files
 ii  bash                               4.3-7ubuntu1.5                      amd64        GNU Bourne Again SHell
@@ -23,6 +24,8 @@ ii  build-essential                    11.6ubuntu6                         amd64
 ii  busybox-initramfs                  1:1.21.0-1ubuntu1                   amd64        Standalone shell setup for initramfs
 ii  bzip2                              1.0.6-5                             amd64        high-quality block-sorting file compressor - utilities
 ii  ca-certificates                    20141019ubuntu0.14.04.1             all          Common CA certificates
+ii  cmake                              2.8.12.2-0ubuntu3                   amd64        cross-platform, open-source make system
+ii  cmake-data                         2.8.12.2-0ubuntu3                   all          CMake data files (modules, templates and documentation)
 ii  comerr-dev                         2.1-1.42.9-3ubuntu1.2               amd64        common error description library - headers and static libraries
 ii  console-setup                      1.70ubuntu8                         all          console font and keymap setup program
 ii  coreutils                          8.21-1ubuntu5.1                     amd64        GNU core utilities
@@ -106,6 +109,7 @@ ii  libaio1:amd64                      0.3.109-4                           amd64
 ii  libapt-inst1.5:amd64               1.0.1ubuntu2.7                      amd64        deb package format runtime library
 ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.7                      amd64        package management runtime library
 ii  libarchive-extract-perl            0.70-1                              all          generic archive extracting module
+ii  libarchive13:amd64                 3.1.2-7ubuntu2.1                    amd64        Multi-format archive and compression library (shared library)
 ii  libasan0:amd64                     4.8.2-19ubuntu1                     amd64        AddressSanitizer -- a fast memory error detector
 ii  libasn1-8-heimdal:amd64            1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - ASN.1 library
 ii  libatk-bridge2.0-0:amd64           2.10.2-2ubuntu1                     amd64        AT-SPI 2 toolkit bridge - shared library
@@ -272,8 +276,8 @@ ii  libkrb5-dev                        1.12+dfsg-2ubuntu5.1                amd64
 ii  libkrb5support0:amd64              1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - Support library
 ii  liblcms2-2:amd64                   2.5-0ubuntu4                        amd64        Little CMS 2 color management library
 ii  liblcms2-dev:amd64                 2.5-0ubuntu4                        amd64        Little CMS 2 color management library development headers
-ii  libldap-2.4-2:amd64                2.4.31-1+nmu2ubuntu8                amd64        OpenLDAP libraries
-ii  libldap2-dev:amd64                 2.4.31-1+nmu2ubuntu8                amd64        OpenLDAP development libraries
+ii  libldap-2.4-2:amd64                2.4.31-1+nmu2ubuntu8.1              amd64        OpenLDAP libraries
+ii  libldap2-dev:amd64                 2.4.31-1+nmu2ubuntu8.1              amd64        OpenLDAP development libraries
 ii  liblocale-gettext-perl             1.05-7build3                        amd64        module using libc functions for internationalization in Perl
 ii  liblockfile-bin                    1.09-6ubuntu1                       amd64        support binaries for and cli utilities based on liblockfile
 ii  liblockfile1:amd64                 1.09-6ubuntu1                       amd64        NFS-safe locking library
@@ -303,6 +307,7 @@ ii  libmysqlclient18:amd64             5.5.43-0ubuntu0.14.04.1             amd64
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
+ii  libnettle4:amd64                   2.7.1-1                             amd64        low level cryptographic library (symmetric and one-way cryptos)
 ii  libnewt0.52:amd64                  0.52.15-2ubuntu5                    amd64        Not Erik's Windowing Toolkit - text mode windowing with slang
 ii  libnih-dbus1:amd64                 1.0.3-4ubuntu25                     amd64        NIH D-Bus Bindings Library
 ii  libnih1:amd64                      1.0.3-4ubuntu25                     amd64        NIH Utility Library
@@ -341,8 +346,8 @@ ii  libpng12-0:amd64                   1.2.50-1ubuntu2                     amd64
 ii  libpng12-dev                       1.2.50-1ubuntu2                     amd64        PNG library - development
 ii  libpod-latex-perl                  0.61-1                              all          module to convert Pod data to formatted LaTeX
 ii  libpopt0:amd64                     1.16-8ubuntu1                       amd64        lib for parsing cmdline parameters
-ii  libpq-dev                          9.3.6-0ubuntu0.14.04                amd64        header files for libpq5 (PostgreSQL library)
-ii  libpq5                             9.3.6-0ubuntu0.14.04                amd64        PostgreSQL C client library
+ii  libpq-dev                          9.3.7-0ubuntu0.14.04                amd64        header files for libpq5 (PostgreSQL library)
+ii  libpq5                             9.3.7-0ubuntu0.14.04                amd64        PostgreSQL C client library
 ii  libprocps3:amd64                   1:3.3.9-1ubuntu2.2                  amd64        library for accessing process information from /proc
 ii  libpthread-stubs0-dev:amd64        0.3-4                               amd64        pthread stubs not provided by native libc, development files
 ii  libpython-stdlib:amd64             2.7.5-5ubuntu3                      amd64        interactive high-level object-oriented language (default python version)
