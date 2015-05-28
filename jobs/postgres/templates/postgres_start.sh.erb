@@ -38,6 +38,11 @@ if [ ! -d $DATA_DIR -o ! -f $DATA_DIR/postgresql.conf ]; then
 fi
 
 if [ -d $DATA_DIR_OLD -a -f $DATA_DIR_OLD/postgresql.conf ]; then
+
+  if [ -d $DATA_DIR_PREVIOUS ]; then
+    rm -rf $DATA_DIR_PREVIOUS
+  fi
+
   touch $STORE_DIR/FLAG_POSTGRES_UPGRADE
   su - vcap -c "$PACKAGE_DIR/bin/pg_upgrade \
     --old-datadir $DATA_DIR_OLD \
