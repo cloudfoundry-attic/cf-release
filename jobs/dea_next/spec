@@ -17,7 +17,6 @@ packages:
 - common
 - dea_next
 - warden
-- rootfs_lucid64
 - rootfs_cflinuxfs2
 - ruby-2.1.6
 
@@ -116,8 +115,6 @@ properties:
     default: 0
   dea_next.stacks:
     default:
-      - name: "lucid64"
-        package_path: "/var/vcap/packages/rootfs_lucid64"
       - name: "cflinuxfs2"
         package_path: "/var/vcap/packages/rootfs_cflinuxfs2"
     description: "An array of stacks, specifying the name and package path."

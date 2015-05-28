@@ -178,8 +178,6 @@ properties:
 
   cc.stacks:
     default:
-      - name: "lucid64"
-        description: "Ubuntu 10.04 on x86-64"
       - name: "cflinuxfs2"
         description: "Cloud Foundry Linux-based filesystem"
     description: "Tag used by the DEA to describe capabilities (i.e. 'Windows7', 'python-linux'). DEA and CC must agree."
