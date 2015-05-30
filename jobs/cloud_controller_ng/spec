@@ -54,7 +54,7 @@ properties:
     default: "2"
     description:
   support_address:
-    default: "http://support.cloudfoundry.com"
+    default:
     description:
   description:
     default: "Cloud Foundry sponsored by Pivotal"
