@@ -39,7 +39,7 @@ case "$1" in
     mkdir -p $RUN_DIR
     chown vcap:vcap $RUN_DIR
 
-    echo $$ > $PIDFILE
+    echo "" > $PIDFILE
     chown vcap:vcap $PIDFILE
 
     if [ ! -d $LOG_DIR ]; then
