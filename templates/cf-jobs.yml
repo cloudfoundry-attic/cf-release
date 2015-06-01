@@ -488,7 +488,7 @@ jobs:
 
   - name: loggregator_z1
     templates: (( merge || lamb_meta.loggregator_templates ))
-    instances: 1
+    instances: 0
     resource_pool: medium_z1
     networks:
       - name: cf1
@@ -498,6 +498,28 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: loggregator_z2
+    templates: (( merge || lamb_meta.loggregator_templates ))
+    instances: 0
+    resource_pool: medium_z2
+    networks:
+      - name: cf2
+    properties:
+      <<: (( merge ))
+      networks: (( meta.networks.z2 ))
+    update: (( merge || empty_hash ))
+
+- name: doppler_z1
+    templates: (( merge || lamb_meta.loggregator_templates ))
+    instances: 1
+    resource_pool: medium_z1
+    networks:
+      - name: cf1
+    properties:
+      <<: (( merge ))
+      networks: (( meta.networks.z1 ))
+    update: (( merge || empty_hash ))
+
+  - name: doppler_z2
     templates: (( merge || lamb_meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z2
