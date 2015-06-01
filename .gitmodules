@@ -100,3 +100,6 @@
 [submodule "src/etcd-release"]
 	path = src/etcd-release
 	url = https://github.com/cloudfoundry-incubator/etcd-release.git
+[submodule "src/statsd-injector"]
+	path = src/statsd-injector
+	url = https://github.com/cloudfoundry/statsd-injector.git
