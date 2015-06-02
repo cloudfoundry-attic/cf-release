@@ -510,7 +510,7 @@ jobs:
       networks: (( meta.networks.z2 ))
     update: (( merge || empty_hash ))
 
-- name: doppler_z1
+  - name: doppler_z1
     templates: (( merge || lamb_meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z1

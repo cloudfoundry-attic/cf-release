@@ -549,7 +549,7 @@ jobs:
     release: cf
   update:
     max_in_flight: 1
-- instances: 1
+- instances: 0
   name: loggregator_z1
   networks:
   - name: cf1
@@ -563,6 +563,30 @@ jobs:
   update: {}
 - instances: 0
   name: loggregator_z2
+  networks:
+  - name: cf2
+  properties:
+<%= loggregator_z2_properties %>
+    networks:
+      apps: cf2
+  resource_pool: medium_z2
+  templates:
+<%= loggregator_templates %>
+  update: {}
+- instances: 1
+  name: doppler_z1
+  networks:
+  - name: cf1
+  properties:
+<%= loggregator_z1_properties %>
+    networks:
+      apps: cf1
+  resource_pool: medium_z1
+  templates:
+<%= loggregator_templates %>
+  update: {}
+- instances: 0
+  name: doppler_z2
   networks:
   - name: cf2
   properties:
