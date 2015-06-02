@@ -624,6 +624,7 @@ properties:
   <<: (( merge ))
   consul:
     agent:
+      log_level: (( merge || nil ))
       servers:
         lan: (( consul_servers ))
 
