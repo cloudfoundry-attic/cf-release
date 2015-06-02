@@ -32,9 +32,6 @@ properties:
   <<: (( merge ))
   app_ssh: ~
   domain: (( merge ))
-  consul:
-    agent:
-      log_level: debug
 
   loggregator_endpoint:
     shared_secret: (( merge ))
