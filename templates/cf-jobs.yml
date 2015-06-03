@@ -31,9 +31,9 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: nfs_mounter
-    release: (( meta.release.name ))
   - name: consul_agent
+    release: (( meta.release.name ))
+  - name: nfs_mounter
     release: (( meta.release.name ))
 
   api_worker_templates:
@@ -41,9 +41,9 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: nfs_mounter
-    release: (( meta.release.name ))
   - name: consul_agent
+    release: (( meta.release.name ))
+  - name: nfs_mounter
     release: (( meta.release.name ))
 
   clock_templates:
