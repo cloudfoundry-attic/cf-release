@@ -162,6 +162,7 @@ jobs:
           mode: server
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
 
   - name: consul_z2
     templates: (( merge || meta.consul_templates ))
@@ -180,6 +181,7 @@ jobs:
           mode: server
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
 
   - name: ha_proxy_z1
     templates: (( merge || meta.ha_proxy_templates ))
@@ -201,6 +203,7 @@ jobs:
           z2: (( jobs.router_z2.networks.cf2.static_ips ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: nats_z1
@@ -214,6 +217,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: nats_z2
@@ -227,6 +231,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: etcd_z1
@@ -241,6 +246,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: etcd_z2
@@ -255,6 +261,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: stats_z1
@@ -267,6 +274,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: nfs_z1
@@ -281,6 +289,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: postgres_z1
@@ -295,6 +304,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: uaa_z1
@@ -311,6 +321,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: uaa_z2
@@ -327,6 +338,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: login_z1
@@ -339,6 +351,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: login_z2
@@ -351,6 +364,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: api_z1
@@ -368,6 +382,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
@@ -386,6 +401,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
@@ -400,6 +416,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: api_worker_z1
@@ -413,6 +430,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
@@ -427,6 +445,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
@@ -440,6 +459,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: hm9000_z2
@@ -452,6 +472,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: runner_z1
@@ -467,6 +488,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update:
       max_in_flight: 1
 
@@ -483,6 +505,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
     update:
       max_in_flight: 1
 
@@ -545,6 +568,7 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: router_z2
@@ -562,6 +586,7 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
     update: (( merge || empty_hash ))
 
   - name: routing_api_z1
@@ -578,6 +603,7 @@ jobs:
             - routing-api
       metron_agent:
         zone: z1
+        deployment: (( meta.environment ))
       networks: (( meta.networks.z1 ))
     update: (( merge || empty_hash ))
 
@@ -595,6 +621,7 @@ jobs:
             - routing-api
       metron_agent:
         zone: z2
+        deployment: (( meta.environment ))
       networks: (( meta.networks.z2 ))
     update: (( merge || empty_hash ))
 
