@@ -123,10 +123,6 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.3.1.zip:
   object_id: ea681326-1a90-4099-a1e1-7f00740ddedb
   sha: 2f1b0e58cc6d0b0d2bf28059c8b42f9cca4ed5a5
   size: 72725931
-php-buildpack/php_buildpack-cached-v3.2.1.zip:
-  object_id: b1d550aa-b25a-469d-a997-215fa399f04a
-  sha: bca21b65d5f983c23402fd35154b5b4fa8121965
-  size: 842059983
 go-buildpack/go_buildpack-cached-v1.3.1.zip:
   object_id: 5e671c4a-4b81-41fe-a4a7-9bb6cabe933a
   sha: 82d19816c39e0e77b25ce599117fa07b2e06efe8
@@ -171,3 +167,7 @@ postgres/postgresql-9.4.2.tar.gz:
   object_id: 4d807bf7-94bc-449f-a0c3-549642df3085
   sha: 7a70474f9b44fea1b345e48bd5e4418bccf41f3f
   size: 23092865
+php-buildpack/php_buildpack-cached-v3.2.2.zip:
+  object_id: 4cbd86d2-a739-4a13-90f1-58f6097e718a
+  sha: 3a6e7a88754029e6efbaa0d6905fca6086bb0b64
+  size: 846464023
