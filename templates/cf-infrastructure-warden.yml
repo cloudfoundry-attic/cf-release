@@ -356,9 +356,9 @@ jobs:
         release: cf
       - name: metron_agent
         release: cf
-      - name: nfs_mounter
-        release: cf
       - name: consul_agent
+        release: cf
+      - name: nfs_mounter
         release: cf
 
   - name: api_worker_z1
