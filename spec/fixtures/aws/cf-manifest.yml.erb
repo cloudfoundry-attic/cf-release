@@ -619,6 +619,8 @@ jobs:
     release: cf
   - name: consul_agent
     release: cf
+  - name: statsd-injector
+    release: cf
   update: {}
 - instances: 0
   name: routing_api_z2
@@ -641,6 +643,8 @@ jobs:
   - name: metron_agent
     release: cf
   - name: consul_agent
+    release: cf
+  - name: statsd-injector
     release: cf
   update: {}
 - instances: 1

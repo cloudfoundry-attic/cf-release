@@ -64,6 +64,9 @@ properties:
     description: "IP address of Graphite"
   collector.graphite.port:
     description: "TCP port of Graphite"
+  collector.memory_threshold:
+    description: "Memory threshold for collector restart (Mb)"
+    default: 800
   nats.machines:
     description: "IP of each NATS cluster member."
   nats.password:

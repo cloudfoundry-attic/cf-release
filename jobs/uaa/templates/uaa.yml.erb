@@ -30,6 +30,7 @@ database:
   removeabandoned: <%= (properties.uaa.database && properties.uaa.database.remove_abandoned) ? true : false %>
   logabandoned: <%= (properties.uaa.database && properties.uaa.database.log_abandoned) ? true : false %>
   abandonedtimeout: <%= (properties.uaa.database && properties.uaa.database.abandoned_timeout) ? properties.uaa.database.abandoned_timeout : 300 %>
+  <%= (properties.uaa.database && !(properties.uaa.database.case_insensitive.nil?)) ? 'caseinsensitive: ' + properties.uaa.database.case_insensitive.to_s : '' %>
 
 <% if properties.uaa && properties.uaa.ldap && ((properties.uaa.ldap.enabled &&  (properties.uaa.ldap.enabled==true)) || (properties.uaa.spring_profiles && properties.uaa.spring_profiles.eql?('ldap'))) %>
 spring_profiles: <%= properties.uaadb.db_scheme %>,ldap

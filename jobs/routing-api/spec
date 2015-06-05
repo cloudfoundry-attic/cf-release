@@ -16,6 +16,18 @@ properties:
   routing-api.port:
     description: "The port to run the routing api on"
     default: 3000
+  routing-api.consul_ttl:
+    description: "String representing ttl for consul locks. Units: ms, s, m h"
+    default: "60s"
+  routing-api.lock_retry_interval:
+    description: "String representing retry interval for consul locks. Units: ms, s, m h"
+    default: "30s"
+  routing-api.metrics_reporting_interval:
+    description: "String representing interval for reporting metrics. Units: ms, s, m h"
+    default: "30s"
+  routing-api.statsd_endpoint:
+    description: "The endpoint for the statsd server, defaults to the local metron agent"
+    default: "localhost:8125"
   etcd.machines:
     description: "The IPs of etcd hosts"
   uaa.jwt.verification_key:

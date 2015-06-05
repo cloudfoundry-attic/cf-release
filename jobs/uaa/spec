@@ -125,6 +125,8 @@ properties:
   uaa.database.log_abandoned:
     description: "Should connections that are forcibly closed be logged."
     default: true
+  uaa.database.case_insensitive:
+    description: "Set to true if you don't want to be using LOWER() SQL functions in search queries/filters, because you know that your DB is case insensitive. If this property is null, then it will be set to true if the UAA DB is MySQL and false otherwise, but even on MySQL you can override it by setting it explicitly to false"
   uaa.no_ssl:
     description: "when true, uaa uses http, otherwise it uses https"
     default: false

@@ -83,6 +83,8 @@ meta:
     release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.release.name ))
+  - name: statsd-injector
+    release: (( lamb_meta.release.name ))
 
   ha_proxy_templates:
   - name: haproxy
