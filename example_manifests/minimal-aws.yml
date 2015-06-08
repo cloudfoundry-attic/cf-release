@@ -159,7 +159,7 @@ jobs:
   networks:
   - name: cf_private
 
-- name: loggregator_z1
+- name: doppler_z1
   instances: 1
   resource_pool: small_z1
   templates:
