@@ -1,7 +1,14 @@
+check process cloud_controller_migration
+  with pidfile /var/vcap/sys/run/cloud_controller_migration/cloud_controller_migration.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_migration_ctl start" 
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_migration_ctl stop"
+  group vcap
+
 check process cloud_controller_ng
   with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
-  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start"
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start" 
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
+  depends on cloud_controller_migration
   group vcap
 <% if properties.nfs_server.address %>
   depends on nfs_mounter

@@ -12,6 +12,7 @@ templates:
   cloud_controller_api.yml.erb: config/cloud_controller_ng.yml
   cloud_controller_api_ctl.erb: bin/cloud_controller_ng_ctl
   cloud_controller_api_worker_ctl.erb: bin/cloud_controller_worker_ctl
+  cloud_controller_api_migration_ctl.erb: bin/cloud_controller_migration_ctl
   handle_local_blobstore.sh.erb: bin/handle_local_blobstore.sh
   stacks.yml.erb: config/stacks.yml
   newrelic.yml.erb: config/newrelic.yml
