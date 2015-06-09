@@ -4,7 +4,7 @@ meta:
   networks: ~
 
   stemcell:
-    name: bosh-openstack-kvm-ubuntu-lucid-go_agent
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
     version: latest
 
   floating_static_ips: (( merge ))
