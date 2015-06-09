@@ -81,11 +81,9 @@ This is useful in the following situations:
 
 ## Ask Questions
 
-Questions about the Cloud Foundry Open Source Project can be directed to our Google Groups.
+Questions about the Cloud Foundry Open Source Project can be directed to our Mailing Lists [https://lists.cloudfoundry.org/mailman/listinfo].
 
-* Cloud Foundry (aka VCAP) Developers: [https://groups.google.com/a/cloudfoundry.org/group/vcap-dev/topics](https://groups.google.com/a/cloudfoundry.org/group/vcap-dev/topics)
-* BOSH Users:[https://groups.google.com/a/cloudfoundry.org/group/bosh-users/topics](https://groups.google.com/a/cloudfoundry.org/group/bosh-users/topics)
-* BOSH Developers: [https://groups.google.com/a/cloudfoundry.org/group/bosh-dev/topics](https://groups.google.com/a/cloudfoundry.org/group/bosh-dev/topics)
+There are lists for Cloud Foundry Developers, BOSH Users, and BOSH Developers.
 
 ## File a bug
 
