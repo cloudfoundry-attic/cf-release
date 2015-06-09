@@ -36,7 +36,7 @@ test_command="bin/test_via_ginkgo"
 
 nodes=<%= properties.acceptance_tests.nodes %>
 
-skipPackages="-skipPackage="
+skipPackages="-skipPackage=helpers,"
 skipPackages+=<%= properties.acceptance_tests.include_v3 ? "" : "v3," %>
 skipPackages+=<%= properties.acceptance_tests.include_security_groups ? "" : "security_groups," %>
 skipPackages+=<%= properties.acceptance_tests.include_logging ? "" : "logging," %>
