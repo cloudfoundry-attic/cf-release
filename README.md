@@ -81,7 +81,8 @@ This is useful in the following situations:
 
 ## Ask Questions
 
-Questions about the Cloud Foundry Open Source Project can be directed to our Mailing Lists [https://lists.cloudfoundry.org/mailman/listinfo].
+Questions about the Cloud Foundry Open Source Project can be directed to our Mailing Lists: 
+[https://lists.cloudfoundry.org/mailman/listinfo](https://lists.cloudfoundry.org/mailman/listinfo)
 
 There are lists for Cloud Foundry Developers, BOSH Users, and BOSH Developers.
 
