@@ -51,9 +51,26 @@ fi
 <% end %>
 
 NEWRELIC_OPTS=
-<% if properties.uaa && properties.uaa.newrelic &&  properties.uaa.newrelic.common && properties.uaa.newrelic.common.license_key %>
-NEWRELIC_OPTS="-javaagent:/var/vcap/data/uaa/tomcat/bin/newrelic.jar -Dnewrelic.config.file=$JOB_DIR/config/newrelic.yml"
-<% end %>
+<%
+if properties.uaa && properties.uaa.newrelic 
+    newrelicenv = String.new("production")
+    if properties.uaa && properties.uaa.newrelic && properties.uaa.newrelic.environment
+        newrelicenv = p('uaa.newrelic.environment')
+    end
+
+    hasnewreliclic = false
+    if properties.uaa.newrelic.common && properties.uaa.newrelic.common.license_key
+        hasnewreliclic = true
+    elsif p('uaa.newrelic.'+newrelicenv+'.license_key').to_s.strip.length > 0
+        hasnewreliclic = true
+    end 
+
+    if hasnewreliclic %>
+<%= "NEWRELIC_OPTS=\"-javaagent:/var/vcap/data/uaa/tomcat/bin/newrelic.jar -Dnewrelic.config.file=$JOB_DIR/config/newrelic.yml -Dnewrelic.environment="+newrelicenv+"\"" %><%
+    end
+end
+%>
+
 export NEWRELIC_OPTS
 
 source /var/vcap/packages/common/utils.sh
