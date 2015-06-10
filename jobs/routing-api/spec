@@ -28,6 +28,12 @@ properties:
   routing-api.statsd_endpoint:
     description: "The endpoint for the statsd server, defaults to the local metron agent"
     default: "localhost:8125"
+  routing-api.debug_address:
+    description: "Address at which to serve debug info"
+    default: "0.0.0.0:17001"
+  routing-api.max_concurrent_etcd_requests:
+    description: "Maximum number of concurrent ETCD requests"
+    default: 25
   etcd.machines:
     description: "The IPs of etcd hosts"
   uaa.jwt.verification_key:

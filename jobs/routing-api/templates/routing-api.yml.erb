@@ -12,3 +12,5 @@ consul_config:
   lock_retry_interval: <%= p("routing-api.lock_retry_interval") %>
 metrics_reporting_interval: <%= p("routing-api.metrics_reporting_interval") %>
 statsd_endpoint: <%= p("routing-api.statsd_endpoint") %>
+debug_address: <%= p("routing-api.debug_address") %>
+max_concurrent_etcd_requests: <%= p("routing-api.max_concurrent_etcd_requests") %>
