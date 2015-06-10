@@ -115,10 +115,6 @@ rtr/routing_api_cli.tgz:
   object_id: 5fb2b119-d894-4fcd-ab3d-69f9d51d2fab
   sha: bd18cdc02bf98ef37546d85b3496cbcd2c549497
   size: 2180884
-nodejs-buildpack/nodejs_buildpack-cached-v1.3.3.zip:
-  object_id: 51cff086-fdaa-4f84-acc1-0aa12b0b2245
-  sha: 06738649be8d23982392b734a1c45cc7c536eb42
-  size: 72726746
 php-buildpack/php_buildpack-cached-v3.2.2.zip:
   object_id: 4cbd86d2-a739-4a13-90f1-58f6097e718a
   sha: 3a6e7a88754029e6efbaa0d6905fca6086bb0b64
@@ -171,3 +167,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.1.0.zip:
   object_id: a449f533-f9a9-4680-bb65-bb5fb1c607bd
   sha: fe8e6bed345a88c387424dc47c213cc13345fcf4
   size: 4684378
+nodejs-buildpack/nodejs_buildpack-cached-v1.3.4.zip:
+  object_id: c6a02aaf-b917-4102-b243-1ffff9796dbc
+  sha: 7ad1ca449292596ba58b4a2f37ef9a5c404b558e
+  size: 73107547
