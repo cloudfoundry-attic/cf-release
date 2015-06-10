@@ -457,9 +457,6 @@ jobs:
           HVTi2pRhEhbWUkBv2kooXvD6ANb15PbPSF1FK7YyW1KHqcbm+lF22g==
           -----END RSA PRIVATE KEY-----
 
-  - name: acceptance_tests
-    instances: 1
-
   - name: smoke_tests
     instances: 1
 

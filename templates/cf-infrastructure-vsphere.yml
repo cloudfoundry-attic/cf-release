@@ -208,9 +208,6 @@ jobs:
     - name: metron_agent
       release: cf
 
-  - name: acceptance_tests
-    instances: 1
-
   - name: smoke_tests
     instances: 1
 
