@@ -7,8 +7,8 @@ releases:
 properties:
   loggregator_endpoint:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
-  routing-api:
-    enabled: true
+  router:
+    enable_routing_api: true
 
   cc:
     min_cli_version: "6.0.0"

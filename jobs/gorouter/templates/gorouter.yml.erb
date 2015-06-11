@@ -43,7 +43,7 @@ prune_stale_droplets_interval: 30
 droplet_stale_threshold: 120
 publish_active_apps_interval: 0 # 0 means disabled
 
-<% if p("routing-api.enabled") %>
+<% if p("router.enable_routing_api") %>
 oauth:
   token_endpoint: http://uaa.service.consul
   client_name: "gorouter"
