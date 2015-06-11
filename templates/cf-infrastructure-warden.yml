@@ -368,6 +368,10 @@ jobs:
         release: cf
       - name: consul_agent
         release: cf
+      - name: routing-api
+        release: cf
+      - name: statsd-injector
+        release: cf
       - name: nfs_mounter
         release: cf
 
