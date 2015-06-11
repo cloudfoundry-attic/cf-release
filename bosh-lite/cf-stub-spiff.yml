@@ -44,11 +44,11 @@ properties:
         rules:
         - protocol: all
           destination: (( merge || "10.244.0.34" ))
-      - name: cf_mysql
+      - name: user_bosh_deployments
         rules:
         - protocol: all
-          destination: 10.244.7.0-10.244.9.255
-    default_running_security_groups: ["public_networks", "dns", "services", "load_balancer", "cf_mysql"]
+          destination: 10.244.4.0-10.254.0.0
+    default_running_security_groups: ["public_networks", "dns", "services", "load_balancer", "user_bosh_deployments"]
 jobs:
 - instances: 1
   name: routing_api_z1
