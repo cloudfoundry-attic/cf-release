@@ -5,9 +5,6 @@ check process cloud_controller_worker_<%= index %>
   stop program "/var/vcap/jobs/cloud_controller_worker/bin/cloud_controller_worker_ctl stop <%= index %>"
   group vcap
 
-<% if properties.nfs_server.address %>
-  depends on nfs_mounter
-<% end %>
   if totalmem > <%= p("cc.thresholds.worker.alert_if_above_mb") %> Mb for 3 cycles then alert
   if totalmem > <%= p("cc.thresholds.worker.restart_if_consistently_above_mb") %> Mb for 15 cycles then restart
   if totalmem > <%= p("cc.thresholds.worker.restart_if_above_mb") %> Mb for 3 cycles then restart
