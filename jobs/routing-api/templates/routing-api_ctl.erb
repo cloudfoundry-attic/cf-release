@@ -48,7 +48,6 @@ case $1 in
          -maxTTL <%= p("routing-api.max_ttl") %> \
          -ip <%= my_ip %> \
          -systemDomain <%= p("system_domain") %> \
-         -consulCluster http://127.0.0.1:8500 \
          <%= p("etcd.machines").map{|addr| "http://#{addr}:4001"}.join(" ")%> \
          1> >(tee -a $LOG_DIR/routing-api.log | logger -t vcap.routing-api) 2>&1
 

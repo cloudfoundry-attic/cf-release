@@ -34,6 +34,9 @@ properties:
   routing-api.max_concurrent_etcd_requests:
     description: "Maximum number of concurrent ETCD requests"
     default: 25
+  routing-api.statsd_client_flush_interval:
+    description: "Buffered statsd client flush interval"
+    default: "300ms"
   etcd.machines:
     description: "The IPs of etcd hosts"
   uaa.jwt.verification_key:
