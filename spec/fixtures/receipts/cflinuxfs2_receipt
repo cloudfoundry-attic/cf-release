@@ -1,6 +1,6 @@
-Rootfs SHASUM: c9a70dbb89c352cf4cbc64954ff9012d3442b5da  cflinuxfs2.tar.gz
-Docker Image: f74c14675e23
-S3 ETag: f5982b5cde649f2f83b4ea5747f56baf
+Rootfs SHASUM: 45914689d88484f7ad4efc6a75b9877f48837da4  cflinuxfs2.tar.gz
+Docker Image: 3af591b3dee6
+S3 ETag: abacc0aa7213d4ec38b28c663131855f
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -231,8 +231,8 @@ ii  libgsm1:amd64                      1.0.13-4                            amd64
 ii  libgssapi-krb5-2:amd64             1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - krb5 GSS-API Mechanism
 ii  libgssapi3-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - GSSAPI support library
 ii  libgssrpc4:amd64                   1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - GSS enabled ONCRPC
-ii  libgtk-3-0:amd64                   3.10.8-0ubuntu1.4                   amd64        GTK+ graphical user interface library
-ii  libgtk-3-common                    3.10.8-0ubuntu1.4                   all          common files for the GTK+ graphical user interface library
+ii  libgtk-3-0:amd64                   3.10.8-0ubuntu1.5                   amd64        GTK+ graphical user interface library
+ii  libgtk-3-common                    3.10.8-0ubuntu1.5                   all          common files for the GTK+ graphical user interface library
 ii  libgvc6                            2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - gvc library
 ii  libgvpr2                           2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - gvpr library
 ii  libharfbuzz0b:amd64                0.9.27-1ubuntu1                     amd64        OpenType text shaping engine (shared library)
@@ -353,8 +353,8 @@ ii  libpng12-0:amd64                   1.2.50-1ubuntu2                     amd64
 ii  libpng12-dev                       1.2.50-1ubuntu2                     amd64        PNG library - development
 ii  libpod-latex-perl                  0.61-1                              all          module to convert Pod data to formatted LaTeX
 ii  libpopt0:amd64                     1.16-8ubuntu1                       amd64        lib for parsing cmdline parameters
-ii  libpq-dev                          9.3.7-0ubuntu0.14.04                amd64        header files for libpq5 (PostgreSQL library)
-ii  libpq5                             9.3.7-0ubuntu0.14.04                amd64        PostgreSQL C client library
+ii  libpq-dev                          9.3.8-0ubuntu0.4.04                 amd64        header files for libpq5 (PostgreSQL library)
+ii  libpq5                             9.3.8-0ubuntu0.4.04                 amd64        PostgreSQL C client library
 ii  libprocps3:amd64                   1:3.3.9-1ubuntu2.2                  amd64        library for accessing process information from /proc
 ii  libpthread-stubs0-dev:amd64        0.3-4                               amd64        pthread stubs not provided by native libc, development files
 ii  libpython-stdlib:amd64             2.7.5-5ubuntu3                      amd64        interactive high-level object-oriented language (default python version)
@@ -396,8 +396,8 @@ ii  libsqlite0-dev                     2.8.17-10ubuntu2                    amd64
 ii  libsqlite3-0:amd64                 3.8.2-1ubuntu2                      amd64        SQLite 3 shared library
 ii  libsqlite3-dev:amd64               3.8.2-1ubuntu2                      amd64        SQLite 3 development files
 ii  libss2:amd64                       1.42.9-3ubuntu1.2                   amd64        command-line interface parsing library
-ii  libssl-dev:amd64                   1.0.1f-1ubuntu2.12                  amd64        Secure Sockets Layer toolkit - development files
-ii  libssl1.0.0:amd64                  1.0.1f-1ubuntu2.12                  amd64        Secure Sockets Layer toolkit - shared libraries
+ii  libssl-dev:amd64                   1.0.1f-1ubuntu2.15                  amd64        Secure Sockets Layer toolkit - development files
+ii  libssl1.0.0:amd64                  1.0.1f-1ubuntu2.15                  amd64        Secure Sockets Layer toolkit - shared libraries
 ii  libstdc++-4.8-dev:amd64            4.8.2-19ubuntu1                     amd64        GNU Standard C++ Library v3 (development files)
 ii  libstdc++6:amd64                   4.8.2-19ubuntu1                     amd64        GNU Standard C++ Library v3
 ii  libsub-name-perl                   0.05-1build4                        amd64        module for assigning a new name to referenced sub
@@ -508,7 +508,7 @@ ii  ocaml-base-nox                     4.01.0-3ubuntu3                     amd64
 ii  openssh-client                     1:6.6p1-2ubuntu2                    amd64        secure shell (SSH) client, for secure access to remote machines
 ii  openssh-server                     1:6.6p1-2ubuntu2                    amd64        secure shell (SSH) server, for secure access from remote machines
 ii  openssh-sftp-server                1:6.6p1-2ubuntu2                    amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
-ii  openssl                            1.0.1f-1ubuntu2.12                  amd64        Secure Sockets Layer toolkit - cryptographic utility
+ii  openssl                            1.0.1f-1ubuntu2.15                  amd64        Secure Sockets Layer toolkit - cryptographic utility
 ii  passwd                             1:4.1.5.1-1ubuntu9                  amd64        change and administer password and group data
 ii  patch                              2.7.1-4ubuntu2                      amd64        Apply a diff file to an original
 ii  perl                               5.18.2-2ubuntu1                     amd64        Larry Wall's Practical Extraction and Report Language
