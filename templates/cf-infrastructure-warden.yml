@@ -364,7 +364,11 @@ jobs:
         release: cf
       - name: cloud_controller_worker
         release: cf
+      - name: routing-api
+        release: cf
       - name: metron_agent
+        release: cf
+      - name: statsd-injector
         release: cf
       - name: consul_agent
         release: cf

@@ -305,6 +305,7 @@ jobs:
       agent:
         services:
         - cloud_controller_ng
+        - routing-api
     metron_agent:
       zone: z1
     networks:
@@ -319,7 +320,11 @@ jobs:
   templates:
   - name: cloud_controller_ng
     release: cf
+  - name: routing-api
+    release: cf
   - name: metron_agent
+    release: cf
+  - name: statsd-injector
     release: cf
   - name: consul_agent
     release: cf
@@ -336,6 +341,7 @@ jobs:
       agent:
         services:
         - cloud_controller_ng
+        - routing-api
     metron_agent:
       zone: z2
     networks:
@@ -350,7 +356,11 @@ jobs:
   templates:
   - name: cloud_controller_ng
     release: cf
+  - name: routing-api
+    release: cf
   - name: metron_agent
+    release: cf
+  - name: statsd-injector
     release: cf
   - name: consul_agent
     release: cf
@@ -622,56 +632,6 @@ jobs:
   - name: metron_agent
     release: cf
   - name: consul_agent
-    release: cf
-  update: {}
-- instances: 0
-  name: routing_api_z1
-  networks:
-  - name: cf1
-    static_ips: []
-  properties:
-    consul:
-      agent:
-        services:
-        - routing-api
-    metron_agent:
-      zone: z1
-    networks:
-      apps: cf1
-  resource_pool: medium_z1
-  templates:
-  - name: routing-api
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: consul_agent
-    release: cf
-  - name: statsd-injector
-    release: cf
-  update: {}
-- instances: 0
-  name: routing_api_z2
-  networks:
-  - name: cf2
-    static_ips: []
-  properties:
-    consul:
-      agent:
-        services:
-        - routing-api
-    metron_agent:
-      zone: z2
-    networks:
-      apps: cf2
-  resource_pool: medium_z2
-  templates:
-  - name: routing-api
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: consul_agent
-    release: cf
-  - name: statsd-injector
     release: cf
   update: {}
 - instances: 1

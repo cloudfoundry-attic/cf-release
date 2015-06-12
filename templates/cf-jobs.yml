@@ -29,8 +29,12 @@ meta:
   api_templates:
   - name: cloud_controller_ng
     release: (( meta.release.name ))
+  - name: routing-api
+    release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
+  - name: statsd-injector
+    release: (( lamb_meta.release.name ))
   - name: consul_agent
     release: (( meta.release.name ))
   - name: nfs_mounter
@@ -75,16 +79,6 @@ meta:
     release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.release.name ))
-
-  routing_api_templates:
-  - name: routing-api
-    release: (( meta.release.name ))
-  - name: metron_agent
-    release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.release.name ))
-  - name: statsd-injector
-    release: (( lamb_meta.release.name ))
 
   ha_proxy_templates:
   - name: haproxy
@@ -367,6 +361,7 @@ jobs:
         agent:
           services:
             - cloud_controller_ng
+            - routing-api
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
@@ -385,6 +380,7 @@ jobs:
         agent:
           services:
             - cloud_controller_ng
+            - routing-api
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
@@ -586,40 +582,6 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
-    update: (( merge || empty_hash ))
-
-  - name: routing_api_z1
-    instances: 0
-    networks:
-    - name: cf1
-      static_ips: (( merge ))
-    resource_pool: medium_z1
-    templates: (( merge || meta.routing_api_templates ))
-    properties:
-      consul:
-        agent:
-          services:
-            - routing-api
-      metron_agent:
-        zone: z1
-      networks: (( meta.networks.z1 ))
-    update: (( merge || empty_hash ))
-
-  - name: routing_api_z2
-    instances: 0
-    networks:
-    - name: cf2
-      static_ips: (( merge ))
-    resource_pool: medium_z2
-    templates: (( merge || meta.routing_api_templates ))
-    properties:
-      consul:
-        agent:
-          services:
-            - routing-api
-      metron_agent:
-        zone: z2
-      networks: (( meta.networks.z2 ))
     update: (( merge || empty_hash ))
 
   - name: acceptance_tests
