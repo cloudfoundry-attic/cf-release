@@ -3,5 +3,6 @@ name: acceptance-tests
 dependencies:
   - golang1.3
   - cli
+  - rtr
 files:
   - acceptance-tests/**/*

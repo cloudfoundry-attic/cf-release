@@ -219,6 +219,8 @@ properties:
     admin_password: admin
     skip_ssl_validation: true
     nodes: 1
+    system_domain: (( domain ))
+    oauth_password: gorouter-secret
 
   smoke_tests:
     api:  (( "api." domain ))

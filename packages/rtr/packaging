@@ -2,7 +2,7 @@ set -e
 
 cd rtr
 
-tar xzf routing_api_cli.tgz
+tar xzf rtr-linux-amd64.tgz
 
 BIN_DIR=${BOSH_INSTALL_TARGET}/bin
 
