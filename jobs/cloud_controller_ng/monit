@@ -1,14 +1,7 @@
-check process cloud_controller_migration
-  with pidfile /var/vcap/sys/run/cloud_controller_migration/cloud_controller_migration.pid
-  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_migration_ctl start" 
-  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_migration_ctl stop"
-  group vcap
-
 check process cloud_controller_ng
   with pidfile /var/vcap/sys/run/cloud_controller_ng/cloud_controller_ng.pid
   start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl start" 
   stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_ctl stop"
-  depends on cloud_controller_migration
   group vcap
 
   if totalmem > <%= p("cc.thresholds.api.alert_if_above_mb") %> Mb for 3 cycles then alert
@@ -49,3 +42,8 @@ check process nginx_newrelic_plugin
   group vcap
 <% end %>
 
+check process cloud_controller_migration
+  with pidfile /var/vcap/sys/run/cloud_controller_migration/cloud_controller_migration.pid
+  start program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_migration_ctl start"
+  stop program "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_migration_ctl stop"
+  group vcap
