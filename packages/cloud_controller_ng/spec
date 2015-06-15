@@ -5,7 +5,7 @@ dependencies:
 - mysqlclient
 - ruby-2.1.6
 files:
-- cloud_controller_ng/{Rakefile,Gemfile,Gemfile.lock}
+- cloud_controller_ng/{.ruby-version,Rakefile,Gemfile,Gemfile.lock}
 - cloud_controller_ng/{db,lib,bin,app}/**/*
 - cloud_controller_ng/vendor/errors/**/*.yml
 - cloud_controller_ng/config/initializers/**/*
