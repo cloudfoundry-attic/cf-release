@@ -65,7 +65,7 @@
 	path = src/loggregator
 	url = https://github.com/cloudfoundry/loggregator
 [submodule "src/acceptance-tests"]
-	path = src/acceptance-tests
+	path = src/github.com/cloudfoundry/cf-acceptance-tests
 	url = https://github.com/cloudfoundry/cf-acceptance-tests
 [submodule "packages/ruby"]
 	path = packages/ruby

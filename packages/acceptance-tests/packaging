@@ -4,4 +4,4 @@ REPO_DIR=${BOSH_INSTALL_TARGET}/src/github.com/cloudfoundry/cf-acceptance-tests
 
 mkdir -p ${REPO_DIR}
 
-cp -a acceptance-tests/* ${REPO_DIR}
+cp -a github.com/cloudfoundry/cf-acceptance-tests/* ${REPO_DIR}
