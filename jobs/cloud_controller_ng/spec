@@ -365,6 +365,16 @@ properties:
     description: "Port for logger endpoint listed at /v2/info"
     default: 443
 
+  doppler.enabled:
+    description: "Whether to expose the doppler_logging_endpoint listed at /v2/info"
+    default: true
+  doppler.use_ssl:
+    description: "Whether to use ssl for the doppler_logging_endpoint listed at /v2/info"
+    default: true
+  doppler.port:
+    description: "Port for doppler_logging_endpoint listed at /v2/info"
+    default: 443
+
   cc.db_encryption_key:
     default: ""
     description: "key for encrypting sensitive values in the CC database"
