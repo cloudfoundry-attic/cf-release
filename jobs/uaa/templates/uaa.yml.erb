@@ -67,6 +67,24 @@ authentication:
     lockoutPeriodSeconds: <%= properties.uaa.authentication.policy.lockoutPeriodSeconds ? properties.uaa.authentication.policy.lockoutPeriodSeconds : 300%>
 <% end %>
 
+password:
+  policy:
+    minLength: <%= properties.uaa.password.policy.minLength %>
+    maxLength: <%= properties.uaa.password.policy.maxLength %>
+    requireUpperCaseCharacter: <%= properties.uaa.password.policy.requireUpperCaseCharacter %>
+    requireLowerCaseCharacter: <%= properties.uaa.password.policy.requireLowerCaseCharacter %>
+    requireDigit: <%= properties.uaa.password.policy.requireDigit %>
+    requireSpecialCharacter: <%= properties.uaa.password.policy.requireSpecialCharacter %>
+    expirePasswordInMonths: <%= properties.uaa.password.policy.expirePasswordInMonths %>
+    global:
+      minLength: <%= properties.uaa.password.policy.minLength %>
+      maxLength: <%= properties.uaa.password.policy.maxLength %>
+      requireUpperCaseCharacter: <%= properties.uaa.password.policy.requireUpperCaseCharacter %>
+      requireLowerCaseCharacter: <%= properties.uaa.password.policy.requireLowerCaseCharacter %>
+      requireDigit: <%= properties.uaa.password.policy.requireDigit %>
+      requireSpecialCharacter: <%= properties.uaa.password.policy.requireSpecialCharacter %>
+      expirePasswordInMonths: <%= properties.uaa.password.policy.expirePasswordInMonths %>
+
 <% scheme = p("uaa.no_ssl") ? "http" : "https" %>
 issuer.uri: <%= p("uaa.issuer", p("uaa.url", "#{scheme}://uaa.#{properties.domain}")) %>
 
