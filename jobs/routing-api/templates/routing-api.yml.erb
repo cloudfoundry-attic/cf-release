@@ -7,9 +7,6 @@ metron_config:
   address: <%= host %>
   port: <%= port %>
 <% end %>
-consul_config:
-  ttl: <%= p("routing-api.consul_ttl") %>
-  lock_retry_interval: <%= p("routing-api.lock_retry_interval") %>
 metrics_reporting_interval: <%= p("routing-api.metrics_reporting_interval") %>
 statsd_endpoint: <%= p("routing-api.statsd_endpoint") %>
 debug_address: <%= p("routing-api.debug_address") %>
