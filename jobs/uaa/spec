@@ -362,6 +362,12 @@ properties:
     description: "Timeout in milliseconds for connection pooling for SAML metadata HTTP requests"
   login.saml.socket.soTimeout:
     description: "Read timeout in milliseconds for SAML metadata HTTP requests"
+  login.saml.signMetaData:
+    description: "Local/SP metadata - sign metadata"
+    default: true
+  login.saml.signRequest:
+    description: "Local/SP metadata - requests signed"
+    default: true
   login.analytics.code:
     description: "Analytics code"
   login.analytics.domain:
@@ -391,6 +397,6 @@ properties:
   login.logout.redirect.parameter.disable:
     description: "When set to false, this allows an operator to leverage an open redirect on the UAA (/logout.do?redirect=google.com). Default value is true. No open redirect enabled"
   login.logout.redirect.parameter.whitelist:
-    description: "A list of URLs. When this list is non null, including empty, and disable=false, 
+    description: "A list of URLs. When this list is non null, including empty, and disable=false,
     logout redirects are allowed, but limited to the whitelist URLs. If a redirect parameter value is not white
     listed, redirect will be to the default URL."
