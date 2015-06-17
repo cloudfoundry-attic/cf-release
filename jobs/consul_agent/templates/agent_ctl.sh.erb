@@ -77,8 +77,8 @@ EOF
     exec chpst -u vcap:vcap $PKG/bin/consul agent \
       -pid-file=${RUN_DIR}/consul_agent.pid \
       -config-dir=$CONF_DIR \
-      1>>$LOG_DIR/consul_agent.stdout.log \
-      2>>$LOG_DIR/consul_agent.stderr.log
+      2> >(tee -a ${LOG_DIR}/consul_agent.stderr.log | logger -p user.error -t vcap.consul-agent) \
+      1> >(tee -a ${LOG_DIR}/consul_agent.stdout.log | logger -p user.info  -t vcap.consul-agent)
 
     ;;
 
