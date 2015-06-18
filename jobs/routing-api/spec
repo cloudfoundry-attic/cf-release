@@ -24,7 +24,7 @@ properties:
     default: "localhost:8125"
   routing-api.debug_address:
     description: "Address at which to serve debug info"
-    default: "0.0.0.0:17001"
+    default: "0.0.0.0:17002"
   routing-api.max_concurrent_etcd_requests:
     description: "Maximum number of concurrent ETCD requests"
     default: 25
