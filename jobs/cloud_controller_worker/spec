@@ -347,9 +347,6 @@ properties:
   cc.users_can_select_backend:
     default: true
     description: "Allow non-admin users to switch their apps between DEA and Diego backends"
-  cc.diego_docker:
-    default: false
-    description: "Enable diego docker support"
   cc.default_to_diego_backend:
     default: false
     description: "Use Diego backend by default for new apps"
