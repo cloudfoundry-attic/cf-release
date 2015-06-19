@@ -29,6 +29,8 @@ meta:
   api_templates:
   - name: cloud_controller_ng
     release: (( meta.release.name ))
+  - name: route_registrar
+    release: (( meta.release.name ))
   - name: routing-api
     release: (( meta.release.name ))
   - name: metron_agent
@@ -366,6 +368,10 @@ jobs:
       metron_agent:
         zone: z1
       nfs_server: (( meta.nfs_server ))
+      route_registrar:
+        routes:
+          "9022":
+            - (( "api." .properties.domain ))
     update: (( merge || empty_hash ))
 
   - name: api_z2

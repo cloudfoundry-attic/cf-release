@@ -1,0 +1,29 @@
+---
+name: route_registrar
+
+description: "Used for registering routes via the routing api"
+
+packages:
+- rtr
+- common
+
+templates:
+  route_registrar_ctl.erb: bin/route_registrar_ctl
+
+properties:
+  route_registrar.routes:
+    description: "Hash of routes that will be registered. Keys are ports, and values are arrays of hostnames to register."
+  route_registrar.ttl:
+    description: "TTL used for route registration."
+    default: 60
+  route_registrar.register_interval:
+    description: "The time to wait before registering routes again."
+    default: 30
+  route_registrar.api_endpoint:
+    description: "The location of the routing api."
+  route_registrar.api_username:
+    description: "The user with the route.admin scope."
+  route_registrar.api_password:
+    description: "The password for the user."
+  uaa.issuer:
+    description: "The endpoint for oauth authentication."

@@ -135,6 +135,7 @@ properties:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose
     no_ssl: true
+    protocol: http
 
   login:
     catalina_opts: -Xmx96m -XX:MaxPermSize=64m
@@ -366,6 +367,8 @@ jobs:
       - name: cloud_controller_clock
         release: cf
       - name: cloud_controller_worker
+        release: cf
+      - name: route_registrar
         release: cf
       - name: routing-api
         release: cf
