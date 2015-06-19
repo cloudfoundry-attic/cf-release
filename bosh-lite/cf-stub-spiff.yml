@@ -47,6 +47,3 @@ properties:
         - protocol: all
           destination: 10.244.4.0-10.254.0.0
     default_running_security_groups: ["public_networks", "dns", "services", "load_balancer", "user_bosh_deployments"]
-jobs:
-- instances: 1
-  name: consul_z1

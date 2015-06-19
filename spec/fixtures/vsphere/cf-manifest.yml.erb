@@ -8,11 +8,11 @@ compilation:
   workers: 6
 director_uuid: DIRECTOR_UUID
 jobs:
-- instances: 0
+- instances: 1
   name: consul_z1
   networks:
   - name: cf1
-    static_ips: []
+    static_ips: [0.0.0.17]
   persistent_disk: 1024
   properties:
     consul:
@@ -29,11 +29,11 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
-- instances: 0
+- instances: 2
   name: consul_z2
   networks:
   - name: cf2
-    static_ips: []
+    static_ips: [0.0.1.17, 0.0.1.18]
   persistent_disk: 1024
   properties:
     consul:
@@ -895,7 +895,7 @@ properties:
     agent:
       log_level: null
       servers:
-        lan: []
+        lan: ["0.0.0.17", "0.0.1.17", "0.0.1.18"]
   databases:
     address: 0.0.0.12
     databases:

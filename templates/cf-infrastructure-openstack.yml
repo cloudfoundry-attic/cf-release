@@ -183,10 +183,16 @@ jobs:
         static_ips: (( static_ips(8, 9, 10) ))
 
   - name: consul_z1
-    instances: 0
+    instances: 1
     networks:
       - name: cf1
         static_ips: (( static_ips(12, 13, 14) ))
+
+  - name: consul_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: []
 
   - name: logs_z2
     instances: 0
@@ -207,12 +213,6 @@ jobs:
         static_ips: []
 
   - name: etcd_z2
-    instances: 0
-    networks:
-      - name: cf2
-        static_ips: []
-
-  - name: consul_z2
     instances: 0
     networks:
       - name: cf2
