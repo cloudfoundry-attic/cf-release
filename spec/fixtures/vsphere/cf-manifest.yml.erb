@@ -316,9 +316,15 @@ jobs:
       - null
       - null
       share: null
+    route_registrar:
+      routes:
+        "9022":
+        - api.0.0.0.3.xip.io
   resource_pool: large_z1
   templates:
   - name: cloud_controller_ng
+    release: cf
+  - name: route_registrar
     release: cf
   - name: routing-api
     release: cf
@@ -352,9 +358,15 @@ jobs:
       - null
       - null
       share: null
+    route_registrar:
+      routes:
+        "9022":
+        - api.0.0.0.3.xip.io
   resource_pool: large_z2
   templates:
   - name: cloud_controller_ng
+    release: cf
+  - name: route_registrar
     release: cf
   - name: routing-api
     release: cf
@@ -1003,6 +1015,10 @@ properties:
     - null
     share: null
   request_timeout_in_seconds: 900
+  route_registrar:
+    api_endpoint: http://routing-api.0.0.0.3.xip.io
+    api_password: gorouter_secret
+    api_username: gorouter
   router:
     enable_ssl: true
     enable_routing_api: false
@@ -1120,6 +1136,7 @@ properties:
     newrelic: null
     no_ssl: false
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
+    protocol: https
     scim:
       external_groups: null
       userids_enabled: true
