@@ -234,8 +234,7 @@ properties:
   uaa:
     catalina_opts: (( merge ))
 
-    protocol: https
-    url: (( protocol "://uaa." domain ))
+    url: (( "https://uaa." domain ))
     issuer: (( url ))
 
     no_ssl: false

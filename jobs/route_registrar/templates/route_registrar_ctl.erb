@@ -41,11 +41,10 @@ case $1 in
 
     chown -R vcap:vcap $RUN_DIR
 
-    echo $$ > $PIDFILE
-
     while [ 1 ]
     do
-      rtr register --api <%= p('route_registrar.api_endpoint') %> --oauth-name <%= p('route_registrar.api_username') %> --oauth-password <%= p('route_registrar.api_password') %> --oauth-url <%= p('uaa.issuer') %> '[<%= routes %>]'
+      rtr register --api <%= p('route_registrar.api_endpoint') %> --oauth-name <%= p('route_registrar.api_username') %> --oauth-password <%= p('route_registrar.api_password') %> --oauth-url <%= p('route_registrar.uaa_endpoint') %> '[<%= routes %>]'
+      echo $$ > $PIDFILE
       sleep <%= p('route_registrar.register_interval') %>
     done
 

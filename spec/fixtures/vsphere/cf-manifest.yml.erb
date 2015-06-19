@@ -221,6 +221,54 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  name: router_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 0.0.0.5
+  properties:
+    consul:
+      agent:
+        services:
+        - gorouter
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+  resource_pool: router_z1
+  templates:
+  - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: consul_agent
+    release: cf
+  update: {}
+- instances: 1
+  name: router_z2
+  networks:
+  - name: cf2
+    static_ips:
+    - 0.0.1.5
+  properties:
+    consul:
+      agent:
+        services:
+        - gorouter
+    metron_agent:
+      zone: z2
+    networks:
+      apps: cf2
+  resource_pool: router_z2
+  templates:
+  - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: consul_agent
+    release: cf
+  update: {}
+- instances: 1
   name: uaa_z1
   networks:
   - name: cf1
@@ -597,54 +645,6 @@ jobs:
   resource_pool: small_z2
   templates:
 <%= loggregator_trafficcontroller_templates %>
-  update: {}
-- instances: 1
-  name: router_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 0.0.0.5
-  properties:
-    consul:
-      agent:
-        services:
-        - gorouter
-    metron_agent:
-      zone: z1
-    networks:
-      apps: cf1
-  resource_pool: router_z1
-  templates:
-  - name: gorouter
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: consul_agent
-    release: cf
-  update: {}
-- instances: 1
-  name: router_z2
-  networks:
-  - name: cf2
-    static_ips:
-    - 0.0.1.5
-  properties:
-    consul:
-      agent:
-        services:
-        - gorouter
-    metron_agent:
-      zone: z2
-    networks:
-      apps: cf2
-  resource_pool: router_z2
-  templates:
-  - name: gorouter
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: consul_agent
-    release: cf
   update: {}
 - instances: 1
   lifecycle: errand
@@ -1135,7 +1135,6 @@ properties:
     newrelic: null
     no_ssl: false
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
-    protocol: https
     scim:
       external_groups: null
       userids_enabled: true
