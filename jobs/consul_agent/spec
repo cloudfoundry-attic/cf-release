@@ -31,8 +31,8 @@ properties:
     default: dc1
 
   consul.agent.services:
-    description: "List of services to configure."
-    default: []
+    description: "Map of consul service definitions."
+    default: {}
 
   consul.agent.protocol_version:
     description: "The Consul protocol to use."

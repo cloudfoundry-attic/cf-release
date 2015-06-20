@@ -26,7 +26,7 @@
     "datacenter" => p("consul.agent.datacenter"),
     "data_dir" => "/var/vcap/store/consul_agent",
     "log_level" => p("consul.agent.log_level"),
-    "node_name" => "#{name}-#{spec.index}",
+    "node_name" => "#{name.gsub('_', '-')}-#{spec.index}",
     "server" => server,
     "ports" => {
       "dns" => 53,

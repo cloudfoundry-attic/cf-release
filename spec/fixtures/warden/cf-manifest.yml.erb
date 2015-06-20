@@ -269,7 +269,7 @@ jobs:
     consul:
       agent:
         services:
-        - gorouter
+          gorouter: {}
     metron_agent:
       zone: z1
     networks:
@@ -292,7 +292,7 @@ jobs:
     consul:
       agent:
         services:
-        - gorouter
+          gorouter: {}
     metron_agent:
       zone: z2
     networks:
@@ -314,7 +314,7 @@ jobs:
     consul:
       agent:
         services:
-        - uaa
+          uaa: {}
     networks:
       apps: cf1
     metron_agent:
@@ -336,7 +336,7 @@ jobs:
     consul:
       agent:
         services:
-        - uaa
+          uaa: {}
     networks:
       apps: cf2
     metron_agent:
@@ -391,8 +391,8 @@ jobs:
     consul:
       agent:
         services:
-        - cloud_controller_ng
-        - routing-api
+          cloud_controller_ng: {}
+          routing-api: {}
     metron_agent:
       zone: z1
     networks:
@@ -437,8 +437,8 @@ jobs:
     consul:
       agent:
         services:
-        - cloud_controller_ng
-        - routing-api
+          cloud_controller_ng: {}
+          routing-api: {}
     metron_agent:
       zone: z2
     networks:
