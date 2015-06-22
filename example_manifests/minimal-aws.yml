@@ -15,7 +15,7 @@ networks:
     gateway: 10.0.16.1
     dns: [10.0.0.2]
     reserved: ["10.0.16.2 - 10.0.16.3"]
-    static: ["10.0.16.100 - 10.0.16.105"]
+    static: ["10.0.16.100 - 10.0.16.106"]
     cloud_properties:
       subnet: REPLACE_WITH_PRIVATE_SUBNET_ID
 
@@ -62,6 +62,26 @@ update:
   update_watch_time: 5000-600000
 
 jobs:
+- name: consul_z1
+  templates:
+  - {name: consul_agent, release: cf}
+  - {name: metron_agent, release: cf}
+  instances: 1
+  persistent_disk: 1024
+  resource_pool: small_z1
+  networks:
+    - name: cf_private
+      static_ips: [10.0.16.106]
+  update:
+    serial: true
+    max_in_flight: 1
+  properties:
+    consul:
+      agent:
+        mode: server
+    metron_agent:
+      zone: z1
+
 - name: nats_z1
   instances: 1
   resource_pool: small_z1
@@ -122,14 +142,27 @@ jobs:
   - {name: cloud_controller_ng, release: cf}
   - {name: cloud_controller_worker, release: cf}
   - {name: cloud_controller_clock, release: cf}
+  - {name: route_registrar, release: cf}
+  - {name: routing-api, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: statsd-injector, release: cf}
+  - {name: consul_agent, release: cf}
   - {name: nfs_mounter, release: cf}
   networks:
   - name: cf_private
   properties:
+    consul:
+      agent:
+        services:
+          cloud_controller_ng: {}
+          routing-api: {}
     nfs_server:
       address: 10.0.16.105
       allow_from_entries: [10.0.16.0/24]
+    route_registrar:
+      routes:
+        "9022":
+          - api.REPLACE_WITH_SYSTEM_DOMAIN
 
 - name: ha_proxy_z1
   instances: 1
@@ -137,6 +170,7 @@ jobs:
   templates:
   - {name: haproxy, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: consul_agent, release: cf}
   networks:
   - name: elastic
     static_ips: [REPLACE_WITH_ELASTIC_IP]
@@ -164,6 +198,8 @@ jobs:
   resource_pool: small_z1
   templates:
   - {name: doppler, release: cf}
+  - {name: syslog_drain_binder, release: cf}
+  - {name: metron_agent, release: cf}
   networks:
   - name: cf_private
   properties:
@@ -188,9 +224,14 @@ jobs:
   templates:
   - {name: uaa, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: consul_agent, release: cf}
   networks:
   - name: cf_private
   properties:
+    consul:
+      agent:
+        services:
+          uaa: {}
     login:
       catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     uaa:
@@ -220,6 +261,7 @@ jobs:
   templates:
   - {name: gorouter, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: consul_agent, release: cf}
   networks:
   - name: cf_private
     static_ips: [10.0.16.102]
@@ -399,5 +441,14 @@ properties:
 
     no_ssl: true
     url: http://uaa.REPLACE_WITH_SYSTEM_DOMAIN
+  route_registrar:
+    api_endpoint: http://routing-api.REPLACE_WITH_SYSTEM_DOMAIN
+    api_username: gorouter
+    api_password: PASSWORD
+  consul:
+    agent:
+      log_level:
+      servers:
+        lan: [10.0.16.106]
 # code_snippet cf-minimal-aws end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
