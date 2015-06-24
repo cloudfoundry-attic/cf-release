@@ -139,10 +139,6 @@ openjdk/openjdk-1.7.0-u40-unofficial-linux-amd64.tgz:
   object_id: 1c5d266f-9c90-4160-9fc5-b3b30f2c248a
   sha: bb41c68e0dc26ad71635d4bff8da16246ded10f0
   size: 42574624
-ruby-buildpack/ruby_buildpack-cached-v1.4.2.zip:
-  object_id: 9affa18e-acc3-424e-b264-73483792d0cb
-  sha: 08d3ceedc59229eb78fefa09f9e8ed39f0ae79cc
-  size: 382942164
 postgres/postgresql-9.4.2.tar.gz:
   object_id: 4d807bf7-94bc-449f-a0c3-549642df3085
   sha: 7a70474f9b44fea1b345e48bd5e4418bccf41f3f
@@ -171,3 +167,7 @@ binary-buildpack/binary_buildpack-cached-v1.0.1.zip:
   object_id: ada385dd-f0b6-43c7-8429-0057766116cc
   sha: 3e62e3882495cf16686078e7209bf28d3f9d60f5
   size: 8487
+ruby-buildpack/ruby_buildpack-cached-v1.5.0.zip:
+  object_id: 0c1c1bc7-872b-4e5b-8759-c9126ce869e5
+  sha: f6df05a7109bd8193c5f40d275beb39658c0bc96
+  size: 264574019
