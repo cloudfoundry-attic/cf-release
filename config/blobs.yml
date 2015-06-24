@@ -151,10 +151,6 @@ postgres/postgresql-9.4.2.tar.gz:
   object_id: 4d807bf7-94bc-449f-a0c3-549642df3085
   sha: 7a70474f9b44fea1b345e48bd5e4418bccf41f3f
   size: 23092865
-staticfile-buildpack/staticfile_buildpack-cached-v1.1.0.zip:
-  object_id: a449f533-f9a9-4680-bb65-bb5fb1c607bd
-  sha: fe8e6bed345a88c387424dc47c213cc13345fcf4
-  size: 4684378
 nodejs-buildpack/nodejs_buildpack-cached-v1.3.4.zip:
   object_id: c6a02aaf-b917-4102-b243-1ffff9796dbc
   sha: 7ad1ca449292596ba58b4a2f37ef9a5c404b558e
@@ -171,3 +167,7 @@ consul/consul_0.5.2_linux_amd64.zip:
   object_id: 74107b66-7502-4e06-bdc2-d2dbea1e73c6
   sha: b3ae610c670fc3b81737d44724ebde969da66ebf
   size: 4803609
+staticfile-buildpack/staticfile_buildpack-cached-v1.1.1.zip:
+  object_id: 94735c01-3619-4e17-a566-d6020355f836
+  sha: fb10269c85282b0476f581b1045f1532c15fc172
+  size: 4684890
