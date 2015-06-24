@@ -528,3 +528,11 @@ properties:
   cc.instance_file_descriptor_limit:
     description: "The file descriptors made available to each app instance"
     default: 16384
+
+  cc.statsd_host:
+    description: "The host for the statsd server, defaults to the local metron agent"
+    default: "127.0.0.1"
+
+  cc.statsd_port:
+    description: "The port for the statsd server, defaults to the local metron agent"
+    default: 8125
