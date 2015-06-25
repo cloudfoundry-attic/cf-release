@@ -296,6 +296,7 @@ properties:
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
   cc:
     allow_app_ssh_access: false
+    billing_event_writing_enabled: false
     bulk_api_password: PASSWORD
     db_encryption_key: PASSWORD
     default_running_security_groups: [public_networks, dns]
