@@ -709,11 +709,11 @@ properties:
     ssl_cert: (( merge || nil ))
     ssl_key: (( merge || nil ))
     cipher_suites: (( merge || nil ))
-    requested_route_registration_interval_in_seconds: 20
+    requested_route_registration_interval_in_seconds: (( merge || nil ))
     status:
       user: (( merge ))
       password: (( merge ))
-    secure_cookies: false
+    secure_cookies: (( merge || nil ))
 
   syslog_daemon_config: ~
 

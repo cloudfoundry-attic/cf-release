@@ -102,6 +102,7 @@ properties:
     status:
       user: router_user
       password: router_password
+    requested_route_registration_interval_in_seconds: 20
     secure_cookies: true
   login:
     logout:
