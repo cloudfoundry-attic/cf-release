@@ -22,6 +22,15 @@ case $1 in
     chown vcap:vcap /var/vcap/sys/cores
     echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
 
+    # Setup rootfs
+    ROOTFS_PACKAGE=/var/vcap/packages/rootfs_cflinuxfs2/ 
+    ROOTFS_DIR=$ROOTFS_PACKAGE/rootfs 
+    if [ ! -d $ROOTFS_DIR ]; then
+      mkdir -p $ROOTFS_DIR
+      tar -pzxf $ROOTFS_PACKAGE/cflinuxfs2.tar.gz -C $ROOTFS_DIR
+    fi
+
+    # Set ulimits
     ulimit -c unlimited
 
     <% if p("dea_next.kernel_network_tuning_enabled") == true %>
