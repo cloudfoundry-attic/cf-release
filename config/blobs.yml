@@ -147,10 +147,6 @@ postgres/postgresql-9.4.2.tar.gz:
   object_id: 4d807bf7-94bc-449f-a0c3-549642df3085
   sha: 7a70474f9b44fea1b345e48bd5e4418bccf41f3f
   size: 23092865
-nodejs-buildpack/nodejs_buildpack-cached-v1.3.4.zip:
-  object_id: c6a02aaf-b917-4102-b243-1ffff9796dbc
-  sha: 7ad1ca449292596ba58b4a2f37ef9a5c404b558e
-  size: 73107547
 python-buildpack/python_buildpack-cached-v1.3.5.zip:
   object_id: 4546ee42-3240-487e-a05a-0936e2fd9f00
   sha: 6245126aff2ef88fd05edbb12a94610f16e67f87
@@ -171,3 +167,7 @@ binary-buildpack/binary_buildpack-cached-v1.0.1.zip:
   object_id: ada385dd-f0b6-43c7-8429-0057766116cc
   sha: 3e62e3882495cf16686078e7209bf28d3f9d60f5
   size: 8487
+nodejs-buildpack/nodejs_buildpack-cached-v1.4.0.zip:
+  object_id: 85c289ce-1a48-4746-b7c9-4c912b8b3dfe
+  sha: bcaf179e651197487ba4872c9b2f4eea9594dcf9
+  size: 73204999
