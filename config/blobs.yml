@@ -143,10 +143,6 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.3.4.zip:
   object_id: c6a02aaf-b917-4102-b243-1ffff9796dbc
   sha: 7ad1ca449292596ba58b4a2f37ef9a5c404b558e
   size: 73107547
-python-buildpack/python_buildpack-cached-v1.3.5.zip:
-  object_id: 4546ee42-3240-487e-a05a-0936e2fd9f00
-  sha: 6245126aff2ef88fd05edbb12a94610f16e67f87
-  size: 449080634
 rtr/rtr-linux-amd64.tgz:
   object_id: e93d6af7-6ff1-4706-8c34-26601e5c7bbb
   sha: f0389d5779294cdc9dcbbfd71da7e13d37cb5ecb
@@ -171,3 +167,7 @@ go-buildpack/go_buildpack-cached-v1.4.0.zip:
   object_id: d405c4f8-f88d-41b7-8ca6-3a3e0e1fc3ef
   sha: 37a05d1777d33aadcc7b80cb3823d9218b3aaea5
   size: 463786756
+python-buildpack/python_buildpack-cached-v1.4.0.zip:
+  object_id: 1658e0d0-beff-4cb0-ab17-9784375d73ca
+  sha: f21d30223f5e8f1c67efa93aae72de16f82c2057
+  size: 207631829
