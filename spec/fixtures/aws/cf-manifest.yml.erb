@@ -7,11 +7,11 @@ compilation:
   workers: 6
 director_uuid: DIRECTOR_UUID
 jobs:
-- instances: 1
+- instances: 0
   name: consul_z1
   networks:
   - name: cf1
-    static_ips: [0.0.0.27]
+    static_ips: []
   persistent_disk: 1024
   properties:
     consul:
@@ -28,11 +28,11 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
-- instances: 2
+- instances: 0
   name: consul_z2
   networks:
   - name: cf2
-    static_ips: [0.0.1.27, 0.0.1.28]
+    static_ips: []
   persistent_disk: 1024
   properties:
     consul:
@@ -903,7 +903,7 @@ properties:
     agent:
       log_level: null
       servers:
-        lan: [0.0.0.27, 0.0.1.27, 0.0.1.28]
+        lan: []
   databases: null
   dea_next:
     advertise_interval_in_seconds: 5
