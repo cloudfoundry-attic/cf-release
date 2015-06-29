@@ -391,10 +391,6 @@ jobs:
       metron_agent:
         zone: z2
       nfs_server: (( meta.nfs_server ))
-      route_registrar:
-        routes:
-          "9022":
-            - (( "api." .properties.domain ))
     update: (( merge || empty_hash ))
 
   - name: clock_global
