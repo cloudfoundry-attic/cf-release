@@ -260,53 +260,6 @@ jobs:
     release: cf
   update: {}
 - instances: 1
-  name: router_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 10.244.0.22
-  properties:
-    consul:
-      agent:
-        services:
-          gorouter: {}
-    metron_agent:
-      zone: z1
-    networks:
-      apps: cf1
-  resource_pool: router_z1
-  templates:
-  - name: gorouter
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: consul_agent
-    release: cf
-  update: {}
-- instances: 0
-  name: router_z2
-  networks:
-  - name: cf2
-    static_ips: []
-  properties:
-    consul:
-      agent:
-        services:
-          gorouter: {}
-    metron_agent:
-      zone: z2
-    networks:
-      apps: cf2
-  resource_pool: router_z2
-  templates:
-  - name: gorouter
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: consul_agent
-    release: cf
-  update: {}
-- instances: 1
   name: uaa_z1
   networks:
   - name: cf1
@@ -689,6 +642,53 @@ jobs:
   resource_pool: small_z2
   templates:
 <%= loggregator_trafficcontroller_templates %>
+  update: {}
+- instances: 1
+  name: router_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 10.244.0.22
+  properties:
+    consul:
+      agent:
+        services:
+        - gorouter
+    metron_agent:
+      zone: z1
+    networks:
+      apps: cf1
+  resource_pool: router_z1
+  templates:
+  - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: consul_agent
+    release: cf
+  update: {}
+- instances: 0
+  name: router_z2
+  networks:
+  - name: cf2
+    static_ips: []
+  properties:
+    consul:
+      agent:
+        services:
+        - gorouter
+    metron_agent:
+      zone: z2
+    networks:
+      apps: cf2
+  resource_pool: router_z2
+  templates:
+  - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 1
   lifecycle: errand
@@ -2900,7 +2900,7 @@ properties:
         scope: openid,cloud_controller_service_permissions.read
         secret: gorouter-secret
     database: null
-    issuer: https://uaa.10.244.0.34.xip.io
+    issuer: http://uaa.10.244.0.34.xip.io
     jwt:
       signing_key: '-----BEGIN RSA PRIVATE KEY-----
 
@@ -2991,13 +2991,14 @@ properties:
           auto_instrument: true
     no_ssl: true
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
+    protocol: http
     scim:
       external_groups: null
       userids_enabled: true
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose
     spring_profiles: null
-    url: https://uaa.10.244.0.34.xip.io
+    url: http://uaa.10.244.0.34.xip.io
     user: null
     zones:
       internal:

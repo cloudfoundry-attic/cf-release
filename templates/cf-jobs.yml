@@ -295,40 +295,6 @@ jobs:
         zone: z1
     update: (( merge || empty_hash ))
 
-  - name: router_z1
-    templates: (( merge || meta.router_templates ))
-    instances: 1
-    resource_pool: router_z1
-    networks:
-      - name: cf1
-        static_ips: (( merge ))
-    properties:
-      consul:
-        agent:
-          services:
-            gorouter: {}
-      networks: (( meta.networks.z1 ))
-      metron_agent:
-        zone: z1
-    update: (( merge || empty_hash ))
-
-  - name: router_z2
-    templates: (( merge || meta.router_templates ))
-    instances: 1
-    resource_pool: router_z2
-    networks:
-      - name: cf2
-        static_ips: (( merge ))
-    properties:
-      consul:
-        agent:
-          services:
-            gorouter: {}
-      networks: (( meta.networks.z2 ))
-      metron_agent:
-        zone: z2
-    update: (( merge || empty_hash ))
-
   - name: uaa_z1
     templates: (( merge || meta.uaa_templates ))
     instances: 1
@@ -592,6 +558,40 @@ jobs:
     properties:
       <<: (( merge ))
       networks: (( meta.networks.z2 ))
+    update: (( merge || empty_hash ))
+
+  - name: router_z1
+    templates: (( merge || meta.router_templates ))
+    instances: 1
+    resource_pool: router_z1
+    networks:
+      - name: cf1
+        static_ips: (( merge ))
+    properties:
+      consul:
+        agent:
+          services:
+            gorouter: {}
+      networks: (( meta.networks.z1 ))
+      metron_agent:
+        zone: z1
+    update: (( merge || empty_hash ))
+
+  - name: router_z2
+    templates: (( merge || meta.router_templates ))
+    instances: 1
+    resource_pool: router_z2
+    networks:
+      - name: cf2
+        static_ips: (( merge ))
+    properties:
+      consul:
+        agent:
+          services:
+            gorouter: {}
+      networks: (( meta.networks.z2 ))
+      metron_agent:
+        zone: z2
     update: (( merge || empty_hash ))
 
   - name: acceptance_tests

@@ -25,6 +25,5 @@ properties:
     description: "The user with the route.admin scope."
   route_registrar.api_password:
     description: "The password for the user."
-  route_registrar.uaa_endpoint:
+  uaa.issuer:
     description: "The endpoint for oauth authentication."
-    default: http://uaa.service.consul:8080
