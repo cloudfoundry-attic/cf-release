@@ -72,7 +72,7 @@ properties:
     default_app_memory: 1024
     default_app_disk_in_mb: 1024
     maximum_app_disk_in_mb: 2048
-    client_max_body_size: 1536M
+    client_max_body_size: 15M
 
     default_health_check_timeout: 60
     maximum_health_check_timeout: 180
