@@ -710,6 +710,7 @@ properties:
     ssl_key: (( merge || nil ))
     cipher_suites: (( merge || nil ))
     requested_route_registration_interval_in_seconds: (( merge || nil ))
+    ssl_skip_validation: (( merge || nil ))
     status:
       user: (( merge ))
       password: (( merge ))

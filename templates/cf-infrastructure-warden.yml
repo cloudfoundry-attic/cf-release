@@ -166,6 +166,7 @@ properties:
     status:
       user: router
       password: router
+    ssl_skip_validation: true
 
   ccdb:
     db_scheme: postgres
