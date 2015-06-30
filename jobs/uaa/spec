@@ -75,9 +75,10 @@ properties:
     description:
   uaa.scim.user.override:
     description:
+    default: true
   uaa.scim.userids_enabled:
     description:
-    default: false
+    default: true
   uaa.scim.users:
     description:
   uaa.scim.external_groups:

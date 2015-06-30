@@ -133,7 +133,7 @@ oauth:
   openid:
     fallbackToAuthcode: <%= properties.uaa.openid.fallbackToAuthcode %>
 scim:
-  userids_enabled: <%= properties.uaa.scim && (!properties.uaa.scim.userids_enabled.nil?) ?  properties.uaa.scim.userids_enabled : false %>
+  userids_enabled: <%= properties.uaa.scim.userids_enabled %>
   user.override: <%= properties.uaa.scim && properties.uaa.scim.user && (!properties.uaa.scim.user.override.nil?) ? properties.uaa.scim.user.override : true %>
 <% if properties.uaa.scim && properties.uaa.scim.users then %>
   users: <% properties.uaa.scim.users.each do |user| %>
