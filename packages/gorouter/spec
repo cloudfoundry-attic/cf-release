@@ -3,5 +3,5 @@ name: gorouter
 dependencies:
 - golang1.4
 files:
-- gorouter/**/*.{go,golden,proto,c,h,}
-- gorouter/**/Makefile
+- github.com/cloudfoundry/gorouter/**/*.{go,golden,proto,c,h,}
+- github.com/cloudfoundry/gorouter/**/Makefile

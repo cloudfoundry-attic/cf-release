@@ -8,7 +8,7 @@
   path = src/dea_next
   url = https://github.com/cloudfoundry/dea_ng.git
 [submodule "src/gorouter"]
-	path = src/gorouter
+	path = src/github.com/cloudfoundry/gorouter
 	url = https://github.com/cloudfoundry/gorouter
 [submodule "src/stager"]
   path = src/stager
@@ -92,7 +92,7 @@
 	path = packages/ruby-2.1.4
 	url = https://github.com/cloudfoundry/ruby-package
 [submodule "src/routing-api"]
-	path = src/routing-api
+	path = src/github.com/cloudfoundry-incubator/routing-api
 	url = https://github.com/cloudfoundry-incubator/routing-api.git
 [submodule "src/etcd-release"]
 	path = src/etcd-release

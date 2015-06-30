@@ -6,7 +6,7 @@ REPO_DIR=${BOSH_INSTALL_TARGET}/src/${REPO_NAME}
 
 mkdir -p $(dirname $REPO_DIR)
 
-cp -a $(basename $REPO_NAME)/ $REPO_DIR
+cp -a $REPO_NAME/ $REPO_DIR
 
 export GOROOT=$(readlink -nf /var/vcap/packages/golang1.4)
 export GOPATH=$BOSH_INSTALL_TARGET:${REPO_DIR}/Godeps/_workspace
