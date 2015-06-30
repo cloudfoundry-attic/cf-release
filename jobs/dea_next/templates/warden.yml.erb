@@ -3,7 +3,7 @@ server:
   unix_domain_permissions: 0777
   unix_domain_path: /var/vcap/data/warden/warden.sock
   container_klass: Warden::Container::Linux
-  container_rootfs_path: /var/vcap/packages/rootfs_cflinuxfs2
+  container_rootfs_path: /var/vcap/packages/rootfs_cflinuxfs2/rootfs
   container_depot_path: /var/vcap/data/warden/depot
   container_rlimits:
     core: <%= p("dea_next.rlimit_core") %>

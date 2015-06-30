@@ -116,7 +116,7 @@ properties:
   dea_next.stacks:
     default:
       - name: "cflinuxfs2"
-        package_path: "/var/vcap/packages/rootfs_cflinuxfs2"
+        package_path: "/var/vcap/packages/rootfs_cflinuxfs2/rootfs"
     description: "An array of stacks, specifying the name and package path."
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
