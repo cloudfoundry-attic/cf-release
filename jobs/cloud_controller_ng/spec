@@ -135,9 +135,6 @@ properties:
   cc.failed_jobs.cutoff_age_in_days:
     description: "How old a failed job should stay in cloud controller database before being cleaned up"
     default: 31
-  cc.billing_event_writing_enabled:
-    description: "If true, billing events are written to the CCDB."
-    default: false
   cc.info.name:
     description: "name attribute in the /info endpoint"
   cc.info.build:
