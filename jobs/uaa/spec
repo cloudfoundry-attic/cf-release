@@ -350,6 +350,8 @@ properties:
     description: "Deprecated: Use login.saml.providers list objects"
   login.saml.entityid:
     description: "The ID to represent this server"
+  login.saml.entity_base_url:
+    description: "The URL for which SAML identity providers will post assertions to. If set it overrides the default of login.<domain>. This URL should NOT have the schema (http:// or https:// prefix in it) instead just the hostname. The schema is derived by login.protocol property. The default value is #{protocol}://login.#{properties.domain}"
   login.saml.idpEntityAlias:
     description: "Deprecated: Use login.saml.providers list objects"
   login.entity_id:
