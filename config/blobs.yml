@@ -63,18 +63,6 @@ nginx/nginx-1.6.2.tar.gz:
   object_id: 041b7bdb-b770-4c6c-b797-565b7b1a423d
   sha: 1a5458bc15acf90eea16353a1dd17285cf97ec35
   size: 804164
-nginx/pcre-8.36.tar.gz:
-  object_id: 29a019ba-407b-4dfa-9558-480d6e4f80e0
-  sha: fb537757756818133d8157ec878bc11f5a93ef4d
-  size: 2009464
-haproxy/haproxy-1.5.10.tar.gz:
-  object_id: 2238d5ca-1b5d-44fa-8170-e4f0a5b6eabe
-  sha: 2af3b740e84f10cbd0c90a78c30a222a24fb2945
-  size: 1339873
-haproxy/pcre-8.36.tar.gz:
-  object_id: 14452555-3661-413e-b65b-2d062bb4281e
-  sha: fb537757756818133d8157ec878bc11f5a93ef4d
-  size: 2009464
 rootfs/cflinuxfs2.tar.gz:
   object_id: 53169ec4-47a6-4683-8e05-485d2e29ea51
   sha: 45914689d88484f7ad4efc6a75b9877f48837da4
@@ -171,3 +159,15 @@ java-buildpack/java-buildpack-v3.1.zip:
   object_id: 7413f0fd-f578-4490-93fb-873288283404
   sha: c9272524ac27bacd00b66b8374fa9bf90b0c8068
   size: 146572
+haproxy/haproxy-1.5.14.tar.gz:
+  object_id: 02657a44-3292-4e0b-8b18-bcad061a2381
+  sha: 159f5beb8fdc6b8059ae51b53dc935d91c0fb51f
+  size: 1345345
+haproxy/pcre-8.37.tar.gz:
+  object_id: 22601a5f-4ef4-4621-80aa-0fa1f8067db6
+  sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
+  size: 2041593
+nginx/pcre-8.37.tar.gz:
+  object_id: 262a1857-da10-4680-b148-52d7803af7ae
+  sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
+  size: 2041593
