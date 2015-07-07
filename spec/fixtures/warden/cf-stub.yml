@@ -166,8 +166,6 @@ properties:
       SOWIahDrATA4g1T6yLBWQPhj3ZXD3eCMxT1Q3DvpG1DjgvXwmXQJAA==
       -----END RSA PRIVATE KEY-----
     cipher_suites: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA
-    secure_cookies: false
-    requested_route_registration_interval_in_seconds: 20
 
 # code_snippet cf-stub-warden end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
