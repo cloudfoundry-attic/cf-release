@@ -16,6 +16,7 @@ RUN \
     debconf-utils \
     gemnasium-toolbelt \
     git \
+    jq \
     libcurl4-openssl-dev \
     libmysqlclient-dev \
     libpq-dev \
