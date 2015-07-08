@@ -79,7 +79,7 @@ logout:
       disable: <%= (properties.login.logout.redirect.parameter && (!properties.login.logout.redirect.parameter.disable.nil?)) ? properties.login.logout.redirect.parameter.disable : "true" %><% if (properties.login.logout.redirect.parameter && (!properties.login.logout.redirect.parameter.whitelist.nil?)) %>
       whitelist: <% properties.login.logout.redirect.parameter.whitelist.each do |whitelistedurl| %>
       - <%= whitelistedurl %><% end %>
-   <% end %>   
+   <% end %>
 <% end %>
 
 login:
@@ -92,10 +92,10 @@ login:
   <% end %>
 <% if properties.login.saml %>
   <% if !properties.login.saml.serviceProviderCertificate.nil? %>
-  serviceProviderCertificate: | 
+  serviceProviderCertificate: |
     <%= p("login.saml.serviceProviderCertificate").gsub("\n", "\n    ")%>
   <% else %>
-  serviceProviderCertificate: | 
+  serviceProviderCertificate: |
     -----BEGIN CERTIFICATE-----
     MIIEJTCCA46gAwIBAgIJANIqfxWTfhpkMA0GCSqGSIb3DQEBBQUAMIG+MQswCQYD
     VQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5j
@@ -123,10 +123,10 @@ login:
     -----END CERTIFICATE----
   <% end %>
   <% if !properties.login.saml.serviceProviderKey.nil? %>
-  serviceProviderKey: | 
+  serviceProviderKey: |
     <%= p("login.saml.serviceProviderKey").gsub("\n", "\n    ")%>
   <% else %>
-  serviceProviderKey: | 
+  serviceProviderKey: |
     -----BEGIN RSA PRIVATE KEY-----
     MIICXgIBAAKBgQDfTLadf6QgJeS2XXImEHMsa+1O7MmIt44xaL77N2K+J/JGpfV3
     AnkyB06wFZ02sBLB7hko42LIsVEOyTuUBird/3vlyHFKytG7UEt60Fl88SbAEfsU
@@ -148,11 +148,17 @@ login:
   selfServiceLinksEnabled: <%= properties.login.self_service_links_enabled.nil? ? properties.login.signups_enabled : properties.login.self_service_links_enabled %>
   <% end %>
   saml:
+    <% if !properties.login.saml.signMetaData.nil? %>
+    signMetaData: <%= properties.login.saml.signMetaData %>
+    <% end %>
+    <% if !properties.login.saml.signRequest.nil? %>
+    signRequest: <%= properties.login.saml.signRequest %>
+    <% end %>
     providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.reject {|k,_| k.to_s == ''}.each do |idpAlias,idpProvider| %>
       <%= idpAlias %>: <% idpProvider.marshal_dump.reject {|k,_| ["idpMetadata", "idpMetadataXML", "idpMetadataURL"].include?(k.to_s)}.each do |key,value|%>
         <%= key %>: <%= value.is_a?(String) && value.match("\n") ? "| \n          " + value.gsub("\n", "\n          ") + "" : value %><% end %>
         idpMetadata: <%= (idpProvider.idpMetadataURL || idpProvider.idpMetadataXML || idpProvider.idpMetadata).inspect %><% end %><% end %><% if properties.login.saml.idpEntityAlias && (properties.login.saml.idpMetadataURL || properties.login.saml.idp_metadata_file) %>
-      <%= properties.login.saml.idpEntityAlias %>: 
+      <%= properties.login.saml.idpEntityAlias %>:
         idpMetadata: <%= properties.login.saml.idpMetadataURL ? properties.login.saml.idpMetadataURL : "/var/vcap/jobs/login/" + properties.login.saml.idp_metadata_file %>
         assertionConsumerIndex: <%= (properties.login && properties.login.saml.assertionConsumerIndex) ? properties.login.saml.assertionConsumerIndex : 1 %>
         nameID: <%= (properties.login && properties.login.saml.nameidFormat) ? properties.login.saml.nameidFormat : "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress" %>
@@ -166,7 +172,7 @@ login:
 <% end %>
   authorize:
     url: <%= "#{protocol}://login.#{properties.domain}/oauth/authorize" %>
-    
+
 <% if properties.login.analytics && properties.login.analytics.code && properties.login.analytics.domain %>
 analytics:
   code: <%= properties.login.analytics.code %>
