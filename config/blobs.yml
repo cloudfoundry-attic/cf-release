@@ -127,10 +127,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.1.zip:
   object_id: ada385dd-f0b6-43c7-8429-0057766116cc
   sha: 3e62e3882495cf16686078e7209bf28d3f9d60f5
   size: 8487
-php-buildpack/php_buildpack-cached-v3.3.0.zip:
-  object_id: f1a3eb05-a0e5-4f9e-bc36-8378d33c2822
-  sha: a335e44142bb4bd5dbd4521eb102a9110c18b6e6
-  size: 547800508
 go-buildpack/go_buildpack-cached-v1.4.0.zip:
   object_id: d405c4f8-f88d-41b7-8ca6-3a3e0e1fc3ef
   sha: 37a05d1777d33aadcc7b80cb3823d9218b3aaea5
@@ -171,3 +167,7 @@ nginx/pcre-8.37.tar.gz:
   object_id: 262a1857-da10-4680-b148-52d7803af7ae
   sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
   size: 2041593
+php-buildpack/php_buildpack-cached-v3.3.1.zip:
+  object_id: 24f61f7f-3d55-4661-a81b-3dabc2293d3e
+  sha: a657ed5c2dcccede26b5593e3e7d202df0fdacd0
+  size: 551694481
