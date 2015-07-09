@@ -1,5 +1,4 @@
-Rootfs SHASUM: 1403df3c8aceded1018ddb8d7bf17887759c226a  cflinuxfs2-1.0.0-rc.1.tar.gz
-Docker Image: 0cff46ce69e6
+Rootfs SHASUM: 3a4a9a170eb21a873325a6f007c9a1497a1921e8
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -39,7 +38,7 @@ ii  dconf-service                      0.20.0-1                            amd64
 ii  debconf                            1.5.51ubuntu2                       all          Debian configuration management system
 ii  debconf-i18n                       1.5.51ubuntu2                       all          full internationalization support for debconf
 ii  debianutils                        4.4                                 amd64        Miscellaneous utilities specific to Debian
-ii  dh-python                          1.20140128-1ubuntu8                 all          Debian helper tools for packaging Python libraries and applications
+ii  dh-python                          1.20140128-1ubuntu8.1               all          Debian helper tools for packaging Python libraries and applications
 ii  diffutils                          1:3.3-1                             amd64        File comparison utilities
 ii  dmidecode                          2.12-2                              amd64        SMBIOS/DMI table decoder
 ii  dmsetup                            2:1.02.77-6ubuntu2                  amd64        Linux Kernel Device Mapper userspace library
@@ -432,8 +431,8 @@ ii  libvpx1:amd64                      1.3.0-2                             amd64
 ii  libwayland-client0:amd64           1.4.0-1ubuntu1                      amd64        wayland compositor infrastructure - client library
 ii  libwayland-cursor0:amd64           1.4.0-1ubuntu1                      amd64        wayland compositor infrastructure - cursor library
 ii  libwind0-heimdal:amd64             1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - stringprep implementation
-ii  libwmf-dev                         0.2.8.4-10.3ubuntu1                 amd64        Windows metafile conversion development
-ii  libwmf0.2-7:amd64                  0.2.8.4-10.3ubuntu1                 amd64        Windows metafile conversion library
+ii  libwmf-dev                         0.2.8.4-10.3ubuntu1.14.04.1         amd64        Windows metafile conversion development
+ii  libwmf0.2-7:amd64                  0.2.8.4-10.3ubuntu1.14.04.1         amd64        Windows metafile conversion library
 ii  libwrap0:amd64                     7.6.q-25                            amd64        Wietse Venema's TCP wrappers library
 ii  libx11-6:amd64                     2:1.6.2-1ubuntu2                    amd64        X11 client-side library
 ii  libx11-data                        2:1.6.2-1ubuntu2                    all          X11 client-side library
