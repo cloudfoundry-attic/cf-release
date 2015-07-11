@@ -387,10 +387,10 @@ properties:
   login.saml.socket.soTimeout:
     description: "Read timeout in milliseconds for SAML metadata HTTP requests"
   login.saml.signMetaData:
-    description: "Local/SP metadata - sign metadata"
+    description: "Set to true, if you wish that the UAA signs its SAML metadata"
     default: true
   login.saml.signRequest:
-    description: "Local/SP metadata - requests signed"
+    description: "Set to true, if you wish the that the UAA signs all its SAML auth requests"
     default: true
   login.analytics.code:
     description: "Analytics code"

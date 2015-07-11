@@ -148,11 +148,11 @@ login:
   selfServiceLinksEnabled: <%= properties.login.self_service_links_enabled.nil? ? properties.login.signups_enabled : properties.login.self_service_links_enabled %>
   <% end %>
   saml:
-    <% if !properties.login.saml.signMetaData.nil? %>
-    signMetaData: <%= properties.login.saml.signMetaData %>
+    <% if_p("properties.login.saml.signMetaData") do |signMetaData| %>
+    signMetaData: <%= signMetaData %>
     <% end %>
-    <% if !properties.login.saml.signRequest.nil? %>
-    signRequest: <%= properties.login.saml.signRequest %>
+    <% if_p("properties.login.saml.signRequest") do |signRequest| %>
+    signRequest: <%= signRequest %>
     <% end %>
     providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.reject {|k,_| k.to_s == ''}.each do |idpAlias,idpProvider| %>
       <%= idpAlias %>: <% idpProvider.marshal_dump.reject {|k,_| ["idpMetadata", "idpMetadataXML", "idpMetadataURL"].include?(k.to_s)}.each do |key,value|%>
