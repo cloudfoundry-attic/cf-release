@@ -9,6 +9,10 @@ meta:
   - name: cf
     version: latest
 
+  default_env: (( merge ))
+
+  stemcell: (( merge ))
+
 name: (( meta.environment ))
 
 director_uuid: (( merge ))
