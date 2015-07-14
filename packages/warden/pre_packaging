@@ -12,4 +12,7 @@ mv tmp_warden/warden-protocol .
 rmdir tmp_warden
 
 cd warden
-BUNDLE_WITHOUT=development:test bundle package --all
+BUNDLE_WITHOUT=development:test bundle package --all --no-install --path ./vendor/cache
+rm -rf ./vendor/cache/ruby
+rm -rf ./vendor/cache/vendor
+bundle config --delete NO_INSTALL
