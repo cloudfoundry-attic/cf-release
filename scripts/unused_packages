@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "yaml"
+
+packages = Dir.entries("packages") - ['.', '..']
+package_specs = Dir["packages/**/*/**/spec"]
+job_specs = Dir["jobs/**/*/**/spec"]
+
+package_specs.each do |spec_path|
+  spec = YAML.load_file(spec_path)
+
+  packages -= spec["dependencies"] || []
+end
+
+job_specs.each do |spec_path|
+  spec = YAML.load_file(spec_path)
+
+  packages -= spec["packages"]
+end
+
+puts packages
+
+fail unless packages.empty?

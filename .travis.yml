@@ -12,3 +12,5 @@ before_install:
   - export PATH=$PATH:$PWD
 script:
   - bundle exec rspec spec
+  - ./scripts/unused_blobs
+  - ./scripts/unused_packages

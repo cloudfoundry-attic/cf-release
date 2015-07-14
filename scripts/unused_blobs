@@ -3,7 +3,7 @@
 require "yaml"
 
 blobs = YAML.load_file("config/blobs.yml")
-package_specs = Dir["packages/**/spec"]
+package_specs = Dir["packages/**/*/**/spec"]
 
 unused_blobs = blobs.dup
 
