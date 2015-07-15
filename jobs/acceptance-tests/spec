@@ -56,9 +56,9 @@ properties:
   acceptance_tests.include_v3:
     default: false
     description: Flag to include the v3 API test suite.
-  acceptance_tests.include_routing_api:
+  acceptance_tests.include_routing:
     default: false
-    description: Flag to include the routing API test suite.
+    description: Flag to include the routing test suite.
   acceptance_tests.use_diego:
     default: false
     description: Services tests push their apps using diego if enabled

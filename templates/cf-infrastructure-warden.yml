@@ -221,7 +221,7 @@ properties:
     nodes: 1
     system_domain: (( domain ))
     client_secret: gorouter-secret
-    include_routing_api: true
+    include_routing: true
 
   smoke_tests:
     api:  (( "api." domain ))
