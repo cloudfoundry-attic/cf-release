@@ -7,6 +7,7 @@ templates:
   config.json.erb: config/config.json
 
 packages:
+  - common
   - consul
 
 properties:
@@ -37,3 +38,7 @@ properties:
   consul.agent.protocol_version:
     description: "The Consul protocol to use."
     default: 2
+
+  consul.agent.sync_timeout_in_seconds:
+    description: "Time to wait for a consul node to finish syncing with the cluster in seconds"
+    default: 30
