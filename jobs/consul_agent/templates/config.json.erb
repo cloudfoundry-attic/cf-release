@@ -24,6 +24,7 @@
 
   config = {
     "datacenter" => p("consul.agent.datacenter"),
+    "domain" => "cf.internal",
     "data_dir" => "/var/vcap/store/consul_agent",
     "log_level" => p("consul.agent.log_level"),
     "node_name" => "#{name.gsub('_', '-')}-#{spec.index}",

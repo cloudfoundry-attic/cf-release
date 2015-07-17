@@ -45,13 +45,13 @@ publish_active_apps_interval: 0 # 0 means disabled
 
 <% if p("router.enable_routing_api") %>
 oauth:
-  token_endpoint: http://uaa.service.consul
+  token_endpoint: http://uaa.service.cf.internal
   client_name: "gorouter"
   client_secret: <%= p("uaa.clients.gorouter.secret") %>
   port: <%= p("uaa.port") %>
 
 routing_api:
-  uri: http://routing-api.service.consul
+  uri: http://routing-api.service.cf.internal
   port: <%= p("routing-api.port") %>
 <% end %>
 

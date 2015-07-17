@@ -248,7 +248,7 @@ properties:
               - hostname2.localhost
               - hostname3.example.com
     default:
-      - uaa.service.consul
+      - uaa.service.cf.internal
   uaa.newrelic:
     description: |
       To enable newrelic monitoring, the sub element of this property will be placed in
