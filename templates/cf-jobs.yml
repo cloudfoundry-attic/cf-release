@@ -237,7 +237,8 @@ jobs:
       networks: (( meta.networks.z1 ))
       metron_agent:
         zone: z1
-    update: (( merge || empty_hash ))
+    update:
+      max_in_flight: 1
 
   - name: etcd_z2
     templates: (( merge || meta.etcd_templates ))
@@ -251,7 +252,8 @@ jobs:
       networks: (( meta.networks.z2 ))
       metron_agent:
         zone: z2
-    update: (( merge || empty_hash ))
+    update:
+      max_in_flight: 1
 
   - name: stats_z1
     templates: (( merge || meta.stats_templates ))
@@ -642,7 +644,15 @@ properties:
     prof_port: 0
 
   etcd:
+    ca_cert:
+    client_cert:
+    client_key:
+    cluster:
     machines: (( jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
+    peer_require_ssl:
+    require_ssl:
+    server_cert:
+    server_key:
 
   etcd_metrics_server:
     nats:
