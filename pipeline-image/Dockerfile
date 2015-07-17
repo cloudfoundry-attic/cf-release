@@ -32,7 +32,8 @@ RUN \
     unzip \
     wget \
     zip \
-    zlib1g-dev
+    zlib1g-dev \
+    vim
 
 RUN  \
   echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections && \
