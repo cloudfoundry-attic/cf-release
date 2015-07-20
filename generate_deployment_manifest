@@ -16,7 +16,6 @@ fi
 
 spiff merge \
   $templates/cf-deployment.yml \
-  $templates/cf-resource-pools.yml \
   $templates/cf-jobs.yml \
   $templates/cf-properties.yml \
   $templates/cf-lamb.yml \
