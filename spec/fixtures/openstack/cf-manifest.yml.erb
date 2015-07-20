@@ -143,8 +143,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  update:
-    max_in_flight: 1
+  update: {}
 - instances: 0
   name: etcd_z2
   networks:
@@ -164,8 +163,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  update:
-    max_in_flight: 1
+  update: {}
 - instances: 1
   name: stats_z1
   networks:
@@ -922,14 +920,6 @@ properties:
   dropsonde:
     enabled: true
   etcd:
-    ca_cert: null
-    client_cert: null
-    client_key: null
-    cluster: null
-    peer_require_ssl: null
-    require_ssl: null
-    server_cert: null
-    server_key: null
     machines:
     - 0.0.0.8
   etcd_metrics_server:
