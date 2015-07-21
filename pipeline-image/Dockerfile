@@ -101,3 +101,10 @@ RUN \
   tar xvf /tmp/cf-linux-amd64.tgz -C /usr/local/bin && \
   ln -s /usr/local/bin/cf /usr/local/bin/gcf && \
   rm -rf /tmp/*
+
+RUN \
+  gem install --no-rdoc --no-ri \
+    bundler \
+    bosh_cli \
+    debugger-ruby_core_source
+
