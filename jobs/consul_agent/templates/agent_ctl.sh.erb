@@ -74,6 +74,17 @@ EOF
       fi
     fi
 
+    server=<%=p("consul.agent.mode") == "server"%>
+    if [ "$server" == "true" ]; then
+      actual=0
+      expected=<%=p("consul.agent.servers.lan").size%>
+      for s in <%=p("consul.agent.servers.lan").join(' ')%>; do
+        if nc -w 1 $s 8300 < /dev/null; then
+          actual=$((actual + 1))
+        fi
+      done
+    fi
+
     setcap cap_net_bind_service=+ep $PKG/bin/consul
 
     GOMAXPROCS=$(nproc)
@@ -92,30 +103,42 @@ EOF
 
     echo "Consul pid is " + $consul_pid
 
-    server=<%=p("consul.agent.mode") == "server"%>
     if [ "$server" == "true" ]; then
-      synched=false
+      CONSUL_JOIN="<%=p("consul.agent.servers.lan").join(' ')%>"
 
+      start=0
       for i in $(seq <%= p("consul.agent.sync_timeout_in_seconds") %>); do
-        if curl -s 'http://127.0.0.1:8500/v1/health/service/consul' | grep -oP "\{\"Node\":\"$NODE_NAME\".*?}]" | grep '"Tags":\[\]'; then
-          synched=true
+        echo "$(date)" "Attempting join: ${CONSUL_JOIN}"
+        if $PKG/bin/consul join ${CONSUL_JOIN}; then
           break
         fi
+
         sleep 1
+        start=$((start + 1))
       done
 
-      if ${synced}; then
-        echo "$(date) Consul is synced"
-      else
-        echo "$(date) Consul failed to sync"
-        $PKG/bin/consul leave
-        kill -9 ${consul_pid}
-        exit 1
+      if [[ $actual -eq $((expected - 1)) ]]; then
+        synced=false
+        for i in $(seq $start <%= p("consul.agent.sync_timeout_in_seconds") %>); do
+          if curl -s 'http://127.0.0.1:8500/v1/health/service/consul' | grep -oP "\{\"Node\":\"$NODE_NAME\".*?}]" | grep '"Tags":\[\]'; then
+            synced=true
+            break
+          fi
+          sleep 1
+        done
+
+        if ${synced}; then
+          echo "$(date) Consul is synced"
+        else
+          echo "$(date) Consul failed to sync"
+          $PKG/bin/consul leave
+          kill -9 ${consul_pid}
+          exit 1
+        fi
       fi
     fi
 
     echo ${consul_pid} > $PID_FILE
-    wait ${consul_pid}
 
     ;;
 

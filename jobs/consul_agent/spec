@@ -41,4 +41,4 @@ properties:
 
   consul.agent.sync_timeout_in_seconds:
     description: "Time to wait for a consul node to finish syncing with the cluster in seconds"
-    default: 30
+    default: 60

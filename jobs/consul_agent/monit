@@ -1,6 +1,6 @@
 check process consul_agent
   with pidfile /var/vcap/sys/run/consul_agent/consul_agent.pid
-  start program "/var/vcap/jobs/consul_agent/bin/agent_ctl start"
+  start program "/var/vcap/jobs/consul_agent/bin/agent_ctl start" with timeout 60 seconds
   stop program "/var/vcap/jobs/consul_agent/bin/agent_ctl stop"
   group vcap
 

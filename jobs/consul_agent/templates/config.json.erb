@@ -40,24 +40,14 @@
 
     # without this, a single bootstrapped server will be orphaned after
     # restarting
-    "rejoin_after_leave" => true,
     "disable_remote_exec" => true,
     "disable_update_check" => true,
     "protocol" => p("consul.agent.protocol_version"),
   }
 
-  if server
-    if lan_servers.empty?
-      config["bootstrap"] = true
-    else
-      config["bootstrap_expect"] = lan_servers.size
-    end
-  end
-
-  if lan_servers
-    config["start_join"] = lan_servers
-    config["retry_join"] = lan_servers
-  end
+if server
+  config["bootstrap_expect"] = lan_servers.size
+end
 
   config.to_json
 %>
