@@ -103,38 +103,36 @@ EOF
 
     echo "Consul pid is " + $consul_pid
 
-    if [ "$server" == "true" ]; then
       CONSUL_JOIN="<%=p("consul.agent.servers.lan").join(' ')%>"
 
-      start=0
-      for i in $(seq <%= p("consul.agent.sync_timeout_in_seconds") %>); do
-        echo "$(date)" "Attempting join: ${CONSUL_JOIN}"
-        if $PKG/bin/consul join ${CONSUL_JOIN}; then
+    start=0
+    for i in $(seq <%= p("consul.agent.sync_timeout_in_seconds") %>); do
+      echo "$(date)" "Attempting join: ${CONSUL_JOIN}"
+      if $PKG/bin/consul join ${CONSUL_JOIN}; then
+        break
+      fi
+
+      sleep 1
+      start=$((start + 1))
+    done
+
+    if [[ "$server" -eq "true" && $actual -eq $((expected - 1)) ]]; then
+      synced=false
+      for i in $(seq $start <%= p("consul.agent.sync_timeout_in_seconds") %>); do
+        if curl -s 'http://127.0.0.1:8500/v1/health/service/consul' | grep -oP "\{\"Node\":\"$NODE_NAME\".*?}]" | grep '"Tags":\[\]'; then
+          synced=true
           break
         fi
-
         sleep 1
-        start=$((start + 1))
       done
 
-      if [[ $actual -eq $((expected - 1)) ]]; then
-        synced=false
-        for i in $(seq $start <%= p("consul.agent.sync_timeout_in_seconds") %>); do
-          if curl -s 'http://127.0.0.1:8500/v1/health/service/consul' | grep -oP "\{\"Node\":\"$NODE_NAME\".*?}]" | grep '"Tags":\[\]'; then
-            synced=true
-            break
-          fi
-          sleep 1
-        done
-
-        if ${synced}; then
-          echo "$(date) Consul is synced"
-        else
-          echo "$(date) Consul failed to sync"
-          $PKG/bin/consul leave
-          kill -9 ${consul_pid}
-          exit 1
-        fi
+      if ${synced}; then
+        echo "$(date) Consul is synced"
+      else
+        echo "$(date) Consul failed to sync"
+        $PKG/bin/consul leave
+        kill -9 ${consul_pid}
+        exit 1
       fi
     fi
 
