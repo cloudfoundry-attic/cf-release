@@ -71,10 +71,10 @@ properties:
     description: "Array of domains for user apps (example: 'user.app.space.foo', a user app called 'neat' will listen at 'http://neat.user.app.space.foo')"
 
   app_ssh.host_key_fingerprint:
-    description: "Fingerprint of the application SSH daemon's public (used by clients to authenticate the SSH daemon)"
+    description: "Fingerprint of the host key of the SSH proxy that brokers connections to application instances"
     default: ~
   app_ssh.port:
-    description: "External port for SSH access for applications"
+    description: "External port for SSH access to application instances"
     default: 2222
 
   networks.apps:
