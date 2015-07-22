@@ -74,11 +74,12 @@ EOF
       fi
     fi
 
+    expected=<%=p("consul.agent.servers.lan").size%>
+    consul_join="<%=p("consul.agent.servers.lan").join(' ')%>"
     server=<%=p("consul.agent.mode") == "server"%>
     if [ "$server" == "true" ]; then
       actual=0
-      expected=<%=p("consul.agent.servers.lan").size%>
-      for s in <%=p("consul.agent.servers.lan").join(' ')%>; do
+      for s in ${consul_join}; do
         if nc -w 1 $s 8300 < /dev/null; then
           actual=$((actual + 1))
         fi
@@ -103,18 +104,18 @@ EOF
 
     echo "Consul pid is " + $consul_pid
 
-      CONSUL_JOIN="<%=p("consul.agent.servers.lan").join(' ')%>"
-
     start=0
-    for i in $(seq <%= p("consul.agent.sync_timeout_in_seconds") %>); do
-      echo "$(date)" "Attempting join: ${CONSUL_JOIN}"
-      if $PKG/bin/consul join ${CONSUL_JOIN}; then
-        break
-      fi
+    if [ $expected -gt 0 ]; then
+      for i in $(seq <%= p("consul.agent.sync_timeout_in_seconds") %>); do
+        echo "$(date)" "Attempting join: ${consul_join}"
+        if $PKG/bin/consul join ${consul_join}; then
+          break
+        fi
 
-      sleep 1
-      start=$((start + 1))
-    done
+        sleep 1
+        start=$((start + 1))
+      done
+    fi
 
     if [[ "$server" -eq "true" && $actual -eq $((expected - 1)) ]]; then
       synced=false
