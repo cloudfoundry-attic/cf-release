@@ -12,13 +12,14 @@ Release notes for final releases are available here:
 [https://github.com/cloudfoundry/cf-release/releases](https://github.com/cloudfoundry/cf-release/releases)
 
 1. [About Branches](#about-branches)
-2. [Repository Contents](#repository-contents)
-3. [Cloud Foundry Components (V2)](#cloud-foundry-components-v2)
-4. [Running Cloud Foundry](#running-cloud-foundry)
-4. [Useful Scripts](#useful-scripts)
-5. [Ask Questions](#ask-questions)
-6. [File a Bug](#file-a-bug)
-7. [Contributions](#contributions)
+1. [Repository Contents](#repository-contents)
+1. [Cloud Foundry Components (V2)](#cloud-foundry-components-v2)
+1. [Running Cloud Foundry](#running-cloud-foundry)
+1. [Useful Scripts](#useful-scripts)
+1. [Ask Questions](#ask-questions)
+1. [File a Bug](#file-a-bug)
+1. [Understanding Changes](#understanding-changes)
+1. [Contributions](#contributions)
 
 ## About Branches
 
@@ -91,6 +92,14 @@ There are lists for Cloud Foundry Developers, BOSH Users, and BOSH Developers.
 ## File a Bug
 
 Bugs can be filed using GitHub Issues in the respective repository of each [Cloud Foundry](http://github.com/cloudfoundry) component.
+
+## Understanding Changes
+
+You can generate an HTML document which will show all commits between any two given SHAs, branches, tags, or other references, and then view it in your favourite browser:
+
+```sh
+$ bundle && bundle exec git_release_notes html --from=v210 --to=v212 > /tmp/changes.html && open /tmp/changes.html
+```
 
 ## Contributions
 
