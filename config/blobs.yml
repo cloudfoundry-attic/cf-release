@@ -147,10 +147,6 @@ nginx/pcre-8.37.tar.gz:
   object_id: 262a1857-da10-4680-b148-52d7803af7ae
   sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
   size: 2041593
-php-buildpack/php_buildpack-cached-v3.3.1.zip:
-  object_id: 24f61f7f-3d55-4661-a81b-3dabc2293d3e
-  sha: a657ed5c2dcccede26b5593e3e7d202df0fdacd0
-  size: 551694481
 ruby-buildpack/ruby_buildpack-cached-v1.6.1.zip:
   object_id: 8854c939-588c-4015-8f0a-379ada327897
   sha: 5d4784bcc07b03f65173baf41874d277b2d561bd
@@ -167,3 +163,7 @@ python-buildpack/python_buildpack-cached-v1.5.0.zip:
   object_id: 1a4956c8-c4b1-4361-ac8b-3ccbb8b93dcb
   sha: 074b9804d66d103acccd7b3be2f711f1171deb56
   size: 184315882
+php-buildpack/php_buildpack-cached-v4.0.0.zip:
+  object_id: 84cad3aa-3417-48b6-8e13-70fbc5e6833a
+  sha: 1dd1942d2d1d4a8ea121f7bec90cac9357d06675
+  size: 471190774
