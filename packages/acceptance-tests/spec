@@ -6,3 +6,6 @@ dependencies:
   - rtr
 files:
   - github.com/cloudfoundry/cf-acceptance-tests/**/*
+excluded_files:
+  - github.com/cloudfoundry/cf-acceptance-tests/results/*
+  - github.com/cloudfoundry/cf-acceptance-tests/*config.json
