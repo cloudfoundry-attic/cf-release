@@ -117,7 +117,7 @@ EOF
       done
     fi
 
-    if [[ "$server" -eq "true" && $actual -eq $((expected - 1)) ]]; then
+    if [[ "$server" == "true" && $actual -eq $((expected - 1)) ]]; then
       synced=false
       for i in $(seq $start <%= p("consul.agent.sync_timeout_in_seconds") %>); do
         if curl -s 'http://127.0.0.1:8500/v1/health/service/consul' | grep -oP "\{\"Node\":\"$NODE_NAME\".*?}]" | grep '"Tags":\[\]'; then
