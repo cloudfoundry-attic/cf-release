@@ -33,8 +33,6 @@ echo "Running acceptance tests..."
 
 EXITSTATUS=0
 
-test_command="bin/test_via_ginkgo"
-
 nodes=<%= properties.acceptance_tests.nodes %>
 
 skipPackages="-skipPackage=helpers,"
@@ -54,7 +52,7 @@ skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
 
 verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
 
-$test_command -noColor -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?
+bin/test -r -noColor -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 
