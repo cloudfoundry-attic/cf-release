@@ -683,6 +683,8 @@ properties:
       user: (( merge ))
       password: (( merge ))
     secure_cookies: (( merge || nil ))
+    route_service_secret: (( merge || nil ))
+    route_service_timeout: (( merge || nil ))
 
   syslog_daemon_config: ~
 

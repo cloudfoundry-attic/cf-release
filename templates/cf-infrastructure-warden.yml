@@ -165,6 +165,7 @@ properties:
       user: router
       password: router
     ssl_skip_validation: true
+    route_service_secret: emc1Bu39coo4mcz+iaecPAL2wCeo4VB1+6s099ZYu/M=
 
   ccdb:
     db_scheme: postgres

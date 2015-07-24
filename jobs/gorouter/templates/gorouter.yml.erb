@@ -64,3 +64,6 @@ ssl_skip_validation: <%= p("router.ssl_skip_validation") %>
 ssl_cert_path: /var/vcap/jobs/gorouter/config/cert.pem
 ssl_key_path: /var/vcap/jobs/gorouter/config/key.pem
 cipher_suites: <%= p("router.cipher_suites") %>
+
+route_service_timeout: <%= p("router.route_service_timeout") %>
+route_service_secret: <%= p("router.route_service_secret") %>
