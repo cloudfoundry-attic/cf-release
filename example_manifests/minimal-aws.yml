@@ -182,7 +182,7 @@ jobs:
   properties:
     traffic_controller: {zone: z1}
 
-- name: login_z1
+- name: uaa_z1
   instances: 1
   resource_pool: small_z1
   templates:

@@ -44,5 +44,5 @@ properties:
     default: 3457
 
   system_domain:
-    description: "Domain reserved for CF operator, base URL where the login, uaa, and other non-user apps listen"
+    description: "Domain reserved for CF operator; base URL where the UAA, Cloud Controller, and other non-user apps listen"
 
