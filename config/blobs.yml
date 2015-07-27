@@ -123,10 +123,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.1.zip:
   object_id: ada385dd-f0b6-43c7-8429-0057766116cc
   sha: 3e62e3882495cf16686078e7209bf28d3f9d60f5
   size: 8487
-go-buildpack/go_buildpack-cached-v1.4.0.zip:
-  object_id: d405c4f8-f88d-41b7-8ca6-3a3e0e1fc3ef
-  sha: 37a05d1777d33aadcc7b80cb3823d9218b3aaea5
-  size: 463786756
 java-buildpack/java-buildpack-offline-v3.1.zip:
   object_id: a82ef8d6-0c4b-47d7-9243-e0ce017abc31
   sha: 7d965f711c19ff2db2245df196fad47cfb65c580
@@ -167,3 +163,7 @@ php-buildpack/php_buildpack-cached-v4.0.0.zip:
   object_id: 84cad3aa-3417-48b6-8e13-70fbc5e6833a
   sha: 1dd1942d2d1d4a8ea121f7bec90cac9357d06675
   size: 471190774
+go-buildpack/go_buildpack-cached-v1.5.0.zip:
+  object_id: 95b17554-1ac2-4c2a-8359-664fe5cbabc7
+  sha: fd76bdda73b6b75cd038ac5b768d187156adb363
+  size: 443150460
