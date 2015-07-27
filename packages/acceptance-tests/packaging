@@ -5,7 +5,3 @@ export PATH=${GOROOT}/bin:${PATH}
 
 mkdir -p ${BOSH_INSTALL_TARGET}/src
 cp -a . ${BOSH_INSTALL_TARGET}/src
-
-export GOPATH=$BOSH_INSTALL_TARGET/src/github.com/cloudfoundry/cf-acceptance-tests/Godeps/_workspace
-
-go install github.com/onsi/ginkgo/ginkgo
