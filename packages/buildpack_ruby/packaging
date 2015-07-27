@@ -1,2 +1,3 @@
-    set -e -x
-    cp ruby-buildpack-github-release/ruby_buildpack-cached-v1.6.1.zip ${BOSH_INSTALL_TARGET}
+set -e -x
+
+cp ruby-buildpack/ruby_buildpack-cached-v1.6.1.zip ${BOSH_INSTALL_TARGET}
