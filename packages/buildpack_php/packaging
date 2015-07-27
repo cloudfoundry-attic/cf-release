@@ -1,3 +1,2 @@
-set -e -x
-
-cp php-buildpack/php_buildpack-cached-v4.0.0.zip ${BOSH_INSTALL_TARGET}
+    set -e -x
+    cp php-buildpack-github-release/php_buildpack-cached-v4.0.0.zip ${BOSH_INSTALL_TARGET}
