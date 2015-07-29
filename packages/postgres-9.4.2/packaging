@@ -15,7 +15,7 @@ tar xzf postgres/$archive
 
 cd $pgversion
 
-if [[ `uname -a` =~ "x86_64" ]] ; then
+if [[ `uname -a` =~ "x86_64" || `uname -a` =~ "ppc64le" ]] ; then
   ./configure --prefix=${BOSH_INSTALL_TARGET}
 else
   CFLAGS=-m32 LDFLAGS=-m32 CXXFLAGS=-m32 ./configure --prefix=${BOSH_INSTALL_TARGET}
