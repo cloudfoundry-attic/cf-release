@@ -1,4 +1,4 @@
-Rootfs SHASUM: bc83bb0b25cfff85e4337f030679dafe6e61829c
+Rootfs SHASUM: 384a9c3513691670f76a783a6174ddc10f04c260
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -392,8 +392,8 @@ ii  libspectrum8:amd64                 1.1.1-1                             amd64
 ii  libspeex1:amd64                    1.2~rc1.1-1ubuntu1                  amd64        The Speex codec runtime library
 ii  libsqlite0                         2.8.17-10ubuntu2                    amd64        SQLite shared library
 ii  libsqlite0-dev                     2.8.17-10ubuntu2                    amd64        SQLite development files
-ii  libsqlite3-0:amd64                 3.8.2-1ubuntu2                      amd64        SQLite 3 shared library
-ii  libsqlite3-dev:amd64               3.8.2-1ubuntu2                      amd64        SQLite 3 development files
+ii  libsqlite3-0:amd64                 3.8.2-1ubuntu2.1                    amd64        SQLite 3 shared library
+ii  libsqlite3-dev:amd64               3.8.2-1ubuntu2.1                    amd64        SQLite 3 development files
 ii  libss2:amd64                       1.42.9-3ubuntu1.2                   amd64        command-line interface parsing library
 ii  libssl-dev:amd64                   1.0.1f-1ubuntu2.15                  amd64        Secure Sockets Layer toolkit - development files
 ii  libssl1.0.0:amd64                  1.0.1f-1ubuntu2.15                  amd64        Secure Sockets Layer toolkit - shared libraries
@@ -476,7 +476,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-59.98                        amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-61.100                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.1                amd64        system login tools
