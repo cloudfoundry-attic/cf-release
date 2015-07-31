@@ -61,6 +61,9 @@ properties:
   router.route_service_secret:
     description: "A base64 encoded key, the key length should be 16 bytes for AES-128, 24 for AES-192, or 32 for AES-256"
     default: ""
+  router.route_service_secret_prev:
+    description: "A base64 encoded key, the key length should be 16 bytes for AES-128, 24 for AES-192, or 32 for AES-256. This should be used to rotate the route_service_secret without downtime."
+    default: ""
   router.route_service_timeout:
     description: "Expiry time of a route service signature in seconds"
     default: 60
