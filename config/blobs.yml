@@ -143,10 +143,6 @@ nginx/pcre-8.37.tar.gz:
   object_id: 262a1857-da10-4680-b148-52d7803af7ae
   sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
   size: 2041593
-ruby-buildpack/ruby_buildpack-cached-v1.6.1.zip:
-  object_id: 8854c939-588c-4015-8f0a-379ada327897
-  sha: 5d4784bcc07b03f65173baf41874d277b2d561bd
-  size: 294214118
 staticfile-buildpack/staticfile_buildpack-cached-v1.2.1.zip:
   object_id: 0eebcec7-4850-41d7-b626-a0ef71b221c3
   sha: 4374d3e85ccca8cf086b52e7d2d08cab24689620
@@ -167,3 +163,7 @@ go-buildpack/go_buildpack-cached-v1.5.0.zip:
   object_id: 95b17554-1ac2-4c2a-8359-664fe5cbabc7
   sha: fd76bdda73b6b75cd038ac5b768d187156adb363
   size: 443150460
+ruby-buildpack/ruby_buildpack-cached-v1.6.2.zip:
+  object_id: 89d8fb16-a2b6-40f3-8212-431cb56fe4de
+  sha: f095797435bb79a7b2f32a8c3c693dfd33a34d3e
+  size: 294292739
