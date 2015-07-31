@@ -123,14 +123,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.1.zip:
   object_id: ada385dd-f0b6-43c7-8429-0057766116cc
   sha: 3e62e3882495cf16686078e7209bf28d3f9d60f5
   size: 8487
-java-buildpack/java-buildpack-offline-v3.1.zip:
-  object_id: a82ef8d6-0c4b-47d7-9243-e0ce017abc31
-  sha: 7d965f711c19ff2db2245df196fad47cfb65c580
-  size: 332558508
-java-buildpack/java-buildpack-v3.1.zip:
-  object_id: 7413f0fd-f578-4490-93fb-873288283404
-  sha: c9272524ac27bacd00b66b8374fa9bf90b0c8068
-  size: 146572
 haproxy/haproxy-1.5.14.tar.gz:
   object_id: 02657a44-3292-4e0b-8b18-bcad061a2381
   sha: 159f5beb8fdc6b8059ae51b53dc935d91c0fb51f
@@ -167,3 +159,11 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.2.zip:
   object_id: 89d8fb16-a2b6-40f3-8212-431cb56fe4de
   sha: f095797435bb79a7b2f32a8c3c693dfd33a34d3e
   size: 294292739
+java-buildpack/java-buildpack-offline-v3.1.1.zip:
+  object_id: d5604cb2-c0fe-431e-b2fd-3e868e2b934c
+  sha: db5f96ce966e02c611da8222d4345d420da63655
+  size: 333418361
+java-buildpack/java-buildpack-v3.1.1.zip:
+  object_id: 8e1d1974-a796-4a1b-bc17-ed9ebadbaebc
+  sha: 8a0d6e7a1ed26a24abc2a1c7a0b2612d6efd0380
+  size: 146570
