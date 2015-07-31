@@ -100,3 +100,9 @@ RUN \
   tar xvf /tmp/cf-linux-amd64.tgz -C /usr/local/bin && \
   ln -s /usr/local/bin/cf /usr/local/bin/gcf && \
   rm -rf /tmp/*
+
+RUN \
+  wget https://s3.amazonaws.com/bosh-init-artifacts/bosh-init-0.0.70-linux-amd64 -P /tmp && \
+  mv /tmp/bosh-init-0.0.70-linux-amd64 /usr/local/bin/bosh-init && \
+  chmod +x /usr/local/bin/bosh-init && \
+  rm -rf /tmp/*
