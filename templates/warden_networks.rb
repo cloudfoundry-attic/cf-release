@@ -22,37 +22,24 @@ cf1_start = NetAddr::CIDR.create("10.24#{IP_ADDRESS_SUFFIX}.0.0/30")
 cf2_subnets = []
 cf2_start = NetAddr::CIDR.create("10.24#{IP_ADDRESS_SUFFIX}.2.0/30")
 
-services1_subnets = []
-services1_start = NetAddr::CIDR.create("10.24#{IP_ADDRESS_SUFFIX}.1.0/30")
-
-services2_subnets = []
-services2_start = NetAddr::CIDR.create("10.24#{IP_ADDRESS_SUFFIX}.3.0/30")
-
-64.times do
+128.times do
   cf1_subnets << cf1_start
   cf1_start = NetAddr::CIDR.create(cf1_start.next_subnet)
 
   cf2_subnets << cf2_start
   cf2_start = NetAddr::CIDR.create(cf2_start.next_subnet)
-
-  services1_subnets << services1_start
-  services1_start = NetAddr::CIDR.create(services1_start.next_subnet)
-
-  services2_subnets << services2_start
-  services2_start = NetAddr::CIDR.create(services2_start.next_subnet)
 end
 
 puts YAML.dump(
-  "networks_default" => [
+  "networks" => [
     { "name" => "cf1",
       "subnets" => cf1_subnets.collect.with_index do |subnet, idx|
         { "cloud_properties" => {
             "name" => "random",
           },
           "range" => subnet.to_s,
-          # "reserved" => [subnet[1].ip],
-          "gateway" => subnet[1].ip,
-          "static" => idx < 32 ? [subnet[2].ip] : [],
+          "reserved" => [subnet[1].ip],
+          "static" => idx < 64 ? [subnet[2].ip] : [],
         }
       end
     },
@@ -62,33 +49,8 @@ puts YAML.dump(
             "name" => "random",
           },
           "range" => subnet.to_s,
-          # "reserved" => [subnet[1].ip],
-          "gateway" => subnet[1].ip,
-          "static" => idx < 32 ? [subnet[2].ip] : [],
-        }
-      end
-    },
-    { "name" => "services1",
-      "subnets" => services1_subnets.collect.with_index do |subnet, idx|
-        { "cloud_properties" => {
-            "name" => "random",
-          },
-          "range" => subnet.to_s,
-          # "reserved" => [subnet[1].ip],
-          "gateway" => subnet[1].ip,
-          "static" => idx < 32 ? [subnet[2].ip] : [],
-        }
-      end
-    },
-    { "name" => "services2",
-      "subnets" => services2_subnets.collect.with_index do |subnet, idx|
-        { "cloud_properties" => {
-            "name" => "random",
-          },
-          "range" => subnet.to_s,
-          # "reserved" => [subnet[1].ip],
-          "gateway" => subnet[1].ip,
-          "static" => idx < 32 ? [subnet[2].ip] : [],
+          "reserved" => [subnet[1].ip],
+          "static" => idx < 64 ? [subnet[2].ip] : [],
         }
       end
     },
