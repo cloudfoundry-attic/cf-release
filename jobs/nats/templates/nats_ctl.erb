@@ -31,6 +31,7 @@ case $1 in
     sysctl -w net.ipv4.neigh.default.gc_thresh2=2048
 
     exec chpst -u vcap:vcap /var/vcap/packages/gnatsd/bin/gnatsd \
+         -l $LOG_DIR/nats.log \
          -c /var/vcap/jobs/nats/config/nats.conf
 
     ;;
