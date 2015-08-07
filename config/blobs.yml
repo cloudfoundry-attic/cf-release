@@ -59,10 +59,6 @@ nginx/nginx-1.6.2.tar.gz:
   object_id: 041b7bdb-b770-4c6c-b797-565b7b1a423d
   sha: 1a5458bc15acf90eea16353a1dd17285cf97ec35
   size: 804164
-rootfs/cflinuxfs2.tar.gz:
-  object_id: 38f90d62-c1ed-45d6-aa1c-de268235ae32
-  sha: 384a9c3513691670f76a783a6174ddc10f04c260
-  size: 248655675
 golang/go1.4.2.linux-amd64.tar.gz:
   object_id: bfaf73b1-de68-4c94-9a02-555245b2eb8d
   sha: 5020af94b52b65cc9b6f11d50a67e4bae07b0aff
@@ -171,3 +167,7 @@ openjdk/openjdk-1.8.0_51.tar.gz:
   object_id: d85dd2e6-cb0c-45a7-a089-b24a778878ad
   sha: 2651c262b7cede077da23e00d3fe6ffd9849a1d6
   size: 44707537
+rootfs/cflinuxfs2-1.4.0.tar.gz:
+  object_id: b6fff38f-2996-496e-abe8-3fb713316f30
+  sha: 507cb19efd6e4188595ac38e0ab5f55c16a6fa75
+  size: 248487779
