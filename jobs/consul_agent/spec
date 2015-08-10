@@ -5,6 +5,11 @@ templates:
   agent_ctl.sh.erb: bin/agent_ctl
   join_ctl.sh.erb: bin/join_ctl
   config.json.erb: config/config.json
+  ca.crt.erb: config/certs/ca.crt
+  server.crt.erb: config/certs/server.crt
+  server.key.erb: config/certs/server.key
+  agent.crt.erb: config/certs/agent.crt
+  agent.key.erb: config/certs/agent.key
 
 packages:
   - common
@@ -42,3 +47,19 @@ properties:
   consul.agent.sync_timeout_in_seconds:
     description: "Time to wait for a consul node to finish syncing with the cluster in seconds"
     default: 60
+
+  consul.require_ssl:
+    description: "enable ssl for all communication with consul"
+    default: true
+  consul.ca_cert:
+    description: "PEM-encoded CA certificate"
+  consul.server_cert:
+    description: "PEM-encoded server certificate"
+  consul.server_key:
+    description: "PEM-encoded server key"
+  consul.agent_cert:
+    description: "PEM-encoded agent certificate"
+  consul.agent_key:
+    description: "PEM-encoded client key"
+  consul.encrypt_key:
+    description: "A base64 encoded key, the key length must be 16 bytes"
