@@ -158,6 +158,11 @@ scim:
     - <%= user %><% end %>
 <% end %>
 
+<% if properties.uaa.scim && properties.uaa.scim.external_groups then %>
+  external_groups: <% properties.uaa.scim.external_groups.each do |group| %>
+    - <%= group %><% end %>
+<% end %>
+
 <% if properties.uaa && properties.uaa.zones && properties.uaa.zones.internal &&  properties.uaa.zones.internal.hostnames then %>
 zones:
   internal:
@@ -165,10 +170,6 @@ zones:
       - <%= hostname %><% end %>
 <% end %>
 
-<% if properties.uaa.scim && properties.uaa.scim.external_groups then %>
-  external_groups: <% properties.uaa.scim.external_groups.each do |group| %>
-    - <%= group %><% end %>
-<% end %>
 <% if !properties.uaa.require_https.nil? %>
 require_https: <%= properties.uaa.require_https %>
 <% end %>
