@@ -50,7 +50,7 @@ properties:
 
   consul.require_ssl:
     description: "enable ssl for all communication with consul"
-    default: false
+    default: true
   consul.ca_cert:
     description: "PEM-encoded CA certificate"
   consul.server_cert:
