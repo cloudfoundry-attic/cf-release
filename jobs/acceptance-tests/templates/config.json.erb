@@ -27,7 +27,8 @@
     :syslog_ip_address => discover_external_ip,
     :use_diego => at.use_diego,
     :system_domain => at.system_domain,
-    :client_secret => at.client_secret
+    :client_secret => at.client_secret,
+    :use_http => at.use_http
   }
   config[:default_timeout] = at.default_timeout if at.default_timeout
   config[:cf_push_timeout] = at.default_timeout if at.cf_push_timeout
