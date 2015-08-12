@@ -33,6 +33,12 @@
       "dns" => 53,
     },
 
+    # without this, a single bootstrapped server will be orphaned after
+    # restarting
+    "rejoin_after_leave" => true,
+
+    "retry_join" => lan_servers,
+
     # explicitly listen and advertise this job's IP; otherwise consul will pick
     # an external IP, and possibly pick the wrong one (e.g. if containers are
     # running on the VM)

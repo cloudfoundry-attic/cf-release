@@ -84,12 +84,7 @@ EOF
     consul_join="<%=p("consul.agent.servers.lan").join(' ')%>"
     server=<%=p("consul.agent.mode") == "server"%>
     if [ "$server" == "true" ]; then
-      actual=0
-      for s in ${consul_join}; do
-        if nc -w 1 $s 8300 < /dev/null; then
-          actual=$((actual + 1))
-        fi
-      done
+      actual=$(/var/vcap/packages/consul/bin/consul members -status=alive | grep server | wc -l)
     fi
 
     setcap cap_net_bind_service=+ep $PKG/bin/consul
@@ -111,10 +106,13 @@ EOF
     echo "Consul pid is " + $consul_pid
 
     start=0
+    synced=false
     if [ $expected -gt 0 ]; then
+      consul_server_ips="<%=p("consul.agent.servers.lan").join('\\|')%>"
       for i in $(seq <%= p("consul.agent.sync_timeout_in_seconds") %>); do
-        echo "$(date)" "Attempting join: ${consul_join}"
-        if $PKG/bin/consul join ${consul_join}; then
+        echo "$(date)" "Waiting to have joined one of: ${consul_join}"
+        if $PKG/bin/consul members -status=alive | grep "${consul_server_ips}"; then
+          synced=true
           break
         fi
 
@@ -132,15 +130,18 @@ EOF
         fi
         sleep 1
       done
+    fi
 
-      if ${synced}; then
-        echo "$(date) Consul is synced"
-      else
-        echo "$(date) Consul failed to sync"
-        $PKG/bin/consul leave
-        kill -9 ${consul_pid}
-        exit 1
+    if ${synced}; then
+      echo "$(date) Consul is synced"
+    else
+      echo "$(date) Consul failed to sync"
+      if ! $PKG/bin/consul leave; then
+        kill ${consul_pid} || true
       fi
+
+      wait ${consul_pid}
+      exit 1
     fi
 
     echo ${consul_pid} > $PID_FILE
