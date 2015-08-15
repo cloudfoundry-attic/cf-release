@@ -149,6 +149,15 @@ properties:
     description: "User name used by Diego to access internal endpoints"
   cc.internal_api_password:
     description: "Password used by Diego to access internal endpoints"
+  cc.diego.nsync_url:
+    default: http://nsync.service.cf.internal:8787
+    description: "URL of the Diego nsync service"
+  cc.diego.stager_url:
+    default: http://stager.service.cf.internal:8888
+    description: "URL of the Diego stager service"
+  cc.diego.tps_url:
+    default: http://tps.service.cf.internal:1518
+    description: "URL of the Diego tps service"
 
   cc.uaa_resource_id:
     default: "cloud_controller,cloud_controller_service_permissions"
