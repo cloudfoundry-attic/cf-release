@@ -137,9 +137,9 @@ meta:
 jobs:
   - name: consul_z1
     templates: (( merge || meta.consul_templates ))
-    instances: 0
+    instances: 2
     persistent_disk: 1024
-    resource_pool: medium_z1
+    resource_pool: small_z1
     networks:
       - name: cf1
         static_ips: (( merge ))
@@ -155,9 +155,9 @@ jobs:
 
   - name: consul_z2
     templates: (( merge || meta.consul_templates ))
-    instances: 0
+    instances: 1
     persistent_disk: 1024
-    resource_pool: medium_z2
+    resource_pool: small_z2
     networks:
       - name: cf2
         static_ips: (( merge ))
