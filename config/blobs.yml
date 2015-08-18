@@ -155,10 +155,6 @@ openjdk/openjdk-1.8.0_51.tar.gz:
   object_id: d85dd2e6-cb0c-45a7-a089-b24a778878ad
   sha: 2651c262b7cede077da23e00d3fe6ffd9849a1d6
   size: 44707537
-rootfs/cflinuxfs2-1.4.0.tar.gz:
-  object_id: b6fff38f-2996-496e-abe8-3fb713316f30
-  sha: 507cb19efd6e4188595ac38e0ab5f55c16a6fa75
-  size: 248487779
 openjdk/openjdk-1.8.0_51-x86_64-mountainlion.tar.gz:
   object_id: dfb85520-0fcc-4ca1-bcb6-4dafb877fc9a
   sha: 1d6fa87aca3599c15b07a7f96e77db4e0d45fa20
@@ -167,3 +163,7 @@ openjdk/openjdk-1.8.0_51-x86_64-trusty.tar.gz:
   object_id: d5310553-5f23-4a34-8bbe-6cca4a2a66f5
   sha: f467dc147e1774f9b4bf78aeca65d096d135e7b6
   size: 77486128
+rootfs/cflinuxfs2-1.5.0.tar.gz:
+  object_id: 77ddf1b5-999d-477e-91e3-94928fc075ca
+  sha: b8e31681a3101b2791b4933bf29719a464554a27
+  size: 248282296
