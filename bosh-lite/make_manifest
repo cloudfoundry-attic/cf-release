@@ -31,7 +31,7 @@ if [[ -f $BOSH_RELEASES_DIR/diego-release/stubs-for-cf-release/enable_diego_ssh_
   diego_stub="$BOSH_RELEASES_DIR/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml"
 fi
 
-$CF_RELEASE_DIR/generate_deployment_manifest \
+$CF_RELEASE_DIR/scripts/generate_deployment_manifest \
                                               warden \
                                               bosh-lite/tmp/cf-stub-with-uuid.yml \
                                               templates/cf-minimal-dev.yml \

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+root_dir=$(cd $(dirname $0)/.. && pwd)
+cd $root_dir 
+
+export base=`pwd`
+
+git submodule foreach '                                                                                 \
+  git fetch origin master &> /dev/null &&                                # make sure we are up-to-date  \
+  GIT_PAGER= $base/check_travis.rb head...FETCH_HEAD &&                  # new                          \
+            (git log head -1           --oneline | sed "s/^/-> /") &&    # current                      \
+            (git log head --skip=1 -2  --oneline | sed "s/^/   /") &&    # 2 commits before current     \
+  echo                                                                                                  \
+'

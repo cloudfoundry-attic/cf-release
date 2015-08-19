@@ -1,0 +1,26 @@
+#!/bin/sh
+
+root_dir=$(cd $(dirname $0)/.. && pwd)
+
+templates=$root_dir/templates
+
+infrastructure=$1
+
+shift
+
+if [ "$infrastructure" != "aws" ] && \
+    [ "$infrastructure" != "openstack" ] && \
+    [ "$infrastructure" != "warden" ] && \
+    [ "$infrastructure" != "vsphere" ] ; then
+  echo "usage: ./scripts/generate_deployment_manifest <aws|openstack|warden|vsphere> [stubs...]"
+  exit 1
+fi
+
+spiff merge \
+  $templates/cf-deployment.yml \
+  $templates/cf-resource-pools.yml \
+  $templates/cf-jobs.yml \
+  $templates/cf-properties.yml \
+  $templates/cf-lamb.yml \
+  $templates/cf-infrastructure-${infrastructure}.yml \
+  "$@"
