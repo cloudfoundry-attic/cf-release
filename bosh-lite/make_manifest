@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export BOSH_USE_BUNDLER=true
+
 BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}
 CF_RELEASE_DIR=${CF_RELEASE_DIR:-$BOSH_RELEASES_DIR/cf-release}
 
