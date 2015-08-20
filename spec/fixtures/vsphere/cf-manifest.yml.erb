@@ -8,11 +8,11 @@ compilation:
   workers: 6
 director_uuid: DIRECTOR_UUID
 jobs:
-- instances: 2
+- instances: 0
   name: consul_z1
   networks:
   - name: cf1
-    static_ips: [0.0.0.17, 0.0.0.18]
+    static_ips: []
   persistent_disk: 1024
   properties:
     consul:
@@ -20,7 +20,7 @@ jobs:
         mode: server
     metron_agent:
       zone: z1
-  resource_pool: small_z1
+  resource_pool: medium_z1
   templates:
   - name: consul_agent
     release: cf
@@ -29,11 +29,11 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
-- instances: 1
+- instances: 0
   name: consul_z2
   networks:
   - name: cf2
-    static_ips: [0.0.1.17]
+    static_ips: []
   persistent_disk: 1024
   properties:
     consul:
@@ -41,7 +41,7 @@ jobs:
         mode: server
     metron_agent:
       zone: z2
-  resource_pool: small_z2
+  resource_pool: medium_z2
   templates:
   - name: consul_agent
     release: cf
@@ -846,14 +846,7 @@ properties:
     agent:
       log_level: null
       servers:
-        lan: [0.0.0.17, 0.0.0.18, 0.0.1.17]
-    ca_cert:
-    agent_cert:
-    agent_key:
-    encrypt_key:
-    require_ssl:
-    server_cert:
-    server_key:
+        lan: []
   databases:
     address: 0.0.0.12
     databases:
