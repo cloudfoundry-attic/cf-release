@@ -63,22 +63,6 @@ golang/go1.4.2.linux-amd64.tar.gz:
   object_id: bfaf73b1-de68-4c94-9a02-555245b2eb8d
   sha: 5020af94b52b65cc9b6f11d50a67e4bae07b0aff
   size: 62442704
-ruby-2.1.6/bundler-1.9.4.gem:
-  object_id: 567b4de7-54cd-473e-870a-680ab5d6632c
-  sha: ea3f17a76a8249049b5589c9b5421af72189babc
-  size: 244224
-ruby-2.1.6/ruby-2.1.6.tar.gz:
-  object_id: 97c9a690-a164-42c4-8755-6af2f114845b
-  sha: 426289b6647ce35ad101091825b6e7e5fce207f3
-  size: 15141710
-ruby-2.1.6/rubygems-2.4.6.tgz:
-  object_id: 250b97aa-7419-4982-ab5f-8cd45f2a6857
-  sha: bf59306c0f6c37551875e70ce8ccfb1cbc60c28b
-  size: 447588
-ruby-2.1.6/yaml-0.1.6.tar.gz:
-  object_id: 9b62536a-3cae-416d-a243-78e97b41e346
-  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
-  size: 503012
 consul/consul-template_0.9.0_linux_amd64.tar.gz:
   object_id: e83bcdcd-2f31-4b73-8cf8-516d54e8f59a
   sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
@@ -167,3 +151,19 @@ rootfs/cflinuxfs2-1.5.0.tar.gz:
   object_id: 77ddf1b5-999d-477e-91e3-94928fc075ca
   sha: b8e31681a3101b2791b4933bf29719a464554a27
   size: 248282296
+ruby-2.1.7/bundler-1.9.4.gem:
+  object_id: e158e651-c3ff-4dd0-8f42-f7c2f0e08688
+  sha: ea3f17a76a8249049b5589c9b5421af72189babc
+  size: 244224
+ruby-2.1.7/ruby-2.1.7.tar.gz:
+  object_id: 5af4b5ce-4e20-4e26-bda2-c942cb078e38
+  sha: e2e195a4a58133e3ad33b955c829bb536fa3c075
+  size: 15151458
+ruby-2.1.7/rubygems-2.4.6.tgz:
+  object_id: 3afd1586-ce0e-4ded-a0ca-feee7cf48a82
+  sha: bf59306c0f6c37551875e70ce8ccfb1cbc60c28b
+  size: 447588
+ruby-2.1.7/yaml-0.1.6.tar.gz:
+  object_id: 222e4627-f3f5-4c83-aae6-3c6460aae248
+  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
+  size: 503012
