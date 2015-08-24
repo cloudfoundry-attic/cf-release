@@ -304,6 +304,12 @@ properties:
     description:
   login.notifications.url:
     description: "The url for the notifications service (configure to use Notifications Service instead of SMTP server)"
+  login.prompt.username.text:
+    description: "The text used to prompt for a username during login"
+    default: Email
+  login.prompt.password.text:
+    description: "The text used to prompt for a password during login"
+    default: Password
   login.smtp:
     description: "SMTP server configuration, for password reset emails etc."
   login.smtp.host:

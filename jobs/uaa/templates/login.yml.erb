@@ -90,6 +90,11 @@ login:
   <% if !properties.login.invitations_enabled.nil? %>
   invitationsEnabled: <%= properties.login.invitations_enabled %>
   <% end %>
+  prompt:
+    username:
+      text: <%= properties.login.prompt.username.text %>
+    password:
+      text: <%= properties.login.prompt.password.text %>
 <% if properties.login.saml %>
   <% if !properties.login.saml.serviceProviderCertificate.nil? %>
   serviceProviderCertificate: |
