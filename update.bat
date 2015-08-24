@@ -1,5 +1,7 @@
 @echo off
 
+echo "WARNING: This file is deprecated and will be removed. Please use ./scripts/update instead." 1>&2
+
 set submodule_warning='Uncommitted submodules changes will be clobbered'
 set unversioned_change_warning='Unversioned changes will be clobbered'
 

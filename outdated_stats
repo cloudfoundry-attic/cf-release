@@ -1,3 +1,5 @@
+>&2 echo "WARNING: This file is deprecated and will be removed. Please use ./scripts/outdated_stats instead."
+
 git submodule --quiet foreach '                                                                                \
   git fetch origin master &> /dev/null &&                               # make sure we are up-to-date  \
   REPO=`echo $name | sed s/src\\\///g ` && \

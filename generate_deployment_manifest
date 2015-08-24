@@ -1,5 +1,7 @@
 #!/bin/sh
 
+>&2 echo "WARNING: This file is deprecated and will be removed. Please use ./scripts/generate_deployment_manifest instead."
+
 templates=$(dirname $0)/templates
 
 infrastructure=$1

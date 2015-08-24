@@ -8,6 +8,8 @@ function has_upstream() {
   git rev-parse @{u} > /dev/null 2>&1
 }
 
+>&2 echo "WARNING: This file is deprecated and will be removed. Please use ./scripts/update instead."
+
 if [ "$1" == "--help" ]; then
   echo "USAGE: $0"
   echo "    This command takes no arguments."
