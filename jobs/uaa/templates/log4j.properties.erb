@@ -21,11 +21,11 @@ log4j.appender.SYSLOG.layout = org.apache.log4j.PatternLayout
 # Prefix the message with the tag (vcap.uaa) and set FacilityPrinting off.
 log4j.appender.SYSLOG.layout.ConversionPattern=vcap.uaa: ${LOG_PATTERN}
 
-log4j.category.org.springframework.security=DEBUG
-log4j.category.org.cloudfoundry.identity=DEBUG
-log4j.category.org.springframework.web=DEBUG
+log4j.category.org.springframework.security=<%= p("uaa.logging_level") %>
+log4j.category.org.cloudfoundry.identity=<%= p("uaa.logging_level") %>
+log4j.category.org.springframework.web=<%= p("uaa.logging_level") %>
 log4j.category.org.springframework.web.context.support.StandardServletEnvironment=INFO
-log4j.category.org.springframework.jdbc=DEBUG
+log4j.category.org.springframework.jdbc=<%= p("uaa.logging_level") %>
 
 # leaks HTTP data in debug mode
 log4j.category.org.apache.http.wire=INFO
