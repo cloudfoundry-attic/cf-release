@@ -66,9 +66,6 @@ properties:
     description: "Timeout for requests in seconds."
     default: 900
 
-  cc.internal_service_hostname:
-    description: "DNS hostname that can resolve to any CC within the deployment"
-    default: ~
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022
@@ -89,8 +86,6 @@ properties:
   cc.jobs.droplet_deletion.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
   cc.jobs.droplet_upload.timeout_in_seconds:
-    description: "The longest this job can take before it is cancelled"
-  cc.jobs.model_deletion.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
 
   cc.app_events.cutoff_age_in_days:
@@ -117,16 +112,10 @@ properties:
     description: "build attribute in the /info endpoint"
   cc.info.version:
     description: "version attribute in the /info endpoint"
-  cc.info.support_address:
-    description: "URL for the support attribute in the /info endpoint"
   cc.info.description:
     description: "free form description for attribute in the /info endpoint"
   cc.info.custom:
     description: "Custom values for /v2/info endpoint"
-
-  cc.directories.tmpdir:
-    default: "/var/vcap/data/cloud_controller_ng/tmp"
-    description: "The directory to use for temporary files"
 
   cc.external_protocol:
     default: "http"
@@ -297,9 +286,6 @@ properties:
   ccdb.max_connections:
     default: 25
     description: "Maximum connections for Sequel"
-  ccdb.max_ar_connections:
-    default: 5
-    description: "Maximum connections for ActiveRecord"
   ccdb.pool_timeout:
     default: 10
     description:

@@ -98,9 +98,6 @@ properties:
     description: "Timeout for requests in seconds."
     default: 900
 
-  cc.internal_service_hostname:
-    description: "DNS hostname that can resolve to any CC within the deployment"
-    default: ~
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022
@@ -122,8 +119,6 @@ properties:
     description: "The longest this job can take before it is cancelled"
   cc.jobs.droplet_upload.timeout_in_seconds:
     description: "The longest this job can take before it is cancelled"
-  cc.jobs.model_deletion.timeout_in_seconds:
-    description: "The longest this job can take before it is cancelled"
 
   cc.app_events.cutoff_age_in_days:
     description: "How old an app event should stay in cloud controller database before being cleaned up"
@@ -143,16 +138,11 @@ properties:
     description: "build attribute in the /info endpoint"
   cc.info.version:
     description: "version attribute in the /info endpoint"
-  cc.info.support_address:
-    description: "URL for the support attribute in the /info endpoint"
   cc.info.description:
     description: "free form description for attribute in the /info endpoint"
   cc.info.custom:
     description: "Custom values for /v2/info endpoint"
 
-  cc.directories.tmpdir:
-    default: "/var/vcap/data/cloud_controller_ng/tmp"
-    description: "The directory to use for temporary files"
   cc.directories.diagnostics:
     default: "/var/vcap/data/cloud_controller_ng/diagnostics"
     description: "The directory where operator requested diagnostic files should be placed"
@@ -331,9 +321,6 @@ properties:
   ccdb.max_connections:
     default: 25
     description: "Maximum connections for Sequel"
-  ccdb.max_ar_connections:
-    default: 5
-    description: "Maximum connections for ActiveRecord"
   ccdb.pool_timeout:
     default: 10
     description:
@@ -509,8 +496,6 @@ properties:
     description: "Used to grant scope for SSO clients for service brokers"
     default: "openid,cloud_controller_service_permissions.read"
 
-  uaa.clients.cloud_controller_username_lookup.client:
-    description: "Used for fetching usernames from UAA."
   uaa.clients.cloud_controller_username_lookup.secret:
     description: "Used for fetching usernames from UAA."
 

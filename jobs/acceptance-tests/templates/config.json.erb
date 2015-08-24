@@ -15,25 +15,24 @@
     network.ip
   end
 
-  at = properties.acceptance_tests
   config = {
-    :api => at.api,
-    :apps_domain => Array(at.apps_domain).first,
-    :admin_user => at.admin_user,
-    :admin_password => at.admin_password,
-    :skip_ssl_validation => at.skip_ssl_validation,
+    :api => properties.acceptance_tests.api,
+    :apps_domain => Array(properties.acceptance_tests.apps_domain).first,
+    :admin_user => properties.acceptance_tests.admin_user,
+    :admin_password => properties.acceptance_tests.admin_password,
+    :skip_ssl_validation => properties.acceptance_tests.skip_ssl_validation,
     :artifacts_directory => "/var/vcap/sys/log/acceptance_tests/",
     :syslog_drain_port => 1234,
     :syslog_ip_address => discover_external_ip,
-    :use_diego => at.use_diego,
-    :system_domain => at.system_domain,
-    :client_secret => at.client_secret,
-    :use_http => at.use_http
+    :use_diego => properties.acceptance_tests.use_diego,
+    :system_domain => properties.acceptance_tests.system_domain,
+    :client_secret => properties.acceptance_tests.client_secret,
+    :use_http => properties.acceptance_tests.use_http
   }
-  config[:default_timeout] = at.default_timeout if at.default_timeout
-  config[:cf_push_timeout] = at.default_timeout if at.cf_push_timeout
-  config[:long_curl_timeout] = at.default_timeout if at.long_curl_timeout
-  config[:broker_start_timeout] = at.default_timeout if at.broker_start_timeout
+  config[:default_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.default_timeout
+  config[:cf_push_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.cf_push_timeout
+  config[:long_curl_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.long_curl_timeout
+  config[:broker_start_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.broker_start_timeout
 %>
 
 <%= JSON.pretty_generate(config) %>

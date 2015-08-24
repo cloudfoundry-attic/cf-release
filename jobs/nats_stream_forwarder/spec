@@ -13,9 +13,6 @@ packages:
   - nats
 
 properties:
-  nats_props:
-    description:
-    default: "nats"
   networks.apps:
     description: "Nats stream forwarder network information."
   nats.user:
