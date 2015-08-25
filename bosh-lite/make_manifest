@@ -5,37 +5,35 @@ export BOSH_USE_BUNDLER=true
 BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}
 CF_RELEASE_DIR=${CF_RELEASE_DIR:-$BOSH_RELEASES_DIR/cf-release}
 
-if [[ ! -d $CF_RELEASE_DIR ]]; then
-  echo "Cannot find cf-release at $CF_RELEASE_DIR; override with \$CF_RELEASE_DIR variable"
+if [[ ! -d "${CF_RELEASE_DIR}" ]]; then
+  echo "Cannot find cf-release at '${CF_RELEASE_DIR}'; override with \$CF_RELEASE_DIR variable"
   exit 1
 fi
 
 BOSH_STATUS=$(bosh status)
 EXPECTED_DIRECTOR_NAME="Bosh Lite Director"
-DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
 
 if [[ "$(echo "$BOSH_STATUS" | grep Name)" != *"$EXPECTED_DIRECTOR_NAME"* ]]; then
   echo "Can only target $EXPECTED_DIRECTOR_NAME. Please use 'bosh target' before running this script."
   exit 1
 fi
 
-cd $CF_RELEASE_DIR
-mkdir -p bosh-lite/tmp
-mkdir -p bosh-lite/manifests
-cp bosh-lite/cf-stub-spiff.yml bosh-lite/tmp/cf-stub-with-uuid.yml
+mkdir -p "${CF_RELEASE_DIR}/bosh-lite/manifests"
 
+DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
 echo $DIRECTOR_UUID
-perl -pi -e "s/PLACEHOLDER-DIRECTOR-UUID/$DIRECTOR_UUID/g" bosh-lite/tmp/cf-stub-with-uuid.yml
 
-if [[ -f $BOSH_RELEASES_DIR/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml  ]]; then
-  diego_stub="$BOSH_RELEASES_DIR/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml"
+if [[ -f "${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml" ]]; then
+  diego_stub="${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml"
 fi
 
-$CF_RELEASE_DIR/scripts/generate_deployment_manifest \
-                                              warden \
-                                              bosh-lite/tmp/cf-stub-with-uuid.yml \
-                                              templates/cf-minimal-dev.yml \
-                                              $diego_stub \
-                                              $* > bosh-lite/manifests/cf-manifest.yml
+"${CF_RELEASE_DIR}/scripts/generate_deployment_manifest" \
+  warden \
+  "${CF_RELEASE_DIR}/bosh-lite/cf-stub-spiff.yml" \
+  <(echo "director_uuid: ${DIRECTOR_UUID}") \
+  "${CF_RELEASE_DIR}/templates/cf-minimal-dev.yml" \
+  "${diego_stub}" \
+  "$@" \
+  > "${CF_RELEASE_DIR}/bosh-lite/manifests/cf-manifest.yml"
 
-bosh deployment bosh-lite/manifests/cf-manifest.yml
+bosh deployment "${CF_RELEASE_DIR}/bosh-lite/manifests/cf-manifest.yml"

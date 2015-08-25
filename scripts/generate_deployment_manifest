@@ -1,8 +1,8 @@
 #!/bin/sh
 
-root_dir=$(cd $(dirname $0)/.. && pwd)
+root_dir=$(cd "$(dirname "$0")/.." && pwd)
 
-templates=$root_dir/templates
+templates="${root_dir}/templates"
 
 infrastructure=$1
 
@@ -17,10 +17,10 @@ if [ "$infrastructure" != "aws" ] && \
 fi
 
 spiff merge \
-  $templates/cf-deployment.yml \
-  $templates/cf-resource-pools.yml \
-  $templates/cf-jobs.yml \
-  $templates/cf-properties.yml \
-  $templates/cf-lamb.yml \
-  $templates/cf-infrastructure-${infrastructure}.yml \
+  "${templates}/cf-deployment.yml" \
+  "${templates}/cf-resource-pools.yml" \
+  "${templates}/cf-jobs.yml" \
+  "${templates}/cf-properties.yml" \
+  "${templates}/cf-lamb.yml" \
+  "${templates}/cf-infrastructure-${infrastructure}.yml" \
   "$@"
