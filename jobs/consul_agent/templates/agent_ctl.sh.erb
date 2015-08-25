@@ -113,8 +113,6 @@ EOF
         sleep 1
         start=$((start + 1))
       done
-    else
-      synced=true
     fi
 
     if [[ "$server" == "true" && $actual -eq $((expected - 1)) ]]; then
