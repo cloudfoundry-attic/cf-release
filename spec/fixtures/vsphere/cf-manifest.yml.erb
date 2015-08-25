@@ -975,6 +975,10 @@ properties:
     share: null
   request_timeout_in_seconds: 900
   router:
+    logrotate:
+      freq_min: 20
+      rotate: 5
+      size: 3M
     enable_ssl: true
     ssl_cert: |
       -----BEGIN CERTIFICATE-----

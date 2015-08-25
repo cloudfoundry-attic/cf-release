@@ -50,6 +50,10 @@ properties:
     user: nats_user
     password: nats_password
   router:
+    logrotate:
+      freq_min: 20
+      rotate: 5
+      size: 3M
     enable_ssl: true
     ssl_cert: |
       -----BEGIN CERTIFICATE-----

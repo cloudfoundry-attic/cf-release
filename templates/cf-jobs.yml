@@ -685,6 +685,7 @@ properties:
     secure_cookies: (( merge || nil ))
     route_service_secret: (( merge || nil ))
     route_service_timeout: (( merge || nil ))
+    logrotate: (( merge || nil ))
 
   syslog_daemon_config: ~
 

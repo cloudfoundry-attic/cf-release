@@ -206,7 +206,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  update: 
+  update:
     max_in_flight: 1
 - instances: 0
   name: stats_z1
@@ -2723,6 +2723,10 @@ properties:
     share: null
   request_timeout_in_seconds: 900
   router:
+    logrotate:
+      freq_min: 20
+      rotate: 5
+      size: 3M
     enable_ssl: true
     ssl_cert: |
       -----BEGIN CERTIFICATE-----

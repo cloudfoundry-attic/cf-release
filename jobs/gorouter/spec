@@ -67,6 +67,15 @@ properties:
   router.route_service_timeout:
     description: "Expiry time of a route service signature in seconds"
     default: 60
+  router.logrotate.freq_min:
+    description: "The frequency in minutes which logrotate will rotate VM logs"
+    default: 5
+  router.logrotate.rotate:
+    description: "The number of files that logrotate will keep around on the VM"
+    default: 7
+  router.logrotate.size:
+    description: "The size at which logrotate will decide to rotate the log file"
+    default: 2M
 
   nats.user:
     description:
