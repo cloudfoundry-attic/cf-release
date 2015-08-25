@@ -8,7 +8,7 @@ describe "Manifest Generation" do
   shared_examples "generating manifests" do |infrastructure|
     it "builds the correct manifest for #{infrastructure}" do
       example_manifest = Tempfile.new("example-manifest.yml")
-      `./generate_deployment_manifest #{infrastructure} spec/fixtures/#{infrastructure}/cf-stub.yml > #{example_manifest.path}`
+      `./scripts/generate_deployment_manifest #{infrastructure} spec/fixtures/#{infrastructure}/cf-stub.yml > #{example_manifest.path}`
       expect($?.exitstatus).to eq(0)
 
       expected = File.read("spec/fixtures/#{infrastructure}/cf-manifest.yml.erb")
