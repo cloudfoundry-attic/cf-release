@@ -119,14 +119,6 @@ php-buildpack/php_buildpack-cached-v4.0.0.zip:
   object_id: 84cad3aa-3417-48b6-8e13-70fbc5e6833a
   sha: 1dd1942d2d1d4a8ea121f7bec90cac9357d06675
   size: 471190774
-go-buildpack/go_buildpack-cached-v1.5.0.zip:
-  object_id: 95b17554-1ac2-4c2a-8359-664fe5cbabc7
-  sha: fd76bdda73b6b75cd038ac5b768d187156adb363
-  size: 443150460
-ruby-buildpack/ruby_buildpack-cached-v1.6.2.zip:
-  object_id: 89d8fb16-a2b6-40f3-8212-431cb56fe4de
-  sha: f095797435bb79a7b2f32a8c3c693dfd33a34d3e
-  size: 294292739
 java-buildpack/java-buildpack-offline-v3.1.1.zip:
   object_id: d5604cb2-c0fe-431e-b2fd-3e868e2b934c
   sha: db5f96ce966e02c611da8222d4345d420da63655
@@ -167,3 +159,11 @@ ruby-2.1.7/yaml-0.1.6.tar.gz:
   object_id: 222e4627-f3f5-4c83-aae6-3c6460aae248
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
+go-buildpack/go_buildpack-cached-v1.6.0.zip:
+  object_id: 26010bac-2c0c-43d5-ba41-494cdd54704d
+  sha: 191c06d332f76443a45519cdfd3634c6b95cbd1f
+  size: 437981507
+ruby-buildpack/ruby_buildpack-cached-v1.6.5.zip:
+  object_id: d8af5cc5-6f7f-49ba-a360-a3facf57324c
+  sha: 2139fd9d376dac991c924f906b393db8226b4b14
+  size: 294181987
