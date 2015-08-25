@@ -5,6 +5,7 @@ LOG_DIR=/var/vcap/sys/log/consul_agent
 RUN_DIR=/var/vcap/sys/run/consul_agent
 DATA_DIR=/var/vcap/store/consul_agent
 CONF_DIR=/var/vcap/jobs/consul_agent/config
+CERT_DIR=$CONF_DIR/certs
 
 PKG=/var/vcap/packages/consul
 
@@ -30,6 +31,11 @@ case $1 in
 
     mkdir -p $DATA_DIR
     chown -R vcap:vcap $DATA_DIR
+
+    <% if p("consul.require_ssl") %>
+      chown vcap:vcap ${CERT_DIR}/*.{crt,key}
+      chmod 640 ${CERT_DIR}/*.{crt,key}
+    <% end %>
 
     <% p("consul.agent.services").each do |service_name, service| %>
     cat > $CONF_DIR/service-<%= service_name %>.json <<EOF
