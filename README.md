@@ -1,16 +1,15 @@
-[![Build Status](https://travis-ci.org/cloudfoundry/cf-release.svg?branch=develop)](https://travis-ci.org/cloudfoundry/cf-release)
-
 # Welcome to Cloud Foundry
 
 Cloud Foundry is an open platform as a service (PaaS) that provides a choice of clouds, developer frameworks, and application services. Cloud Foundry makes it faster and easier to build, test, deploy, and scale applications.
 
-This repository contains the Cloud Foundry source code.
+This repository contains the Cloud Foundry source code. Cloud Foundry is deployed as a BOSH release.  See the [BOSH](http://bosh.io/) documentation for more information on BOSH.
 
-Our documentation (currently a work in progress) is available here: [http://docs.cloudfoundry.org/](http://docs.cloudfoundry.org/)
+* [Documentation](http://docs.cloudfoundry.org/)
+* [Release Notes](https://github.com/cloudfoundry/cf-release/releases)
+* [CI](https://runtime.ci.cf-app.com/pipelines/cf-release?groups=cf-release)
+* [Mailing List](https://lists.cloudfoundry.org/archives/list/cf-dev@lists.cloudfoundry.org/)
 
-Release notes for final releases are available here:
-[https://github.com/cloudfoundry/cf-release/releases](https://github.com/cloudfoundry/cf-release/releases)
-
+#### Table of Contents
 1. [About Branches](#about-branches)
 1. [Repository Contents](#repository-contents)
 1. [Cloud Foundry Components (V2)](#cloud-foundry-components-v2)
