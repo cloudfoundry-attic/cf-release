@@ -139,10 +139,6 @@ openjdk/openjdk-1.8.0_51-x86_64-trusty.tar.gz:
   object_id: d5310553-5f23-4a34-8bbe-6cca4a2a66f5
   sha: f467dc147e1774f9b4bf78aeca65d096d135e7b6
   size: 77486128
-rootfs/cflinuxfs2-1.5.0.tar.gz:
-  object_id: 77ddf1b5-999d-477e-91e3-94928fc075ca
-  sha: b8e31681a3101b2791b4933bf29719a464554a27
-  size: 248282296
 ruby-2.1.7/bundler-1.9.4.gem:
   object_id: e158e651-c3ff-4dd0-8f42-f7c2f0e08688
   sha: ea3f17a76a8249049b5589c9b5421af72189babc
@@ -167,3 +163,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.5.zip:
   object_id: d8af5cc5-6f7f-49ba-a360-a3facf57324c
   sha: 2139fd9d376dac991c924f906b393db8226b4b14
   size: 294181987
+rootfs/cflinuxfs2-1.6.0.tar.gz:
+  object_id: 86e87b23-975f-4811-9c75-07871e1a05fe
+  sha: 24036b1b7dc4c1cb964b9edceaccacf05cf64d62
+  size: 248300724
