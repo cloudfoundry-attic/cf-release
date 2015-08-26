@@ -659,6 +659,7 @@ properties:
     route_service_secret: (( merge || nil ))
     route_service_timeout: (( merge || nil ))
     logrotate: (( merge || nil ))
+    extra_headers_to_log: (( merge || nil ))
 
   syslog_daemon_config: ~
 
