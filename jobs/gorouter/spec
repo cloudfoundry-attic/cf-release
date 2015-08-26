@@ -76,6 +76,9 @@ properties:
   router.logrotate.size:
     description: "The size at which logrotate will decide to rotate the log file"
     default: 2M
+  router.extra_headers_to_log:
+    description: "A list of headers that log events will be annotated with"
+    default: []
 
   nats.user:
     description:
