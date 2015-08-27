@@ -5,3 +5,7 @@ dependencies:
   - cli
 files:
   - smoke-tests/**/*
+excluded_files:
+  - smoke-tests/smoke/results/*
+  - smoke-tests/*config.json
+  - smoke-tests/**/*.test

@@ -9,3 +9,4 @@ files:
 excluded_files:
   - github.com/cloudfoundry/cf-acceptance-tests/results/*
   - github.com/cloudfoundry/cf-acceptance-tests/*config.json
+  - github.com/cloudfoundry/cf-acceptance-tests/**/*.test
