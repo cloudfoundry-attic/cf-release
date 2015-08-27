@@ -255,6 +255,9 @@ properties:
       The JVM option -javaagent:/path/to/newrelic.jar will be added to Apache Tomcat's startup script
       The enablement of the NewRelic agent in the UAA is triggered by the property uaa.newrelic.common.license_key
       The property uaa.newrelic.common.license_key must be set!
+  uaa.logging_level:
+    description: Set UAA logging level.  (e.g. TRACE, DEBUG, INFO)
+    default: DEBUG
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
   login.ldap.profile_type:
