@@ -68,7 +68,7 @@ if p("consul.require_ssl")
     "ca_file" => "#{certs_dir}/ca.crt",
     "key_file" => key_file,
     "cert_file" => cert_file,
-    "encrypt" => p("consul.encrypt_key"),
+    "encrypt" => p("consul.encrypt_keys").first,
   })
 end
 
