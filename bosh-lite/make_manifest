@@ -3,7 +3,8 @@
 export BOSH_USE_BUNDLER=true
 
 BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}
-CF_RELEASE_DIR=${CF_RELEASE_DIR:-$BOSH_RELEASES_DIR/cf-release}
+SCRIPT_DIR=$(dirname $0)
+CF_RELEASE_DIR=${CF_RELEASE_DIR:-$SCRIPT_DIR/..}
 
 if [[ ! -d "${CF_RELEASE_DIR}" ]]; then
   echo "Cannot find cf-release at '${CF_RELEASE_DIR}'; override with \$CF_RELEASE_DIR variable"
@@ -21,7 +22,6 @@ fi
 mkdir -p "${CF_RELEASE_DIR}/bosh-lite/manifests"
 
 DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
-echo $DIRECTOR_UUID
 
 if [[ -f "${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml" ]]; then
   diego_stub="${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml"

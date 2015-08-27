@@ -1,6 +1,6 @@
 #!/bin/bash
 
->&2 echo "WARNING: This file is deprecated and will be removed. Please use ./scripts/outdated instead."
+>&2 echo "WARNING: The './outdated' file is deprecated and will be removed. Please use ./scripts/outdated instead."
 
 export base=`pwd`
 
