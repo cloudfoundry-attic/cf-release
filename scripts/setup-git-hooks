@@ -1,0 +1,8 @@
+pushd $(dirname $0) > /dev/null
+  SCRIPT_DIR=$(pwd)
+popd > /dev/null
+
+for f in ${SCRIPT_DIR}/../git_hooks/*
+do
+  ln -fs ../../git_hooks/$( basename $f ) ${SCRIPT_DIR}/../.git/hooks/$( basename $f )
+done
