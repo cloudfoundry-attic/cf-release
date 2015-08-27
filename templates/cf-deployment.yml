@@ -5,11 +5,9 @@ meta:
   # i.e. cf-tabasco
   environment: ~
 
-  release_version: (( release_version_overrides || "latest" ))
-
   releases:
   - name: cf
-    version: (( meta.release_version ))
+    version: (( release_version_overrides || "latest" ))
 
 name: (( meta.environment ))
 
