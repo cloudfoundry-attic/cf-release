@@ -66,8 +66,6 @@ jobs:
       ssl_ciphers: null
       ssl_pem: null
       disable_http: true
-    networks:
-      apps: cf1
     router:
       servers:
         z1:
@@ -90,8 +88,6 @@ jobs:
     static_ips:
     - 0.0.0.1
   properties:
-    networks:
-      apps: cf1
     metron_agent:
       zone: z1
   resource_pool: medium_z1
@@ -110,8 +106,6 @@ jobs:
     static_ips:
     - 0.0.1.1
   properties:
-    networks:
-      apps: cf2
     metron_agent:
       zone: z2
   resource_pool: medium_z2
@@ -132,8 +126,6 @@ jobs:
     - 0.0.0.15
   persistent_disk: 10024
   properties:
-    networks:
-      apps: cf1
     metron_agent:
       zone: z1
   resource_pool: medium_z1
@@ -154,8 +146,6 @@ jobs:
     - 0.0.1.13
   persistent_disk: 10024
   properties:
-    networks:
-      apps: cf2
     metron_agent:
       zone: z2
   resource_pool: medium_z2
@@ -173,8 +163,6 @@ jobs:
   networks:
   - name: cf1
   properties:
-    networks:
-      apps: cf1
     metron_agent:
       zone: z1
   resource_pool: small_z1
@@ -191,8 +179,6 @@ jobs:
     static_ips:
     - 0.0.0.2
   properties:
-    networks:
-      apps: cf1
     metron_agent:
       zone: z1
   persistent_disk: 102400
@@ -210,8 +196,6 @@ jobs:
     static_ips:
     - 0.0.0.12
   properties:
-    networks:
-      apps: cf1
     metron_agent:
       zone: z1
   persistent_disk: 4096
@@ -231,8 +215,6 @@ jobs:
       agent:
         services:
           uaa: {}
-    networks:
-      apps: cf1
     metron_agent:
       zone: z1
   resource_pool: medium_z1
@@ -253,8 +235,6 @@ jobs:
       agent:
         services:
           uaa: {}
-    networks:
-      apps: cf2
     metron_agent:
       zone: z2
   resource_pool: medium_z2
@@ -279,8 +259,6 @@ jobs:
           routing-api: {}
     metron_agent:
       zone: z1
-    networks:
-      apps: cf1
     nfs_server:
       address: 0.0.0.2
       allow_from_entries:
@@ -315,8 +293,6 @@ jobs:
           routing-api: {}
     metron_agent:
       zone: z2
-    networks:
-      apps: cf2
     nfs_server:
       address: 0.0.0.2
       allow_from_entries:
@@ -346,8 +322,6 @@ jobs:
   properties:
     metron_agent:
       zone: z1
-    networks:
-      apps: cf1
   resource_pool: medium_z1
   templates:
   - name: cloud_controller_clock
@@ -363,8 +337,6 @@ jobs:
   properties:
     metron_agent:
       zone: z1
-    networks:
-      apps: cf1
     nfs_server:
       address: 0.0.0.2
       allow_from_entries:
@@ -390,8 +362,6 @@ jobs:
   properties:
     metron_agent:
       zone: z2
-    networks:
-      apps: cf2
     nfs_server:
       address: 0.0.0.2
       allow_from_entries:
@@ -414,8 +384,6 @@ jobs:
   networks:
   - name: cf1
   properties:
-    networks:
-      apps: cf1
     metron_agent:
       zone: z1
   resource_pool: medium_z1
@@ -430,8 +398,6 @@ jobs:
   networks:
   - name: cf2
   properties:
-    networks:
-      apps: cf2
     metron_agent:
       zone: z2
   resource_pool: medium_z2
@@ -451,8 +417,6 @@ jobs:
       zone: z1
     metron_agent:
       zone: z1
-    networks:
-      apps: cf1
   resource_pool: runner_z1
   templates:
   - name: dea_next
@@ -473,8 +437,6 @@ jobs:
       zone: z2
     metron_agent:
       zone: z2
-    networks:
-      apps: cf2
   resource_pool: runner_z2
   templates:
   - name: dea_next
@@ -491,8 +453,6 @@ jobs:
   - name: cf1
   properties:
 <%= loggregator_z1_properties %>
-    networks:
-      apps: cf1
   resource_pool: medium_z1
   templates:
 <%= loggregator_templates %>
@@ -503,8 +463,6 @@ jobs:
   - name: cf2
   properties:
 <%= loggregator_z2_properties %>
-    networks:
-      apps: cf2
   resource_pool: medium_z2
   templates:
 <%= loggregator_templates %>
@@ -515,8 +473,6 @@ jobs:
   - name: cf1
   properties:
 <%= loggregator_z1_properties %>
-    networks:
-      apps: cf1
   resource_pool: medium_z1
   templates:
 <%= loggregator_templates %>
@@ -527,8 +483,6 @@ jobs:
   - name: cf2
   properties:
 <%= loggregator_z2_properties %>
-    networks:
-      apps: cf2
   resource_pool: medium_z2
   templates:
 <%= loggregator_templates %>
@@ -539,8 +493,6 @@ jobs:
   - name: cf1
   properties:
 <%= loggregator_trafficcontroller_z1_properties %>
-    networks:
-      apps: cf1
   resource_pool: small_z1
   templates:
 <%= loggregator_trafficcontroller_templates %>
@@ -551,8 +503,6 @@ jobs:
   - name: cf2
   properties:
 <%= loggregator_trafficcontroller_z2_properties %>
-    networks:
-      apps: cf2
   resource_pool: small_z2
   templates:
 <%= loggregator_trafficcontroller_templates %>
@@ -570,8 +520,6 @@ jobs:
           gorouter: {}
     metron_agent:
       zone: z1
-    networks:
-      apps: cf1
   resource_pool: router_z1
   templates:
   - name: gorouter
@@ -594,8 +542,6 @@ jobs:
           gorouter: {}
     metron_agent:
       zone: z2
-    networks:
-      apps: cf2
   resource_pool: router_z2
   templates:
   - name: gorouter
@@ -619,9 +565,7 @@ jobs:
   name: smoke_tests
   networks:
   - name: cf1
-  properties:
-    networks:
-      apps: cf1
+  properties: {}
   resource_pool: small_errand
   templates:
   - name: smoke-tests
