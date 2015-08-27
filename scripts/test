@@ -1,4 +1,14 @@
 #!/bin/bash -e
 
+pushd $(dirname $0) > /dev/null
+  SCRIPT_DIR=$(pwd)
+popd > /dev/null
+
+cd ${SCRIPT_DIR}/..
+
 bundle install
+bosh --parallel 5 sync blobs
+
+${SCRIPT_DIR}/unused_blobs &&
+${SCRIPT_DIR}/unused_packages &&
 bundle exec rspec
