@@ -50,8 +50,6 @@ properties:
   ssl.skip_cert_verify:
     description: "when connecting over https, ignore bad ssl certificates"
     default: false
-  networks.apps:
-    description: "HM9000 network information."
 
   hm9000.desired_state_batch_size:
     description: "The batch size when fetching desired state information from the CC."

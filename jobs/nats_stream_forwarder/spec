@@ -13,8 +13,6 @@ packages:
   - nats
 
 properties:
-  networks.apps:
-    description: "Nats stream forwarder network information."
   nats.user:
     description: "Username for server authentication."
   nats.password:

@@ -41,9 +41,6 @@ properties:
     default: true
     description: "Allow users to change the value of the app-level allow_ssh attribute"
 
-  networks.apps:
-    description: "HAProxy network information."
-
   app_ssh.port:
     description: "External port for SSH access to application instances"
     default: 2222

@@ -46,5 +46,3 @@ properties:
   smoke_tests.ginkgo_opts:
     default: ''
     description: Ginkgo options for the smoke tests
-  networks.apps:
-    description: "Nats stream forwarder network information."

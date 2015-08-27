@@ -120,8 +120,6 @@ properties:
     description: "User name for NATS login"
   nats.machines:
     description: "IP of each NATS cluster member."
-  networks.apps:
-    description: "The App network name"
   uaadb.address:
     description: "The UAA database IP address"
   uaadb.databases:

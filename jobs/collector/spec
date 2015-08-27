@@ -75,5 +75,3 @@ properties:
     description: "NATS TCP port"
   nats.user:
     description: "NATS user"
-  networks.apps:
-    description: "Collector network information."

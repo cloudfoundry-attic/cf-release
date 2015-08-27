@@ -12,8 +12,6 @@ packages:
   - gnatsd
 
 properties:
-  networks.apps:
-    description: "NATS network information"
   nats.user:
     description: "Username for server authentication."
   nats.password:

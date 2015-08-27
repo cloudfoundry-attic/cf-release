@@ -77,9 +77,6 @@ properties:
     description: "External port for SSH access to application instances"
     default: 2222
 
-  networks.apps:
-    description: "Cloud controller network information."
-
   nats.user:
     description: "Username for cc client to connect to NATS"
   nats.password:
