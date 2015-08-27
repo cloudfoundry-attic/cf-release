@@ -32,7 +32,7 @@ fi
   "${CF_RELEASE_DIR}/bosh-lite/cf-stub-spiff.yml" \
   <(echo "director_uuid: ${DIRECTOR_UUID}") \
   "${CF_RELEASE_DIR}/templates/cf-minimal-dev.yml" \
-  "${diego_stub}" \
+  ${diego_stub} \
   "$@" \
   > "${CF_RELEASE_DIR}/bosh-lite/manifests/cf-manifest.yml"
 
