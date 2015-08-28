@@ -3,7 +3,7 @@ log4j.rootCategory=INFO, FILE, SYSLOG
 PID=????
 LOG_PATH=/var/vcap/sys/log/uaa
 LOG_FILE=${LOG_PATH}/varz.log
-LOG_PATTERN=[%d{yyyy-MM-dd HH:mm:ss.SSS}] uaa%X{context} - ${PID} [%t] .... %5p --- %c{1}: %m%n
+LOG_PATTERN=[%d{<%= (properties.uaa.logging_use_rfc3339) ? "yyyy-MM-dd'T'HH:mm:ss.SSSXXX" : "yyyy-MM-dd HH:mm:ss.SSS" %>}] uaa%X{context} - ${PID} [%t] .... %5p --- %c{1}: %m%n
 
 log4j.appender.FILE=org.apache.log4j.RollingFileAppender
 log4j.appender.FILE.File=${LOG_FILE}
