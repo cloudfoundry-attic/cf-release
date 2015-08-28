@@ -23,6 +23,7 @@ mkdir -p "${CF_RELEASE_DIR}/bosh-lite/manifests"
 
 DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
 
+diego_stub=''
 if [[ -f "${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml" ]]; then
   diego_stub="${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cc.yml"
 fi
