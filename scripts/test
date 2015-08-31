@@ -7,7 +7,9 @@ popd > /dev/null
 cd ${SCRIPT_DIR}/..
 
 bundle install
-bosh --parallel 5 sync blobs
+
+export BOSH_USE_BUNDLER=true
+bundle exec bosh --parallel 5 sync blobs
 
 ${SCRIPT_DIR}/unused_blobs &&
 ${SCRIPT_DIR}/unused_packages &&
