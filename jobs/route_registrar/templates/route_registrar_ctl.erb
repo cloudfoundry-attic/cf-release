@@ -1,0 +1,39 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/route_registrar
+LOG_DIR=/var/vcap/sys/log/route_registrar
+PIDFILE=$RUN_DIR/route_registrar.pid
+
+export PATH=/var/vcap/packages/ruby-2.1.7/bin:$PATH
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "route_registrar"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    chown -R vcap:vcap $RUN_DIR
+    chown -R vcap:vcap $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    cd /var/vcap/packages/route_registrar/route_registrar
+    exec chpst -u vcap:vcap /var/vcap/packages/ruby-2.1.7/bin/bundle exec ./bin/route-registrar /var/vcap/jobs/route_registrar/config/config.yml
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: route_registrar_ctl {start|stop}"
+
+    ;;
+
+esac

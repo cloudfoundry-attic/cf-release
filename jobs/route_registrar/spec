@@ -1,0 +1,19 @@
+---
+name: route_registrar
+
+description: "Used for registering routes"
+
+packages:
+- common
+- route_registrar
+
+templates:
+  route_registrar_ctl.erb: bin/route_registrar_ctl
+  config.yml.erb: config/config.yml
+
+properties:
+  route_registrar.update_frequency_in_seconds:
+    default: 20
+    description: "The delay in seconds between routing updates"
+  route_registrar.routes:
+    description: "Hash of routes that will be registered. Keys are ports (and must be quoted) Values are arrays of hostnames to register."

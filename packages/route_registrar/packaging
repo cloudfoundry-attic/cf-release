@@ -1,0 +1,6 @@
+set -e -x
+
+cp -a * ${BOSH_INSTALL_TARGET}
+cd ${BOSH_INSTALL_TARGET}/route_registrar
+
+/var/vcap/packages/ruby-2.1.7/bin/bundle install --local --deployment
