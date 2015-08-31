@@ -15,10 +15,10 @@ pushd nginx-upload-module-2.2
 popd
 
 echo "Extracting nginx..."
-tar xzvf nginx/nginx-1.6.2.tar.gz
+tar xzvf nginx/nginx-1.8.0.tar.gz
 
 echo "Building nginx..."
-pushd nginx-1.6.2
+pushd nginx-1.8.0
   ./configure \
     --prefix=${BOSH_INSTALL_TARGET} \
     --with-pcre=../pcre-8.37 \
