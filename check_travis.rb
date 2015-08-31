@@ -1,1 +1,1 @@
-shared/check_travis.rb
+scripts/check_travis.rb

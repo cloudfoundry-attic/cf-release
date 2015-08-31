@@ -1,1 +1,1 @@
-../shared/commit_with_shortlog
+./staged_shortlog | git ci -F -
