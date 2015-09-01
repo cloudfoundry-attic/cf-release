@@ -7,7 +7,7 @@ meta:
 
   releases:
   - name: cf
-    version: (( release_version_overrides || "latest" ))
+    version: latest
 
 name: (( meta.environment ))
 
