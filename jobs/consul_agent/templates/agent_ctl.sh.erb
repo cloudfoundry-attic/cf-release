@@ -184,6 +184,13 @@ EOF
     else
       echo "$(date) Consul failed to sync"
       stop_consul $consul_pid
+
+      if [ "$server" == "true" ];  then
+        if [[ $expected -gt 1 ]]; then
+          echo "Decided to delete data directory since not the only cluster member"
+          rm -rf ${DATA_DIR}/*
+        fi
+      fi
       exit 1
     fi
 
