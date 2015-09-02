@@ -1,3 +1,5 @@
+#!/bin/sh
+
 pushd $(dirname $0) > /dev/null
   SCRIPT_DIR=$(pwd)
 popd > /dev/null
