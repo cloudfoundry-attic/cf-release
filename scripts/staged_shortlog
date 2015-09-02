@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-require_relative 'check_travis.rb'
 
 diffs = `git diff --cached`.split('diff --git').select { |log| log =~ /Subproject/ }
 
@@ -15,7 +14,21 @@ puts # Second line of git commit message should always be empty
 
 locations.each do |location, shas|
   Dir.chdir(location) do
-    travis = TravisBuild.new(shas, ARGV[0] == "-c")
-    travis.log_sorted_by_author_with_travis_status
+    remote = `git remote -v`.match(/github.com[\/:]([^\s]+?).git/)
+    repo = remote && remote[1]
+
+    puts "Bump #{repo}"
+    
+    commit_messages_by_author = Hash.new([])
+    `git log #{shas} --pretty=format:'%h %an: %s'`.split("\n").each do |commit|
+      _sha, rest_of_commit = commit.split(" ", 2)
+      author, message = rest_of_commit.split(":", 2)
+      commit_messages_by_author[author] += [message]
+    end
+
+    commit_messages_by_author.each do |author, messages|
+      puts "  #{author}:"
+      messages.each { |message| puts "    #{message}" }
+    end
   end
 end

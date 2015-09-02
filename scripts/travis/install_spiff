@@ -1,4 +1,0 @@
-git clone https://github.com/cloudfoundry-incubator/spiff.git /tmp/go/src/github.com/cloudfoundry-incubator/spiff
-GOPATH=/tmp/go /tmp/go/src/github.com/cloudfoundry-incubator/spiff/scripts/build
-cp /tmp/go/src/github.com/cloudfoundry-incubator/spiff/spiff .
-rm -rf /tmp/go
