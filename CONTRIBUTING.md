@@ -69,7 +69,7 @@ Please see the [Proposing New Features](https://github.com/cloudfoundry-communit
 
    ```bash
    cd cf-release
-   ./bosh-lite/make_manifest
+   ./scripts/generate-bosh-lite-dev-manifest
    
    bosh create release
    bosh upload release

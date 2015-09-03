@@ -1,7 +1,5 @@
 #!/bin/bash
 
->&2 echo "WARNING: The './bosh-lite/make_manifest' file is deprecated and will be removed. Please use './scripts/generate-bosh-lite-dev-manifest' instead."
-
 export BOSH_USE_BUNDLER=true
 
 BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}

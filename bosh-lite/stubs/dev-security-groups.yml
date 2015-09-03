@@ -1,15 +1,6 @@
 ---
-name: cf-warden
-releases:
-  - name: cf
-    version: latest
 properties:
-  loggregator_endpoint:
-    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
-
   cc:
-    min_cli_version: "6.0.0"
-    min_recommended_cli_version: "6.10.0"
     security_group_definitions:
       - name: public_networks
         rules:
