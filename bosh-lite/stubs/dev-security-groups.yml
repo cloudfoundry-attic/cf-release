@@ -31,7 +31,7 @@ properties:
       - name: load_balancer
         rules:
         - protocol: all
-          destination: (( merge || "10.244.0.34" ))
+          destination: "10.244.0.34"
       - name: user_bosh_deployments
         rules:
         - protocol: all
