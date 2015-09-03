@@ -444,6 +444,21 @@ properties:
     default: "off"
     description: "NewRelic's SQL statement recording mode: [off | obfuscated | raw]"
 
+  cc.nginx_access_log_destination:
+    description: "The nginx access log destination. This can be used to route access logs to a file, syslog, or a memory buffer."
+    default: "/var/vcap/sys/log/nginx_cc/nginx.access.log"
+  cc.nginx_access_log_format:
+    description: "The nginx log format string to use when writing to the access log."
+    default: >
+      $host - [$time_local] "$request" $status $bytes_sent "$http_referer" "$http_user_agent"
+      $proxy_add_x_forwarded_for vcap_request_id:$upstream_http_x_vcap_request_id response_time:$upstream_response_time
+  cc.nginx_error_log_destination:
+    description: "The nginx error log destination. This can be used to route error logs to a file, syslog, or a memory buffer."
+    default: "/var/vcap/sys/log/nginx_cc/nginx.error.log"
+  cc.nginx_error_log_level:
+    descritpion: "The lowest severity nginx log level to capture in the error log."
+    default: error
+
   cc.jobs.local.number_of_workers:
     default: 2
     description: "Number of local cloud_controller_worker workers"
