@@ -27,7 +27,11 @@
     :use_diego => properties.acceptance_tests.use_diego,
     :system_domain => properties.acceptance_tests.system_domain,
     :client_secret => properties.acceptance_tests.client_secret,
-    :use_http => properties.acceptance_tests.use_http
+    :use_http => properties.acceptance_tests.use_http,
+    :existing_user => properties.acceptance_tests.existing_user,
+    :existing_user_password => properties.acceptance_tests.existing_user_password,
+    :use_existing_user => !properties.acceptance_tests.existing_user.nil?,
+    :keep_user_at_suite_end => !properties.acceptance_tests.existing_user.nil?
   }
   config[:default_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.default_timeout
   config[:cf_push_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.cf_push_timeout
