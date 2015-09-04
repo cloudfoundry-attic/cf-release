@@ -79,6 +79,9 @@ properties:
   router.extra_headers_to_log:
     description: "A list of headers that log events will be annotated with"
     default: []
+  router.logging_level:
+    description: "Log level for router"
+    default: "info"
 
   nats.user:
     description:
