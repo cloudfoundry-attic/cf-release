@@ -29,12 +29,3 @@ message_bus_servers:
 
 host: <%= discover_external_ip %>
 update_frequency_in_seconds: <%= p("route_registrar.update_frequency_in_seconds") %>
-
-port_map:
-<%
-  p("route_registrar.routes").each do |port, uris|
-%>
-  "<%= port %>": <%= uris.inspect %>
-<%
-  end
-%>

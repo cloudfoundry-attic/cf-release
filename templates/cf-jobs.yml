@@ -114,6 +114,8 @@ meta:
     release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.release.name ))
+  - name: route_registrar
+    release: (( meta.release.name ))
 
   hm9000_templates:
   - name: hm9000

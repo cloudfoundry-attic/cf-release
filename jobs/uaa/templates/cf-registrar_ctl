@@ -27,7 +27,6 @@ case $1 in
     cd $VCAP_COMMON_PATH
     exec chpst -u vcap:vcap /var/vcap/packages/ruby-2.1.7/bin/bundle exec \
          $VCAP_COMMON_PATH/bin/cf-registrar \
-         --register-with-router \
          --register-varz-credentials
 
     ;;

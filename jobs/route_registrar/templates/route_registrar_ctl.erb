@@ -11,6 +11,15 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
+    route_registrar_port_map=$(find -L /var/vcap/jobs/ -name route_registrar_port_map)
+
+    if [ -e $route_registrar_port_map ]; then
+      echo "route registration port map location $route_registrar_port_map"
+    else
+      echo "Could not find route registration"
+      exit 1
+    fi
+
     pid_guard $PIDFILE "route_registrar"
 
     mkdir -p $RUN_DIR
@@ -22,7 +31,7 @@ case $1 in
     echo $$ > $PIDFILE
 
     cd /var/vcap/packages/route_registrar/route_registrar
-    exec chpst -u vcap:vcap /var/vcap/packages/ruby-2.1.7/bin/bundle exec ./bin/route-registrar /var/vcap/jobs/route_registrar/config/config.yml
+    exec chpst -u vcap:vcap /var/vcap/packages/ruby-2.1.7/bin/bundle exec ./bin/route-registrar /var/vcap/jobs/route_registrar/config/config.yml $route_registrar_port_map
 
     ;;
 

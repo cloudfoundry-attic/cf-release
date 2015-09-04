@@ -1,0 +1,7 @@
+---
+port_map:
+  "<%= p("uaa.port") %>":
+    - uaa.<%= p("domain") %>
+    - '*.uaa.<%= p("domain") %>'
+    - login.<%= p("domain") %>
+    - '*.login.<%= p("domain") %>'

@@ -5,6 +5,7 @@ description: "Used for registering routes"
 
 packages:
 - common
+- ruby-2.1.7
 - route_registrar
 
 templates:
@@ -15,5 +16,3 @@ properties:
   route_registrar.update_frequency_in_seconds:
     default: 20
     description: "The delay in seconds between routing updates"
-  route_registrar.routes:
-    description: "Hash of routes that will be registered. Keys are ports (and must be quoted) Values are arrays of hostnames to register."
