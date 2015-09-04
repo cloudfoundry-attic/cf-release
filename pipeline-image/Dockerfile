@@ -55,7 +55,6 @@ RUN \
   tar zxf /tmp/v0.4.1.tar.gz -C /tmp && \
   cd /tmp/ruby-install-0.4.1 && make install && \
   ruby-install ruby 2.1.7 && \
-  gem update --system \
   rm -rf /usr/local/src/ruby-2.1.7 && \
   rm -rf /tmp/*
 
@@ -70,6 +69,7 @@ RUN \
 RUN \
   bash -l -c "pip install awscli==1.6.6" && \
   bash -l -c "pip install s3cmd" && \
+  bash -l -c "gem update --system" && \
   bash -l -c "gem install bundler --no-rdoc --no-ri" && \
   bash -l -c "gem install bosh_cli --no-rdoc --no-ri"
 
