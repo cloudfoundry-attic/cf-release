@@ -258,6 +258,9 @@ properties:
   uaa.logging_level:
     description: Set UAA logging level.  (e.g. TRACE, DEBUG, INFO)
     default: DEBUG
+  uaa.logging_use_rfc3339:
+    description: Sets the time format for log messages to be rfc3339 compatible. 
+    default: false
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
   login.ldap.profile_type:
