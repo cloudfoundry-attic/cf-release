@@ -1,2 +1,2 @@
     set -e -x
-    cp ruby-buildpack/ruby_buildpack-cached-v1.6.5.zip ${BOSH_INSTALL_TARGET}
+    cp ruby-buildpack/ruby_buildpack-cached-v1.6.7.zip ${BOSH_INSTALL_TARGET}
