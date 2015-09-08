@@ -12,19 +12,18 @@ class RouteRegistrar
   attr_reader :logger, :message_bus_servers, :type, :host, :port_map,
     :username, :password, :tags, :uuid, :index, :private_instance_id, :update_frequency_in_seconds
 
-  def initialize(route_registry_config, port_map_config)
+  def initialize(config)
     @logger = Steno.logger("route_registrar")
 
-    route_registry_config = symbolize_keys(route_registry_config)
-    port_map_config = symbolize_keys(port_map_config)
+    config = symbolize_keys(config)
 
-    @message_bus_servers = route_registry_config[:message_bus_servers]
-    @host = route_registry_config[:host]
-    @port_map = port_map_config[:port_map]
-    @tags = route_registry_config[:tags]
-    @index = route_registry_config[:index] || 0
-    @update_frequency_in_seconds = route_registry_config[:update_frequency_in_seconds]
-    @private_instance_id = route_registry_config[:private_instance_id] || SecureRandom.uuid
+    @message_bus_servers = config[:message_bus_servers]
+    @host = config[:host]
+    @port_map = config[:port_map]
+    @tags = config[:tags]
+    @index = config[:index] || 0
+    @update_frequency_in_seconds = config[:update_frequency_in_seconds]
+    @private_instance_id = config[:private_instance_id] || SecureRandom.uuid
   end
 
   def register_with_router

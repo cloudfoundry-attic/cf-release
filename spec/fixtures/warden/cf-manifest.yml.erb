@@ -256,6 +256,15 @@ jobs:
           uaa: {}
     metron_agent:
       zone: z1
+    route_registrar:
+      routes:
+      - name: uaa
+        port: 8080
+        uris:
+        - "uaa.10.244.0.34.xip.io"
+        - "*.uaa.10.244.0.34.xip.io"
+        - "login.10.244.0.34.xip.io"
+        - "*.login.10.244.0.34.xip.io"
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -278,6 +287,15 @@ jobs:
           uaa: {}
     metron_agent:
       zone: z2
+    route_registrar:
+      routes:
+      - name: uaa
+        port: 8080
+        uris:
+        - "uaa.10.244.0.34.xip.io"
+        - "*.uaa.10.244.0.34.xip.io"
+        - "login.10.244.0.34.xip.io"
+        - "*.login.10.244.0.34.xip.io"
   resource_pool: medium_z2
   templates:
   - name: uaa

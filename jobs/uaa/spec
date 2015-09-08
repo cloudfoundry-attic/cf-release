@@ -20,7 +20,7 @@ templates:
   ldap.crt.erb: config/ldap.crt
   login.yml.erb: config/login.yml
   messages.properties.erb: config/messages.properties
-  route_registrar_port_map_config.yml.erb: config/route_registrar_port_map
+
 
 packages:
   - common

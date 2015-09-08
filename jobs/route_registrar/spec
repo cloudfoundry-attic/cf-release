@@ -16,3 +16,5 @@ properties:
   route_registrar.update_frequency_in_seconds:
     default: 20
     description: "The delay in seconds between routing updates"
+  route_registrar.routes:
+    description: "List of routes that will be registered. Array of hashes. Hashes should have port, uris, and name keys. uris is an array of uris to register for the port"

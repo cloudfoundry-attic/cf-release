@@ -107,6 +107,15 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
+  uaa_routes:
+  - name: uaa
+    port: 8080
+    uris:
+    - (( "uaa." .properties.domain ))
+    - (( "*.uaa." .properties.domain ))
+    - (( "login." .properties.domain ))
+    - (( "*.login." .properties.domain ))
+
   uaa_templates:
   - name: uaa
     release: (( meta.release.name ))
@@ -289,6 +298,8 @@ jobs:
             uaa: {}
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.uaa_routes ))
     update: (( merge || empty_hash ))
 
   - name: uaa_z2
@@ -304,6 +315,8 @@ jobs:
             uaa: {}
       metron_agent:
         zone: z2
+      route_registrar:
+        routes: (( merge || meta.uaa_routes ))
     update: (( merge || empty_hash ))
 
   - name: api_z1

@@ -215,6 +215,15 @@ jobs:
           uaa: {}
     metron_agent:
       zone: z1
+    route_registrar:
+      routes:
+      - name: uaa
+        port: 8080
+        uris:
+        - "uaa.example.com"
+        - "*.uaa.example.com"
+        - "login.example.com"
+        - "*.login.example.com"
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -237,6 +246,15 @@ jobs:
           uaa: {}
     metron_agent:
       zone: z2
+    route_registrar:
+      routes:
+      - name: uaa
+        port: 8080
+        uris:
+        - "uaa.example.com"
+        - "*.uaa.example.com"
+        - "login.example.com"
+        - "*.login.example.com"
   resource_pool: medium_z2
   templates:
   - name: uaa

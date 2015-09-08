@@ -1,6 +1,6 @@
 set -e -x
 
-#cf registrar information
+#registrar information
 cd ${BUILD_DIR}/cf-registrar-bundle-for-identity
 BUNDLE_WITHOUT=development:test bundle package --all --no-install --path ./vendor/cache
 rm -rf ./vendor/cache/ruby

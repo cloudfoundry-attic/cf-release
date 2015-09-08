@@ -13,15 +13,14 @@ if ARGV.empty?
   exit
 end
 
-config = YAML.load_file(ARGV[0])
-route_registrar_port_map = YAML.load_file(ARGV[1])
+config = YAML.load_file(ARGV.first)
 
 Steno.init(Steno::Config.from_hash(config["logging"]))
 logger = Steno.logger("route-registrar")
 logger.debug("Config #{config.inspect}")
 
 EM.run do
-  route_registrar = RouteRegistrar.new(config, route_registrar_port_map)
+  route_registrar = RouteRegistrar.new(config)
 
   route_registrar.register_with_router
 
