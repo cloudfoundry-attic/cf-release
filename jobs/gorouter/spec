@@ -58,11 +58,8 @@ properties:
   router.cipher_suites:
     description: "Valid ssl cipher suites, golang tls constants separated by commas"
     default: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA:TLS_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_RC4_128_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_RSA_WITH_RC4_128_SHA
-  router.route_service_secret:
-    description: "A base64 encoded key, the key length should be 16 bytes for AES-128, 24 for AES-192, or 32 for AES-256"
-    default: ""
-  router.route_service_secret_prev:
-    description: "A base64 encoded key, the key length should be 16 bytes for AES-128, 24 for AES-192, or 32 for AES-256. This should be used to rotate the route_service_secret without downtime."
+  router.route_service_secrets:
+    description: "A list of two base64 encoded keys (any extra keys besides the first two keys will be ignored), each key length should be 16 bytes for AES-128, 24 for AES-192, or 32 for AES-256."
     default: ""
   router.route_service_timeout:
     description: "Expiry time of a route service signature in seconds"

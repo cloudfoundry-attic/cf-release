@@ -671,7 +671,7 @@ properties:
       user: (( merge ))
       password: (( merge ))
     secure_cookies: (( merge || nil ))
-    route_service_secret: (( merge || nil ))
+    route_service_secrets: (( merge || nil ))
     route_service_timeout: (( merge || nil ))
     logrotate: (( merge || nil ))
     extra_headers_to_log: (( merge || nil ))

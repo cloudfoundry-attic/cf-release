@@ -66,7 +66,6 @@ ssl_key_path: /var/vcap/jobs/gorouter/config/key.pem
 cipher_suites: <%= p("router.cipher_suites") %>
 
 route_service_timeout: <%= p("router.route_service_timeout") %>
-route_service_secret: <%= p("router.route_service_secret") %>
-route_service_secret_prev: <%= p("router.route_service_secret_prev") %>
+route_service_secrets: <%= p("router.route_service_secrets") %>
 
 extra_headers_to_log: <%= p("router.extra_headers_to_log") %>
