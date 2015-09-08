@@ -78,3 +78,7 @@ properties:
     description: Timeout for long curls
   acceptance_tests.broker_start_timeout:
     description: Timeout for broker starts
+  acceptance_tests.existing_user:
+    description: "The username of an existing user. If set, the acceptance-tests will push apps and perform other actions as this user, otherwise its default behaviour is to create a temporary user for such actions."
+  acceptance_tests.existing_user_password:
+    description: "The password of the existing user. Only required if the existing user property is also being set."
