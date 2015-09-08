@@ -188,6 +188,7 @@ jobs:
   templates:
   - {name: uaa, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: route_registrar, release: cf}
   networks:
   - name: cf_private
   properties:
