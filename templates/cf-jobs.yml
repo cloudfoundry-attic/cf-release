@@ -19,6 +19,12 @@ meta:
       - (( .networks.cf2.subnets.[0].range || nil ))
     share: ~
 
+  api_routes:
+  - name: api
+    port: 9022
+    uris:
+    - (( "api." .properties.domain ))
+
   api_templates:
   - name: cloud_controller_ng
     release: (( meta.release.name ))
@@ -31,6 +37,8 @@ meta:
   - name: consul_agent
     release: (( meta.release.name ))
   - name: nfs_mounter
+    release: (( meta.release.name ))
+  - name: route_registrar
     release: (( meta.release.name ))
 
   api_worker_templates:
@@ -342,6 +350,8 @@ jobs:
             routing-api: {}
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.api_routes ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
@@ -360,6 +370,8 @@ jobs:
             routing-api: {}
       metron_agent:
         zone: z2
+      route_registrar:
+        routes: (( merge || meta.api_routes ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 

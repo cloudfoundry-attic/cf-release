@@ -326,6 +326,12 @@ jobs:
       - 10.244.0.0/30
       - 10.244.2.0/30
       share: null
+    route_registrar:
+      routes:
+      - name: api
+        port: 9022
+        uris:
+        - "api.10.244.0.34.xip.io"
   resource_pool: large_z1
   templates:
   - name: cloud_controller_ng
@@ -343,6 +349,8 @@ jobs:
   - name: consul_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 0
@@ -364,6 +372,12 @@ jobs:
       - 10.244.0.0/30
       - 10.244.2.0/30
       share: null
+    route_registrar:
+      routes:
+      - name: api
+        port: 9022
+        uris:
+        - "api.10.244.0.34.xip.io"
   resource_pool: large_z2
   templates:
   - name: cloud_controller_ng
@@ -377,6 +391,8 @@ jobs:
   - name: consul_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 0

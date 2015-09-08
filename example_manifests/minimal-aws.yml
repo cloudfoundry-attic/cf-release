@@ -124,12 +124,19 @@ jobs:
   - {name: cloud_controller_clock, release: cf}
   - {name: metron_agent, release: cf}
   - {name: nfs_mounter, release: cf}
+  - {name: route_registrar, release: cf}
   networks:
   - name: cf_private
   properties:
     nfs_server:
       address: 10.0.16.105
       allow_from_entries: [10.0.16.0/24]
+    route_registrar:
+      routes:
+      - name: api
+        port: 9022
+        uris:
+        - "api.REPLACE_WITH_SYSTEM_DOMAIN"
 
 - name: ha_proxy_z1
   instances: 1

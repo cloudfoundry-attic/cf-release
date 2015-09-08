@@ -283,6 +283,12 @@ jobs:
       - null
       - null
       share: null
+    route_registrar:
+      routes:
+      - name: api
+        port: 9022
+        uris:
+        - "api.example.com"
   resource_pool: large_z1
   templates:
   - name: cloud_controller_ng
@@ -296,6 +302,8 @@ jobs:
   - name: consul_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 1
@@ -317,6 +325,12 @@ jobs:
       - null
       - null
       share: null
+    route_registrar:
+      routes:
+      - name: api
+        port: 9022
+        uris:
+        - "api.example.com"
   resource_pool: large_z2
   templates:
   - name: cloud_controller_ng
@@ -330,6 +344,8 @@ jobs:
   - name: consul_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 1
