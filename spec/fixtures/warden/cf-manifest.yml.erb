@@ -451,11 +451,19 @@ jobs:
   properties:
     metron_agent:
       zone: z1
+    route_registrar:
+      routes:
+      - name: hm9000
+        port: 5155
+        uris:
+        - "hm9000.10.244.0.34.xip.io"
   resource_pool: medium_z1
   templates:
   - name: hm9000
     release: cf
   - name: metron_agent
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 0
@@ -465,11 +473,19 @@ jobs:
   properties:
     metron_agent:
       zone: z2
+    route_registrar:
+      routes:
+      - name: hm9000
+        port: 5155
+        uris:
+        - "hm9000.10.244.0.34.xip.io"
   resource_pool: medium_z2
   templates:
   - name: hm9000
     release: cf
   - name: metron_agent
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 1

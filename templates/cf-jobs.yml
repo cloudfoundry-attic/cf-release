@@ -49,10 +49,8 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
-  nats_templates:
-  - name: nats
-    release: (( meta.release.name ))
-  - name: nats_stream_forwarder
+  consul_templates:
+  - name: consul_agent
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
@@ -65,12 +63,12 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
-  router_templates:
-  - name: gorouter
+  etcd_templates:
+  - name: etcd
+    release: (( meta.release.name ))
+  - name: etcd_metrics_server
     release: (( meta.release.name ))
   - name: metron_agent
-    release: (( meta.release.name ))
-  - name: consul_agent
     release: (( meta.release.name ))
 
   ha_proxy_templates:
@@ -81,16 +79,24 @@ meta:
   - name: consul_agent
     release: (( meta.release.name ))
 
-  etcd_templates:
-  - name: etcd
-    release: (( meta.release.name ))
-  - name: etcd_metrics_server
+  hm9000_routes:
+  - name: hm9000
+    port: 5155
+    uris:
+    - (( "hm9000." .properties.domain ))
+
+  hm9000_templates:
+  - name: hm9000
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
+  - name: route_registrar
+    release: (( meta.release.name ))
 
-  stats_templates:
-  - name: collector
+  nats_templates:
+  - name: nats
+    release: (( meta.release.name ))
+  - name: nats_stream_forwarder
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
@@ -103,6 +109,20 @@ meta:
 
   postgres_templates:
   - name: postgres
+    release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
+
+  router_templates:
+  - name: gorouter
+    release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
+  - name: consul_agent
+    release: (( meta.release.name ))
+
+  stats_templates:
+  - name: collector
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
@@ -124,18 +144,6 @@ meta:
   - name: consul_agent
     release: (( meta.release.name ))
   - name: route_registrar
-    release: (( meta.release.name ))
-
-  hm9000_templates:
-  - name: hm9000
-    release: (( meta.release.name ))
-  - name: metron_agent
-    release: (( meta.release.name ))
-
-  consul_templates:
-  - name: consul_agent
-    release: (( meta.release.name ))
-  - name: metron_agent
     release: (( meta.release.name ))
 
 jobs:
@@ -402,6 +410,8 @@ jobs:
     properties:
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.hm9000_routes ))
     update: (( merge || empty_hash ))
 
   - name: hm9000_z2
@@ -413,6 +423,8 @@ jobs:
     properties:
       metron_agent:
         zone: z2
+      route_registrar:
+        routes: (( merge || meta.hm9000_routes ))
     update: (( merge || empty_hash ))
 
   - name: runner_z1

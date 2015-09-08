@@ -156,8 +156,16 @@ jobs:
   templates:
   - {name: hm9000, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: route_registrar, release: cf}
   networks:
   - name: cf_private
+  properties:
+    route_registrar:
+      routes:
+      - name: hm9000
+        port: 5155
+        uris:
+        - "hm9000.REPLACE_WITH_SYSTEM_DOMAIN"
 
 - name: doppler_z1
   instances: 1
