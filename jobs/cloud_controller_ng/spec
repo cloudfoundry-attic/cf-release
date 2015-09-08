@@ -216,10 +216,10 @@ properties:
 
   cc.staging_upload_user:
     default: ""
-    description: "S3 Access key for staging droplets on AWS installs; Blobstore user for other IaaSs"
+    description: "User name used to access internal endpoints of Cloud Controller to upload files when staging"
   cc.staging_upload_password:
     default: ""
-    description: "S3 Secure Access Key for staging droplets on AWS installs; Blobstore password for other IaaSs"
+    description: "User's password used to access internal endpoints of Cloud Controller to upload files when staging"
 
   cc.quota_definitions:
     description: "Hash of default quota definitions. Overriden by custom quota definitions."
