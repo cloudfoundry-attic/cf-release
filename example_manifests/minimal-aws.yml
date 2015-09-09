@@ -192,10 +192,20 @@ jobs:
   templates:
   - {name: loggregator_trafficcontroller, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: route_registrar, release: cf}
   networks:
   - name: cf_private
   properties:
     traffic_controller: {zone: z1}
+    routes:
+    - name: doppler
+      port: 8081
+      uris:
+      - "doppler.REPLACE_WITH_SYSTEM_DOMAIN"
+    - name: loggregator
+      port: 8080
+      uris:
+        - "loggregator.REPLACE_WITH_SYSTEM_DOMAIN"
 
 - name: uaa_z1
   instances: 1
