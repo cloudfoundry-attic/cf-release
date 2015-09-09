@@ -111,14 +111,6 @@ python-buildpack/python_buildpack-cached-v1.5.0.zip:
   object_id: 1a4956c8-c4b1-4361-ac8b-3ccbb8b93dcb
   sha: 074b9804d66d103acccd7b3be2f711f1171deb56
   size: 184315882
-java-buildpack/java-buildpack-offline-v3.1.1.zip:
-  object_id: d5604cb2-c0fe-431e-b2fd-3e868e2b934c
-  sha: db5f96ce966e02c611da8222d4345d420da63655
-  size: 333418361
-java-buildpack/java-buildpack-v3.1.1.zip:
-  object_id: 8e1d1974-a796-4a1b-bc17-ed9ebadbaebc
-  sha: 8a0d6e7a1ed26a24abc2a1c7a0b2612d6efd0380
-  size: 146570
 openjdk/openjdk-1.8.0_51.tar.gz:
   object_id: d85dd2e6-cb0c-45a7-a089-b24a778878ad
   sha: 2651c262b7cede077da23e00d3fe6ffd9849a1d6
@@ -163,3 +155,11 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.7.zip:
   object_id: 9c39f092-cf19-4276-a013-285349ca7d74
   sha: 9d8bdc2e0aa81089322e4d9e4cf37a96fb667a7b
   size: 295134096
+java-buildpack/java-buildpack-offline-v3.2.zip:
+  object_id: ae7b9952-a002-405d-8f4f-ef0736ba9adb
+  sha: 625dbf4c047965fd0d557ce1fab081fcb271665b
+  size: 243844927
+java-buildpack/java-buildpack-v3.2.zip:
+  object_id: 027bfd6b-461d-4bc8-8cc8-52d5f08b2ac3
+  sha: 56e2299aaab891bf584687911ff319b819c34d04
+  size: 153958
