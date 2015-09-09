@@ -140,6 +140,9 @@ properties:
   cc.info.custom:
     description: "Custom values for /v2/info endpoint"
 
+  cc.directories.tmpdir:
+    default: "/var/vcap/data/cloud_controller_ng/tmp"
+    description: "The directory to use for temporary files"
   cc.directories.diagnostics:
     default: "/var/vcap/data/cloud_controller_ng/diagnostics"
     description: "The directory where operator requested diagnostic files should be placed"
