@@ -197,15 +197,16 @@ jobs:
   - name: cf_private
   properties:
     traffic_controller: {zone: z1}
-    routes:
-    - name: doppler
-      port: 8081
-      uris:
-      - "doppler.REPLACE_WITH_SYSTEM_DOMAIN"
-    - name: loggregator
-      port: 8080
-      uris:
-        - "loggregator.REPLACE_WITH_SYSTEM_DOMAIN"
+    route_registrar:
+      routes:
+      - name: doppler
+        port: 8081
+        uris:
+        - "doppler.REPLACE_WITH_SYSTEM_DOMAIN"
+      - name: loggregator
+        port: 8080
+        uris:
+          - "loggregator.REPLACE_WITH_SYSTEM_DOMAIN"
 
 - name: uaa_z1
   instances: 1
