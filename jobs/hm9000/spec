@@ -57,5 +57,3 @@ properties:
   hm9000.fetcher_network_timeout_in_seconds:
     description: "Each API call to the CC must succeed within this timeout."
     default: 30
-  hm9000.url:
-    description: "URL that HM9000 will register with the gorouter"

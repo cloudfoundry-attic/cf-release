@@ -42,7 +42,7 @@ properties:
     address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
 
   hm9000:
-    url: (( "https://hm9000." jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
+    url: (( "https://hm9000." domain ))
 
   cc:
     default_quota_definition: default
