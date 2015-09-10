@@ -20,7 +20,7 @@ exec 2>> /var/vcap/sys/log/monit/consul_agent.err.log
 
 stop_consul() {
   echo "$(date) Consul failed to start"
-  consul_pid=$1
+  local consul_pid=$1
   if ! $PKG/bin/consul leave; then
     kill ${consul_pid} || true
   fi
@@ -199,7 +199,8 @@ EOF
     ;;
 
   stop)
-    $PKG/bin/consul leave
+    consul_pid=`head -1 $PID_FILE`
+    stop_consul $consul_pid
     ;;
 
   *)
