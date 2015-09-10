@@ -265,6 +265,11 @@ jobs:
         - "*.uaa.10.244.0.34.xip.io"
         - "login.10.244.0.34.xip.io"
         - "*.login.10.244.0.34.xip.io"
+    router:
+      servers:
+        z1:
+          - 10.244.0.22
+        z2: []
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -296,6 +301,11 @@ jobs:
         - "*.uaa.10.244.0.34.xip.io"
         - "login.10.244.0.34.xip.io"
         - "*.login.10.244.0.34.xip.io"
+    router:
+      servers:
+        z1:
+          - 10.244.0.22
+        z2: []
   resource_pool: medium_z2
   templates:
   - name: uaa

@@ -224,6 +224,11 @@ jobs:
         - "*.uaa.example.com"
         - "login.example.com"
         - "*.login.example.com"
+    router:
+      servers:
+        z1:
+          - 0.0.0.5
+        z2: []
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -255,6 +260,11 @@ jobs:
         - "*.uaa.example.com"
         - "login.example.com"
         - "*.login.example.com"
+    router:
+      servers:
+        z1:
+          - 0.0.0.5
+        z2: []
   resource_pool: medium_z2
   templates:
   - name: uaa
