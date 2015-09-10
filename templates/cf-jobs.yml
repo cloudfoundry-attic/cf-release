@@ -201,9 +201,6 @@ jobs:
     networks: (( merge || default_networks ))
     properties:
       ha_proxy:
-        ssl_pem: ~
-        disable_http: false
-        ssl_ciphers: ~
       router:
         servers:
           z1: (( jobs.router_z1.networks.cf1.static_ips ))
@@ -684,6 +681,8 @@ properties:
 
   cc: (( merge ))
   ccdb: (( merge ))
+
+  ha_proxy: (( merge || nil ))
 
   hm9000: (( merge ))
 

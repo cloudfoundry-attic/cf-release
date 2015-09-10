@@ -63,8 +63,6 @@ jobs:
     metron_agent:
       zone: z1
     ha_proxy:
-      ssl_ciphers: null
-      ssl_pem: null
       disable_http: true
     router:
       servers:
@@ -930,6 +928,7 @@ properties:
       - 0.0.1.1
       password: nats_password
       username: nats_user
+  ha_proxy: null
   logger_endpoint: null
 <%= lamb_properties("null") %>
   loggregator_endpoint:

@@ -61,8 +61,6 @@ jobs:
     metron_agent:
       zone: z1
     ha_proxy:
-      disable_http: false
-      ssl_ciphers: null
       ssl_pem: |
           -----BEGIN CERTIFICATE-----
           MIIDETCCAfmgAwIBAgIJANZuykf1uh3LMA0GCSqGSIb3DQEBBQUAMB8xHTAbBgNV
@@ -2566,6 +2564,7 @@ properties:
         restart_if_consistently_above_mb: null
     user_buildpacks: []
     users_can_select_backend: true
+  ha_proxy: null
   hm9000:
     url: http://hm9000.10.244.0.34.xip.io
   ccdb:
