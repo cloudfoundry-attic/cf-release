@@ -21,7 +21,7 @@ meta:
 
   api_routes:
   - name: api
-    port: 9022
+    port: (( .properties.cc.external_port ))
     uris:
     - (( "api." .properties.domain ))
 
@@ -137,7 +137,7 @@ meta:
 
   uaa_routes:
   - name: uaa
-    port: 8080
+    port: (( .properties.uaa.port ))
     uris:
     - (( "uaa." .properties.domain ))
     - (( "*.uaa." .properties.domain ))

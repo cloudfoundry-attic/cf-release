@@ -81,6 +81,7 @@ properties:
     min_recommended_cli_version: ~
 
     external_host: api
+    external_port: 9022
     srv_api_uri: (( "https://" external_host "." domain ))
 
     bulk_api_password: (( merge ))
@@ -262,7 +263,7 @@ properties:
     ldap: ~
 
     newrelic: ~
-
+    port: 8080
     spring_profiles: ~
 
     user: ~
