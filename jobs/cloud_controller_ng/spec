@@ -544,3 +544,7 @@ properties:
   cc.statsd_port:
     description: "The port for the statsd server, defaults to the local metron agent"
     default: 8125
+
+  cc.placement_top_stager_percentage:
+    description: "The percentage of top stagers considered when choosing a stager"
+    default: 10
