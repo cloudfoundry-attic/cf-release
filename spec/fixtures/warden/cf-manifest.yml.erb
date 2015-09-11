@@ -265,6 +265,11 @@ jobs:
         - "*.uaa.10.244.0.34.xip.io"
         - "login.10.244.0.34.xip.io"
         - "*.login.10.244.0.34.xip.io"
+    router:
+      servers:
+        z1:
+          - 10.244.0.22
+        z2: []
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -296,6 +301,11 @@ jobs:
         - "*.uaa.10.244.0.34.xip.io"
         - "login.10.244.0.34.xip.io"
         - "*.login.10.244.0.34.xip.io"
+    router:
+      servers:
+        z1:
+          - 10.244.0.22
+        z2: []
   resource_pool: medium_z2
   templates:
   - name: uaa
@@ -2807,7 +2817,7 @@ properties:
     notifications:
       url: null
     protocol: http
-    restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
+    restricted_ips_regex: ~
     saml: null
     self_service_links_enabled: null
     signups_enabled: null

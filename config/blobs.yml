@@ -35,18 +35,6 @@ nginx/newrelic_nginx_agent.tar.gz:
   object_id: cad4fada-4a11-4b1a-a884-c6f58dacead9
   sha: 98a1b10475371705932fea4769f8ac1b0451106f
   size: 5222
-uaa/openjdk-1.7.0_51.tar.gz:
-  object_id: 67b767f3-4032-4970-8535-05dbf7c696a5
-  sha: 0f4d3705e3a4e1452250def57cfc36ab6cc37355
-  size: 34729532
-uaa/openjdk-1.7.0-u40-unofficial-linux-amd64.tgz:
-  object_id: 869c365a-7c65-4454-8c09-212d01fa0fb1
-  sha: bb41c68e0dc26ad71635d4bff8da16246ded10f0
-  size: 42574624
-uaa/openjdk-1.7.0-u40-unofficial-macosx-x86_64-bundle.tgz:
-  object_id: 4cfb77f4-ea89-4d3d-85ad-2d0f3d84e676
-  sha: ac7febc5bbff2dedf8add624a727a4c0ac6c3d10
-  size: 65991397
 cli/cf-linux-amd64.tgz:
   object_id: d491f12d-a877-4d6f-b304-9c93adcd9ff1
   sha: 1c3cdd94c23c2d72a40d8964167e07216679de0f
@@ -163,3 +151,15 @@ rootfs/cflinuxfs2-1.8.0.tar.gz:
   object_id: 2d3e84e0-f93b-4d2e-80e6-16d2268a0457
   sha: 3d415b55a777c4f573dce906cccdc3f3b290c97f
   size: 248314165
+openjdk/openjdk-1.8.0_60-x86_64-trusty-jre.tar.gz:
+  object_id: 71fc34bf-5878-4cbd-98a9-b5113dccc923
+  sha: 00a58600bd56007832f1caca487187c023f10ec5
+  size: 45029837
+openjdk/openjdk-1.8.0_60-x86_64-mountainlion.tar.gz:
+  object_id: 6aec69bd-202a-4c07-bef9-2b66e027a957
+  sha: d5adc079c1b1e74957f60e627d225173dbc96286
+  size: 81913035
+openjdk/openjdk-1.8.0_60-x86_64-trusty.tar.gz:
+  object_id: de6ab27d-2469-403d-a47a-d1b82c91a33a
+  sha: 1831bb9db77e304c9b0167d5b61350aa83393a22
+  size: 77540278
