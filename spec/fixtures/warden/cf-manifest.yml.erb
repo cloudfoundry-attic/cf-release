@@ -259,10 +259,10 @@ jobs:
       - name: uaa
         port: 8080
         uris:
-        - "uaa.10.244.0.34.xip.io"
-        - "*.uaa.10.244.0.34.xip.io"
-        - "login.10.244.0.34.xip.io"
-        - "*.login.10.244.0.34.xip.io"
+        - "uaa.bosh-lite.com"
+        - "*.uaa.bosh-lite.com"
+        - "login.bosh-lite.com"
+        - "*.login.bosh-lite.com"
     router:
       servers:
         z1:
@@ -295,10 +295,10 @@ jobs:
       - name: uaa
         port: 8080
         uris:
-        - "uaa.10.244.0.34.xip.io"
-        - "*.uaa.10.244.0.34.xip.io"
-        - "login.10.244.0.34.xip.io"
-        - "*.login.10.244.0.34.xip.io"
+        - "uaa.bosh-lite.com"
+        - "*.uaa.bosh-lite.com"
+        - "login.bosh-lite.com"
+        - "*.login.bosh-lite.com"
     router:
       servers:
         z1:
@@ -339,7 +339,7 @@ jobs:
       - name: api
         port: 9022
         uris:
-        - "api.10.244.0.34.xip.io"
+        - "api.bosh-lite.com"
   resource_pool: large_z1
   templates:
   - name: cloud_controller_ng
@@ -385,7 +385,7 @@ jobs:
       - name: api
         port: 9022
         uris:
-        - "api.10.244.0.34.xip.io"
+        - "api.bosh-lite.com"
   resource_pool: large_z2
   templates:
   - name: cloud_controller_ng
@@ -480,7 +480,7 @@ jobs:
       - name: hm9000
         port: 5155
         uris:
-        - "hm9000.10.244.0.34.xip.io"
+        - "hm9000.bosh-lite.com"
   resource_pool: medium_z1
   templates:
   - name: hm9000
@@ -502,7 +502,7 @@ jobs:
       - name: hm9000
         port: 5155
         uris:
-        - "hm9000.10.244.0.34.xip.io"
+        - "hm9000.bosh-lite.com"
   resource_pool: medium_z2
   templates:
   - name: hm9000
@@ -2358,17 +2358,17 @@ properties:
   acceptance_tests:
     admin_password: admin
     admin_user: admin
-    api: api.10.244.0.34.xip.io
-    apps_domain: 10.244.0.34.xip.io
+    api: api.bosh-lite.com
+    apps_domain: bosh-lite.com
     nodes: 1
     skip_ssl_validation: true
-    system_domain: 10.244.0.34.xip.io
+    system_domain: bosh-lite.com
     client_secret: gorouter-secret
     include_routing: true
     use_http: true
   app_ssh: null
   app_domains:
-  - 10.244.0.34.xip.io
+  - bosh-lite.com
   cc:
     allowed_cors_domains: []
     app_events:
@@ -2381,7 +2381,7 @@ properties:
     broker_client_default_async_poll_interval_seconds: 60
     broker_client_max_async_poll_duration_minutes: 10080
     buildpacks:
-      buildpack_directory_key: 10.244.0.34.xip.io-cc-buildpacks
+      buildpack_directory_key: bosh-lite.com-cc-buildpacks
       cdn: null
       fog_connection:
         local_root: /var/vcap/store
@@ -2428,7 +2428,7 @@ properties:
     disable_custom_buildpacks: false
     droplets:
       cdn: null
-      droplet_directory_key: 10.244.0.34.xip.io-cc-droplets
+      droplet_directory_key: bosh-lite.com-cc-droplets
       fog_connection:
         local_root: /var/vcap/store
         provider: Local
@@ -2487,7 +2487,7 @@ properties:
         enabled: true
         record_sql: obfuscated
     packages:
-      app_package_directory_key: 10.244.0.34.xip.io-cc-packages
+      app_package_directory_key: bosh-lite.com-cc-packages
       cdn: null
       fog_connection:
         local_root: /var/vcap/store
@@ -2504,7 +2504,7 @@ properties:
       fog_connection:
         local_root: /var/vcap/store
         provider: Local
-      resource_directory_key: 10.244.0.34.xip.io-cc-resources
+      resource_directory_key: bosh-lite.com-cc-resources
     security_group_definitions:
     - name: public_networks
       rules:
@@ -2532,7 +2532,7 @@ properties:
         protocol: all
       - destination: 10.244.3.0/24
         protocol: all
-    srv_api_uri: https://api.10.244.0.34.xip.io
+    srv_api_uri: https://api.bosh-lite.com
     stacks: null
     staging_upload_password: upload-password
     staging_upload_user: upload-user
@@ -2566,7 +2566,7 @@ properties:
     users_can_select_backend: true
   ha_proxy: null
   hm9000:
-    url: http://hm9000.10.244.0.34.xip.io
+    url: http://hm9000.bosh-lite.com
   ccdb:
     address: 10.244.0.30
     databases:
@@ -2765,7 +2765,7 @@ properties:
     rlimit_core: 0
   description: Cloud Foundry sponsored by Pivotal
   disk_quota_enabled: false
-  domain: 10.244.0.34.xip.io
+  domain: bosh-lite.com
   doppler_endpoint:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
   dropsonde:
@@ -2801,10 +2801,10 @@ properties:
     catalina_opts: null
     invitations_enabled: null
     links:
-      home: https://console.10.244.0.34.xip.io
+      home: https://console.bosh-lite.com
       network: null
-      passwd: https://console.10.244.0.34.xip.io/password_resets/new
-      signup: https://console.10.244.0.34.xip.io/register
+      passwd: https://console.bosh-lite.com/password_resets/new
+      signup: https://console.bosh-lite.com/register
       signup-network: null
     logout:
       redirect:
@@ -2812,7 +2812,7 @@ properties:
         parameter:
           disable: false
           whitelist:
-            - https://testapp.10.244.0.34.xip.io/logout/success
+            - https://testapp.bosh-lite.com/logout/success
     notifications:
       url: null
     protocol: http
@@ -2936,8 +2936,8 @@ properties:
     route_service_secrets:
       - emc1Bu39coo4mcz+iaecPAL2wCeo4VB1+6s099ZYu/M=
   smoke_tests:
-    api: api.10.244.0.34.xip.io
-    apps_domain: 10.244.0.34.xip.io
+    api: api.bosh-lite.com
+    apps_domain: bosh-lite.com
     ginkgo_opts: ~
     org: SMOKE_TEST_ORG
     password: admin
@@ -2948,7 +2948,7 @@ properties:
     skip_cert_verify: true
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
-  system_domain: 10.244.0.34.xip.io
+  system_domain: bosh-lite.com
   system_domain_organization: null
   uaa:
     admin:
@@ -2970,7 +2970,7 @@ properties:
         authorities: app_direct_invoice.write
         authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
         override: true
-        redirect-uri: https://console.10.244.0.34.xip.io
+        redirect-uri: https://console.bosh-lite.com
         refresh-token-validity: 1209600
         secret: app-direct-secret
       cc-service-dashboards:
@@ -2983,7 +2983,7 @@ properties:
         authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
         authorized-grant-types: authorization_code,client_credentials
         override: true
-        redirect-uri: https://console.10.244.0.34.xip.io/oauth/callback
+        redirect-uri: https://console.bosh-lite.com/oauth/callback
         refresh-token-validity: 1209600
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
@@ -2993,7 +2993,7 @@ properties:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
-        redirect-uri: http://login.10.244.0.34.xip.io
+        redirect-uri: http://login.bosh-lite.com
         scope: openid,oauth.approvals
         secret: login-secret
       notifications:
@@ -3014,7 +3014,7 @@ properties:
         scope: openid,cloud_controller_service_permissions.read
         secret: gorouter-secret
     database: null
-    issuer: https://uaa.10.244.0.34.xip.io
+    issuer: https://uaa.bosh-lite.com
     jwt:
       signing_key: '-----BEGIN RSA PRIVATE KEY-----
 
@@ -3113,7 +3113,7 @@ properties:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose
     spring_profiles: null
-    url: https://uaa.10.244.0.34.xip.io
+    url: https://uaa.bosh-lite.com
     user: null
     zones:
       internal:

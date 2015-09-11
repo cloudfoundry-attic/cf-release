@@ -21,7 +21,7 @@ properties:
   ssl:
     skip_cert_verify: true
 
-  domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
+  domain: bosh-lite.com
 
   disk_quota_enabled: false
 
