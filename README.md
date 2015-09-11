@@ -74,11 +74,11 @@ The components in a V2 deployment are:
 
 ## Useful Scripts
 
-* `./update` pulls cf-release and updates all submodules (recursively) to the correct commit.
+* `scripts/update` pulls cf-release and updates all submodules (recursively) to the correct commit.
 This is useful in the following situations:
   * After you've first cloned the repo
   * Before you make changes to the directory. (Running the script avoids having to rebase your changes on top of submodule updates.)
-* `./commit_with_shortlog` commits changes you've made using `update_sub`.
+* `scripts/commit_with_shortlog` commits changes you've made to updated git submodules.
 
 ## Ask Questions
 
