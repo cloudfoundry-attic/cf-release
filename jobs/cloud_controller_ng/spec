@@ -370,6 +370,10 @@ properties:
     description: "Port for doppler_logging_endpoint listed at /v2/info"
     default: 443
 
+  router.enable_routing_api:
+    description: "Whether to expose the routing_api endpoint listed at /v2/info"
+    default: true
+
   cc.db_encryption_key:
     default: ""
     description: "key for encrypting sensitive values in the CC database"
