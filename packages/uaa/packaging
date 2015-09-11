@@ -1,7 +1,7 @@
 set -e -x
 
 cd ${BOSH_INSTALL_TARGET}
-mkdir jdk && tar zxvf ${BOSH_COMPILE_TARGET}/openjdk/openjdk-1.8.0_51.tar.gz -C jdk
+mkdir jdk && tar zxvf ${BOSH_COMPILE_TARGET}/openjdk/openjdk-1.8.0_60-x86_64-trusty-jre.tar.gz -C jdk
 if [[ $? != 0 ]] ; then
   echo "Cannot unpack JDK"
   exit 1
