@@ -693,6 +693,7 @@ properties:
 
   router:
     enable_ssl: (( merge || nil ))
+    enable_routing_api: (( merge || true ))
     ssl_cert: (( merge || nil ))
     ssl_key: (( merge || nil ))
     cipher_suites: (( merge || nil ))
