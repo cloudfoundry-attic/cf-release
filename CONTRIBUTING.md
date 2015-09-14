@@ -59,7 +59,7 @@ Please see the [Proposing New Features](https://github.com/cloudfoundry-communit
    ```bash
    cd cf-release
    git checkout develop
-   ./update
+   ./scripts/update
    git checkout -b better_cf-release
 
    ```
