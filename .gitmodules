@@ -97,3 +97,6 @@
 [submodule "src/github.com/cloudfoundry/cf-acceptance-tests"]
 	path = src/github.com/cloudfoundry/cf-acceptance-tests
 	url = https://github.com/cloudfoundry/cf-acceptance-tests
+[submodule "src/consul-release"]
+	path = src/consul-release
+	url = https://github.com/cloudfoundry-incubator/consul-release.git
