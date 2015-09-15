@@ -36,6 +36,12 @@ properties:
     description: "Number of seconds in which lockoutAfterFailures failures must occur in order for account to be locked"
   uaa.authentication.policy.lockoutPeriodSeconds:
     description: "Number of seconds to lock out an account when lockoutAfterFailures failures is exceeded"
+  uaa.disableInternalAuth:
+    description: "Disables internal user authentication"
+    default: false
+  uaa.disableInternalUserManagement:
+    description: "Disables UI and API for internal user management"
+    default: false
   uaa.password.policy.minLength:
     description: "Minimum number of characters required for password to be considered valid"
     default: 0

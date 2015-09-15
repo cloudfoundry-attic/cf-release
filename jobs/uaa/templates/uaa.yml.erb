@@ -67,6 +67,10 @@ authentication:
     lockoutPeriodSeconds: <%= properties.uaa.authentication.policy.lockoutPeriodSeconds ? properties.uaa.authentication.policy.lockoutPeriodSeconds : 300%>
 <% end %>
 
+disableInternalAuth: <%= properties.uaa.disableInternalUserAuth %>
+
+disableInternalUserManagement: <%= properties.uaa.disableInternalUserManagement %>
+
 password:
   policy:
     minLength: <%= properties.uaa.password.policy.minLength %>
