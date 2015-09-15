@@ -152,8 +152,6 @@ oauth:
   user:
     authorities: <% properties.uaa.user.authorities.each do |authority| %>
       - <%= authority %><% end %>
-  openid:
-    fallbackToAuthcode: <%= properties.uaa.openid.fallbackToAuthcode %>
 scim:
   userids_enabled: <%= properties.uaa.scim.userids_enabled %>
   user.override: <%= properties.uaa.scim.user.override %>
