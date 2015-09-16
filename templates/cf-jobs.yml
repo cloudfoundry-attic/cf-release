@@ -35,7 +35,7 @@ meta:
   - name: statsd-injector
     release: (( lamb_meta.release.name ))
   - name: consul_agent
-    release: (( meta.release.name ))
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: nfs_mounter
     release: (( meta.release.name ))
   - name: route_registrar
@@ -47,7 +47,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: consul_agent
-    release: (( meta.release.name ))
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: nfs_mounter
     release: (( meta.release.name ))
 
@@ -85,7 +85,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: consul_agent
-    release: (( meta.release.name ))
+    release: (( meta.consul_templates.consul_agent.release ))
 
   hm9000_routes:
   - name: hm9000
@@ -127,7 +127,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: consul_agent
-    release: (( meta.release.name ))
+    release: (( meta.consul_templates.consul_agent.release ))
 
   stats_templates:
   - name: collector
@@ -150,7 +150,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: consul_agent
-    release: (( meta.release.name ))
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: route_registrar
     release: (( meta.release.name ))
 
