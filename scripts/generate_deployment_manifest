@@ -4,6 +4,17 @@ root_dir=$(cd "$(dirname "$0")/.." && pwd)
 
 templates="${root_dir}/templates"
 
+function usage()
+{
+  echo "usage: ./scripts/generate_deployment_manifest <aws|openstack|warden|vsphere> [stubs...]"
+  exit 1
+}
+
+if [ -z "$1" ]
+then
+  usage
+fi
+
 infrastructure=$1
 
 shift
@@ -12,8 +23,7 @@ if [ "$infrastructure" != "aws" ] && \
     [ "$infrastructure" != "openstack" ] && \
     [ "$infrastructure" != "warden" ] && \
     [ "$infrastructure" != "vsphere" ] ; then
-  echo "usage: ./scripts/generate_deployment_manifest <aws|openstack|warden|vsphere> [stubs...]"
-  exit 1
+  usage
 fi
 
 spiff merge \
