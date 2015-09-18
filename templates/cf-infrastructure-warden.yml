@@ -213,6 +213,7 @@ properties:
         citext: true
 
   acceptance_tests:
+    <<: (( merge || nil ))
     api:  (( "api." domain ))
     apps_domain: (( domain ))
     admin_user: admin
