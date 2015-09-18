@@ -76,6 +76,9 @@ properties:
   app_ssh.port:
     description: "External port for SSH access to application instances"
     default: 2222
+  app_ssh.oauth_client_id:
+    description: "The oauth client ID of the SSH proxy"
+    default: ssh-proxy
 
   nats.user:
     description: "Username for cc client to connect to NATS"
