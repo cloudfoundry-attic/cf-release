@@ -12,11 +12,13 @@ meta:
 
   consul_servers: (( merge || jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
 
+  nfs_client_ranges:
+    - (( .networks.cf1.subnets.[0].range || nil ))
+    - (( .networks.cf2.subnets.[0].range || nil ))
+
   nfs_server:
-    address: (( jobs.nfs_z1.networks.cf1.static_ips.[0] || nil ))
-    allow_from_entries:
-      - (( .networks.cf1.subnets.[0].range || nil ))
-      - (( .networks.cf2.subnets.[0].range || nil ))
+    address: (( merge || jobs.nfs_z1.networks.cf1.static_ips.[0] || nil ))
+    allow_from_entries: (( merge || meta.nfs_client_ranges ))
     share: ~
 
   api_templates:
