@@ -137,7 +137,7 @@ jobs:
     resource_pool: small_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     update:
       serial: true
       max_in_flight: 1
@@ -155,7 +155,7 @@ jobs:
     resource_pool: small_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     update:
       serial: true
       max_in_flight: 1
@@ -193,7 +193,7 @@ jobs:
     resource_pool: medium_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z1
@@ -205,7 +205,7 @@ jobs:
     resource_pool: medium_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z2
@@ -218,7 +218,7 @@ jobs:
     resource_pool: medium_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z1
@@ -232,7 +232,7 @@ jobs:
     resource_pool: medium_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z2
@@ -498,7 +498,7 @@ jobs:
     resource_pool: router_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       consul:
         agent:
@@ -514,7 +514,7 @@ jobs:
     resource_pool: router_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       consul:
         agent:
