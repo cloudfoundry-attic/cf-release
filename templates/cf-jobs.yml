@@ -593,7 +593,7 @@ properties:
     client_cert:
     client_key:
     cluster:
-    machines: (( jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
+    machines: (( merge || jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
     peer_require_ssl:
     require_ssl:
     server_cert:
