@@ -57,13 +57,13 @@ resource_pools:
     env: (( merge || meta.default_env ))
 
   - name: router_z1
-    network: cf1
+    network: (( merge || "cf1" ))
     stemcell: (( meta.stemcell ))
     cloud_properties: (( merge ))
     env: (( merge || meta.default_env ))
 
   - name: router_z2
-    network: cf2
+    network: (( merge || "cf2" ))
     stemcell: (( meta.stemcell ))
     cloud_properties: (( merge ))
     env: (( merge || meta.default_env ))
