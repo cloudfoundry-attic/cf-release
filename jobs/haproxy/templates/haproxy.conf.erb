@@ -5,7 +5,7 @@ global
     group vcap
     maxconn 64000
     spread-checks 4
-    tune.bufsize <%= p("ha_proxy.buffer_size") %>
+    tune.bufsize <%= p("ha_proxy.buffer_size_bytes") %>
     <% if p("ha_proxy.enable_stats_socket") %>
     stats socket /var/vcap/sys/run/haproxy/stats
     <% end %>
