@@ -716,7 +716,7 @@ properties:
       fog_connection: null
     external_host: api
     external_port: 9022
-    external_protocol: http
+    external_protocol: https
     install_buildpacks:
     - name: staticfile_buildpack
       package: buildpack_staticfile
@@ -954,7 +954,7 @@ properties:
           disable: false
     notifications:
       url: null
-    protocol: http
+    protocol: https
     restricted_ips_regex: ~
     saml: null
     self_service_links_enabled: null
@@ -1086,7 +1086,7 @@ properties:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
-        redirect-uri: http://login.0.0.0.3.xip.io
+        redirect-uri: https://login.0.0.0.3.xip.io
         scope: openid,oauth.approvals
         secret: login_client_secret
       notifications:

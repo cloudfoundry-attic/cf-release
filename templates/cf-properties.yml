@@ -177,7 +177,7 @@ properties:
         alert_if_above_mb: ~
         restart_if_consistently_above_mb: ~
         restart_if_above_mb: ~
-    external_protocol: "http"
+    external_protocol: "https"
 
   hm9000:
     url: (( "https://hm9000." domain ))

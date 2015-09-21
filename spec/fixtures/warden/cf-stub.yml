@@ -11,7 +11,7 @@ properties:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
 
   hm9000:
-    url: http://hm9000.bosh-lite.com
+    url: https://hm9000.bosh-lite.com
   cc:
     external_protocol: https
     security_group_definitions:
