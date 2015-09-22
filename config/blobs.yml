@@ -15,10 +15,6 @@ debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
   sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
   size: 169618
-mysql/client-5.1.62-rel13.3-435-Linux-x86_64.tar.gz:
-  object_id: rest/objects/4e4e78bca21e122204e4e9863926b104fb68b259c9fc
-  sha: 6e5a17195831688a5f14f20aa5d9cd5d5f4164db
-  size: 4105211
 uaa/cloudfoundry-identity-varz-1.0.2.war:
   object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc050928ba58f527
   sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
@@ -151,3 +147,7 @@ php-buildpack/php_buildpack-cached-v4.1.4.zip:
   object_id: ec676f1a-146e-47d0-b2b2-90b295b6fb63
   sha: 781ff29342800240dace903bcc509c8167f85e34
   size: 407885914
+mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
+  object_id: 31e64230-f356-4522-86d6-413a531996b9
+  sha: f6cc741b64084752478009505113a39192d89da9
+  size: 1376537
