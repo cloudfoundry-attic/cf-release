@@ -4,19 +4,21 @@ networks: (( merge ))
 
 lamb_meta: (( merge ))
 
-consul_servers: (( jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
-
 meta:
   environment: ~
 
   release:
     name: cf
 
+  consul_servers: (( merge || jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
+
+  nfs_client_ranges:
+    - (( .networks.cf1.subnets.[0].range || nil ))
+    - (( .networks.cf2.subnets.[0].range || nil ))
+
   nfs_server:
-    address: (( jobs.nfs_z1.networks.cf1.static_ips.[0] || nil ))
-    allow_from_entries:
-      - (( .networks.cf1.subnets.[0].range || nil ))
-      - (( .networks.cf2.subnets.[0].range || nil ))
+    address: (( merge || jobs.nfs_z1.networks.cf1.static_ips.[0] || nil ))
+    allow_from_entries: (( merge || meta.nfs_client_ranges ))
     share: ~
 
   api_routes:
@@ -162,7 +164,7 @@ jobs:
     resource_pool: small_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     update:
       serial: true
       max_in_flight: 1
@@ -180,7 +182,7 @@ jobs:
     resource_pool: small_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     update:
       serial: true
       max_in_flight: 1
@@ -203,8 +205,8 @@ jobs:
       ha_proxy:
       router:
         servers:
-          z1: (( jobs.router_z1.networks.cf1.static_ips ))
-          z2: (( jobs.router_z2.networks.cf2.static_ips ))
+          z1: (( merge || jobs.router_z1.networks.cf1.static_ips ))
+          z2: (( merge || jobs.router_z2.networks.cf2.static_ips ))
       metron_agent:
         zone: z1
     update: (( merge || empty_hash ))
@@ -215,7 +217,7 @@ jobs:
     resource_pool: medium_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z1
@@ -227,7 +229,7 @@ jobs:
     resource_pool: medium_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z2
@@ -240,7 +242,7 @@ jobs:
     resource_pool: medium_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z1
@@ -254,7 +256,7 @@ jobs:
     resource_pool: medium_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       metron_agent:
         zone: z2
@@ -540,7 +542,7 @@ jobs:
     resource_pool: router_z1
     networks:
       - name: cf1
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       consul:
         agent:
@@ -556,7 +558,7 @@ jobs:
     resource_pool: router_z2
     networks:
       - name: cf2
-        static_ips: (( merge ))
+        static_ips: (( merge || nil ))
     properties:
       consul:
         agent:
@@ -594,7 +596,7 @@ properties:
     agent:
       log_level: (( merge || nil ))
       servers:
-        lan: (( consul_servers ))
+        lan: (( meta.consul_servers ))
     ca_cert:
     agent_cert:
     agent_key:
@@ -622,9 +624,9 @@ properties:
   nats:
     user: (( merge ))
     password: (( merge ))
-    address: (( jobs.nats_z1.networks.cf1.static_ips.[0] ))
+    address: (( merge || jobs.nats_z1.networks.cf1.static_ips.[0] ))
     port: 4222
-    machines: (( jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
+    machines: (( merge || jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
     debug: false
     trace: false
     monitor_port: 0
@@ -635,7 +637,7 @@ properties:
     client_cert:
     client_key:
     cluster:
-    machines: (( jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
+    machines: (( merge || jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
     peer_require_ssl:
     require_ssl:
     server_cert:
