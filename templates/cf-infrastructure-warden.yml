@@ -113,10 +113,10 @@ properties:
     scim:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose
-    no_ssl: true
+    no_ssl: false
 
   login:
-    protocol: http
+    protocol: https
     links:
       home: (( "https://console." domain ))
     uaa_certificate: |
