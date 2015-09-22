@@ -540,9 +540,10 @@ jobs:
     templates: (( merge || meta.router_templates ))
     instances: 1
     resource_pool: router_z1
-    networks:
+    default_networks:
       - name: cf1
-        static_ips: (( merge || nil ))
+        static_ips: ~
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -556,9 +557,10 @@ jobs:
     templates: (( merge || meta.router_templates ))
     instances: 1
     resource_pool: router_z2
-    networks:
+    default_networks:
       - name: cf2
-        static_ips: (( merge || nil ))
+        static_ips: ~
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
