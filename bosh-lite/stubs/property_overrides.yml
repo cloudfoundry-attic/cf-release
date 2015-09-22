@@ -1,0 +1,10 @@
+---
+meta:
+
+properties:
+  dea_next:
+    evacuation_bail_out_time_in_seconds: 0
+    memory_mb: 8192
+    disk_mb: 32768
+    disk_overcommit_factor: 3
+    kernel_network_tuning_enabled: false

@@ -31,6 +31,7 @@ fi
 "${CF_RELEASE_DIR}/scripts/generate_deployment_manifest" \
   warden \
   "${CF_RELEASE_DIR}/bosh-lite/stubs/dev-security-groups.yml" \
+  "${CF_RELEASE_DIR}/bosh-lite/stubs/property_overrides.yml" \
   <(echo "director_uuid: ${DIRECTOR_UUID}") \
   "${CF_RELEASE_DIR}/templates/cf-minimal-dev.yml" \
   ${diego_stub} \

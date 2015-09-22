@@ -26,11 +26,9 @@ properties:
   disk_quota_enabled: false
 
   dea_next:
-    evacuation_bail_out_time_in_seconds: 0
-    memory_mb: 8192
-    disk_mb: 32768
-    disk_overcommit_factor: 3
     kernel_network_tuning_enabled: false
+    memory_mb: (( merge || nil ))
+    disk_mb: (( merge || nil ))
 
   loggregator_endpoint:
     shared_secret: loggregator-secret
@@ -45,7 +43,6 @@ properties:
     url: (( "https://hm9000." domain ))
 
   cc:
-    default_quota_definition: default
     default_app_memory: 256
     bulk_api_password: bulk-password
     internal_api_password: internal-password
@@ -105,23 +102,6 @@ properties:
         scope: openid,cloud_controller_service_permissions.read
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
-      developer_console:
-        override: true
-        scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
-        authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
-        authorized-grant-types: authorization_code,client_credentials
-        access-token-validity: 1209600
-        refresh-token-validity: 1209600
-        redirect-uri: (( "https://console." domain "/oauth/callback" ))
-        secret: console-secret
-      app-direct:
-        override: true
-        authorities: app_direct_invoice.write
-        authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
-        access-token-validity: 1209600
-        refresh-token-validity: 1209600
-        redirect-uri: (( properties.login.links.home ))
-        secret: app-direct-secret
       notifications:
         secret: notification-secret
       doppler:
