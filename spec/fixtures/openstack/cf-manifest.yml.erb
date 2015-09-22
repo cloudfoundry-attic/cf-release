@@ -568,6 +568,9 @@ jobs:
   update: {}
 - instances: 1
   name: router_z1
+  default_networks:
+    - name: cf1
+      static_ips: ~
   networks:
   - name: cf1
     static_ips:
@@ -590,6 +593,9 @@ jobs:
   update: {}
 - instances: 0
   name: router_z2
+  default_networks:
+    - name: cf2
+      static_ips: ~
   networks:
   - name: cf2
     static_ips: []
