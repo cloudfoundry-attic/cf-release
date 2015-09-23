@@ -115,7 +115,7 @@ properties:
     description: "Custom values for /v2/info endpoint"
 
   cc.external_protocol:
-    default: "http"
+    default: "https"
     description: "The protocol used to access the CC API from an external entity"
   cc.external_host:
     default: "api"

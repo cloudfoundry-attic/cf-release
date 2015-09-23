@@ -151,7 +151,7 @@ properties:
     description: "The directory where operator requested diagnostic files should be placed"
 
   cc.external_protocol:
-    default: "http"
+    default: "https"
     description: "The protocol used to access the CC API from an external entity"
   cc.external_host:
     default: "api"

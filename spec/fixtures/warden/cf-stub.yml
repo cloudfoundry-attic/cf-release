@@ -13,7 +13,6 @@ properties:
   hm9000:
     url: http://hm9000.bosh-lite.com
   cc:
-    external_protocol: https
     security_group_definitions:
       - name: public_networks
         rules:

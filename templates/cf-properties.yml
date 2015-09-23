@@ -177,7 +177,7 @@ properties:
         alert_if_above_mb: ~
         restart_if_consistently_above_mb: ~
         restart_if_above_mb: ~
-    external_protocol: "http"
+    external_protocol: ~
 
   hm9000:
     url: (( "https://hm9000." domain ))
@@ -190,7 +190,7 @@ properties:
     url: ~
     catalina_opts: ~
     uaa_certificate: ~
-    protocol: https
+    protocol: ~
     brand: oss
     asset_base_url: ~
     uaa_base: ~
@@ -230,7 +230,7 @@ properties:
     url: (( "https://uaa." domain ))
     issuer: (( url ))
 
-    no_ssl: false
+    no_ssl: ~
     require_https: ~
 
     scim:
@@ -276,7 +276,7 @@ properties:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
-        redirect-uri: (( properties.login.protocol "://login." domain ))
+        redirect-uri: (( "https://login." domain ))
       notifications:
         secret: (( merge ))
         authorities: cloud_controller.admin,scim.read

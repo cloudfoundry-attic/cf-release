@@ -269,6 +269,7 @@ properties:
     default: false
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
+    default: https
   login.ldap.profile_type:
     description: "See uaa.ldap.profile_type - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
   login.ldap.url:

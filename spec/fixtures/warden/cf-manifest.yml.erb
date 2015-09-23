@@ -2440,7 +2440,7 @@ properties:
         provider: Local
     external_host: api
     external_port: 9022
-    external_protocol: https
+    external_protocol: null
     install_buildpacks:
     - name: staticfile_buildpack
       package: buildpack_staticfile
@@ -2821,7 +2821,7 @@ properties:
             - https://testapp.bosh-lite.com/logout/success
     notifications:
       url: null
-    protocol: http
+    protocol: null
     restricted_ips_regex: ~
     saml: null
     self_service_links_enabled: null
@@ -2999,7 +2999,7 @@ properties:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
-        redirect-uri: http://login.bosh-lite.com
+        redirect-uri: https://login.bosh-lite.com
         scope: openid,oauth.approvals
         secret: login-secret
       notifications:
@@ -3109,7 +3109,7 @@ properties:
           enabled: true
         browser_monitoring:
           auto_instrument: true
-    no_ssl: true
+    no_ssl: null
     port: 8080
     require_https: ~
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}

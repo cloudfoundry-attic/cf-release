@@ -1,7 +1,7 @@
 ---
 <% uaa_db = properties.uaadb.databases.find { |db| db.tag == "uaa" } %>
 <% uaa_role = properties.uaadb.roles.find { |role| role.tag == "admin" } %>
-<% protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http" %>
+<% protocol = properties.login.protocol %>
 
 <%
   # The login secret is defined in one of two properties
