@@ -4,6 +4,73 @@ meta:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
     version: latest
 
+  resource_pools:
+    small_z1:
+      cloud_properties:
+        ram: 1024
+        disk: 4096
+        cpu: 1
+
+    small_z2:
+      cloud_properties:
+        ram: 1024
+        disk: 4096
+        cpu: 1
+
+    medium_z1:
+      cloud_properties:
+        ram: 1024
+        disk: 4096
+        cpu: 1
+
+    medium_z2:
+      cloud_properties:
+        ram: 1024
+        disk: 4096
+        cpu: 1
+
+    large_z1:
+      cloud_properties:
+        ram: 1024
+        disk: 4096
+        cpu: 1
+
+    large_z2:
+      cloud_properties:
+        ram: 1024
+        disk: 4096
+        cpu: 1
+
+    runner_z1:
+      cloud_properties:
+        ram: 16384
+        disk: 32768
+        cpu: 2
+
+    runner_z2:
+      cloud_properties:
+        ram: 16384
+        disk: 32768
+        cpu: 2
+
+    router_z1:
+      cloud_properties:
+        ram: 1024
+        disk: 2048
+        cpu: 1
+
+    router_z2:
+      cloud_properties:
+        ram: 1024
+        disk: 2048
+        cpu: 1
+
+    small_errand:
+      cloud_properties:
+        ram: 1024
+        disk: 2048
+        cpu: 1
+
 compilation:
   cloud_properties:
     ram: 1024
@@ -13,71 +80,37 @@ networks: (( merge ))
 
 resource_pools:
   - name: small_z1
-    cloud_properties:
-      ram: 1024
-      disk: 4096
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.small_z1.cloud_properties ))
 
   - name: small_z2
-    cloud_properties:
-      ram: 1024
-      disk: 4096
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.small_z2.cloud_properties ))
 
   - name: medium_z1
-    cloud_properties:
-      ram: 1024
-      disk: 4096
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.medium_z1.cloud_properties ))
 
   - name: medium_z2
-    cloud_properties:
-      ram: 1024
-      disk: 4096
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.medium_z2.cloud_properties ))
 
   - name: large_z1
-    cloud_properties:
-      ram: 1024
-      disk: 10240
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.large_z1.cloud_properties ))
 
   - name: large_z2
-    cloud_properties:
-      ram: 1024
-      disk: 10240
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.large_z2.cloud_properties ))
 
   - name: runner_z1
-    cloud_properties:
-      ram: 16384
-      disk: 32768
-      cpu: 2
+    cloud_properties: (( merge || meta.resource_pools.runner_z1.cloud_properties ))
 
   - name: runner_z2
-    cloud_properties:
-      ram: 16384
-      disk: 32768
-      cpu: 2
+    cloud_properties: (( merge || meta.resource_pools.runner_z2.cloud_properties ))
 
   - name: router_z1
-    cloud_properties:
-      ram: 1024
-      disk: 2048
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.router_z1.cloud_properties ))
 
   - name: router_z2
-    cloud_properties:
-      ram: 1024
-      disk: 2048
-      cpu: 1
+    cloud_properties: (( merge || meta.resource_pools.router_z2.cloud_properties ))
 
   - name: small_errand
-    cloud_properties:
-      ram: 1024
-      disk: 2048
-      cpu: 1
-
+    cloud_properties: (( merge || meta.resource_pools.small_errand.cloud_properties ))
 
 jobs:
   - name: logs_z1
