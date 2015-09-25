@@ -3,7 +3,7 @@ name: cloud_controller_ng
 dependencies:
 - libpq
 - mysqlclient-5.5
-- ruby-2.2.3
+- ruby-2.1.7
 
 files:
 - cloud_controller_ng/{.ruby-version,Rakefile,Gemfile,Gemfile.lock}
