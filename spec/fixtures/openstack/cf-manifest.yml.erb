@@ -215,6 +215,8 @@ jobs:
     route_registrar:
       routes:
       - name: uaa
+        tags:
+          component: uaa
         port: 8080
         uris:
         - "uaa.example.com"
@@ -251,6 +253,8 @@ jobs:
     route_registrar:
       routes:
       - name: uaa
+        tags:
+          component: uaa
         port: 8080
         uris:
         - "uaa.example.com"

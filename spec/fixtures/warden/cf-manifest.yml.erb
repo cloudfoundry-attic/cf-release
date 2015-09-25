@@ -257,6 +257,8 @@ jobs:
     route_registrar:
       routes:
       - name: uaa
+        tags:
+          component: uaa
         port: 8080
         uris:
         - "uaa.bosh-lite.com"
@@ -293,6 +295,8 @@ jobs:
     route_registrar:
       routes:
       - name: uaa
+        tags:
+          component: uaa
         port: 8080
         uris:
         - "uaa.bosh-lite.com"

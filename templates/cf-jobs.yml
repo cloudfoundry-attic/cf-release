@@ -140,6 +140,8 @@ meta:
   uaa_routes:
   - name: uaa
     port: (( .properties.uaa.port ))
+    tags:
+      component: uaa
     uris:
     - (( "uaa." .properties.domain ))
     - (( "*.uaa." .properties.domain ))

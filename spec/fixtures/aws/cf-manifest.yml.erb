@@ -214,6 +214,8 @@ jobs:
       routes:
       - name: uaa
         port: 8080
+        tags:
+          component: uaa
         uris:
         - "uaa.example.com"
         - "*.uaa.example.com"
@@ -251,6 +253,8 @@ jobs:
       routes:
       - name: uaa
         port: 8080
+        tags:
+          component: uaa
         uris:
         - "uaa.example.com"
         - "*.uaa.example.com"

@@ -218,6 +218,8 @@ jobs:
     route_registrar:
       routes:
       - name: uaa
+        tags:
+          component: uaa
         port: 8080
         uris:
         - "uaa.0.0.0.3.xip.io"
@@ -255,6 +257,8 @@ jobs:
     route_registrar:
       routes:
       - name: uaa
+        tags:
+          component: uaa
         port: 8080
         uris:
         - "uaa.0.0.0.3.xip.io"
