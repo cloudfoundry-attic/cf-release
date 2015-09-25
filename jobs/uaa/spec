@@ -446,9 +446,6 @@ properties:
     description: "A list of URLs. When this list is non null, including empty, and disable=false,
     logout redirects are allowed, but limited to the whitelist URLs. If a redirect parameter value is not white
     listed, redirect will be to the default URL."
-  router.servers.z1:
+  router.servers:
     description: "Array of the router IPs acting as the first group of HTTP/TCP backends"
-    default: []
-  router.servers.z2:
-    description: "Array of the router IPs acting as the second group of HTTP/TCP backends"
     default: []

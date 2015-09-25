@@ -223,10 +223,8 @@ jobs:
         - "*.login.example.com"
     router:
       servers:
-        z1:
-          - 0.0.0.5
-        z2:
-          - 0.0.1.5
+        - 0.0.0.5
+        - 0.0.1.5
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -262,10 +260,8 @@ jobs:
         - "*.login.example.com"
     router:
       servers:
-        z1:
-          - 0.0.0.5
-        z2:
-          - 0.0.1.5
+        - 0.0.0.5
+        - 0.0.1.5
   resource_pool: medium_z2
   templates:
   - name: uaa

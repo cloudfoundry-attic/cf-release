@@ -20,20 +20,12 @@ if properties.uaa.restricted_ips_regex
   internalProxies = internalProxies + "|" + properties.uaa.restricted_ips_regex
 end
 
-# Look up Zone 1 and 2 Router IPs
+# Look up Router IPs
 if properties.router && properties.router.servers
-    if properties.router.servers.z1
-        p("router.servers.z1").each_with_index do |ip, index|
-            regExIp = ip.gsub(".","\\.").gsub(":","\\:")
-            internalProxies = internalProxies + "|" + regExIp
-        end
-    end
-    if properties.router.servers.z2
-        p("router.servers.z2").each_with_index do |ip, index|
-            regExIp = ip.gsub(".","\\.").gsub(":","\\:")
-            internalProxies = internalProxies + "|" + regExIp
-        end
-    end
+  p("router.servers").each_with_index do |ip, index|
+    regExIp = ip.gsub(".","\\.").gsub(":","\\:")
+    internalProxies = internalProxies + "|" + regExIp
+  end
 end
 
 # If we don't have any proxies by now. Use the default list so we don't go blank

@@ -318,9 +318,7 @@ jobs:
       route_registrar:
         routes: (( merge || meta.uaa_routes ))
       router:
-        servers:
-          z1: (( jobs.router_z1.networks.cf1.static_ips ))
-          z2: (( jobs.router_z2.networks.cf2.static_ips ))
+        servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips))
     update: (( merge || empty_hash ))
 
   - name: uaa_z2
@@ -339,9 +337,7 @@ jobs:
       route_registrar:
         routes: (( merge || meta.uaa_routes ))
       router:
-        servers:
-          z1: (( jobs.router_z1.networks.cf1.static_ips ))
-          z2: (( jobs.router_z2.networks.cf2.static_ips ))
+        servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips))
     update: (( merge || empty_hash ))
 
   - name: api_z1
