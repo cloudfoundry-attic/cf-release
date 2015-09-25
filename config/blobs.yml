@@ -131,10 +131,6 @@ openjdk/openjdk-1.8.0_60-x86_64-trusty.tar.gz:
   object_id: de6ab27d-2469-403d-a47a-d1b82c91a33a
   sha: 1831bb9db77e304c9b0167d5b61350aa83393a22
   size: 77540278
-go-buildpack/go_buildpack-cached-v1.6.1.zip:
-  object_id: 096971fb-ace8-448f-80b2-fa637a2b499e
-  sha: fa0f29b802020a934da1c6e955e01dab306336cc
-  size: 515485737
 python-buildpack/python_buildpack-cached-v1.5.1.zip:
   object_id: b2ea126f-819b-4049-9a74-efb21f8dfe9f
   sha: 53d27bfb52e823b262188b90386a71db5d68fb27
@@ -151,3 +147,7 @@ mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
   object_id: 31e64230-f356-4522-86d6-413a531996b9
   sha: f6cc741b64084752478009505113a39192d89da9
   size: 1376537
+go-buildpack/go_buildpack-cached-v1.6.2.zip:
+  object_id: 36cf66dd-7582-4683-823f-016a5ccca3d0
+  sha: 16c34fcb0578759fec73406e6581879f674752f1
+  size: 514306419
