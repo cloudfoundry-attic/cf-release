@@ -57,7 +57,7 @@ networks: (( merge ))
 resource_pools:
   - name: small_z1
     cloud_properties:
-      instance_type: c3.large
+      instance_type: t2.small
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -65,7 +65,7 @@ resource_pools:
 
   - name: small_z2
     cloud_properties:
-      instance_type: c3.large
+      instance_type: t2.small
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -73,7 +73,7 @@ resource_pools:
 
   - name: medium_z1
     cloud_properties:
-      instance_type: c3.large
+      instance_type: t2.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -81,7 +81,7 @@ resource_pools:
 
   - name: medium_z2
     cloud_properties:
-      instance_type: c3.large
+      instance_type: t2.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -89,7 +89,7 @@ resource_pools:
 
   - name: large_z1
     cloud_properties:
-      instance_type: m3.large
+      instance_type: t2.large
       ephemeral_disk:
         size: 65_536
         type: gp2
@@ -97,7 +97,7 @@ resource_pools:
 
   - name: large_z2
     cloud_properties:
-      instance_type: m3.large
+      instance_type: t2.large
       ephemeral_disk:
         size: 65_536
         type: gp2
@@ -105,7 +105,7 @@ resource_pools:
 
   - name: runner_z1
     cloud_properties:
-      instance_type: m3.large
+      instance_type: r3.large
       ephemeral_disk:
         size: 102_400
         type: gp2
@@ -113,7 +113,7 @@ resource_pools:
 
   - name: runner_z2
     cloud_properties:
-      instance_type: m3.large
+      instance_type: r3.large
       ephemeral_disk:
         size: 102_400
         type: gp2
@@ -121,7 +121,7 @@ resource_pools:
 
   - name: router_z1
     cloud_properties:
-      instance_type: c3.large
+      instance_type: t2.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -130,7 +130,7 @@ resource_pools:
 
   - name: router_z2
     cloud_properties:
-      instance_type: c3.large
+      instance_type: t2.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -139,7 +139,7 @@ resource_pools:
 
   - name: small_errand
     cloud_properties:
-      instance_type: c3.large
+      instance_type: t2.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -147,7 +147,7 @@ resource_pools:
 
   - name: xlarge_errand
     cloud_properties:
-      instance_type: c3.xlarge
+      instance_type: c4.xlarge
       availability_zone: (( meta.zones.z1 ))
 
 # set up static IPs
