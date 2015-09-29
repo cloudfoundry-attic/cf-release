@@ -93,6 +93,8 @@ password:
 issuer.uri: <%= p("uaa.issuer", p("uaa.url", "#{scheme}://uaa.#{properties.domain}")) %>
 
 oauth:
+  id_token:
+    disable: <%= properties.uaa.id_token.disable %>
   <% unless properties.uaa.no_ssl %>
   authorize:
     ssl: true
