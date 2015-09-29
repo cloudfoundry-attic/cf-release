@@ -1,5 +1,0 @@
-check process etcd_metrics_server
-  with pidfile /var/vcap/sys/run/etcd_metrics_server/etcd_metrics_server.pid
-  start program "/var/vcap/jobs/etcd_metrics_server/bin/etcd_metrics_server_ctl start"
-  stop program "/var/vcap/jobs/etcd_metrics_server/bin/etcd_metrics_server_ctl stop"
-  group vcap
