@@ -32,6 +32,7 @@ case $1 in
 
     # Set ulimits
     ulimit -c unlimited
+    ulimit -n 4096
 
     <% if p("dea_next.kernel_network_tuning_enabled") == true %>
     # Use default local port range (higher ports are used for pooling)

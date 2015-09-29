@@ -30,6 +30,7 @@ case $1 in
     echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
 
     ulimit -c unlimited
+    ulimit -n 4096
 
     <% if p("dea_next.kernel_network_tuning_enabled") == true %>
     # TCP_FIN_TIMEOUT
