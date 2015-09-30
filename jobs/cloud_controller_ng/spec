@@ -268,6 +268,9 @@ properties:
   cc.packages.max_package_size:
     description: "Maximum size of application package"
     default: 1073741824
+  cc.packages.max_valid_packages_stored:
+    description: "Number of recent, valid packages stored per app (not including package for current droplet)"
+    default: 5
   cc.packages.fog_connection:
     description: "Fog connection hash"
   cc.packages.cdn.uri:
@@ -283,6 +286,9 @@ properties:
   cc.droplets.droplet_directory_key:
     description: "Directory (bucket) used store droplets.  It does not have be pre-created."
     default: "cc-droplets"
+  cc.droplets.max_staged_droplets_stored:
+    description: "Number of recent, staged droplets stored per app (not including current droplet)" 
+    default: 5
   cc.droplets.fog_connection:
     description: "Fog connection hash"
   cc.droplets.cdn.uri:
