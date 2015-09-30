@@ -20,7 +20,6 @@ class RouteRegistrar
     @message_bus_servers = config[:message_bus_servers]
     @host = config[:host]
     @port_map = config[:port_map]
-    @tags = config[:tags]
     @index = config[:index] || 0
     @update_frequency_in_seconds = config[:update_frequency_in_seconds]
     @private_instance_id = config[:private_instance_id] || SecureRandom.uuid
@@ -63,16 +62,16 @@ class RouteRegistrar
   end
 
   def registry_messages
-    port_map.collect do |port, uris|
+    port_map.collect do |item_to_register|
+      puts item_to_register
       {
         :host => host,
-        :port => port.to_i,
-        :uris => Array(uris),
-        :tags => tags,
+        :port => item_to_register['port'].to_i,
+        :uris => item_to_register['uris'],
+        :tags => item_to_register['tags'],
         :private_instance_id => private_instance_id
       }
     end
-
   end
 
   def symbolize_keys(hash)

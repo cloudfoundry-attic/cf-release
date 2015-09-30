@@ -36,6 +36,12 @@ properties:
     description: "Number of seconds in which lockoutAfterFailures failures must occur in order for account to be locked"
   uaa.authentication.policy.lockoutPeriodSeconds:
     description: "Number of seconds to lock out an account when lockoutAfterFailures failures is exceeded"
+  uaa.disableInternalAuth:
+    description: "Disables internal user authentication"
+    default: false
+  uaa.disableInternalUserManagement:
+    description: "Disables UI and API for internal user management"
+    default: false
   uaa.password.policy.minLength:
     description: "Minimum number of characters required for password to be considered valid"
     default: 0
@@ -80,9 +86,6 @@ properties:
       - oauth.approvals
       - notification_preferences.read
       - notification_preferences.write
-  uaa.openid.fallbackToAuthcode:
-    description: When using the hybrid flow to get a id_token, suppress the exception if the client doesn't have the implicit grant.
-    default: true
   uaa.clients:
     description:
   uaa.jwt.signing_key:
@@ -261,8 +264,12 @@ properties:
   uaa.logging_use_rfc3339:
     description: Sets the time format for log messages to be rfc3339 compatible.
     default: false
+  uaa.id_token.disable:
+    description: When set to true, requests to /oauth/authorize will ignore the response_type=id_token parameter
+    default: true
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
+    default: https
   login.ldap.profile_type:
     description: "See uaa.ldap.profile_type - login.ldap prefix is used for backwards compatibility to enable ldap from login config"
   login.ldap.url:
@@ -442,9 +449,6 @@ properties:
     description: "A list of URLs. When this list is non null, including empty, and disable=false,
     logout redirects are allowed, but limited to the whitelist URLs. If a redirect parameter value is not white
     listed, redirect will be to the default URL."
-  router.servers.z1:
+  router.servers:
     description: "Array of the router IPs acting as the first group of HTTP/TCP backends"
-    default: []
-  router.servers.z2:
-    description: "Array of the router IPs acting as the second group of HTTP/TCP backends"
     default: []

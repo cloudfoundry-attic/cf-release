@@ -11,9 +11,8 @@ properties:
     shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
 
   hm9000:
-    url: http://hm9000.10.244.0.34.xip.io
+    url: http://hm9000.bosh-lite.com
   cc:
-    external_protocol: https
     security_group_definitions:
       - name: public_networks
         rules:
@@ -49,7 +48,7 @@ properties:
         parameter:
           disable: false
           whitelist:
-            - https://testapp.10.244.0.34.xip.io/logout/success
+            - https://testapp.bosh-lite.com/logout/success
   uaa:
     clients:
       app-direct:
@@ -57,7 +56,7 @@ properties:
         authorities: app_direct_invoice.write
         authorized-grant-types: authorization_code,client_credentials,password,refresh_token,implicit
         override: true
-        redirect-uri: https://console.10.244.0.34.xip.io
+        redirect-uri: https://console.bosh-lite.com
         refresh-token-validity: 1209600
         secret: app-direct-secret
       developer_console:
@@ -65,7 +64,7 @@ properties:
         authorities: scim.write,scim.read,cloud_controller.read,cloud_controller.write,password.write,uaa.admin,uaa.resource,cloud_controller.admin,billing.admin
         authorized-grant-types: authorization_code,client_credentials
         override: true
-        redirect-uri: https://console.10.244.0.34.xip.io/oauth/callback
+        redirect-uri: https://console.bosh-lite.com/oauth/callback
         refresh-token-validity: 1209600
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret

@@ -17,8 +17,8 @@ packages:
   - nginx
   - nginx_newrelic_plugin
   - libpq
-  - mysqlclient
-  - ruby-2.1.7
+  - mysqlclient-5.5
+  - ruby-2.2.3
 
 properties:
   ssl.skip_cert_verify:
@@ -115,7 +115,7 @@ properties:
     description: "Custom values for /v2/info endpoint"
 
   cc.external_protocol:
-    default: "http"
+    default: "https"
     description: "The protocol used to access the CC API from an external entity"
   cc.external_host:
     default: "api"

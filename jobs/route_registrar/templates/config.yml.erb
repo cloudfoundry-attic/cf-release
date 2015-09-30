@@ -34,7 +34,14 @@ port_map:
 <%
   p("route_registrar.routes").each do |route_config|
 %>
-  "<%= route_config['port'] %>": <%= route_config['uris'].inspect %>
+  - port: <%= route_config['port'] %>
+    uris: <%= route_config['uris'].inspect %>
+    <% if route_config['tags'] %>
+    tags:
+      <% route_config['tags'].each do |key, value| %>
+      <%= key %>: <%= value %>
+      <% end %>
+    <% end %>
 <%
   end
 %>

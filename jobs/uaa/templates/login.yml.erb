@@ -21,7 +21,7 @@ logging:
   end
 %>
 
-<% protocol = (properties.login && properties.login.protocol) ? properties.login.protocol : "http" %>
+<% protocol = properties.login.protocol %>
 <% if !properties.login || !properties.login.uaa_base
   # Fix this to https when SSL certs are working in dev and staging
   uaa_base = "#{protocol}://uaa.#{properties.domain}"

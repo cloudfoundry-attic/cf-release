@@ -31,7 +31,7 @@ properties:
   ha_proxy.dontlognull:
     description: "Whether to disable logging of requests with no traffic (usually load-balancer TCP checks)"
     default: false
-  ha_proxy.buffer_size:
+  ha_proxy.buffer_size_bytes:
     description: "Buffer size to use for requests, any requests larger than this (large cookies or query strings) will result in a gateway error"
     default: 16384
   ha_proxy.enable_stats_socket:

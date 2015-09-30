@@ -245,7 +245,3 @@ properties:
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
-
-  login:
-    protocol: http
-

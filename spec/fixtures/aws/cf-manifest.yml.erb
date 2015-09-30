@@ -214,6 +214,8 @@ jobs:
       routes:
       - name: uaa
         port: 8080
+        tags:
+          component: uaa
         uris:
         - "uaa.example.com"
         - "*.uaa.example.com"
@@ -221,10 +223,8 @@ jobs:
         - "*.login.example.com"
     router:
       servers:
-        z1:
-          - 0.0.0.5
-        z2:
-          - 0.0.1.5
+        - 0.0.0.5
+        - 0.0.1.5
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -251,6 +251,8 @@ jobs:
       routes:
       - name: uaa
         port: 8080
+        tags:
+          component: uaa
         uris:
         - "uaa.example.com"
         - "*.uaa.example.com"
@@ -258,10 +260,8 @@ jobs:
         - "*.login.example.com"
     router:
       servers:
-        z1:
-          - 0.0.0.5
-        z2:
-          - 0.0.1.5
+        - 0.0.0.5
+        - 0.0.1.5
   resource_pool: medium_z2
   templates:
   - name: uaa
@@ -568,6 +568,9 @@ jobs:
   update: {}
 - instances: 1
   name: router_z1
+  default_networks:
+    - name: cf1
+      static_ips: ~
   networks:
   - name: cf1
     static_ips:
@@ -590,6 +593,9 @@ jobs:
   update: {}
 - instances: 1
   name: router_z2
+  default_networks:
+    - name: cf2
+      static_ips: ~
   networks:
   - name: cf2
     static_ips:
@@ -719,7 +725,7 @@ properties:
         region: us-east-1
     external_host: api
     external_port: 9022
-    external_protocol: http
+    external_protocol: null
     install_buildpacks:
     - name: staticfile_buildpack
       package: buildpack_staticfile
@@ -946,7 +952,7 @@ properties:
     logout: null
     notifications:
       url: null
-    protocol: https
+    protocol: null
     restricted_ips_regex: ~
     saml: null
     self_service_links_enabled: null
@@ -1046,7 +1052,8 @@ properties:
       user: router_user
     secure_cookies: null
     route_service_timeout: null
-    route_service_secrets: null
+    route_services_secret: null
+    route_services_secret_decrypt_only: null
   smoke_tests: null
   ssl:
     skip_cert_verify: false
@@ -1095,7 +1102,7 @@ properties:
         secret: cloud_controller_username_lookup_secret
         authorized-grant-types: client_credentials
       gorouter:
-        authorities: clients.read,clients.write,clients.admin,route.admin,route.advertise
+        authorities: clients.read,clients.write,clients.admin,routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         scope: openid,cloud_controller_service_permissions.read
         secret: gorouter_secret
@@ -1107,7 +1114,7 @@ properties:
     ldap: null
     login: null
     newrelic: null
-    no_ssl: false
+    no_ssl: null
     port: 8080
     require_https: ~
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}

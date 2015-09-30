@@ -28,8 +28,8 @@ packages:
   - nginx
   - nginx_newrelic_plugin
   - libpq
-  - mysqlclient
-  - ruby-2.1.7
+  - mysqlclient-5.5
+  - ruby-2.2.3
   - buildpack_java
   - buildpack_java_offline
   - buildpack_ruby
@@ -76,6 +76,9 @@ properties:
   app_ssh.port:
     description: "External port for SSH access to application instances"
     default: 2222
+  app_ssh.oauth_client_id:
+    description: "The oauth client ID of the SSH proxy"
+    default: ssh-proxy
 
   nats.user:
     description: "Username for cc client to connect to NATS"
@@ -148,7 +151,7 @@ properties:
     description: "The directory where operator requested diagnostic files should be placed"
 
   cc.external_protocol:
-    default: "http"
+    default: "https"
     description: "The protocol used to access the CC API from an external entity"
   cc.external_host:
     default: "api"

@@ -1,4 +1,4 @@
-Rootfs SHASUM: 3d415b55a777c4f573dce906cccdc3f3b290c97f
+Rootfs SHASUM: d337d87a5e6809cdaf209c2a46458f7109c375a4
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -17,14 +17,14 @@ ii  bash                               4.3-7ubuntu1.5                      amd64
 ii  bind9-host                         1:9.9.5.dfsg-3ubuntu0.5             amd64        Version of 'host' bundled with BIND 9.X
 ii  binutils                           2.24-5ubuntu13                      amd64        GNU assembler, linker and binary utilities
 ii  bison                              2:3.0.2.dfsg-2                      amd64        YACC-compatible parser generator
-ii  bsdutils                           1:2.20.1-5.1ubuntu20.6              amd64        Basic utilities from 4.4BSD-Lite
+ii  bsdutils                           1:2.20.1-5.1ubuntu20.7              amd64        Basic utilities from 4.4BSD-Lite
 ii  build-essential                    11.6ubuntu6                         amd64        Informational list of build-essential packages
 ii  busybox-initramfs                  1:1.21.0-1ubuntu1                   amd64        Standalone shell setup for initramfs
 ii  bzip2                              1.0.6-5                             amd64        high-quality block-sorting file compressor - utilities
 ii  ca-certificates                    20141019ubuntu0.14.04.1             all          Common CA certificates
 ii  cmake                              2.8.12.2-0ubuntu3                   amd64        cross-platform, open-source make system
 ii  cmake-data                         2.8.12.2-0ubuntu3                   all          CMake data files (modules, templates and documentation)
-ii  comerr-dev                         2.1-1.42.9-3ubuntu1.2               amd64        common error description library - headers and static libraries
+ii  comerr-dev                         2.1-1.42.9-3ubuntu1.3               amd64        common error description library - headers and static libraries
 ii  console-setup                      1.70ubuntu8                         all          console font and keymap setup program
 ii  coreutils                          8.21-1ubuntu5.1                     amd64        GNU core utilities
 ii  cpio                               2.11+dfsg-1ubuntu1.1                amd64        GNU cpio -- a program to manage archives of files
@@ -45,8 +45,8 @@ ii  dmsetup                            2:1.02.77-6ubuntu2                  amd64
 ii  dnsutils                           1:9.9.5.dfsg-3ubuntu0.5             amd64        Clients provided with BIND
 ii  dpkg                               1.17.5ubuntu5.4                     amd64        Debian package management system
 ii  dpkg-dev                           1.17.5ubuntu5.4                     all          Debian package development tools
-ii  e2fslibs:amd64                     1.42.9-3ubuntu1.2                   amd64        ext2/ext3/ext4 file system libraries
-ii  e2fsprogs                          1.42.9-3ubuntu1.2                   amd64        ext2/ext3/ext4 file system utilities
+ii  e2fslibs:amd64                     1.42.9-3ubuntu1.3                   amd64        ext2/ext3/ext4 file system libraries
+ii  e2fsprogs                          1.42.9-3ubuntu1.3                   amd64        ext2/ext3/ext4 file system utilities
 ii  eject                              2.1.5+deb1+cvs20081104-13.1         amd64        ejects CDs and operates CD-Changers under Linux
 ii  fakeroot                           1.20-3ubuntu2                       amd64        tool for simulating superuser privileges
 ii  file                               1:5.14-2ubuntu3.3                   amd64        Determines file type using "magic" numbers
@@ -79,7 +79,7 @@ ii  gsfonts                            1:8.11+urwcyr1.0.7~pre44-4.2ubuntu1 all  
 ii  gzip                               1.6-3ubuntu1                        amd64        GNU compression utilities
 ii  hicolor-icon-theme                 0.13-1                              all          default fallback theme for FreeDesktop.org icon themes
 ii  hostname                           3.15ubuntu1                         amd64        utility to set/show the host name or domain name
-ii  icu-devtools                       52.1-3ubuntu0.3                     amd64        Development utilities for International Components for Unicode
+ii  icu-devtools                       52.1-3ubuntu0.4                     amd64        Development utilities for International Components for Unicode
 ii  ifupdown                           0.7.47.2ubuntu4.1                   amd64        high level tools to configure network interfaces
 ii  imagemagick                        8:6.7.7.10-6ubuntu3                 amd64        image manipulation programs
 ii  imagemagick-common                 8:6.7.7.10-6ubuntu3                 all          image manipulation programs -- infrastructure
@@ -131,7 +131,7 @@ ii  libbind9-90                        1:9.9.5.dfsg-3ubuntu0.5             amd64
 ii  libbison-dev:amd64                 2:3.0.2.dfsg-2                      amd64        YACC-compatible parser generator - development library
 ii  libblas-dev                        1.2.20110419-7                      amd64        Basic Linear Algebra Subroutines 3, static library
 ii  libblas3                           1.2.20110419-7                      amd64        Basic Linear Algebra Reference implementations, shared library
-ii  libblkid1:amd64                    2.20.1-5.1ubuntu20.6                amd64        block device id library
+ii  libblkid1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
 ii  libboost-iostreams1.54.0:amd64     1.54.0-4ubuntu3.1                   amd64        Boost.Iostreams Library
 ii  libbsd0:amd64                      0.6.0-2ubuntu1                      amd64        utility functions from BSD systems - shared library
 ii  libbz2-1.0:amd64                   1.0.6-5                             amd64        high-quality block-sorting file compressor library - runtime
@@ -153,7 +153,7 @@ ii  libck-connector0:amd64             0.4.5-3.1ubuntu2                    amd64
 ii  libclass-accessor-perl             0.34-1                              all          Perl module that automatically generates accessors
 ii  libcloog-isl4:amd64                0.18.2-1                            amd64        Chunky Loop Generator (runtime library)
 ii  libcolord1:amd64                   1.0.6-1                             amd64        system service to manage device colour profiles -- runtime
-ii  libcomerr2:amd64                   1.42.9-3ubuntu1.2                   amd64        common error description library
+ii  libcomerr2:amd64                   1.42.9-3ubuntu1.3                   amd64        common error description library
 ii  libcroco3:amd64                    0.6.8-2ubuntu1                      amd64        Cascading Style Sheet (CSS) parsing and manipulation toolkit
 ii  libcups2:amd64                     1.7.2-0ubuntu1.6                    amd64        Common UNIX Printing System(tm) - Core library
 ii  libcurl3:amd64                     7.35.0-1ubuntu2.5                   amd64        easy-to-use client-side URL transfer library (OpenSSL flavour)
@@ -241,8 +241,8 @@ ii  libheimntlm0-heimdal:amd64         1.6~git20131207+dfsg-1ubuntu1.1     amd64
 ii  libhx509-5-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - X509 support library
 ii  libice-dev:amd64                   2:1.0.8-2                           amd64        X11 Inter-Client Exchange library (development headers)
 ii  libice6:amd64                      2:1.0.8-2                           amd64        X11 Inter-Client Exchange library
-ii  libicu-dev:amd64                   52.1-3ubuntu0.3                     amd64        Development files for International Components for Unicode
-ii  libicu52:amd64                     52.1-3ubuntu0.3                     amd64        International Components for Unicode
+ii  libicu-dev:amd64                   52.1-3ubuntu0.4                     amd64        Development files for International Components for Unicode
+ii  libicu52:amd64                     52.1-3ubuntu0.4                     amd64        International Components for Unicode
 ii  libidn11:amd64                     1.28-1ubuntu2                       amd64        GNU Libidn library, implementation of IETF IDN specifications
 ii  libidn11-dev                       1.28-1ubuntu2                       amd64        Development files for GNU Libidn, an IDN library
 ii  libilmbase-dev                     1.0.1-6ubuntu1                      amd64        development files for IlmBase
@@ -280,8 +280,8 @@ ii  liblapack-dev                      3.5.0-2ubuntu1                      amd64
 ii  liblapack3                         3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - shared version
 ii  liblcms2-2:amd64                   2.5-0ubuntu4                        amd64        Little CMS 2 color management library
 ii  liblcms2-dev:amd64                 2.5-0ubuntu4                        amd64        Little CMS 2 color management library development headers
-ii  libldap-2.4-2:amd64                2.4.31-1+nmu2ubuntu8.1              amd64        OpenLDAP libraries
-ii  libldap2-dev:amd64                 2.4.31-1+nmu2ubuntu8.1              amd64        OpenLDAP development libraries
+ii  libldap-2.4-2:amd64                2.4.31-1+nmu2ubuntu8.2              amd64        OpenLDAP libraries
+ii  libldap2-dev:amd64                 2.4.31-1+nmu2ubuntu8.2              amd64        OpenLDAP development libraries
 ii  liblocale-gettext-perl             1.05-7build3                        amd64        module using libc functions for internationalization in Perl
 ii  liblockfile-bin                    1.09-6ubuntu1                       amd64        support binaries for and cli utilities based on liblockfile
 ii  liblockfile1:amd64                 1.09-6ubuntu1                       amd64        NFS-safe locking library
@@ -301,7 +301,7 @@ ii  libmagickcore5-extra:amd64         8:6.7.7.10-6ubuntu3                 amd64
 ii  libmagickwand-dev                  8:6.7.7.10-6ubuntu3                 amd64        image manipulation library - development files
 ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3                 amd64        image manipulation library
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
-ii  libmount1:amd64                    2.20.1-5.1ubuntu20.6                amd64        block device id library
+ii  libmount1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
@@ -394,7 +394,7 @@ ii  libsqlite0                         2.8.17-10ubuntu2                    amd64
 ii  libsqlite0-dev                     2.8.17-10ubuntu2                    amd64        SQLite development files
 ii  libsqlite3-0:amd64                 3.8.2-1ubuntu2.1                    amd64        SQLite 3 shared library
 ii  libsqlite3-dev:amd64               3.8.2-1ubuntu2.1                    amd64        SQLite 3 development files
-ii  libss2:amd64                       1.42.9-3ubuntu1.2                   amd64        command-line interface parsing library
+ii  libss2:amd64                       1.42.9-3ubuntu1.3                   amd64        command-line interface parsing library
 ii  libssl-dev:amd64                   1.0.1f-1ubuntu2.15                  amd64        Secure Sockets Layer toolkit - development files
 ii  libssl1.0.0:amd64                  1.0.1f-1ubuntu2.15                  amd64        Secure Sockets Layer toolkit - shared libraries
 ii  libstdc++-4.8-dev:amd64            4.8.4-2ubuntu1~14.04                amd64        GNU Standard C++ Library v3 (development files)
@@ -423,7 +423,7 @@ ii  libtsan0:amd64                     4.8.4-2ubuntu1~14.04                amd64
 ii  libudev1:amd64                     204-5ubuntu20.13                    amd64        libudev shared library
 ii  libusb-0.1-4:amd64                 2:0.1.12-23.3ubuntu1                amd64        userspace USB programming library
 ii  libustr-1.0-1:amd64                1.0.4-3ubuntu2                      amd64        Micro string library: shared library
-ii  libuuid1:amd64                     2.20.1-5.1ubuntu20.6                amd64        Universally Unique ID library
+ii  libuuid1:amd64                     2.20.1-5.1ubuntu20.7                amd64        Universally Unique ID library
 ii  libva1:amd64                       1.3.0-2                             amd64        Video Acceleration (VA) API for Linux -- runtime
 ii  libvorbis0a:amd64                  1.3.2-1.3ubuntu1                    amd64        The Vorbis General Audio Compression Codec (Decoder library)
 ii  libvorbisenc2:amd64                1.3.2-1.3ubuntu1                    amd64        The Vorbis General Audio Compression Codec (Encoder library)
@@ -493,7 +493,7 @@ ii  manpages-dev                       3.54-1ubuntu1                       all  
 ii  mawk                               1.3.3-17ubuntu2                     amd64        a pattern scanning and text processing language
 ii  mime-support                       3.54ubuntu1.1                       all          MIME files 'mime.types' & 'mailcap', and support programs
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
-ii  mount                              2.20.1-5.1ubuntu20.6                amd64        Tools for mounting and manipulating filesystems
+ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.6                     amd64        Transitional package to ensure multiarch compatibility
 ii  mysql-common                       5.5.44-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
@@ -554,7 +554,7 @@ ii  udev                               204-5ubuntu20.13                    amd64
 ii  unzip                              6.0-9ubuntu1.3                      amd64        De-archiver for .zip files
 ii  upstart                            1.12.1-0ubuntu4.2                   amd64        event-based init daemon
 ii  ureadahead                         0.100.0-16                          amd64        Read required files in advance
-ii  util-linux                         2.20.1-5.1ubuntu20.6                amd64        Miscellaneous system utilities
+ii  util-linux                         2.20.1-5.1ubuntu20.7                amd64        Miscellaneous system utilities
 ii  vim-common                         2:7.4.052-1ubuntu3                  amd64        Vi IMproved - Common files
 ii  vim-tiny                           2:7.4.052-1ubuntu3                  amd64        Vi IMproved - enhanced vi editor - compact version
 ii  wget                               1.15-1ubuntu1.14.04.1               amd64        retrieves files from the web

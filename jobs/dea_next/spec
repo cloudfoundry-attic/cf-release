@@ -133,3 +133,12 @@ properties:
   router.requested_route_registration_interval_in_seconds:
     description: "Interval at which the router requests routes to be registered."
     default: 20
+
+  cc.srv_api_uri:
+    description: "API URI of cloud controller"
+  cc.internal_api_user:
+    default: "internal_user"
+    description: "User name to access internal endpoints"
+  cc.internal_api_password:
+    description: "Password to access internal endpoints"
+

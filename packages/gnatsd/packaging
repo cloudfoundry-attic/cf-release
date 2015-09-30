@@ -1,6 +1,6 @@
 set -e
 
-export GOROOT=$(readlink -nf /var/vcap/packages/golang1.3)
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.4)
 export GOPATH=$BOSH_INSTALL_TARGET
 export PATH=$GOROOT/bin:$PATH
 

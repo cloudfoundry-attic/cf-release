@@ -8,8 +8,8 @@ mkdir -p $(dirname $REPO_DIR)
 
 cp -a $(basename $REPO_NAME)/ $REPO_DIR
 
-export GOROOT=$(readlink -nf /var/vcap/packages/golang1.3)
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.4)
 export GOPATH=$BOSH_INSTALL_TARGET:${REPO_DIR}/Godeps/_workspace
 export PATH=$GOROOT/bin:$PATH
 
-go install ${REPO_NAME}
+go install ${REPO_NAME}/cmd/etcd-metrics-server
