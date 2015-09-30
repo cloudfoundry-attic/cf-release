@@ -71,3 +71,9 @@ stacks: <%= p("dea_next.stacks", []).to_yaml.gsub("---", "") %>
 
 placement_properties:
   zone: <%= p("dea_next.zone") %>
+
+<%
+  cc_url = URI.parse(p("cc.srv_api_uri"))
+  cc_url.userinfo = "#{p("cc.internal_api_user")}:#{p("cc.internal_api_password")}"
+%>
+cc_url: <%= cc_url.to_s %>
