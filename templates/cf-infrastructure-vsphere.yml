@@ -32,13 +32,13 @@ meta:
     large_z1:
       cloud_properties:
         ram: 1024
-        disk: 4096
+        disk: 10240
         cpu: 1
 
     large_z2:
       cloud_properties:
         ram: 1024
-        disk: 4096
+        disk: 10240
         cpu: 1
 
     runner_z1:
