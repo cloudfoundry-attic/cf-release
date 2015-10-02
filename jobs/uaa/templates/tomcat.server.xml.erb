@@ -21,10 +21,10 @@ if properties.uaa.restricted_ips_regex
 end
 
 # Look up Router IPs
-if properties.router && properties.router.servers
-  p("router.servers").each_with_index do |ip, index|
+if properties.uaa.proxy && properties.uaa.proxy.servers
+  properties.uaa.proxy.servers.each_with_index do |ip, index|
     regExIp = ip.gsub(".","\\.").gsub(":","\\:")
-    internalProxies = internalProxies + "|" + regExIp
+    internalProxies = regExIp  + "|" + internalProxies
   end
 end
 

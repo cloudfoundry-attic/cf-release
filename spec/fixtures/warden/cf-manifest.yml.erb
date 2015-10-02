@@ -263,9 +263,10 @@ jobs:
         - "*.uaa.bosh-lite.com"
         - "login.bosh-lite.com"
         - "*.login.bosh-lite.com"
-    router:
-      servers:
-        - 10.244.0.22
+    uaa:
+      proxy:
+        servers:
+          - 10.244.0.22
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -301,9 +302,10 @@ jobs:
         - "*.uaa.bosh-lite.com"
         - "login.bosh-lite.com"
         - "*.login.bosh-lite.com"
-    router:
-      servers:
-        - 10.244.0.22
+    uaa:
+      proxy:
+        servers:
+          - 10.244.0.22
   resource_pool: medium_z2
   templates:
   - name: uaa

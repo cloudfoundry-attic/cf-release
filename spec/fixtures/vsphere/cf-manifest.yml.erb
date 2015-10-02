@@ -226,10 +226,11 @@ jobs:
         - "*.uaa.0.0.0.3.xip.io"
         - "login.0.0.0.3.xip.io"
         - "*.login.0.0.0.3.xip.io"
-    router:
-      servers:
-        - 0.0.0.5
-        - 0.0.1.5
+    uaa:
+      proxy:
+        servers:
+          - 0.0.0.5
+          - 0.0.1.5
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -265,10 +266,11 @@ jobs:
         - "*.uaa.0.0.0.3.xip.io"
         - "login.0.0.0.3.xip.io"
         - "*.login.0.0.0.3.xip.io"
-    router:
-      servers:
-        - 0.0.0.5
-        - 0.0.1.5
+    uaa:
+      proxy:
+        servers:
+          - 0.0.0.5
+          - 0.0.1.5
   resource_pool: medium_z2
   templates:
   - name: uaa
