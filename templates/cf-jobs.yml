@@ -669,6 +669,7 @@ properties:
     heartbeat_interval_in_seconds: 10
     rlimit_core: (( merge || 0 ))
     allow_host_access: ~
+    mtu: (( merge || nil ))
 
   loggregator_endpoint:
     shared_secret: (( merge ))
