@@ -23,6 +23,8 @@ meta:
 
   api_routes:
   - name: api
+    tags:
+      component: CloudController
     port: (( .properties.cc.external_port ))
     uris:
     - (( "api." .properties.domain ))
@@ -92,6 +94,8 @@ meta:
   hm9000_routes:
   - name: hm9000
     port: 5155
+    tags:
+      component: HM9K
     uris:
     - (( "hm9000." .properties.domain ))
 

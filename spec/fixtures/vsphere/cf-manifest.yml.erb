@@ -301,6 +301,8 @@ jobs:
       routes:
       - name: api
         port: 9022
+        tags:
+          component: CloudController
         uris:
         - "api.0.0.0.3.xip.io"
   resource_pool: large_z1
@@ -343,6 +345,8 @@ jobs:
       routes:
       - name: api
         port: 9022
+        tags:
+          component: CloudController
         uris:
         - "api.0.0.0.3.xip.io"
   resource_pool: large_z2
@@ -438,6 +442,8 @@ jobs:
       routes:
       - name: hm9000
         port: 5155
+        tags:
+          component: HM9K
         uris:
         - "hm9000.0.0.0.3.xip.io"
   resource_pool: medium_z1
@@ -460,6 +466,8 @@ jobs:
       routes:
       - name: hm9000
         port: 5155
+        tags:
+          component: HM9K
         uris:
         - "hm9000.0.0.0.3.xip.io"
   resource_pool: medium_z2

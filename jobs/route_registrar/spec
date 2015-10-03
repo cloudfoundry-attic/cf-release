@@ -17,4 +17,4 @@ properties:
     default: 20
     description: "The delay in seconds between routing updates"
   route_registrar.routes:
-    description: "List of routes that will be registered. Array of hashes. Hashes should have port, uris, and name keys. uris is an array of uris to register for the port"
+    description: "List of routes that will be registered. Array of hashes. Hashes should have port, uris, name, and tags keys. uris is an array of uris to register for the port. Tags are included in the metrics that gorouter emits about things like response time."
