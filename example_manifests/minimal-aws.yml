@@ -385,6 +385,10 @@ properties:
         authorities: scim.userids
         authorized-grant-types: client_credentials
         secret: PASSWORD
+      cc_routing:
+        authorities: routing.router_groups.read
+        secret: PASSWORD
+        authorized-grant-types: client_credentials
       gorouter:
         authorities: clients.read,clients.write,clients.admin,routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
