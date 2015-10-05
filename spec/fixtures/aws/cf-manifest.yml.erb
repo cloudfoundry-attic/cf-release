@@ -235,6 +235,8 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+  - name: statsd-injector
+    release: cf
   update: {}
 - instances: 1
   name: uaa_z2
@@ -271,6 +273,8 @@ jobs:
   - name: consul_agent
     release: cf
   - name: route_registrar
+    release: cf
+  - name: statsd-injector
     release: cf
   update: {}
 - instances: 1

@@ -161,6 +161,8 @@ meta:
     release: (( meta.consul_templates.consul_agent.release ))
   - name: route_registrar
     release: (( meta.release.name ))
+  - name: statsd-injector
+    release: (( meta.release.name ))
 
 jobs:
   - name: consul_z1

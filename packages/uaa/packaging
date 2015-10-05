@@ -20,7 +20,7 @@ mv apache-tomcat-7.0.61 tomcat
 cd tomcat
 rm -rf webapps/*
 cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-uaa.war webapps/ROOT.war
-cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-varz-1.0.2.war webapps/varz.war
+cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-statsd-1.0.0.war webapps/statsd.war
 cp -a ${BOSH_COMPILE_TARGET}/uaa/newrelic.jar bin/newrelic.jar
 
 cd ${BOSH_INSTALL_TARGET}
