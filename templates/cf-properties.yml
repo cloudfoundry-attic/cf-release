@@ -289,6 +289,10 @@ properties:
         authorities: scim.userids
         secret: (( merge ))
         authorized-grant-types: client_credentials
+      cc_routing:
+        authorities: routing.router_groups.read
+        secret: (( merge ))
+        authorized-grant-types: client_credentials
       gorouter:
         authorities: clients.read,clients.write,clients.admin,routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token

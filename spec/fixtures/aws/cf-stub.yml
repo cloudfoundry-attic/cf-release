@@ -134,6 +134,8 @@ properties:
         secret: doppler_secret
       cloud_controller_username_lookup:
         secret: cloud_controller_username_lookup_secret
+      cc_routing:
+        secret: cc_routing_secret
       gorouter:
         secret: gorouter_secret
 

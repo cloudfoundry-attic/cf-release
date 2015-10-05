@@ -108,6 +108,8 @@ properties:
         secret: doppler-secret
       cloud_controller_username_lookup:
         secret: cloud-controller-username-lookup-secret
+      cc_routing:
+        secret: cc-routing-secret
       gorouter:
         secret: gorouter-secret
     scim:
