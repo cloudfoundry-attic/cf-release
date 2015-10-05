@@ -677,10 +677,6 @@ properties:
     allow_host_access: ~
     mtu: (( merge || nil ))
 
-  loggregator:
-    etcd:
-      machines: (( .properties.etcd.machines ))
-
   loggregator_endpoint:
     shared_secret: (( merge ))
 
