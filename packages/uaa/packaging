@@ -22,8 +22,3 @@ rm -rf webapps/*
 cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-uaa.war webapps/ROOT.war
 cp -a ${BOSH_COMPILE_TARGET}/uaa/cloudfoundry-identity-statsd-1.0.0.war webapps/statsd.war
 cp -a ${BOSH_COMPILE_TARGET}/uaa/newrelic.jar bin/newrelic.jar
-
-cd ${BOSH_INSTALL_TARGET}
-cp -a ${BOSH_COMPILE_TARGET}/cf-registrar-bundle-for-identity vcap-common
-cd vcap-common
-/var/vcap/packages/ruby-2.1.7/bin/bundle install --binstubs --deployment --local --without=development test

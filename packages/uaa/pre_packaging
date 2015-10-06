@@ -1,12 +1,5 @@
 set -e -x
 
-#registrar information
-cd ${BUILD_DIR}/cf-registrar-bundle-for-identity
-BUNDLE_WITHOUT=development:test bundle package --all --no-install --path ./vendor/cache
-rm -rf ./vendor/cache/ruby
-rm -rf ./vendor/cache/vendor
-bundle config --delete NO_INSTALL
-
 cd ${BUILD_DIR}
 
 # Make sure we can see uname
