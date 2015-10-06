@@ -57,7 +57,7 @@ networks: (( merge ))
 resource_pools:
   - name: small_z1
     cloud_properties:
-      instance_type: c3.large
+      instance_type: m3.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -65,7 +65,7 @@ resource_pools:
 
   - name: small_z2
     cloud_properties:
-      instance_type: c3.large
+      instance_type: m3.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -73,7 +73,7 @@ resource_pools:
 
   - name: medium_z1
     cloud_properties:
-      instance_type: c3.large
+      instance_type: m3.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -81,7 +81,7 @@ resource_pools:
 
   - name: medium_z2
     cloud_properties:
-      instance_type: c3.large
+      instance_type: m3.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
@@ -139,7 +139,7 @@ resource_pools:
 
   - name: small_errand
     cloud_properties:
-      instance_type: c3.large
+      instance_type: m3.medium
       ephemeral_disk:
         size: 10_240
         type: gp2
