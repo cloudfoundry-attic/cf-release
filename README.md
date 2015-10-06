@@ -78,6 +78,7 @@ The components in a V2 deployment are:
 This is useful in the following situations:
   * After you've first cloned the repo
   * Before you make changes to the directory. (Running the script avoids having to rebase your changes on top of submodule updates.)
+* `scripts/setup-git-hooks` will ensure basic unit tests run before committing.
 * `scripts/commit_with_shortlog` commits changes you've made to updated git submodules.
 
 ## Ask Questions
