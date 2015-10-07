@@ -20,14 +20,13 @@ logging:
   file: /var/vcap/sys/log/gorouter/gorouter.log
   syslog: vcap.gorouter
   level: <%= p("router.logging_level") %>
-  <% if_p("metron_endpoint.host", "metron_endpoint.port", "metron_endpoint.shared_secret") do |_| %>
+  <% if_p("metron_endpoint.host", "metron_endpoint.port") do |_| %>
   loggregator_enabled: true
   <% end %>
 
-<% if_p("metron_endpoint.host", "metron_endpoint.port", "metron_endpoint.shared_secret") do |host, port, shared_secret| %>
+<% if_p("metron_endpoint.host", "metron_endpoint.port") do |host, port| %>
 loggregatorConfig:
   url: <%= host %>:<%= port %>
-  shared_secret: <%= shared_secret %>
 <% end %>
 
 port: <%= p("router.port") %>

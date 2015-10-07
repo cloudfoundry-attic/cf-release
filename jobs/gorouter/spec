@@ -114,8 +114,6 @@ properties:
   metron_endpoint.port:
     description: "The port used to emit legacy messages to the Metron agent."
     default: 3456
-  metron_endpoint.shared_secret:
-    description: "The key used to sign log messages."
   dropsonde.enabled:
     default: false
     description: "Enable the dropsonde emitter library"

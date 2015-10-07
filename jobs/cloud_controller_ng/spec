@@ -358,9 +358,7 @@ properties:
     default: "127.0.0.1"
   metron_endpoint.port:
     description: "The port used to emit messages to the Metron agent"
-    default: 3456
-  metron_endpoint.shared_secret:
-    description: "The key used to sign log messages"
+    default: 3457
 
   logger_endpoint.use_ssl:
     description: "Whether to use ssl for logger endpoint listed at /v2/info"
