@@ -34,10 +34,9 @@ logging:
   level: <%= p("dea_next.logging_level") %>
   syslog: vcap.dea_next
 
-<% if_p("metron_endpoint.host", "metron_endpoint.port", "metron_endpoint.shared_secret") do |host, port, shared_secret| %>
+<% if_p("metron_endpoint.host", "metron_endpoint.port") do |host, port| %>
 loggregator:
   router: <%= host %>:<%= port %>
-  shared_secret: <%= shared_secret %>
 <% end %>
 
 index: <%= spec.index %>
