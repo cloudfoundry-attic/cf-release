@@ -678,8 +678,8 @@ properties:
     audit_events:
       cutoff_age_in_days: 31
     broker_client_timeout_seconds: 70
-    broker_client_default_async_poll_interval_seconds: 60
-    broker_client_max_async_poll_duration_minutes: 10080
+    broker_client_default_async_poll_interval_seconds: null
+    broker_client_max_async_poll_duration_minutes: null
     buildpacks:
       buildpack_directory_key: bd_key
       cdn: null
@@ -735,6 +735,7 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+      max_staged_droplets_stored: null
     external_host: api
     external_port: 9022
     external_protocol: null
@@ -798,6 +799,7 @@ properties:
         provider: AWS
         region: us-east-1
       max_package_size: 1073741824
+      max_valid_packages_stored: null
     quota_definitions:
       default:
         memory_limit: 10240
