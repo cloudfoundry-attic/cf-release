@@ -161,7 +161,11 @@ login:
     <% end %>
     providers: <% if properties.login.saml.providers then properties.login.saml.providers.marshal_dump.reject {|k,_| k.to_s == ''}.each do |idpAlias,idpProvider| %>
       <%= idpAlias %>: <% idpProvider.marshal_dump.reject {|k,_| ["idpMetadata", "idpMetadataXML", "idpMetadataURL"].include?(k.to_s)}.each do |key,value|%>
-        <%= key %>: <%= value.is_a?(String) && value.match("\n") ? "| \n          " + value.gsub("\n", "\n          ") + "" : value %><% end %>
+        <% if key.to_s.include?("attributeMappings") then %>
+        attributeMappings: <% value.marshal_dump.each do |key,val| %>
+          <%= key %>: <%= val %><% end %>
+        <% else %>
+        <%= key %>: <%= value.is_a?(String) && value.match("\n") ? "| \n          " + value.gsub("\n", "\n          ") + "" : value %><% end %><% end %>
         idpMetadata: <%= (idpProvider.idpMetadataURL || idpProvider.idpMetadataXML || idpProvider.idpMetadata).inspect %><% end %><% end %><% if properties.login.saml.idpEntityAlias && (properties.login.saml.idpMetadataURL || properties.login.saml.idp_metadata_file) %>
       <%= properties.login.saml.idpEntityAlias %>:
         idpMetadata: <%= properties.login.saml.idpMetadataURL ? properties.login.saml.idpMetadataURL : "/var/vcap/jobs/login/" + properties.login.saml.idp_metadata_file %>
@@ -170,7 +174,10 @@ login:
         metadataTrustCheck: <%= (properties.login.saml.metadataTrustCheck ? properties.login.saml.metadataTrustCheck : true) %>
         showSamlLoginLink: true
         linkText: 'Use your corporate credentials'
-    <% end %>
+        <% if properties.login.saml.attributeMappings then %>
+        attributeMappings: <% properties.login.saml.attributeMappings.marshal_dump.each do |key,val| %>
+          <%= key %>: <%= val %><% end %>
+        <% end %><% end %>
     socket:
       connectionManagerTimeout: <%= properties.login.saml.socket.connectionManagerTimeout.nil? ? 10000 : properties.login.saml.socket.connectionManagerTimeout %>
       soTimeout: <%= properties.login.saml.socket.soTimeout.nil? ? 10000 : properties.login.saml.socket.soTimeout %>
