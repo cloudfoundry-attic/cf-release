@@ -101,8 +101,8 @@ properties:
     disable_custom_buildpacks: false
 
     broker_client_timeout_seconds: 70
-    broker_client_default_async_poll_interval_seconds: (( merge || 60 ))
-    broker_client_max_async_poll_duration_minutes: (( merge || 10080 ))
+    broker_client_default_async_poll_interval_seconds: ~
+    broker_client_max_async_poll_duration_minutes: ~
 
     resource_pool:
       resource_directory_key: (( domain "-cc-resources" ))
@@ -114,11 +114,13 @@ properties:
       fog_connection: ~
       cdn: ~
       max_package_size: 1073741824
+      max_valid_packages_stored: ~
 
     droplets:
       droplet_directory_key: (( domain "-cc-droplets" ))
       fog_connection: ~
       cdn: ~
+      max_staged_droplets_stored: ~
 
     development_mode: false
 
