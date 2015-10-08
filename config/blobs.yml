@@ -107,14 +107,6 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.7.zip:
   object_id: 9c39f092-cf19-4276-a013-285349ca7d74
   sha: 9d8bdc2e0aa81089322e4d9e4cf37a96fb667a7b
   size: 295134096
-java-buildpack/java-buildpack-offline-v3.2.zip:
-  object_id: ae7b9952-a002-405d-8f4f-ef0736ba9adb
-  sha: 625dbf4c047965fd0d557ce1fab081fcb271665b
-  size: 243844927
-java-buildpack/java-buildpack-v3.2.zip:
-  object_id: 027bfd6b-461d-4bc8-8cc8-52d5f08b2ac3
-  sha: 56e2299aaab891bf584687911ff319b819c34d04
-  size: 153958
 openjdk/openjdk-1.8.0_60-x86_64-trusty-jre.tar.gz:
   object_id: 71fc34bf-5878-4cbd-98a9-b5113dccc923
   sha: 00a58600bd56007832f1caca487187c023f10ec5
@@ -163,3 +155,11 @@ uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
   size: 11163261
+java-buildpack/java-buildpack-offline-v3.3.zip:
+  object_id: 5ba45280-d3e3-4e04-bded-c354d49514a0
+  sha: a1d033f2e21c74a9223ff428b5af81c3a5fcaadb
+  size: 248044155
+java-buildpack/java-buildpack-v3.3.zip:
+  object_id: 2eaae4f6-3ee2-47f6-b201-9d4f835a29cf
+  sha: c6f00e64e905963ea8499c87f5d97d8122071c23
+  size: 154331
