@@ -353,6 +353,9 @@ properties:
     url: http://hm9000.REPLACE_WITH_SYSTEM_DOMAIN
   logger_endpoint:
     port: 4443
+  loggregator:
+    etcd:
+      machines: [10.0.16.104]
   loggregator_endpoint:
     shared_secret: PASSWORD
   login:
