@@ -233,6 +233,10 @@ properties:
   uaa.ldap.groups.maxSearchDepth:
     description: "Set to number of levels a nested group search should go. Set to 1 to disable nested groups (default)"
     default: "1"
+  uaa.ldap.emailDomain:
+    description: "Sets the whitelist of emails domains that the LDAP identity provider handles"
+  uaa.ldap.attributeMappings:
+    description: "Specifies how UAA user attributes map to LDAP attributes"
   uaa.zones.internal.hostnames:
     description: |
       A list of hostnames that are routed to the UAA, specifically the default zone in the UAA. The UAA will reject any Host headers that it doesn't recognize.

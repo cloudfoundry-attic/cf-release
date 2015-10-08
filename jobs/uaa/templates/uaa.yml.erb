@@ -204,6 +204,12 @@ ldap:
     mailAttributeName: '<%= properties.uaa.ldap.mailAttributeName%>'
     mailSubstitute: '<%= properties.uaa.ldap.mailSubstitute %>'
     mailSubstituteOverridesLdap: <%= properties.uaa.ldap.mailSubstituteOverridesLdap %>
+  <% if properties.uaa.ldap.emailDomain %>
+  emailDomain: <% properties.uaa.ldap.emailDomain.each do |domain| %>
+  - <%= domain %><% end %><% end %>
+  <% if properties.uaa.ldap.attributeMappings %>
+  attributeMappings: <% properties.uaa.ldap.attributeMappings.marshal_dump.each do |key,val| %>
+    <%= key %>: <%= val %><% end %><% end %>
   <% if properties.uaa.ldap.sslCertificate %>
   ssl: 
     sslCertificate: ! <%= "'" + p("uaa.ldap.sslCertificate").gsub("\n", "\n\n    ") + "'" %>
@@ -247,6 +253,6 @@ ldap:
     <% if properties.login.ldap.sslCertificateAlias %>
     sslCertificateAlias: <%= properties.login.ldap.sslCertificateAlias %>
     <% end %>
-  <% end %>  
+  <% end %>
 <% end %>
 
