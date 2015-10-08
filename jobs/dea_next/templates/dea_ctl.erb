@@ -54,6 +54,11 @@ case $1 in
     # Default value is 0 (disabled). It is generally a safer alternative to tcp_tw_recycle
 
     echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
+
+    # NF_CONNTRACK_MAX
+    # Default value is 65536. We set it to a larger number to avoid running out of connections.
+
+    echo 262144 > /proc/sys/net/netfilter/nf_conntrack_max
     <% end %>
 
     exec /var/vcap/packages/ruby-2.1.7/bin/ruby /var/vcap/packages/dea_next/bin/dea \
