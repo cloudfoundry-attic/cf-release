@@ -2790,14 +2790,8 @@ properties:
   dropsonde:
     enabled: true
   etcd:
-    ca_cert: null
-    client_cert: null
-    client_key: null
-    cluster: null
-    peer_require_ssl: null
-    require_ssl: null
-    server_cert: null
-    server_key: null
+    require_ssl: false
+    peer_require_ssl: false
     machines:
     - 10.244.0.42
   etcd_metrics_server:
