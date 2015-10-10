@@ -349,6 +349,8 @@ properties:
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
     machines: [10.0.16.104]
+    peer_require_ssl: false
+    require_ssl: false
   hm9000:
     url: http://hm9000.REPLACE_WITH_SYSTEM_DOMAIN
   logger_endpoint:
