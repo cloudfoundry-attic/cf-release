@@ -1,4 +1,4 @@
-Rootfs SHASUM: d337d87a5e6809cdaf209c2a46458f7109c375a4
+Rootfs SHASUM: 6265f243a81d0fcf21709757fc1740c916a17e86
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -15,7 +15,7 @@ ii  base-files                         7.2ubuntu5.3                        amd64
 ii  base-passwd                        3.5.33                              amd64        Debian base system master password and group files
 ii  bash                               4.3-7ubuntu1.5                      amd64        GNU Bourne Again SHell
 ii  bind9-host                         1:9.9.5.dfsg-3ubuntu0.5             amd64        Version of 'host' bundled with BIND 9.X
-ii  binutils                           2.24-5ubuntu13                      amd64        GNU assembler, linker and binary utilities
+ii  binutils                           2.24-5ubuntu14                      amd64        GNU assembler, linker and binary utilities
 ii  bison                              2:3.0.2.dfsg-2                      amd64        YACC-compatible parser generator
 ii  bsdutils                           1:2.20.1-5.1ubuntu20.7              amd64        Basic utilities from 4.4BSD-Lite
 ii  build-essential                    11.6ubuntu6                         amd64        Informational list of build-essential packages
@@ -147,7 +147,7 @@ ii  libcairo2-dev                      1.13.0~20140204-0ubuntu1.1          amd64
 ii  libcap2:amd64                      1:2.24-0ubuntu2                     amd64        support for getting/setting POSIX.1e capabilities
 ii  libcap2-bin                        1:2.24-0ubuntu2                     amd64        basic utility programs for using capabilities
 ii  libcdt5                            2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - cdt library
-ii  libcgmanager0:amd64                0.24-0ubuntu7.3                     amd64        Central cgroup manager daemon (client library)
+ii  libcgmanager0:amd64                0.24-0ubuntu7.5                     amd64        Central cgroup manager daemon (client library)
 ii  libcgraph6                         2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - cgraph library
 ii  libck-connector0:amd64             0.4.5-3.1ubuntu2                    amd64        ConsoleKit libraries
 ii  libclass-accessor-perl             0.34-1                              all          Perl module that automatically generates accessors
@@ -420,7 +420,7 @@ ii  libtinfo-dev:amd64                 5.9+20140118-1ubuntu1               amd64
 ii  libtinfo5:amd64                    5.9+20140118-1ubuntu1               amd64        shared low-level terminfo library for terminal handling
 ii  libts-0.0-0:amd64                  1.0-12                              amd64        touch screen library
 ii  libtsan0:amd64                     4.8.4-2ubuntu1~14.04                amd64        ThreadSanitizer -- a Valgrind-based detector of data races (runtime)
-ii  libudev1:amd64                     204-5ubuntu20.13                    amd64        libudev shared library
+ii  libudev1:amd64                     204-5ubuntu20.14                    amd64        libudev shared library
 ii  libusb-0.1-4:amd64                 2:0.1.12-23.3ubuntu1                amd64        userspace USB programming library
 ii  libustr-1.0-1:amd64                1.0.4-3ubuntu2                      amd64        Micro string library: shared library
 ii  libuuid1:amd64                     2.20.1-5.1ubuntu20.7                amd64        Universally Unique ID library
@@ -476,7 +476,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-63.103                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-65.106                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.1                amd64        system login tools
@@ -550,7 +550,7 @@ ii  tzdata                             2015f-0ubuntu0.14.04                all  
 ii  ubuntu-keyring                     2012.05.19                          all          GnuPG keys of the Ubuntu archive
 ii  ubuntu-minimal                     1.325                               amd64        Minimal core of Ubuntu
 ii  ucf                                3.0027+nmu1                         all          Update Configuration File(s): preserve user changes to config files
-ii  udev                               204-5ubuntu20.13                    amd64        /dev/ and hotplug management daemon
+ii  udev                               204-5ubuntu20.14                    amd64        /dev/ and hotplug management daemon
 ii  unzip                              6.0-9ubuntu1.3                      amd64        De-archiver for .zip files
 ii  upstart                            1.12.1-0ubuntu4.2                   amd64        event-based init daemon
 ii  ureadahead                         0.100.0-16                          amd64        Read required files in advance

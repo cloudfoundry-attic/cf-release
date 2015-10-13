@@ -123,10 +123,6 @@ python-buildpack/python_buildpack-cached-v1.5.1.zip:
   object_id: b2ea126f-819b-4049-9a74-efb21f8dfe9f
   sha: 53d27bfb52e823b262188b90386a71db5d68fb27
   size: 224934610
-rootfs/cflinuxfs2-1.9.0.tar.gz:
-  object_id: 7678810f-1d6a-437b-b437-524392926bf8
-  sha: d337d87a5e6809cdaf209c2a46458f7109c375a4
-  size: 248556696
 mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
   object_id: 31e64230-f356-4522-86d6-413a531996b9
   sha: f6cc741b64084752478009505113a39192d89da9
@@ -163,3 +159,7 @@ php-buildpack/php_buildpack-cached-v4.1.5.zip:
   object_id: 5eea5708-00c6-46c7-bf8d-012a26aeac82
   sha: 6cbec4f53c789b674bc4f011895cfb0f72c4d3e0
   size: 413614073
+rootfs/cflinuxfs2-1.10.0.tar.gz:
+  object_id: 8396711f-29a9-4ff1-996a-338498e39873
+  sha: 6265f243a81d0fcf21709757fc1740c916a17e86
+  size: 248331020
