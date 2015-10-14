@@ -652,10 +652,10 @@ properties:
       password: (( .properties.nats.password ))
 
   dea_next:
-    memory_mb: (( merge ))
     memory_overcommit_factor: null
-    disk_mb: (( merge ))
     disk_overcommit_factor: null
+    memory_mb: (( merge || nil ))
+    disk_mb: (( merge || nil ))
     staging_disk_inode_limit: 200000
     instance_disk_inode_limit: 200000
     deny_networks: (( merge || [] ))

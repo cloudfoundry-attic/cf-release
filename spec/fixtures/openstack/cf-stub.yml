@@ -42,7 +42,7 @@ properties:
   dea_next:
     disk_mb: 2048
     memory_mb: 1024
-  domain: example.com
+  domain: DOMAIN
   loggregator_endpoint:
     shared_secret: loggregator_endpoint_secret
   nats:

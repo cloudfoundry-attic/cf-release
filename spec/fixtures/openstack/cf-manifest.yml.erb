@@ -219,10 +219,10 @@ jobs:
           component: uaa
         port: 8080
         uris:
-        - "uaa.example.com"
-        - "*.uaa.example.com"
-        - "login.example.com"
-        - "*.login.example.com"
+        - "uaa.DOMAIN"
+        - "*.uaa.DOMAIN"
+        - "login.DOMAIN"
+        - "*.login.DOMAIN"
     uaa:
       proxy:
         servers:
@@ -258,10 +258,10 @@ jobs:
           component: uaa
         port: 8080
         uris:
-        - "uaa.example.com"
-        - "*.uaa.example.com"
-        - "login.example.com"
-        - "*.login.example.com"
+        - "uaa.DOMAIN"
+        - "*.uaa.DOMAIN"
+        - "login.DOMAIN"
+        - "*.login.DOMAIN"
     uaa:
       proxy:
         servers:
@@ -305,7 +305,7 @@ jobs:
         tags:
           component: CloudController
         uris:
-        - "api.example.com"
+        - "api.DOMAIN"
   resource_pool: large_z1
   templates:
   - name: cloud_controller_ng
@@ -349,7 +349,7 @@ jobs:
         tags:
           component: CloudController
         uris:
-        - "api.example.com"
+        - "api.DOMAIN"
   resource_pool: large_z2
   templates:
   - name: cloud_controller_ng
@@ -446,7 +446,7 @@ jobs:
         tags:
           component: HM9K
         uris:
-        - "hm9000.example.com"
+        - "hm9000.DOMAIN"
   resource_pool: medium_z1
   templates:
   - name: hm9000
@@ -470,7 +470,7 @@ jobs:
         tags:
           component: HM9K
         uris:
-        - "hm9000.example.com"
+        - "hm9000.DOMAIN"
   resource_pool: medium_z2
   templates:
   - name: hm9000
@@ -664,7 +664,7 @@ properties:
   acceptance_tests: null
   app_ssh: null
   app_domains:
-  - example.com
+  - DOMAIN
   cc:
     allowed_cors_domains: []
     app_events:
@@ -779,7 +779,7 @@ properties:
         enabled: true
         record_sql: obfuscated
     packages:
-      app_package_directory_key: example.com-cc-packages
+      app_package_directory_key: DOMAIN-cc-packages
       cdn: null
       fog_connection: null
       max_package_size: 1073741824
@@ -793,7 +793,7 @@ properties:
     resource_pool:
       cdn: null
       fog_connection: null
-      resource_directory_key: example.com-cc-resources
+      resource_directory_key: DOMAIN-cc-resources
     security_group_definitions:
     - name: public_networks
       rules:
@@ -815,7 +815,7 @@ properties:
       - destination: 0.0.0.0/0
         ports: "53"
         protocol: udp
-    srv_api_uri: https://api.example.com
+    srv_api_uri: https://api.DOMAIN
     stacks: null
     staging_upload_password: password
     staging_upload_user: username
@@ -848,7 +848,7 @@ properties:
     user_buildpacks: []
     users_can_select_backend: true
   hm9000:
-    url: https://hm9000.example.com
+    url: https://hm9000.DOMAIN
   ccdb:
     address: 0.0.0.4
     databases:
@@ -914,7 +914,7 @@ properties:
     rlimit_core: 0
   description: null
   disk_quota_enabled: true
-  domain: example.com
+  domain: DOMAIN
   doppler_endpoint:
     shared_secret: loggregator_endpoint_secret
   dropsonde:
@@ -946,8 +946,8 @@ properties:
     catalina_opts: null
     invitations_enabled: null
     links:
-      passwd: https://console.example.com/password_resets/new
-      signup: https://console.example.com/register
+      passwd: https://console.DOMAIN/password_resets/new
+      signup: https://console.DOMAIN/register
     logout:
       redirect:
         url: "/login?template=openstack"
@@ -1058,7 +1058,7 @@ properties:
     skip_cert_verify: false
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
-  system_domain: example.com
+  system_domain: DOMAIN
   system_domain_organization: null
   uaa:
     admin:
@@ -1082,7 +1082,7 @@ properties:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
-        redirect-uri: https://login.example.com
+        redirect-uri: https://login.DOMAIN
         scope: openid,oauth.approvals
         secret: login_client_secret
       notifications:
@@ -1113,7 +1113,7 @@ properties:
       abandoned_timeout: 600
       log_abandoned: true
 
-    issuer: https://uaa.example.com
+    issuer: https://uaa.DOMAIN
     jwt:
       signing_key: sk
       verification_key: vk
@@ -1130,7 +1130,7 @@ properties:
       users:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
     spring_profiles: null
-    url: https://uaa.example.com
+    url: https://uaa.DOMAIN
     user: null
     zones:
   uaadb:
