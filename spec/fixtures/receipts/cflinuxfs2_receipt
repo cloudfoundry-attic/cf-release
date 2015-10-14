@@ -1,4 +1,4 @@
-Rootfs SHASUM: 6265f243a81d0fcf21709757fc1740c916a17e86
+Rootfs SHASUM: 5231795f8d238e644d0001adf975d15909b8f770
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -65,7 +65,7 @@ ii  gcc-4.8-base:amd64                 4.8.4-2ubuntu1~14.04                amd64
 ii  gcc-4.9-base:amd64                 4.9.1-0ubuntu1                      amd64        GCC, the GNU Compiler Collection (base package)
 ii  gdb                                7.7.1-0ubuntu5~14.04.2              amd64        GNU Debugger
 ii  gir1.2-freedesktop                 1.40.0-1ubuntu0.2                   amd64        Introspection data for some FreeDesktop components
-ii  gir1.2-gdkpixbuf-2.0               2.30.7-0ubuntu1.1                   amd64        GDK Pixbuf library - GObject-Introspection
+ii  gir1.2-gdkpixbuf-2.0               2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library - GObject-Introspection
 ii  gir1.2-glib-2.0                    1.40.0-1ubuntu0.2                   amd64        Introspection data for GLib, GObject, Gio and GModule
 ii  gir1.2-rsvg-2.0                    2.40.2-1                            amd64        gir files for renderer library for SVG files
 ii  git                                1:1.9.1-1ubuntu0.1                  amd64        fast, scalable, distributed revision control system
@@ -205,9 +205,9 @@ ii  libgd-dev:amd64                    2.1.0-3                             amd64
 ii  libgd2-noxpm-dev                   2.1.0-3                             all          GD Graphics Library (transitional package)
 ii  libgd3:amd64                       2.1.0-3                             amd64        GD Graphics Library
 ii  libgdbm3:amd64                     1.8.3-12build1                      amd64        GNU dbm database routines (runtime version)
-ii  libgdk-pixbuf2.0-0:amd64           2.30.7-0ubuntu1.1                   amd64        GDK Pixbuf library
-ii  libgdk-pixbuf2.0-common            2.30.7-0ubuntu1.1                   all          GDK Pixbuf library - data files
-ii  libgdk-pixbuf2.0-dev               2.30.7-0ubuntu1.1                   amd64        GDK Pixbuf library (development files)
+ii  libgdk-pixbuf2.0-0:amd64           2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library
+ii  libgdk-pixbuf2.0-common            2.30.7-0ubuntu1.2                   all          GDK Pixbuf library - data files
+ii  libgdk-pixbuf2.0-dev               2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library (development files)
 ii  libgeoip1:amd64                    1.6.0-1                             amd64        non-DNS IP-to-country resolver library
 ii  libgfortran3:amd64                 4.8.4-2ubuntu1~14.04                amd64        Runtime library for GNU Fortran applications
 ii  libgirepository-1.0-1              1.40.0-1ubuntu0.2                   amd64        Library for handling GObject introspection data (runtime library)
