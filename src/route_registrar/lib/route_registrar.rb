@@ -34,11 +34,6 @@ class RouteRegistrar
     end
   end
 
-  def shutdown(&block)
-    EM.cancel_timer(@registration_timer) if @registration_timer
-    send_unregistration_messages(&block)
-  end
-
   private
 
   def message_bus
@@ -51,13 +46,6 @@ class RouteRegistrar
     registry_messages.each do |registry_message|
       logger.debug("Sending registration: #{registry_message}")
       message_bus.publish(ROUTER_REGISTER_TOPIC, registry_message)
-    end
-  end
-
-  def send_unregistration_messages(&block)
-    registry_messages.each do |registry_message|
-      logger.info("Sending unregistration: #{registry_message}")
-      message_bus.publish(ROUTER_UNREGISTER_TOPIC, registry_message, &block)
     end
   end
 

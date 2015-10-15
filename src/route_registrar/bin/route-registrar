@@ -25,12 +25,6 @@ EM.run do
 
     route_registrar.register_with_router
 
-    %w[TERM INT QUIT].each do |signal|
-      trap signal do
-        logger.info("Shutting down")
-        route_registrar.shutdown { exit }
-      end
-    end
   rescue Exception => e
     logger.error(e)
     raise e
