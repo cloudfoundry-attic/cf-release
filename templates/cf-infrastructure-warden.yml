@@ -90,9 +90,6 @@ properties:
       client_secret: cc-secret
     admin:
       client_secret: admin-secret
-    batch:
-      username: batch-username
-      password: batch-password
     clients:
       <<: (( merge || nil ))
       login:

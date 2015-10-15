@@ -255,10 +255,6 @@ properties:
         countFailuresWithinSeconds: ~
         lockoutPeriodSeconds: ~
 
-    batch:
-      username: (( merge ))
-      password: (( merge ))
-
     login: ~
 
     ldap: ~

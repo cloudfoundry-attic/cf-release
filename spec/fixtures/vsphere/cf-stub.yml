@@ -103,9 +103,6 @@ properties:
   uaa:
     admin:
       client_secret: admin_secret
-    batch:
-      username: batch_username
-      password: batch_password
     cc:
       client_secret: cc_client_secret
     clients:
