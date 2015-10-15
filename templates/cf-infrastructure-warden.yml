@@ -113,9 +113,6 @@ properties:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
 
-  login:
-    links:
-      home: (( "https://console." domain ))
   router:
     status:
       user: router

@@ -314,10 +314,10 @@ properties:
     description: "Array of the router IPs acting as the first group of HTTP/TCP backends. These will be added to the proxy_ips_regex as exact matches. When using spiff, these will be router_z1 and router_z2 static IPs from cf-jobs.yml"
     default: []
   login.brand:
-    description: "The brand to use for the reset password emails, available values are oss and pivotal"
+    description: "The branding style to use with the web interface, account confirmation, and password reset emails."
     default: oss
   login.asset_base_url:
-    description: "Base url for static assets, allows custom styling of the login server.  Use '/resources/pivotal' for Pivotal style."
+    description: "Base url for static assets, allows custom styling of the login server."
   login.uaa_certificate:
     description: "Certificate to import if the UAA is using self-signed certificates"
   login.catalina_opts:
@@ -344,21 +344,10 @@ properties:
     description: "SMTP server password"
   login.links:
     description: "A hash of home/passwd/signup URLS (see commented examples below)"
-  login.links.home:
-    description: URL for primary console/dashboard for users
-    default: https://console.run.pivotal.io
   login.links.passwd:
     description: URL for requesting password reset
-    default: https://console.run.pivotal.io/password_resets/new
   login.links.signup:
     description: URL for requesting to signup/register for an account
-    default: https://console.run.pivotal.io/register
-  login.links.network:
-    description: URL for Pivotal Network
-    default: https://network.gopivotal.com/login
-  login.links.signup-network:
-    description: URL for requesting to signup/register for an account at Pivotal Network
-    default: https://network.gopivotal.com/registrations/new
   login.tiles:
     description: "A list of links to other services to show on the landing page after logging in and/or signing up, depending on whether login-link and/or signup-link is specified."
   login.port:
@@ -366,6 +355,9 @@ properties:
     description:
   login.uaa_base:
     description: "Location of the UAA."
+  login.self_service_links_enabled:
+    description: "Enable self-service account creation and password resets links."
+    default: false
   login.signups_enabled:
     description: "Enable account creation flow in the login server. Enabled by default."
   login.invitations_enabled:
