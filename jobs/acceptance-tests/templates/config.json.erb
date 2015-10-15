@@ -37,6 +37,15 @@
   config[:cf_push_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.cf_push_timeout
   config[:long_curl_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.long_curl_timeout
   config[:broker_start_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.broker_start_timeout
+
+  config[:staticfile_buildpack_name] = properties.acceptance_tests.staticfile_buildpack_name if properties.acceptance_tests.staticfile_buildpack_name
+  config[:java_buildpack_name] = properties.acceptance_tests.java_buildpack_name if properties.acceptance_tests.java_buildpack_name
+  config[:ruby_buildpack_name] = properties.acceptance_tests.ruby_buildpack_name if properties.acceptance_tests.ruby_buildpack_name
+  config[:nodejs_buildpack_name] = properties.acceptance_tests.nodejs_buildpack_name if properties.acceptance_tests.nodejs_buildpack_name
+  config[:go_buildpack_name] = properties.acceptance_tests.go_buildpack_name if properties.acceptance_tests.go_buildpack_name
+  config[:python_buildpack_name] = properties.acceptance_tests.python_buildpack_name if properties.acceptance_tests.python_buildpack_name
+  config[:php_buildpack_name] = properties.acceptance_tests.php_buildpack_name if properties.acceptance_tests.php_buildpack_name
+  config[:binary_buildpack_name] = properties.acceptance_tests.binary_buildpack_name if properties.acceptance_tests.binary_buildpack_name
 %>
 
 <%= JSON.pretty_generate(config) %>
