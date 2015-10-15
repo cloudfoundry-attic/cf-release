@@ -82,3 +82,19 @@ properties:
     description: "The username of an existing user. If set, the acceptance-tests will push apps and perform other actions as this user, otherwise its default behaviour is to create a temporary user for such actions."
   acceptance_tests.existing_user_password:
     description: "The password of the existing user. Only required if the existing user property is also being set."
+  acceptance_tests.staticfile_buildpack_name:
+    description: "The name of the staticfile buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.java_buildpack_name:
+    description: "The name of the java buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.ruby_buildpack_name:
+    description: "The name of the ruby buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.nodejs_buildpack_name:
+    description: "The name of the nodejs buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.go_buildpack_name:
+    description: "The name of the go buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.python_buildpack_name:
+    description: "The name of the python buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.php_buildpack_name:
+    description: "The name of the php buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.binary_buildpack_name:
+    description: "The name of the binary buildpack to use in acceptance tests that specify a buildpack."
