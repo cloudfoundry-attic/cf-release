@@ -211,11 +211,8 @@ properties:
       password: ~
 
     links:
-      home: (( "https://console." domain ))
       passwd: (( "https://console." domain "/password_resets/new" ))
       signup: (( "https://console." domain "/register" ))
-      network: ~
-      signup-network: ~
 
     logout: ~
 
