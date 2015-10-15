@@ -61,7 +61,7 @@ properties:
     description: Flag to include the routing test suite.
   acceptance_tests.use_diego:
     default: false
-    description: Services tests push their apps using diego if enabled
+    description: Services tests push their apps using diego if enabled. Route service tests require this flag to run.
   acceptance_tests.use_http:
     default: false
     description: Flag for using HTTP when making api and application requests rather than the default HTTPS
