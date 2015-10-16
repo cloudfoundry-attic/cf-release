@@ -274,17 +274,6 @@ jobs:
   properties:
     dea_next: {zone: z1}
 
-- name: stats_z1
-  instances: 1
-  resource_pool: small_z1
-  templates:
-  - {name: collector, release: cf}
-  - {name: metron_agent, release: cf}
-  networks:
-  - name: cf_private
-  properties:
-    collector: {deployment_name: CF}
-
 properties:
   networks: {apps: cf_private}
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
