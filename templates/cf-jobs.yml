@@ -617,7 +617,7 @@ properties:
     enabled: true
 
   support_address: (( merge || "http://support.cloudfoundry.com" ))
-  description: (( merge || "Cloud Foundry sponsored by Pivotal" ))
+  description: null
   domain: (( merge ))
   ssl:
     skip_cert_verify: (( merge || false ))
