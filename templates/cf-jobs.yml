@@ -653,9 +653,9 @@ properties:
 
   dea_next:
     memory_mb: (( merge ))
-    memory_overcommit_factor: 3
+    memory_overcommit_factor: null
     disk_mb: (( merge ))
-    disk_overcommit_factor: 2
+    disk_overcommit_factor: null
     staging_disk_inode_limit: 200000
     instance_disk_inode_limit: 200000
     deny_networks: (( merge || [] ))
