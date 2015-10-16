@@ -2,6 +2,8 @@
 meta:
 
 properties:
+  databases:
+    collect_statement_statistics: true
   dea_next:
     evacuation_bail_out_time_in_seconds: 0
     memory_mb: 8192

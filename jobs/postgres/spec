@@ -30,3 +30,6 @@ properties:
   databases.log_line_prefix:
     description: "The postgres `printf` style string that is output at the beginning of each log line"
     default: "%m: "
+  databases.collect_statement_statistics:
+    description: "Enable the `pg_stat_statements` extension and collect statement execution statistics"
+    default: false
