@@ -84,6 +84,8 @@ properties:
       - oauth.approvals
       - notification_preferences.read
       - notification_preferences.write
+      - profile
+      - roles
   uaa.clients:
     description:
   uaa.jwt.signing_key:
