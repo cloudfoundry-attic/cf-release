@@ -235,6 +235,7 @@ properties:
       userids_enabled: (( merge || true ))
       users: (( merge ))
       external_groups: ~
+      groups: ~
 
     jwt:
       signing_key: (( merge ))

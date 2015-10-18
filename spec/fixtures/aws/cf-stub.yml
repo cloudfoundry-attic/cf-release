@@ -142,6 +142,7 @@ properties:
     scim:
       users:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
+      groups: additionalgroup1,additionalgroup2
   loggregator_endpoint:
     shared_secret: secret
   uaadb:

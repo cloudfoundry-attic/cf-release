@@ -107,6 +107,8 @@ properties:
     description:
   uaa.scim.external_groups:
     description: "A list of external group mappings. Pipe delimited. A value may look as '- internal.read|cn=developers,ou=scopes,dc=test,dc=com'"
+  uaa.scim.groups:
+    description: Comma separated list of groups that should be added to the UAA db, but not assigned to a user by default.
   domain:
     description: "The domain name for this CloudFoundry deploy"
   env.http_proxy:
