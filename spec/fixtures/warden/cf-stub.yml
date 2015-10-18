@@ -68,6 +68,8 @@ properties:
         refresh-token-validity: 1209600
         scope: openid,cloud_controller.read,cloud_controller.write,password.write,console.admin,console.support
         secret: console-secret
+    scim:
+      groups: additionalgroup1,additionalgroup2
     newrelic:
       production:
         license_key: '<yourlicensekeyhere>'
