@@ -127,10 +127,6 @@ mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
   object_id: 31e64230-f356-4522-86d6-413a531996b9
   sha: f6cc741b64084752478009505113a39192d89da9
   size: 1376537
-go-buildpack/go_buildpack-cached-v1.6.2.zip:
-  object_id: 36cf66dd-7582-4683-823f-016a5ccca3d0
-  sha: 16c34fcb0578759fec73406e6581879f674752f1
-  size: 514306419
 ruby-2.2.3/bundler-1.10.6.gem:
   object_id: 5070dbdd-41b0-4653-a4ff-4fa617daeb97
   sha: 55a37fccd1c0cb5542d468e35d3be46dd0667f73
@@ -163,3 +159,7 @@ rootfs/cflinuxfs2-1.11.0.tar.gz:
   object_id: 978883d5-2e4d-495b-8aec-fc7c7e2988ad
   sha: 5231795f8d238e644d0001adf975d15909b8f770
   size: 248347874
+go-buildpack/go_buildpack-cached-v1.6.3.zip:
+  object_id: 4cab011b-e659-470f-9859-bbe7512f3d3c
+  sha: 347faa241102e96518bc2705f57a2e0169c3931a
+  size: 580121088
