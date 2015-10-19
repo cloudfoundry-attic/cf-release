@@ -7,7 +7,6 @@ class RouteRegistrar
   ROUTER_START_TOPIC = "router.start"
   ROUTER_GREET_TOPIC = "router.greet"
   ROUTER_REGISTER_TOPIC = "router.register"
-  ROUTER_UNREGISTER_TOPIC = "router.unregister"
 
   attr_reader :logger, :message_bus_servers, :type, :host, :port_map,
     :username, :password, :tags, :uuid, :index, :private_instance_id, :update_frequency_in_seconds
