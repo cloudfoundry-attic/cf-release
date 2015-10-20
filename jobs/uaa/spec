@@ -364,7 +364,6 @@ properties:
     description: "Location of the UAA."
   login.self_service_links_enabled:
     description: "Enable self-service account creation and password resets links."
-    default: false
   login.signups_enabled:
     description: "Enable account creation flow in the login server. Enabled by default."
   login.invitations_enabled:
