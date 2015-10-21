@@ -16,6 +16,9 @@ properties:
   routing-api.port:
     description: "The port to run the routing api on"
     default: 3000
+  routing-api.auth_disabled:
+    description: "Disables UAA authentication"
+    default: false
   routing-api.metrics_reporting_interval:
     description: "String representing interval for reporting metrics. Units: ms, s, m h"
     default: "30s"
