@@ -126,9 +126,7 @@ properties:
     default: "127.0.0.1"
   metron_endpoint.port:
     description: "The port used to emit messages to the Metron agent"
-    default: 3456
-  metron_endpoint.shared_secret:
-    description: "The key used to sign log messages"
+    default: 3457
 
   router.requested_route_registration_interval_in_seconds:
     description: "Interval at which the router requests routes to be registered."
