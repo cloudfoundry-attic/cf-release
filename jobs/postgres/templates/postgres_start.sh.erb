@@ -115,6 +115,13 @@ echo "Creating databases..."
     set -e
   <% end %>
 
+  <% if p("databases.collect_statement_statistics") %>
+    echo "Enabling pg_stat_statements extension..."
+    $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
+                          -d "<%= database["name"] %>" \
+                          -c "CREATE EXTENSION IF NOT EXISTS pg_stat_statements"
+  <% end %>
+
   <% if database["run_on_every_startup"] %>
     <% database["run_on_every_startup"].each do |query| %>
       $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
