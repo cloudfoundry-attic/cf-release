@@ -19,7 +19,7 @@ properties:
   smoke_tests.api:
     description: The Elastic Runtime API endpoint URL
   smoke_tests.apps_domain:
-    description: The Elastic Runtime Appliction Domain
+    description: The Elastic Runtime Application Domain
   smoke_tests.user:
     description: The Elastic Runtime API user
   smoke_tests.password:
