@@ -61,7 +61,7 @@ properties:
     description: Flag to include the routing test suite.
   acceptance_tests.use_diego:
     default: false
-    description: Services tests push their apps using diego if enabled. Route service tests require this flag to run.
+    description: App tests push their apps using diego if enabled. Route service tests require this flag to run.
   acceptance_tests.use_http:
     default: false
     description: Flag for using HTTP when making api and application requests rather than the default HTTPS
@@ -78,6 +78,9 @@ properties:
     description: Timeout for long curls
   acceptance_tests.broker_start_timeout:
     description: Timeout for broker starts
+  acceptance_tests.enable_color:
+    description: "Enable colorized output on ginkgo."
+    default: true
   acceptance_tests.existing_user:
     description: "The username of an existing user. If set, the acceptance-tests will push apps and perform other actions as this user, otherwise its default behaviour is to create a temporary user for such actions."
   acceptance_tests.existing_user_password:

@@ -52,8 +52,9 @@ skipPackages+=<%= properties.acceptance_tests.include_routing ? "" : "routing," 
 skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
 
 verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
+noColorFlag=<%= properties.acceptance_tests.enable_color ? "" : "-noColor" %>
 
-bin/test -r -noColor -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?
+bin/test -r $noColorFlag -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 
