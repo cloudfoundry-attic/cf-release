@@ -9,7 +9,9 @@ meta:
     aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
     region: us-east-1
 
-  stemcell:
+  stemcell: (( merge || .meta.default_stemcell ))
+
+  default_stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
     version: latest
 

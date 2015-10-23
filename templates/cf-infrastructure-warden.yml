@@ -5,7 +5,9 @@ meta:
     provider: Local
     local_root: /var/vcap/store
 
-  stemcell:
+  stemcell: (( merge || .meta.default_stemcell ))
+
+  default_stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
 

@@ -1,6 +1,8 @@
 meta:
 
-  stemcell:
+  stemcell: (( merge || .meta.default_stemcell ))
+
+  default_stemcell:
     name: bosh-vsphere-esxi-ubuntu-trusty-go_agent
     version: latest
 

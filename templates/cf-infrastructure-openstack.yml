@@ -3,7 +3,9 @@ meta:
   environment: ~
   networks: ~
 
-  stemcell:
+  stemcell: (( merge || .meta.default_stemcell ))
+
+  default_stemcell:
     name: bosh-openstack-kvm-ubuntu-trusty-go_agent
     version: latest
 
