@@ -167,8 +167,8 @@ scim:
     - <%= group %><% end %>
 <% end %>
 
-<% if properties.uaa.scim && properties.uaa.scim.groups then %>
-  groups: <%= properties.uaa.scim.groups %>
+<% if_p('uaa.scim.groups') do |groups| %>
+  groups: <%= groups %>
 <% end %>
 
 <% if properties.uaa && properties.uaa.zones && properties.uaa.zones.internal &&  properties.uaa.zones.internal.hostnames then %>
