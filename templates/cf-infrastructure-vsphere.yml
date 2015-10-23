@@ -113,20 +113,6 @@ resource_pools:
     cloud_properties: (( merge || meta.resource_pools.small_errand.cloud_properties ))
 
 jobs:
-  - name: logs_z1
-    instances: 1
-    persistent_disk: 8192
-    networks:
-      - name: cf1
-        static_ips: (( static_ips(0) ))
-
-  - name: logs_z2
-    instances: 1
-    persistent_disk: 8192
-    networks:
-      - name: cf2
-        static_ips: (( static_ips(0) ))
-
   - name: nats_z1
     instances: 1
     networks:

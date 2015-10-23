@@ -21,12 +21,6 @@ jobs:
   - name: doppler_z2
     instances: 0
 
-  - name: logs_z1
-    instances: 0
-
-  - name: logs_z2
-    instances: 0
-
   - name: router_z2
     instances: 0
 
