@@ -26,21 +26,6 @@ properties:
     description: "specifies that the job is allowed to skip ssl cert verification"
     default: false
 
-  name:
-    default: "vcap"
-    description:
-  build:
-    default: "2222"
-    description:
-  version:
-    default: "2"
-    description:
-  support_address:
-    default: "http://support.cloudfoundry.com"
-    description:
-  description:
-    default: "Cloud Foundry sponsored by Pivotal"
-    description:
   domain:
     description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
   system_domain:
@@ -68,6 +53,25 @@ properties:
   request_timeout_in_seconds:
     description: "Timeout for requests in seconds."
     default: 900
+
+  name:
+    description: "'name' attribute in the /info and /v2/info endpoints"
+    default: ""
+  build:
+    description: "'build' attribute in the /info and /v2/info endpoints"
+    default: ""
+  version:
+    description: "'version' attribute in the /info and /v2/info endpoints"
+    default: ""
+  support_address:
+    description: "'support' attribute in the /info and /v2/info endpoints"
+    default: ""
+  description:
+    description: "'description' attribute in the /info and /v2/info endpoints"
+    default: ""
+
+  cc.info.custom:
+    description: "Custom attribute keys and values for /v2/info endpoint"
 
   cc.external_port:
     description: "External Cloud Controller port"
@@ -106,16 +110,6 @@ properties:
   cc.failed_jobs.cutoff_age_in_days:
     description: "How old a failed job should stay in cloud controller database before being cleaned up"
     default: 31
-  cc.info.name:
-    description: "name attribute in the /info endpoint"
-  cc.info.build:
-    description: "build attribute in the /info endpoint"
-  cc.info.version:
-    description: "version attribute in the /info endpoint"
-  cc.info.description:
-    description: "free form description for attribute in the /info endpoint"
-  cc.info.custom:
-    description: "Custom values for /v2/info endpoint"
 
   cc.external_protocol:
     default: "https"
