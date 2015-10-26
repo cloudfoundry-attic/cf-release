@@ -13,8 +13,41 @@ templates:
   config.yml.erb: config/config.yml
 
 properties:
+  nats.machines:
+    description: IPs of each NATS cluster member
+    example: |
+      - 192.168.50.123
+      - 192.168.52.123
+  nats.port:
+    description: TCP port of NATS servers
+    example: 4222
+  nats.user:
+    description: User name for NATS authentication
+    example: nats
+  nats.password:
+    description: Password for NATS authentication
+    example: natSpa55w0rd
+
+  route_registrar.routes:
+    description: |
+      * Array of hashes determining which routes will be registered.
+      * Each hash should have 'port', 'uris', and 'name' keys.
+      * Additionally, the 'tags' key is optional.
+      * 'uris' is an array of URIs to register for the 'port'.
+      * 'tags' are included in metrics that gorouter emits to support filtering.
+    example: |
+      - name: my-service
+        port: 12345
+        tags:
+          component: my-service
+          env: production
+        uris:
+          - my-service.system-domain.com
+          - *.my-service.system-domain.com
+      - name: my-debug-endpoint
+        port: 12346
+        uris:
+          - my-service.system-domain.com/debug
   route_registrar.update_frequency_in_seconds:
     default: 20
-    description: "The delay in seconds between routing updates"
-  route_registrar.routes:
-    description: "List of routes that will be registered. Array of hashes. Hashes should have port, uris, name, and tags keys. uris is an array of uris to register for the port. Tags are included in the metrics that gorouter emits about things like response time."
+    description: The delay in seconds between routing updates
