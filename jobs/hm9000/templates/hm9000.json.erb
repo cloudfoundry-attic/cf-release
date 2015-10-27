@@ -26,6 +26,7 @@
     "skip_cert_verify": <%= p("ssl.skip_cert_verify") %>,
     "desired_state_batch_size": <%= p("hm9000.desired_state_batch_size") %>,
     "fetcher_network_timeout_in_seconds": <%= p("hm9000.fetcher_network_timeout_in_seconds") %>,
+    "sender_message_limit": <%= p("hm9000.sender_message_limit") %>,
 
     "store_schema_version": 4,
     "store_urls": [<%= p("etcd.machines").map{|addr| "\"http://#{addr}:4001\""}.join(",")%>],
