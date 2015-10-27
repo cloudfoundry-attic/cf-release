@@ -127,3 +127,6 @@ properties:
   routing-api.port:
     description: "Port on which routing-api is running."
     default: 3000
+  routing-api.auth_disabled:
+    description: "Disables UAA authentication"
+    default: false

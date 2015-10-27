@@ -52,6 +52,7 @@ oauth:
 routing_api:
   uri: http://routing-api.service.cf.internal
   port: <%= p("routing-api.port") %>
+  auth_disabled: <%= p("routing-api.auth_disabled") %>
 <% end %>
 
 endpoint_timeout: <%= p("request_timeout_in_seconds") %>
