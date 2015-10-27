@@ -34,9 +34,9 @@
     :keep_user_at_suite_end => !properties.acceptance_tests.existing_user.nil?
   }
   config[:default_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.default_timeout
-  config[:cf_push_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.cf_push_timeout
-  config[:long_curl_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.long_curl_timeout
-  config[:broker_start_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.broker_start_timeout
+  config[:cf_push_timeout] = properties.acceptance_tests.cf_push_timeout if properties.acceptance_tests.cf_push_timeout
+  config[:long_curl_timeout] = properties.acceptance_tests.long_curl_timeout if properties.acceptance_tests.long_curl_timeout
+  config[:broker_start_timeout] = properties.acceptance_tests.broker_start_timeout if properties.acceptance_tests.broker_start_timeout
 
   config[:staticfile_buildpack_name] = properties.acceptance_tests.staticfile_buildpack_name if properties.acceptance_tests.staticfile_buildpack_name
   config[:java_buildpack_name] = properties.acceptance_tests.java_buildpack_name if properties.acceptance_tests.java_buildpack_name
