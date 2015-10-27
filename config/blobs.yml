@@ -139,14 +139,6 @@ uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
   size: 11163261
-java-buildpack/java-buildpack-offline-v3.3.zip:
-  object_id: 5ba45280-d3e3-4e04-bded-c354d49514a0
-  sha: a1d033f2e21c74a9223ff428b5af81c3a5fcaadb
-  size: 248044155
-java-buildpack/java-buildpack-v3.3.zip:
-  object_id: 2eaae4f6-3ee2-47f6-b201-9d4f835a29cf
-  sha: c6f00e64e905963ea8499c87f5d97d8122071c23
-  size: 154331
 go-buildpack/go_buildpack-cached-v1.6.3.zip:
   object_id: 4cab011b-e659-470f-9859-bbe7512f3d3c
   sha: 347faa241102e96518bc2705f57a2e0169c3931a
@@ -163,3 +155,11 @@ rootfs/cflinuxfs2-1.13.0.tar.gz:
   object_id: ce172145-5cd8-4b16-bfed-b84806c0daea
   sha: c1584ecabee3e9dbd334646ad49d736e1fa0b594
   size: 248217266
+java-buildpack/java-buildpack-offline-v3.3.1.zip:
+  object_id: c891c2fc-b64a-46e8-9020-156e6ec196a2
+  sha: 4d0e9d0124c26b5295abb3385bdbcf34f2af767c
+  size: 248543697
+java-buildpack/java-buildpack-v3.3.1.zip:
+  object_id: 9b93af3d-5a81-4510-bac6-f8d2135ccf35
+  sha: 34e071ea58c17e2dec93f14052fd351869e45f7c
+  size: 155819
