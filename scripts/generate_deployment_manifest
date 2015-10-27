@@ -1,11 +1,12 @@
 #!/bin/bash
 
-set -euf -o pipefail
+set -ef -o pipefail
 
-CF_DEPLOYMENT_TRACE=${CF_DEPLOYMENT_TRACE:-}
-if [ ! -z "${CF_DEPLOYMENT_TRACE}" ]; then
+if [ -n "${CF_DEPLOYMENT_TRACE}" ]; then
   set -x
 fi
+
+set -u
 
 root_dir=$(cd "$(dirname "$0")/.." && pwd)
 
