@@ -62,10 +62,10 @@ properties:
       For example, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
     default: ""
   router.route_services_secret:
-    description: "Support for route services is disabled when no value is configured. A base64 encoded symmetric key with length of 16 bytes for AES-128, 24 for AES-192, or 32 for AES-256. "
+    description: "Support for route services is disabled when no value is configured."
     default: ""
   router.route_services_secret_decrypt_only:
-    description: "To rotate keys, add your new key here and deploy. Then swap this key with the value of route_services_secret and deploy again. A base64 encoded symmetric key with length of 16 bytes for AES-128, 24 for AES-192, or 32 for AES-256.  "
+    description: "To rotate keys, add your new key here and deploy. Then swap this key with the value of route_services_secret and deploy again."
     default: ""
   router.route_service_timeout:
     description: "Expiry time of a route service signature in seconds"
