@@ -36,7 +36,7 @@ properties:
     default: -1
   router.debug_addr:
     description: "Address at which to serve debug info"
-    default: "0.0.0.0:17001"
+    default: "0.0.0.0:18001"
   router.secure_cookies:
     description: "Set secure flag on http cookies"
     default: false
