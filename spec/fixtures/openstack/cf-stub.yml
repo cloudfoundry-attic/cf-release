@@ -103,9 +103,11 @@ properties:
       SOWIahDrATA4g1T6yLBWQPhj3ZXD3eCMxT1Q3DvpG1DjgvXwmXQJAA==
       -----END RSA PRIVATE KEY-----
     cipher_suites: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA
+    port: nil
     status:
       user: router_user
       password: router_password
+      port: nil
   login:
     logout:
       redirect:
