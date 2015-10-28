@@ -708,9 +708,11 @@ properties:
     cipher_suites: (( merge || nil ))
     requested_route_registration_interval_in_seconds: (( merge || nil ))
     ssl_skip_validation: (( merge || nil ))
+    port: (( merge || nil ))
     status:
       user: (( merge ))
       password: (( merge ))
+      port: (( merge || nil ))
     secure_cookies: (( merge || nil ))
     route_services_secret: (( merge || nil ))
     route_services_secret_decrypt_only: (( merge || nil ))
