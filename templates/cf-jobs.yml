@@ -75,6 +75,8 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
+  etcd_routes: null
+
   etcd_templates:
   - name: etcd
     release: (( meta.release.name ))
@@ -115,6 +117,8 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
+  nfs_routes: null
+
   nfs_templates:
   - name: debian_nfs_server
     release: (( meta.release.name ))
@@ -126,6 +130,8 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
+
+  router_routes: null
 
   router_templates:
   - name: gorouter
@@ -254,6 +260,8 @@ jobs:
     properties:
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.etcd_routes ))
     update:
       max_in_flight: 1
 
@@ -293,6 +301,8 @@ jobs:
     properties:
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.nfs_routes ))
     update: (( merge || empty_hash ))
 
   - name: postgres_z1
@@ -557,6 +567,8 @@ jobs:
             gorouter: {}
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.router_routes ))
     update: (( merge || empty_hash ))
 
   - name: router_z2

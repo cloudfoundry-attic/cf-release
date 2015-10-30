@@ -126,6 +126,8 @@ jobs:
   properties:
     metron_agent:
       zone: z1
+    route_registrar:
+      routes: null
   resource_pool: medium_z1
   templates:
   - name: etcd
@@ -179,6 +181,8 @@ jobs:
   properties:
     metron_agent:
       zone: z1
+    route_registrar:
+      routes: null
   persistent_disk: 102400
   resource_pool: medium_z1
   templates:
@@ -602,6 +606,8 @@ jobs:
           gorouter: {}
     metron_agent:
       zone: z1
+    route_registrar:
+      routes: null
   resource_pool: router_z1
   templates:
   - name: gorouter
