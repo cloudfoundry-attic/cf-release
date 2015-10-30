@@ -1,4 +1,4 @@
-Rootfs SHASUM: c1584ecabee3e9dbd334646ad49d736e1fa0b594
+Rootfs SHASUM: dfd620546cb7ec90670ac06c229bf8e5be6c64b3
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -118,7 +118,7 @@ ii  libatm1:amd64                      1:2.5.1-1.5                         amd64
 ii  libatomic1:amd64                   4.8.4-2ubuntu1~14.04                amd64        support library providing __atomic built-in functions
 ii  libatspi2.0-0:amd64                2.10.2.is.2.10.1-0ubuntu1           amd64        Assistive Technology Service Provider Interface - shared library
 ii  libattr1:amd64                     1:2.4.47-1ubuntu1                   amd64        Extended attribute shared library
-ii  libaudiofile1:amd64                0.3.6-2                             amd64        Open-source version of SGI's audiofile library
+ii  libaudiofile1:amd64                0.3.6-2ubuntu0.14.04.1              amd64        Open-source version of SGI's audiofile library
 ii  libaudit-common                    1:2.3.2-2ubuntu1                    all          Dynamic library for security auditing - common files
 ii  libaudit1:amd64                    1:2.3.2-2ubuntu1                    amd64        Dynamic library for security auditing
 ii  libavahi-client3:amd64             0.6.31-4ubuntu1                     amd64        Avahi client library
@@ -306,8 +306,8 @@ ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                             amd64        multiple precision floating-point computation
-ii  libmysqlclient-dev                 5.5.44-0ubuntu0.14.04.1             amd64        MySQL database development files
-ii  libmysqlclient18:amd64             5.5.44-0ubuntu0.14.04.1             amd64        MySQL database client library
+ii  libmysqlclient-dev                 5.5.46-0ubuntu0.14.04.2             amd64        MySQL database development files
+ii  libmysqlclient18:amd64             5.5.46-0ubuntu0.14.04.2             amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
@@ -496,13 +496,13 @@ ii  module-init-tools                  15-0ubuntu6                         all  
 ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.6                     amd64        Transitional package to ensure multiarch compatibility
-ii  mysql-common                       5.5.44-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
+ii  mysql-common                       5.5.46-0ubuntu0.14.04.2             all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1               all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64        terminal-related programs and man pages
 ii  net-tools                          1.60-25ubuntu2.1                    amd64        The NET-3 networking toolkit
 ii  netbase                            5.2                                 all          Basic TCP/IP networking system
 ii  netcat-openbsd                     1.105-7ubuntu1                      amd64        TCP/IP swiss army knife
-ii  ntpdate                            1:4.2.6.p5+dfsg-3ubuntu2.14.04.3    amd64        client for setting system time from NTP servers
+ii  ntpdate                            1:4.2.6.p5+dfsg-3ubuntu2.14.04.5    amd64        client for setting system time from NTP servers
 ii  ocaml-base-nox                     4.01.0-3ubuntu3                     amd64        Runtime system for OCaml bytecode executables (no X)
 ii  openssh-client                     1:6.6p1-2ubuntu2.3                  amd64        secure shell (SSH) client, for secure access to remote machines
 ii  openssh-server                     1:6.6p1-2ubuntu2.3                  amd64        secure shell (SSH) server, for secure access from remote machines

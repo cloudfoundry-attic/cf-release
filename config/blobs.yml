@@ -151,10 +151,6 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.2.2.zip:
   object_id: 75f21555-7a6f-4e53-901c-fe925fb50191
   sha: bb51fb6fc9d65faee893f02d18a8373b18619915
   size: 2492036
-rootfs/cflinuxfs2-1.13.0.tar.gz:
-  object_id: ce172145-5cd8-4b16-bfed-b84806c0daea
-  sha: c1584ecabee3e9dbd334646ad49d736e1fa0b594
-  size: 248217266
 java-buildpack/java-buildpack-offline-v3.3.1.zip:
   object_id: c891c2fc-b64a-46e8-9020-156e6ec196a2
   sha: 4d0e9d0124c26b5295abb3385bdbcf34f2af767c
@@ -163,3 +159,7 @@ java-buildpack/java-buildpack-v3.3.1.zip:
   object_id: 9b93af3d-5a81-4510-bac6-f8d2135ccf35
   sha: 34e071ea58c17e2dec93f14052fd351869e45f7c
   size: 155819
+rootfs/cflinuxfs2-1.14.0.tar.gz:
+  object_id: 1196f61e-f91e-491f-9baf-ff0a6b4a2162
+  sha: dfd620546cb7ec90670ac06c229bf8e5be6c64b3
+  size: 248230666
