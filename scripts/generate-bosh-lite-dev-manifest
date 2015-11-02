@@ -12,6 +12,7 @@ if [[ ! -d "${CF_RELEASE_DIR}" ]]; then
 fi
 
 BOSH_STATUS=$(bosh status)
+DIRECTOR_UUID=$(bosh status --uuid)
 EXPECTED_DIRECTOR_NAME="Bosh Lite Director"
 
 if [[ "$(echo "$BOSH_STATUS" | grep Name)" != *"$EXPECTED_DIRECTOR_NAME"* ]]; then
@@ -20,8 +21,6 @@ if [[ "$(echo "$BOSH_STATUS" | grep Name)" != *"$EXPECTED_DIRECTOR_NAME"* ]]; th
 fi
 
 mkdir -p "${CF_RELEASE_DIR}/bosh-lite/deployments"
-
-DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
 
 diego_stub=''
 if [[ -f "${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cf.yml" ]]; then
