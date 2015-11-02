@@ -59,12 +59,22 @@ staging:
   disk_limit_mb: <%= p("dea_next.staging_disk_limit_mb") %>
   cpu_limit_shares: <%= p("dea_next.staging_cpu_limit_shares") %>
   disk_inode_limit: <%= p("dea_next.staging_disk_inode_limit") %>
+<% if_p("dea_next.staging_bandwidth_limit.rate", "dea_next.staging_bandwidth_limit.burst") do |rate, burst| %>
+  bandwidth_limit:
+    rate: <%= rate %>
+    burst: <%= burst %>
+<% end %>
 
 instance:
   memory_to_cpu_share_ratio: <%= p("dea_next.instance_memory_to_cpu_share_ratio") %>
   min_cpu_share_limit: <%= p("dea_next.instance_min_cpu_share_limit") %>
   max_cpu_share_limit: <%= p("dea_next.instance_max_cpu_share_limit") %>
   disk_inode_limit: <%= p("dea_next.instance_disk_inode_limit") %>
+<% if_p("dea_next.instance_bandwidth_limit.rate", "dea_next.instance_bandwidth_limit.burst") do |rate, burst| %>
+  bandwidth_limit:
+    rate: <%= rate %>
+    burst: <%= burst %>
+<% end %>
 
 stacks: <%= p("dea_next.stacks", []).to_yaml.gsub("---", "") %>
 
