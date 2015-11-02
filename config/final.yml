@@ -4,4 +4,4 @@ min_cli_version: 1.5.0.pre.1001
 blobstore:
   provider: s3
   options:
-    bucket_name: blob.cfblob.com
+    bucket_name: cf-release-blobs
