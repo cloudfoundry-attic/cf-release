@@ -82,9 +82,6 @@
 [submodule "packages/ruby-2.1.4"]
 	path = packages/ruby-2.1.4
 	url = https://github.com/cloudfoundry/ruby-package
-[submodule "src/github.com/cloudfoundry-incubator/routing-api"]
-	path = src/github.com/cloudfoundry-incubator/routing-api
-	url = https://github.com/cloudfoundry-incubator/routing-api.git
 [submodule "src/etcd-release"]
 	path = src/etcd-release
 	url = https://github.com/cloudfoundry-incubator/etcd-release.git
@@ -97,3 +94,6 @@
 [submodule "src/consul-release"]
 	path = src/consul-release
 	url = https://github.com/cloudfoundry-incubator/consul-release.git
+[submodule "src/cf-routing-release"]
+	path = src/cf-routing-release
+	url = git@github.com:cloudfoundry-incubator/cf-routing-release.git

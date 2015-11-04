@@ -1,6 +1,0 @@
-check process routing-api
-  with pidfile /var/vcap/sys/run/routing-api/routing-api.pid
-  start program "/var/vcap/jobs/routing-api/bin/routing-api_ctl start"
-    with timeout 60 seconds
-  stop program "/var/vcap/jobs/routing-api/bin/routing-api_ctl stop"
-  group vcap
