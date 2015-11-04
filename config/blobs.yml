@@ -99,10 +99,6 @@ nginx/nginx-1.8.0.tar.gz:
   object_id: 0d18bbee-b79d-4fec-bba5-635821969fa0
   sha: 12bad312764feae50246685ab2e74512d1aa9b2f
   size: 832104
-ruby-buildpack/ruby_buildpack-cached-v1.6.7.zip:
-  object_id: 9c39f092-cf19-4276-a013-285349ca7d74
-  sha: 9d8bdc2e0aa81089322e4d9e4cf37a96fb667a7b
-  size: 295134096
 openjdk/openjdk-1.8.0_60-x86_64-trusty-jre.tar.gz:
   object_id: 71fc34bf-5878-4cbd-98a9-b5113dccc923
   sha: 00a58600bd56007832f1caca487187c023f10ec5
@@ -163,3 +159,7 @@ rootfs/cflinuxfs2-1.15.0.tar.gz:
   object_id: 3da33833-1fe8-496c-ab16-f5f26d8ebcd3
   sha: 3ec727c1a0a9d3645ef3ccd82adfe4b040895896
   size: 248228998
+ruby-buildpack/ruby_buildpack-cached-v1.6.8.zip:
+  object_id: 7b8b370d-7fa7-4420-82c7-bd24beffade4
+  sha: 2b86c537d403392f4aeb5df60923f1bf680b1e70
+  size: 296256598
