@@ -89,6 +89,14 @@ properties:
   dea_next.instance_disk_inode_limit:
     description: Limit on inodes for an instance container
     default: 200000
+  dea_next.staging_bandwidth_limit.rate:
+    description: "Network bandwidth limit for staging tasks in bytes per second"
+  dea_next.staging_bandwidth_limit.burst:
+    description: "Network bandwidth burst limit for staging tasks in bytes"
+  dea_next.instance_bandwidth_limit.rate:
+    description: "Network bandwidth limit for running instances in bytes per second"
+  dea_next.instance_bandwidth_limit.burst:
+    description: "Network bandwidth burst limit for running instances in bytes"
   dea_next.directory_server_protocol:
     description: 'The protocol to use when communicating with the directory server ("http" or "https")'
     default: 'https'
