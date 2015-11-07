@@ -40,6 +40,8 @@ meta:
     release: (( lamb_meta.release.name ))
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
+  - name: debian_nfs_server
+    release: (( meta.release.name ))
   - name: nfs_mounter
     release: (( meta.release.name ))
   - name: route_registrar

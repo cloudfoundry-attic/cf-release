@@ -1,0 +1,4 @@
+set -e -x
+
+cp -v nfs_common/rpcbind_0.2.1-2ubuntu1_amd64.deb ${BOSH_INSTALL_TARGET}/
+cp -v nfs_common/nfs-common_1.2.8-6ubuntu1_amd64.deb ${BOSH_INSTALL_TARGET}/

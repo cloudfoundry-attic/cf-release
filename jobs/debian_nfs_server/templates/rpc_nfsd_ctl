@@ -5,7 +5,11 @@ source /var/vcap/packages/common/utils.sh
 case $1 in
 
   start)
-    dpkg --unpack -E /var/vcap/packages/debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb
+    dpkg -i /var/vcap/packages/nfs_common/rpcbind_0.2.1-2ubuntu1_amd64.deb
+    dpkg -i /var/vcap/packages/nfs_common/nfs-common_1.2.8-6ubuntu1_amd64.deb
+
+    dpkg --unpack -E /var/vcap/packages/debian_nfs_server/nfs-kernel-server_1.2.8-9_amd64.deb
+
     rm -rf /etc/init.d/nfs-kernel-server
     mkdir -p /var/vcap/store/shared
     chown vcap:vcap /var/vcap/store/shared
