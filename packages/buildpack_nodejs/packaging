@@ -1,2 +1,2 @@
     set -e -x
-    cp nodejs-buildpack/nodejs_buildpack-cached-v1.5.0.zip ${BOSH_INSTALL_TARGET}
+    cp nodejs-buildpack/nodejs_buildpack-cached-v1.5.1.zip ${BOSH_INSTALL_TARGET}

@@ -79,10 +79,6 @@ nginx/pcre-8.37.tar.gz:
   object_id: 262a1857-da10-4680-b148-52d7803af7ae
   sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
   size: 2041593
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.0.zip:
-  object_id: 56f5eac1-2449-4e95-a570-8311d40164f7
-  sha: 366596bd85b21ca3602b68a0401fca8cfa6217cd
-  size: 40771189
 ruby-2.1.7/bundler-1.9.4.gem:
   object_id: e158e651-c3ff-4dd0-8f42-f7c2f0e08688
   sha: ea3f17a76a8249049b5589c9b5421af72189babc
@@ -139,10 +135,6 @@ go-buildpack/go_buildpack-cached-v1.6.3.zip:
   object_id: 4cab011b-e659-470f-9859-bbe7512f3d3c
   sha: 347faa241102e96518bc2705f57a2e0169c3931a
   size: 580121088
-php-buildpack/php_buildpack-cached-v4.2.0.zip:
-  object_id: b42a13ef-7abd-47e4-ac2a-6913567724b3
-  sha: 2d41060c8d7a0ac5c2c9fc3a458bea1c3c208a13
-  size: 340174975
 staticfile-buildpack/staticfile_buildpack-cached-v1.2.2.zip:
   object_id: 75f21555-7a6f-4e53-901c-fe925fb50191
   sha: bb51fb6fc9d65faee893f02d18a8373b18619915
@@ -163,3 +155,11 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.8.zip:
   object_id: 7b8b370d-7fa7-4420-82c7-bd24beffade4
   sha: 2b86c537d403392f4aeb5df60923f1bf680b1e70
   size: 296256598
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.1.zip:
+  object_id: f75107d2-5b8b-4b24-95dc-72d472c3fffb
+  sha: 0e92eadade7b7285a3ed98168e79717b0286a95a
+  size: 50102390
+php-buildpack/php_buildpack-cached-v4.2.1.zip:
+  object_id: 693c91d6-3e17-487d-8782-a7f0b9cfefb7
+  sha: 0d4cc35a35c230961a64004aa1e2c8444f15b48d
+  size: 343005936
