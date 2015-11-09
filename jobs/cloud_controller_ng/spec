@@ -39,7 +39,6 @@ packages:
   - buildpack_php
   - buildpack_staticfile
   - buildpack_binary
-  - nfs_common
 
 properties:
   ssl.skip_cert_verify:
