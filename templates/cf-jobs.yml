@@ -654,6 +654,8 @@ properties:
   dea_next:
     memory_overcommit_factor: null
     disk_overcommit_factor: null
+    instance_bandwidth_limit: (( merge || nil ))
+    staging_bandwidth_limit: (( merge || nil ))
     memory_mb: (( merge || nil ))
     disk_mb: (( merge || nil ))
     staging_disk_inode_limit: 200000
