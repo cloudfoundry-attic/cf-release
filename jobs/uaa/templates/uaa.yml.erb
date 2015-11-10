@@ -45,13 +45,20 @@ spring_profiles: <%= properties.uaadb.db_scheme %>
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
 
-<% if properties.uaa.jwt && properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
+<% if properties.uaa.jwt && ((properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key) || properties.uaa.jwt.claims.exclude) %>
 jwt:
   token:
+  <% if properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
     signing-key: |
 <%= "        " + properties.uaa.jwt.signing_key.gsub("\n", "\n        ") %>
     verification-key: |
 <%= "        " + properties.uaa.jwt.verification_key.gsub("\n", "\n        ") %>
+  <% end %>
+  <% if_p("uaa.jwt.claims.exclude") do |exclusions| %>
+    claims:
+      exclude: <% exclusions.each do |exclusion| %>
+      - <%= exclusion %><% end %>
+  <% end %>
 <% elsif properties.uaa.cc && properties.uaa.cc.token_secret %>
 jwt:
   token:

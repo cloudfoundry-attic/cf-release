@@ -93,6 +93,8 @@ properties:
     description:
   uaa.jwt.verification_key:
     description:
+  uaa.jwt.claims.exclude:
+    description: "List of claims to exclude from the JWT-based OAuth2 tokens"
   uaa.port:
     description: Port that uaa will accept connections on
     default: 8080
