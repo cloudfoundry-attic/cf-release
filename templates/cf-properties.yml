@@ -270,9 +270,7 @@ properties:
       external_groups: ~
       groups: ~
 
-    jwt:
-      signing_key: (( merge ))
-      verification_key: (( merge ))
+    jwt: (( merge ))
 
     cc:
       client_secret: (( merge ))
