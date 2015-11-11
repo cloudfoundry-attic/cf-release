@@ -78,6 +78,14 @@ disableInternalAuth: <%= properties.uaa.disableInternalAuth %>
 
 disableInternalUserManagement: <%= properties.uaa.disableInternalUserManagement %>
 
+token:
+  policy:
+    accessTokenValiditySeconds: <%= properties.uaa.token.policy.accessTokenValiditySeconds %>
+    refreshTokenValiditySeconds: <%= properties.uaa.token.policy.refreshTokenValiditySeconds %>
+    global:
+      accessTokenValiditySeconds: <%= properties.uaa.token.policy.global.accessTokenValiditySeconds %>
+      refreshTokenValiditySeconds: <%= properties.uaa.token.policy.global.refreshTokenValiditySeconds %>
+
 password:
   policy:
     minLength: <%= properties.uaa.password.policy.minLength %>

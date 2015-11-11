@@ -89,6 +89,18 @@ properties:
       - user_attributes
   uaa.clients:
     description:
+  uaa.token.policy.accessTokenValiditySeconds:
+    default: 43200
+    description: "The access token validity for the default zone if nothing is configured on the client. Will override global validity policies for the default zone only."
+  uaa.token.policy.refreshTokenValiditySeconds:
+    default: 2592000
+    description: "The refresh token validity for the default zone if nothing is configured on the client. Will override global validity policies for the default zone only."
+  uaa.token.policy.global.accessTokenValiditySeconds:
+    default: 43200
+    description: "The global access token validity for all zones if nothing is configured on the client"
+  uaa.token.policy.global.refreshTokenValiditySeconds:
+    default: 2592000
+    description: "The global refresh token validity for all zones if nothing is configured on the client"
   uaa.jwt.signing_key:
     description:
   uaa.jwt.verification_key:
