@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# You can use this script to run irb console of cloud controller for debug purposes
+
+export CC_JOB_DIR=/var/vcap/jobs/cloud_controller_ng
+source $CC_JOB_DIR/bin/ruby_version.sh
+
+CC_PACKAGE_DIR=/var/vcap/packages/cloud_controller_ng
+
+RUN_DIR=/var/vcap/sys/run/cloud_controller_ng
+LOG_DIR=/var/vcap/sys/log/cloud_controller_ng
+PIDFILE=$RUN_DIR/cloud_controller_ng.pid
+
+export CONFIG_DIR=$CC_JOB_DIR/config
+export CLOUD_CONTROLLER_NG_CONFIG=$CONFIG_DIR/cloud_controller_ng.yml
+export BUNDLE_GEMFILE=$CC_PACKAGE_DIR/cloud_controller_ng/Gemfile
+export HOME=/home/vcap # rake needs it to be set to run tasks
+export TMPDIR=/var/vcap/data/cloud_controller_ng/tmp
+
+<% if properties.env %>
+<% if properties.env.http_proxy %>
+export HTTP_PROXY='<%= properties.env.http_proxy %>'
+export http_proxy='<%= properties.env.http_proxy %>'
+<% end %>
+<% if properties.env.https_proxy %>
+export HTTPS_PROXY='<%= properties.env.https_proxy %>'
+export https_proxy='<%= properties.env.https_proxy %>'
+<% end %>
+<% if properties.env.no_proxy %>
+export NO_PROXY='<%= properties.env.no_proxy %>'
+export no_proxy='<%= properties.env.no_proxy %>'
+<% end %>
+<% end %>
+
+export C_INCLUDE_PATH=/var/vcap/packages/libpq/include:$C_INCLUDE_PATH
+export LIBRARY_PATH=/var/vcap/packages/libpq/lib:$LIBRARY_PATH
+export LANG=en_US.UTF-8
+
+$CC_PACKAGE_DIR/cloud_controller_ng/bin/console $CLOUD_CONTROLLER_NG_CONFIG
