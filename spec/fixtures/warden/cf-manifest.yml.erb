@@ -2791,7 +2791,7 @@ properties:
   disk_quota_enabled: false
   domain: bosh-lite.com
   doppler_endpoint:
-    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   dropsonde:
     enabled: true
   etcd:
@@ -2808,7 +2808,7 @@ properties:
   logger_endpoint: null
 <%= lamb_properties("cf-warden") %>
   loggregator_endpoint:
-    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
     enabled: true
     analytics:
@@ -2846,7 +2846,7 @@ properties:
     url: null
     messages: null
   metron_endpoint:
-    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
     address: 10.244.0.6
     debug: false

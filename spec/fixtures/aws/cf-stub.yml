@@ -108,7 +108,6 @@ properties:
         secret: LOGIN_CLIENT_SECRET
       notifications:
         secret: NOTIFICATIONS_CLIENT_SECRET
-
     jwt:
       verification_key: JWT_VERIFICATION_KEY
       signing_key: JWT_SIGNING_KEY
