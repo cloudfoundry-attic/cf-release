@@ -115,7 +115,6 @@ properties:
     scim:
       users:
         - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
-      groups: additionalgroup1,additionalgroup2
   uaadb:
     db_scheme: UAADB_SCHEME
     roles:
