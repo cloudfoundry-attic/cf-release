@@ -8,7 +8,7 @@ releases:
     version: latest
 properties:
   loggregator_endpoint:
-    shared_secret: PLACEHOLDER-LOGGREGATOR-SECRET
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
 
   hm9000:
     url: http://hm9000.bosh-lite.com
