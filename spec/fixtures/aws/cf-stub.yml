@@ -86,7 +86,6 @@ properties:
   nats:
     user: NATS_USER
     password: NATS_PASSWORD
-    port: NATS_PORT
   router:
     status:
       user: ROUTER_USER
