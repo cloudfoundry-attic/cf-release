@@ -33,7 +33,7 @@ properties:
     disk_mb: 2048
     memory_mb: 1024
   loggregator_endpoint:
-    shared_secret: loggregator_endpoint_secret
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
     user: nats_user
     password: nats_password

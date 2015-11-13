@@ -932,7 +932,7 @@ properties:
   disk_quota_enabled: true
   domain: 0.0.0.3.xip.io
   doppler_endpoint:
-    shared_secret: loggregator_endpoint_secret
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   dropsonde:
     enabled: true
   etcd:
@@ -953,7 +953,7 @@ properties:
   logger_endpoint: null
 <%= lamb_properties("null") %>
   loggregator_endpoint:
-    shared_secret: loggregator_endpoint_secret
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
     enabled: true
     analytics:
@@ -988,7 +988,7 @@ properties:
     url: null
     messages: null
   metron_endpoint:
-    shared_secret: loggregator_endpoint_secret
+    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
     address: 0.0.0.1
     debug: false
