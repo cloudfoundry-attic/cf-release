@@ -64,9 +64,6 @@
 [submodule "packages/ruby"]
 	path = packages/ruby
 	url = https://github.com/cloudfoundry/ruby-package
-[submodule "src/uaa"]
-	path = src/uaa
-	url = https://github.com/cloudfoundry/uaa.git
 [submodule "src/buildpacks/ruby"]
 	path = src/buildpacks/ruby
 	url = https://github.com/cloudfoundry/heroku-buildpack-ruby.git
@@ -97,3 +94,6 @@
 [submodule "src/cf-routing-release"]
 	path = src/cf-routing-release
 	url = https://github.com/cloudfoundry-incubator/cf-routing-release.git
+[submodule "src/uaa-release"]
+	path = src/uaa-release
+	url = git://github.com/cloudfoundry/uaa-release
