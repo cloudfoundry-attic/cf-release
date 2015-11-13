@@ -95,6 +95,8 @@ properties:
   uaa.token.policy.refreshTokenValiditySeconds:
     default: 2592000
     description: "The refresh token validity for the default zone if nothing is configured on the client. Will override global validity policies for the default zone only."
+  uaa.token.policy.keys:
+    description: "Map of key ids to key pairs (signing and verification keys) in format {<key id>: {signingKey: <signing key>, verificationKey: <verification key>}}"
   uaa.token.policy.global.accessTokenValiditySeconds:
     default: 43200
     description: "The global access token validity for all zones if nothing is configured on the client"

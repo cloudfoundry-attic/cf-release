@@ -82,6 +82,14 @@ token:
   policy:
     accessTokenValiditySeconds: <%= properties.uaa.token.policy.accessTokenValiditySeconds %>
     refreshTokenValiditySeconds: <%= properties.uaa.token.policy.refreshTokenValiditySeconds %>
+<% if_p("uaa.token.policy.keys") do |keys| %>
+    keys:
+  <% keys.marshal_dump.each do |kid,keyPair| %>
+    <% next unless keyPair %>
+    <%= kid %><% keyPair.marshal_dump.each do |key,value| %>
+      <%= key %>: |
+<%= "          " + value.gsub("\n", "\n          ") %><% end %><% end %>
+<% end %>
     global:
       accessTokenValiditySeconds: <%= properties.uaa.token.policy.global.accessTokenValiditySeconds %>
       refreshTokenValiditySeconds: <%= properties.uaa.token.policy.global.refreshTokenValiditySeconds %>
