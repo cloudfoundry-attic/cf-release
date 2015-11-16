@@ -3,6 +3,11 @@
 export BOSH_USE_BUNDLER=true
 
 BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}
+if [[ ! -d "${BOSH_RELEASES_DIR}" ]]; then
+  echo "Connot find bosh-releases-dir at '{$BOSH_RELEASES_DIR}'; override with \$BOSH_RELEASES_DIR variable"
+  exit 1
+fi
+
 SCRIPT_DIR=$(dirname $0)
 CF_RELEASE_DIR=${CF_RELEASE_DIR:-$SCRIPT_DIR/..}
 
