@@ -1,4 +1,4 @@
-Rootfs SHASUM: 0d0d6c2fb33dcbfd4b6478ce50b3d611712b3d8b
+Rootfs SHASUM: c9d9ec2fe9ce97f9cc21b2ff5e283353b77044a6
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -99,8 +99,8 @@ ii  keyboard-configuration             1.70ubuntu8                         all  
 ii  klibc-utils                        2.0.3-0ubuntu1                      amd64        small utilities built with klibc for early boot
 ii  kmod                               15-0ubuntu6                         amd64        tools for managing Linux kernel modules
 ii  krb5-config                        2.3                                 all          Configuration files for Kerberos Version 5
-ii  krb5-multidev                      1.12+dfsg-2ubuntu5.1                amd64        Development files for MIT Kerberos without Heimdal conflict
-ii  krb5-user                          1.12+dfsg-2ubuntu5.1                amd64        Basic programs to authenticate using MIT Kerberos
+ii  krb5-multidev                      1.12+dfsg-2ubuntu5.2                amd64        Development files for MIT Kerberos without Heimdal conflict
+ii  krb5-user                          1.12+dfsg-2ubuntu5.2                amd64        Basic programs to authenticate using MIT Kerberos
 ii  laptop-detect                      0.13.7ubuntu2                       amd64        attempt to detect a laptop
 ii  less                               458-2                               amd64        pager program similar to more
 ii  libacl1:amd64                      2.2.52-1                            amd64        Access control list shared library
@@ -227,9 +227,9 @@ ii  libgpm2:amd64                      1.20.4-6.1                          amd64
 ii  libgraphite2-3:amd64               1.2.4-1ubuntu1                      amd64        Font rendering engine for Complex Scripts -- library
 ii  libgraphviz-dev                    2.36.0-0ubuntu3.1                   amd64        graphviz libs and headers against which to build applications
 ii  libgsm1:amd64                      1.0.13-4                            amd64        Shared libraries for GSM speech compressor
-ii  libgssapi-krb5-2:amd64             1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - krb5 GSS-API Mechanism
+ii  libgssapi-krb5-2:amd64             1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - krb5 GSS-API Mechanism
 ii  libgssapi3-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - GSSAPI support library
-ii  libgssrpc4:amd64                   1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - GSS enabled ONCRPC
+ii  libgssrpc4:amd64                   1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - GSS enabled ONCRPC
 ii  libgtk-3-0:amd64                   3.10.8-0ubuntu1.6                   amd64        GTK+ graphical user interface library
 ii  libgtk-3-common                    3.10.8-0ubuntu1.6                   all          common files for the GTK+ graphical user interface library
 ii  libgvc6                            2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - gvc library
@@ -265,17 +265,17 @@ ii  libjpeg8-dev:amd64                 8c-2ubuntu8                         amd64
 ii  libjs-jquery                       1.7.2+dfsg-2ubuntu1                 all          JavaScript library for dynamic web applications
 ii  libjson-c2:amd64                   0.11-3ubuntu1.2                     amd64        JSON manipulation library - shared library
 ii  libjson0:amd64                     0.11-3ubuntu1.2                     amd64        JSON manipulation library (transitional package)
-ii  libk5crypto3:amd64                 1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - Crypto Library
-ii  libkadm5clnt-mit9:amd64            1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - Administration Clients
-ii  libkadm5srv-mit9:amd64             1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - KDC and Admin Server
-ii  libkdb5-7:amd64                    1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - Kerberos database
+ii  libk5crypto3:amd64                 1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Crypto Library
+ii  libkadm5clnt-mit9:amd64            1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Administration Clients
+ii  libkadm5srv-mit9:amd64             1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - KDC and Admin Server
+ii  libkdb5-7:amd64                    1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Kerberos database
 ii  libkeyutils1:amd64                 1.5.6-1                             amd64        Linux Key Management Utilities (library)
 ii  libklibc                           2.0.3-0ubuntu1                      amd64        minimal libc subset for use with initramfs
 ii  libkmod2:amd64                     15-0ubuntu6                         amd64        libkmod shared library
 ii  libkrb5-26-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - libraries
-ii  libkrb5-3:amd64                    1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries
-ii  libkrb5-dev                        1.12+dfsg-2ubuntu5.1                amd64        Headers and development libraries for MIT Kerberos
-ii  libkrb5support0:amd64              1.12+dfsg-2ubuntu5.1                amd64        MIT Kerberos runtime libraries - Support library
+ii  libkrb5-3:amd64                    1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries
+ii  libkrb5-dev                        1.12+dfsg-2ubuntu5.2                amd64        Headers and development libraries for MIT Kerberos
+ii  libkrb5support0:amd64              1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Support library
 ii  liblapack-dev                      3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - static version
 ii  liblapack3                         3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - shared version
 ii  liblcms2-2:amd64                   2.5-0ubuntu4                        amd64        Little CMS 2 color management library
@@ -462,8 +462,8 @@ ii  libxft2:amd64                      2.3.1-2                             amd64
 ii  libxi6:amd64                       2:1.7.1.901-1ubuntu1.1              amd64        X11 Input extension library
 ii  libxinerama1:amd64                 2:1.1.3-1                           amd64        X11 Xinerama extension library
 ii  libxkbcommon0:amd64                0.4.1-0ubuntu1                      amd64        library interface to the XKB compiler - shared library
-ii  libxml2:amd64                      2.9.1+dfsg1-3ubuntu4.4              amd64        GNOME XML library
-ii  libxml2-dev:amd64                  2.9.1+dfsg1-3ubuntu4.4              amd64        Development files for the GNOME XML library
+ii  libxml2:amd64                      2.9.1+dfsg1-3ubuntu4.5              amd64        GNOME XML library
+ii  libxml2-dev:amd64                  2.9.1+dfsg1-3ubuntu4.5              amd64        Development files for the GNOME XML library
 ii  libxpm-dev:amd64                   1:3.5.10-1                          amd64        X11 pixmap library (development headers)
 ii  libxpm4:amd64                      1:3.5.10-1                          amd64        X11 pixmap library
 ii  libxrandr2:amd64                   2:1.4.2-1                           amd64        X11 RandR extension library
@@ -476,7 +476,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-67.110                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-68.111                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.1                amd64        system login tools

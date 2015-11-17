@@ -135,10 +135,6 @@ java-buildpack/java-buildpack-v3.3.1.zip:
   object_id: 9b93af3d-5a81-4510-bac6-f8d2135ccf35
   sha: 34e071ea58c17e2dec93f14052fd351869e45f7c
   size: 155819
-rootfs/cflinuxfs2-1.17.0.tar.gz:
-  object_id: 0a0359d6-b28f-4238-9169-4145b7316210
-  sha: 0d0d6c2fb33dcbfd4b6478ce50b3d611712b3d8b
-  size: 258115587
 go-buildpack/go_buildpack-cached-v1.7.0.zip:
   object_id: 2d13fc71-9742-4aa4-a0fd-a20ed798babc
   sha: 3b221ef8eb916eab42c8b0338ad8ee268a2535ad
@@ -163,3 +159,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.2.3.zip:
   object_id: 9f402d57-35e5-4cc7-a3d5-c6d31b595f77
   sha: 0e5dea061e0df0493cc69776d759b90af635bd19
   size: 2494385
+rootfs/cflinuxfs2-1.18.0.tar.gz:
+  object_id: cd8eefd1-02d2-4524-87bc-293f43f3aa5b
+  sha: c9d9ec2fe9ce97f9cc21b2ff5e283353b77044a6
+  size: 258176308
