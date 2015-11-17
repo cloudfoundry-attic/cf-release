@@ -107,10 +107,6 @@ openjdk/openjdk-1.8.0_60-x86_64-trusty.tar.gz:
   object_id: de6ab27d-2469-403d-a47a-d1b82c91a33a
   sha: 1831bb9db77e304c9b0167d5b61350aa83393a22
   size: 77540278
-python-buildpack/python_buildpack-cached-v1.5.1.zip:
-  object_id: b2ea126f-819b-4049-9a74-efb21f8dfe9f
-  sha: 53d27bfb52e823b262188b90386a71db5d68fb27
-  size: 224934610
 mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
   object_id: 31e64230-f356-4522-86d6-413a531996b9
   sha: f6cc741b64084752478009505113a39192d89da9
@@ -131,14 +127,6 @@ uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
   size: 11163261
-go-buildpack/go_buildpack-cached-v1.6.3.zip:
-  object_id: 4cab011b-e659-470f-9859-bbe7512f3d3c
-  sha: 347faa241102e96518bc2705f57a2e0169c3931a
-  size: 580121088
-staticfile-buildpack/staticfile_buildpack-cached-v1.2.2.zip:
-  object_id: 75f21555-7a6f-4e53-901c-fe925fb50191
-  sha: bb51fb6fc9d65faee893f02d18a8373b18619915
-  size: 2492036
 java-buildpack/java-buildpack-offline-v3.3.1.zip:
   object_id: c891c2fc-b64a-46e8-9020-156e6ec196a2
   sha: 4d0e9d0124c26b5295abb3385bdbcf34f2af767c
@@ -147,19 +135,31 @@ java-buildpack/java-buildpack-v3.3.1.zip:
   object_id: 9b93af3d-5a81-4510-bac6-f8d2135ccf35
   sha: 34e071ea58c17e2dec93f14052fd351869e45f7c
   size: 155819
-ruby-buildpack/ruby_buildpack-cached-v1.6.8.zip:
-  object_id: 7b8b370d-7fa7-4420-82c7-bd24beffade4
-  sha: 2b86c537d403392f4aeb5df60923f1bf680b1e70
-  size: 296256598
-php-buildpack/php_buildpack-cached-v4.2.1.zip:
-  object_id: 693c91d6-3e17-487d-8782-a7f0b9cfefb7
-  sha: 0d4cc35a35c230961a64004aa1e2c8444f15b48d
-  size: 343005936
 rootfs/cflinuxfs2-1.17.0.tar.gz:
   object_id: 0a0359d6-b28f-4238-9169-4145b7316210
   sha: 0d0d6c2fb33dcbfd4b6478ce50b3d611712b3d8b
   size: 258115587
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.2.zip:
-  object_id: 30b95b77-17b8-4fa0-a678-4e8ece306f70
-  sha: 564637e3a4adc3a4b0efc22bc801d6f3c5c7185c
-  size: 50104759
+go-buildpack/go_buildpack-cached-v1.7.0.zip:
+  object_id: 2d13fc71-9742-4aa4-a0fd-a20ed798babc
+  sha: 3b221ef8eb916eab42c8b0338ad8ee268a2535ad
+  size: 360653866
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.3.zip:
+  object_id: 1e9df86e-f0d9-4b20-9ae9-dce90136edea
+  sha: 7625dbad3b515f7a4c726da95fd197234679fca1
+  size: 50104838
+php-buildpack/php_buildpack-cached-v4.3.0.zip:
+  object_id: 8a24ec26-584b-42c6-8317-4425bef8ed82
+  sha: 324f7c585bc6131bc3c80e2fe5d1433ecaa5cb4a
+  size: 340626894
+python-buildpack/python_buildpack-cached-v1.5.2.zip:
+  object_id: f1a636b9-51f7-4542-8001-c8613a1651ca
+  sha: 588a34168d0f7aa27941347d4f388b70367bcd00
+  size: 224934266
+ruby-buildpack/ruby_buildpack-cached-v1.6.9.zip:
+  object_id: 828473b3-f6c9-415f-8455-a9970ec4c894
+  sha: f320bcb032050a5a18220bf6970cd3abe0e712cb
+  size: 296335636
+staticfile-buildpack/staticfile_buildpack-cached-v1.2.3.zip:
+  object_id: 9f402d57-35e5-4cc7-a3d5-c6d31b595f77
+  sha: 0e5dea061e0df0493cc69776d759b90af635bd19
+  size: 2494385
