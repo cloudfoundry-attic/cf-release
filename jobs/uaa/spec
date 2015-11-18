@@ -255,6 +255,11 @@ properties:
     description: "Sets the whitelist of emails domains that the LDAP identity provider handles"
   uaa.ldap.attributeMappings:
     description: "Specifies how UAA user attributes map to LDAP attributes"
+  uaa.ldap.externalGroupsWhitelist:
+    description: "Whitelist of external groups from LDAP that get added as roles in the ID Token"
+    example:
+      - admin
+      - user
   uaa.zones.internal.hostnames:
     description: |
       A list of hostnames that are routed to the UAA, specifically the default zone in the UAA. The UAA will reject any Host headers that it doesn't recognize.

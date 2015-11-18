@@ -237,6 +237,10 @@ ldap:
   <% if properties.uaa.ldap.attributeMappings %>
   attributeMappings: <% properties.uaa.ldap.attributeMappings.marshal_dump.each do |key,val| %>
     <%= key %>: <%= val %><% end %><% end %>
+  <% if properties.uaa.ldap.externalGroupsWhitelist %>
+  externalGroupsWhitelist: <% properties.uaa.ldap.externalGroupsWhitelist.each do |group| %>
+  - <%= group %><% end %>
+  <% end %>
   <% if properties.uaa.ldap.sslCertificate %>
   ssl: 
     sslCertificate: ! <%= "'" + p("uaa.ldap.sslCertificate").gsub("\n", "\n\n    ") + "'" %>
