@@ -1,4 +1,4 @@
-Rootfs SHASUM: c9d9ec2fe9ce97f9cc21b2ff5e283353b77044a6
+Rootfs SHASUM: b4b94b5869f47bc16028c9fe22505a7449701784
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -186,7 +186,7 @@ ii  libexif12:amd64                    0.6.21-1ubuntu1                     amd64
 ii  libexpat1:amd64                    2.1.0-4ubuntu1.1                    amd64        XML parsing C library - runtime library
 ii  libexpat1-dev:amd64                2.1.0-4ubuntu1.1                    amd64        XML parsing C library - development kit
 ii  libfakeroot:amd64                  1.20-3ubuntu2                       amd64        tool for simulating superuser privileges - shared libraries
-ii  libffi6:amd64                      3.1~rc1+r3.0.13-12                  amd64        Foreign Function Interface library runtime
+ii  libffi6:amd64                      3.1~rc1+r3.0.13-12ubuntu0.1         amd64        Foreign Function Interface library runtime
 ii  libfftw3-double3:amd64             3.3.3-7ubuntu3                      amd64        Library for computing Fast Fourier Transforms - Double precision
 ii  libfl-dev:amd64                    2.5.35-10.1ubuntu2                  amd64        static library for flex (a fast lexical analyzer generator).
 ii  libflac8:amd64                     1.3.0-2ubuntu0.14.04.1              amd64        Free Lossless Audio Codec - runtime C library
@@ -348,8 +348,8 @@ ii  libpcrecpp0:amd64                  1:8.31-2ubuntu2.1                   amd64
 ii  libpixman-1-0:amd64                0.30.2-2ubuntu1                     amd64        pixel-manipulation library for X and cairo
 ii  libpixman-1-dev                    0.30.2-2ubuntu1                     amd64        pixel-manipulation library for X and cairo (development files)
 ii  libplymouth2:amd64                 0.8.8-0ubuntu17.1                   amd64        graphical boot animation and logger - shared libraries
-ii  libpng12-0:amd64                   1.2.50-1ubuntu2                     amd64        PNG library - runtime
-ii  libpng12-dev                       1.2.50-1ubuntu2                     amd64        PNG library - development
+ii  libpng12-0:amd64                   1.2.50-1ubuntu2.14.04.1             amd64        PNG library - runtime
+ii  libpng12-dev                       1.2.50-1ubuntu2.14.04.1             amd64        PNG library - development
 ii  libpod-latex-perl                  0.61-1                              all          module to convert Pod data to formatted LaTeX
 ii  libpopt0:amd64                     1.16-8ubuntu1                       amd64        lib for parsing cmdline parameters
 ii  libpq-dev                          9.3.10-0ubuntu0.14.04               amd64        header files for libpq5 (PostgreSQL library)
