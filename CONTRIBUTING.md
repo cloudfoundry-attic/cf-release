@@ -19,8 +19,8 @@ If you want to make changes to the `cf-release` itself, read on.
 Follow these steps to make a contribution to any of our open source repositories:
 
 1. Ensure that you have completed our CLA Agreement for
-  [individuals](http://www.cloudfoundry.org/individualcontribution.pdf) or
-  [corporations](http://www.cloudfoundry.org/corpcontribution.pdf).
+  [individuals](https://www.cloudfoundry.org/wp-content/uploads/2015/09/CFF_Individual_CLA.pdf) or
+  [corporations](https://www.cloudfoundry.org/wp-content/uploads/2015/09/CFF_Corporate_CLA.pdf).
 
 1. Set your name and email (these should match the information on your submitted CLA)
   ```
