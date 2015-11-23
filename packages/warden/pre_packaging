@@ -9,6 +9,7 @@ mv warden tmp_warden
 mv tmp_warden/warden .
 mv tmp_warden/warden-client .
 mv tmp_warden/warden-protocol .
+mv tmp_warden/LICENSE tmp_warden/NOTICE .
 rmdir tmp_warden
 
 cd warden
