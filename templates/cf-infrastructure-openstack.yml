@@ -82,6 +82,7 @@ properties:
         name: uaadb
         citext: true
     collect_statement_statistics: null
+    additional_config: (( merge || nil ))
 
 compilation:
   cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties ))

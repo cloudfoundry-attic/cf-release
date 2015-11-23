@@ -167,6 +167,7 @@ properties:
         name: uaadb
         citext: true
     collect_statement_statistics: null
+    additional_config: (( merge || nil ))
 
   acceptance_tests:
     <<: (( merge || nil ))
