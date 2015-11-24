@@ -36,6 +36,37 @@ properties:
   loggregator_endpoint:
     shared_secret: (( merge ))
 
+  loggregator:
+    maxRetainedLogMessages: 100
+    debug: (( merge || false ))
+    blacklisted_syslog_ranges: ~
+    outgoing_dropsonde_port: 8081
+    tls:
+      ca: ~
+
+  doppler:
+    maxRetainedLogMessages: 100
+    debug: (( merge || false ))
+    blacklisted_syslog_ranges: ~
+    unmarshaller_count: (( merge || 5 ))
+    port: (( merge || 4443 ))
+    enable_tls_transport: ~
+    tls_server:
+      cert: ~
+      port: ~
+      key: ~
+
+
+  metron_agent:
+    deployment: (( meta.environment ))
+    preferred_protocol: ~
+    tls_client:
+      cert: ~
+      key: ~
+
+  traffic_controller:
+    outgoing_port: 8080
+
   cc:
     jobs:
       global:

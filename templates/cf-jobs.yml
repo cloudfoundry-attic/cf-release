@@ -2,8 +2,6 @@ empty_hash: {}
 
 networks: (( merge ))
 
-lamb_meta: (( merge ))
-
 meta:
   environment: ~
 
@@ -37,7 +35,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: statsd-injector
-    release: (( lamb_meta.release.name ))
+    release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
   - name: nfs_mounter
@@ -101,6 +99,32 @@ meta:
 
   hm9000_templates:
   - name: hm9000
+    release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
+  - name: route_registrar
+    release: (( meta.release.name ))
+
+  loggregator_templates:
+  - name: doppler
+    release: (( meta.release.name ))
+  - name: syslog_drain_binder
+    release: (( meta.release.name ))
+  - name: metron_agent
+    release: (( meta.release.name ))
+
+  loggregator_trafficcontroller_routes:
+  - name: doppler
+    port: (( .properties.loggregator.outgoing_dropsonde_port ))
+    uris:
+    - (( "doppler." .properties.domain ))
+  - name: loggregator
+    port: (( .properties.traffic_controller.outgoing_port ))
+    uris:
+    - (( "loggregator." .properties.domain ))
+
+  loggregator_trafficcontroller_templates:
+  - name: loggregator_trafficcontroller
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
@@ -483,63 +507,85 @@ jobs:
       max_in_flight: 1
 
   - name: loggregator_z1
-    templates: (( merge || lamb_meta.loggregator_templates ))
+    templates: (( merge || meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z1
     networks:
       - name: cf1
     properties:
-      <<: (( merge ))
+      doppler:
+        zone: z1
+      metron_agent:
+        zone: z1
     update: (( merge || empty_hash ))
 
   - name: loggregator_z2
-    templates: (( merge || lamb_meta.loggregator_templates ))
+    templates: (( merge || meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z2
     networks:
       - name: cf2
     properties:
-      <<: (( merge ))
+      doppler:
+        zone: z2
+      metron_agent:
+        zone: z2
     update: (( merge || empty_hash ))
 
   - name: doppler_z1
-    templates: (( merge || lamb_meta.loggregator_templates ))
+    templates: (( merge || meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z1
     networks:
       - name: cf1
     properties:
-      <<: (( merge ))
+      doppler:
+        zone: z1
+      metron_agent:
+        zone: z1
     update: (( merge || empty_hash ))
 
   - name: doppler_z2
-    templates: (( merge || lamb_meta.loggregator_templates ))
+    templates: (( merge || meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z2
     networks:
       - name: cf2
     properties:
-      <<: (( merge ))
+      doppler:
+        zone: z2
+      metron_agent:
+        zone: z2
     update: (( merge || empty_hash ))
 
   - name: loggregator_trafficcontroller_z1
-    templates: (( merge || lamb_meta.loggregator_trafficcontroller_templates ))
+    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z1
     networks:
       - name: cf1
     properties:
-      <<: (( merge ))
+      traffic_controller:
+        zone: z1
+      metron_agent:
+        zone: z1
+      route_registrar:
+        routes: (( merge || meta.loggregator_trafficcontroller_routes ))
     update: (( merge || empty_hash ))
 
   - name: loggregator_trafficcontroller_z2
-    templates: (( merge || lamb_meta.loggregator_trafficcontroller_templates ))
+    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z2
     networks:
       - name: cf2
     properties:
-      <<: (( merge ))
+      traffic_controller:
+        zone: z2
+      metron_agent:
+        zone: z2
+      route_registrar:
+        routes: (( merge || meta.loggregator_trafficcontroller_routes ))
     update: (( merge || empty_hash ))
 
   - name: router_z1
