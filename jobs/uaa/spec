@@ -254,7 +254,12 @@ properties:
   uaa.ldap.emailDomain:
     description: "Sets the whitelist of emails domains that the LDAP identity provider handles"
   uaa.ldap.attributeMappings:
-    description: "Specifies how UAA user attributes map to LDAP attributes"
+    description: "Specifies how UAA user attributes map to LDAP attributes. given_name, family_name, and phone_number are UAA user attributes, while other attributes should be included using the prefix `user.attribute`"
+    example:
+      given_name: givenName
+      family_name: sn
+      phone_number: telephoneNumber
+      user.attribute.otherLdapAttributes: <other LDAP attributes>
   uaa.ldap.externalGroupsWhitelist:
     description: "Whitelist of external groups from LDAP that get added as roles in the ID Token"
     example:
