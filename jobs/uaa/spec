@@ -322,8 +322,8 @@ properties:
     description: Sets the time format for log messages to be rfc3339 compatible.
     default: false
   uaa.id_token.disable:
-    description: When set to true, requests to /oauth/authorize will ignore the response_type=id_token parameter
-    default: true
+    description: "Deprecated: When set to true, requests to /oauth/authorize will ignore the response_type=id_token parameter"
+    default: false
   login.protocol:
     description: "Scheme to use for HTTP communication (http/https)"
     default: https
