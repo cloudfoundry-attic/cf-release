@@ -1,16 +1,4 @@
 ---
-postgres/postgres-9.0.3-1.amd64.tar.gz:
-  object_id: rest/objects/4e4e78bca31e122004e4e8ec646e2104f306af917d30
-  sha: e47ee9c841ecde4df121f44df282aeb3c50a48d2
-  size: 16203511
-postgres/postgres-9.0.3-1.i386.tar.gz:
-  object_id: rest/objects/4e4e78bca21e121004e4e7d511f55304f306b0371f99
-  sha: b2bde31e720eb219bfdc9f1b784f985ecca2cbfb
-  size: 15111387
-postgres/postgresql-9.0.3.tar.gz:
-  object_id: rest/objects/4e4e78bca21e122004e4e8ec647a5404f306b0ec246e
-  sha: c8fb5d1d7930e78211e554bb5751183a8148d0ee
-  size: 18335858
 debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
   sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
@@ -51,10 +39,6 @@ uaa/apache-tomcat-7.0.61.tar.gz:
   object_id: fdad7b89-61f5-4cd1-a003-49c4d872412b
   sha: 98ccbc95d029291e81bf818879ec8a0aa14465df
   size: 8816567
-postgres/postgresql-9.4.2.tar.gz:
-  object_id: 4d807bf7-94bc-449f-a0c3-549642df3085
-  sha: 7a70474f9b44fea1b345e48bd5e4418bccf41f3f
-  size: 23092865
 rtr/rtr-linux-amd64.tgz:
   object_id: 506e3344-e5e8-4576-8e6e-ccd9c33b7f58
   sha: d98c42cbd73c59852d6252b0fd15440d7471a821
@@ -163,3 +147,7 @@ rootfs/cflinuxfs2-1.19.0.tar.gz:
   object_id: fdff7018-64bd-42a2-a9f1-dcf58e199d26
   sha: b4b94b5869f47bc16028c9fe22505a7449701784
   size: 258180562
+postgres/postgresql-9.4.5.tar.gz:
+  object_id: 49b445bd-ecd9-483c-bbf0-0965b5900c22
+  sha: 5278d04093f3cb2e00796fae15b2e33406844d01
+  size: 23211720

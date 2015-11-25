@@ -11,8 +11,7 @@ templates:
 
 packages:
   - common
-  - postgres
-  - postgres-9.4.2
+  - postgres-9.4.5
 
 properties:
   databases.db_scheme:

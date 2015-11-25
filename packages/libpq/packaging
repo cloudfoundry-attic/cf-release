@@ -1,8 +1,8 @@
 set -e -x
 
-tar xzf postgres/postgresql-9.0.3.tar.gz
+tar xzf postgres/postgresql-9.4.5.tar.gz
 
-cd postgresql-9.0.3
+cd postgresql-9.4.5
 
 if [ "`uname -m`" == "ppc64le" ]; then
   cp ${BOSH_COMPILE_TARGET}/architecture-support/config/config.{guess,sub} ./config
