@@ -45,25 +45,36 @@ spring_profiles: <%= properties.uaadb.db_scheme %>
 logging:
   config: /var/vcap/jobs/uaa/config/log4j.properties
 
-<% if properties.uaa.jwt && ((properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key) || properties.uaa.jwt.claims.exclude) %>
+<% if properties.uaa.jwt %>
 jwt:
   token:
-  <% if properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
-    signing-key: |
-<%= "        " + properties.uaa.jwt.signing_key.gsub("\n", "\n        ") %>
-    verification-key: |
-<%= "        " + properties.uaa.jwt.verification_key.gsub("\n", "\n        ") %>
+    policy:
+      accessTokenValiditySeconds: <%= properties.uaa.jwt.policy.accessTokenValiditySeconds %>
+      refreshTokenValiditySeconds: <%= properties.uaa.jwt.policy.refreshTokenValiditySeconds %>
+      global:
+        accessTokenValiditySeconds: <%= properties.uaa.jwt.policy.global.accessTokenValiditySeconds %>
+        refreshTokenValiditySeconds: <%= properties.uaa.jwt.policy.global.refreshTokenValiditySeconds %>
+  <% if properties.uaa.jwt.policy.keys then properties.uaa.jwt.policy.keys.marshal_dump.each do |kid,keyPair| %>
+      keys:
+      <% next unless keyPair %>
+        <%= kid %>:<% keyPair.marshal_dump.each do |key,value| %>
+          <%= key %>: |
+<%= "            " + value.gsub("\n", "\n            ") %><% end %><% end %>
   <% end %>
   <% if_p("uaa.jwt.claims.exclude") do |exclusions| %>
     claims:
       exclude: <% exclusions.each do |exclusion| %>
       - <%= exclusion %><% end %>
   <% end %>
-<% elsif properties.uaa.cc && properties.uaa.cc.token_secret %>
-jwt:
-  token:
+  <% if properties.uaa.jwt.signing_key && properties.uaa.jwt.verification_key %>
+    signing-key: |
+<%= "        " + properties.uaa.jwt.signing_key.gsub("\n", "\n        ") %>
+    verification-key: |
+<%= "        " + properties.uaa.jwt.verification_key.gsub("\n", "\n        ") %>
+  <% elsif properties.uaa.cc && properties.uaa.cc.token_secret %>
     signing-key: "<%= properties.uaa.cc.token_secret %>"
     verification-key: "<%= properties.uaa.cc.token_secret %>"
+  <% end %>
 <% end %>
 
 <% if properties.uaa.authentication && properties.uaa.authentication.policy %>
@@ -77,22 +88,6 @@ authentication:
 disableInternalAuth: <%= properties.uaa.disableInternalAuth %>
 
 disableInternalUserManagement: <%= properties.uaa.disableInternalUserManagement %>
-
-token:
-  policy:
-    accessTokenValiditySeconds: <%= properties.uaa.token.policy.accessTokenValiditySeconds %>
-    refreshTokenValiditySeconds: <%= properties.uaa.token.policy.refreshTokenValiditySeconds %>
-<% if_p("uaa.token.policy.keys") do |keys| %>
-    keys:
-  <% keys.marshal_dump.each do |kid,keyPair| %>
-    <% next unless keyPair %>
-    <%= kid %><% keyPair.marshal_dump.each do |key,value| %>
-      <%= key %>: |
-<%= "          " + value.gsub("\n", "\n          ") %><% end %><% end %>
-<% end %>
-    global:
-      accessTokenValiditySeconds: <%= properties.uaa.token.policy.global.accessTokenValiditySeconds %>
-      refreshTokenValiditySeconds: <%= properties.uaa.token.policy.global.refreshTokenValiditySeconds %>
 
 password:
   policy:
