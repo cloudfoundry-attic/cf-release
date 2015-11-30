@@ -264,6 +264,7 @@ properties:
         name: uaadb
         citext: true
     collect_statement_statistics: null
+    additional_config: (( merge || nil ))
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m

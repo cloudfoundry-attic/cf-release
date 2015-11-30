@@ -32,3 +32,5 @@ properties:
   databases.collect_statement_statistics:
     description: "Enable the `pg_stat_statements` extension and collect statement execution statistics"
     default: false
+  databases.additional_config:
+    description: "A map of additional key/value pairs to include as extra configuration properties"

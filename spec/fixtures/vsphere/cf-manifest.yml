@@ -960,6 +960,7 @@ properties:
     server_cert: null
     server_key: null
   databases:
+    additional_config: null
     address: 0.0.0.12
     collect_statement_statistics: null
     databases:

@@ -970,6 +970,7 @@ properties:
     server_cert: CONSUL_SERVER_CERT
     server_key: CONSUL_SERVER_KEY
   databases:
+    additional_config: null
     address: 10.10.0.129
     collect_statement_statistics: null
     databases:

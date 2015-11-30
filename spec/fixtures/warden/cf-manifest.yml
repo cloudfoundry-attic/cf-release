@@ -2816,6 +2816,7 @@ properties:
       BKcJHlf9kYxFaLL17iOq9rY0+LURr63BkRa2uyn489luxcHnTjk=
       -----END RSA PRIVATE KEY-----
   databases:
+    additional_config: null
     address: 10.244.0.30
     collect_statement_statistics: null
     databases:
