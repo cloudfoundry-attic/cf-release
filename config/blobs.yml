@@ -143,11 +143,11 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.2.3.zip:
   object_id: 9f402d57-35e5-4cc7-a3d5-c6d31b595f77
   sha: 0e5dea061e0df0493cc69776d759b90af635bd19
   size: 2494385
-rootfs/cflinuxfs2-1.19.0.tar.gz:
-  object_id: fdff7018-64bd-42a2-a9f1-dcf58e199d26
-  sha: b4b94b5869f47bc16028c9fe22505a7449701784
-  size: 258180562
 postgres/postgresql-9.4.5.tar.gz:
   object_id: 49b445bd-ecd9-483c-bbf0-0965b5900c22
   sha: 5278d04093f3cb2e00796fae15b2e33406844d01
   size: 23211720
+rootfs/cflinuxfs2-1.20.0.tar.gz:
+  object_id: c57c7c0d-5471-47c9-8e6d-e6f7cdf35186
+  sha: 4238011919c1c7685da4b82fe1de4d0044ebe8c4
+  size: 258193816
