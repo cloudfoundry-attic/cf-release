@@ -8,7 +8,6 @@ packages:
 - haproxy
 
 templates:
-  haproxy.conf.erb:          config/haproxy.conf
   haproxy.ctmpl.erb:         config/haproxy.ctmpl
   haproxy_syslog.conf.erb:   config/haproxy_syslog.conf
   haproxy_ctl:               bin/haproxy_ctl
