@@ -79,18 +79,6 @@ nginx/nginx-1.8.0.tar.gz:
   object_id: 0d18bbee-b79d-4fec-bba5-635821969fa0
   sha: 12bad312764feae50246685ab2e74512d1aa9b2f
   size: 832104
-openjdk/openjdk-1.8.0_60-x86_64-trusty-jre.tar.gz:
-  object_id: 71fc34bf-5878-4cbd-98a9-b5113dccc923
-  sha: 00a58600bd56007832f1caca487187c023f10ec5
-  size: 45029837
-openjdk/openjdk-1.8.0_60-x86_64-mountainlion.tar.gz:
-  object_id: 6aec69bd-202a-4c07-bef9-2b66e027a957
-  sha: d5adc079c1b1e74957f60e627d225173dbc96286
-  size: 81913035
-openjdk/openjdk-1.8.0_60-x86_64-trusty.tar.gz:
-  object_id: de6ab27d-2469-403d-a47a-d1b82c91a33a
-  sha: 1831bb9db77e304c9b0167d5b61350aa83393a22
-  size: 77540278
 mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
   object_id: 31e64230-f356-4522-86d6-413a531996b9
   sha: f6cc741b64084752478009505113a39192d89da9
@@ -151,3 +139,15 @@ rootfs/cflinuxfs2-1.20.0.tar.gz:
   object_id: c57c7c0d-5471-47c9-8e6d-e6f7cdf35186
   sha: 4238011919c1c7685da4b82fe1de4d0044ebe8c4
   size: 258193816
+openjdk/openjdk-1.8.0_65-x86_64-mountainlion.tar.gz:
+  object_id: af9d49da-273e-4b1f-acb7-53d828ff6d7f
+  sha: 0d0fef95aa7bdd494f8aac2fa4d94f84b2b3ee9d
+  size: 81922523
+openjdk/openjdk-1.8.0_65-x86_64-trusty-jre.tar.gz:
+  object_id: 7d781bd3-d5d8-485d-9bc5-252e55094d33
+  sha: e5ecfe29a74bca1794eb18de03f2f98495c5cbc0
+  size: 77054579
+openjdk/openjdk-1.8.0_65-x86_64-trusty.tar.gz:
+  object_id: 3a1c2b78-c32c-433c-984f-1c60ead8b797
+  sha: 949812223e334ba6c360a097a44084776eaee418
+  size: 77611856
