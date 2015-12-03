@@ -53,9 +53,4 @@ do
   full_path_to_templates+="$tmpdir/$i "
 done
 
-##
-# CF-LAMB is a symlink to a submodule
-SHA_OF_CF_LAMB=$(curl https://api.github.com/repos/cloudfoundry/cf-release/contents/src/loggregator?ref=${myref} 2>/dev/null | jq --raw-output '.sha')
-curl https://raw.githubusercontent.com/cloudfoundry/loggregator/${SHA_OF_CF_LAMB}/manifest-templates/cf-lamb.yml >${tmpdir}/cf-lamb.yml 2>/dev/null
-
 spiff merge $full_path_to_templates "$@"
