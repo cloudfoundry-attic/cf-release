@@ -66,7 +66,7 @@ properties:
   router.route_services_secret_decrypt_only:
     description: "To rotate keys, add your new key here and deploy. Then swap this key with the value of route_services_secret and deploy again."
     default: ""
-  router.route_service_timeout:
+  router.route_services_timeout:
     description: "Expiry time of a route service signature in seconds"
     default: 60
   router.logrotate.freq_min:

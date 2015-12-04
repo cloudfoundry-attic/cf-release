@@ -65,7 +65,7 @@ ssl_cert_path: /var/vcap/jobs/gorouter/config/cert.pem
 ssl_key_path: /var/vcap/jobs/gorouter/config/key.pem
 cipher_suites: <%= p("router.cipher_suites") %>
 
-route_service_timeout: <%= p("router.route_service_timeout") %>
+route_services_timeout: <%= p("router.route_services_timeout") %>
 route_services_secret: <%= p("router.route_services_secret") %>
 route_services_secret_decrypt_only: <%= p("router.route_services_secret_decrypt_only") %>
 
