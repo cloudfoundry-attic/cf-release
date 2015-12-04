@@ -124,6 +124,8 @@ properties:
         secret: gorouter_secret
       tcp_emitter:
         secret: tcp-emitter-secret
+      tcp_router:
+        secret: tcp-router-secret
 
     jwt:
       verification_key: vk

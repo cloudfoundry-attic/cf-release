@@ -392,6 +392,10 @@ properties:
         authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: PASSWORD
+      tcp_router:
+        authorities: routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: PASSWORD
       doppler:
         authorities: uaa.resource
         secret: PASSWORD

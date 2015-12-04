@@ -113,6 +113,8 @@ properties:
         secret: gorouter-secret
       tcp_emitter:
         secret: tcp-emitter-secret
+      tcp_router:
+        secret: tcp-router-secret
     scim:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
