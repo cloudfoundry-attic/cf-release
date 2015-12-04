@@ -1252,6 +1252,8 @@ properties:
       users:
       - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
     spring_profiles: null
+    ssl:
+      port: -1
     url: https://uaa.0.0.0.3.xip.io
     user: null
     zones: null

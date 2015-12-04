@@ -1201,6 +1201,8 @@ properties:
       users:
       - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
     spring_profiles: null
+    ssl:
+      port: -1
     url: https://uaa.DOMAIN
     user: null
     zones: null

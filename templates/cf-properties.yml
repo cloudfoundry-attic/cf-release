@@ -270,6 +270,9 @@ properties:
       external_groups: ~
       groups: ~
 
+    ssl:
+      port: -1
+
     jwt: (( merge ))
 
     cc:

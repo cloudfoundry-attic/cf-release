@@ -3191,6 +3191,8 @@ properties:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
     spring_profiles: null
+    ssl:
+      port: -1
     url: https://uaa.bosh-lite.com
     user: null
     zones:

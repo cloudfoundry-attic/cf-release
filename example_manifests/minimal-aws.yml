@@ -431,6 +431,8 @@ properties:
         -----END PUBLIC KEY-----
 
     no_ssl: true
+    ssl:
+      port: -1
     url: http://uaa.REPLACE_WITH_SYSTEM_DOMAIN
 # code_snippet cf-minimal-aws end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
