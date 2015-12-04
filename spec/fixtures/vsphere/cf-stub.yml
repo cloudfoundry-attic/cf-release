@@ -122,6 +122,8 @@ properties:
         secret: cc_routing_secret
       gorouter:
         secret: gorouter_secret
+      tcp_emitter:
+        secret: tcp-emitter-secret
 
     jwt:
       verification_key: vk

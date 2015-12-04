@@ -104,6 +104,8 @@ properties:
         secret: DOPPLER_SECRET
       gorouter:
         secret: GOROUTER_SECRET
+      tcp_emitter:
+        secret: TCP-EMITTER-SECRET
       login:
         secret: LOGIN_CLIENT_SECRET
       notifications:
