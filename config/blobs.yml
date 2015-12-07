@@ -131,10 +131,6 @@ postgres/postgresql-9.4.5.tar.gz:
   object_id: 49b445bd-ecd9-483c-bbf0-0965b5900c22
   sha: 5278d04093f3cb2e00796fae15b2e33406844d01
   size: 23211720
-rootfs/cflinuxfs2-1.20.0.tar.gz:
-  object_id: c57c7c0d-5471-47c9-8e6d-e6f7cdf35186
-  sha: 4238011919c1c7685da4b82fe1de4d0044ebe8c4
-  size: 258193816
 openjdk/openjdk-1.8.0_65-x86_64-mountainlion.tar.gz:
   object_id: af9d49da-273e-4b1f-acb7-53d828ff6d7f
   sha: 0d0fef95aa7bdd494f8aac2fa4d94f84b2b3ee9d
@@ -155,3 +151,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.4.zip:
   object_id: 8f0b19f1-5268-489b-b4b2-989fa32f1da9
   sha: 4c3d273d4bdf966b701b46deca622dd9925969f3
   size: 59441206
+rootfs/cflinuxfs2-1.21.0.tar.gz:
+  object_id: e0a8b975-8cf6-47c5-982b-55f6e57da9a8
+  sha: 2516e81b91b10a20a201c9d75a786628032ebd14
+  size: 258212575
