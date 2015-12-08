@@ -184,7 +184,6 @@ properties:
     system_domain: (( domain ))
     client_secret: tcp-emitter-secret
     include_routing: true
-    include_routing_api: true
     use_http: true
 
   smoke_tests:
