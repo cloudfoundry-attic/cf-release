@@ -2447,7 +2447,7 @@ properties:
     admin_user: admin
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
-    client_secret: gorouter-secret
+    client_secret: tcp-emitter-secret
     include_routing: true
     nodes: 1
     skip_ssl_validation: true
@@ -3097,9 +3097,8 @@ properties:
         override: true
         secret: doppler-secret
       gorouter:
-        authorities: clients.read,clients.write,clients.admin,routing.routes.write,routing.routes.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        scope: openid,cloud_controller_service_permissions.read
         secret: gorouter-secret
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read

@@ -182,7 +182,7 @@ properties:
     skip_ssl_validation: true
     nodes: 1
     system_domain: (( domain ))
-    client_secret: gorouter-secret
+    client_secret: tcp-emitter-secret
     include_routing: true
     use_http: true
 
