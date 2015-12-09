@@ -111,18 +111,10 @@ go-buildpack/go_buildpack-cached-v1.7.0.zip:
   object_id: 2d13fc71-9742-4aa4-a0fd-a20ed798babc
   sha: 3b221ef8eb916eab42c8b0338ad8ee268a2535ad
   size: 360653866
-php-buildpack/php_buildpack-cached-v4.3.0.zip:
-  object_id: 8a24ec26-584b-42c6-8317-4425bef8ed82
-  sha: 324f7c585bc6131bc3c80e2fe5d1433ecaa5cb4a
-  size: 340626894
 python-buildpack/python_buildpack-cached-v1.5.2.zip:
   object_id: f1a636b9-51f7-4542-8001-c8613a1651ca
   sha: 588a34168d0f7aa27941347d4f388b70367bcd00
   size: 224934266
-ruby-buildpack/ruby_buildpack-cached-v1.6.9.zip:
-  object_id: 828473b3-f6c9-415f-8455-a9970ec4c894
-  sha: f320bcb032050a5a18220bf6970cd3abe0e712cb
-  size: 296335636
 staticfile-buildpack/staticfile_buildpack-cached-v1.2.3.zip:
   object_id: 9f402d57-35e5-4cc7-a3d5-c6d31b595f77
   sha: 0e5dea061e0df0493cc69776d759b90af635bd19
@@ -155,3 +147,11 @@ rootfs/cflinuxfs2-1.21.0.tar.gz:
   object_id: e0a8b975-8cf6-47c5-982b-55f6e57da9a8
   sha: 2516e81b91b10a20a201c9d75a786628032ebd14
   size: 258212575
+php-buildpack/php_buildpack-cached-v4.3.1.zip:
+  object_id: 9026d458-6b0d-47a3-bd9b-2d57cdf8b57b
+  sha: 4e9d1470d448e4026fbf5aeccd1a494f024fce61
+  size: 340637714
+ruby-buildpack/ruby_buildpack-cached-v1.6.10.zip:
+  object_id: c780a62a-1725-4e93-9d97-c5a7501813d4
+  sha: 52341be22ac25a1df0523653740ed48bcb57c579
+  size: 264407893
