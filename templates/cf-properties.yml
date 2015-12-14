@@ -45,6 +45,7 @@ properties:
       ca: ~
 
   doppler:
+    zone: (( merge || nil ))
     maxRetainedLogMessages: 100
     debug: (( merge || false ))
     blacklisted_syslog_ranges: ~
@@ -66,6 +67,7 @@ properties:
 
   traffic_controller:
     outgoing_port: 8080
+    zone: (( merge || nil ))
 
   cc:
     jobs:

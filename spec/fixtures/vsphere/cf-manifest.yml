@@ -1006,6 +1006,7 @@ properties:
   disk_quota_enabled: true
   domain: 0.0.0.3.xip.io
   doppler:
+    zone: null
     blacklisted_syslog_ranges: null
     debug: false
     enable_tls_transport: null
@@ -1188,6 +1189,7 @@ properties:
   system_domain: 0.0.0.3.xip.io
   system_domain_organization: pivotal
   traffic_controller:
+    zone: null
     outgoing_port: 8080
   uaa:
     admin:

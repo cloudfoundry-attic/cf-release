@@ -2862,6 +2862,7 @@ properties:
   disk_quota_enabled: false
   domain: bosh-lite.com
   doppler:
+    zone: null
     blacklisted_syslog_ranges: null
     debug: false
     enable_tls_transport: null
@@ -3049,6 +3050,7 @@ properties:
   system_domain: bosh-lite.com
   system_domain_organization: null
   traffic_controller:
+    zone: null
     outgoing_port: 8080
   uaa:
     admin:

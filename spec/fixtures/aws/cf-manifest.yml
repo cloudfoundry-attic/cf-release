@@ -1019,6 +1019,7 @@ properties:
   disk_quota_enabled: true
   domain: DOMAIN
   doppler:
+    zone: null
     blacklisted_syslog_ranges: null
     debug: false
     enable_tls_transport: null
@@ -1161,6 +1162,7 @@ properties:
         cf1: SUBNET_ID_1
         cf2: SUBNET_ID_2
   traffic_controller:
+    zone: null
     outgoing_port: 8080
   uaa:
     admin:
