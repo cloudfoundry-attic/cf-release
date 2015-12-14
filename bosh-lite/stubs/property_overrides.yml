@@ -10,3 +10,9 @@ properties:
     disk_mb: 32768
     disk_overcommit_factor: 3
     kernel_network_tuning_enabled: false
+  uaa:
+    require_https: false
+    zones:
+      internal:
+        hostnames:
+        - uaa.service.cf.internal

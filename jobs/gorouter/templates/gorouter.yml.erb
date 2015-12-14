@@ -55,6 +55,7 @@ routing_api:
   auth_disabled: <%= p("routing-api.auth_disabled") %>
 <% end %>
 
+drain_wait: <%= p("router.drain_wait") %>
 endpoint_timeout: <%= p("request_timeout_in_seconds") %>
 
 start_response_delay_interval_in_seconds: <%= p("router.requested_route_registration_interval_in_seconds") %>
@@ -65,7 +66,7 @@ ssl_cert_path: /var/vcap/jobs/gorouter/config/cert.pem
 ssl_key_path: /var/vcap/jobs/gorouter/config/key.pem
 cipher_suites: <%= p("router.cipher_suites") %>
 
-route_service_timeout: <%= p("router.route_service_timeout") %>
+route_services_timeout: <%= p("router.route_services_timeout") %>
 route_services_secret: <%= p("router.route_services_secret") %>
 route_services_secret_decrypt_only: <%= p("router.route_services_secret_decrypt_only") %>
 

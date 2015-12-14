@@ -561,3 +561,7 @@ properties:
   cc.placement_top_stager_percentage:
     description: "The percentage of top stagers considered when choosing a stager"
     default: 10
+
+  router.route_services_secret:
+    description: "Support for route services is disabled when no value is configured."
+    default: ""

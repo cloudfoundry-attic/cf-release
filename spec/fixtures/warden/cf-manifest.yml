@@ -2447,7 +2447,7 @@ properties:
     admin_user: admin
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
-    client_secret: gorouter-secret
+    client_secret: tcp-emitter-secret
     include_routing: true
     nodes: 1
     skip_ssl_validation: true
@@ -2976,7 +2976,7 @@ properties:
       size: 3M
     port: null
     requested_route_registration_interval_in_seconds: null
-    route_service_timeout: null
+    route_services_timeout: null
     route_services_secret: route-services-secret
     route_services_secret_decrypt_only: null
     secure_cookies: null
@@ -3079,6 +3079,14 @@ properties:
         authorities: routing.router_groups.read
         authorized-grant-types: client_credentials
         secret: cc-routing-secret
+      cf:
+        id: cf
+        override: true
+        authorized-grant-types: implicit,password,refresh_token
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
+        authorities: uaa.none
+        access-token-validity: 600
+        refresh-token-validity: 2592000
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
@@ -3097,10 +3105,17 @@ properties:
         override: true
         secret: doppler-secret
       gorouter:
-        authorities: clients.read,clients.write,clients.admin,routing.routes.write,routing.routes.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        scope: openid,cloud_controller_service_permissions.read
         secret: gorouter-secret
+      tcp_emitter:
+        authorities: routing.routes.write,routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: tcp-emitter-secret
+      tcp_router:
+        authorities: routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: tcp-router-secret
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
@@ -3191,6 +3206,8 @@ properties:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
     spring_profiles: null
+    ssl:
+      port: -1
     url: https://uaa.bosh-lite.com
     user: null
     zones:

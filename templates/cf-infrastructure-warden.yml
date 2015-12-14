@@ -111,6 +111,10 @@ properties:
         secret: cc-routing-secret
       gorouter:
         secret: gorouter-secret
+      tcp_emitter:
+        secret: tcp-emitter-secret
+      tcp_router:
+        secret: tcp-router-secret
     scim:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
@@ -178,7 +182,7 @@ properties:
     skip_ssl_validation: true
     nodes: 1
     system_domain: (( domain ))
-    client_secret: gorouter-secret
+    client_secret: tcp-emitter-secret
     include_routing: true
     use_http: true
 

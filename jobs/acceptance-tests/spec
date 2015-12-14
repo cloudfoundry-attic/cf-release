@@ -59,6 +59,9 @@ properties:
   acceptance_tests.include_routing:
     default: false
     description: Flag to include the routing test suite.
+  acceptance_tests.include_routing_api:
+    default: false
+    description: Flag to include the routing_api test suite.
   acceptance_tests.include_route_services:
     default: false
     description: Flag to include the route services tests. Diego must be deployed for these tests to pass.

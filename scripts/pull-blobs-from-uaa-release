@@ -1,0 +1,17 @@
+#!/bin/bash -eu
+
+CF_RELEASE_DIR="${CF_RELEASE_DIR:-"$(cd $(dirname $0)/.. && pwd)"}"
+UAA_RELEASE_DIR="${UAA_RELEASE_DIR:-"$(cd "${CF_RELEASE_DIR}"/../uaa-release && pwd)"}"
+
+pushd "${UAA_RELEASE_DIR}"
+  bosh sync blobs
+popd
+
+pushd "${CF_RELEASE_DIR}"
+  while read -r src_path; do
+    dest_path="$(echo "${src_path}" | sed "s#${UAA_RELEASE_DIR}#${CF_RELEASE_DIR}#")"
+    mkdir -p "$(dirname "${dest_path}")"
+    rm -f "${dest_path}"
+    cp -RH "${src_path}" "${dest_path}"
+  done < <(find "${UAA_RELEASE_DIR}/blobs" -type l)
+popd
