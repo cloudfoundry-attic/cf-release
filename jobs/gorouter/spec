@@ -40,6 +40,9 @@ properties:
   router.secure_cookies:
     description: "Set secure flag on http cookies"
     default: false
+  router.drain_wait:
+    description: "How many seconds to wait without responding to heartbeats before stopping the listener"
+    default: 0
   router.enable_ssl:
     description: "Enable ssl termination on the router"
     default: false
@@ -116,7 +119,7 @@ properties:
   dropsonde.enabled:
     default: false
     description: "Enable the dropsonde emitter library"
-  
+
   uaa.clients.gorouter.secret:
     description: "Password for UAA client for the gorouter."
   uaa.port:
