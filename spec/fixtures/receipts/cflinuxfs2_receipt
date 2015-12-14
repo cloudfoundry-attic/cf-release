@@ -1,4 +1,4 @@
-Rootfs SHASUM: 2516e81b91b10a20a201c9d75a786628032ebd14
+Rootfs SHASUM: d7573503ed79f011da3bb50b047b379fc99965b6
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -26,7 +26,7 @@ ii  cmake                              2.8.12.2-0ubuntu3                   amd64
 ii  cmake-data                         2.8.12.2-0ubuntu3                   all          CMake data files (modules, templates and documentation)
 ii  comerr-dev                         2.1-1.42.9-3ubuntu1.3               amd64        common error description library - headers and static libraries
 ii  console-setup                      1.70ubuntu8                         all          console font and keymap setup program
-ii  coreutils                          8.21-1ubuntu5.1                     amd64        GNU core utilities
+ii  coreutils                          8.21-1ubuntu5.3                     amd64        GNU core utilities
 ii  cpio                               2.11+dfsg-1ubuntu1.1                amd64        GNU cpio -- a program to manage archives of files
 ii  cpp                                4:4.8.2-1ubuntu6                    amd64        GNU C preprocessor (cpp)
 ii  cpp-4.8                            4.8.4-2ubuntu1~14.04                amd64        GNU C preprocessor
@@ -462,8 +462,8 @@ ii  libxft2:amd64                      2.3.1-2                             amd64
 ii  libxi6:amd64                       2:1.7.1.901-1ubuntu1.1              amd64        X11 Input extension library
 ii  libxinerama1:amd64                 2:1.1.3-1                           amd64        X11 Xinerama extension library
 ii  libxkbcommon0:amd64                0.4.1-0ubuntu1                      amd64        library interface to the XKB compiler - shared library
-ii  libxml2:amd64                      2.9.1+dfsg1-3ubuntu4.5              amd64        GNOME XML library
-ii  libxml2-dev:amd64                  2.9.1+dfsg1-3ubuntu4.5              amd64        Development files for the GNOME XML library
+ii  libxml2:amd64                      2.9.1+dfsg1-3ubuntu4.6              amd64        GNOME XML library
+ii  libxml2-dev:amd64                  2.9.1+dfsg1-3ubuntu4.6              amd64        Development files for the GNOME XML library
 ii  libxpm-dev:amd64                   1:3.5.10-1                          amd64        X11 pixmap library (development headers)
 ii  libxpm4:amd64                      1:3.5.10-1                          amd64        X11 pixmap library
 ii  libxrandr2:amd64                   2:1.4.2-1                           amd64        X11 RandR extension library
@@ -502,7 +502,7 @@ ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64
 ii  net-tools                          1.60-25ubuntu2.1                    amd64        The NET-3 networking toolkit
 ii  netbase                            5.2                                 all          Basic TCP/IP networking system
 ii  netcat-openbsd                     1.105-7ubuntu1                      amd64        TCP/IP swiss army knife
-ii  ntpdate                            1:4.2.6.p5+dfsg-3ubuntu2.14.04.5    amd64        client for setting system time from NTP servers
+ii  ntpdate                            1:4.2.6.p5+dfsg-3ubuntu2.14.04.6    amd64        client for setting system time from NTP servers
 ii  ocaml-base-nox                     4.01.0-3ubuntu3                     amd64        Runtime system for OCaml bytecode executables (no X)
 ii  openssh-client                     1:6.6p1-2ubuntu2.3                  amd64        secure shell (SSH) client, for secure access to remote machines
 ii  openssh-server                     1:6.6p1-2ubuntu2.3                  amd64        secure shell (SSH) server, for secure access from remote machines
