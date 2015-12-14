@@ -70,3 +70,6 @@ route_services_secret: <%= p("router.route_services_secret") %>
 route_services_secret_decrypt_only: <%= p("router.route_services_secret_decrypt_only") %>
 
 extra_headers_to_log: <%= p("router.extra_headers_to_log") %>
+token_fetcher_max_retries: 3
+token_fetcher_retry_interval: 5
+token_fetcher_expiration_buffer_time: 30
