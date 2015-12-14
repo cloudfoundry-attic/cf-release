@@ -40,6 +40,13 @@ properties:
   router.secure_cookies:
     description: "Set secure flag on http cookies"
     default: false
+  router.drain_wait:
+    description: |
+      Delay in seconds after drain begins before server stops listening.
+      During this time the server will respond with 503 Service Unavailable to
+      requests having header User-Agent: HTTP-Monitor/1.1. This accommodates
+      requests in transit sent while health check responded ok.
+    default: 0
   router.enable_ssl:
     description: "Enable ssl termination on the router"
     default: false
