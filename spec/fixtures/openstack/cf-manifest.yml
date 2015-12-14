@@ -1090,6 +1090,8 @@ properties:
     uaa_base: null
     url: null
   metron_agent:
+    enable_buffer: null
+    buffer_size: null
     deployment: ENVIRONMENT
     preferred_protocol: null
     tls_client:
