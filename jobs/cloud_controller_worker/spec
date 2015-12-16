@@ -292,9 +292,6 @@ properties:
 
   uaa.cc.token_secret:
     description:
-  uaa.no_ssl:
-    description: "when true, uaa uses http, otherwise it uses https"
-    default: false
   uaa.url:
     description:
   login.protocol:
