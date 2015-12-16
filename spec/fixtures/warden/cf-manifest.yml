@@ -2951,7 +2951,6 @@ properties:
   metron_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
-    address: 10.244.0.6
     debug: false
     machines:
     - 10.244.0.6
