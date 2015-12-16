@@ -344,6 +344,9 @@ properties:
     default: false
   uaa.url:
     description:
+  login.protocol:
+    description: "http or https"
+    default: "https"
   login.url:
     description:
   hm9000.url:
