@@ -469,7 +469,7 @@ properties:
     description: "The nginx error log destination. This can be used to route error logs to a file, syslog, or a memory buffer."
     default: "/var/vcap/sys/log/nginx_cc/nginx.error.log"
   cc.nginx_error_log_level:
-    descritpion: "The lowest severity nginx log level to capture in the error log."
+    description: "The lowest severity nginx log level to capture in the error log."
     default: error
 
   cc.jobs.local.number_of_workers:
