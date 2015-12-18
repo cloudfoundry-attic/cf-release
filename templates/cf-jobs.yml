@@ -767,6 +767,7 @@ properties:
     logrotate: (( merge || nil ))
     extra_headers_to_log: (( merge || nil ))
     debug_addr: (( merge || nil ))
+    enable_routing_api: (( merge || nil ))
 
   syslog_daemon_config: ~
 

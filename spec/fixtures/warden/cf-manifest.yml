@@ -2977,6 +2977,7 @@ properties:
       rotate: 5
       size: 3M
     port: null
+    enable_routing_api: true
     requested_route_registration_interval_in_seconds: null
     route_services_timeout: null
     route_services_secret: route-services-secret

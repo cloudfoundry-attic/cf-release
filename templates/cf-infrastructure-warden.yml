@@ -125,6 +125,7 @@ properties:
       password: router
     ssl_skip_validation: true
     route_services_secret: route-services-secret
+    enable_routing_api: true
 
   ccdb:
     db_scheme: postgres

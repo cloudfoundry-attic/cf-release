@@ -45,7 +45,7 @@ properties:
     default: false
   router.enable_routing_api:
     description: "Enable the GoRouter to receive routes from the Routing API"
-    default: true
+    default: false
   router.ssl_cert:
     description: "The public ssl cert for ssl termination"
     default: ""
