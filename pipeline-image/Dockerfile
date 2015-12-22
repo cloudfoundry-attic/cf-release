@@ -55,7 +55,7 @@ RUN \
   tar zxf /tmp/v0.4.1.tar.gz -C /tmp && \
   cd /tmp/ruby-install-0.4.1 && make install && \
   ruby-install ruby 2.1.7 && \
-  ruby-install ruby 2.2.3 && \
+  ruby-install ruby 2.2.4 && \
   rm -rf /usr/local/src/ruby-2.1.7 && \
   rm -rf /usr/local/src/ruby-2.2.4 && \
   rm -rf /tmp/*
@@ -65,7 +65,7 @@ RUN \
   cd /tmp/chruby && git reset --hard 310bd34d1fcbb3365814c85018114123cef5a41f && \
   cd /tmp/chruby && ./scripts/setup.sh && \
   echo 'source /usr/local/share/chruby/chruby.sh' >> $HOME/.bashrc && \
-  echo 'chruby 2.2.3' >> $HOME/.bashrc && \
+  echo 'chruby 2.2.4' >> $HOME/.bashrc && \
   rm -rf /tmp/*
 
 RUN \
