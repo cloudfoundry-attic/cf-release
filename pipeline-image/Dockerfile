@@ -57,7 +57,7 @@ RUN \
   ruby-install ruby 2.1.7 && \
   ruby-install ruby 2.2.3 && \
   rm -rf /usr/local/src/ruby-2.1.7 && \
-  rm -rf /usr/local/src/ruby-2.2.3 && \
+  rm -rf /usr/local/src/ruby-2.2.4 && \
   rm -rf /tmp/*
 
 RUN \
