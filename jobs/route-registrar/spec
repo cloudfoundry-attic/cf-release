@@ -1,16 +1,15 @@
 ---
-name: route_registrar
+name: route-registrar
 
 description: "Used for registering routes"
 
 packages:
 - common
-- ruby-2.1.8
-- route_registrar
+- route-registrar
 
 templates:
-  route_registrar_ctl.erb: bin/route_registrar_ctl
-  config.yml.erb: config/config.yml
+  route-registrar_ctl.erb: bin/route-registrar_ctl
+  registrar_settings.yml.erb: config/registrar_settings.yml
 
 properties:
   nats.machines:
@@ -28,7 +27,7 @@ properties:
     description: Password for NATS authentication
     example: natSpa55w0rd
 
-  route_registrar.routes:
+  route-registrar.routes:
     description: |
       * Array of hashes determining which routes will be registered.
       * Each hash should have 'port', 'uris', and 'name' keys.
@@ -48,6 +47,6 @@ properties:
         port: 12346
         uris:
           - my-service.system-domain.com/debug
-  route_registrar.update_frequency_in_seconds:
+  route-registrar.update_frequency_in_seconds:
     default: 20
     description: The delay in seconds between routing updates

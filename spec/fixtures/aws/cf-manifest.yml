@@ -213,7 +213,7 @@ jobs:
           uaa: {}
     metron_agent:
       zone: z1
-    route_registrar:
+    route-registrar:
       routes:
       - name: uaa
         port: 8080
@@ -237,7 +237,7 @@ jobs:
     release: cf
   - name: consul_agent
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   - name: statsd-injector
     release: cf
@@ -253,7 +253,7 @@ jobs:
           uaa: {}
     metron_agent:
       zone: z2
-    route_registrar:
+    route-registrar:
       routes:
       - name: uaa
         port: 8080
@@ -277,7 +277,7 @@ jobs:
     release: cf
   - name: consul_agent
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   - name: statsd-injector
     release: cf
@@ -300,7 +300,7 @@ jobs:
       - 10.10.16.0/20
       - 10.10.80.0/20
       share: null
-    route_registrar:
+    route-registrar:
       routes:
       - name: api
         port: 9022
@@ -320,7 +320,7 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   update: {}
 - instances: 1
@@ -341,7 +341,7 @@ jobs:
       - 10.10.16.0/20
       - 10.10.80.0/20
       share: null
-    route_registrar:
+    route-registrar:
       routes:
       - name: api
         port: 9022
@@ -361,7 +361,7 @@ jobs:
     release: cf
   - name: nfs_mounter
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   update: {}
 - instances: 1
@@ -436,7 +436,7 @@ jobs:
   properties:
     metron_agent:
       zone: z1
-    route_registrar:
+    route-registrar:
       routes:
       - name: hm9000
         port: 5155
@@ -450,7 +450,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   update: {}
 - instances: 1
@@ -460,7 +460,7 @@ jobs:
   properties:
     metron_agent:
       zone: z2
-    route_registrar:
+    route-registrar:
       routes:
       - name: hm9000
         port: 5155
@@ -474,7 +474,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   update: {}
 - instances: 1
@@ -596,7 +596,7 @@ jobs:
   properties:
     metron_agent:
       zone: z1
-    route_registrar:
+    route-registrar:
       routes:
       - name: doppler
         port: 8081
@@ -614,7 +614,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   update: {}
 - instances: 1
@@ -624,7 +624,7 @@ jobs:
   properties:
     metron_agent:
       zone: z2
-    route_registrar:
+    route-registrar:
       routes:
       - name: doppler
         port: 8081
@@ -642,7 +642,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - name: route-registrar
     release: cf
   update: {}
 - default_networks:

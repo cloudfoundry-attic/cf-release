@@ -18,23 +18,19 @@
   end
 %>
 ---
-logging:
-  file: /var/vcap/sys/log/route_registrar/route_registrar.log
-  level: info
-
 message_bus_servers:
-<% p("nats.machines").each do |address| %>
-  - nats://<%= p("nats.user") %>:<%= p("nats.password") %>@<%= address %>:<%= p("nats.port") %>
+<% p('nats.machines').each do |ip| %>
+    - host: <%= ip %>:<%= p('nats.port') %>
+      user: <%= p('nats.user') %>
+      password: <%= p('nats.password') %>
 <% end %>
 
-host: <%= discover_external_ip %>
-update_frequency_in_seconds: <%= p("route_registrar.update_frequency_in_seconds") %>
-
-port_map:
+routes:
 <%
-  p("route_registrar.routes").each do |route_config|
+  p("route-registrar.routes").each do |route_config|
 %>
-  - port: <%= route_config['port'] %>
+  - name: <%= route_config['name'] %>
+    port: <%= route_config['port'] %>
     uris: <%= route_config['uris'].to_json %>
     <% if route_config['tags'] %>
     tags:
@@ -45,3 +41,6 @@ port_map:
 <%
   end
 %>
+update_frequency: <%= p('route-registrar.update_frequency_in_seconds') %>
+
+host: <%= discover_external_ip %>

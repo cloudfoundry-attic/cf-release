@@ -1,0 +1,5 @@
+check process route-registrar
+  with pidfile /var/vcap/sys/run/route-registrar/route-registrar.pid
+  start program "/var/vcap/jobs/route-registrar/bin/route-registrar_ctl start"
+  stop program "/var/vcap/jobs/route-registrar/bin/route-registrar_ctl stop"
+  group vcap
