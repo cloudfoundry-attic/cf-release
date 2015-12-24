@@ -13,8 +13,8 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 0.0.0.17
-    - 0.0.0.18
+    - 10.85.9.247
+    - 10.85.9.248
   persistent_disk: 1024
   properties:
     consul:
@@ -36,7 +36,7 @@ jobs:
   networks:
   - name: cf2
     static_ips:
-    - 0.0.1.17
+    - 10.85.10.247
   persistent_disk: 1024
   properties:
     consul:
@@ -61,18 +61,30 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 0.0.0.3
+    - 10.85.9.233
   properties:
     ha_proxy:
-      disable_http: true
+      ssl_pem: '-----BEGIN RSA PRIVATE KEY-----
+
+        RSA_PRIVATE_KEY
+
+        -----END RSA PRIVATE KEY-----
+
+        -----BEGIN CERTIFICATE-----
+
+        CERTIFICATE
+
+        -----END CERTIFICATE-----
+
+'
     metron_agent:
       zone: z1
     router:
       servers:
         z1:
-        - 0.0.0.5
+        - 10.85.9.235
         z2:
-        - 0.0.1.5
+        - 10.85.10.235
   resource_pool: router_z1
   templates:
   - name: haproxy
@@ -87,7 +99,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 0.0.0.1
+    - 10.85.9.231
   properties:
     metron_agent:
       zone: z1
@@ -105,7 +117,7 @@ jobs:
   networks:
   - name: cf2
     static_ips:
-    - 0.0.1.1
+    - 10.85.10.231
   properties:
     metron_agent:
       zone: z2
@@ -123,8 +135,8 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 0.0.0.14
-    - 0.0.0.15
+    - 10.85.9.244
+    - 10.85.9.245
   persistent_disk: 10024
   properties:
     metron_agent:
@@ -144,7 +156,7 @@ jobs:
   networks:
   - name: cf2
     static_ips:
-    - 0.0.1.13
+    - 10.85.10.243
   persistent_disk: 10024
   properties:
     metron_agent:
@@ -178,7 +190,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 0.0.0.2
+    - 10.85.9.232
   persistent_disk: 102400
   properties:
     metron_agent:
@@ -195,7 +207,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 0.0.0.12
+    - 10.85.9.242
   persistent_disk: 4096
   properties:
     metron_agent:
@@ -225,15 +237,15 @@ jobs:
         tags:
           component: uaa
         uris:
-        - uaa.0.0.0.3.xip.io
-        - '*.uaa.0.0.0.3.xip.io'
-        - login.0.0.0.3.xip.io
-        - '*.login.0.0.0.3.xip.io'
+        - uaa.DOMAIN
+        - '*.uaa.DOMAIN'
+        - login.DOMAIN
+        - '*.login.DOMAIN'
     uaa:
       proxy:
         servers:
-        - 0.0.0.5
-        - 0.0.1.5
+        - 10.85.9.235
+        - 10.85.10.235
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -265,15 +277,15 @@ jobs:
         tags:
           component: uaa
         uris:
-        - uaa.0.0.0.3.xip.io
-        - '*.uaa.0.0.0.3.xip.io'
-        - login.0.0.0.3.xip.io
-        - '*.login.0.0.0.3.xip.io'
+        - uaa.DOMAIN
+        - '*.uaa.DOMAIN'
+        - login.DOMAIN
+        - '*.login.DOMAIN'
     uaa:
       proxy:
         servers:
-        - 0.0.0.5
-        - 0.0.1.5
+        - 10.85.9.235
+        - 10.85.10.235
   resource_pool: medium_z2
   templates:
   - name: uaa
@@ -301,10 +313,10 @@ jobs:
     metron_agent:
       zone: z1
     nfs_server:
-      address: 0.0.0.2
+      address: 10.85.9.232
       allow_from_entries:
-      - null
-      - null
+      - 10.85.9.0/24
+      - 10.85.10.0/24
       share: null
     route_registrar:
       routes:
@@ -313,7 +325,7 @@ jobs:
         tags:
           component: CloudController
         uris:
-        - api.0.0.0.3.xip.io
+        - api.DOMAIN
   resource_pool: large_z1
   templates:
   - name: cloud_controller_ng
@@ -345,10 +357,10 @@ jobs:
     metron_agent:
       zone: z2
     nfs_server:
-      address: 0.0.0.2
+      address: 10.85.9.232
       allow_from_entries:
-      - null
-      - null
+      - 10.85.9.0/24
+      - 10.85.10.0/24
       share: null
     route_registrar:
       routes:
@@ -357,7 +369,7 @@ jobs:
         tags:
           component: CloudController
         uris:
-        - api.0.0.0.3.xip.io
+        - api.DOMAIN
   resource_pool: large_z2
   templates:
   - name: cloud_controller_ng
@@ -399,10 +411,10 @@ jobs:
     metron_agent:
       zone: z1
     nfs_server:
-      address: 0.0.0.2
+      address: 10.85.9.232
       allow_from_entries:
-      - null
-      - null
+      - 10.85.9.0/24
+      - 10.85.10.0/24
       share: null
   resource_pool: small_z1
   templates:
@@ -424,10 +436,10 @@ jobs:
     metron_agent:
       zone: z2
     nfs_server:
-      address: 0.0.0.2
+      address: 10.85.9.232
       allow_from_entries:
-      - null
-      - null
+      - 10.85.9.0/24
+      - 10.85.10.0/24
       share: null
   resource_pool: small_z2
   templates:
@@ -454,7 +466,7 @@ jobs:
         tags:
           component: HM9K
         uris:
-        - hm9000.0.0.0.3.xip.io
+        - hm9000.DOMAIN
   resource_pool: medium_z1
   templates:
   - name: hm9000
@@ -478,7 +490,7 @@ jobs:
         tags:
           component: HM9K
         uris:
-        - hm9000.0.0.0.3.xip.io
+        - hm9000.DOMAIN
   resource_pool: medium_z2
   templates:
   - name: hm9000
@@ -612,11 +624,11 @@ jobs:
       - name: doppler
         port: 8081
         uris:
-        - doppler.0.0.0.3.xip.io
+        - doppler.DOMAIN
       - name: loggregator
         port: 8080
         uris:
-        - loggregator.0.0.0.3.xip.io
+        - loggregator.DOMAIN
     traffic_controller:
       zone: z1
   resource_pool: small_z1
@@ -640,11 +652,11 @@ jobs:
       - name: doppler
         port: 8081
         uris:
-        - doppler.0.0.0.3.xip.io
+        - doppler.DOMAIN
       - name: loggregator
         port: 8080
         uris:
-        - loggregator.0.0.0.3.xip.io
+        - loggregator.DOMAIN
     traffic_controller:
       zone: z2
   resource_pool: small_z2
@@ -664,7 +676,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 0.0.0.5
+    - 10.85.9.235
   properties:
     consul:
       agent:
@@ -689,7 +701,7 @@ jobs:
   networks:
   - name: cf2
     static_ips:
-    - 0.0.1.5
+    - 10.85.10.235
   properties:
     consul:
       agent:
@@ -726,26 +738,44 @@ jobs:
   - name: smoke-tests
     release: cf
 meta:
-  environment: null
+  environment: ENVIRONMENT
   releases:
   - name: cf
     version: latest
-name: null
+name: ENVIRONMENT
 networks:
 - name: cf1
   subnets:
-  - cloud_properties: null
+  - cloud_properties:
+      name: VSPHERE_NETWORK_NAME_1
+    dns:
+    - 10.87.8.10
+    - 10.87.8.11
+    gateway: 10.85.9.1
+    range: 10.85.9.0/24
+    reserved:
+    - 10.85.9.2 - 10.85.9.100
+    - 10.85.9.200 - 10.85.9.210
     static:
-    - 0.0.0.0 - 0.0.0.26
+    - 10.85.9.230 - 10.85.9.254
 - name: cf2
   subnets:
-  - cloud_properties: null
+  - cloud_properties:
+      name: VSPHERE_NETWORK_NAME_2
+    dns:
+    - 10.87.8.10
+    - 10.87.8.11
+    gateway: 10.85.10.1
+    range: 10.85.10.0/24
+    reserved:
+    - 10.85.10.2 - 10.85.10.100
+    - 10.85.10.200 - 10.85.10.210
     static:
-    - 0.0.1.0 - 0.0.1.26
+    - 10.85.10.230 - 10.85.10.254
 properties:
   acceptance_tests: null
   app_domains:
-  - 0.0.0.3.xip.io
+  - APP_DOMAIN
   app_ssh: null
   cc:
     allow_app_ssh_access: true
@@ -760,12 +790,12 @@ properties:
     broker_client_max_async_poll_duration_minutes: null
     broker_client_timeout_seconds: 70
     buildpacks:
-      buildpack_directory_key: bd_key
+      buildpack_directory_key: DOMAIN-cc-buildpacks
       cdn: null
       fog_connection: null
-    bulk_api_password: password
+    bulk_api_password: BULK_API_PASSWORD
     client_max_body_size: 15M
-    db_encryption_key: the_key
+    db_encryption_key: DB_ENCRYPTION_KEY
     db_logging_level: debug2
     default_app_disk_in_mb: 1024
     default_app_memory: 1024
@@ -800,7 +830,7 @@ properties:
     disable_custom_buildpacks: false
     droplets:
       cdn: null
-      droplet_directory_key: the_key
+      droplet_directory_key: DOMAIN-cc-droplets
       fog_connection: null
       max_staged_droplets_stored: null
     external_host: api
@@ -823,7 +853,7 @@ properties:
       package: buildpack_php
     - name: binary_buildpack
       package: buildpack_binary
-    internal_api_password: password
+    internal_api_password: BULK_API_PASSWORD
     internal_api_user: internal_user
     jobs:
       app_bits_packer:
@@ -854,14 +884,14 @@ properties:
     newrelic:
       capture_params: false
       developer_mode: false
-      environment_name: null
+      environment_name: ENVIRONMENT
       license_key: null
       monitor_mode: false
       transaction_tracer:
         enabled: true
         record_sql: obfuscated
     packages:
-      app_package_directory_key: 0.0.0.3.xip.io-cc-packages
+      app_package_directory_key: DOMAIN-cc-packages
       cdn: null
       fog_connection: null
       max_package_size: 1073741824
@@ -875,7 +905,7 @@ properties:
     resource_pool:
       cdn: null
       fog_connection: null
-      resource_directory_key: 0.0.0.3.xip.io-cc-resources
+      resource_directory_key: DOMAIN-cc-resources
     security_group_definitions:
     - name: public_networks
       rules:
@@ -899,10 +929,10 @@ properties:
         protocol: udp
     service_usage_events:
       cutoff_age_in_days: 31
-    srv_api_uri: https://api.0.0.0.3.xip.io
+    srv_api_uri: https://api.DOMAIN
     stacks: null
-    staging_upload_password: password
-    staging_upload_user: username
+    staging_upload_password: STAGING_UPLOAD_PASSWORD
+    staging_upload_user: STAGING_UPLOAD_USER
     system_buildpacks:
     - name: staticfile_buildpack
       package: buildpack_staticfile
@@ -932,7 +962,7 @@ properties:
     user_buildpacks: []
     users_can_select_backend: true
   ccdb:
-    address: 0.0.0.12
+    address: 10.85.9.242
     databases:
     - citext: true
       name: ccdb
@@ -941,7 +971,7 @@ properties:
     port: 5524
     roles:
     - name: ccadmin
-      password: admin
+      password: CCDB_PASSWORD
       tag: admin
   collector: null
   consul:
@@ -949,19 +979,20 @@ properties:
       log_level: null
       servers:
         lan:
-        - 0.0.0.17
-        - 0.0.0.18
-        - 0.0.1.17
-    agent_cert: null
-    agent_key: null
-    ca_cert: null
-    encrypt_keys: []
+        - 10.85.9.247
+        - 10.85.9.248
+        - 10.85.10.247
+    agent_cert: CONSUL_AGENT_CERT
+    agent_key: CONSUL_AGENT_KEY
+    ca_cert: CONSUL_CA_CERT
+    encrypt_keys:
+    - CONSUL_ENCRYPT_KEY
     require_ssl: null
-    server_cert: null
-    server_key: null
+    server_cert: CONSUL_SERVER_CERT
+    server_key: CONSUL_SERVER_KEY
   databases:
     additional_config: null
-    address: 0.0.0.12
+    address: 10.85.9.242
     collect_statement_statistics: null
     databases:
     - citext: true
@@ -974,10 +1005,10 @@ properties:
     port: 5524
     roles:
     - name: ccadmin
-      password: admin
+      password: CCDB_PASSWORD
       tag: admin
     - name: uaaadmin
-      password: admin
+      password: UAADB_PASSWORD
       tag: admin
   dea_next:
     advertise_interval_in_seconds: 5
@@ -1004,9 +1035,8 @@ properties:
     staging_memory_limit_mb: 1024
   description: null
   disk_quota_enabled: true
-  domain: 0.0.0.3.xip.io
+  domain: DOMAIN
   doppler:
-    zone: null
     blacklisted_syslog_ranges: null
     debug: false
     enable_tls_transport: null
@@ -1017,36 +1047,37 @@ properties:
       key: null
       port: null
     unmarshaller_count: 5
+    zone: null
   doppler_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   dropsonde:
     enabled: true
   etcd:
     machines:
-    - 0.0.0.14
-    - 0.0.0.15
-    - 0.0.1.13
+    - 10.85.9.244
+    - 10.85.9.245
+    - 10.85.10.243
     peer_require_ssl: false
     require_ssl: false
   etcd_metrics_server:
     nats:
       machines:
-      - 0.0.0.1
-      - 0.0.1.1
-      password: nats_password
-      username: nats_user
+      - 10.85.9.231
+      - 10.85.10.231
+      password: NATS_PASSWORD
+      username: NATS_USER
   ha_proxy: null
   hm9000:
-    url: https://hm9000.0.0.0.3.xip.io
+    url: https://hm9000.DOMAIN
   logger_endpoint: null
   loggregator:
     blacklisted_syslog_ranges: null
     debug: false
     etcd:
       machines:
-      - 0.0.0.14
-      - 0.0.0.15
-      - 0.0.1.13
+      - 10.85.9.244
+      - 10.85.9.245
+      - 10.85.10.243
     maxRetainedLogMessages: 100
     outgoing_dropsonde_port: 8081
     tls:
@@ -1063,16 +1094,13 @@ properties:
     enabled: true
     invitations_enabled: null
     links:
-      passwd: https://console.0.0.0.3.xip.io/password_resets/new
-      signup: https://console.0.0.0.3.xip.io/register
-    logout:
-      redirect:
-        parameter:
-          disable: false
+      passwd: https://console.DOMAIN/password_resets/new
+      signup: https://console.DOMAIN/register
+    logout: null
     messages: null
     notifications:
       url: null
-    protocol: null
+    protocol: http
     restricted_ips_regex: null
     saml: null
     self_service_links_enabled: null
@@ -1087,9 +1115,9 @@ properties:
     uaa_base: null
     url: null
   metron_agent:
-    enable_buffer: null
     buffer_size: null
-    deployment: null
+    deployment: ENVIRONMENT
+    enable_buffer: null
     preferred_protocol: null
     tls_client:
       cert: null
@@ -1099,103 +1127,54 @@ properties:
   nats:
     debug: false
     machines:
-    - 0.0.0.1
-    - 0.0.1.1
+    - 10.85.9.231
+    - 10.85.10.231
     monitor_port: 0
-    password: nats_password
+    password: NATS_PASSWORD
     port: 4222
     prof_port: 0
     trace: false
-    user: nats_user
+    user: NATS_USER
   nfs_server:
-    address: 0.0.0.2
+    address: 10.85.9.232
     allow_from_entries:
-    - null
-    - null
+    - 10.85.9.0/24
+    - 10.85.10.0/24
     share: null
   request_timeout_in_seconds: 900
   router:
-    cipher_suites: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA
+    cipher_suites: null
     debug_addr: null
-    enable_ssl: true
+    enable_routing_api: null
+    enable_ssl: null
     extra_headers_to_log: null
-    logrotate:
-      freq_min: 20
-      rotate: 5
-      size: 3M
+    logrotate: null
     port: null
     requested_route_registration_interval_in_seconds: null
-    route_services_timeout: null
     route_services_secret: null
     route_services_secret_decrypt_only: null
+    route_services_timeout: null
     secure_cookies: null
-    ssl_cert: |+
-      -----BEGIN CERTIFICATE-----
-      MIIDBjCCAe4CCQCz3nn1SWrDdTANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJB
-      VTETMBEGA1UECBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50ZXJuZXQgV2lkZ2l0
-      cyBQdHkgTHRkMB4XDTE1MDMwMzE4NTMyNloXDTE2MDMwMjE4NTMyNlowRTELMAkG
-      A1UEBhMCQVUxEzARBgNVBAgTClNvbWUtU3RhdGUxITAfBgNVBAoTGEludGVybmV0
-      IFdpZGdpdHMgUHR5IEx0ZDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
-      AKtTK9xq/ycRO3fWbk1abunYf9CY6sl0Wlqm9UPMkI4j0itY2OyGyn1YuCCiEdM3
-      b8guGSWB0XSL5PBq33e7ioiaH98UEe+Ai+TBxnJsro5WQ/TMywzRDhZ4E7gxDBav
-      88ZY+y7ts0HznfxqEIn0Gu/UK+s6ajYcIy7d9L988+hA3K1FSdes8MavXhrI4xA1
-      fY21gESfFkD4SsqvrkISC012pa7oVw1f94slIVcAG+l9MMAkatBGxgWAQO6kxk5o
-      oH1Z5q2m0afeQBfFqzu5lCITLfgTWCUZUmbF6UpRhmD850/LqNtryAPrLLqXxdig
-      OHiWqvFpCusOu/4z1uGC5xECAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAV5RAFVQy
-      8Krs5c9ebYRseXO6czL9/Rfrt/weiC1XLcDkE2i2yYsBXazMYr58o4hACJwe2hoC
-      bihBZ9XnVpASEYHDLwDj3zxFP/bTuKs7tLhP7wz0lo8i6k5VSPAGBq2kjc/cO9a3
-      TMmLPks/Xm42MCSWGDnCEX1854B3+JK3CNEGqSY7FYXU4W9pZtHPZ3gBoy0ymSpg
-      mpleiY1Tbn5I2X7vviMW7jeviB5ivkZaXtObjyM3vtPLB+ILpa15ZhDSE5o71sjA
-      jXqrE1n5o/GXHX+1M8v3aJc30Az7QAqWohW/tw5SoiSmVQZWd7gFht9vSzaH2WgO
-      LwcpBC7+cUJEww==
-      -----END CERTIFICATE-----
-    ssl_key: |+
-      -----BEGIN RSA PRIVATE KEY-----
-      MIIEpAIBAAKCAQEAq1Mr3Gr/JxE7d9ZuTVpu6dh/0JjqyXRaWqb1Q8yQjiPSK1jY
-      7IbKfVi4IKIR0zdvyC4ZJYHRdIvk8Grfd7uKiJof3xQR74CL5MHGcmyujlZD9MzL
-      DNEOFngTuDEMFq/zxlj7Lu2zQfOd/GoQifQa79Qr6zpqNhwjLt30v3zz6EDcrUVJ
-      16zwxq9eGsjjEDV9jbWARJ8WQPhKyq+uQhILTXalruhXDV/3iyUhVwAb6X0wwCRq
-      0EbGBYBA7qTGTmigfVnmrabRp95AF8WrO7mUIhMt+BNYJRlSZsXpSlGGYPznT8uo
-      22vIA+ssupfF2KA4eJaq8WkK6w67/jPW4YLnEQIDAQABAoIBAQCDVqpcOoZKK9K8
-      Bt3eXQKEMJ2ji2cKczFFJ5MEm9EBtoJLCryZbqfSue3Fzpj9pBUEkBpk/4VT5F7o
-      0/Vmc5Y7LHRcbqVlRtV30/lPBPQ4V/eWtly/AZDcNsdfP/J1fgPSvaoqCr2ORLWL
-      qL/vEfyIeM4GcWy0+JMcPbmABslw9O6Ptc5RGiP98vCLHQh/++sOtj6PH1pt+2X/
-      Uecv3b1Hk/3Oe+M8ySorJD3KA94QTRnKX+zubkxRg/zCAki+as8rQc/d+BfVG698
-      ylUT5LVLNuwbWnffY2Zt5x5CDqH01mJnHmxzQEfn68rb3bGFaYPEn9EP+maQijv6
-      SsUM9A3lAoGBAODRDRn4gEIxjPICp6aawRrMDlRc+k6IWDF7wudjxJlaxFr2t7FF
-      rFYm+jrcG6qMTyq+teR8uHpcKm9X8ax0L6N6gw5rVzIeIOGma/ZuYIYXX2XJx5SW
-      SOas1xW6qEIbOMv+Xu9w2SWbhTgyRmtlxxjr2e7gQLz9z/vuTReJpInnAoGBAMMW
-      sq5lqUfAQzqxlhTobQ7tnB48rUQvkGPE92SlDj2TUt9phek2/TgRJT6mdcozvimt
-      JPhxKg3ioxG8NPmN0EytjpSiKqlxS1R2po0fb75vputfpw16Z8/2Vik+xYqNMTLo
-      SpeVkHu7fbtNYEK2qcU44OyOZ/V+5Oo9TuBIFRhHAoGACkqHhwDRHjaWdR2Z/w5m
-      eIuOvF3lN2MWZm175ouynDKDeoaAsiS2VttB6R/aRFxX42UHfoYXC8LcTmyAK5zF
-      8X3SMf7H5wtqBepQVt+Gm5zGSSqLcEnQ3H5c+impOh105CGoxt0rk4Ui/AeRIalv
-      C70AJOcvD3eu5aFq9gDe/1ECgYBAhkVbASzYGnMh+pKVH7rScSxto8v6/XBYT1Ez
-      7JOlMhD667/qvtFJtgIHkq7qzepbhnTv5x3tscQVnZY34/u9ILpD1s8dc+dibEvx
-      6S/gYLVorB5ois/DLMqaobRcew6Gs+XX9RPwmLahOJpZ9mh4XrOmCgPAYtP71YM9
-      ExpHCQKBgQCMMDDWGMRdFMJgXbx1uMere7OoniBdZaOexjbglRh1rMVSXqzBoU8+
-      yhEuHGAsHGWQdSBHnqRe9O0Bj/Vlw2VVEaJeL1ewRHb+jXSnuKclZOJgMsJAvgGm
-      SOWIahDrATA4g1T6yLBWQPhj3ZXD3eCMxT1Q3DvpG1DjgvXwmXQJAA==
-      -----END RSA PRIVATE KEY-----
+    ssl_cert: null
+    ssl_key: null
     ssl_skip_validation: null
-    enable_routing_api: null
     status:
-      password: router_password
+      password: ROUTER_PASSWORD
       port: null
-      user: router_user
+      user: ROUTER_USER
   smoke_tests: null
   ssl:
-    skip_cert_verify: false
+    skip_cert_verify: true
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
-  system_domain: 0.0.0.3.xip.io
-  system_domain_organization: pivotal
+  system_domain: SYSTEM_DOMAIN
+  system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   traffic_controller:
-    zone: null
     outgoing_port: 8080
+    zone: null
   uaa:
     admin:
-      client_secret: admin_secret
+      client_secret: ADMIN_SECRET
     authentication:
       policy:
         countFailuresWithinSeconds: null
@@ -1203,60 +1182,56 @@ properties:
         lockoutPeriodSeconds: null
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     cc:
-      client_secret: cc_client_secret
+      client_secret: CC_CLIENT_SECRET
     clients:
-      app-direct:
-        secret: app-direct_secret
       cc_routing:
         authorities: routing.router_groups.read
         authorized-grant-types: client_credentials
-        secret: cc_routing_secret
+        secret: CC_ROUTING_SECRET
       cf:
+        access-token-validity: 600
+        authorities: uaa.none
+        authorized-grant-types: implicit,password,refresh_token
         id: cf
         override: true
-        authorized-grant-types: implicit,password,refresh_token
-        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
-        authorities: uaa.none
-        access-token-validity: 600
         refresh-token-validity: 2592000
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
-        secret: cloud_controller_username_lookup_secret
-      developer_console:
-        secret: developer_console_secret
+        secret: CLOUD_CONTROLLER_USERNAME_LOOKUP_SECRET
       doppler:
         authorities: uaa.resource
         override: true
-        secret: doppler_secret
+        secret: DOPPLER_SECRET
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        secret: gorouter_secret
-      tcp_emitter:
-        authorities: routing.routes.write,routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
-        secret: tcp-emitter-secret
-      tcp_router:
-        authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
-        secret: tcp-router-secret
+        secret: GOROUTER_SECRET
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         override: true
-        redirect-uri: https://login.0.0.0.3.xip.io
+        redirect-uri: https://login.DOMAIN
         scope: openid,oauth.approvals
-        secret: login_client_secret
+        secret: LOGIN_CLIENT_SECRET
       notifications:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
-        secret: notification_secret
+        secret: NOTIFICATION_SECRET
+      tcp_emitter:
+        authorities: routing.routes.write,routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: TCP-EMITTER-SECRET
+      tcp_router:
+        authorities: routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: TCP-ROUTER-SECRET
     database: null
-    issuer: https://uaa.0.0.0.3.xip.io
+    issuer: https://uaa.DOMAIN
     jwt:
-      signing_key: sk
-      verification_key: vk
+      signing_key: JWT_SIGNING_KEY
+      verification_key: JWT_VERIFICATION_KEY
     ldap: null
     login: null
     newrelic: null
@@ -1266,18 +1241,18 @@ properties:
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
     scim:
       external_groups: null
-      groups: additionalgroup1,additionalgroup2
+      groups: null
       userids_enabled: true
       users:
-      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
+      - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
     spring_profiles: null
     ssl:
       port: -1
-    url: https://uaa.0.0.0.3.xip.io
+    url: https://uaa.DOMAIN
     user: null
     zones: null
   uaadb:
-    address: 0.0.0.12
+    address: 10.85.9.242
     databases:
     - citext: true
       name: uaadb
@@ -1286,7 +1261,7 @@ properties:
     port: 5524
     roles:
     - name: uaaadmin
-      password: admin
+      password: UAADB_PASSWORD
       tag: admin
 releases:
 - name: cf

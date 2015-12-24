@@ -1,139 +1,133 @@
 # The following line helps maintain current documentation at http://docs.cloudfoundry.org.
 # code_snippet cf-stub-vsphere start
 ---
+meta:
+  environment: ENVIRONMENT
+
 director_uuid: DIRECTOR_UUID
 
 networks:
-- name: cf1
-  subnets:
-    - cloud_properties:
+  - name: cf1
+    subnets:
+    - range: 10.85.9.0/24
+      gateway: 10.85.9.1
+      reserved:
+      - 10.85.9.2 - 10.85.9.100
+      - 10.85.9.200 - 10.85.9.210
+      dns:
+      - 10.87.8.10
+      - 10.87.8.11
       static:
-      - 0.0.0.0 - 0.0.0.26
-- name: cf2
-  subnets:
-    - cloud_properties:
+      - 10.85.9.230 - 10.85.9.254
+      cloud_properties:
+        name: VSPHERE_NETWORK_NAME_1
+
+  - name: cf2
+    subnets:
+    - range: 10.85.10.0/24
+      gateway: 10.85.10.1
+      reserved:
+      - 10.85.10.2 - 10.85.10.100
+      - 10.85.10.200 - 10.85.10.210
+      dns:
+      - 10.87.8.10
+      - 10.87.8.11
       static:
-      - 0.0.1.0 - 0.0.1.26
-jobs:
-  ha_proxy_z1:
-    properties:
-      ha_proxy:
-        disable_http: true
+      - 10.85.10.230 - 10.85.10.254
+      cloud_properties:
+        name: VSPHERE_NETWORK_NAME_2
+
 properties:
+  domain: DOMAIN
+  system_domain: SYSTEM_DOMAIN
+  system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
+  app_domains:
+    - APP_DOMAIN
+
+  ssl:
+    skip_cert_verify: true
+
   cc:
-    droplets:
-      droplet_directory_key: the_key
-    buildpacks:
-      buildpack_directory_key: bd_key
-    staging_upload_user: username
-    staging_upload_password: password
-    bulk_api_password: password
-    db_encryption_key: the_key
+    staging_upload_user:  STAGING_UPLOAD_USER
+    staging_upload_password: STAGING_UPLOAD_PASSWORD
+    bulk_api_password: BULK_API_PASSWORD
+    db_encryption_key: DB_ENCRYPTION_KEY
+  consul:
+    encrypt_keys:
+      - CONSUL_ENCRYPT_KEY
+    ca_cert: CONSUL_CA_CERT
+    server_cert: CONSUL_SERVER_CERT
+    server_key: CONSUL_SERVER_KEY
+    agent_cert: CONSUL_AGENT_CERT
+    agent_key: CONSUL_AGENT_KEY
   dea_next:
     disk_mb: 2048
     memory_mb: 1024
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
-  nats:
-    user: nats_user
-    password: nats_password
-  router:
-    logrotate:
-      freq_min: 20
-      rotate: 5
-      size: 3M
-    enable_ssl: true
-    ssl_cert: |
-      -----BEGIN CERTIFICATE-----
-      MIIDBjCCAe4CCQCz3nn1SWrDdTANBgkqhkiG9w0BAQUFADBFMQswCQYDVQQGEwJB
-      VTETMBEGA1UECBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50ZXJuZXQgV2lkZ2l0
-      cyBQdHkgTHRkMB4XDTE1MDMwMzE4NTMyNloXDTE2MDMwMjE4NTMyNlowRTELMAkG
-      A1UEBhMCQVUxEzARBgNVBAgTClNvbWUtU3RhdGUxITAfBgNVBAoTGEludGVybmV0
-      IFdpZGdpdHMgUHR5IEx0ZDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
-      AKtTK9xq/ycRO3fWbk1abunYf9CY6sl0Wlqm9UPMkI4j0itY2OyGyn1YuCCiEdM3
-      b8guGSWB0XSL5PBq33e7ioiaH98UEe+Ai+TBxnJsro5WQ/TMywzRDhZ4E7gxDBav
-      88ZY+y7ts0HznfxqEIn0Gu/UK+s6ajYcIy7d9L988+hA3K1FSdes8MavXhrI4xA1
-      fY21gESfFkD4SsqvrkISC012pa7oVw1f94slIVcAG+l9MMAkatBGxgWAQO6kxk5o
-      oH1Z5q2m0afeQBfFqzu5lCITLfgTWCUZUmbF6UpRhmD850/LqNtryAPrLLqXxdig
-      OHiWqvFpCusOu/4z1uGC5xECAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAV5RAFVQy
-      8Krs5c9ebYRseXO6czL9/Rfrt/weiC1XLcDkE2i2yYsBXazMYr58o4hACJwe2hoC
-      bihBZ9XnVpASEYHDLwDj3zxFP/bTuKs7tLhP7wz0lo8i6k5VSPAGBq2kjc/cO9a3
-      TMmLPks/Xm42MCSWGDnCEX1854B3+JK3CNEGqSY7FYXU4W9pZtHPZ3gBoy0ymSpg
-      mpleiY1Tbn5I2X7vviMW7jeviB5ivkZaXtObjyM3vtPLB+ILpa15ZhDSE5o71sjA
-      jXqrE1n5o/GXHX+1M8v3aJc30Az7QAqWohW/tw5SoiSmVQZWd7gFht9vSzaH2WgO
-      LwcpBC7+cUJEww==
-      -----END CERTIFICATE-----
-    ssl_key: |
-      -----BEGIN RSA PRIVATE KEY-----
-      MIIEpAIBAAKCAQEAq1Mr3Gr/JxE7d9ZuTVpu6dh/0JjqyXRaWqb1Q8yQjiPSK1jY
-      7IbKfVi4IKIR0zdvyC4ZJYHRdIvk8Grfd7uKiJof3xQR74CL5MHGcmyujlZD9MzL
-      DNEOFngTuDEMFq/zxlj7Lu2zQfOd/GoQifQa79Qr6zpqNhwjLt30v3zz6EDcrUVJ
-      16zwxq9eGsjjEDV9jbWARJ8WQPhKyq+uQhILTXalruhXDV/3iyUhVwAb6X0wwCRq
-      0EbGBYBA7qTGTmigfVnmrabRp95AF8WrO7mUIhMt+BNYJRlSZsXpSlGGYPznT8uo
-      22vIA+ssupfF2KA4eJaq8WkK6w67/jPW4YLnEQIDAQABAoIBAQCDVqpcOoZKK9K8
-      Bt3eXQKEMJ2ji2cKczFFJ5MEm9EBtoJLCryZbqfSue3Fzpj9pBUEkBpk/4VT5F7o
-      0/Vmc5Y7LHRcbqVlRtV30/lPBPQ4V/eWtly/AZDcNsdfP/J1fgPSvaoqCr2ORLWL
-      qL/vEfyIeM4GcWy0+JMcPbmABslw9O6Ptc5RGiP98vCLHQh/++sOtj6PH1pt+2X/
-      Uecv3b1Hk/3Oe+M8ySorJD3KA94QTRnKX+zubkxRg/zCAki+as8rQc/d+BfVG698
-      ylUT5LVLNuwbWnffY2Zt5x5CDqH01mJnHmxzQEfn68rb3bGFaYPEn9EP+maQijv6
-      SsUM9A3lAoGBAODRDRn4gEIxjPICp6aawRrMDlRc+k6IWDF7wudjxJlaxFr2t7FF
-      rFYm+jrcG6qMTyq+teR8uHpcKm9X8ax0L6N6gw5rVzIeIOGma/ZuYIYXX2XJx5SW
-      SOas1xW6qEIbOMv+Xu9w2SWbhTgyRmtlxxjr2e7gQLz9z/vuTReJpInnAoGBAMMW
-      sq5lqUfAQzqxlhTobQ7tnB48rUQvkGPE92SlDj2TUt9phek2/TgRJT6mdcozvimt
-      JPhxKg3ioxG8NPmN0EytjpSiKqlxS1R2po0fb75vputfpw16Z8/2Vik+xYqNMTLo
-      SpeVkHu7fbtNYEK2qcU44OyOZ/V+5Oo9TuBIFRhHAoGACkqHhwDRHjaWdR2Z/w5m
-      eIuOvF3lN2MWZm175ouynDKDeoaAsiS2VttB6R/aRFxX42UHfoYXC8LcTmyAK5zF
-      8X3SMf7H5wtqBepQVt+Gm5zGSSqLcEnQ3H5c+impOh105CGoxt0rk4Ui/AeRIalv
-      C70AJOcvD3eu5aFq9gDe/1ECgYBAhkVbASzYGnMh+pKVH7rScSxto8v6/XBYT1Ez
-      7JOlMhD667/qvtFJtgIHkq7qzepbhnTv5x3tscQVnZY34/u9ILpD1s8dc+dibEvx
-      6S/gYLVorB5ois/DLMqaobRcew6Gs+XX9RPwmLahOJpZ9mh4XrOmCgPAYtP71YM9
-      ExpHCQKBgQCMMDDWGMRdFMJgXbx1uMere7OoniBdZaOexjbglRh1rMVSXqzBoU8+
-      yhEuHGAsHGWQdSBHnqRe9O0Bj/Vlw2VVEaJeL1ewRHb+jXSnuKclZOJgMsJAvgGm
-      SOWIahDrATA4g1T6yLBWQPhj3ZXD3eCMxT1Q3DvpG1DjgvXwmXQJAA==
-      -----END RSA PRIVATE KEY-----
-    cipher_suites: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA
-    status:
-      user: router_user
-      password: router_password
   login:
-    logout:
-      redirect:
-        parameter:
-          disable: false
+    protocol: http
+  nats:
+    user: NATS_USER
+    password: NATS_PASSWORD
+  router:
+    status:
+      user: ROUTER_USER
+      password: ROUTER_PASSWORD
   uaa:
     admin:
-      client_secret: admin_secret
+      client_secret: ADMIN_SECRET
     cc:
-      client_secret: cc_client_secret
+      client_secret: CC_CLIENT_SECRET
     clients:
-      app-direct:
-        secret: app-direct_secret
-      developer_console:
-        secret: developer_console_secret
-      login:
-        secret: login_client_secret
-      notifications:
-        secret: notification_secret
-      doppler:
-        secret: doppler_secret
-      cloud_controller_username_lookup:
-        secret: cloud_controller_username_lookup_secret
       cc_routing:
-        secret: cc_routing_secret
+        secret: CC_ROUTING_SECRET
+      cloud_controller_username_lookup:
+        secret: CLOUD_CONTROLLER_USERNAME_LOOKUP_SECRET
+      doppler:
+        secret: DOPPLER_SECRET
       gorouter:
-        secret: gorouter_secret
+        secret: GOROUTER_SECRET
       tcp_emitter:
-        secret: tcp-emitter-secret
+        secret: TCP-EMITTER-SECRET
       tcp_router:
-        secret: tcp-router-secret
-
+        secret: TCP-ROUTER-SECRET
+      login:
+        secret: LOGIN_CLIENT_SECRET
+      notifications:
+        secret: NOTIFICATION_SECRET
     jwt:
-      verification_key: vk
-      signing_key: sk
+      verification_key: JWT_VERIFICATION_KEY
+      signing_key: JWT_SIGNING_KEY
     scim:
       users:
-      - admin|fakepassword|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
-      groups: additionalgroup1,additionalgroup2
+      - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
 
+  ccdb:
+    roles:
+    - name: ccadmin
+      password: CCDB_PASSWORD
+  uaadb:
+    roles:
+    - name: uaaadmin
+      password: UAADB_PASSWORD
+  databases:
+    roles:
+    - name: ccadmin
+      password: CCDB_PASSWORD
+    - name: uaaadmin
+      password: UAADB_PASSWORD
+
+jobs:
+- name: ha_proxy_z1
+  properties:
+    ha_proxy:
+      ssl_pem: |
+        -----BEGIN RSA PRIVATE KEY-----
+        RSA_PRIVATE_KEY
+        -----END RSA PRIVATE KEY-----
+        -----BEGIN CERTIFICATE-----
+        CERTIFICATE
+        -----END CERTIFICATE-----
 # code_snippet cf-stub-vsphere end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
