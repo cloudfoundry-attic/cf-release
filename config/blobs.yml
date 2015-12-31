@@ -99,10 +99,6 @@ uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
   size: 11163261
-staticfile-buildpack/staticfile_buildpack-cached-v1.2.3.zip:
-  object_id: 9f402d57-35e5-4cc7-a3d5-c6d31b595f77
-  sha: 0e5dea061e0df0493cc69776d759b90af635bd19
-  size: 2494385
 postgres/postgresql-9.4.5.tar.gz:
   object_id: 49b445bd-ecd9-483c-bbf0-0965b5900c22
   sha: 5278d04093f3cb2e00796fae15b2e33406844d01
@@ -127,10 +123,6 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.4.zip:
   object_id: 8f0b19f1-5268-489b-b4b2-989fa32f1da9
   sha: 4c3d273d4bdf966b701b46deca622dd9925969f3
   size: 59441206
-php-buildpack/php_buildpack-cached-v4.3.1.zip:
-  object_id: 9026d458-6b0d-47a3-bd9b-2d57cdf8b57b
-  sha: 4e9d1470d448e4026fbf5aeccd1a494f024fce61
-  size: 340637714
 go-buildpack/go_buildpack-cached-v1.7.1.zip:
   object_id: 43e8d4de-4e92-4384-a27b-006deb701e90
   sha: 04315a6343c182db8d96645a70bb343ad5413ed4
@@ -155,3 +147,11 @@ java-buildpack/java-buildpack-v3.4.zip:
   object_id: 457291d7-2e5c-4088-a7f2-3e31b3786220
   sha: 76d93233198aae944b95d2c4a1e1349f1e281d5f
   size: 159423
+php-buildpack/php_buildpack-cached-v4.3.2.zip:
+  object_id: 467b434d-6026-44c7-99cc-6e5e366e57c2
+  sha: fd8f8bedd3b9c14d6360c94c5d7aff5f7f840b9b
+  size: 340664447
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.0.zip:
+  object_id: 8b326d57-6edd-470c-9535-abe10ffe5323
+  sha: 89cc3de315dfeb05532a88ba928bb40eaf8a4c58
+  size: 2532050
