@@ -131,10 +131,6 @@ python-buildpack/python_buildpack-cached-v1.5.3.zip:
   object_id: 534b5d77-d6f3-4866-b577-eba2b7b52eb0
   sha: 8c0f854a58c0691d1794d28a8fce53c71d1b37b3
   size: 265830857
-ruby-buildpack/ruby_buildpack-cached-v1.6.11.zip:
-  object_id: bde2b55d-af13-4ec4-9674-28c02ebb4450
-  sha: 8b3d5310cea1de34476522b6d8aa82ce1e9904f5
-  size: 264383708
 rootfs/cflinuxfs2-1.24.0.tar.gz:
   object_id: 13b0501e-256f-42a3-b871-523f86bc04a3
   sha: c1f12332d2e755b99e0c3bd8cccf36d863919946
@@ -155,3 +151,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.0.zip:
   object_id: 8b326d57-6edd-470c-9535-abe10ffe5323
   sha: 89cc3de315dfeb05532a88ba928bb40eaf8a4c58
   size: 2532050
+ruby-buildpack/ruby_buildpack-cached-v1.6.12.zip:
+  object_id: 7a4cf997-0c4f-460e-819b-024fb7f587c0
+  sha: 754a93e6d57b7443d25e03f8862af7be481a42e7
+  size: 282145848
