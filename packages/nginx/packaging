@@ -6,6 +6,12 @@ tar xzvf nginx/pcre-8.37.tar.gz
 echo "Extracting headers-more module..."
 tar xzvf nginx/headers-more-v0.25.tgz
 
+echo "Extracting nginx_dav_ext module..."
+tar xzvf nginx/nginx-dav-ext-module-0.0.3.tar.gz
+
+echo "Extracting expat..."
+tar zxvf nginx/expat-2.1.0.tar.gz
+
 echo "Extracting nginx_upload module..."
 tar xzvf nginx/nginx-upload-module-2.2.tar.gz
 
@@ -17,6 +23,13 @@ popd
 echo "Extracting nginx..."
 tar xzvf nginx/nginx-1.8.0.tar.gz
 
+echo "Building expat..."
+pushd expat-2.1.0
+  ./configure
+  make
+  make install
+popd
+
 echo "Building nginx..."
 pushd nginx-1.8.0
   ./configure \
@@ -24,7 +37,10 @@ pushd nginx-1.8.0
     --with-pcre=../pcre-8.37 \
     --add-module=../headers-more-nginx-module-0.25 \
     --add-module=../nginx-upload-module-2.2 \
-    --with-http_stub_status_module
+    --with-http_stub_status_module \
+    --add-module=../nginx-dav-ext-module-0.0.3 \
+    --with-http_ssl_module \
+    --with-http_dav_module
 
   make
   make install

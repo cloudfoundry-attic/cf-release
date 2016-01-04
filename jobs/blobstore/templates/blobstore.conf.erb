@@ -1,0 +1,26 @@
+server {
+  listen      <%= p("blobstore.port") %>;
+  server_name "";
+
+  access_log  /var/vcap/sys/log/blobstore/blobstore_access.log;
+  error_log   /var/vcap/sys/log/blobstore/blobstore_error.log;
+
+  client_max_body_size <%= p("blobstore.max_upload_size") %>;
+
+  location / {
+    root /var/vcap/store/shared/;
+    client_body_temp_path /var/vcap/store/shared/tmp/uploads/;
+
+    dav_methods DELETE PUT;
+    dav_ext_methods PROPFIND OPTIONS;
+    create_full_put_path on;
+
+    auth_basic "Blobstore Read";
+    auth_basic_user_file read_users;
+
+    limit_except GET {
+      auth_basic "Blobstore Write";
+      auth_basic_user_file write_users;
+    }
+  }
+}
