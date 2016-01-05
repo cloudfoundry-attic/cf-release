@@ -4,4 +4,4 @@ cp -a collector/* ${BOSH_INSTALL_TARGET}
 
 cd ${BOSH_INSTALL_TARGET}
 
-/var/vcap/packages/ruby-2.1.7/bin/bundle install --local --deployment --without development test
+/var/vcap/packages/ruby-2.1.8/bin/bundle install --local --deployment --without development test

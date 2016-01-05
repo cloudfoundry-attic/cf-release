@@ -2,12 +2,12 @@
 set -e
 
 # We grab the latest versions that are in the directory
-RUBY_VERSION=`ls -r ruby-2.1.7/ruby-* | sed 's/ruby-2.1.7\/ruby-\(.*\)\.tar\.gz/\1/' | head -1`
-BUNDLER_VERSION=`ls -r ruby-2.1.7/bundler-* | sed 's/ruby-2.1.7\/bundler-\(.*\)\.gem/\1/' | head -1`
-LIBYAML_VERSION=`ls -r ruby-2.1.7/yaml-* | sed 's/ruby-2.1.7\/yaml-\(.*\)\.tar\.gz/\1/' | head -1`
+RUBY_VERSION=`ls -r ruby-2.1.8/ruby-* | sed 's/ruby-2.1.8\/ruby-\(.*\)\.tar\.gz/\1/' | head -1`
+BUNDLER_VERSION=`ls -r ruby-2.1.8/bundler-* | sed 's/ruby-2.1.8\/bundler-\(.*\)\.gem/\1/' | head -1`
+LIBYAML_VERSION=`ls -r ruby-2.1.8/yaml-* | sed 's/ruby-2.1.8\/yaml-\(.*\)\.tar\.gz/\1/' | head -1`
 
 # Install libyaml >= 0.1.5 to fix http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-6393
-tar xzf ruby-2.1.7/yaml-${LIBYAML_VERSION}.tar.gz
+tar xzf ruby-2.1.8/yaml-${LIBYAML_VERSION}.tar.gz
 (
   set -e
   cd yaml-${LIBYAML_VERSION}/
@@ -20,7 +20,7 @@ tar xzf ruby-2.1.7/yaml-${LIBYAML_VERSION}.tar.gz
   ldconfig
 )
 
-tar xzf ruby-2.1.7/ruby-${RUBY_VERSION}.tar.gz
+tar xzf ruby-2.1.8/ruby-${RUBY_VERSION}.tar.gz
 (
   set -e
   cd ruby-${RUBY_VERSION}
@@ -29,4 +29,4 @@ tar xzf ruby-2.1.7/ruby-${RUBY_VERSION}.tar.gz
   make install
 )
 
-${BOSH_INSTALL_TARGET}/bin/gem install ruby-2.1.7/bundler-${BUNDLER_VERSION}.gem --no-ri --no-rdoc
+${BOSH_INSTALL_TARGET}/bin/gem install ruby-2.1.8/bundler-${BUNDLER_VERSION}.gem --no-ri --no-rdoc

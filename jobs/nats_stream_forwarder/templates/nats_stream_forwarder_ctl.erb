@@ -35,7 +35,7 @@ case $1 in
     mkdir -p $RUN_DIR
     chown vcap:vcap $RUN_DIR
 
-    PATH=/var/vcap/packages/ruby-2.1.7/bin:$PATH
+    PATH=/var/vcap/packages/ruby-2.1.8/bin:$PATH
 
     echo $$ > $PIDFILE
     chown vcap:vcap $PIDFILE

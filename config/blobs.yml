@@ -63,18 +63,6 @@ nginx/pcre-8.37.tar.gz:
   object_id: 262a1857-da10-4680-b148-52d7803af7ae
   sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
   size: 2041593
-ruby-2.1.7/bundler-1.9.4.gem:
-  object_id: e158e651-c3ff-4dd0-8f42-f7c2f0e08688
-  sha: ea3f17a76a8249049b5589c9b5421af72189babc
-  size: 244224
-ruby-2.1.7/ruby-2.1.7.tar.gz:
-  object_id: 5af4b5ce-4e20-4e26-bda2-c942cb078e38
-  sha: e2e195a4a58133e3ad33b955c829bb536fa3c075
-  size: 15151458
-ruby-2.1.7/yaml-0.1.6.tar.gz:
-  object_id: 222e4627-f3f5-4c83-aae6-3c6460aae248
-  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
-  size: 503012
 nginx/nginx-1.8.0.tar.gz:
   object_id: 0d18bbee-b79d-4fec-bba5-635821969fa0
   sha: 12bad312764feae50246685ab2e74512d1aa9b2f
@@ -155,3 +143,15 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.12.zip:
   object_id: 7a4cf997-0c4f-460e-819b-024fb7f587c0
   sha: 754a93e6d57b7443d25e03f8862af7be481a42e7
   size: 282145848
+ruby-2.1.8/bundler-1.9.4.gem:
+  object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
+  sha: ea3f17a76a8249049b5589c9b5421af72189babc
+  size: 244224
+ruby-2.1.8/ruby-2.1.8.tar.gz:
+  object_id: 6e90c843-f647-4f85-80f2-769cd3688258
+  sha: c7e50159357afd87b13dc5eaf4ac486a70011149
+  size: 15154017
+ruby-2.1.8/yaml-0.1.6.tar.gz:
+  object_id: 63b9ac28-38d6-4698-bd99-908f80e90405
+  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
+  size: 503012

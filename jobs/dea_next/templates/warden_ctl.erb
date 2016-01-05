@@ -23,8 +23,8 @@ case $1 in
     echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
 
     # Setup rootfs
-    ROOTFS_PACKAGE=/var/vcap/packages/rootfs_cflinuxfs2/ 
-    ROOTFS_DIR=$ROOTFS_PACKAGE/rootfs 
+    ROOTFS_PACKAGE=/var/vcap/packages/rootfs_cflinuxfs2/
+    ROOTFS_DIR=$ROOTFS_PACKAGE/rootfs
     if [ ! -d $ROOTFS_DIR ]; then
       mkdir -p $ROOTFS_DIR
       tar -pzxf $ROOTFS_PACKAGE/cflinuxfs2.tar.gz -C $ROOTFS_DIR
@@ -55,9 +55,9 @@ case $1 in
       find $depot -mindepth 1 -maxdepth 1 -type d | xargs -t -n1 --no-run-if-empty root/linux/destroy.sh
     fi
 
-    export PATH=/var/vcap/packages/ruby-2.1.7/bin:$PATH
+    export PATH=/var/vcap/packages/ruby-2.1.8/bin:$PATH
 
-    exec /var/vcap/packages/ruby-2.1.7/bin/bundle exec \
+    exec /var/vcap/packages/ruby-2.1.8/bin/bundle exec \
          rake warden:start[$WARDEN_CONF_DIR/warden.yml]
 
     ;;

@@ -3,7 +3,7 @@ set -e -x
 cp -a dea_next/* ${BOSH_INSTALL_TARGET}
 
 cd ${BOSH_INSTALL_TARGET}
-/var/vcap/packages/ruby-2.1.7/bin/bundle install --local --deployment --without=development test
+/var/vcap/packages/ruby-2.1.8/bin/bundle install --local --deployment --without=development test
 
 export GOROOT=$(readlink -nf /var/vcap/packages/golang1.4)
 export PATH=$GOROOT/bin:$PATH

@@ -2,7 +2,7 @@ set -e -x
 
 cp -a * ${BOSH_INSTALL_TARGET}
 
-export PATH=/var/vcap/packages/ruby-2.1.7/bin:$PATH
+export PATH=/var/vcap/packages/ruby-2.1.8/bin:$PATH
 
 cd ${BOSH_INSTALL_TARGET}/warden
 
