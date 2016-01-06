@@ -3,7 +3,7 @@
 The `minimal-aws.yml` is an example of a minimalistic deployment of Cloud
 Foundry, including all crucial components for its basic funcionality. it allows
 you to deploy Cloud Foundry for educational purposes, so you can poke around and
-break things. 
+break things.
 
 *IMPORTANT*: This is not meant to be used for a production level deployment as
 it doesn't include features such as high availability and security.
@@ -29,39 +29,13 @@ it doesn't include features such as high availability and security.
 - Replace REPLACE_WITH_DIRECTOR_ID in the example manifest with the bosh director id (return by running "bosh status --uuid")
 - Replace REPLACE_WITH_BOSH_SECURITY_GROUP in the example manifest with the security group created for microbosh
 
-## Create a NAT Machine in the bosh subnet
-- Click on "EC2" from the Amazon Web Services Dashboard
-- Click "Launch Instance"
-- Click "Community AMIs"
-- Search for "amzn-ami-vpc-nat"
-- Select "amzn-ami-vpc-nat-pv-2014.09.1.x86_64-ebs"
-- Select "m1.small"
-- Click "Next: Configure Instance Details"
+## Create a NAT Gateway in the bosh subnet
+- Click on "NAT Gateways" from the VPC Dashboard
+- Click "Create NAT Gateway"
 - Fill in
-  - Network: microbosh
   - Subnet: microbosh
-  - Auto-assign Public IP: Enable
-- Click "Next: Add Storage"
-  - If asked to choose boot volume for instance, select the "Continue with Magnetic..." option.
-- Click "Next: Tag Instance"
-- Enter "NAT" for the Name value
-- Click "Next: Configure Security Group"
-- Click "Create a new security group"
-- Fill in
-  - Security group name: nat
-  - Description: NAT Security Group
-  - Type: All traffic
-  - Protocol: All
-  - Port Range: 0 - 65535
-  - Source: Custom IP / 10.0.16.0/24
-- Click "Review and Launch"
-- Click "Launch"
-- Use the existing bosh key pair
-- Click "Launch Instances"
-- Click "View Instances"
-- Select the NAT instance in the Instances list
-- Click "Actions" => "Networking" => "Change Source/Dest. Check."
-- Click "Yes, Disable"
+  - Click "Create New EIP"
+- Click "Create a NAT Gateway"
 
 ## Create New Subnet For Cloud Foundry Deployment
 - Click on "Subnets" from the VPC Dashboard
@@ -82,7 +56,7 @@ it doesn't include features such as high availability and security.
 - Click "Edit"
 - Fill in a new route
   - Distination: 0.0.0.0/0
-  - Target: Select the NAT instance from the list
+  - Target: Select the NAT Gateway from the list
 - Click "Save"
 
 - Click on "Elastic IPs" from the VPC Dashboard
@@ -119,7 +93,7 @@ Create a wildcard DNS entry for your root System Domain (\*.your-cf-domain.com) 
   - Type: A - IPv4 address
   - Value: The Elastic IP create above
   - Click "Create"
-  
+
 If you do NOT have a domain, you can use 0.0.0.0.xip.io for your System Domain and replace the zeroes with your Elastic IP
 
 - Replace REPLACE_WITH_SYSTEM_DOMAIN with your system domain
@@ -171,10 +145,10 @@ cd $HOME/workspace
 git clone https://github.com/cloudfoundry/cf-acceptance-tests.git
 ```
 
-For a first application, you can push a light weight ruby application called 
+For a first application, you can push a light weight ruby application called
 [Dora](https://github.com/cloudfoundry/cf-acceptance-tests/tree/master/assets/dora)
-which is found at `$HOME/workspace/cf-acceptance-tests/assets/dora`. Lastly you can follow the 
-[application deploy instructions](http://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html) and 
+which is found at `$HOME/workspace/cf-acceptance-tests/assets/dora`. Lastly you can follow the
+[application deploy instructions](http://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html) and
 push dora into your Cloud Foundry deployment.
 
 ## SSH onto your CF Machines
@@ -187,4 +161,3 @@ bosh ssh VM_FROM_BOSH_VMS_COMMAND/INSTANCE_NUMBER --gateway_host YOUR_PUBLIC_MIC
 ```
 
 Note that this command will ask you to setup the password for sudo during the login processs.
-
