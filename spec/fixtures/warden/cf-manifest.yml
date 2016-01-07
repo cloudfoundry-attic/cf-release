@@ -399,8 +399,6 @@ jobs:
   templates:
   - name: cloud_controller_ng
     release: cf
-  - name: routing-api
-    release: cf
   - name: metron_agent
     release: cf
   - name: statsd-injector

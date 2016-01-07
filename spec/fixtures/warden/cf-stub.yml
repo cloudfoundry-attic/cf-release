@@ -172,5 +172,21 @@ properties:
       -----END RSA PRIVATE KEY-----
     cipher_suites: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA
 
+jobs:
+  - name: api_z1
+    properties:
+      consul:
+        agent:
+          services:
+            cloud_controller_ng: {}
+            routing-api: {}
+  - name: api_z2
+    properties:
+      consul:
+        agent:
+          services:
+            cloud_controller_ng: {}
+            routing-api: {}
+
 # code_snippet cf-stub-warden end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

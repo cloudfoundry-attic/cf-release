@@ -27,10 +27,11 @@ meta:
     uris:
     - (( "api." .properties.domain ))
 
+  api_consul_services:
+    cloud_controller_ng: {}
+
   api_templates:
   - name: cloud_controller_ng
-    release: (( meta.release.name ))
-  - name: routing-api
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
@@ -382,9 +383,7 @@ jobs:
     properties:
       consul:
         agent:
-          services:
-            cloud_controller_ng: {}
-            routing-api: {}
+          services: (( merge || meta.api_consul_services ))
       metron_agent:
         zone: z1
       route_registrar:
@@ -402,9 +401,7 @@ jobs:
     properties:
       consul:
         agent:
-          services:
-            cloud_controller_ng: {}
-            routing-api: {}
+          services: (( merge || meta.api_consul_services ))
       metron_agent:
         zone: z2
       route_registrar:

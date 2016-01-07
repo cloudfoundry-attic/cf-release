@@ -16,3 +16,12 @@ properties:
       internal:
         hostnames:
         - uaa.service.cf.internal
+
+jobs:
+  - name: api_z1
+    properties:
+      consul:
+        agent:
+          services:
+            cloud_controller_ng: {}
+            routing-api: {}

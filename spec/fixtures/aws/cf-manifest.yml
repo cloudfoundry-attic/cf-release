@@ -292,7 +292,6 @@ jobs:
       agent:
         services:
           cloud_controller_ng: {}
-          routing-api: {}
     metron_agent:
       zone: z1
     nfs_server:
@@ -312,8 +311,6 @@ jobs:
   resource_pool: large_z1
   templates:
   - name: cloud_controller_ng
-    release: cf
-  - name: routing-api
     release: cf
   - name: metron_agent
     release: cf
@@ -336,7 +333,6 @@ jobs:
       agent:
         services:
           cloud_controller_ng: {}
-          routing-api: {}
     metron_agent:
       zone: z2
     nfs_server:
@@ -356,8 +352,6 @@ jobs:
   resource_pool: large_z2
   templates:
   - name: cloud_controller_ng
-    release: cf
-  - name: routing-api
     release: cf
   - name: metron_agent
     release: cf
