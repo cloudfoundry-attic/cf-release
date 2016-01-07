@@ -1,26 +1,45 @@
 server {
   listen      <%= p("blobstore.port") %>;
   server_name "";
+  root /var/vcap/store/shared/;
 
   access_log  /var/vcap/sys/log/blobstore/blobstore_access.log;
   error_log   /var/vcap/sys/log/blobstore/blobstore_error.log;
 
   client_max_body_size <%= p("blobstore.max_upload_size") %>;
 
+  location /admin/ {
+    auth_basic "Blobstore Write";
+    auth_basic_user_file write_users;
+
+    rewrite ^/cc/(.*)$ /$1 break;
+  }
+
+  location /read/ {
+    if ( $request_method !~ ^(GET|HEAD)$ ) {
+      return 405;
+    }
+
+    secure_link $arg_md5,$arg_expires;
+    secure_link_md5 "$secure_link_expires$uri secret";
+
+    if ($secure_link = "") {
+      return 403;
+    }
+
+    if ($secure_link = "0") {
+      return 410;
+    }
+
+    rewrite ^/read/(.*)$ /$1 break;
+  }
+
   location / {
-    root /var/vcap/store/shared/;
+    internal;
     client_body_temp_path /var/vcap/store/shared/tmp/uploads/;
 
-    dav_methods DELETE PUT;
+    dav_methods DELETE PUT COPY;
     dav_ext_methods PROPFIND OPTIONS;
     create_full_put_path on;
-
-    auth_basic "Blobstore Read";
-    auth_basic_user_file read_users;
-
-    limit_except GET {
-      auth_basic "Blobstore Write";
-      auth_basic_user_file write_users;
-    }
   }
 }

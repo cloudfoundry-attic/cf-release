@@ -40,7 +40,8 @@ pushd nginx-1.8.0
     --with-http_stub_status_module \
     --add-module=../nginx-dav-ext-module-0.0.3 \
     --with-http_ssl_module \
-    --with-http_dav_module
+    --with-http_dav_module \
+    --with-http_secure_link_module
 
   make
   make install
