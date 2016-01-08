@@ -1,10 +1,10 @@
 server {
   listen      <%= p("blobstore.port") %>;
   server_name "";
-  root /var/vcap/store/shared/;
+  root        /var/vcap/store/shared/;
 
-  access_log  /var/vcap/sys/log/blobstore/blobstore_access.log;
-  error_log   /var/vcap/sys/log/blobstore/blobstore_error.log;
+  access_log /var/vcap/sys/log/blobstore/blobstore_access.log;
+  error_log  /var/vcap/sys/log/blobstore/blobstore_error.log;
 
   client_max_body_size <%= p("blobstore.max_upload_size") %>;
 
@@ -12,7 +12,13 @@ server {
     auth_basic "Blobstore Write";
     auth_basic_user_file write_users;
 
-    rewrite ^/cc/(.*)$ /$1 break;
+    client_body_temp_path /var/vcap/store/shared/tmp/uploads/;
+
+    dav_methods DELETE PUT COPY;
+    dav_ext_methods PROPFIND OPTIONS;
+    create_full_put_path on;
+
+    alias /var/vcap/store/shared/;
   }
 
   location /read/ {
@@ -31,15 +37,6 @@ server {
       return 410;
     }
 
-    rewrite ^/read/(.*)$ /$1 break;
-  }
-
-  location / {
-    internal;
-    client_body_temp_path /var/vcap/store/shared/tmp/uploads/;
-
-    dav_methods DELETE PUT COPY;
-    dav_ext_methods PROPFIND OPTIONS;
-    create_full_put_path on;
+    alias /var/vcap/store/shared/;
   }
 }

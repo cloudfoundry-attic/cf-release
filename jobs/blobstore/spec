@@ -6,7 +6,6 @@ templates:
   nginx.conf.erb:     config/nginx.conf
   blobstore.conf.erb: config/sites/blobstore.conf
   mime.types:         config/mime.types
-  read_users.erb:     config/read_users
   write_users.erb:    config/write_users
 
 packages:
@@ -15,20 +14,12 @@ packages:
 properties:
   blobstore.port:
     description: TCP port blobstore server (ngnix) listens on
-    default: 25250
-  blobstore.backend_port:
-    description: TCP port backend blobstore server (simple blobstore) listens on
-    default: 25251
+    default: 80
 
   blobstore.cc.user:
     description: Username Cloud Controller must use to access blobstore via HTTP Basic
   blobstore.cc.password:
     description: Password Cloud Controller must use to access blobstore via HTTP Basic
-
-  blobstore.runtime.user:
-    description: Username the runtime must use to access blobstore via HTTP Basic
-  blobstore.runtime.password:
-    description: Password the runtime must use to access blobstore via HTTP Basic
 
   blobstore.max_upload_size:
     description: Max allowed file size for upload
