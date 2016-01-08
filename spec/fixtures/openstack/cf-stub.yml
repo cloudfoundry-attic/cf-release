@@ -144,7 +144,7 @@ jobs:
         release: cf
       - name: nfs_mounter
         release: cf
-      - name: route-registrar
+      - name: route_registrar
         release: cf
   - name: api_worker_z1
     instances: 0

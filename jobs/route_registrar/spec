@@ -1,14 +1,14 @@
 ---
-name: route-registrar
+name: route_registrar
 
 description: "Used for registering routes"
 
 packages:
 - common
-- route-registrar
+- route_registrar
 
 templates:
-  route-registrar_ctl.erb: bin/route-registrar_ctl
+  route_registrar_ctl.erb: bin/route_registrar_ctl
   registrar_settings.yml.erb: config/registrar_settings.yml
 
 properties:
@@ -27,7 +27,7 @@ properties:
     description: Password for NATS authentication
     example: natSpa55w0rd
 
-  route-registrar.routes:
+  route_registrar.routes:
     description: |
       * Array of hashes determining which routes will be registered.
       * Each hash should have 'port', 'uris', and 'name' keys.
@@ -47,6 +47,6 @@ properties:
         port: 12346
         uris:
           - my-service.system-domain.com/debug
-  route-registrar.update_frequency_in_seconds:
+  route_registrar.update_frequency_in_seconds:
     default: 20
     description: The delay in seconds between routing updates

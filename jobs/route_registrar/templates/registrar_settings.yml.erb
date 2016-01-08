@@ -27,7 +27,7 @@ message_bus_servers:
 
 routes:
 <%
-  p("route-registrar.routes").each do |route_config|
+  p("route_registrar.routes").each do |route_config|
 %>
   - name: <%= route_config['name'] %>
     port: <%= route_config['port'] %>
@@ -41,6 +41,6 @@ routes:
 <%
   end
 %>
-update_frequency: <%= p('route-registrar.update_frequency_in_seconds') %>
+update_frequency: <%= p('route_registrar.update_frequency_in_seconds') %>
 
 host: <%= discover_external_ip %>

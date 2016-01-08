@@ -13,6 +13,7 @@ export GOROOT=$(readlink -nf /var/vcap/packages/golang1.5)
 export PATH=$GOROOT/bin:$PATH
 
 go install github.com/cloudfoundry-incubator/route-registrar
+go install github.com/cloudfoundry-incubator/route-registrar
 
 # clean up source artifacts
 rm -rf ${BOSH_INSTALL_TARGET}/src ${BOSH_INSTALL_TARGET}/pkg

@@ -41,7 +41,7 @@ meta:
     release: (( meta.consul_templates.consul_agent.release ))
   - name: nfs_mounter
     release: (( meta.release.name ))
-  - name: route-registrar
+  - name: route_registrar
     release: (( meta.release.name ))
 
   api_worker_templates:
@@ -103,7 +103,7 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: route-registrar
+  - name: route_registrar
     release: (( meta.release.name ))
 
   loggregator_templates:
@@ -129,7 +129,7 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: route-registrar
+  - name: route_registrar
     release: (( meta.release.name ))
 
   nats_templates:
@@ -184,7 +184,7 @@ meta:
     release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
-  - name: route-registrar
+  - name: route_registrar
     release: (( meta.release.name ))
   - name: statsd-injector
     release: (( meta.release.name ))
@@ -346,7 +346,7 @@ jobs:
             uaa: {}
       metron_agent:
         zone: z1
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.uaa_routes ))
       uaa:
         proxy:
@@ -366,7 +366,7 @@ jobs:
             uaa: {}
       metron_agent:
         zone: z2
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.uaa_routes ))
       uaa:
         proxy:
@@ -386,7 +386,7 @@ jobs:
           services: (( merge || meta.api_consul_services ))
       metron_agent:
         zone: z1
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.api_routes ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
@@ -404,7 +404,7 @@ jobs:
           services: (( merge || meta.api_consul_services ))
       metron_agent:
         zone: z2
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.api_routes ))
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
@@ -456,7 +456,7 @@ jobs:
     properties:
       metron_agent:
         zone: z1
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.hm9000_routes ))
     update: (( merge || empty_hash ))
 
@@ -469,7 +469,7 @@ jobs:
     properties:
       metron_agent:
         zone: z2
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.hm9000_routes ))
     update: (( merge || empty_hash ))
 
@@ -566,7 +566,7 @@ jobs:
         zone: z1
       metron_agent:
         zone: z1
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.loggregator_trafficcontroller_routes ))
     update: (( merge || empty_hash ))
 
@@ -581,7 +581,7 @@ jobs:
         zone: z2
       metron_agent:
         zone: z2
-      route-registrar:
+      route_registrar:
         routes: (( merge || meta.loggregator_trafficcontroller_routes ))
     update: (( merge || empty_hash ))
 

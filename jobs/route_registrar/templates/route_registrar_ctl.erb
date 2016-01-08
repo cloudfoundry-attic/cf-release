@@ -1,0 +1,38 @@
+#!/bin/bash
+set -eux
+
+JOB_NAME=route_registrar
+
+RUN_DIR=/var/vcap/sys/run/route_registrar
+LOG_DIR=/var/vcap/sys/log/route_registrar
+
+PIDFILE=${RUN_DIR}/route_registrar.pid
+CONFIG_FILE=/var/vcap/jobs/route_registrar/config/registrar_settings.yml
+
+source /var/vcap/packages/common/utils.sh
+
+export HOME=/var/vcap
+
+case $1 in
+
+start)
+
+  mkdir -p ${RUN_DIR}
+  mkdir -p ${LOG_DIR}
+
+  pid_guard ${PIDFILE} ${JOB_NAME}
+
+  /var/vcap/packages/route_registrar/bin/route-registrar \
+  -pidfile=${PIDFILE} \
+  -configPath=${CONFIG_FILE} \
+  >>${LOG_DIR}/route_registrar.stdout.log 2>>${LOG_DIR}/route_registrar.stderr.log&
+;;
+
+stop)
+  kill_and_wait ${PIDFILE}
+;;
+
+*)
+echo "Usage: route_registrar_ctl {start|stop}" ;;
+
+esac
