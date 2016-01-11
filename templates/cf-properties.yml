@@ -311,6 +311,7 @@ properties:
         secret: (( merge ))
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( "https://login." domain ))
+        autoapprove: true
       cf:
         override: true
         authorized-grant-types: implicit,password,refresh_token

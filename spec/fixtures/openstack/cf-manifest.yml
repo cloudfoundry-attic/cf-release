@@ -1196,6 +1196,7 @@ properties:
         redirect-uri: https://login.DOMAIN
         scope: openid,oauth.approvals
         secret: LOGIN_CLIENT_SECRET
+        autoapprove: true
       notifications:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
