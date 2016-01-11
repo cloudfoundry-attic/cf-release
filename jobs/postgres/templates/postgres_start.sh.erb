@@ -94,6 +94,12 @@ echo "Creating databases..."
     set -e
   <% end %>
 
+  echo "Enabling pgcrypto extension..."
+  $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
+                          -d "<%= database["name"] %>" \
+                          -c "CREATE EXTENSION IF NOT EXISTS pgcrypto"
+
+
   <% if p("databases.collect_statement_statistics") %>
     echo "Enabling pg_stat_statements extension..."
     $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
