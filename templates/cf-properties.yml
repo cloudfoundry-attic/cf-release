@@ -302,7 +302,6 @@ properties:
     spring_profiles: ~
 
     user: ~
-
     clients:
       <<: (( merge || nil ))
       login:
@@ -313,13 +312,13 @@ properties:
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: (( "https://login." domain ))
       cf:
-        id: cf
         override: true
         authorized-grant-types: implicit,password,refresh_token
         scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
         authorities: uaa.none
         access-token-validity: 600
         refresh-token-validity: 2592000
+        autoapprove: true
       notifications:
         secret: (( merge ))
         authorities: cloud_controller.admin,scim.read
