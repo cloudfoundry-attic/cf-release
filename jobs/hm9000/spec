@@ -60,3 +60,5 @@ properties:
   hm9000.sender_message_limit:
     description: "The maximum number of messages the sender should send per invocation."
     default: 60
+  hm9000.port:
+    description: "The port to serve API requests"

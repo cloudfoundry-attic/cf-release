@@ -92,7 +92,7 @@ meta:
 
   hm9000_routes:
   - name: hm9000
-    port: 5155
+    port: (( .properties.hm9000.port ))
     tags:
       component: HM9K
     uris:

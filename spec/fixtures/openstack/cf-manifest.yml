@@ -1040,6 +1040,7 @@ properties:
       username: NATS_USER
   ha_proxy: null
   hm9000:
+    port: 5155
     url: https://hm9000.DOMAIN
   logger_endpoint:
     port: 4443

@@ -2888,6 +2888,7 @@ properties:
       username: nats
   ha_proxy: null
   hm9000:
+    port: 5155
     url: http://hm9000.bosh-lite.com
   logger_endpoint: null
   loggregator:

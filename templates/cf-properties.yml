@@ -220,6 +220,7 @@ properties:
 
   hm9000:
     url: (( "https://hm9000." domain ))
+    port: 5155
 
   login:
     enabled: true
