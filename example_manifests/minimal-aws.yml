@@ -342,6 +342,7 @@ properties:
     require_ssl: false
   hm9000:
     url: https://hm9000.REPLACE_WITH_SYSTEM_DOMAIN
+    port: 5155
   logger_endpoint:
     port: 4443
   loggregator:
