@@ -40,7 +40,7 @@
 
     "api_server_url": "<%= p("hm9000.url", "https://hm9000.#{p("domain")}") %>",
     "api_server_address": "<%= discover_external_ip %>",
-    "api_server_port": 5155,
+    "api_server_port": <%= p("hm9000.port") %>,
     "api_server_username": "<%= p("cc.internal_api_user") %>",
     "api_server_password": "<%= p("cc.internal_api_password") %>",
 
