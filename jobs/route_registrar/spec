@@ -31,9 +31,11 @@ properties:
     description: |
       * Array of hashes determining which routes will be registered.
       * Each hash should have 'port', 'uris', and 'name' keys.
-      * Additionally, the 'tags' key is optional.
+      * Additionally, the 'tags' and 'healthcheck' keys are optional.
       * 'uris' is an array of URIs to register for the 'port'.
       * 'tags' are included in metrics that gorouter emits to support filtering.
+      * 'healthcheck' is a hash which should have 'name' and 'script_path'.
+      * 'healthcheck.timeout' is optional, and is measured in seconds.
     example: |
       - name: my-service
         port: 12345
@@ -43,6 +45,10 @@ properties:
         uris:
           - my-service.system-domain.com
           - *.my-service.system-domain.com
+        healthcheck:
+          name: my-service-healthcheck
+          script_path: /path/to/script
+          timeout: 5
       - name: my-debug-endpoint
         port: 12346
         uris:
