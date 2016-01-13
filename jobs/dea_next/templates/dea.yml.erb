@@ -86,3 +86,7 @@ placement_properties:
   cc_url.userinfo = "#{p("cc.internal_api_user")}:#{p("cc.internal_api_password")}"
 %>
 cc_url: <%= cc_url.to_s %>
+
+<% if_p("dea_next.post_setup_hook") do |hook| %>
+post_setup_hook: <%= hook %>
+<% end %>
