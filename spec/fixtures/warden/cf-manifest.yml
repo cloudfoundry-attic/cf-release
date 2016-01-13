@@ -2851,6 +2851,7 @@ properties:
     memory_mb: null
     memory_overcommit_factor: null
     mtu: null
+    post_setup_hook: null
     rlimit_core: 0
     staging_bandwidth_limit: null
     staging_disk_inode_limit: 200000

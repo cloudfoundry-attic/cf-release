@@ -716,6 +716,7 @@ properties:
     rlimit_core: (( merge || 0 ))
     allow_host_access: ~
     mtu: (( merge || nil ))
+    post_setup_hook: null
 
   loggregator:
     <<: (( merge ))
