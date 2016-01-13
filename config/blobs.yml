@@ -67,10 +67,6 @@ nginx/nginx-1.8.0.tar.gz:
   object_id: 0d18bbee-b79d-4fec-bba5-635821969fa0
   sha: 12bad312764feae50246685ab2e74512d1aa9b2f
   size: 832104
-mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
-  object_id: 31e64230-f356-4522-86d6-413a531996b9
-  sha: f6cc741b64084752478009505113a39192d89da9
-  size: 1376537
 ruby-2.2.4/bundler-1.10.6.gem:
   object_id: 74aa8a43-e1f6-43d5-b90d-e86a01b2e404
   sha: 55a37fccd1c0cb5542d468e35d3be46dd0667f73
@@ -143,6 +139,10 @@ ruby-2.1.8/yaml-0.1.6.tar.gz:
   object_id: 63b9ac28-38d6-4698-bd99-908f80e90405
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
+mariadb-connector-c-2.2.2/mariadb-connector-c-2.2.2-src.tar.gz:
+  object_id: 129712a4-b666-4726-bad3-ee4df0a9536f
+  sha: 68a7a9175bddc8717aefad3b82186af39d26f8d8
+  size: 519724
 python-buildpack/python_buildpack-cached-v1.5.4.zip:
   object_id: d41bc9e8-4daf-4681-bb96-71a91125c025
   sha: d77d7634925ecb6bb5130bf659dfb7a4f44a1054

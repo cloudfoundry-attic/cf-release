@@ -19,7 +19,7 @@ RUN \
     git \
     jq/trusty-backports \
     libcurl4-openssl-dev \
-    libmysqlclient-dev \
+    libmariadbclient-dev \
     libpq-dev \
     libreadline-dev \
     libsqlite3-dev \
