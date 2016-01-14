@@ -55,23 +55,20 @@ properties:
     default: 900
 
   name:
-    description: "'name' attribute in the /info and /v2/info endpoints"
+    description: "'name' attribute in the /v2/info endpoint"
     default: ""
   build:
-    description: "'build' attribute in the /info and /v2/info endpoints"
+    description: "'build' attribute in the /v2/info endpoint"
     default: ""
   version:
-    description: "'version' attribute in the /info and /v2/info endpoints"
+    description: "'version' attribute in the /v2/info endpoint"
     default: ""
   support_address:
-    description: "'support' attribute in the /info and /v2/info endpoints"
+    description: "'support' attribute in the /v2/info endpoint"
     default: ""
   description:
-    description: "'description' attribute in the /info and /v2/info endpoints"
+    description: "'description' attribute in the /v2/info endpoint"
     default: ""
-
-  cc.info.custom:
-    description: "Custom attribute keys and values for /v2/info endpoint"
 
   cc.external_port:
     description: "External Cloud Controller port"
