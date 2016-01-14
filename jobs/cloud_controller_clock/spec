@@ -351,10 +351,6 @@ properties:
     default: 60
     description: "For requests to service brokers, this is the HTTP (open and read) timeout setting."
 
-  cc.development_mode:
-    default: false
-    description: "Enable development features for monitoring and insight"
-
   cc.newrelic.license_key:
     default: ~
     description: "The api key for NewRelic"
