@@ -1,4 +1,4 @@
-Rootfs SHASUM: 96ff662b9e03ce460dca71ab547ad41e42fd0c62
+Rootfs SHASUM: 18c2136fc633b019819dddb56b0e6ed753ceb5eb
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -504,9 +504,9 @@ ii  netbase                            5.2                                 all  
 ii  netcat-openbsd                     1.105-7ubuntu1                      amd64        TCP/IP swiss army knife
 ii  ntpdate                            1:4.2.6.p5+dfsg-3ubuntu2.14.04.6    amd64        client for setting system time from NTP servers
 ii  ocaml-base-nox                     4.01.0-3ubuntu3                     amd64        Runtime system for OCaml bytecode executables (no X)
-ii  openssh-client                     1:6.6p1-2ubuntu2.3                  amd64        secure shell (SSH) client, for secure access to remote machines
-ii  openssh-server                     1:6.6p1-2ubuntu2.3                  amd64        secure shell (SSH) server, for secure access from remote machines
-ii  openssh-sftp-server                1:6.6p1-2ubuntu2.3                  amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
+ii  openssh-client                     1:6.6p1-2ubuntu2.4                  amd64        secure shell (SSH) client, for secure access to remote machines
+ii  openssh-server                     1:6.6p1-2ubuntu2.4                  amd64        secure shell (SSH) server, for secure access from remote machines
+ii  openssh-sftp-server                1:6.6p1-2ubuntu2.4                  amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
 ii  openssl                            1.0.1f-1ubuntu2.16                  amd64        Secure Sockets Layer toolkit - cryptographic utility
 ii  passwd                             1:4.1.5.1-1ubuntu9.1                amd64        change and administer password and group data
 ii  patch                              2.7.1-4ubuntu2.3                    amd64        Apply a diff file to an original

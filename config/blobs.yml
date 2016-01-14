@@ -147,11 +147,11 @@ python-buildpack/python_buildpack-cached-v1.5.4.zip:
   object_id: d41bc9e8-4daf-4681-bb96-71a91125c025
   sha: d77d7634925ecb6bb5130bf659dfb7a4f44a1054
   size: 266308206
-rootfs/cflinuxfs2-1.28.0.tar.gz:
-  object_id: c62c5ba2-e864-42af-b8b3-b0668d314fc9
-  sha: 96ff662b9e03ce460dca71ab547ad41e42fd0c62
-  size: 258441667
 golang/go1.5.3.linux-amd64.tar.gz:
   object_id: 646ac7b1-2de2-4371-8154-76a2ecd19862
   sha: c5377eca4837968d043b681f00a852a262f0f5f6
   size: 80147269
+rootfs/cflinuxfs2-1.29.0.tar.gz:
+  object_id: e23f42d7-4166-43e3-ba8c-99712048c1a9
+  sha: 18c2136fc633b019819dddb56b0e6ed753ceb5eb
+  size: 258430231
