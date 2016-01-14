@@ -45,6 +45,7 @@ properties:
       ca: ~
 
   doppler:
+    message_drain_buffer_size: ~
     zone: (( merge || nil ))
     maxRetainedLogMessages: 100
     debug: (( merge || false ))

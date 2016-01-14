@@ -2872,6 +2872,7 @@ properties:
       key: null
       port: null
     unmarshaller_count: 5
+    message_drain_buffer_size: null
   doppler_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   dropsonde:
