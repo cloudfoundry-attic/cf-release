@@ -8,6 +8,12 @@ fi
 
 set -u
 
+# Check for spiff installation
+which spiff > /dev/null 2>&1 || {
+  echo "Aborted. Please install spiff by following https://github.com/cloudfoundry-incubator/spiff#installation" 1>&2
+  exit 1
+}
+
 root_dir=$(cd "$(dirname "$0")/.." && pwd)
 
 templates="${root_dir}/templates"
