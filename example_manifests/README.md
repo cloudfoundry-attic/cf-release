@@ -138,14 +138,14 @@ Download a copy of the latest bosh stemcell.
 
 ```sh
 bosh public stemcells
-bosh download public stemcell light-bosh-stemcell-[GREATEST_NUMBER]-aws-xen-ubuntu-trusty-go_agent.tgz
+bosh download public stemcell light-bosh-stemcell-[GREATEST_NUMBER]-aws-xen-hvm-ubuntu-trusty-go_agent.tgz
 
 ```
 
 Upload the new stemcell.
 
 ```sh
-bosh upload stemcell light-bosh-stemcell-[GREATEST_NUMBER]-aws-xen-ubuntu-trusty-go_agent.tgz
+bosh upload stemcell light-bosh-stemcell-[GREATEST_NUMBER]-aws-xen-hvm-ubuntu-trusty-go_agent.tgz
 ```
 
 Replace REPLACE_WITH_BOSH_STEMCELL_VERSION in the example manifest with the BOSH stemcell version you downloaded above
