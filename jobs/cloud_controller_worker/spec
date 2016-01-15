@@ -62,7 +62,7 @@ properties:
     default: ""
   version:
     description: "'version' attribute in the /v2/info endpoint"
-    default: ""
+    default: 0
   support_address:
     description: "'support' attribute in the /v2/info endpoint"
     default: ""
