@@ -163,6 +163,8 @@ meta:
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
 
   nfs_templates:
   - name: debian_nfs_server
@@ -173,6 +175,8 @@ meta:
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
 
   postgres_templates:
   - name: postgres
@@ -345,6 +349,10 @@ jobs:
       - name: cf1
         static_ips: ~
     properties:
+      consul:
+        agent:
+          services:
+            blobstore: {}
       metron_agent:
         zone: z1
       route_registrar:
@@ -360,6 +368,10 @@ jobs:
       - name: cf1
         static_ips: ~
     properties:
+      consul:
+        agent:
+          services:
+            blobstore: {}
       metron_agent:
         zone: z1
       route_registrar:
