@@ -1,7 +1,7 @@
 set -e -x
 
-cd mariadb-connector-c-2.2.2
-tar zxvf mariadb-connector-c-2.2.2-src.tar.gz
+cd mysqlclient-5.5
+tar zxvf libmysqlclient-dev_5.5.44.tar.gz
 
 for x in bin include lib; do
   cp -a ${x} ${BOSH_INSTALL_TARGET}
