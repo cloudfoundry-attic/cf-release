@@ -27,7 +27,7 @@ server {
     }
 
     secure_link $arg_md5,$arg_expires;
-    secure_link_md5 "$secure_link_expires$uri secret";
+    secure_link_md5 "$secure_link_expires$uri <%= p("blobstore.secure_link.secret") %>";
 
     if ($secure_link = "") {
       return 403;

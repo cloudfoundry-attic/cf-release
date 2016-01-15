@@ -1,10 +1,6 @@
 meta:
   environment: cf-warden
 
-  fog_config:
-    provider: Local
-    local_root: /var/vcap/store
-
   stemcell: (( merge || .meta.default_stemcell ))
 
   default_stemcell:
@@ -22,6 +18,13 @@ properties:
   <<: (( merge ))
   ssl:
     skip_cert_verify: true
+
+  blobstore:
+    admin_users:
+      - username: blobstore-username
+        password: blobstore-password
+    secure_link:
+      secret: blobstore-secret
 
   domain: bosh-lite.com
 
@@ -52,14 +55,6 @@ properties:
     staging_upload_password: upload-password
     db_encryption_key: db-encryption-key
 
-    resource_pool:
-      fog_connection: (( meta.fog_config ))
-    packages:
-      fog_connection: (( meta.fog_config ))
-    droplets:
-      fog_connection: (( meta.fog_config ))
-    buildpacks:
-      fog_connection: (( meta.fog_config ))
     diego: (( merge || false ))
 
   uaa:
@@ -347,6 +342,12 @@ jobs:
     networks:
       - name: cf1
         static_ips: (( static_ips(1) ))
+
+  - name: blobstore_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(20) ))
 
   - name: nats_z2
     instances: 0

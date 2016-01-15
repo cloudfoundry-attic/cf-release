@@ -218,11 +218,50 @@ jobs:
   properties:
     metron_agent:
       zone: z1
+    route_registrar:
+      routes:
+      - name: blobstore
+        port: 80
+        tags:
+          component: blobstore
+        uris:
+        - blobstore.bosh-lite.com
   resource_pool: medium_z1
   templates:
   - name: debian_nfs_server
     release: cf
   - name: metron_agent
+    release: cf
+  - name: blobstore
+    release: cf
+  - name: route_registrar
+    release: cf
+  update: {}
+- instances: 1
+  name: blobstore_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 10.244.0.82
+  persistent_disk: 102400
+  properties:
+    metron_agent:
+      zone: z1
+    route_registrar:
+      routes:
+      - name: blobstore
+        port: 80
+        tags:
+          component: blobstore
+        uris:
+        - blobstore.bosh-lite.com
+  resource_pool: medium_z1
+  templates:
+  - name: metron_agent
+    release: cf
+  - name: blobstore
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 1
@@ -2498,6 +2537,13 @@ properties:
   app_domains:
   - bosh-lite.com
   app_ssh: null
+  blobstore:
+    admin_users:
+    - password: blobstore-password
+      username: blobstore-username
+    port: 80
+    secure_link:
+      secret: blobstore-secret
   cc:
     allow_app_ssh_access: true
     allowed_cors_domains: []
@@ -2511,11 +2557,15 @@ properties:
     broker_client_max_async_poll_duration_minutes: null
     broker_client_timeout_seconds: 70
     buildpacks:
+      blobstore_type: webdav
       buildpack_directory_key: bosh-lite.com-cc-buildpacks
       cdn: null
-      fog_connection:
-        local_root: /var/vcap/store
-        provider: Local
+      fog_connection: null
+      webdav_config:
+        endpoint: http://blobstore.bosh-lite.com
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     bulk_api_password: bulk-password
     client_max_body_size: 15M
     db_encryption_key: db-encryption-key
@@ -2553,12 +2603,16 @@ properties:
     directories: null
     disable_custom_buildpacks: false
     droplets:
+      blobstore_type: webdav
       cdn: null
       droplet_directory_key: bosh-lite.com-cc-droplets
-      fog_connection:
-        local_root: /var/vcap/store
-        provider: Local
+      fog_connection: null
       max_staged_droplets_stored: null
+      webdav_config:
+        endpoint: http://blobstore.bosh-lite.com
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     external_host: api
     external_port: 9022
     external_protocol: null
@@ -2618,12 +2672,16 @@ properties:
         record_sql: obfuscated
     packages:
       app_package_directory_key: bosh-lite.com-cc-packages
+      blobstore_type: webdav
       cdn: null
-      fog_connection:
-        local_root: /var/vcap/store
-        provider: Local
+      fog_connection: null
       max_package_size: 1073741824
       max_valid_packages_stored: null
+      webdav_config:
+        endpoint: http://blobstore.bosh-lite.com
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     quota_definitions:
       default:
         memory_limit: 10240
@@ -2631,11 +2689,15 @@ properties:
         total_routes: 1000
         total_services: 100
     resource_pool:
+      blobstore_type: webdav
       cdn: null
-      fog_connection:
-        local_root: /var/vcap/store
-        provider: Local
+      fog_connection: null
       resource_directory_key: bosh-lite.com-cc-resources
+      webdav_config:
+        endpoint: http://blobstore.bosh-lite.com
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     security_group_definitions:
     - name: public_networks
       rules:
@@ -2697,6 +2759,11 @@ properties:
         restart_if_consistently_above_mb: null
     user_buildpacks: []
     users_can_select_backend: true
+    webdav_config:
+      endpoint: http://blobstore.bosh-lite.com
+      password: blobstore-password
+      secret: blobstore-secret
+      username: blobstore-username
   ccdb:
     address: 10.244.0.30
     databases:
@@ -2905,18 +2972,18 @@ properties:
   disk_quota_enabled: false
   domain: bosh-lite.com
   doppler:
-    zone: null
     blacklisted_syslog_ranges: null
     debug: false
     enable_tls_transport: null
     maxRetainedLogMessages: 100
+    message_drain_buffer_size: null
     port: 4443
     tls_server:
       cert: null
       key: null
       port: null
     unmarshaller_count: 5
-    message_drain_buffer_size: null
+    zone: null
   doppler_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   dropsonde:
@@ -2986,9 +3053,9 @@ properties:
     uaa_base: null
     url: null
   metron_agent:
-    enable_buffer: null
     buffer_size: null
     deployment: cf-warden
+    enable_buffer: null
     preferred_protocol: null
     tls_client:
       cert: null
@@ -3015,6 +3082,7 @@ properties:
   router:
     cipher_suites: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA
     debug_addr: null
+    enable_routing_api: true
     enable_ssl: true
     extra_headers_to_log: null
     logrotate:
@@ -3022,11 +3090,10 @@ properties:
       rotate: 5
       size: 3M
     port: null
-    enable_routing_api: true
     requested_route_registration_interval_in_seconds: null
-    route_services_timeout: null
     route_services_secret: route-services-secret
     route_services_secret_decrypt_only: null
+    route_services_timeout: null
     secure_cookies: null
     ssl_cert: |+
       -----BEGIN CERTIFICATE-----
@@ -3097,8 +3164,8 @@ properties:
   system_domain: bosh-lite.com
   system_domain_organization: null
   traffic_controller:
-    zone: null
     outgoing_port: 8080
+    zone: null
   uaa:
     admin:
       client_secret: admin-secret
@@ -3129,13 +3196,14 @@ properties:
         authorized-grant-types: client_credentials
         secret: cc-routing-secret
       cf:
-        autoapprove: true
-        override: true
-        authorized-grant-types: implicit,password,refresh_token
-        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
-        authorities: uaa.none
         access-token-validity: 600
+        authorities: uaa.none
+        authorized-grant-types: implicit,password,refresh_token
+        autoapprove: true
+        id: cf
+        override: true
         refresh-token-validity: 2592000
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
@@ -3157,6 +3225,18 @@ properties:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: gorouter-secret
+      login:
+        authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
+        authorized-grant-types: authorization_code,client_credentials,refresh_token
+        autoapprove: true
+        override: true
+        redirect-uri: https://login.bosh-lite.com
+        scope: openid,oauth.approvals
+        secret: login-secret
+      notifications:
+        authorities: cloud_controller.admin,scim.read
+        authorized-grant-types: client_credentials
+        secret: notification-secret
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
@@ -3165,18 +3245,6 @@ properties:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: tcp-router-secret
-      login:
-        authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
-        authorized-grant-types: authorization_code,client_credentials,refresh_token
-        override: true
-        redirect-uri: https://login.bosh-lite.com
-        scope: openid,oauth.approvals
-        secret: login-secret
-        autoapprove: true
-      notifications:
-        authorities: cloud_controller.admin,scim.read
-        authorized-grant-types: client_credentials
-        secret: notification-secret
     database: null
     issuer: https://uaa.bosh-lite.com
     jwt:

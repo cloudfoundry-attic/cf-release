@@ -16,10 +16,18 @@ properties:
     description: TCP port blobstore server (ngnix) listens on
     default: 80
 
-  blobstore.cc.user:
-    description: Username Cloud Controller must use to access blobstore via HTTP Basic
-  blobstore.cc.password:
-    description: Password Cloud Controller must use to access blobstore via HTTP Basic
+  blobstore.admin_users:
+    description: |
+     List of Username and Password pairs that have admin access to the blobstore. Cloud Controller must use one of these to access the blobstore via HTTP Basic Auth.
+     Example:
+       users:
+       - username: user1
+         password: password1
+       - username: user2
+         password: password2
+
+  blobstore.secure_link.secret:
+    description: The secret used for verifying signed URLs
 
   blobstore.max_upload_size:
     description: Max allowed file size for upload

@@ -148,12 +148,30 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
 
+  blobstore_routes:
+  - name: blobstore
+    port: (( .properties.blobstore.port ))
+    tags:
+      component: blobstore
+    uris:
+    - (( "blobstore." .properties.domain ))
+
   blobstore_templates:
+  - name: metron_agent
+    release: (( meta.release.name ))
+  - name: blobstore
+    release: (( meta.release.name ))
+  - name: route_registrar
+    release: (( meta.release.name ))
+
+  nfs_templates:
   - name: debian_nfs_server
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: blobstore
+    release: (( meta.release.name ))
+  - name: route_registrar
     release: (( meta.release.name ))
 
   postgres_templates:
@@ -319,7 +337,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: nfs_z1
-    templates: (( merge || meta.blobstore_templates ))
+    templates: (( merge || meta.nfs_templates ))
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 102400
@@ -329,6 +347,8 @@ jobs:
     properties:
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.blobstore_routes ))
     update: (( merge || empty_hash ))
 
   - name: blobstore_z1
@@ -342,6 +362,8 @@ jobs:
     properties:
       metron_agent:
         zone: z1
+      route_registrar:
+        routes: (( merge || meta.blobstore_routes ))
     update: (( merge || empty_hash ))
 
   - name: postgres_z1

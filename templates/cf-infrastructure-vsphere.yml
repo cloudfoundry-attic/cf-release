@@ -128,6 +128,12 @@ jobs:
         static_ips: (( static_ips(1) ))
 
   - name: nfs_z1
+    instances: 0
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(2) ))
+
+  - name: blobstore_z1
     instances: 1
     networks:
       - name: cf1

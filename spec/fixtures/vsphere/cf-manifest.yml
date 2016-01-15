@@ -185,8 +185,36 @@ jobs:
   - name: metron_agent
     release: cf
   update: {}
-- instances: 1
+- instances: 0
   name: nfs_z1
+  networks:
+  - name: cf1
+    static_ips: []
+  persistent_disk: 102400
+  properties:
+    metron_agent:
+      zone: z1
+    route_registrar:
+      routes:
+      - name: blobstore
+        port: 80
+        tags:
+          component: blobstore
+        uris:
+        - blobstore.DOMAIN
+  resource_pool: medium_z1
+  templates:
+  - name: debian_nfs_server
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: blobstore
+    release: cf
+  - name: route_registrar
+    release: cf
+  update: {}
+- instances: 1
+  name: blobstore_z1
   networks:
   - name: cf1
     static_ips:
@@ -195,11 +223,21 @@ jobs:
   properties:
     metron_agent:
       zone: z1
+    route_registrar:
+      routes:
+      - name: blobstore
+        port: 80
+        tags:
+          component: blobstore
+        uris:
+        - blobstore.DOMAIN
   resource_pool: medium_z1
   templates:
-  - name: debian_nfs_server
-    release: cf
   - name: metron_agent
+    release: cf
+  - name: blobstore
+    release: cf
+  - name: route_registrar
     release: cf
   update: {}
 - instances: 1
@@ -314,7 +352,7 @@ jobs:
     metron_agent:
       zone: z1
     nfs_server:
-      address: 10.85.9.232
+      address: null
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -356,7 +394,7 @@ jobs:
     metron_agent:
       zone: z2
     nfs_server:
-      address: 10.85.9.232
+      address: null
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -409,7 +447,7 @@ jobs:
     metron_agent:
       zone: z1
     nfs_server:
-      address: 10.85.9.232
+      address: null
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -434,7 +472,7 @@ jobs:
     metron_agent:
       zone: z2
     nfs_server:
-      address: 10.85.9.232
+      address: null
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -815,6 +853,13 @@ properties:
   app_domains:
   - APP_DOMAIN
   app_ssh: null
+  blobstore:
+    admin_users:
+    - password: blobstore-password
+      username: blobstore-username
+    port: 80
+    secure_link:
+      secret: blobstore-secret
   cc:
     allow_app_ssh_access: true
     allowed_cors_domains: []
@@ -828,9 +873,15 @@ properties:
     broker_client_max_async_poll_duration_minutes: null
     broker_client_timeout_seconds: 70
     buildpacks:
+      blobstore_type: webdav
       buildpack_directory_key: DOMAIN-cc-buildpacks
       cdn: null
       fog_connection: null
+      webdav_config:
+        endpoint: http://blobstore.DOMAIN
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     bulk_api_password: BULK_API_PASSWORD
     client_max_body_size: 15M
     db_encryption_key: DB_ENCRYPTION_KEY
@@ -867,10 +918,16 @@ properties:
     directories: null
     disable_custom_buildpacks: false
     droplets:
+      blobstore_type: webdav
       cdn: null
       droplet_directory_key: DOMAIN-cc-droplets
       fog_connection: null
       max_staged_droplets_stored: null
+      webdav_config:
+        endpoint: http://blobstore.DOMAIN
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     external_host: api
     external_port: 9022
     external_protocol: null
@@ -930,10 +987,16 @@ properties:
         record_sql: obfuscated
     packages:
       app_package_directory_key: DOMAIN-cc-packages
+      blobstore_type: webdav
       cdn: null
       fog_connection: null
       max_package_size: 1073741824
       max_valid_packages_stored: null
+      webdav_config:
+        endpoint: http://blobstore.DOMAIN
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     quota_definitions:
       default:
         memory_limit: 10240
@@ -941,9 +1004,15 @@ properties:
         total_routes: 1000
         total_services: 100
     resource_pool:
+      blobstore_type: webdav
       cdn: null
       fog_connection: null
       resource_directory_key: DOMAIN-cc-resources
+      webdav_config:
+        endpoint: http://blobstore.DOMAIN
+        password: blobstore-password
+        secret: blobstore-secret
+        username: blobstore-username
     security_group_definitions:
     - name: public_networks
       rules:
@@ -999,6 +1068,11 @@ properties:
         restart_if_consistently_above_mb: null
     user_buildpacks: []
     users_can_select_backend: true
+    webdav_config:
+      endpoint: http://blobstore.DOMAIN
+      password: blobstore-password
+      secret: blobstore-secret
+      username: blobstore-username
   ccdb:
     address: 10.85.9.242
     databases:
@@ -1177,7 +1251,7 @@ properties:
     trace: false
     user: NATS_USER
   nfs_server:
-    address: 10.85.9.232
+    address: null
     allow_from_entries:
     - 10.85.9.0/24
     - 10.85.10.0/24

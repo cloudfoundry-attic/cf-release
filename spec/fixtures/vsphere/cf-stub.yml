@@ -52,6 +52,14 @@ properties:
     staging_upload_password: STAGING_UPLOAD_PASSWORD
     bulk_api_password: BULK_API_PASSWORD
     db_encryption_key: DB_ENCRYPTION_KEY
+
+  blobstore:
+    admin_users:
+      - username: blobstore-username
+        password: blobstore-password
+    secure_link:
+      secret: blobstore-secret
+
   consul:
     encrypt_keys:
       - CONSUL_ENCRYPT_KEY
