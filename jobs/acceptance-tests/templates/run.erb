@@ -35,6 +35,9 @@ EXITSTATUS=0
 nodes=<%= properties.acceptance_tests.nodes %>
 
 skipPackages="-skipPackage=helpers,"
+skipPackages+=<%= properties.acceptance_tests.include_diego_ssh ? "" : "ssh," %>
+skipPackages+=<%= properties.acceptance_tests.include_diego_docker ? "" : "docker," %>
+skipPackages+=<%= properties.acceptance_tests.include_backend_compatibility ? "" : "backend_compatibility," %>
 skipPackages+=<%= properties.acceptance_tests.include_v3 ? "" : "v3," %>
 skipPackages+=<%= properties.acceptance_tests.include_security_groups ? "" : "security_groups," %>
 skipPackages+=<%= properties.acceptance_tests.include_logging ? "" : "logging," %>
@@ -47,7 +50,8 @@ skipPackages+=<%= properties.acceptance_tests.include_routing_api ? "" : "routin
 
 <% skips = [] %>
 <% skips.push("SSO") unless properties.acceptance_tests.include_sso %>
-<% skips.push("NO_DIEGO_SUPPORT") if properties.acceptance_tests.skip_diego_unsupported_tests %>
+<% skips.push("NO_DIEGO_SUPPORT") if properties.acceptance_tests.backend == "dea" %>
+<% skips.push("NO_DEA_SUPPORT") if properties.acceptance_tests.backend == "diego" %>
 <% if_p("acceptance_tests.skip_regex") { skips.push properties.acceptance_tests.skip_regex } %>
 skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
 
