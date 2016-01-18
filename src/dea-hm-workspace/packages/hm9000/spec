@@ -1,0 +1,8 @@
+---
+name: hm9000
+dependencies:
+  - golang1.4
+files:
+  - hm9000/src/github.com/**/*
+excluded_files:
+  - hm9000/src/github.com/coreos/etcd/**/*

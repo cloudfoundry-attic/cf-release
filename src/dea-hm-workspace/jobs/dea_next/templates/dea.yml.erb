@@ -70,6 +70,7 @@ instance:
   min_cpu_share_limit: <%= p("dea_next.instance_min_cpu_share_limit") %>
   max_cpu_share_limit: <%= p("dea_next.instance_max_cpu_share_limit") %>
   disk_inode_limit: <%= p("dea_next.instance_disk_inode_limit") %>
+  nproc_limit: <%= p("dea_next.instance_nproc_limit") %>
 <% if_p("dea_next.instance_bandwidth_limit.rate", "dea_next.instance_bandwidth_limit.burst") do |rate, burst| %>
   bandwidth_limit:
     rate: <%= rate %>
@@ -86,7 +87,3 @@ placement_properties:
   cc_url.userinfo = "#{p("cc.internal_api_user")}:#{p("cc.internal_api_password")}"
 %>
 cc_url: <%= cc_url.to_s %>
-
-<% if_p("dea_next.post_setup_hook") do |hook| %>
-post_setup_hook: <%= hook %>
-<% end %>

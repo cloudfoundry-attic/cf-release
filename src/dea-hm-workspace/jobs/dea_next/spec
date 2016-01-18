@@ -7,6 +7,7 @@ templates:
   dea.yml.erb: config/dea.yml
   dea_ctl.erb: bin/dea_ctl
   deterministic_drain.rb: bin/drain
+  dns_health_check.erb: bin/dns_health_check
 
   warden.yml.erb: config/warden.yml
   warden_ctl.erb: bin/warden_ctl
@@ -89,6 +90,9 @@ properties:
   dea_next.instance_disk_inode_limit:
     description: Limit on inodes for an instance container
     default: 200000
+  dea_next.instance_nproc_limit:
+    description: Limit on nproc for an instance container
+    default: 512
   dea_next.staging_bandwidth_limit.rate:
     description: "Network bandwidth limit for staging tasks in bytes per second"
   dea_next.staging_bandwidth_limit.burst:
@@ -126,8 +130,6 @@ properties:
       - name: "cflinuxfs2"
         package_path: "/var/vcap/packages/rootfs_cflinuxfs2/rootfs"
     description: "An array of stacks, specifying the name and package path."
-  dea_next.post_setup_hook:
-    description: "DEPRECATED: a single line of bash to prepend to the start command"
   disk_quota_enabled:
     description: "disk quota must be disabled to use warden-inside-warden with the warden cpi"
     default: true
@@ -149,4 +151,3 @@ properties:
     description: "User name to access internal endpoints"
   cc.internal_api_password:
     description: "Password to access internal endpoints"
-

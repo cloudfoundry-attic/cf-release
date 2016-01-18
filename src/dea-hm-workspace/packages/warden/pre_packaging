@@ -7,6 +7,7 @@ cd ${BUILD_DIR}
 # this turns warden/warden/* into warden/*
 mv warden tmp_warden
 mv tmp_warden/warden .
+mv tmp_warden/em-posix-spawn .
 mv tmp_warden/warden-client .
 mv tmp_warden/warden-protocol .
 mv tmp_warden/LICENSE tmp_warden/NOTICE .

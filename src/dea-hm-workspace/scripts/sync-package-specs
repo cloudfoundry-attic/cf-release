@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -e
+
+# ensure gosub is installed (this will recompile it only if necessary)
+go get github.com/vito/gosub
+go install github.com/vito/gosub
+
+cf_dir=$1
+if [ "$cf_dir" != "" ]; then
+    cd $cf_dir
+else
+    cd ~/workspace/cf-release
+fi
+
+function sync_package() {
+  bosh_pkg=${1}
+
+  shift
+
+  (
+    set -e
+
+    cd packages/${bosh_pkg}
+
+    {
+      cat spec | grep -v '# gosub'
+
+      for package in $(gosub list "$@"); do
+        repo=$(echo ${2} | cut -f1-3 -d/)
+        if [ -d "../../src/${repo}/Godeps/_workspace/src/${package}" ]; then
+          package="${repo}/Godeps/_workspace/src/${package}"
+        fi
+        echo hm9000/src/${package} | sed -e 's/\(.*\)/  - \1\/*.go # gosub/g'
+      done
+    } > spec.new
+
+    mv spec.new spec
+  )
+}
+
+sync_package hm9000              -app  github.com/cloudfoundry/hm9000 & 
+
+wait
+
+git diff --name-only packages/*/spec
