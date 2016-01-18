@@ -451,6 +451,10 @@ jobs:
   networks:
   - name: cf1
   properties:
+    consul:
+      agent:
+        services:
+          hm9000: {}
     metron_agent:
       zone: z1
     route_registrar:
@@ -469,12 +473,18 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 1
   name: hm9000_z2
   networks:
   - name: cf2
   properties:
+    consul:
+      agent:
+        services:
+          hm9000: {}
     metron_agent:
       zone: z2
     route_registrar:
@@ -493,6 +503,8 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 1
   name: runner_z1
@@ -504,6 +516,15 @@ jobs:
       zone: z1
     metron_agent:
       zone: z1
+    consul:
+      agent:
+        services:
+          dea:
+            check:
+              name: dns_health_check
+              script: /var/vcap/jobs/dea_next/bin/dns_health_check
+              interval: 5m
+              status: passing
   resource_pool: runner_z1
   templates:
   - name: dea_next
@@ -511,6 +532,8 @@ jobs:
   - name: dea_logging_agent
     release: cf
   - name: metron_agent
+    release: cf
+  - name: consul_agent
     release: cf
   update:
     max_in_flight: 1
@@ -524,6 +547,15 @@ jobs:
       zone: z2
     metron_agent:
       zone: z2
+    consul:
+      agent:
+        services:
+          dea:
+            check:
+              name: dns_health_check
+              script: /var/vcap/jobs/dea_next/bin/dns_health_check
+              interval: 5m
+              status: passing
   resource_pool: runner_z2
   templates:
   - name: dea_next
@@ -531,6 +563,8 @@ jobs:
   - name: dea_logging_agent
     release: cf
   - name: metron_agent
+    release: cf
+  - name: consul_agent
     release: cf
   update:
     max_in_flight: 1
@@ -1414,4 +1448,3 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
-

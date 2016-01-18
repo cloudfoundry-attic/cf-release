@@ -73,6 +73,8 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
 
   etcd_templates:
   - name: etcd
@@ -105,6 +107,8 @@ meta:
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
 
   loggregator_templates:
   - name: doppler
@@ -454,6 +458,10 @@ jobs:
     networks:
       - name: cf1
     properties:
+      consul:
+        agent:
+          services:
+            hm9000: {}
       metron_agent:
         zone: z1
       route_registrar:
@@ -467,6 +475,10 @@ jobs:
     networks:
       - name: cf2
     properties:
+      consul:
+        agent:
+          services:
+            hm9000: {}
       metron_agent:
         zone: z2
       route_registrar:
@@ -485,6 +497,15 @@ jobs:
         zone: (( merge || "z1" ))
       metron_agent:
         zone: z1
+      consul:
+        agent:
+          services:
+            dea:
+              check:
+                name: dns_health_check
+                script: /var/vcap/jobs/dea_next/bin/dns_health_check
+                interval: 5m
+                status: passing
     update:
       max_in_flight: 1
 
@@ -500,6 +521,15 @@ jobs:
         zone: (( merge || "z2" ))
       metron_agent:
         zone: z2
+      consul:
+        agent:
+          services:
+            dea:
+              check:
+                name: dns_health_check
+                script: /var/vcap/jobs/dea_next/bin/dns_health_check
+                interval: 5m
+                status: passing
     update:
       max_in_flight: 1
 
