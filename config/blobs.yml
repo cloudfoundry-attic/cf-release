@@ -111,14 +111,6 @@ go-buildpack/go_buildpack-cached-v1.7.1.zip:
   object_id: 43e8d4de-4e92-4384-a27b-006deb701e90
   sha: 04315a6343c182db8d96645a70bb343ad5413ed4
   size: 359292037
-java-buildpack/java-buildpack-offline-v3.4.zip:
-  object_id: a3457152-674f-409c-b9f3-94a3f44c6f43
-  sha: 0184bd894e4e865ac2d7890fdcbce52bdf746852
-  size: 251542946
-java-buildpack/java-buildpack-v3.4.zip:
-  object_id: 457291d7-2e5c-4088-a7f2-3e31b3786220
-  sha: 76d93233198aae944b95d2c4a1e1349f1e281d5f
-  size: 159423
 php-buildpack/php_buildpack-cached-v4.3.2.zip:
   object_id: 467b434d-6026-44c7-99cc-6e5e366e57c2
   sha: fd8f8bedd3b9c14d6360c94c5d7aff5f7f840b9b
@@ -155,3 +147,11 @@ rootfs/cflinuxfs2-1.29.0.tar.gz:
   object_id: e23f42d7-4166-43e3-ba8c-99712048c1a9
   sha: 18c2136fc633b019819dddb56b0e6ed753ceb5eb
   size: 258430231
+java-buildpack/java-buildpack-offline-v3.5.1.zip:
+  object_id: c0c6f0c7-9c1e-4dc2-88fd-a84cf2658884
+  sha: e0abe71ad7d18b764c10db7eb4ecec41f508eb89
+  size: 251565811
+java-buildpack/java-buildpack-v3.5.1.zip:
+  object_id: 32793ab1-f285-4ffb-a6bf-00df46805581
+  sha: 6ba19d1f52495f92c0dd0a7dae7a7ad63f4a80c5
+  size: 159674
