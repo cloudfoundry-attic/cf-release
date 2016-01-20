@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/usr/bin/env bash -eu
 
 CF_RELEASE_DIR="${CF_RELEASE_DIR:-"$(cd $(dirname $0)/.. && pwd)"}"
 UAA_RELEASE_DIR="${UAA_RELEASE_DIR:-"$(cd "${CF_RELEASE_DIR}"/../uaa-release && pwd)"}"

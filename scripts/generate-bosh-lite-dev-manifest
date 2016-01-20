@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export BOSH_USE_BUNDLER=true
 
 SCRIPT_DIR=$(dirname $0)
-CF_RELEASE_DIR=${CF_RELEASE_DIR:-$SCRIPT_DIR/..}
+CF_RELEASE_DIR="${CF_RELEASE_DIR:-$SCRIPT_DIR/..}"
 
-if [[ ! -d "${CF_RELEASE_DIR}" ]]; then
+if [ ! -d "${CF_RELEASE_DIR}" ]; then
   echo "Cannot find cf-release at '${CF_RELEASE_DIR}'; override with \$CF_RELEASE_DIR variable"
   exit 1
 fi
