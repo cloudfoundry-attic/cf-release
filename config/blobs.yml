@@ -143,10 +143,6 @@ golang/go1.5.3.linux-amd64.tar.gz:
   object_id: 646ac7b1-2de2-4371-8154-76a2ecd19862
   sha: c5377eca4837968d043b681f00a852a262f0f5f6
   size: 80147269
-rootfs/cflinuxfs2-1.29.0.tar.gz:
-  object_id: e23f42d7-4166-43e3-ba8c-99712048c1a9
-  sha: 18c2136fc633b019819dddb56b0e6ed753ceb5eb
-  size: 258430231
 java-buildpack/java-buildpack-offline-v3.5.1.zip:
   object_id: c0c6f0c7-9c1e-4dc2-88fd-a84cf2658884
   sha: e0abe71ad7d18b764c10db7eb4ecec41f508eb89
@@ -155,3 +151,7 @@ java-buildpack/java-buildpack-v3.5.1.zip:
   object_id: 32793ab1-f285-4ffb-a6bf-00df46805581
   sha: 6ba19d1f52495f92c0dd0a7dae7a7ad63f4a80c5
   size: 159674
+rootfs/cflinuxfs2-1.30.0.tar.gz:
+  object_id: 2456a1e0-26d0-4268-badc-bc26ae65a4d7
+  sha: 36c8c204cb53289c8d8a5e1096438febe575c1af
+  size: 258444864
