@@ -241,8 +241,11 @@ properties:
   cc.resource_pool.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
     default: "webdav"
-  cc.resource_pool.webdav_config.endpoint:
-    description: "The location of the webdav server eg: http://blobstore.com"
+  cc.resource_pool.webdav_config.public_endpoint:
+    description: "The location of the webdav server eg: https://blobstore.com"
+  cc.resource_pool.webdav_config.private_endpoint:
+    description: "The location of the webdav server eg: http://blobstore.internal"
+    default: "http://blobstore.service.cf.internal"
   cc.resource_pool.webdav_config.username:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.resource_pool.webdav_config.password:
@@ -273,8 +276,11 @@ properties:
   cc.packages.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
     default: "webdav"
-  cc.packages.webdav_config.endpoint:
-    description: "The location of the webdav server eg: http://blobstore.com"
+  cc.packages.webdav_config.public_endpoint:
+    description: "The location of the webdav server eg: https://blobstore.com"
+  cc.packages.webdav_config.private_endpoint:
+    description: "The location of the webdav server eg: http://blobstore.internal"
+    default: "http://blobstore.service.cf.internal"
   cc.packages.webdav_config.username:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.packages.webdav_config.password:
@@ -305,8 +311,11 @@ properties:
   cc.droplets.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
     default: "webdav"
-  cc.droplets.webdav_config.endpoint:
-    description: "The location of the webdav server eg: http://blobstore.com"
+  cc.droplets.webdav_config.public_endpoint:
+    description: "The location of the webdav server eg: https://blobstore.com"
+  cc.droplets.webdav_config.private_endpoint:
+    description: "The location of the webdav server eg: http://blobstore.internal"
+    default: "http://blobstore.service.cf.internal"
   cc.droplets.webdav_config.username:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.droplets.webdav_config.password:
@@ -334,8 +343,11 @@ properties:
   cc.buildpacks.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
     default: "webdav"
-  cc.buildpacks.webdav_config.endpoint:
-    description: "The location of the webdav server eg: http://blobstore.com"
+  cc.buildpacks.webdav_config.public_endpoint:
+    description: "The location of the webdav server eg: https://blobstore.com"
+  cc.buildpacks.webdav_config.private_endpoint:
+    description: "The location of the webdav server eg: http://blobstore.internal"
+    default: "http://blobstore.service.cf.internal"
   cc.buildpacks.webdav_config.username:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.buildpacks.webdav_config.password:
