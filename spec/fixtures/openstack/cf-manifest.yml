@@ -184,6 +184,10 @@ jobs:
     static_ips: []
   persistent_disk: 102400
   properties:
+    consul:
+      agent:
+        services:
+          blobstore: {}
     metron_agent:
       zone: z1
     route_registrar:
@@ -204,6 +208,8 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+  - name: consul_agent
+    release: cf
   update: {}
 - instances: 1
   name: blobstore_z1
@@ -213,6 +219,10 @@ jobs:
     - 10.10.0.131
   persistent_disk: 102400
   properties:
+    consul:
+      agent:
+        services:
+          blobstore: {}
     metron_agent:
       zone: z1
     route_registrar:
@@ -230,6 +240,8 @@ jobs:
   - name: blobstore
     release: cf
   - name: route_registrar
+    release: cf
+  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
@@ -878,8 +890,9 @@ properties:
       cdn: null
       fog_connection: null
       webdav_config:
-        endpoint: http://blobstore.DOMAIN
         password: blobstore-password
+        public_endpoint: http://blobstore.DOMAIN
+        private_endpoint: http://blobstore.service.cf.internal
         secret: blobstore-secret
         username: blobstore-username
     bulk_api_password: BULK_API_PASSWORD
@@ -924,8 +937,9 @@ properties:
       fog_connection: null
       max_staged_droplets_stored: null
       webdav_config:
-        endpoint: http://blobstore.DOMAIN
         password: blobstore-password
+        public_endpoint: http://blobstore.DOMAIN
+        private_endpoint: http://blobstore.service.cf.internal
         secret: blobstore-secret
         username: blobstore-username
     external_host: api
@@ -993,8 +1007,9 @@ properties:
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
-        endpoint: http://blobstore.DOMAIN
         password: blobstore-password
+        public_endpoint: http://blobstore.DOMAIN
+        private_endpoint: http://blobstore.service.cf.internal
         secret: blobstore-secret
         username: blobstore-username
     quota_definitions:
@@ -1009,8 +1024,9 @@ properties:
       fog_connection: null
       resource_directory_key: DOMAIN-cc-resources
       webdav_config:
-        endpoint: http://blobstore.DOMAIN
         password: blobstore-password
+        public_endpoint: http://blobstore.DOMAIN
+        private_endpoint: http://blobstore.service.cf.internal
         secret: blobstore-secret
         username: blobstore-username
     security_group_definitions:
@@ -1069,8 +1085,9 @@ properties:
     user_buildpacks: []
     users_can_select_backend: true
     webdav_config:
-      endpoint: http://blobstore.DOMAIN
       password: blobstore-password
+      public_endpoint: http://blobstore.DOMAIN
+      private_endpoint: http://blobstore.service.cf.internal
       secret: blobstore-secret
       username: blobstore-username
   ccdb:
@@ -1300,7 +1317,6 @@ properties:
         authorities: uaa.none
         authorized-grant-types: implicit,password,refresh_token
         autoapprove: true
-        id: cf
         override: true
         refresh-token-validity: 2592000
         scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
