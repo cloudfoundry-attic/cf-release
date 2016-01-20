@@ -187,13 +187,6 @@ properties:
     default: default
     description: "Local to use a local (NFS) file system.  AWS to use AWS."
 
-  cc.default_fog_connection.provider:
-    description: "Local fog provider (should always be 'Local'), used if fog_connection hash is not provided in the manifest"
-    default: "Local"
-  cc.default_fog_connection.local_root:
-    description: "Local root when fog provider is not overridden (should be an NFS mount if using more than one cloud controller)"
-    default: "/var/vcap/nfs/shared"
-
   cc.resource_pool.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
     default: "webdav"
