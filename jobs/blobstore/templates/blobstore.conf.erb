@@ -6,7 +6,7 @@ server {
 # Internal server
 server {
   listen      <%= p("blobstore.port") %>;
-  server_name "blobstore.service.cf.internal";
+  server_name blobstore.service.cf.internal;
   root        /var/vcap/store/shared/;
 
   allow 10.0.0.0/8;
@@ -56,7 +56,7 @@ server {
 # Public server
 server {
   listen      <%= p("blobstore.port") %>;
-  server_name "blobstore.bosh-lite.com";
+  server_name blobstore.<%= p("domain") %>;
   root        /var/vcap/store/shared/;
 
   access_log /var/vcap/sys/log/blobstore/public_access.log;
