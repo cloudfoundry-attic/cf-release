@@ -1214,6 +1214,7 @@ properties:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     cc:
       client_secret: CC_CLIENT_SECRET
+    client: null
     clients:
       cc_routing:
         authorities: routing.router_groups.read
