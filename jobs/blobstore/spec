@@ -10,7 +10,7 @@ templates:
   write_users.erb:      config/write_users
 
 packages:
-- nginx
+- nginx_webdav
 
 properties:
   blobstore.port:

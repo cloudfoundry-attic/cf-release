@@ -26,7 +26,6 @@ server {
     client_body_temp_path /var/vcap/store/shared/tmp/uploads/;
 
     dav_methods DELETE PUT COPY;
-    dav_ext_methods PROPFIND OPTIONS;
     create_full_put_path on;
 
     alias /var/vcap/store/shared/;
