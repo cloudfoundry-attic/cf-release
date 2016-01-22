@@ -3100,6 +3100,7 @@ properties:
     catalina_opts: -Xmx192m -XX:MaxPermSize=128m
     cc:
       client_secret: cc-secret
+    client: null
     clients:
       app-direct:
         access-token-validity: 1209600
