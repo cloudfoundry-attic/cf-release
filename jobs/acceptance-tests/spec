@@ -73,6 +73,7 @@ properties:
     description: Flag to include the diego ssh suite
   acceptance_tests.backend:
     description: App tests push their apps using the backend specified. Route service tests require this flag to be set to diego in order to run.
+    default: ""
   acceptance_tests.include_backend_compatibility:
     default: false
     description: Flag to inlude whether we check DEA/Diego interoperability
