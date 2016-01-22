@@ -423,13 +423,13 @@ properties:
 
   cc.thresholds.api.alert_if_above_mb:
     description: "The cc will alert if memory remains above this threshold for 3 monit cycles"
-    default: 2250
+    default: 3500
   cc.thresholds.api.restart_if_consistently_above_mb:
     description: "The cc will restart if memory remains above this threshold for 15 monit cycles"
-    default: 2250
+    default: 3500
   cc.thresholds.api.restart_if_above_mb:
     description: "The cc will restart if memory remains above this threshold for 3 monit cycles"
-    default: 2450
+    default: 3750
 
   cc.instance_file_descriptor_limit:
     description: "The file descriptors made available to each app instance"
