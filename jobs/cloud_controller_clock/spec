@@ -10,6 +10,7 @@ templates:
   stacks.yml.erb: config/stacks.yml
   ruby_version.sh.erb: bin/ruby_version.sh
   console.erb: bin/console
+  blobstore_waiter.sh.erb: bin/blobstore_waiter.sh
 
 packages:
   - common
