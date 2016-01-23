@@ -3,6 +3,6 @@
    permissions_list << 'no_root_squash' if properties.nfs_server.no_root_squash
    permissions = permissions_list.join(',')
 
-   allow_from_entries = properties.nfs_server.allow_from_entries.compact.uniq
+   allow_from_entries = properties.nfs_server.allow_from_entries.flatten.compact.uniq
 %>
 /var/vcap/store <%= allow_from_entries.map { |allow_from| "#{allow_from}(#{permissions})" }.join(' ') %>
