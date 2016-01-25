@@ -7,8 +7,8 @@ meta:
   stemcell: (( merge || .meta.default_stemcell ))
 
   default_stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
-    version: latest
+    name: bosh-azure-hyperv-ubuntu-trusty-go_agent
+    version: '0000'
 
 
 properties:
@@ -20,8 +20,58 @@ properties:
 
   loggregator:
     blacklisted_syslog_ranges:
-    - start: 10.10.0.0
-      end: 10.10.255.255
+    - start: 10.0.0.0
+      end: 10.0.255.255
+
+  ccdb:
+    db_scheme: postgres
+    address: (( properties.databases.address ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: admin
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+
+
+  uaadb:
+    db_scheme: postgresql
+    address: (( properties.databases.address ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: uaaadmin
+        password: admin
+    databases:
+      - tag: uaa
+        name: uaadb
+        citext: true
+
+  databases:
+    db_scheme: postgres
+    address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: admin
+      - tag: admin
+        name: uaaadmin
+        password: admin
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+      - tag: uaa
+        name: uaadb
+        citext: true
+    collect_statement_statistics: null
+
+
+
 
   cc:
     resource_pool:
