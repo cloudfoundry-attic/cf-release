@@ -10,3 +10,18 @@ properties:
     disk_mb: 32768
     disk_overcommit_factor: 3
     kernel_network_tuning_enabled: false
+  uaa:
+    require_https: false
+    zones:
+      internal:
+        hostnames:
+        - uaa.service.cf.internal
+
+jobs:
+  - name: api_z1
+    properties:
+      consul:
+        agent:
+          services:
+            cloud_controller_ng: {}
+            routing-api: {}

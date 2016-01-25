@@ -1,6 +1,81 @@
 ---
 name: routing-api
+
 dependencies:
-- golang1.4
+  - golang1.4
+
 files:
-- github.com/cloudfoundry-incubator/routing-api/**/*
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/cmd/routing-api/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/cmd/routing-api/testrunner/*.go # gosub
+  - cf-routing-release/src/github.com/bmizerany/pat/*.go # gosub
+  - cf-routing-release/src/github.com/cactus/go-statsd-client/statsd/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/candiedyaml/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/cf-debug-server/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/cf-lager/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/cf_http/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/authentication/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/config/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/db/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/handlers/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/helpers/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/routing-api/metrics/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry-incubator/trace-logger/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/emitter/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/factories/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/instrumented_handler/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/instrumented_round_tripper/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/log_sender/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/logs/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/metric_sender/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/metricbatcher/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/metrics/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/dropsonde/runtime_stats/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/gosteno/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/gosteno/syslog/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/gunk/workpool/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/sonde-go/events/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/storeadapter/*.go # gosub
+  - cf-routing-release/src/github.com/cloudfoundry/storeadapter/etcdstoreadapter/*.go # gosub
+  - cf-routing-release/src/github.com/coreos/go-etcd/etcd/*.go # gosub
+  - cf-routing-release/src/github.com/dgrijalva/jwt-go/*.go # gosub
+  - cf-routing-release/src/github.com/gogo/protobuf/proto/*.go # gosub
+  - cf-routing-release/src/github.com/nu7hatch/gouuid/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/format/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/internal/assertion/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/internal/asyncassertion/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/internal/testingtsupport/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/matchers/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/matchers/support/goraph/bipartitegraph/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/matchers/support/goraph/edge/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/matchers/support/goraph/node/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/matchers/support/goraph/util/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/types/*.go # gosub
+  - cf-routing-release/src/github.com/pivotal-golang/lager/*.go # gosub
+  - cf-routing-release/src/github.com/tedsuo/ifrit/*.go # gosub
+  - cf-routing-release/src/github.com/tedsuo/ifrit/grouper/*.go # gosub
+  - cf-routing-release/src/github.com/tedsuo/ifrit/http_server/*.go # gosub
+  - cf-routing-release/src/github.com/tedsuo/ifrit/sigmon/*.go # gosub
+  - cf-routing-release/src/github.com/tedsuo/rata/*.go # gosub
+  - cf-routing-release/src/github.com/ugorji/go/codec/*.go # gosub
+  - cf-routing-release/src/github.com/vito/go-sse/sse/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/config/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/codelocation/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/containernode/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/failer/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/leafnodes/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/remote/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/spec/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/specrunner/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/suite/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/testingtproxy/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/internal/writer/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/reporters/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/reporters/stenographer/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/ginkgo/types/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/gbytes/*.go # gosub
+  - cf-routing-release/src/github.com/onsi/gomega/gexec/*.go # gosub
+  - cf-routing-release/src/github.com/tedsuo/ifrit/ginkgomon/*.go # gosub

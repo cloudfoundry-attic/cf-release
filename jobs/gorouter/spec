@@ -45,7 +45,7 @@ properties:
     default: false
   router.enable_routing_api:
     description: "Enable the GoRouter to receive routes from the Routing API"
-    default: true
+    default: false
   router.ssl_cert:
     description: "The public ssl cert for ssl termination"
     default: ""
@@ -59,15 +59,14 @@ properties:
     description:
       An ordered list of supported SSL cipher suites containing golang tls constants separated by colons
       The cipher suite will be chosen according to this order during SSL handshake
-      For example, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
-    default: ""
+    default: "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_RSA_WITH_AES_128_CBC_SHA:TLS_RSA_WITH_AES_256_CBC_SHA"
   router.route_services_secret:
     description: "Support for route services is disabled when no value is configured."
     default: ""
   router.route_services_secret_decrypt_only:
     description: "To rotate keys, add your new key here and deploy. Then swap this key with the value of route_services_secret and deploy again."
     default: ""
-  router.route_service_timeout:
+  router.route_services_timeout:
     description: "Expiry time of a route service signature in seconds"
     default: 60
   router.logrotate.freq_min:

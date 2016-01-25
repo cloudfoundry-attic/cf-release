@@ -1,6 +1,4 @@
-#!/bin/sh
-
-set -e
+#!/bin/bash -e
 
 PATH=/var/vcap/packages/haproxy/bin:$PATH
 LOG_DIR=/var/vcap/sys/log/haproxy
@@ -20,6 +18,8 @@ test -x "${DAEMON}"
 test -f "${CONFIG}"
 
 RETVAL=0
+
+source /var/vcap/packages/common/utils.sh
 
 ensure_dir() {
     DIR=$1

@@ -1,7 +1,7 @@
 ---
 name: collector
 dependencies:
-- ruby-2.1.7
+- ruby-2.1.8
 files:
 - collector/{Rakefile,Gemfile,Gemfile.lock}
 - collector/bin/collector

@@ -25,7 +25,6 @@ cd /var/vcap/packages/acceptance-tests/src/github.com/cloudfoundry/cf-acceptance
 echo '################################################################################################################'
 echo $(go version)
 echo CONFIG=$CONFIG
-cat $CONFIG
 env | sort
 echo '################################################################################################################'
 
@@ -43,6 +42,7 @@ skipPackages+=<%= properties.acceptance_tests.include_operator ? "" : "operator,
 skipPackages+=<%= properties.acceptance_tests.include_internet_dependent ? "" : "internet_dependent," %>
 skipPackages+=<%= properties.acceptance_tests.include_services ? "" : "services," %>
 skipPackages+=<%= properties.acceptance_tests.include_routing ? "" : "routing," %>
+skipPackages+=<%= properties.acceptance_tests.include_routing_api ? "" : "routing_api," %>
 [[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
 
 <% skips = [] %>

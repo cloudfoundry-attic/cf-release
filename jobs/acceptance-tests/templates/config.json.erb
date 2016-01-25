@@ -24,7 +24,7 @@
     :artifacts_directory => "/var/vcap/sys/log/acceptance_tests/",
     :syslog_drain_port => 1234,
     :syslog_ip_address => discover_external_ip,
-    :use_diego => properties.acceptance_tests.use_diego,
+    :backend => properties.acceptance_tests.backend,
     :system_domain => properties.acceptance_tests.system_domain,
     :client_secret => properties.acceptance_tests.client_secret,
     :include_route_services => properties.acceptance_tests.include_route_services,
