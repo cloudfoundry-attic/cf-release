@@ -1,1 +1,0 @@
-../../src/loggregator/manifest-templates/lamb-properties.rb

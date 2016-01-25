@@ -1,6 +1,19 @@
 ---
 name: route_registrar
 dependencies:
-- ruby-2.1.7
+- golang1.5
 files:
-- route_registrar/**/*
+  - github.com/cloudfoundry-incubator/route-registrar/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/config/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/healthchecker/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/healthchecker/fakes/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/registrar/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/apcera/nats/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/cloudfoundry-incubator/cf-lager/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/fraenkel/candiedyaml/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/imdario/mergo/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/nu7hatch/gouuid/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/pivotal-cf-experimental/service-config/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/pivotal-golang/lager/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/tedsuo/ifrit/*.go
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/nats-io/nats/**/*.go

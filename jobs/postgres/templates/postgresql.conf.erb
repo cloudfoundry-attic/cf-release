@@ -43,3 +43,10 @@ shared_preload_libraries = 'pg_stat_statements'
 track_activity_query_size = 4096
 pg_stat_statements.track = all
 <% end %>
+
+<% if_p("databases.additional_config") do |db_config| %>
+# Additional configuration
+<% db_config.each do |key, value| %>
+<%= key %> = <%= value %>
+<% end %>
+<% end %>

@@ -17,11 +17,6 @@ case $1 in
     chown -R vcap:vcap $RUN_DIR
     chown -R vcap:vcap $LOG_DIR
 
-    <% if p("dropsonde.enabled") %>
-    export DROPSONDE_ORIGIN=<%= name %>/<%= index %>
-    export DROPSONDE_DESTINATION=<%= p("metron_endpoint.host") %>:<%= p("metron_endpoint.dropsonde_port") %>
-    <% end %>
-
     echo $$ > $PIDFILE
 
     if running_in_container; then

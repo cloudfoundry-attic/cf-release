@@ -311,7 +311,7 @@ properties:
       rules:
       - {destination: 0.0.0.0/0, ports: '53', protocol: tcp}
       - {destination: 0.0.0.0/0, ports: '53', protocol: udp}
-    srv_api_uri: http://api.REPLACE_WITH_SYSTEM_DOMAIN
+    srv_api_uri: https://api.REPLACE_WITH_SYSTEM_DOMAIN
     staging_upload_password: PASSWORD
     staging_upload_user: staging_upload_user
   ccdb:
@@ -341,7 +341,8 @@ properties:
     peer_require_ssl: false
     require_ssl: false
   hm9000:
-    url: http://hm9000.REPLACE_WITH_SYSTEM_DOMAIN
+    url: https://hm9000.REPLACE_WITH_SYSTEM_DOMAIN
+    port: 5155
   logger_endpoint:
     port: 4443
   loggregator:
@@ -349,8 +350,6 @@ properties:
       machines: [10.0.16.104]
   loggregator_endpoint:
     shared_secret: PASSWORD
-  login:
-    protocol: http
   metron_agent:
     zone: z1
     deployment: minimal-aws
@@ -384,9 +383,16 @@ properties:
         secret: PASSWORD
         authorized-grant-types: client_credentials
       gorouter:
-        authorities: clients.read,clients.write,clients.admin,routing.routes.write,routing.routes.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        scope: openid,cloud_controller_service_permissions.read
+        secret: PASSWORD
+      tcp_emitter:
+        authorities: routing.routes.write,routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: PASSWORD
+      tcp_router:
+        authorities: routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
         secret: PASSWORD
       doppler:
         authorities: uaa.resource
@@ -394,14 +400,14 @@ properties:
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
-        redirect-uri: http://login.REPLACE_WITH_SYSTEM_DOMAIN
+        redirect-uri: https://login.REPLACE_WITH_SYSTEM_DOMAIN
         scope: openid,oauth.approvals
         secret: PASSWORD
       servicesmgmt:
         authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
         authorized-grant-types: authorization_code,client_credentials,password,implicit
         autoapprove: true
-        redirect-uri: http://servicesmgmt.REPLACE_WITH_SYSTEM_DOMAIN/auth/cloudfoundry/callback
+        redirect-uri: https://servicesmgmt.REPLACE_WITH_SYSTEM_DOMAIN/auth/cloudfoundry/callback
         scope: openid,cloud_controller.read,cloud_controller.write
         secret: PASSWORD
     jwt:
@@ -430,7 +436,8 @@ properties:
         spULZVNRxq7veq/fzwIDAQAB
         -----END PUBLIC KEY-----
 
-    no_ssl: true
-    url: http://uaa.REPLACE_WITH_SYSTEM_DOMAIN
+    ssl:
+      port: -1
+    url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN
 # code_snippet cf-minimal-aws end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

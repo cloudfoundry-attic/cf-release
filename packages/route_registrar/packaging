@@ -1,6 +1,19 @@
-set -e -x
+#!/usr/bin/env bash
 
-cp -a * ${BOSH_INSTALL_TARGET}
-cd ${BOSH_INSTALL_TARGET}/route_registrar
+set -eux
 
-/var/vcap/packages/ruby-2.1.7/bin/bundle install --local --deployment
+mkdir -p ${BOSH_INSTALL_TARGET}/src
+cp -a . ${BOSH_INSTALL_TARGET}/src
+
+export GOPATH=$BOSH_INSTALL_TARGET
+export REPO=$GOPATH/src/github.com/cloudfoundry-incubator/route-registrar
+export GOPATH=$GOPATH:$REPO/Godeps/_workspace
+
+export GOROOT=$(readlink -nf /var/vcap/packages/golang1.5)
+export PATH=$GOROOT/bin:$PATH
+
+go install github.com/cloudfoundry-incubator/route-registrar
+go install github.com/cloudfoundry-incubator/route-registrar
+
+# clean up source artifacts
+rm -rf ${BOSH_INSTALL_TARGET}/src ${BOSH_INSTALL_TARGET}/pkg

@@ -54,10 +54,10 @@ RUN \
   wget https://github.com/postmodern/ruby-install/archive/v0.4.1.tar.gz -P /tmp && \
   tar zxf /tmp/v0.4.1.tar.gz -C /tmp && \
   cd /tmp/ruby-install-0.4.1 && make install && \
-  ruby-install ruby 2.1.7 && \
-  ruby-install ruby 2.2.3 && \
-  rm -rf /usr/local/src/ruby-2.1.7 && \
-  rm -rf /usr/local/src/ruby-2.2.3 && \
+  ruby-install ruby 2.1.8 && \
+  ruby-install ruby 2.2.4 && \
+  rm -rf /usr/local/src/ruby-2.1.8 && \
+  rm -rf /usr/local/src/ruby-2.2.4 && \
   rm -rf /tmp/*
 
 RUN \
@@ -65,7 +65,7 @@ RUN \
   cd /tmp/chruby && git reset --hard 310bd34d1fcbb3365814c85018114123cef5a41f && \
   cd /tmp/chruby && ./scripts/setup.sh && \
   echo 'source /usr/local/share/chruby/chruby.sh' >> $HOME/.bashrc && \
-  echo 'chruby 2.2.3' >> $HOME/.bashrc && \
+  echo 'chruby 2.2.4' >> $HOME/.bashrc && \
   rm -rf /tmp/*
 
 RUN \
@@ -73,7 +73,7 @@ RUN \
   bash -l -c "pip install s3cmd" && \
   bash -l -c "gem update --system" && \
   bash -l -c "gem install bundler --no-rdoc --no-ri" && \
-  bash -l -c "gem install bosh_cli --version 1.3125.0 --no-rdoc --no-ri"
+  bash -l -c "gem install bosh_cli --version 1.3156.0 --no-rdoc --no-ri"
 
 ENV GOPATH $HOME/go
 ENV PATH $HOME/go/bin:/usr/local/go/bin:$PATH

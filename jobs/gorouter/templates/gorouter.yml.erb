@@ -42,13 +42,13 @@ prune_stale_droplets_interval: 30
 droplet_stale_threshold: 120
 publish_active_apps_interval: 0 # 0 means disabled
 
-<% if p("router.enable_routing_api") %>
 oauth:
   token_endpoint: http://uaa.service.cf.internal
   client_name: "gorouter"
   client_secret: <%= p("uaa.clients.gorouter.secret") %>
   port: <%= p("uaa.port") %>
 
+<% if p("router.enable_routing_api") %>
 routing_api:
   uri: http://routing-api.service.cf.internal
   port: <%= p("routing-api.port") %>
@@ -65,8 +65,11 @@ ssl_cert_path: /var/vcap/jobs/gorouter/config/cert.pem
 ssl_key_path: /var/vcap/jobs/gorouter/config/key.pem
 cipher_suites: <%= p("router.cipher_suites") %>
 
-route_service_timeout: <%= p("router.route_service_timeout") %>
+route_services_timeout: <%= p("router.route_services_timeout") %>
 route_services_secret: <%= p("router.route_services_secret") %>
 route_services_secret_decrypt_only: <%= p("router.route_services_secret_decrypt_only") %>
 
 extra_headers_to_log: <%= p("router.extra_headers_to_log") %>
+token_fetcher_max_retries: 3
+token_fetcher_retry_interval: 5
+token_fetcher_expiration_buffer_time: 30

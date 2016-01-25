@@ -2,7 +2,6 @@
 
 export BOSH_USE_BUNDLER=true
 
-BOSH_RELEASES_DIR=${BOSH_RELEASES_DIR:-~/workspace}
 SCRIPT_DIR=$(dirname $0)
 CF_RELEASE_DIR=${CF_RELEASE_DIR:-$SCRIPT_DIR/..}
 
@@ -12,6 +11,7 @@ if [[ ! -d "${CF_RELEASE_DIR}" ]]; then
 fi
 
 BOSH_STATUS=$(bosh status)
+DIRECTOR_UUID=$(bosh status --uuid)
 EXPECTED_DIRECTOR_NAME="Bosh Lite Director"
 
 if [[ "$(echo "$BOSH_STATUS" | grep Name)" != *"$EXPECTED_DIRECTOR_NAME"* ]]; then
@@ -21,20 +21,13 @@ fi
 
 mkdir -p "${CF_RELEASE_DIR}/bosh-lite/deployments"
 
-DIRECTOR_UUID=$(echo "$BOSH_STATUS" | grep UUID | awk '{print $2}')
-
-diego_stub=''
-if [[ -f "${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cf.yml" ]]; then
-  diego_stub="${BOSH_RELEASES_DIR}/diego-release/stubs-for-cf-release/enable_diego_ssh_in_cf.yml"
-fi
-
 "${CF_RELEASE_DIR}/scripts/generate_deployment_manifest" \
   warden \
   "${CF_RELEASE_DIR}/bosh-lite/stubs/dev-security-groups.yml" \
   "${CF_RELEASE_DIR}/bosh-lite/stubs/property_overrides.yml" \
   <(echo "director_uuid: ${DIRECTOR_UUID}") \
   "${CF_RELEASE_DIR}/templates/cf-minimal-dev.yml" \
-  ${diego_stub} \
+  "${CF_RELEASE_DIR}/bosh-lite/stubs/enable-diego-ssh.yml" \
   "$@" \
   > "${CF_RELEASE_DIR}/bosh-lite/deployments/cf.yml"
 

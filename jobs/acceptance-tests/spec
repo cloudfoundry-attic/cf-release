@@ -59,12 +59,17 @@ properties:
   acceptance_tests.include_routing:
     default: false
     description: Flag to include the routing test suite.
+  acceptance_tests.include_routing_api:
+    default: false
+    description: Flag to include the routing_api test suite.
   acceptance_tests.include_route_services:
     default: false
     description: Flag to include the route services tests. Diego must be deployed for these tests to pass.
-  acceptance_tests.use_diego:
+  acceptance_tests.include_diego_docker:
     default: false
-    description: App tests push their apps using diego if enabled. Route service tests require this flag to run.
+    description: Flag to include v3 API tests related to running Docker apps on Diego. Diego must be deployed and the CC API docker_diego feature flag must be enabled for these tests to pass.
+  acceptance_tests.backend:
+    description: App tests push their apps using the backend specified. Route service tests require this flag to be set to diego in order to run.
   acceptance_tests.use_http:
     default: false
     description: Flag for using HTTP when making api and application requests rather than the default HTTPS
