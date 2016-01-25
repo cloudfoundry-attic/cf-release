@@ -36,6 +36,8 @@ properties:
       * 'tags' are included in metrics that gorouter emits to support filtering.
       * 'healthcheck' is a hash which should have 'name' and 'script_path'.
       * 'healthcheck.timeout' is optional, and is measured in seconds.
+        The healthcheck timeout defaults to 0, which corresponds to a timeout
+        of infinite duration. Values less than zero are not permitted.
     example: |
       - name: my-service
         port: 12345
