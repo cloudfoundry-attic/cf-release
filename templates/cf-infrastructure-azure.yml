@@ -75,13 +75,9 @@ properties:
 
   cc:
     resource_pool:
-      fog_connection: (( meta.fog_config ))
     packages:
-      fog_connection: (( meta.fog_config ))
     droplets:
-      fog_connection: (( meta.fog_config ))
     buildpacks:
-      fog_connection: (( meta.fog_config ))
 
   uaa:
     catalina_opts: -Xmx768m -XX:MaxPermSize=256m
