@@ -25,9 +25,8 @@ shift
 if [ "$infrastructure" != "aws" ] && \
     [ "$infrastructure" != "openstack" ] && \
     [ "$infrastructure" != "warden" ] && \
-    [ "$infrastructure" != "azure" ] && \
     [ "$infrastructure" != "vsphere" ] ; then
-  echo "usage: ./scripts/generate_deployment_manifest <aws|azure|openstack|warden|vsphere> [stubs...]" 1>&2
+  echo "usage: ./scripts/generate_deployment_manifest <aws|openstack|warden|vsphere> [stubs...]" 1>&2
   exit 1
 fi
 
