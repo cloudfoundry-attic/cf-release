@@ -1,0 +1,236 @@
+meta:
+  zones:
+    z1: (( properties.template_only.aws.availability_zone ))
+    z2: (( properties.template_only.aws.availability_zone2 ))
+
+  fog_config:
+    provider: AWS
+    aws_access_key_id: (( properties.template_only.aws.access_key_id ))
+    aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
+    region: us-east-1
+
+  stemcell: (( merge || .meta.default_stemcell ))
+
+  default_stemcell:
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+    version: latest
+
+
+properties:
+  <<: (( merge ))
+  template_only: (( merge ))
+
+  logger_endpoint:
+    port: 4443
+
+  loggregator:
+    blacklisted_syslog_ranges:
+    - start: 10.10.0.0
+      end: 10.10.255.255
+
+  cc:
+    resource_pool:
+      fog_connection: (( meta.fog_config ))
+    packages:
+      fog_connection: (( meta.fog_config ))
+    droplets:
+      fog_connection: (( meta.fog_config ))
+    buildpacks:
+      fog_connection: (( meta.fog_config ))
+
+  uaa:
+    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+
+  dea_next:
+    deny_networks:
+      - 169.254.0.0/16 # AWS Status
+      - 10.10.0.0/16
+    allow_networks: (( merge || ["10.10.0.2/32"] )) # Amazon DNS
+
+compilation:
+  cloud_properties:
+    instance_type: c3.large
+    availability_zone: (( meta.zones.z1 ))
+
+
+networks: (( merge ))
+
+
+resource_pools:
+  - name: small_z1
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: small_z2
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: medium_z1
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: medium_z2
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: large_z1
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 65_536
+        type: gp2
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: large_z2
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 65_536
+        type: gp2
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: runner_z1
+    cloud_properties:
+      instance_type: m3.large
+      ephemeral_disk:
+        size: 102_400
+        type: gp2
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: runner_z2
+    cloud_properties:
+      instance_type: m3.large
+      ephemeral_disk:
+        size: 102_400
+        type: gp2
+      availability_zone: (( meta.zones.z2 ))
+
+  - name: router_z1
+    cloud_properties:
+      instance_type: c3.large
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( meta.zones.z1 ))
+      elbs: (( merge || ["cfrouter"] ))
+
+  - name: router_z2
+    cloud_properties:
+      instance_type: c3.large
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( meta.zones.z2 ))
+      elbs: (( merge || ["cfrouter"] ))
+
+  - name: small_errand
+    cloud_properties:
+      instance_type: m3.medium
+      ephemeral_disk:
+        size: 10_240
+        type: gp2
+      availability_zone: (( meta.zones.z1 ))
+
+  - name: xlarge_errand
+    cloud_properties:
+      instance_type: c3.xlarge
+      availability_zone: (( meta.zones.z1 ))
+
+# set up static IPs
+jobs:
+  - name: nats_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(1) ))
+
+  - name: nats_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(1) ))
+
+  - name: router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+
+  - name: router_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
+
+  - name: loggregator_z1
+    instances: 0
+    networks:
+      - name: cf1
+
+  - name: loggregator_z2
+    instances: 0
+    networks:
+      - name: cf2
+
+  - name: doppler_z1
+    instances: 1
+    networks:
+      - name: cf1
+
+  - name: doppler_z2
+    instances: 1
+    networks:
+      - name: cf2
+
+  - name: loggregator_trafficcontroller_z1
+    instances: 1
+    networks:
+      - name: cf1
+
+  - name: loggregator_trafficcontroller_z2
+    instances: 1
+    networks:
+      - name: cf2
+
+  - name: consul_z1
+    instances: 2
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(27, 28, 29) ))
+
+  - name: consul_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(27, 28, 29) ))
+
+  - name: etcd_z1
+    instances: 2
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(10, 25) ))
+
+  - name: etcd_z2
+    instances: 1
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(9) ))
+
+  - name: smoke_tests
+    instances: 1
