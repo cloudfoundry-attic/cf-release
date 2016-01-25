@@ -1,13 +1,8 @@
 meta:
   zones:
-    z1: (( properties.template_only.aws.availability_zone ))
-    z2: (( properties.template_only.aws.availability_zone2 ))
-
-  fog_config:
-    provider: AWS
-    aws_access_key_id: (( properties.template_only.aws.access_key_id ))
-    aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
-    region: us-east-1
+# Azure uses availability sets not zones
+#    z1: (( properties.template_only.aws.availability_zone ))
+#    z2: (( properties.template_only.aws.availability_zone2 ))
 
   stemcell: (( merge || .meta.default_stemcell ))
 
