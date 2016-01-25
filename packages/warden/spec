@@ -1,0 +1,13 @@
+---
+name: warden
+dependencies:
+- ruby-2.1.7
+files:
+- warden/warden/{bin,config,lib,root,src}/**/*
+- warden/warden/Gemfile
+- warden/warden/Gemfile.lock
+- warden/warden/Rakefile
+- warden/warden-client/warden-client.gemspec
+- warden/warden-client/lib/**/*
+- warden/warden-protocol/warden-protocol.gemspec
+- warden/warden-protocol/lib/**/*

@@ -29,7 +29,7 @@ packages:
   - nginx_newrelic_plugin
   - libpq
   - mysqlclient-5.5
-  - ruby-2.2.4
+  - ruby-2.2.3
   - buildpack_java
   - buildpack_java_offline
   - buildpack_ruby
@@ -45,6 +45,21 @@ properties:
     description: "specifies that the job is allowed to skip ssl cert verification"
     default: false
 
+  name:
+    default: "vcap"
+    description:
+  build:
+    default: "2222"
+    description:
+  version:
+    default: "2"
+    description:
+  support_address:
+    default:
+    description:
+  description:
+    default: "Cloud Foundry sponsored by Pivotal"
+    description:
   domain:
     description: "domain where cloud_controller will listen (api.domain) often the same as the system domain"
   system_domain:
@@ -83,25 +98,6 @@ properties:
     description: "Timeout for requests in seconds."
     default: 900
 
-  name:
-    description: "'name' attribute in the /v2/info endpoint"
-    default: ""
-  build:
-    description: "'build' attribute in the /v2/info endpoint"
-    default: ""
-  version:
-    description: "'version' attribute in the /v2/info endpoint"
-    default: 0
-  support_address:
-    description: "'support' attribute in the /v2/info endpoint"
-    default: ""
-  description:
-    description: "'description' attribute in the /v2/info endpoint"
-    default: ""
-
-  cc.info.custom:
-    description: "Custom attribute keys and values for /v2/info endpoint"
-
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022
@@ -130,15 +126,22 @@ properties:
   cc.app_usage_events.cutoff_age_in_days:
     description: "How old an app usage event should stay in cloud controller database before being cleaned up"
     default: 31
-  cc.service_usage_events.cutoff_age_in_days:
-    description: "How old a service usage event should stay in cloud controller database before being cleaned up"
-    default: 31
   cc.audit_events.cutoff_age_in_days:
     description: "How old an audit event should stay in cloud controller database before being cleaned up"
     default: 31
   cc.failed_jobs.cutoff_age_in_days:
     description: "How old a failed job should stay in cloud controller database before being cleaned up"
     default: 31
+  cc.info.name:
+    description: "name attribute in the /info endpoint"
+  cc.info.build:
+    description: "build attribute in the /info endpoint"
+  cc.info.version:
+    description: "version attribute in the /info endpoint"
+  cc.info.description:
+    description: "free form description for attribute in the /info endpoint"
+  cc.info.custom:
+    description: "Custom values for /v2/info endpoint"
 
   cc.directories.tmpdir:
     default: "/var/vcap/data/cloud_controller_ng/tmp"
@@ -284,7 +287,7 @@ properties:
     description: "Directory (bucket) used store droplets.  It does not have be pre-created."
     default: "cc-droplets"
   cc.droplets.max_staged_droplets_stored:
-    description: "Number of recent, staged droplets stored per app (not including current droplet)"
+    description: "Number of recent, staged droplets stored per app (not including current droplet)" 
     default: 5
   cc.droplets.fog_connection:
     description: "Fog connection hash"
@@ -333,11 +336,11 @@ properties:
 
   uaa.cc.token_secret:
     description:
+  uaa.no_ssl:
+    description: "when true, uaa uses http, otherwise it uses https"
+    default: false
   uaa.url:
     description:
-  login.protocol:
-    description: "http or https"
-    default: "https"
   login.url:
     description:
   hm9000.url:
@@ -463,7 +466,7 @@ properties:
     description: "The nginx error log destination. This can be used to route error logs to a file, syslog, or a memory buffer."
     default: "/var/vcap/sys/log/nginx_cc/nginx.error.log"
   cc.nginx_error_log_level:
-    description: "The lowest severity nginx log level to capture in the error log."
+    descritpion: "The lowest severity nginx log level to capture in the error log."
     default: error
 
   cc.jobs.local.number_of_workers:
@@ -555,7 +558,3 @@ properties:
   cc.placement_top_stager_percentage:
     description: "The percentage of top stagers considered when choosing a stager"
     default: 10
-
-  router.route_services_secret:
-    description: "Support for route services is disabled when no value is configured."
-    default: ""

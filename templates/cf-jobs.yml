@@ -2,6 +2,8 @@ empty_hash: {}
 
 networks: (( merge ))
 
+lamb_meta: (( merge ))
+
 meta:
   environment: ~
 
@@ -27,16 +29,15 @@ meta:
     uris:
     - (( "api." .properties.domain ))
 
-  api_consul_services:
-    cloud_controller_ng: {}
-
   api_templates:
   - name: cloud_controller_ng
+    release: (( meta.release.name ))
+  - name: routing-api
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: statsd-injector
-    release: (( meta.release.name ))
+    release: (( lamb_meta.release.name ))
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
   - name: nfs_mounter
@@ -73,8 +74,6 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
 
   etcd_templates:
   - name: etcd
@@ -94,7 +93,7 @@ meta:
 
   hm9000_routes:
   - name: hm9000
-    port: (( .properties.hm9000.port ))
+    port: 5155
     tags:
       component: HM9K
     uris:
@@ -102,34 +101,6 @@ meta:
 
   hm9000_templates:
   - name: hm9000
-    release: (( meta.release.name ))
-  - name: metron_agent
-    release: (( meta.release.name ))
-  - name: route_registrar
-    release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
-
-  loggregator_templates:
-  - name: doppler
-    release: (( meta.release.name ))
-  - name: syslog_drain_binder
-    release: (( meta.release.name ))
-  - name: metron_agent
-    release: (( meta.release.name ))
-
-  loggregator_trafficcontroller_routes:
-  - name: doppler
-    port: (( .properties.loggregator.outgoing_dropsonde_port ))
-    uris:
-    - (( "doppler." .properties.domain ))
-  - name: loggregator
-    port: (( .properties.traffic_controller.outgoing_port ))
-    uris:
-    - (( "loggregator." .properties.domain ))
-
-  loggregator_trafficcontroller_templates:
-  - name: loggregator_trafficcontroller
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
@@ -387,7 +358,9 @@ jobs:
     properties:
       consul:
         agent:
-          services: (( merge || meta.api_consul_services ))
+          services:
+            cloud_controller_ng: {}
+            routing-api: {}
       metron_agent:
         zone: z1
       route_registrar:
@@ -405,7 +378,9 @@ jobs:
     properties:
       consul:
         agent:
-          services: (( merge || meta.api_consul_services ))
+          services:
+            cloud_controller_ng: {}
+            routing-api: {}
       metron_agent:
         zone: z2
       route_registrar:
@@ -458,10 +433,6 @@ jobs:
     networks:
       - name: cf1
     properties:
-      consul:
-        agent:
-          services:
-            hm9000: {}
       metron_agent:
         zone: z1
       route_registrar:
@@ -475,10 +446,6 @@ jobs:
     networks:
       - name: cf2
     properties:
-      consul:
-        agent:
-          services:
-            hm9000: {}
       metron_agent:
         zone: z2
       route_registrar:
@@ -497,15 +464,6 @@ jobs:
         zone: (( merge || "z1" ))
       metron_agent:
         zone: z1
-      consul:
-        agent:
-          services:
-            dea:
-              check:
-                name: dns_health_check
-                script: /var/vcap/jobs/dea_next/bin/dns_health_check
-                interval: 5m
-                status: passing
     update:
       max_in_flight: 1
 
@@ -521,98 +479,67 @@ jobs:
         zone: (( merge || "z2" ))
       metron_agent:
         zone: z2
-      consul:
-        agent:
-          services:
-            dea:
-              check:
-                name: dns_health_check
-                script: /var/vcap/jobs/dea_next/bin/dns_health_check
-                interval: 5m
-                status: passing
     update:
       max_in_flight: 1
 
   - name: loggregator_z1
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || lamb_meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z1
     networks:
       - name: cf1
     properties:
-      doppler:
-        zone: z1
-      metron_agent:
-        zone: z1
+      <<: (( merge ))
     update: (( merge || empty_hash ))
 
   - name: loggregator_z2
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || lamb_meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z2
     networks:
       - name: cf2
     properties:
-      doppler:
-        zone: z2
-      metron_agent:
-        zone: z2
+      <<: (( merge ))
     update: (( merge || empty_hash ))
 
   - name: doppler_z1
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || lamb_meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z1
     networks:
       - name: cf1
     properties:
-      doppler:
-        zone: z1
-      metron_agent:
-        zone: z1
+      <<: (( merge ))
     update: (( merge || empty_hash ))
 
   - name: doppler_z2
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || lamb_meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z2
     networks:
       - name: cf2
     properties:
-      doppler:
-        zone: z2
-      metron_agent:
-        zone: z2
+      <<: (( merge ))
     update: (( merge || empty_hash ))
 
   - name: loggregator_trafficcontroller_z1
-    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
+    templates: (( merge || lamb_meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z1
     networks:
       - name: cf1
     properties:
-      traffic_controller:
-        zone: z1
-      metron_agent:
-        zone: z1
-      route_registrar:
-        routes: (( merge || meta.loggregator_trafficcontroller_routes ))
+      <<: (( merge ))
     update: (( merge || empty_hash ))
 
   - name: loggregator_trafficcontroller_z2
-    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
+    templates: (( merge || lamb_meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z2
     networks:
       - name: cf2
     properties:
-      traffic_controller:
-        zone: z2
-      metron_agent:
-        zone: z2
-      route_registrar:
-        routes: (( merge || meta.loggregator_trafficcontroller_routes ))
+      <<: (( merge ))
     update: (( merge || empty_hash ))
 
   - name: router_z1
@@ -705,6 +632,7 @@ properties:
   nats:
     user: (( merge ))
     password: (( merge ))
+    address: (( merge || jobs.nats_z1.networks.cf1.static_ips.[0] ))
     port: 4222
     machines: (( merge || jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
     debug: false
@@ -726,8 +654,6 @@ properties:
   dea_next:
     memory_overcommit_factor: null
     disk_overcommit_factor: null
-    instance_bandwidth_limit: (( merge || nil ))
-    staging_bandwidth_limit: (( merge || nil ))
     memory_mb: (( merge || nil ))
     disk_mb: (( merge || nil ))
     staging_disk_inode_limit: 200000
@@ -746,7 +672,6 @@ properties:
     rlimit_core: (( merge || 0 ))
     allow_host_access: ~
     mtu: (( merge || nil ))
-    post_setup_hook: null
 
   loggregator:
     <<: (( merge ))
@@ -791,11 +716,10 @@ properties:
     secure_cookies: (( merge || nil ))
     route_services_secret: (( merge || nil ))
     route_services_secret_decrypt_only: (( merge || nil ))
-    route_services_timeout: (( merge || nil ))
+    route_service_timeout: (( merge || nil ))
     logrotate: (( merge || nil ))
     extra_headers_to_log: (( merge || nil ))
     debug_addr: (( merge || nil ))
-    enable_routing_api: (( merge || nil ))
 
   syslog_daemon_config: ~
 

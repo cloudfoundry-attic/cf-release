@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require "yaml"
+
+$:.unshift(File.expand_path("../../lib", __FILE__))
+
+require "route_registrar"
+require "steno"
+require "securerandom"
+
+if ARGV.empty?
+  puts "Usage: route-registrar PATH_TO_CONFIG_FILE"
+  exit
+end
+
+config = YAML.load_file(ARGV.first)
+
+Steno.init(Steno::Config.from_hash(config["logging"]))
+logger = Steno.logger("route-registrar")
+logger.debug("Config #{config.inspect}")
+
+EM.run do
+  begin
+    route_registrar = RouteRegistrar.new(config)
+
+    route_registrar.register_with_router
+
+  rescue Exception => e
+    logger.error(e)
+    raise e
+  end
+end

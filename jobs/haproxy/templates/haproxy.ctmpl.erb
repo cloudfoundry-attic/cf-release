@@ -5,21 +5,14 @@ global
     group vcap
     maxconn 64000
     spread-checks 4
-    tune.bufsize <%= p("ha_proxy.buffer_size_bytes") %>
-    <% if p("ha_proxy.enable_stats_socket") %>
-    stats socket /var/vcap/sys/run/haproxy/stats
-    <% end %>
 
 defaults
     log global
     timeout connect 30000ms
     maxconn 64000
     <% if p("request_timeout_in_seconds").to_i > 0 %>
-    timeout client <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
-    timeout server <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
-    <% end %>
-    <% if p("ha_proxy.dontlognull") %>
-    option dontlognull
+        timeout client <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
+        timeout server <%= p("request_timeout_in_seconds").to_i * 1000 %>ms
     <% end %>
 
 <% unless p("ha_proxy.disable_http") %>
@@ -38,6 +31,7 @@ frontend https-in
     bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3 ciphers <%= p("ha_proxy.ssl_ciphers") %>
     option httplog
     option forwardfor
+    option http-server-close
     reqadd X-Forwarded-Proto:\ https
     default_backend http-routers
 

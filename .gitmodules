@@ -4,12 +4,18 @@
 [submodule "src/dea"]
   path = src/dea
   url = https://github.com/cloudfoundry/dea.git
+[submodule "src/dea_next"]
+  path = src/dea_next
+  url = https://github.com/cloudfoundry/dea_ng.git
 [submodule "src/github.com/cloudfoundry/gorouter"]
 	path = src/github.com/cloudfoundry/gorouter
 	url = https://github.com/cloudfoundry/gorouter
 [submodule "src/stager"]
   path = src/stager
   url = https://github.com/cloudfoundry/stager.git
+[submodule "src/warden"]
+  path = src/warden
+  url = https://github.com/cloudfoundry/warden.git
 [submodule "src/cloud_controller"]
   path = src/cloud_controller
   url = https://github.com/cloudfoundry/cloud_controller.git
@@ -46,6 +52,9 @@
 [submodule "src/narc/src/github.com/nu7hatch/gouuid"]
 	path = src/narc/src/github.com/nu7hatch/gouuid
 	url = https://github.com/nu7hatch/gouuid.git
+[submodule "src/hm9000"]
+	path = src/hm9000
+	url = https://github.com/cloudfoundry/hm-workspace.git
 [submodule "src/gnatsd"]
 	path = src/gnatsd
 	url = https://github.com/apcera/gnatsd.git
@@ -55,6 +64,9 @@
 [submodule "packages/ruby"]
 	path = packages/ruby
 	url = https://github.com/cloudfoundry/ruby-package
+[submodule "src/uaa"]
+	path = src/uaa
+	url = https://github.com/cloudfoundry/uaa.git
 [submodule "src/buildpacks/ruby"]
 	path = src/buildpacks/ruby
 	url = https://github.com/cloudfoundry/heroku-buildpack-ruby.git
@@ -85,12 +97,3 @@
 [submodule "src/cf-routing-release"]
 	path = src/cf-routing-release
 	url = https://github.com/cloudfoundry-incubator/cf-routing-release.git
-[submodule "src/uaa-release"]
-	path = src/uaa-release
-	url = https://github.com/cloudfoundry/uaa-release
-[submodule "src/github.com/cloudfoundry-incubator/route-registrar"]
-	path = src/github.com/cloudfoundry-incubator/route-registrar
-	url = https://github.com/cloudfoundry-incubator/route-registrar
-[submodule "src/dea-hm-workspace"]
-	path = src/dea-hm-workspace
-	url = https://github.com/cloudfoundry/dea-hm-workspace

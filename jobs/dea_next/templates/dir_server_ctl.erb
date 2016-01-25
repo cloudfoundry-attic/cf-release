@@ -1,0 +1,42 @@
+#!/bin/bash -e
+
+RUN_DIR=/var/vcap/sys/run/dea_next
+LOG_DIR=/var/vcap/sys/log/dea_next
+PIDFILE=$RUN_DIR/dir_server.pid
+JOB_DIR=/var/vcap/jobs/dea_next
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE "DIR_SERVER"
+
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    echo $$ > $PIDFILE
+
+    # Configure the core file location
+    mkdir -p /var/vcap/sys/cores
+    chown vcap:vcap /var/vcap/sys/cores
+    echo /var/vcap/sys/cores/core-%e-%s-%p-%t > /proc/sys/kernel/core_pattern
+
+    ulimit -c unlimited
+
+    exec /var/vcap/packages/dea_next/go/bin/runner \
+         -conf $JOB_DIR/config/dea.yml
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+  *)
+    echo "Usage: dir_server_ctl {start|stop}"
+
+    ;;
+
+esac
