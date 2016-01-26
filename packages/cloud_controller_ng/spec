@@ -2,7 +2,7 @@
 name: cloud_controller_ng
 dependencies:
 - libpq
-- mysqlclient-5.5
+- libmariadb
 - ruby-2.2.4
 
 files:

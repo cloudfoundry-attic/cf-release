@@ -67,10 +67,6 @@ nginx/nginx-1.8.0.tar.gz:
   object_id: 0d18bbee-b79d-4fec-bba5-635821969fa0
   sha: 12bad312764feae50246685ab2e74512d1aa9b2f
   size: 832104
-mysqlclient-5.5/libmysqlclient-dev_5.5.44.tar.gz:
-  object_id: 31e64230-f356-4522-86d6-413a531996b9
-  sha: f6cc741b64084752478009505113a39192d89da9
-  size: 1376537
 ruby-2.2.4/bundler-1.10.6.gem:
   object_id: 74aa8a43-e1f6-43d5-b90d-e86a01b2e404
   sha: 55a37fccd1c0cb5542d468e35d3be46dd0667f73
@@ -155,3 +151,7 @@ rootfs/cflinuxfs2-1.31.0.tar.gz:
   object_id: 6bea74dd-095e-4c74-9684-3ccc2448e4ca
   sha: 0b96c559781dc729e126b4aadf28867412e67598
   size: 258449475
+libmariadb/libmariadb.tar.xz:
+  object_id: 4c5f767d-aa47-4c60-be6f-50765e08e9eb
+  sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
+  size: 1260684

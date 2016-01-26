@@ -1,0 +1,7 @@
+set -e -x
+
+mkdir -p libmariadb
+tar xvJf libmariadb/libmariadb.tar.xz -C libmariadb
+
+mkdir -p ${BOSH_INSTALL_TARGET}/libmariadb
+cp -r libmariadb/* ${BOSH_INSTALL_TARGET}/libmariadb

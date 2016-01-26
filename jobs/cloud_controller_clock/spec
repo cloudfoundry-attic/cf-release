@@ -17,7 +17,7 @@ packages:
   - nginx
   - nginx_newrelic_plugin
   - libpq
-  - mysqlclient-5.5
+  - libmariadb
   - ruby-2.2.4
 
 properties:

@@ -5,9 +5,9 @@ cp -a * ${BOSH_INSTALL_TARGET}
 cd ${BOSH_INSTALL_TARGET}/cloud_controller_ng
 
 bundle_cmd=/var/vcap/packages/ruby-2.2.4/bin/bundle
-mysqlclient_dir=/var/vcap/packages/mysqlclient-5.5
+mariadb_dir=/var/vcap/packages/libmariadb/libmariadb
 libpq_dir=/var/vcap/packages/libpq
 
-$bundle_cmd config build.mysql2 --with-mysql-config=$mysqlclient_dir/bin/mysql_config
 $bundle_cmd config build.pg --with-pg-lib=$libpq_dir/lib --with-pg-include=$libpq_dir/include
+$bundle_cmd config build.mysql2 --with-mysql-config=$mariadb_dir/usr/bin/mysql_config
 $bundle_cmd install --local --deployment --without development test
