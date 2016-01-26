@@ -82,9 +82,6 @@ properties:
     description: Flag for using HTTP when making api and application requests rather than the default HTTPS
   acceptance_tests.skip_regex:
     description: Regex for tests that should be skipped
-  acceptance_tests.skip_diego_unsupported_tests:
-    default: false
-    description: Skip tests that are known to not be supported by Diego. Set to true if your deployment defaults to Diego as its runtime.
   acceptance_tests.default_timeout:
     description: Default Timeout
   acceptance_tests.cf_push_timeout:
