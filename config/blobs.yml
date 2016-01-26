@@ -103,10 +103,6 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.4.zip:
   object_id: 8f0b19f1-5268-489b-b4b2-989fa32f1da9
   sha: 4c3d273d4bdf966b701b46deca622dd9925969f3
   size: 59441206
-go-buildpack/go_buildpack-cached-v1.7.1.zip:
-  object_id: 43e8d4de-4e92-4384-a27b-006deb701e90
-  sha: 04315a6343c182db8d96645a70bb343ad5413ed4
-  size: 359292037
 php-buildpack/php_buildpack-cached-v4.3.2.zip:
   object_id: 467b434d-6026-44c7-99cc-6e5e366e57c2
   sha: fd8f8bedd3b9c14d6360c94c5d7aff5f7f840b9b
@@ -155,3 +151,7 @@ libmariadb/libmariadb.tar.xz:
   object_id: 4c5f767d-aa47-4c60-be6f-50765e08e9eb
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
   size: 1260684
+go-buildpack/go_buildpack-cached-v1.7.2.zip:
+  object_id: 5972b6f4-6026-47fd-9864-8b052e8f4a55
+  sha: 35ff4ffbde64e185bf221008e1d3aacb81db7d5e
+  size: 361547569
