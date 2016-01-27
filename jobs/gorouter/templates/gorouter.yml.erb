@@ -18,7 +18,6 @@ nats:
 
 logging:
   file: /var/vcap/sys/log/gorouter/gorouter.log
-  syslog: vcap.gorouter
   level: <%= p("router.logging_level") %>
   <% if_p("metron_endpoint.host", "metron_endpoint.port") do |_| %>
   loggregator_enabled: true
