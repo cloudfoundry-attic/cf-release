@@ -1,4 +1,4 @@
-Rootfs SHASUM: 0b96c559781dc729e126b4aadf28867412e67598
+Rootfs SHASUM: 6fe83ee8eda303a1c58299bf9f1f0ea378ac0721
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -6,8 +6,8 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ||/ Name                               Version                             Architecture Description
 +++-==================================-===================================-============-===============================================================================
 ii  adduser                            3.113+nmu3ubuntu3                   all          add and remove users and groups
-ii  apt                                1.0.1ubuntu2.10                     amd64        commandline package manager
-ii  apt-utils                          1.0.1ubuntu2.10                     amd64        package management related utility programs
+ii  apt                                1.0.1ubuntu2.11                     amd64        commandline package manager
+ii  apt-utils                          1.0.1ubuntu2.11                     amd64        package management related utility programs
 ii  aptitude                           0.6.8.2-1ubuntu4                    amd64        terminal-based package manager
 ii  aptitude-common                    0.6.8.2-1ubuntu4                    all          architecture indepedent files for the aptitude package manager
 ii  autoconf                           2.69-6                              all          automatic configure script builder
@@ -31,7 +31,7 @@ ii  cpio                               2.11+dfsg-1ubuntu1.1                amd64
 ii  cpp                                4:4.8.2-1ubuntu6                    amd64        GNU C preprocessor (cpp)
 ii  cpp-4.8                            4.8.4-2ubuntu1~14.04                amd64        GNU C preprocessor
 ii  cron                               3.0pl1-124ubuntu2                   amd64        process scheduling daemon
-ii  curl                               7.35.0-1ubuntu2.5                   amd64        command line tool for transferring data with URL syntax
+ii  curl                               7.35.0-1ubuntu2.6                   amd64        command line tool for transferring data with URL syntax
 ii  dash                               0.5.7-4ubuntu1                      amd64        POSIX-compliant shell
 ii  dconf-gsettings-backend:amd64      0.20.0-1                            amd64        simple configuration storage system - GSettings back-end
 ii  dconf-service                      0.20.0-1                            amd64        simple configuration storage system - D-Bus service
@@ -105,8 +105,8 @@ ii  laptop-detect                      0.13.7ubuntu2                       amd64
 ii  less                               458-2                               amd64        pager program similar to more
 ii  libacl1:amd64                      2.2.52-1                            amd64        Access control list shared library
 ii  libaio1:amd64                      0.3.109-4                           amd64        Linux kernel AIO access library - shared library
-ii  libapt-inst1.5:amd64               1.0.1ubuntu2.10                     amd64        deb package format runtime library
-ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.10                     amd64        package management runtime library
+ii  libapt-inst1.5:amd64               1.0.1ubuntu2.11                     amd64        deb package format runtime library
+ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.11                     amd64        package management runtime library
 ii  libarchive-extract-perl            0.70-1                              all          generic archive extracting module
 ii  libarchive13:amd64                 3.1.2-7ubuntu2.1                    amd64        Multi-format archive and compression library (shared library)
 ii  libasan0:amd64                     4.8.4-2ubuntu1~14.04                amd64        AddressSanitizer -- a fast memory error detector
@@ -156,9 +156,9 @@ ii  libcolord1:amd64                   1.0.6-1                             amd64
 ii  libcomerr2:amd64                   1.42.9-3ubuntu1.3                   amd64        common error description library
 ii  libcroco3:amd64                    0.6.8-2ubuntu1                      amd64        Cascading Style Sheet (CSS) parsing and manipulation toolkit
 ii  libcups2:amd64                     1.7.2-0ubuntu1.7                    amd64        Common UNIX Printing System(tm) - Core library
-ii  libcurl3:amd64                     7.35.0-1ubuntu2.5                   amd64        easy-to-use client-side URL transfer library (OpenSSL flavour)
-ii  libcurl3-gnutls:amd64              7.35.0-1ubuntu2.5                   amd64        easy-to-use client-side URL transfer library (GnuTLS flavour)
-ii  libcurl4-openssl-dev:amd64         7.35.0-1ubuntu2.5                   amd64        development files and documentation for libcurl (OpenSSL flavour)
+ii  libcurl3:amd64                     7.35.0-1ubuntu2.6                   amd64        easy-to-use client-side URL transfer library (OpenSSL flavour)
+ii  libcurl3-gnutls:amd64              7.35.0-1ubuntu2.6                   amd64        easy-to-use client-side URL transfer library (GnuTLS flavour)
+ii  libcurl4-openssl-dev:amd64         7.35.0-1ubuntu2.6                   amd64        development files and documentation for libcurl (OpenSSL flavour)
 ii  libcwidget3                        0.5.16-3.5ubuntu1                   amd64        high-level terminal interface library for C++ (runtime files)
 ii  libdatrie1:amd64                   0.2.8-1                             amd64        Double-array trie library
 ii  libdb5.3:amd64                     5.3.28-3ubuntu3                     amd64        Berkeley v5.3 Database Libraries [runtime]
@@ -306,8 +306,8 @@ ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                             amd64        multiple precision floating-point computation
-ii  libmysqlclient-dev                 5.5.46-0ubuntu0.14.04.2             amd64        MySQL database development files
-ii  libmysqlclient18:amd64             5.5.46-0ubuntu0.14.04.2             amd64        MySQL database client library
+ii  libmysqlclient-dev                 5.5.47-0ubuntu0.14.04.1             amd64        MySQL database development files
+ii  libmysqlclient18:amd64             5.5.47-0ubuntu0.14.04.1             amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
@@ -496,7 +496,7 @@ ii  module-init-tools                  15-0ubuntu6                         all  
 ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.6                     amd64        Transitional package to ensure multiarch compatibility
-ii  mysql-common                       5.5.46-0ubuntu0.14.04.2             all          MySQL database common files, e.g. /etc/mysql/my.cnf
+ii  mysql-common                       5.5.47-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1               all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64        terminal-related programs and man pages
 ii  net-tools                          1.60-25ubuntu2.1                    amd64        The NET-3 networking toolkit

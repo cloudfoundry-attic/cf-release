@@ -135,10 +135,6 @@ java-buildpack/java-buildpack-v3.5.1.zip:
   object_id: 32793ab1-f285-4ffb-a6bf-00df46805581
   sha: 6ba19d1f52495f92c0dd0a7dae7a7ad63f4a80c5
   size: 159674
-rootfs/cflinuxfs2-1.31.0.tar.gz:
-  object_id: 6bea74dd-095e-4c74-9684-3ccc2448e4ca
-  sha: 0b96c559781dc729e126b4aadf28867412e67598
-  size: 258449475
 libmariadb/libmariadb.tar.xz:
   object_id: 4c5f767d-aa47-4c60-be6f-50765e08e9eb
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
@@ -155,3 +151,7 @@ php-buildpack/php_buildpack-cached-v4.3.3.zip:
   object_id: 9ebd7443-26c3-4d35-9f1b-ca0acad8d94a
   sha: 711f1760886c1c6681a40fb43902831013957f12
   size: 343618998
+rootfs/cflinuxfs2-1.32.0.tar.gz:
+  object_id: 95c28de2-3582-4cf7-a987-6ceacb022672
+  sha: 6fe83ee8eda303a1c58299bf9f1f0ea378ac0721
+  size: 258455737
