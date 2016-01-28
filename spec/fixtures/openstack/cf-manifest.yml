@@ -305,7 +305,7 @@ jobs:
       address: 10.10.0.128
       allow_from_entries:
       - 10.10.0.0/24
-      - null
+      - 10.10.0.0/24
       share: null
     route_registrar:
       routes:
@@ -348,7 +348,7 @@ jobs:
       address: 10.10.0.128
       allow_from_entries:
       - 10.10.0.0/24
-      - null
+      - 10.10.0.0/24
       share: null
     route_registrar:
       routes:
@@ -400,7 +400,7 @@ jobs:
       address: 10.10.0.128
       allow_from_entries:
       - 10.10.0.0/24
-      - null
+      - 10.10.0.0/24
       share: null
   resource_pool: small_z1
   templates:
@@ -425,7 +425,7 @@ jobs:
       address: 10.10.0.128
       allow_from_entries:
       - 10.10.0.0/24
-      - null
+      - 10.10.0.0/24
       share: null
   resource_pool: small_z2
   templates:
@@ -504,19 +504,19 @@ jobs:
   - name: cf1
     static_ips: null
   properties:
-    dea_next:
-      zone: z1
-    metron_agent:
-      zone: z1
     consul:
       agent:
         services:
           dea:
             check:
+              interval: 5m
               name: dns_health_check
               script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              interval: 5m
-              status: passing      
+              status: passing
+    dea_next:
+      zone: z1
+    metron_agent:
+      zone: z1
   resource_pool: runner_z1
   templates:
   - name: dea_next
@@ -535,19 +535,19 @@ jobs:
   - name: cf2
     static_ips: null
   properties:
-    dea_next:
-      zone: z2
-    metron_agent:
-      zone: z2
     consul:
       agent:
         services:
           dea:
             check:
+              interval: 5m
               name: dns_health_check
               script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              interval: 5m
               status: passing
+    dea_next:
+      zone: z2
+    metron_agent:
+      zone: z2
   resource_pool: runner_z2
   templates:
   - name: dea_next
@@ -769,6 +769,22 @@ networks:
   name: floating
   type: vip
 - name: cf1
+  subnets:
+  - cloud_properties:
+      net_id: NET_ID
+      security_groups:
+      - cf
+    dns:
+    - 8.8.8.8
+    gateway: 10.10.0.1
+    range: 10.10.0.0/24
+    reserved:
+    - 10.10.0.2 - 10.10.0.100
+    - 10.10.0.200 - 10.10.0.254
+    static:
+    - 10.10.0.125 - 10.10.0.175
+  type: manual
+- name: cf2
   subnets:
   - cloud_properties:
       net_id: NET_ID
@@ -1047,18 +1063,18 @@ properties:
   disk_quota_enabled: true
   domain: DOMAIN
   doppler:
-    zone: null
     blacklisted_syslog_ranges: null
     debug: false
     enable_tls_transport: null
     maxRetainedLogMessages: 100
+    message_drain_buffer_size: null
     port: 4443
     tls_server:
       cert: null
       key: null
       port: null
     unmarshaller_count: 5
-    message_drain_buffer_size: null
+    zone: null
   doppler_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   dropsonde:
@@ -1123,9 +1139,9 @@ properties:
     uaa_base: null
     url: null
   metron_agent:
-    enable_buffer: null
     buffer_size: null
     deployment: ENVIRONMENT
+    enable_buffer: null
     preferred_protocol: null
     tls_client:
       cert: null
@@ -1146,25 +1162,25 @@ properties:
     address: 10.10.0.128
     allow_from_entries:
     - 10.10.0.0/24
-    - null
+    - 10.10.0.0/24
     share: null
   request_timeout_in_seconds: 900
   router:
     cipher_suites: null
     debug_addr: null
+    enable_routing_api: null
     enable_ssl: null
     extra_headers_to_log: null
     logrotate: null
     port: null
     requested_route_registration_interval_in_seconds: null
-    route_services_timeout: null
     route_services_secret: null
     route_services_secret_decrypt_only: null
+    route_services_timeout: null
     secure_cookies: null
     ssl_cert: null
     ssl_key: null
     ssl_skip_validation: null
-    enable_routing_api: null
     status:
       password: ROUTER_PASSWORD
       port: null
@@ -1177,8 +1193,8 @@ properties:
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   traffic_controller:
-    zone: null
     outgoing_port: 8080
+    zone: null
   uaa:
     admin:
       client_secret: ADMIN_SECRET
@@ -1196,13 +1212,13 @@ properties:
         authorized-grant-types: client_credentials
         secret: CC_ROUTING_SECRET
       cf:
+        access-token-validity: 600
+        authorities: uaa.none
+        authorized-grant-types: implicit,password,refresh_token
         autoapprove: true
         override: true
-        authorized-grant-types: implicit,password,refresh_token
-        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
-        authorities: uaa.none
-        access-token-validity: 600
         refresh-token-validity: 2592000
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
@@ -1215,6 +1231,18 @@ properties:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: GOROUTER_SECRET
+      login:
+        authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
+        authorized-grant-types: authorization_code,client_credentials,refresh_token
+        autoapprove: true
+        override: true
+        redirect-uri: https://login.DOMAIN
+        scope: openid,oauth.approvals
+        secret: LOGIN_CLIENT_SECRET
+      notifications:
+        authorities: cloud_controller.admin,scim.read
+        authorized-grant-types: client_credentials
+        secret: NOTIFICATIONS_CLIENT_SECRET
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
@@ -1223,18 +1251,6 @@ properties:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-ROUTER-SECRET
-      login:
-        authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
-        authorized-grant-types: authorization_code,client_credentials,refresh_token
-        override: true
-        redirect-uri: https://login.DOMAIN
-        scope: openid,oauth.approvals
-        secret: LOGIN_CLIENT_SECRET
-        autoapprove: true
-      notifications:
-        authorities: cloud_controller.admin,scim.read
-        authorized-grant-types: client_credentials
-        secret: NOTIFICATIONS_CLIENT_SECRET
     database: null
     issuer: https://uaa.DOMAIN
     jwt:
@@ -1400,3 +1416,4 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
+

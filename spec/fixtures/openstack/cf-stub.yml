@@ -30,6 +30,11 @@ networks:
       cloud_properties:
         net_id: NET_ID
         security_groups: ["cf"]
+  - name: cf2
+    type: manual
+    subnets: (( networks.cf1.subnets )) # cf2 unused by default with the OpenStack template
+                                        # but the general upstream templates require this
+                                        # to be a semi-valid value, so just copy cf1
 
 properties:
   domain: DOMAIN
