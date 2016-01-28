@@ -226,6 +226,7 @@ jobs:
       routes:
       - name: blobstore
         port: 80
+        registration_interval_in_seconds: 20
         tags:
           component: blobstore
         uris:
@@ -261,6 +262,7 @@ jobs:
       routes:
       - name: blobstore
         port: 80
+        registration_interval_in_seconds: 20
         tags:
           component: blobstore
         uris:

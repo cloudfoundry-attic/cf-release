@@ -147,6 +147,7 @@ meta:
   blobstore_routes:
   - name: blobstore
     port: (( .properties.blobstore.port ))
+    registration_interval_in_seconds: 20
     tags:
       component: blobstore
     uris:
