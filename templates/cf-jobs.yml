@@ -24,6 +24,7 @@ meta:
     tags:
       component: CloudController
     port: (( .properties.cc.external_port ))
+    registration_interval_in_seconds: 20
     uris:
     - (( "api." .properties.domain ))
 
@@ -95,6 +96,7 @@ meta:
   hm9000_routes:
   - name: hm9000
     port: (( .properties.hm9000.port ))
+    registration_interval_in_seconds: 20
     tags:
       component: HM9K
     uris:
@@ -121,10 +123,12 @@ meta:
   loggregator_trafficcontroller_routes:
   - name: doppler
     port: (( .properties.loggregator.outgoing_dropsonde_port ))
+    registration_interval_in_seconds: 20
     uris:
     - (( "doppler." .properties.domain ))
   - name: loggregator
     port: (( .properties.traffic_controller.outgoing_port ))
+    registration_interval_in_seconds: 20
     uris:
     - (( "loggregator." .properties.domain ))
 
@@ -173,6 +177,7 @@ meta:
   uaa_routes:
   - name: uaa
     port: (( .properties.uaa.port ))
+    registration_interval_in_seconds: 20
     tags:
       component: uaa
     uris:

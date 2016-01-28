@@ -31,6 +31,7 @@ routes:
 %>
   - name: <%= route_config['name'] %>
     port: <%= route_config['port'] %>
+    registration_interval: <%= route_config['registration_interval_in_seconds'] %>
     uris: <%= route_config['uris'].to_json %>
 
     <% if route_config['tags'] %>
@@ -53,6 +54,5 @@ routes:
 <%
   end
 %>
-update_frequency: <%= p('route_registrar.update_frequency_in_seconds') %>
 
 host: <%= discover_external_ip %>
