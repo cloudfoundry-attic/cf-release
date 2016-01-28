@@ -217,6 +217,7 @@ jobs:
       routes:
       - name: uaa
         port: 8080
+        registration_interval_in_seconds: 20
         tags:
           component: uaa
         uris:
@@ -257,6 +258,7 @@ jobs:
       routes:
       - name: uaa
         port: 8080
+        registration_interval_in_seconds: 20
         tags:
           component: uaa
         uris:
@@ -304,6 +306,7 @@ jobs:
       routes:
       - name: api
         port: 9022
+        registration_interval_in_seconds: 20
         tags:
           component: CloudController
         uris:
@@ -345,6 +348,7 @@ jobs:
       routes:
       - name: api
         port: 9022
+        registration_interval_in_seconds: 20
         tags:
           component: CloudController
         uris:
@@ -444,6 +448,7 @@ jobs:
       routes:
       - name: hm9000
         port: 5155
+        registration_interval_in_seconds: 20
         tags:
           component: HM9K
         uris:
@@ -474,6 +479,7 @@ jobs:
       routes:
       - name: hm9000
         port: 5155
+        registration_interval_in_seconds: 20
         tags:
           component: HM9K
         uris:
@@ -634,10 +640,12 @@ jobs:
       routes:
       - name: doppler
         port: 8081
+        registration_interval_in_seconds: 20
         uris:
         - doppler.DOMAIN
       - name: loggregator
         port: 8080
+        registration_interval_in_seconds: 20
         uris:
         - loggregator.DOMAIN
     traffic_controller:
@@ -662,10 +670,12 @@ jobs:
       routes:
       - name: doppler
         port: 8081
+        registration_interval_in_seconds: 20
         uris:
         - doppler.DOMAIN
       - name: loggregator
         port: 8080
+        registration_interval_in_seconds: 20
         uris:
         - loggregator.DOMAIN
     traffic_controller:
