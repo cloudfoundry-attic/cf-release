@@ -380,8 +380,6 @@ jobs:
     release: cf
   - name: statsd-injector
     release: cf
-  - name: nfs_mounter
-    release: cf
   - name: route_registrar
     release: cf
   update: {}
@@ -421,8 +419,6 @@ jobs:
   - name: statsd-injector
     release: cf
   - name: consul_agent
-    release: cf
-  - name: nfs_mounter
     release: cf
   - name: route_registrar
     release: cf
@@ -464,8 +460,6 @@ jobs:
     release: cf
   - name: consul_agent
     release: cf
-  - name: nfs_mounter
-    release: cf
   update: {}
 - instances: 0
   name: api_worker_z2
@@ -488,8 +482,6 @@ jobs:
   - name: metron_agent
     release: cf
   - name: consul_agent
-    release: cf
-  - name: nfs_mounter
     release: cf
   update: {}
 - instances: 1
