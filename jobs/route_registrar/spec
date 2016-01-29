@@ -39,8 +39,10 @@ properties:
       * 'tags' are included in metrics that gorouter emits to support filtering.
       * 'healthcheck' is a hash which should have 'name' and 'script_path'.
       * 'healthcheck.timeout' is optional, and is measured in seconds.
-        The healthcheck timeout defaults to 0, which corresponds to a timeout
-        of infinite duration. Values less than zero are not permitted.
+        If the healthcheck timeout is not provided, it defaults to half of the
+        value of `registration_interval_in_seconds`.
+        If it is provided it must be a positive integer, and less than the value
+        of `registration_interval_in_seconds`.
     example: |
       - name: my-service
         registration_interval_in_seconds: 20
