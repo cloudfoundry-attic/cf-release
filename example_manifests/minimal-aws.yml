@@ -91,16 +91,46 @@ jobs:
         password: PASSWORD
         username: nats
 
-- name: nfs_z1
+- name: consul_z1
+  instances: 1
+  persistent_disk: 1024
+  resource_pool: small_z1
+  templates:
+  - {name: metron_agent, release: cf}
+  - {name: consul_agent, release: cf}
+  networks:
+  - name: cf_private
+    static_ips: [10.0.16.105]
+  properties:
+    consul:
+      agent:
+        mode: server
+
+- name: blobstore_z1
   instances: 1
   persistent_disk: 102400
   resource_pool: small_z1
   templates:
-  - {name: debian_nfs_server, release: cf}
+  - {name: blobstore, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: route_registrar, release: cf}
+  - {name: consul_agent, release: cf}
   networks:
   - name: cf_private
-    static_ips: [10.0.16.105]
+  properties:
+    consul:
+      agent:
+        services:
+          blobstore: {}
+    route_registrar:
+      routes:
+      - name: blobstore
+        port: 80
+        registration_interval_in_seconds: 20
+        tags:
+          component: blobstore
+        uris:
+        - "blobstore.REPLACE_WITH_SYSTEM_DOMAIN"
 
 - name: postgres_z1
   instances: 1
@@ -123,11 +153,15 @@ jobs:
   - {name: cloud_controller_worker, release: cf}
   - {name: cloud_controller_clock, release: cf}
   - {name: metron_agent, release: cf}
-  - {name: nfs_mounter, release: cf}
   - {name: route_registrar, release: cf}
+  - {name: consul_agent, release: cf}
   networks:
   - name: cf_private
   properties:
+    consul:
+      agent:
+        services:
+          cloud_controller_ng: {}
     nfs_server:
       address: 10.0.16.105
       allow_from_entries: [10.0.16.0/24]
@@ -274,6 +308,7 @@ jobs:
   - {name: dea_next, release: cf}
   - {name: dea_logging_agent, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: consul_agent, release: cf}
   networks:
   - name: cf_private
   properties:
@@ -284,6 +319,34 @@ properties:
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
   cc:
     allow_app_ssh_access: false
+    buildpacks:
+      webdav_config:
+        password: PASSWORD
+        private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        secret: PASSWORD
+        username: blobstore-username
+    droplets:
+      webdav_config:
+        password: PASSWORD
+        private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        secret: PASSWORD
+        username: blobstore-username
+    packages:
+      webdav_config:
+        password: PASSWORD
+        private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        secret: PASSWORD
+        username: blobstore-username
+    resource_pool:
+      webdav_config:
+        password: PASSWORD
+        private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        secret: PASSWORD
+        username: blobstore-username
     bulk_api_password: PASSWORD
     db_encryption_key: PASSWORD
     default_running_security_groups: [public_networks, dns]
@@ -327,6 +390,21 @@ properties:
     port: 5524
     roles:
     - {name: ccadmin, password: PASSWORD, tag: admin}
+  consul:
+    agent:
+      log_level: null
+      servers:
+        lan:
+        - 10.0.16.105
+    encrypt_keys:
+    - PASSWORD
+    require_ssl: false
+  blobstore:
+    admin_users:
+    - password: PASSWORD
+      username: blobstore-username
+    secure_link:
+      secret: PASSWORD
   databases:
     databases:
     - {name: ccdb, tag: cc, citext: true}
@@ -365,15 +443,20 @@ properties:
     password: PASSWORD
     port: 4222
     user: nats
-  nfs_server:
-    address: 10.0.16.105
-    allow_from_entries: [10.0.16.0/24]
   ssl:
     skip_cert_verify: true
   system_domain: REPLACE_WITH_SYSTEM_DOMAIN
   system_domain_organization: default_organization
   uaa:
     clients:
+      cf:
+        access-token-validity: 600
+        authorities: uaa.none
+        authorized-grant-types: implicit,password,refresh_token
+        autoapprove: true
+        override: true
+        refresh-token-validity: 2592000
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
       cc-service-dashboards:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
