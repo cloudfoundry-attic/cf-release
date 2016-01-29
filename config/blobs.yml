@@ -123,14 +123,6 @@ golang/go1.5.3.linux-amd64.tar.gz:
   object_id: 646ac7b1-2de2-4371-8154-76a2ecd19862
   sha: c5377eca4837968d043b681f00a852a262f0f5f6
   size: 80147269
-java-buildpack/java-buildpack-offline-v3.5.1.zip:
-  object_id: c0c6f0c7-9c1e-4dc2-88fd-a84cf2658884
-  sha: e0abe71ad7d18b764c10db7eb4ecec41f508eb89
-  size: 251565811
-java-buildpack/java-buildpack-v3.5.1.zip:
-  object_id: 32793ab1-f285-4ffb-a6bf-00df46805581
-  sha: 6ba19d1f52495f92c0dd0a7dae7a7ad63f4a80c5
-  size: 159674
 libmariadb/libmariadb.tar.xz:
   object_id: 4c5f767d-aa47-4c60-be6f-50765e08e9eb
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
@@ -155,3 +147,11 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.1.zip:
   object_id: 756834ff-0523-4251-9032-208f6b81479c
   sha: d84ffdf7306e272d1a09877bb00df9cce1583401
   size: 2548892
+java-buildpack/java-buildpack-offline-v3.6.zip:
+  object_id: b23c8ace-26f2-4270-94ed-a861995826e2
+  sha: 886bd2888127429f7f75120d98a187cbf7289c16
+  size: 253316417
+java-buildpack/java-buildpack-v3.6.zip:
+  object_id: 957d975c-43de-4c1e-83a0-6df8f1a2eb1b
+  sha: 3ddf6855baec15fb97cd486312615ce82a354dba
+  size: 164535
