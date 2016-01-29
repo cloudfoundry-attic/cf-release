@@ -56,6 +56,9 @@ properties:
   acceptance_tests.include_v3:
     default: false
     description: Flag to include the v3 API test suite.
+  acceptance_tests.include_tasks:
+    default: false
+    description: Flag to include the v3 task tests dependent on the CC task_creation feature flag.
   acceptance_tests.include_routing:
     default: false
     description: Flag to include the routing test suite.
