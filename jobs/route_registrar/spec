@@ -33,7 +33,7 @@ properties:
       * Each hash should have 'port', 'uris', 'registration_interval_in_seconds'
         and 'name' keys.
       * 'registration_interval_in_seconds' is the delay in seconds between
-        routing updates
+        routing updates. It must be a positive integer.
       * Additionally, the 'tags' and 'healthcheck' keys are optional.
       * 'uris' is an array of URIs to register for the 'port'.
       * 'tags' are included in metrics that gorouter emits to support filtering.
