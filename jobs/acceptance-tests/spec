@@ -116,3 +116,11 @@ properties:
     description: "The name of the php buildpack to use in acceptance tests that specify a buildpack."
   acceptance_tests.binary_buildpack_name:
     description: "The name of the binary buildpack to use in acceptance tests that specify a buildpack."
+  acceptance_tests.persistent_app_host:
+    description: "The default name for the persistent app host."
+  acceptance_tests.persistent_app_space:
+    description: "The default name for the persistent app space."
+  acceptance_tests.persistent_app_org:
+    description: "The default name for the persistent app org."
+  acceptance_tests.persistent_app_quota_name:
+    description: "The default name for the persistent app quota name."

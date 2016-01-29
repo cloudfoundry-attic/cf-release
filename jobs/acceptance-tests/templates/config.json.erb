@@ -48,6 +48,11 @@
   config[:python_buildpack_name] = properties.acceptance_tests.python_buildpack_name if properties.acceptance_tests.python_buildpack_name
   config[:php_buildpack_name] = properties.acceptance_tests.php_buildpack_name if properties.acceptance_tests.php_buildpack_name
   config[:binary_buildpack_name] = properties.acceptance_tests.binary_buildpack_name if properties.acceptance_tests.binary_buildpack_name
+
+  config[:persistent_app_host] = properties.acceptance_tests.persistent_app_host if properties.acceptance_tests.persistent_app_host
+  config[:persistent_app_space] = properties.acceptance_tests.persistent_app_space if properties.acceptance_tests.persistent_app_space
+  config[:persistent_app_org] = properties.acceptance_tests.persistent_app_org if properties.acceptance_tests.persistent_app_org
+  config[:persistent_app_quota_name] = properties.acceptance_tests.persistent_app_quota_name if properties.acceptance_tests.persistent_app_quota_name
 %>
 
 <%= JSON.pretty_generate(config) %>
