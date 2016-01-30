@@ -40,6 +40,8 @@ meta:
     release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
+  - name: nfs_mounter
+    release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
 
@@ -50,6 +52,8 @@ meta:
     release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
+  - name: nfs_mounter
+    release: (( meta.release.name ))
 
   clock_templates:
   - name: cloud_controller_clock

@@ -185,11 +185,12 @@ jobs:
   - name: metron_agent
     release: cf
   update: {}
-- instances: 0
+- instances: 1
   name: nfs_z1
   networks:
   - name: cf1
-    static_ips: []
+    static_ips:
+    - 10.85.9.232
   persistent_disk: 102400
   properties:
     consul:
@@ -220,7 +221,7 @@ jobs:
   - name: consul_agent
     release: cf
   update: {}
-- instances: 1
+- instances: 0
   name: blobstore_z1
   networks:
   - name: cf1
@@ -365,7 +366,7 @@ jobs:
     metron_agent:
       zone: z1
     nfs_server:
-      address: null
+      address: 10.85.9.232
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -389,6 +390,8 @@ jobs:
     release: cf
   - name: consul_agent
     release: cf
+  - name: nfs_mounter
+    release: cf
   - name: route_registrar
     release: cf
   update: {}
@@ -405,7 +408,7 @@ jobs:
     metron_agent:
       zone: z2
     nfs_server:
-      address: null
+      address: 10.85.9.232
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -428,6 +431,8 @@ jobs:
   - name: statsd-injector
     release: cf
   - name: consul_agent
+    release: cf
+  - name: nfs_mounter
     release: cf
   - name: route_registrar
     release: cf
@@ -456,7 +461,7 @@ jobs:
     metron_agent:
       zone: z1
     nfs_server:
-      address: null
+      address: 10.85.9.232
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -469,6 +474,8 @@ jobs:
     release: cf
   - name: consul_agent
     release: cf
+  - name: nfs_mounter
+    release: cf
   update: {}
 - instances: 1
   name: api_worker_z2
@@ -479,7 +486,7 @@ jobs:
     metron_agent:
       zone: z2
     nfs_server:
-      address: null
+      address: 10.85.9.232
       allow_from_entries:
       - 10.85.9.0/24
       - 10.85.10.0/24
@@ -491,6 +498,8 @@ jobs:
   - name: metron_agent
     release: cf
   - name: consul_agent
+    release: cf
+  - name: nfs_mounter
     release: cf
   update: {}
 - instances: 1
@@ -878,7 +887,7 @@ properties:
     broker_client_max_async_poll_duration_minutes: null
     broker_client_timeout_seconds: 70
     buildpacks:
-      blobstore_type: webdav
+      blobstore_type: fog
       buildpack_directory_key: DOMAIN-cc-buildpacks
       cdn: null
       fog_connection: null
@@ -924,7 +933,7 @@ properties:
     directories: null
     disable_custom_buildpacks: false
     droplets:
-      blobstore_type: webdav
+      blobstore_type: fog
       cdn: null
       droplet_directory_key: DOMAIN-cc-droplets
       fog_connection: null
@@ -994,7 +1003,7 @@ properties:
         record_sql: obfuscated
     packages:
       app_package_directory_key: DOMAIN-cc-packages
-      blobstore_type: webdav
+      blobstore_type: fog
       cdn: null
       fog_connection: null
       max_package_size: 1073741824
@@ -1012,7 +1021,7 @@ properties:
         total_routes: 1000
         total_services: 100
     resource_pool:
-      blobstore_type: webdav
+      blobstore_type: fog
       cdn: null
       fog_connection: null
       resource_directory_key: DOMAIN-cc-resources
@@ -1261,7 +1270,7 @@ properties:
     trace: false
     user: NATS_USER
   nfs_server:
-    address: null
+    address: 10.85.9.232
     allow_from_entries:
     - 10.85.9.0/24
     - 10.85.10.0/24

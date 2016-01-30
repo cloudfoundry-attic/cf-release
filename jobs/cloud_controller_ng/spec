@@ -233,9 +233,16 @@ properties:
     default: default
     description: "Local to use a local (NFS) file system.  AWS to use AWS."
 
+  cc.default_fog_connection.provider:
+    description: "Local fog provider (should always be 'Local'), used if fog_connection hash is not provided in the manifest"
+    default: "Local"
+  cc.default_fog_connection.local_root:
+    description: "Local root when fog provider is not overridden (should be an NFS mount if using more than one cloud controller)"
+    default: "/var/vcap/nfs/shared"
+
   cc.resource_pool.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
-    default: "webdav"
+    default: "fog"
   cc.resource_pool.webdav_config.public_endpoint:
     description: "The location of the webdav server eg: https://blobstore.com"
   cc.resource_pool.webdav_config.private_endpoint:
@@ -270,7 +277,7 @@ properties:
 
   cc.packages.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
-    default: "webdav"
+    default: "fog"
   cc.packages.webdav_config.public_endpoint:
     description: "The location of the webdav server eg: https://blobstore.com"
   cc.packages.webdav_config.private_endpoint:
@@ -305,7 +312,7 @@ properties:
 
   cc.droplets.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
-    default: "webdav"
+    default: "fog"
   cc.droplets.webdav_config.public_endpoint:
     description: "The location of the webdav server eg: https://blobstore.com"
   cc.droplets.webdav_config.private_endpoint:
@@ -337,7 +344,7 @@ properties:
 
   cc.buildpacks.blobstore_type:
     description: "The type of blobstore backing to use. Valid values: ['fog', 'webdav']"
-    default: "webdav"
+    default: "fog"
   cc.buildpacks.webdav_config.public_endpoint:
     description: "The location of the webdav server eg: https://blobstore.com"
   cc.buildpacks.webdav_config.private_endpoint:
