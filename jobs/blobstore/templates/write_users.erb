@@ -1,0 +1,3 @@
+<% p('blobstore.admin_users').each do |user| %>
+<%= user['username'] %>:{PLAIN}<%= user['password'] %>
+<% end %>

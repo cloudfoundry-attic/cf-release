@@ -30,12 +30,16 @@ properties:
 
   cc:
     resource_pool:
+      blobstore_type: fog
       fog_connection: (( meta.fog_config ))
     packages:
+      blobstore_type: fog
       fog_connection: (( meta.fog_config ))
     droplets:
+      blobstore_type: fog
       fog_connection: (( meta.fog_config ))
     buildpacks:
+      blobstore_type: fog
       fog_connection: (( meta.fog_config ))
 
   uaa:

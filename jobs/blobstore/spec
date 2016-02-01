@@ -1,0 +1,38 @@
+---
+name: blobstore
+
+templates:
+  nginx_ctl:            bin/nginx_ctl
+  dns_health_check.erb: bin/dns_health_check
+  nginx.conf.erb:       config/nginx.conf
+  blobstore.conf.erb:   config/sites/blobstore.conf
+  mime.types:           config/mime.types
+  write_users.erb:      config/write_users
+
+packages:
+- nginx_webdav
+
+properties:
+  blobstore.port:
+    description: TCP port blobstore server (ngnix) listens on
+    default: 80
+
+  blobstore.admin_users:
+    description: |
+     List of Username and Password pairs that have admin access to the blobstore. Cloud Controller must use one of these to access the blobstore via HTTP Basic Auth.
+     Example:
+       users:
+       - username: user1
+         password: password1
+       - username: user2
+         password: password2
+
+  blobstore.secure_link.secret:
+    description: The secret used for verifying signed URLs
+
+  blobstore.max_upload_size:
+    description: Max allowed file size for upload
+    default: 5000m
+
+  domain:
+    description: The system domain.  The public server will listen on host 'blobstore.system-domain.tld'

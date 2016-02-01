@@ -1,0 +1,83 @@
+# Default server
+server {
+  return 404;
+}
+
+# Internal server
+server {
+  listen      <%= p("blobstore.port") %>;
+  server_name blobstore.service.cf.internal;
+  root        /var/vcap/store/shared/;
+
+  allow 10.0.0.0/8;
+  allow 172.16.0.0/12;
+  allow 192.168.0.0/16;
+  deny all;
+
+  access_log /var/vcap/sys/log/blobstore/internal_access.log;
+  error_log  /var/vcap/sys/log/blobstore/internal_error.log;
+
+  client_max_body_size <%= p("blobstore.max_upload_size") %>;
+
+  location /admin/ {
+    auth_basic "Blobstore Write";
+    auth_basic_user_file write_users;
+
+    client_body_temp_path /var/vcap/store/shared/tmp/uploads/;
+
+    dav_methods DELETE PUT COPY;
+    create_full_put_path on;
+
+    alias /var/vcap/store/shared/;
+  }
+
+  # ensure the contents of this location block always match the public server /read/ location block
+  location /read/ {
+    if ( $request_method !~ ^(GET|HEAD)$ ) {
+      return 405;
+    }
+
+    secure_link $arg_md5,$arg_expires;
+    secure_link_md5 "$secure_link_expires$uri <%= p("blobstore.secure_link.secret") %>";
+
+    if ($secure_link = "") {
+      return 403;
+    }
+
+    if ($secure_link = "0") {
+      return 410;
+    }
+
+    alias /var/vcap/store/shared/;
+  }
+}
+
+# Public server
+server {
+  listen      <%= p("blobstore.port") %>;
+  server_name blobstore.<%= p("domain") %>;
+  root        /var/vcap/store/shared/;
+
+  access_log /var/vcap/sys/log/blobstore/public_access.log;
+  error_log  /var/vcap/sys/log/blobstore/public_error.log;
+
+  # ensure the contents of this location block always match the internal server /read/ location block
+  location /read/ {
+    if ( $request_method !~ ^(GET|HEAD)$ ) {
+      return 405;
+    }
+
+    secure_link $arg_md5,$arg_expires;
+    secure_link_md5 "$secure_link_expires$uri <%= p("blobstore.secure_link.secret") %>";
+
+    if ($secure_link = "") {
+      return 403;
+    }
+
+    if ($secure_link = "0") {
+      return 410;
+    }
+
+    alias /var/vcap/store/shared/;
+  }
+}

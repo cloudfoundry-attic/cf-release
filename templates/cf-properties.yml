@@ -33,6 +33,12 @@ properties:
   app_ssh: ~
   domain: (( merge ))
 
+  blobstore:
+    port: (( merge || 80 ))
+    admin_users: (( merge || nil ))
+    secure_link:
+      secret: (( merge || nil ))
+
   loggregator_endpoint:
     shared_secret: (( merge ))
 
@@ -143,11 +149,15 @@ properties:
     broker_client_max_async_poll_duration_minutes: ~
 
     resource_pool:
+      blobstore_type: (( merge || "fog" ))
+      webdav_config: (( merge || properties.cc.webdav_config ))
       resource_directory_key: (( domain "-cc-resources" ))
       fog_connection: ~
       cdn: ~
 
     packages:
+      blobstore_type: (( merge || "fog" ))
+      webdav_config: (( merge || properties.cc.webdav_config ))
       app_package_directory_key: (( domain "-cc-packages" ))
       fog_connection: ~
       cdn: ~
@@ -155,6 +165,8 @@ properties:
       max_valid_packages_stored: ~
 
     droplets:
+      blobstore_type: (( merge || "fog" ))
+      webdav_config: (( merge || properties.cc.webdav_config ))
       droplet_directory_key: (( domain "-cc-droplets" ))
       fog_connection: ~
       cdn: ~
@@ -173,6 +185,8 @@ properties:
         record_sql: "obfuscated"
 
     buildpacks:
+      blobstore_type: (( merge || "fog" ))
+      webdav_config: (( merge || properties.cc.webdav_config ))
       buildpack_directory_key: (( domain "-cc-buildpacks" ))
       fog_connection: ~
       cdn: ~
@@ -218,6 +232,13 @@ properties:
         restart_if_consistently_above_mb: ~
         restart_if_above_mb: ~
     external_protocol: ~
+
+    webdav_config:
+      private_endpoint: "http://blobstore.service.cf.internal"
+      public_endpoint: (( "http://blobstore." domain || nil))
+      secret: (( properties.blobstore.secure_link.secret || nil ))
+      username: ((  properties.blobstore.admin_users.[0].username || nil ))
+      password: ((  properties.blobstore.admin_users.[0].password || nil ))
 
   hm9000:
     url: (( "https://hm9000." domain ))
