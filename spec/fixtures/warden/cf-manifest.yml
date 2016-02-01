@@ -248,8 +248,7 @@ jobs:
   name: blobstore_z1
   networks:
   - name: cf1
-    static_ips:
-    - 10.244.0.82
+    static_ips: null
   persistent_disk: 102400
   properties:
     consul:
