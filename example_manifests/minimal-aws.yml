@@ -162,9 +162,6 @@ jobs:
       agent:
         services:
           cloud_controller_ng: {}
-    nfs_server:
-      address: 10.0.16.105
-      allow_from_entries: [10.0.16.0/24]
     route_registrar:
       routes:
       - name: api
