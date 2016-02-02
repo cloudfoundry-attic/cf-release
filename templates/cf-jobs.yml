@@ -172,8 +172,6 @@ meta:
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: blobstore
-    release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
   - name: consul_agent
