@@ -206,8 +206,6 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: blobstore
-    release: cf
   - name: route_registrar
     release: cf
   - name: consul_agent
