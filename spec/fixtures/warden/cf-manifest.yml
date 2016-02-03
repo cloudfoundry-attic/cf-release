@@ -3098,6 +3098,7 @@ properties:
   router:
     cipher_suites: TLS_RSA_WITH_RC4_128_SHA:TLS_RSA_WITH_AES_128_CBC_SHA
     debug_addr: null
+    drain_wait: null
     enable_routing_api: true
     enable_ssl: true
     extra_headers_to_log: null

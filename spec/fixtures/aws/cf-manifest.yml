@@ -1260,6 +1260,7 @@ properties:
   router:
     cipher_suites: null
     debug_addr: null
+    drain_wait: null
     enable_routing_api: null
     enable_ssl: null
     extra_headers_to_log: null
