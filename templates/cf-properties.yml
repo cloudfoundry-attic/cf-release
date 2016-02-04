@@ -48,7 +48,7 @@ properties:
     blacklisted_syslog_ranges: ~
     outgoing_dropsonde_port: 8081
     tls:
-      ca: ~
+      ca_cert: ~
 
   doppler:
     message_drain_buffer_size: ~
@@ -58,11 +58,11 @@ properties:
     blacklisted_syslog_ranges: ~
     unmarshaller_count: (( merge || 5 ))
     port: (( merge || 4443 ))
-    enable_tls_transport: ~
-    tls_server:
-      cert: ~
+    tls:
+      server_cert: ~
+      server_key: ~
       port: ~
-      key: ~
+      enable: ~
 
 
   metron_agent:
@@ -70,9 +70,9 @@ properties:
     preferred_protocol: ~
     enable_buffer: ~
     buffer_size: ~
-    tls_client:
-      cert: ~
-      key: ~
+    tls:
+      client_cert: ~
+      client_key: ~
 
   traffic_controller:
     outgoing_port: 8080

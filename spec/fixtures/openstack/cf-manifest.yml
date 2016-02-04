@@ -1166,14 +1166,14 @@ properties:
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
-    enable_tls_transport: null
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     port: 4443
-    tls_server:
-      cert: null
-      key: null
+    tls:
+      server_cert: null
+      server_key: null
       port: null
+      enable: null
     unmarshaller_count: 5
     zone: null
   doppler_endpoint:
@@ -1206,7 +1206,7 @@ properties:
     maxRetainedLogMessages: 100
     outgoing_dropsonde_port: 8081
     tls:
-      ca: null
+      ca_cert: null
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
@@ -1244,9 +1244,9 @@ properties:
     deployment: ENVIRONMENT
     enable_buffer: null
     preferred_protocol: null
-    tls_client:
-      cert: null
-      key: null
+    tls:
+      client_cert: null
+      client_key: null
   metron_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
