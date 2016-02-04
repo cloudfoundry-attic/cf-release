@@ -292,6 +292,7 @@ jobs:
   templates:
   - {name: gorouter, release: cf}
   - {name: metron_agent, release: cf}
+  - {name: consul_agent, release: cf}
   networks:
   - name: cf_private
     static_ips: [10.0.16.102]
