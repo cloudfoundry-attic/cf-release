@@ -318,6 +318,7 @@ properties:
   cc:
     allow_app_ssh_access: false
     buildpacks:
+      blobstore_type: webdav
       webdav_config:
         password: PASSWORD
         private_endpoint: http://blobstore.service.cf.internal
@@ -325,6 +326,7 @@ properties:
         secret: PASSWORD
         username: blobstore-username
     droplets:
+      blobstore_type: webdav
       webdav_config:
         password: PASSWORD
         private_endpoint: http://blobstore.service.cf.internal
@@ -332,6 +334,7 @@ properties:
         secret: PASSWORD
         username: blobstore-username
     packages:
+      blobstore_type: webdav
       webdav_config:
         password: PASSWORD
         private_endpoint: http://blobstore.service.cf.internal
@@ -339,6 +342,7 @@ properties:
         secret: PASSWORD
         username: blobstore-username
     resource_pool:
+      blobstore_type: webdav
       webdav_config:
         password: PASSWORD
         private_endpoint: http://blobstore.service.cf.internal
