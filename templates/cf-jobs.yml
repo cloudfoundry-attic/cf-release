@@ -785,7 +785,6 @@ properties:
     disk_mb: (( merge || nil ))
     staging_disk_inode_limit: 200000
     instance_disk_inode_limit: 200000
-    deny_networks: (( merge || [] ))
     allow_networks: (( merge || [] ))
     kernel_network_tuning_enabled: true
     directory_server_protocol: https

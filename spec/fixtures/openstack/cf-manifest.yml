@@ -1141,7 +1141,6 @@ properties:
     allow_host_access: null
     allow_networks: null
     default_health_check_timeout: 60
-    deny_networks: null
     directory_server_protocol: https
     disk_mb: 2048
     disk_overcommit_factor: null
