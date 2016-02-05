@@ -62,5 +62,3 @@ properties:
         port: 12346
         uris:
           - my-service.system-domain.com/debug
-  route_registrar.update_frequency_in_seconds:
-    default: 20
