@@ -218,7 +218,7 @@ meta:
   uaa_routes:
   - name: uaa
     port: (( .properties.uaa.port ))
-    registration_interval: 20s
+    registration_interval: 4s
     tags:
       component: uaa
     uris:
@@ -226,6 +226,9 @@ meta:
     - (( "*.uaa." .properties.domain ))
     - (( "login." .properties.domain ))
     - (( "*.login." .properties.domain ))
+    health_check:
+      name: uaa-healthcheck
+      script_path: /var/vcap/jobs/uaa/bin/health_check
 
   uaa_templates:
   - name: uaa
