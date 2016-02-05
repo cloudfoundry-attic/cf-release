@@ -126,7 +126,7 @@ jobs:
       routes:
       - name: blobstore
         port: 80
-        registration_interval_in_seconds: 20
+        registration_interval: 20s
         tags:
           component: blobstore
         uris:
@@ -165,7 +165,7 @@ jobs:
     route_registrar:
       routes:
       - name: api
-        registration_interval_in_seconds: 20
+        registration_interval: 20s
         port: 9022
         uris:
         - "api.REPLACE_WITH_SYSTEM_DOMAIN"
@@ -202,7 +202,7 @@ jobs:
     route_registrar:
       routes:
       - name: hm9000
-        registration_interval_in_seconds: 20
+        registration_interval: 20s
         port: 5155
         uris:
         - "hm9000.REPLACE_WITH_SYSTEM_DOMAIN"
@@ -233,12 +233,12 @@ jobs:
     route_registrar:
       routes:
       - name: doppler
-        registration_interval_in_seconds: 20
+        registration_interval: 20s
         port: 8081
         uris:
         - "doppler.REPLACE_WITH_SYSTEM_DOMAIN"
       - name: loggregator
-        registration_interval_in_seconds: 20
+        registration_interval: 20s
         port: 8080
         uris:
           - "loggregator.REPLACE_WITH_SYSTEM_DOMAIN"
@@ -258,7 +258,7 @@ jobs:
     route_registrar:
       routes:
       - name: uaa
-        registration_interval_in_seconds: 20
+        registration_interval: 20s
         port: 8080
         uris:
         - "uaa.REPLACE_WITH_SYSTEM_DOMAIN"

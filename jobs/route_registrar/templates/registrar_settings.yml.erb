@@ -31,7 +31,7 @@ routes:
 %>
   - name: <%= route_config['name'] %>
     port: <%= route_config['port'] %>
-    registration_interval: <%= route_config['registration_interval_in_seconds'].to_s + "s" %>
+    registration_interval: <%= route_config['registration_interval'] %>
     uris: <%= route_config['uris'].to_json %>
 
     <% if route_config['tags'] %>
@@ -47,7 +47,7 @@ routes:
       name: <%= health_check['name'] %>
       script_path: <%= health_check['script_path'] %>
       <% if health_check['timeout'] %>
-      timeout: <%= health_check['timeout'].to_s + "s" %>
+      timeout: <%= health_check['timeout'] %>
       <% end %>
     <% end %>
 

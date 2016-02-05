@@ -30,22 +30,23 @@ properties:
   route_registrar.routes:
     description: |
       * Array of hashes determining which routes will be registered.
-      * Each hash should have 'port', 'uris', 'registration_interval_in_seconds'
+      * Each hash should have 'port', 'uris', 'registration_interval'
         and 'name' keys.
-      * 'registration_interval_in_seconds' is the delay in seconds between
-        routing updates. It must be a positive integer.
+      * 'registration_interval' is the delay between
+        routing updates. It must be a time duration represented as a string
+        (e.g. "10s").
       * Additionally, the 'tags' and 'healthcheck' keys are optional.
       * 'uris' is an array of URIs to register for the 'port'.
       * 'tags' are included in metrics that gorouter emits to support filtering.
       * 'healthcheck' is a hash which should have 'name' and 'script_path'.
-      * 'healthcheck.timeout' is optional, and is measured in seconds.
+      * 'healthcheck.timeout' is optional.
         If the healthcheck timeout is not provided, it defaults to half of the
-        value of `registration_interval_in_seconds`.
-        If it is provided it must be a positive integer, and less than the value
-        of `registration_interval_in_seconds`.
+        value of `registration_interval`.
+        If it is provided it must be a time duration represented as a string (e.g. "10s"), 
+        and less than the value of `registration_interval`.
     example: |
       - name: my-service
-        registration_interval_in_seconds: 20
+        registration_interval: 20s
         port: 12345
         tags:
           component: my-service
@@ -56,7 +57,7 @@ properties:
         healthcheck:
           name: my-service-healthcheck
           script_path: /path/to/script
-          timeout: 5
+          timeout: 5s
       - name: my-debug-endpoint
         port: 12346
         uris:
