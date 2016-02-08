@@ -34,6 +34,20 @@ meta:
   api_templates:
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
+  - name: go-buildpack
+    release: (( meta.release.name ))
+  - name: binary-buildpack
+    release: (( meta.release.name ))
+  - name: nodejs-buildpack
+    release: (( meta.release.name ))
+  - name: ruby-buildpack
+    release: (( meta.release.name ))
+  - name: php-buildpack
+    release: (( meta.release.name ))
+  - name: python-buildpack
+    release: (( meta.release.name ))
+  - name: staticfile-buildpack
+    release: (( meta.release.name ))
   - name: cloud_controller_ng
     release: (( meta.release.name ))
   - name: metron_agent

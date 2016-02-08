@@ -34,13 +34,6 @@ packages:
   - ruby-2.2.4
   - buildpack_java
   - buildpack_java_offline
-  - buildpack_ruby
-  - buildpack_nodejs
-  - buildpack_go
-  - buildpack_python
-  - buildpack_php
-  - buildpack_staticfile
-  - buildpack_binary
 
 properties:
   ssl.skip_cert_verify:

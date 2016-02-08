@@ -1,2 +1,0 @@
-    set -e -x
-    cp php-buildpack/php_buildpack-cached-v4.3.4.zip ${BOSH_INSTALL_TARGET}

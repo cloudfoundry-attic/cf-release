@@ -1,2 +1,0 @@
-    set -e -x
-    cp binary-buildpack/binary_buildpack-cached-v1.0.1.zip ${BOSH_INSTALL_TARGET}

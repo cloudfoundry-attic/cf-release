@@ -404,6 +404,20 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+  - name: go-buildpack
+    release: cf
+  - name: binary-buildpack
+    release: cf
+  - name: nodejs-buildpack
+    release: cf
+  - name: ruby-buildpack
+    release: cf
+  - name: php-buildpack
+    release: cf
+  - name: python-buildpack
+    release: cf
+  - name: staticfile-buildpack
+    release: cf
   - name: cloud_controller_ng
     release: cf
   - name: cloud_controller_clock
@@ -450,6 +464,20 @@ jobs:
   resource_pool: large_z2
   templates:
   - name: consul_agent
+    release: cf
+  - name: go-buildpack
+    release: cf
+  - name: binary-buildpack
+    release: cf
+  - name: nodejs-buildpack
+    release: cf
+  - name: ruby-buildpack
+    release: cf
+  - name: php-buildpack
+    release: cf
+  - name: python-buildpack
+    release: cf
+  - name: staticfile-buildpack
     release: cf
   - name: cloud_controller_ng
     release: cf
@@ -596,19 +624,19 @@ jobs:
     static_ips:
     - 10.244.0.26
   properties:
-    dea_next:
-      zone: z1
-    metron_agent:
-      zone: z1
     consul:
       agent:
         services:
           dea:
             check:
+              interval: 5m
               name: dns_health_check
               script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              interval: 5m
               status: passing
+    dea_next:
+      zone: z1
+    metron_agent:
+      zone: z1
   resource_pool: runner_z1
   templates:
   - name: consul_agent
@@ -627,19 +655,19 @@ jobs:
   - name: cf2
     static_ips: null
   properties:
-    dea_next:
-      zone: z2
-    metron_agent:
-      zone: z2
     consul:
       agent:
         services:
           dea:
             check:
+              interval: 5m
               name: dns_health_check
               script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              interval: 5m
               status: passing
+    dea_next:
+      zone: z2
+    metron_agent:
+      zone: z2
   resource_pool: runner_z2
   templates:
   - name: consul_agent
@@ -2584,21 +2612,21 @@ properties:
     default_app_memory: 256
     default_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
@@ -2629,21 +2657,21 @@ properties:
     external_protocol: null
     install_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     internal_api_password: internal-password
     internal_api_user: internal_user
     jobs:
@@ -2746,21 +2774,21 @@ properties:
     staging_upload_user: upload-user
     system_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     thresholds:
       api:
         alert_if_above_mb: null
@@ -2992,10 +3020,10 @@ properties:
     message_drain_buffer_size: null
     port: 4443
     tls:
+      enable: null
+      port: null
       server_cert: null
       server_key: null
-      port: null
-      enable: null
     unmarshaller_count: 5
     zone: null
   doppler_endpoint:
@@ -3490,3 +3518,4 @@ update:
   max_in_flight: 50
   serial: true
   update_watch_time: 1000-180000
+

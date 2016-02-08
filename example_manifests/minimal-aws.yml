@@ -355,13 +355,13 @@ properties:
     default_staging_security_groups: [public_networks, dns]
     install_buildpacks:
     - {name: java_buildpack, package: buildpack_java}
-    - {name: ruby_buildpack, package: buildpack_ruby}
-    - {name: nodejs_buildpack, package: buildpack_nodejs}
-    - {name: go_buildpack, package: buildpack_go}
-    - {name: python_buildpack, package: buildpack_python}
-    - {name: php_buildpack, package: buildpack_php}
-    - {name: staticfile_buildpack, package: buildpack_staticfile}
-    - {name: binary_buildpack, package: buildpack_binary}
+    - {name: ruby_buildpack, package: ruby-buildpack}
+    - {name: nodejs_buildpack, package: nodejs-buildpack}
+    - {name: go_buildpack, package: go-buildpack}
+    - {name: python_buildpack, package: python-buildpack}
+    - {name: php_buildpack, package: php-buildpack}
+    - {name: staticfile_buildpack, package: staticfile-buildpack}
+    - {name: binary_buildpack, package: binary-buildpack}
     internal_api_password: PASSWORD
     quota_definitions:
       default:

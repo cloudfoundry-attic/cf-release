@@ -64,19 +64,13 @@ jobs:
     - 10.85.9.233
   properties:
     ha_proxy:
-      ssl_pem: '-----BEGIN RSA PRIVATE KEY-----
-
+      ssl_pem: |+
+        -----BEGIN RSA PRIVATE KEY-----
         RSA_PRIVATE_KEY
-
         -----END RSA PRIVATE KEY-----
-
         -----BEGIN CERTIFICATE-----
-
         CERTIFICATE
-
         -----END CERTIFICATE-----
-
-'
     metron_agent:
       zone: z1
     router:
@@ -382,6 +376,20 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+  - name: go-buildpack
+    release: cf
+  - name: binary-buildpack
+    release: cf
+  - name: nodejs-buildpack
+    release: cf
+  - name: ruby-buildpack
+    release: cf
+  - name: php-buildpack
+    release: cf
+  - name: python-buildpack
+    release: cf
+  - name: staticfile-buildpack
+    release: cf
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
@@ -423,6 +431,20 @@ jobs:
   resource_pool: large_z2
   templates:
   - name: consul_agent
+    release: cf
+  - name: go-buildpack
+    release: cf
+  - name: binary-buildpack
+    release: cf
+  - name: nodejs-buildpack
+    release: cf
+  - name: ruby-buildpack
+    release: cf
+  - name: php-buildpack
+    release: cf
+  - name: python-buildpack
+    release: cf
+  - name: staticfile-buildpack
     release: cf
   - name: cloud_controller_ng
     release: cf
@@ -568,19 +590,19 @@ jobs:
   - name: cf1
     static_ips: null
   properties:
-    dea_next:
-      zone: z1
-    metron_agent:
-      zone: z1
     consul:
       agent:
         services:
           dea:
             check:
+              interval: 5m
               name: dns_health_check
               script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              interval: 5m
               status: passing
+    dea_next:
+      zone: z1
+    metron_agent:
+      zone: z1
   resource_pool: runner_z1
   templates:
   - name: consul_agent
@@ -599,19 +621,19 @@ jobs:
   - name: cf2
     static_ips: null
   properties:
-    dea_next:
-      zone: z2
-    metron_agent:
-      zone: z2
     consul:
       agent:
         services:
           dea:
             check:
+              interval: 5m
               name: dns_health_check
               script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              interval: 5m
               status: passing
+    dea_next:
+      zone: z2
+    metron_agent:
+      zone: z2
   resource_pool: runner_z2
   templates:
   - name: consul_agent
@@ -891,8 +913,8 @@ properties:
       fog_connection: null
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     bulk_api_password: BULK_API_PASSWORD
@@ -903,21 +925,21 @@ properties:
     default_app_memory: 1024
     default_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
@@ -938,8 +960,8 @@ properties:
       max_staged_droplets_stored: null
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     external_host: api
@@ -947,21 +969,21 @@ properties:
     external_protocol: null
     install_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     internal_api_password: BULK_API_PASSWORD
     internal_api_user: internal_user
     jobs:
@@ -1008,8 +1030,8 @@ properties:
       max_valid_packages_stored: null
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     quota_definitions:
@@ -1025,8 +1047,8 @@ properties:
       resource_directory_key: DOMAIN-cc-resources
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     security_group_definitions:
@@ -1058,21 +1080,21 @@ properties:
     staging_upload_user: STAGING_UPLOAD_USER
     system_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     thresholds:
       api:
         alert_if_above_mb: null
@@ -1086,8 +1108,8 @@ properties:
     users_can_select_backend: true
     webdav_config:
       password: blobstore-password
-      public_endpoint: http://blobstore.DOMAIN
       private_endpoint: http://blobstore.service.cf.internal
+      public_endpoint: http://blobstore.DOMAIN
       secret: blobstore-secret
       username: blobstore-username
   ccdb:
@@ -1170,15 +1192,15 @@ properties:
     blacklisted_syslog_ranges: null
     debug: false
     maxRetainedLogMessages: 100
+    message_drain_buffer_size: null
     port: 4443
     tls:
+      enable: null
+      port: null
       server_cert: null
       server_key: null
-      port: null
-      enable: null
     unmarshaller_count: 5
     zone: null
-    message_drain_buffer_size: null
   doppler_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   dropsonde:
@@ -1345,11 +1367,11 @@ properties:
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
+        autoapprove: true
         override: true
         redirect-uri: https://login.DOMAIN
         scope: openid,oauth.approvals
         secret: LOGIN_CLIENT_SECRET
-        autoapprove: true
       notifications:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
@@ -1552,3 +1574,4 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
+

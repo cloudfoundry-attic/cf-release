@@ -197,21 +197,21 @@ properties:
     system_buildpacks: (( merge || default_buildpacks ))
     default_buildpacks:
       - name: staticfile_buildpack
-        package: buildpack_staticfile
+        package: staticfile-buildpack
       - name: java_buildpack
         package: buildpack_java
       - name: ruby_buildpack
-        package: buildpack_ruby
+        package: ruby-buildpack
       - name: nodejs_buildpack
-        package: buildpack_nodejs
+        package: nodejs-buildpack
       - name: go_buildpack
-        package: buildpack_go
+        package: go-buildpack
       - name: python_buildpack
-        package: buildpack_python
+        package: python-buildpack
       - name: php_buildpack
-        package: buildpack_php
+        package: php-buildpack
       - name: binary_buildpack
-        package: buildpack_binary
+        package: binary-buildpack
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 

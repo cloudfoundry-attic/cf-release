@@ -40,3 +40,6 @@
 [submodule "src/dea-hm-workspace"]
 	path = src/dea-hm-workspace
 	url = https://github.com/cloudfoundry/dea-hm-workspace
+[submodule "src/buildpacks"]
+	path = src/buildpacks
+	url = https://github.com/cloudfoundry/buildpack-releases

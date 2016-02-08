@@ -416,6 +416,20 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+  - name: go-buildpack
+    release: cf
+  - name: binary-buildpack
+    release: cf
+  - name: nodejs-buildpack
+    release: cf
+  - name: ruby-buildpack
+    release: cf
+  - name: php-buildpack
+    release: cf
+  - name: python-buildpack
+    release: cf
+  - name: staticfile-buildpack
+    release: cf
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
@@ -891,8 +905,8 @@ properties:
       fog_connection: null
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     bulk_api_password: BULK_API_PASSWORD
@@ -903,21 +917,21 @@ properties:
     default_app_memory: 1024
     default_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
@@ -938,8 +952,8 @@ properties:
       max_staged_droplets_stored: null
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     external_host: api
@@ -947,21 +961,21 @@ properties:
     external_protocol: null
     install_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     internal_api_password: BULK_API_PASSWORD
     internal_api_user: internal_user
     jobs:
@@ -1008,8 +1022,8 @@ properties:
       max_valid_packages_stored: null
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     quota_definitions:
@@ -1025,8 +1039,8 @@ properties:
       resource_directory_key: DOMAIN-cc-resources
       webdav_config:
         password: blobstore-password
-        public_endpoint: http://blobstore.DOMAIN
         private_endpoint: http://blobstore.service.cf.internal
+        public_endpoint: http://blobstore.DOMAIN
         secret: blobstore-secret
         username: blobstore-username
     security_group_definitions:
@@ -1058,21 +1072,21 @@ properties:
     staging_upload_user: STAGING_UPLOAD_USER
     system_buildpacks:
     - name: staticfile_buildpack
-      package: buildpack_staticfile
+      package: staticfile-buildpack
     - name: java_buildpack
       package: buildpack_java
     - name: ruby_buildpack
-      package: buildpack_ruby
+      package: ruby-buildpack
     - name: nodejs_buildpack
-      package: buildpack_nodejs
+      package: nodejs-buildpack
     - name: go_buildpack
-      package: buildpack_go
+      package: go-buildpack
     - name: python_buildpack
-      package: buildpack_python
+      package: python-buildpack
     - name: php_buildpack
-      package: buildpack_php
+      package: php-buildpack
     - name: binary_buildpack
-      package: buildpack_binary
+      package: binary-buildpack
     thresholds:
       api:
         alert_if_above_mb: null
@@ -1086,8 +1100,8 @@ properties:
     users_can_select_backend: true
     webdav_config:
       password: blobstore-password
-      public_endpoint: http://blobstore.DOMAIN
       private_endpoint: http://blobstore.service.cf.internal
+      public_endpoint: http://blobstore.DOMAIN
       secret: blobstore-secret
       username: blobstore-username
   ccdb:
@@ -1170,10 +1184,10 @@ properties:
     message_drain_buffer_size: null
     port: 4443
     tls:
+      enable: null
+      port: null
       server_cert: null
       server_key: null
-      port: null
-      enable: null
     unmarshaller_count: 5
     zone: null
   doppler_endpoint:

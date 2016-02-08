@@ -463,6 +463,20 @@ jobs:
     templates:
       - name: consul_agent
         release: cf
+      - name: go-buildpack
+        release: cf
+      - name: binary-buildpack
+        release: cf
+      - name: nodejs-buildpack
+        release: cf
+      - name: ruby-buildpack
+        release: cf
+      - name: php-buildpack
+        release: cf
+      - name: python-buildpack
+        release: cf
+      - name: staticfile-buildpack
+        release: cf
       - name: cloud_controller_ng
         release: cf
       - name: cloud_controller_clock
