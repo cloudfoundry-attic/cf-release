@@ -36,6 +36,7 @@ properties:
     clients: (( merge ))
 
   dea_next:
+    deny_networks: (( merge || nil ))
     allow_networks: (( merge || nil ))
 
   ccdb:

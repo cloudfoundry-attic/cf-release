@@ -2963,6 +2963,7 @@ properties:
     allow_host_access: null
     allow_networks: []
     default_health_check_timeout: 60
+    deny_networks: []
     directory_server_protocol: https
     disk_mb: null
     disk_overcommit_factor: null

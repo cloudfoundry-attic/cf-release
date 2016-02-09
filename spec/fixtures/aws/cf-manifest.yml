@@ -1122,6 +1122,9 @@ properties:
     allow_networks:
     - 10.10.0.2/32
     default_health_check_timeout: 60
+    deny_networks:
+    - 169.254.0.0/16
+    - 10.10.0.0/16
     directory_server_protocol: https
     disk_mb: null
     disk_overcommit_factor: null
