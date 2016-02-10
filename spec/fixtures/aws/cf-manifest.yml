@@ -194,13 +194,13 @@ jobs:
         - blobstore.DOMAIN
   resource_pool: medium_z1
   templates:
+  - name: consul_agent
+    release: cf
   - name: debian_nfs_server
     release: cf
   - name: metron_agent
     release: cf
   - name: route_registrar
-    release: cf
-  - name: consul_agent
     release: cf
   update: {}
 - instances: 0
@@ -227,13 +227,13 @@ jobs:
         - blobstore.DOMAIN
   resource_pool: medium_z1
   templates:
+  - name: consul_agent
+    release: cf
   - name: metron_agent
     release: cf
   - name: blobstore
     release: cf
   - name: route_registrar
-    release: cf
-  - name: consul_agent
     release: cf
   update: {}
 - instances: 0
@@ -363,13 +363,13 @@ jobs:
         - api.DOMAIN
   resource_pool: large_z1
   templates:
+  - name: consul_agent
+    release: cf
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
     release: cf
   - name: statsd-injector
-    release: cf
-  - name: consul_agent
     release: cf
   - name: nfs_mounter
     release: cf
@@ -405,13 +405,13 @@ jobs:
         - api.DOMAIN
   resource_pool: large_z2
   templates:
+  - name: consul_agent
+    release: cf
   - name: cloud_controller_ng
     release: cf
   - name: metron_agent
     release: cf
   - name: statsd-injector
-    release: cf
-  - name: consul_agent
     release: cf
   - name: nfs_mounter
     release: cf
@@ -449,13 +449,13 @@ jobs:
       share: null
   resource_pool: small_z1
   templates:
-  - name: cloud_controller_worker
-    release: cf
-  - name: metron_agent
-    release: cf
   - name: consul_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: cloud_controller_worker
+    release: cf
+  - name: metron_agent
     release: cf
   update: {}
 - instances: 1
@@ -474,13 +474,13 @@ jobs:
       share: null
   resource_pool: small_z2
   templates:
-  - name: cloud_controller_worker
-    release: cf
-  - name: metron_agent
-    release: cf
   - name: consul_agent
     release: cf
   - name: nfs_mounter
+    release: cf
+  - name: cloud_controller_worker
+    release: cf
+  - name: metron_agent
     release: cf
   update: {}
 - instances: 1

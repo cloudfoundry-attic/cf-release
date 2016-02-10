@@ -460,6 +460,8 @@ jobs:
   - name: api_z1
     persistent_disk: 8192
     templates:
+      - name: consul_agent
+        release: cf
       - name: cloud_controller_ng
         release: cf
       - name: cloud_controller_clock
@@ -471,8 +473,6 @@ jobs:
       - name: metron_agent
         release: cf
       - name: statsd-injector
-        release: cf
-      - name: consul_agent
         release: cf
       - name: route_registrar
         release: cf

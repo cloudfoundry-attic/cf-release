@@ -32,27 +32,27 @@ meta:
     cloud_controller_ng: {}
 
   api_templates:
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: cloud_controller_ng
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: statsd-injector
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
   - name: nfs_mounter
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
 
   api_worker_templates:
-  - name: cloud_controller_worker
-    release: (( meta.release.name ))
-  - name: metron_agent
-    release: (( meta.release.name ))
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
   - name: nfs_mounter
+    release: (( meta.release.name ))
+  - name: cloud_controller_worker
+    release: (( meta.release.name ))
+  - name: metron_agent
     release: (( meta.release.name ))
 
   clock_templates:
@@ -158,24 +158,24 @@ meta:
     - (( "blobstore." .properties.domain ))
 
   blobstore_templates:
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: blobstore
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
 
   nfs_templates:
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: debian_nfs_server
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
 
   postgres_templates:
   - name: postgres
