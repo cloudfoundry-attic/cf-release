@@ -56,6 +56,18 @@ case $1 in
 
     setcap cap_net_bind_service=+ep /var/vcap/packages/gorouter/bin/gorouter
 
+    <% if p("router.enable_routing_api") %>
+      set +e
+
+      host <%= p("router.dns_health_check_host") %>
+      if [[ "0" != "$?" ]]; then
+        echo "DNS is not up"
+        exit 1
+      fi
+
+      set -e
+    <% end %>
+
     exec chpst -u vcap:vcap /var/vcap/packages/gorouter/bin/gorouter \
          -c /var/vcap/jobs/gorouter/config/gorouter.yml
 

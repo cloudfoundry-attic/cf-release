@@ -4,4 +4,3 @@ check process gorouter
     with timeout 60 seconds
   stop program "/var/vcap/jobs/gorouter/bin/gorouter_ctl stop"
   group vcap
-  depends on consul_agent

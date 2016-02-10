@@ -184,12 +184,12 @@ meta:
     release: (( meta.release.name ))
 
   router_templates:
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: gorouter
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
 
   stats_templates:
   - name: collector

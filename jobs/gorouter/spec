@@ -53,6 +53,9 @@ properties:
   router.enable_routing_api:
     description: "Enable the GoRouter to receive routes from the Routing API"
     default: false
+  router.dns_health_check_host:
+      description: "Host to ping for confirmation of DNS resolution, only used when Routing API is enabled"
+      default: "consul.service.cf.internal"
   router.ssl_cert:
     description: "The public ssl cert for ssl termination"
     default: ""

@@ -774,11 +774,11 @@ jobs:
       zone: z1
   resource_pool: router_z1
   templates:
+  - name: consul_agent
+    release: cf
   - name: gorouter
     release: cf
   - name: metron_agent
-    release: cf
-  - name: consul_agent
     release: cf
   update: {}
 - default_networks:
@@ -799,11 +799,11 @@ jobs:
       zone: z2
   resource_pool: router_z2
   templates:
+  - name: consul_agent
+    release: cf
   - name: gorouter
     release: cf
   - name: metron_agent
-    release: cf
-  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
