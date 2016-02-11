@@ -80,6 +80,7 @@ properties:
     description: "NFS server for droplets and apps (not used in an AWS deploy, use s3 instead)"
   nfs_server.share_path:
     description: "The location at which to mount the nfs share"
+    default: "/var/vcap/nfs"
 
   request_timeout_in_seconds:
     description: "Timeout for requests in seconds."
