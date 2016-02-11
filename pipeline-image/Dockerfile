@@ -90,8 +90,8 @@ RUN \
   rm -rf /tmp/*
 
 RUN \
-  wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb -P /tmp && \
-  dpkg --install /tmp/vagrant_1.6.5_x86_64.deb && \
+  wget https://releases.hashicorp.com/vagrant/1.8.1/vagrant_1.8.1_x86_64.deb -P /tmp && \
+  dpkg --install /tmp/vagrant_1.8.1_x86_64.deb && \
   vagrant plugin install vagrant-aws && \
   rm -rf /tmp/*
 
