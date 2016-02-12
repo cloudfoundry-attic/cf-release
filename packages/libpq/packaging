@@ -1,6 +1,6 @@
 set -e -x
 
-tar xzf postgres/postgresql-9.4.5.tar.gz
+tar xzf postgres/postgresql-9.4.6.tar.gz
 
 cd postgresql-9.4.5
 
