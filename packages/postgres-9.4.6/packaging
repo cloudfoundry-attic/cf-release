@@ -1,6 +1,6 @@
 set -e -x
 
-pgversion="postgresql-9.4.5"
+pgversion="postgresql-9.4.6"
 archive="$pgversion.tar.gz"
 
 if [[ -f postgres/$archive ]] ; then
