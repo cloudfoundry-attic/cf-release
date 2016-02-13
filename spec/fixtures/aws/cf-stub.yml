@@ -65,7 +65,7 @@ properties:
   ccdb:
     db_scheme: CCDB_SCHEME
     roles:
-      - tag: CCDB_USER
+      - tag: admin
         name: CCDB_USER_NAME
         password: CCDB_PASSWORD
     databases:
@@ -121,7 +121,7 @@ properties:
   uaadb:
     db_scheme: UAADB_SCHEME
     roles:
-      - tag: UAADB_USER
+      - tag: admin
         name: UAADB_USER_NAME
         password: UAADB_USER_PASSWORD
     databases:

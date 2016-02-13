@@ -1097,7 +1097,7 @@ properties:
     roles:
     - name: CCDB_USER_NAME
       password: CCDB_PASSWORD
-      tag: CCDB_USER
+      tag: admin
   collector: null
   consul:
     agent:
@@ -1387,7 +1387,7 @@ properties:
     roles:
     - name: UAADB_USER_NAME
       password: UAADB_USER_PASSWORD
-      tag: UAADB_USER
+      tag: admin
 releases:
 - name: cf
   version: latest
