@@ -131,10 +131,6 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.5.zip:
   object_id: 8d10e76f-3a96-4625-afd8-8586c00a6796
   sha: 0940c49346411e30af59b60ed6213a8047374b9b
   size: 46466389
-rootfs/cflinuxfs2-1.32.0.tar.gz:
-  object_id: 95c28de2-3582-4cf7-a987-6ceacb022672
-  sha: 6fe83ee8eda303a1c58299bf9f1f0ea378ac0721
-  size: 258455737
 php-buildpack/php_buildpack-cached-v4.3.4.zip:
   object_id: 76d282df-1520-4c89-9b7a-5f261b9dec77
   sha: a9058d574b8bd00053f14952bb1f0bdf4e3bb265
@@ -155,3 +151,7 @@ postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
   size: 23249307
+rootfs/cflinuxfs2-1.34.0.tar.gz:
+  object_id: 389258ef-a634-45a7-9f1c-9722472dbeae
+  sha: 06da6da2b259545219e5b675de2dcea112946be5
+  size: 258500373
