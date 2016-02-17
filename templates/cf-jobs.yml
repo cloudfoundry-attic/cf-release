@@ -68,14 +68,14 @@ meta:
     release: (( meta.release.name ))
 
   dea_templates:
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: dea_next
     release: (( meta.release.name ))
   - name: dea_logging_agent
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
 
   etcd_templates:
   - name: etcd
@@ -103,14 +103,14 @@ meta:
     - (( "hm9000." .properties.domain ))
 
   hm9000_templates:
+  - name: consul_agent
+    release: (( meta.consul_templates.consul_agent.release ))
   - name: hm9000
     release: (( meta.release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
-  - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
 
   loggregator_templates:
   - name: doppler
