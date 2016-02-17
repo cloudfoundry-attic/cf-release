@@ -6,13 +6,10 @@ mkdir -p ${BOSH_INSTALL_TARGET}/src
 cp -a . ${BOSH_INSTALL_TARGET}/src
 
 export GOPATH=$BOSH_INSTALL_TARGET
-export REPO=$GOPATH/src/github.com/cloudfoundry-incubator/route-registrar
-export GOPATH=$GOPATH:$REPO/Godeps/_workspace
 
 export GOROOT=$(readlink -nf /var/vcap/packages/golang1.5)
 export PATH=$GOROOT/bin:$PATH
 
-go install github.com/cloudfoundry-incubator/route-registrar
 go install github.com/cloudfoundry-incubator/route-registrar
 
 # clean up source artifacts
