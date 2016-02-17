@@ -549,13 +549,13 @@ jobs:
         - hm9000.bosh-lite.com
   resource_pool: medium_z1
   templates:
+  - name: consul_agent
+    release: cf
   - name: hm9000
     release: cf
   - name: metron_agent
     release: cf
   - name: route_registrar
-    release: cf
-  - name: consul_agent
     release: cf
   update: {}
 - instances: 0
@@ -580,13 +580,13 @@ jobs:
         - hm9000.bosh-lite.com
   resource_pool: medium_z2
   templates:
+  - name: consul_agent
+    release: cf
   - name: hm9000
     release: cf
   - name: metron_agent
     release: cf
   - name: route_registrar
-    release: cf
-  - name: consul_agent
     release: cf
   update: {}
 - instances: 1
@@ -611,13 +611,13 @@ jobs:
               status: passing
   resource_pool: runner_z1
   templates:
+  - name: consul_agent
+    release: cf
   - name: dea_next
     release: cf
   - name: dea_logging_agent
     release: cf
   - name: metron_agent
-    release: cf
-  - name: consul_agent
     release: cf
   update:
     max_in_flight: 1
@@ -642,13 +642,13 @@ jobs:
               status: passing
   resource_pool: runner_z2
   templates:
+  - name: consul_agent
+    release: cf
   - name: dea_next
     release: cf
   - name: dea_logging_agent
     release: cf
   - name: metron_agent
-    release: cf
-  - name: consul_agent
     release: cf
   update:
     max_in_flight: 1
