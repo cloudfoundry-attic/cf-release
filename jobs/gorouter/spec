@@ -76,6 +76,9 @@ properties:
   router.route_services_secret_decrypt_only:
     description: "To rotate keys, add your new key here and deploy. Then swap this key with the value of route_services_secret and deploy again."
     default: ""
+  router.route_services_recommend_https:
+    description: "Route Services are told where to send requests after processing using the X-CF-Forwarded-Url header. When this property is true, the scheme for this URL is https. When false, the scheme is http. As requests from Route Services to applications on CF transit load balancers and gorouter, disable this property for deployments that have TLS termination disabled."
+    default: true
   router.route_services_timeout:
     description: "Expiry time of a route service signature in seconds"
     default: 60

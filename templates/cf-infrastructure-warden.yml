@@ -129,6 +129,7 @@ properties:
       password: router
     ssl_skip_validation: true
     route_services_secret: route-services-secret
+    route_services_recommend_https: false
     enable_routing_api: true
 
   ccdb:
