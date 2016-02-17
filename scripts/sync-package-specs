@@ -1,10 +1,13 @@
 #!/bin/bash
 
-set -e
+set -eu
 
 # ensure gosub is installed (this will recompile it only if necessary)
 go get github.com/vito/gosub
 go install github.com/vito/gosub
+
+scripts_dir=$(cd $(dirname $0) && pwd)
+export GOPATH=$(cd ${scripts_dir}/.. && pwd)
 
 function sync_package() {
   bosh_pkg=${1}
@@ -14,7 +17,8 @@ function sync_package() {
   (
     set -e
 
-    cd packages/${bosh_pkg}
+    package_dir=$(cd $(dirname $0)/../packages && pwd)
+    cd ${package_dir}/${bosh_pkg}
 
     {
       cat spec | grep -v '# gosub'
