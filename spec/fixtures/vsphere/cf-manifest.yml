@@ -1328,6 +1328,7 @@ properties:
   traffic_controller:
     outgoing_port: 8080
     zone: null
+    disable_access_control: null
   uaa:
     admin:
       client_secret: ADMIN_SECRET
