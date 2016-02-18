@@ -77,6 +77,7 @@ properties:
   traffic_controller:
     outgoing_port: 8080
     zone: (( merge || nil ))
+    disable_access_control: (( merge || nil ))
 
   cc:
     jobs:
