@@ -46,3 +46,6 @@ properties:
   smoke_tests.ginkgo_opts:
     default: ''
     description: Ginkgo options for the smoke tests
+  smoke_tests.enable_windows_tests:
+    default: false
+    description: Toggles a portion of the suite that exercises Windows platform support
