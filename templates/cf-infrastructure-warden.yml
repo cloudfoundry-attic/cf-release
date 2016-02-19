@@ -92,6 +92,42 @@ properties:
         qHxf+ZH9BL1gk9Y6kCnbM5R60gfwjyW1/dQPjOzn9N394zd2FJoFHwdq9Qs0wBug
         spULZVNRxq7veq/fzwIDAQAB
         -----END PUBLIC KEY-----
+    ssl:
+      port: 8443
+    sslCertificate: |
+      -----BEGIN CERTIFICATE-----
+      MIICoTCCAgoCCQCdmqygDsbv0TANBgkqhkiG9w0BAQUFADCBlDELMAkGA1UEBhMC
+      VVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28x
+      EjAQBgNVBAoTCUJvc2ggTGl0ZTESMBAGA1UECxMJQm9zaCBMaXRlMRIwEAYDVQQD
+      EwlCb3NoIExpdGUxHDAaBgkqhkiG9w0BCQEWDWJvc2hAbGl0ZS5jb20wHhcNMTYw
+      MjE4MjI0NDM2WhcNMTYwMzE5MjI0NDM2WjCBlDELMAkGA1UEBhMCVVMxEzARBgNV
+      BAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xEjAQBgNVBAoT
+      CUJvc2ggTGl0ZTESMBAGA1UECxMJQm9zaCBMaXRlMRIwEAYDVQQDEwlCb3NoIExp
+      dGUxHDAaBgkqhkiG9w0BCQEWDWJvc2hAbGl0ZS5jb20wgZ8wDQYJKoZIhvcNAQEB
+      BQADgY0AMIGJAoGBAMoLTG21RSRplfg03ZzpBFh+Erjs/yNFJQ7QycOEtkXZtsp+
+      sIggSHby7ZN7S0HtAYzCH/W/YOijg7ozO2hySyFEF1LDMAUGtEZ+aI+cxE+Ir1xU
+      uFWVRfaQSWbN7YEoKa8hZT+bQ3EBelgenrlmal6twEAT46S6DzlpKScBx5aFAgMB
+      AAEwDQYJKoZIhvcNAQEFBQADgYEArl3iS+9Uw02C5R6ktKjNkqOFzWArbadIXAGV
+      StjSB/sDaiHVw+5AqgozmFIZcgkMbw7+1eSjfpyAkuuHicDuLnQTwWl7nKHY5dsv
+      snRDvSiEsh1+KWBYCTYavFnxiG9qAfXuQMrzXtAc8vQYrQw+K/q91MfCA0KCNeBj
+      fVsbs90=
+      -----END CERTIFICATE-----
+    sslPrivateKey: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIICXAIBAAKBgQDKC0xttUUkaZX4NN2c6QRYfhK47P8jRSUO0MnDhLZF2bbKfrCI
+      IEh28u2Te0tB7QGMwh/1v2Doo4O6MztockshRBdSwzAFBrRGfmiPnMRPiK9cVLhV
+      lUX2kElmze2BKCmvIWU/m0NxAXpYHp65ZmpercBAE+Okug85aSknAceWhQIDAQAB
+      AoGAJSuo9vIHc2h9b7mCH/D6nLEtDpqDYeDBrZUZ2X+b7QPdzik6nwCZdFDDBoQD
+      V3Cb/WJlcNexo3sZq/Lq9g845OTRvU1zhGyOALzBQoMQvV7CCUz9qBqq02C+xlP+
+      CnF57GI8lnevacWE9jVfxYiuPdRYJECTvRW0UmdSeQDjIS0CQQD5VsKkw9XO4gxO
+      3FEPSzSPHoNFVo0rhvVSidm09jpupoYk8X/gJfkXCuHBxeBa9nJebOTz3TG2Lk/2
+      xTzczju/AkEAz3EWU0Yo46WG1xJ4bOsX4rYGU8BfHUSpj2e1+ZkEG34ROT3IQrVQ
+      O9M9Uzqq9e2IKkEaxoJehDLzsD49xYKOuwJBAOigIYlHjLsv+vu4YYg7ShYdCawv
+      TBZIG6meIxfKgkmp442kIwIla3gsFuSKkP9M3vdp8VH0FOU74C8DZf08DFECQC0O
+      uDWwSJNh0c8HYQbvbYm91dP9NeuqjVXrxfgIB39dO6p+Q/BRZ7MG6Awa8yVlyay7
+      5W/2w0bdtlayvkIXYJ8CQCetX7BEuLE4zEfd3nvJv9oBm8tR0VNX/vcg7UD/3St2
+      O/mzFro6T+b1cbC+YCTZhAfeujDKlGo6SXkkuh7hT9s=
+      -----END RSA PRIVATE KEY-----
     cc:
       client_secret: cc-secret
     admin:
