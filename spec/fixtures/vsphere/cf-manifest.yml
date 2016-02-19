@@ -1402,6 +1402,8 @@ properties:
     spring_profiles: null
     ssl:
       port: -1
+    sslCertificate: null
+    sslPrivateKey: null
     url: https://uaa.DOMAIN
     user: null
     zones: null

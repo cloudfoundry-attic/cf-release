@@ -300,6 +300,8 @@ properties:
 
     ssl:
       port: -1
+    sslCertificate: ~
+    sslPrivateKey: ~
 
     jwt: (( merge ))
 
