@@ -1,12 +1,12 @@
 #!/bin/bash -e
 
 JOB_DIR=/var/vcap/jobs/postgres
-PACKAGE_DIR=/var/vcap/packages/postgres-9.4.6
-PACKAGE_DIR_OLD=/var/vcap/packages/postgres-9.4.5
+PACKAGE_DIR=/var/vcap/packages/postgres-9.4.5
+PACKAGE_DIR_OLD=/var/vcap/packages/postgres-9.4.2
 
 STORE_DIR=/var/vcap/store
-DATA_DIR=$STORE_DIR/postgres-9.4.6
-DATA_DIR_OLD=$STORE_DIR/postgres-9.4.5
+DATA_DIR=$STORE_DIR/postgres-9.4.5
+DATA_DIR_OLD=$STORE_DIR/postgres-9.4.2
 DATA_DIR_PREVIOUS=$STORE_DIR/postgres-previous
 
 RUN_DIR=/var/vcap/sys/run/postgres
