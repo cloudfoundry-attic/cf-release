@@ -99,10 +99,6 @@ openjdk/openjdk-1.8.0_65-x86_64-trusty.tar.gz:
   object_id: 3a1c2b78-c32c-433c-984f-1c60ead8b797
   sha: 949812223e334ba6c360a097a44084776eaee418
   size: 77611856
-ruby-buildpack/ruby_buildpack-cached-v1.6.12.zip:
-  object_id: 7a4cf997-0c4f-460e-819b-024fb7f587c0
-  sha: 754a93e6d57b7443d25e03f8862af7be481a42e7
-  size: 282145848
 ruby-2.1.8/bundler-1.9.4.gem:
   object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
   sha: ea3f17a76a8249049b5589c9b5421af72189babc
@@ -155,3 +151,7 @@ rootfs/cflinuxfs2-1.36.0.tar.gz:
   object_id: 36f14fb8-d946-484a-aabd-8a293a8c43ba
   sha: 5d740369f9e00bb7c91c4b8fd49d1abfc38cc97f
   size: 258509264
+ruby-buildpack/ruby_buildpack-cached-v1.6.13.zip:
+  object_id: 75f96d78-2ff3-4b20-be01-18dda7e7f0bc
+  sha: 712fe85a99fe8ea5fcf55e6d96b648ebb2acd66b
+  size: 271158934
