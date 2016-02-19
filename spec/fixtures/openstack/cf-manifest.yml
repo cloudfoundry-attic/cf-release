@@ -370,6 +370,20 @@ jobs:
         - api.DOMAIN
   resource_pool: large_z1
   templates:
+  - name: go-buildpack
+    release: cf
+  - name: binary-buildpack
+    release: cf
+  - name: nodejs-buildpack
+    release: cf
+  - name: ruby-buildpack
+    release: cf
+  - name: php-buildpack
+    release: cf
+  - name: python-buildpack
+    release: cf
+  - name: staticfile-buildpack
+    release: cf
   - name: cloud_controller_ng
     release: cf
   - name: cloud_controller_clock
@@ -1290,10 +1304,10 @@ properties:
     logrotate: null
     port: null
     requested_route_registration_interval_in_seconds: null
+    route_services_recommend_https: null
     route_services_secret: null
     route_services_secret_decrypt_only: null
     route_services_timeout: null
-    route_services_recommend_https: null
     secure_cookies: null
     ssl_cert: null
     ssl_key: null
@@ -1310,9 +1324,9 @@ properties:
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   traffic_controller:
+    disable_access_control: null
     outgoing_port: 8080
     zone: null
-    disable_access_control: null
   uaa:
     admin:
       client_secret: ADMIN_SECRET
@@ -1534,3 +1548,4 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
+

@@ -144,6 +144,20 @@ jobs:
           -----END CERTIFICATE-----
   - name: api_z1
     templates:
+      - name: go-buildpack
+        release: cf
+      - name: binary-buildpack
+        release: cf
+      - name: nodejs-buildpack
+        release: cf
+      - name: ruby-buildpack
+        release: cf
+      - name: php-buildpack
+        release: cf
+      - name: python-buildpack
+        release: cf
+      - name: staticfile-buildpack
+        release: cf
       - name: cloud_controller_ng
         release: cf
       - name: cloud_controller_clock
@@ -158,6 +172,7 @@ jobs:
         release: cf
       - name: route_registrar
         release: cf
+
   - name: api_worker_z1
     instances: 0
   - name: clock_global
