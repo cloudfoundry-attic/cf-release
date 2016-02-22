@@ -18,18 +18,19 @@
   end
 %>
 {
-  "suite_name"         : "<%= properties.smoke_tests.suite_name %>",
-  "api"                : "<%= properties.smoke_tests.api %>",
-  "apps_domain"        : "<%= Array(properties.smoke_tests.apps_domain).first %>",
-  "user"               : "<%= properties.smoke_tests.user %>",
-  "password"           : "<%= properties.smoke_tests.password %>",
-  "org"                : "<%= properties.smoke_tests.org %>",
-  "space"              : "<%= properties.smoke_tests.space %>",
-  "use_existing_org"   : <%= properties.smoke_tests.use_existing_org %>,
-  "use_existing_space" : <%= properties.smoke_tests.use_existing_space %>,
-  "logging_app"        : "<%= properties.smoke_tests.logging_app %>",
-  "runtime_app"        : "<%= properties.smoke_tests.runtime_app %>",
-  "skip_ssl_validation": <%= properties.smoke_tests.skip_ssl_validation %>,
-  "syslog_drain_port"  : 514,
-  "syslog_ip_address"  : "<%= discover_external_ip %>"
+  "suite_name"           : "<%= properties.smoke_tests.suite_name %>",
+  "api"                  : "<%= properties.smoke_tests.api %>",
+  "apps_domain"          : "<%= Array(properties.smoke_tests.apps_domain).first %>",
+  "user"                 : "<%= properties.smoke_tests.user %>",
+  "password"             : "<%= properties.smoke_tests.password %>",
+  "org"                  : "<%= properties.smoke_tests.org %>",
+  "space"                : "<%= properties.smoke_tests.space %>",
+  "use_existing_org"     : <%= properties.smoke_tests.use_existing_org %>,
+  "use_existing_space"   : <%= properties.smoke_tests.use_existing_space %>,
+  "logging_app"          : "<%= properties.smoke_tests.logging_app %>",
+  "runtime_app"          : "<%= properties.smoke_tests.runtime_app %>",
+  "skip_ssl_validation"  : <%= properties.smoke_tests.skip_ssl_validation %>,
+  "syslog_drain_port"    : 514,
+  "syslog_ip_address"    : "<%= discover_external_ip %>",
+  "enable_windows_tests" : "<%= properties.smoke_tests.enable_windows_tests %>
 }
