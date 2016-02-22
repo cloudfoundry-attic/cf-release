@@ -155,6 +155,13 @@ jobs:
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
   - {name: consul_agent, release: cf}
+  - {name: go-buildpack, release: cf}
+  - {name: binary-buildpack, release: cf}
+  - {name: nodejs-buildpack, release: cf}
+  - {name: ruby-buildpack, release: cf}
+  - {name: php-buildpack, release: cf}
+  - {name: python-buildpack, release: cf}
+  - {name: staticfile-buildpack, release: cf}
   networks:
   - name: cf_private
   properties:
