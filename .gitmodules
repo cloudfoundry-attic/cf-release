@@ -43,3 +43,6 @@
 [submodule "src/buildpacks"]
 	path = src/buildpacks
 	url = https://github.com/cloudfoundry/buildpack-releases
+[submodule "src/github.com/cloudfoundry/blobstore_url_signer"]
+	path = src/github.com/cloudfoundry/blobstore_url_signer
+	url = https://github.com/cloudfoundry/blobstore_url_signer
