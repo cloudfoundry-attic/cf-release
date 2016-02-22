@@ -1,0 +1,37 @@
+#!/bin/bash
+
+LOG_DIR=/var/vcap/sys/log/blobstore_url_signer
+RUN_DIR=/var/vcap/sys/run/blobstore_url_signer
+PIDFILE=$RUN_DIR/blobstore_url_signer.pid
+SOCKETFILE=$RUN_DIR/signer.sock
+
+source /var/vcap/packages/common/utils.sh
+
+case $1 in
+  start)
+    pid_guard "${PIDFILE}" "blobstore_url_signer"
+
+    mkdir -p "${LOG_DIR}"
+    mkdir -p "${RUN_DIR}"
+
+    chown -R vcap:vcap "${LOG_DIR}"
+    chown -R vcap:vcap "${RUN_DIR}"
+
+    echo $$ > $PIDFILE
+
+    exec chpst -u vcap:vcap /var/vcap/packages/blobstore_url_signer/bin/blobstore_url_signer \
+      -secret <%=p("blobstore.secure_link.secret")%> \
+      -network unix \
+      -laddr $SOCKETFILE \
+      >>$LOG_DIR/blobstore_url_signer.stdout.log \
+      2>>$LOG_DIR/blobstore_url_signer.stderr.log
+
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+
+    ;;
+
+esac
+exit 0

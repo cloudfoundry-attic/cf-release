@@ -3,6 +3,10 @@ server {
   return 404;
 }
 
+upstream blob_url_singer {
+  server unix:/var/vcap/sys/run/blobstore_url_signer/signer.sock;
+}
+
 # Internal server
 server {
   listen      <%= p("blobstore.port") %>;
@@ -20,7 +24,7 @@ server {
   client_max_body_size <%= p("blobstore.max_upload_size") %>;
 
   location /admin/ {
-    auth_basic "Blobstore Write";
+    auth_basic "Blobstore Admin";
     auth_basic_user_file write_users;
 
     client_body_temp_path /var/vcap/store/shared/tmp/uploads/;
@@ -29,6 +33,13 @@ server {
     create_full_put_path on;
 
     alias /var/vcap/store/shared/;
+  }
+
+  location /sign {
+    auth_basic "Blobstore Signing";
+    auth_basic_user_file write_users;
+
+    proxy_pass http://blob_url_singer;
   }
 
   # ensure the contents of this location block always match the public server /read/ location block

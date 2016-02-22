@@ -4,6 +4,7 @@ name: blobstore
 templates:
   nginx_ctl:            bin/nginx_ctl
   dns_health_check.erb: bin/dns_health_check
+  signer_ctl.sh.erb:    bin/signer_ctl
   nginx.conf.erb:       config/nginx.conf
   blobstore.conf.erb:   config/sites/blobstore.conf
   mime.types:           config/mime.types
@@ -11,10 +12,11 @@ templates:
 
 packages:
 - nginx_webdav
+- blobstore_url_signer
 
 properties:
   blobstore.port:
-    description: TCP port blobstore server (ngnix) listens on
+    description: "TCP port blobstore server (ngnix) listens on"
     default: 80
 
   blobstore.admin_users:
@@ -28,11 +30,11 @@ properties:
          password: password2
 
   blobstore.secure_link.secret:
-    description: The secret used for verifying signed URLs
+    description: "The secret used for signing URLs"
 
   blobstore.max_upload_size:
-    description: Max allowed file size for upload
-    default: 5000m
+    description: "Max allowed file size for upload"
+    default: "5000m"
 
   domain:
-    description: The system domain.  The public server will listen on host 'blobstore.system-domain.tld'
+    description: "The system domain.  The public server will listen on host 'blobstore.system-domain.tld'"
