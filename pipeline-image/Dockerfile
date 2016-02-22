@@ -96,8 +96,10 @@ RUN \
   rm -rf /tmp/*
 
 RUN \
-  wget https://s3.amazonaws.com/go-cli/releases/v6.12.3/cf-linux-amd64.tgz -P /tmp && \
-  tar xvf /tmp/cf-linux-amd64.tgz -C /usr/local/bin && \
+  wget \
+    -P /tmp \
+    http://go-cli.s3-website-us-east-1.amazonaws.com/releases/v6.15.0/cf-cli_6.15.0_linux_x86-64.tgz && \
+  tar xvf /tmp/cf-cli_6.15.0_linux_x86-64.tgz -C /usr/local/bin && \
   ln -s /usr/local/bin/cf /usr/local/bin/gcf && \
   rm -rf /tmp/*
 
