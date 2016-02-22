@@ -865,6 +865,7 @@ properties:
     debug_addr: (( merge || nil ))
     enable_routing_api: (( merge || nil ))
     drain_wait: (( merge || nil ))
+    skip_oauth_tls_verification: (( merge || nil ))
 
   syslog_daemon_config: ~
 

@@ -114,6 +114,9 @@ properties:
       If the X-Vcap-Trace request header is set and has this value,
       trace headers are added to the response.
     default: 22
+  router.skip_oauth_tls_verification:
+    description: Skip TLS verification when talking to UAA
+    default: false
   request_timeout_in_seconds:
     description: "Timeout in seconds for Router -> Endpoint roundtrip."
     default: 900
@@ -129,12 +132,14 @@ properties:
   dropsonde.enabled:
     default: false
     description: "Enable the dropsonde emitter library"
-  
+
   uaa.clients.gorouter.secret:
     description: "Password for UAA client for the gorouter."
   uaa.port:
     description: "Port on which UAA is running."
     default: 8080
+  uaa.ssl.port:
+    description: "Secure Port on which UAA is running."
 
   routing-api.port:
     description: "Port on which routing-api is running."

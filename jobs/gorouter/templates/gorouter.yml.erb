@@ -43,10 +43,11 @@ droplet_stale_threshold: 120
 publish_active_apps_interval: 0 # 0 means disabled
 
 oauth:
-  token_endpoint: http://uaa.service.cf.internal
+  token_endpoint: uaa.service.cf.internal
   client_name: "gorouter"
   client_secret: <%= p("uaa.clients.gorouter.secret") %>
-  port: <%= p("uaa.port") %>
+  port: <%= p("uaa.ssl.port") %>
+  skip_oauth_tls_verification: <%= p("router.skip_oauth_tls_verification") %>
 
 <% if p("router.enable_routing_api") %>
 routing_api:
