@@ -15,6 +15,7 @@ files:
   - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/nats-io/nats/encoders/builtin/*.go # gosub
   - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/nu7hatch/gouuid/*.go # gosub
   - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/pivotal-cf-experimental/service-config/*.go # gosub
+  - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/cloudfoundry/multierror/*.go # gosub
   - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/pivotal-golang/lager/*.go # gosub
   - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/github.com/tedsuo/ifrit/*.go # gosub
   - github.com/cloudfoundry-incubator/route-registrar/Godeps/_workspace/src/gopkg.in/yaml.v2/*.go # gosub
