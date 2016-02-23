@@ -67,6 +67,9 @@ properties:
   cc.external_port:
     description: "External Cloud Controller port"
     default: 9022
+  cc.internal_service_hostname:
+    description: "Internal hostname used to resolve the address of the Cloud Controller"
+    default: "cloud-controller-ng.service.cf.internal"
 
   cc.jobs.global.timeout_in_seconds:
     description: "The longest any job can take before it is cancelled unless overriden per job"
