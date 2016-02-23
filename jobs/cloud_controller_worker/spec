@@ -211,8 +211,6 @@ properties:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.resource_pool.webdav_config.password:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
-  cc.resource_pool.webdav_config.secret:
-    description: "The secret used for generating signed URLs for webdav downloads"
   cc.resource_pool.minimum_size:
     description: "Minimum size of a resource to add to the pool"
     default: 65536
@@ -246,8 +244,6 @@ properties:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.packages.webdav_config.password:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
-  cc.packages.webdav_config.secret:
-    description: "The secret used for generating signed URLs for webdav downloads"
   cc.packages.app_package_directory_key:
     description: "Directory (bucket) used store app packages.  It does not have be pre-created."
     default: "cc-packages"
@@ -278,8 +274,6 @@ properties:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.droplets.webdav_config.password:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
-  cc.droplets.webdav_config.secret:
-    description: "The secret used for generating signed URLs for webdav downloads"
   cc.droplets.droplet_directory_key:
     description: "Directory (bucket) used store droplets.  It does not have be pre-created."
     default: "cc-droplets"
@@ -307,8 +301,6 @@ properties:
     description: "The basic auth user that CC uses to connect to the admin endpoint on webdav"
   cc.buildpacks.webdav_config.password:
     description: "The basic auth password that CC uses to connect to the admin endpoint on webdav"
-  cc.buildpacks.webdav_config.secret:
-    description: "The secret used for generating signed URLs for webdav downloads"
   cc.buildpacks.buildpack_directory_key:
     description: "Directory (bucket) used store buildpacks.  It does not have be pre-created."
     default: "cc-buildpacks"

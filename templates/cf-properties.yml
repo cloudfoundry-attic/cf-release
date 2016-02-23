@@ -237,7 +237,6 @@ properties:
     webdav_config:
       private_endpoint: "http://blobstore.service.cf.internal"
       public_endpoint: (( "http://blobstore." domain || nil))
-      secret: (( properties.blobstore.secure_link.secret || nil ))
       username: ((  properties.blobstore.admin_users.[0].username || nil ))
       password: ((  properties.blobstore.admin_users.[0].password || nil ))
 
