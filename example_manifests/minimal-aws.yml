@@ -207,6 +207,10 @@ jobs:
   networks:
   - name: cf_private
   properties:
+    consul:
+      agent:
+        services:
+          hm9000: {}
     route_registrar:
       routes:
       - name: hm9000
@@ -318,6 +322,15 @@ jobs:
   networks:
   - name: cf_private
   properties:
+    consul:
+      agent:
+        services:
+          dea:
+            check:
+              name: dns_health_check
+              script: /var/vcap/jobs/dea_next/bin/dns_health_check
+              interval: 5m
+              status: passing
     dea_next: {zone: z1}
 
 properties:
