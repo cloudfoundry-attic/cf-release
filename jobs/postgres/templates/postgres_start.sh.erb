@@ -1,117 +1,142 @@
-#!/bin/bash -e
+#!/bin/bash -exu
 
-JOB_DIR=/var/vcap/jobs/postgres
-PACKAGE_DIR=/var/vcap/packages/postgres-9.4.5
-PACKAGE_DIR_OLD=/var/vcap/packages/postgres-9.4.2
+function main() {
+  local pgversion
+  pgversion="postgres-9.4.6"
 
-STORE_DIR=/var/vcap/store
-DATA_DIR=$STORE_DIR/postgres-9.4.5
-DATA_DIR_OLD=$STORE_DIR/postgres-9.4.2
-DATA_DIR_PREVIOUS=$STORE_DIR/postgres-previous
+  JOB_DIR=/var/vcap/jobs/postgres
+  PACKAGE_DIR="/var/vcap/packages/${pgversion}"
+  STORE_DIR=/var/vcap/store
+  DATA_DIR="${STORE_DIR}/${pgversion}"
 
-RUN_DIR=/var/vcap/sys/run/postgres
-PIDFILE=$RUN_DIR/postgres.pid
+  DATA_DIR_PREVIOUS="${STORE_DIR}/postgres-previous"
+  DATA_DIR_OLD="${STORE_DIR}/postgres-unknown"
 
-HOST='0.0.0.0'
-PORT="<%= p("databases.port") %>"
-LD_LIBRARY_PATH=$PACKAGE_DIR/lib:$LD_LIBRARY_PATH
+  if [[ -d "${STORE_DIR}/postgres-9.4.5" ]]; then
+    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.5"
+  fi
 
-sysctl -w "kernel.shmmax=284934144"
+  if [[ -d "${STORE_DIR}/postgres-9.4.2" ]]; then
+    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.2"
+  fi
 
-if [ ! -d $STORE_DIR ]; then
-  echo "ERROR: storage directory doesn't exist"
-  echo "Please add persistent disk to this job"
-  exit 1
-fi
+  RUN_DIR=/var/vcap/sys/run/postgres
+  PIDFILE="${RUN_DIR}/postgres.pid"
 
-if [ -d $DATA_DIR_OLD -a -f $DATA_DIR_OLD/postgresql.conf ]; then
-  rm -rf $DATA_DIR_PREVIOUS
+  HOST="0.0.0.0"
+  PORT="<%= p("databases.port") %>"
 
-  cp -r $DATA_DIR_OLD $DATA_DIR
-  mv $DATA_DIR_OLD $DATA_DIR_PREVIOUS
-fi
+  if [[ -n "${LD_LIBRARY_PATH:-}" ]]; then
+    LD_LIBRARY_PATH="${PACKAGE_DIR}/lib:${LD_LIBRARY_PATH}"
+  else
+    LD_LIBRARY_PATH="${PACKAGE_DIR}/lib"
+  fi
 
-mkdir -p $DATA_DIR
-chown -R vcap:vcap $DATA_DIR
+  sysctl -w "kernel.shmmax=284934144"
 
-if [ ! -f $DATA_DIR/postgresql.conf ]; then
-  # initdb creates data directories
-  su - vcap -c "$PACKAGE_DIR/bin/initdb -E utf8 --locale en_US.UTF-8 -D $DATA_DIR"
+  if [ ! -d "${STORE_DIR}" ]; then
+    echo "ERROR: storage directory doesn't exist"
+    echo "Please add persistent disk to this job"
+    exit 1
+  fi
 
-  mkdir -p $DATA_DIR/pg_log
-  chown vcap:vcap $DATA_DIR/pg_log
-fi
+  if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
+    rm -rf "${DATA_DIR_PREVIOUS}"
 
-cp $JOB_DIR/config/{postgresql,pg_hba}.conf $DATA_DIR
-chown vcap:vcap $DATA_DIR/{postgresql,pg_hba}.conf
+    cp -r "${DATA_DIR_OLD}" "${DATA_DIR}"
+    mv "${DATA_DIR_OLD}" "${DATA_DIR_PREVIOUS}"
+  fi
 
-echo "Starting PostgreSQL: "
-su - vcap -c "$PACKAGE_DIR/bin/pg_ctl -o \"-h $HOST -p $PORT\" \
-              -w start -D $DATA_DIR -l \"$DATA_DIR/pg_log/startup.log\""
+  mkdir -p "${DATA_DIR}"
+  chown -R vcap:vcap "${DATA_DIR}"
 
-echo "PostgreSQL started successfully"
+  if [ ! -f "${DATA_DIR}/postgresql.conf" ]; then
+    # initdb creates data directories
+    su - vcap -c "${PACKAGE_DIR}/bin/initdb -E utf8 --locale en_US.UTF-8 -D ${DATA_DIR}"
 
-echo "Creating roles..."
-<% p("databases.roles", []).each do |role| %>
-  echo "Trying to create role <%= role["name"] %>..."
-  set +e
-  # TODO remove unused roles automatically
-  # Default permissions are: nosuperuser nologin inherit nocreatedb.
-  # Will fail if role already exists, which is OK
-  $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
-                        -c "CREATE ROLE \"<%= role["name"] %>\""
-  set -e
+    mkdir -p "${DATA_DIR}/pg_log"
+    chown vcap:vcap "${DATA_DIR}/pg_log"
+  fi
 
-  echo "Setting password for role <%= role["name"] %>..."
-  $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
-                        -c "ALTER ROLE \"<%= role["name"] %>\" \
-                            WITH LOGIN PASSWORD '<%= role["password"] %>'"
+  cp "${JOB_DIR}/config/postgresql.conf" "${JOB_DIR}/config/pg_hba.conf" "${DATA_DIR}"
+  chown vcap:vcap "${DATA_DIR}/postgresql.conf" "${DATA_DIR}/pg_hba.conf"
 
-  <% if role["permissions"] %>
-    echo "Adding permissions <%= role["permissions"].join(' ') %> for role <%= role["name"] %>..."
-    $PACKAGE_DIR/bin/psql -U vcap -p $PORT -d postgres \
-                      -c "ALTER ROLE \"<%= role["name"] %>\" \
-                          WITH <%= role["permissions"].join(' ') %>"
-  <% end %>
-<% end %>
+  echo "Starting PostgreSQL: "
+  su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl -o \"-h ${HOST} -p ${PORT}\" \
+                  -w start -D ${DATA_DIR} -l \"${DATA_DIR}/pg_log/startup.log\""
 
-echo "Creating databases..."
-<% p("databases.databases", []).each do |database| %>
-  echo "Trying to create database <%= database["name"] %>..."
-  set +e
-  su - vcap -c "$PACKAGE_DIR/bin/createdb \"<%= database["name"] %>\" -p $PORT"
-  set -e
+  echo "PostgreSQL started successfully"
 
-  <% if database["citext"] %>
-    echo "Trying to install citext..."
+  create_roles
+  create_databases
+}
+
+function pgexec() {
+  local database
+  database="${1}"
+
+  local command
+  command="${2}"
+
+  "${PACKAGE_DIR}/bin/psql" \
+    -U "vcap" \
+    -p "${PORT}" \
+    -d "${database}" \
+    -c "${command}"
+}
+
+function create_roles() {
+  echo "Creating roles..."
+  <% p("databases.roles", []).each do |role| %>
+    echo "Trying to create role <%= role["name"] %>..."
     set +e
-    $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
-                          -d "<%= database["name"] %>" \
-                          -c "CREATE EXTENSION citext"
-    $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
-                          -d "<%= database["name"] %>" \
-                          -c "CREATE EXTENSION citext FROM UNPACKAGED"
+    # TODO remove unused roles automatically
+    # Default permissions are: nosuperuser nologin inherit nocreatedb.
+    # Will fail if role already exists, which is OK
+    pgexec postgres "CREATE ROLE \"<%= role["name"] %>\""
     set -e
-  <% end %>
 
-  echo "Enabling pgcrypto extension..."
-  $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
-                          -d "<%= database["name"] %>" \
-                          -c "CREATE EXTENSION IF NOT EXISTS pgcrypto"
+    echo "Setting password for role <%= role["name"] %>..."
+    pgexec postgres "ALTER ROLE \"<%= role["name"] %>\" WITH LOGIN PASSWORD '<%= role["password"] %>'"
 
-
-  <% if p("databases.collect_statement_statistics") %>
-    echo "Enabling pg_stat_statements extension..."
-    $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
-                          -d "<%= database["name"] %>" \
-                          -c "CREATE EXTENSION IF NOT EXISTS pg_stat_statements"
-  <% end %>
-
-  <% if database["run_on_every_startup"] %>
-    <% database["run_on_every_startup"].each do |query| %>
-      $PACKAGE_DIR/bin/psql -U vcap -p $PORT \
-                            -d "<%= database["name"] %>" \
-                            -c "<%= query %>"
+    <% if role["permissions"] %>
+      echo "Adding permissions <%= role["permissions"].join(' ') %> for role <%= role["name"] %>..."
+      pgexec postgres "ALTER ROLE \"<%= role["name"] %>\" WITH <%= role["permissions"].join(' ') %>"
     <% end %>
   <% end %>
-<% end %>
+}
+
+function create_databases() {
+  echo "Creating databases..."
+  <% p("databases.databases", []).each do |database| %>
+    echo "Trying to create database <%= database["name"] %>..."
+    set +e
+    su - vcap -c "${PACKAGE_DIR}/bin/createdb \"<%= database["name"] %>\" -p ${PORT}"
+    set -e
+
+    <% if database["citext"] %>
+      echo "Trying to install citext..."
+      set +e
+      pgexec "<%= database["name"] %>" "CREATE EXTENSION citext"
+      pgexec "<%= database["name"] %>" "CREATE EXTENSION citext FROM UNPACKAGED"
+      set -e
+    <% end %>
+
+    echo "Enabling pgcrypto extension..."
+    pgexec "<%= database["name"] %>" "CREATE EXTENSION IF NOT EXISTS pgcrypto"
+
+
+    <% if p("databases.collect_statement_statistics") %>
+      echo "Enabling pg_stat_statements extension..."
+      pgexec "<%= database["name"] %>" "CREATE EXTENSION IF NOT EXISTS pg_stat_statements"
+    <% end %>
+
+    <% if database["run_on_every_startup"] %>
+      <% database["run_on_every_startup"].each do |query| %>
+        pgexec "<%= database["name"] %>" "<%= query %>"
+      <% end %>
+    <% end %>
+  <% end %>
+}
+
+main

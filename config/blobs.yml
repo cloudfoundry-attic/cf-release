@@ -83,10 +83,6 @@ uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
   size: 11163261
-postgres/postgresql-9.4.5.tar.gz:
-  object_id: 49b445bd-ecd9-483c-bbf0-0965b5900c22
-  sha: 5278d04093f3cb2e00796fae15b2e33406844d01
-  size: 23211720
 openjdk/openjdk-1.8.0_65-x86_64-mountainlion.tar.gz:
   object_id: af9d49da-273e-4b1f-acb7-53d828ff6d7f
   sha: 0d0fef95aa7bdd494f8aac2fa4d94f84b2b3ee9d
@@ -155,3 +151,7 @@ rootfs/cflinuxfs2-1.37.0.tar.gz:
   object_id: 7474f255-8343-4bd9-885a-d9d2aeee511e
   sha: 22f2fe0deeacd770f13b9e3c098569728ff87aee
   size: 258489635
+postgres/postgresql-9.4.6.tar.gz:
+  object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
+  sha: bd031beebd86bf149c497525dccf57eebe5a6add
+  size: 23249307

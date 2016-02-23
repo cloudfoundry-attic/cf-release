@@ -1,0 +1,65 @@
+#!/bin/bash -exu
+
+function main() {
+  local pgversion
+  pgversion="postgresql-9.4.6"
+
+  extract_archive "${pgversion}"
+  compile "${pgversion}"
+
+}
+
+function extract_archive() {
+  local pgversion
+  pgversion="${1}"
+
+  local archive
+  archive="${pgversion}.tar.gz"
+
+  if [[ -f "postgres/${archive}" ]] ; then
+    echo "Archive found"
+  else
+    echo "Archive not found"
+    exit 1
+  fi
+
+  echo "Extracting archive..."
+  tar xzf "postgres/${archive}"
+
+}
+
+function compile() {
+  local pgversion
+  pgversion="${1}"
+
+  pushd "${pgversion}" > /dev/null
+    if [[ "$(uname -a)" =~ "x86_64" || "$(uname -a)" =~ "ppc64le" ]] ; then
+      ./configure --prefix="${BOSH_INSTALL_TARGET}"
+    else
+      CFLAGS=-m32 LDFLAGS=-m32 CXXFLAGS=-m32 ./configure --prefix="${BOSH_INSTALL_TARGET}"
+    fi
+
+    pushd src/bin/pg_config > /dev/null
+      make
+      make install
+    popd > /dev/null
+
+    cp -LR src/include "${BOSH_INSTALL_TARGET}"
+    pushd src/interfaces/libpq > /dev/null
+      make
+      make install
+    popd > /dev/null
+
+    pushd src > /dev/null
+      make
+      make install
+    popd > /dev/null
+
+    pushd contrib > /dev/null
+      make
+      make install
+    popd > /dev/null
+  popd > /dev/null
+}
+
+main
