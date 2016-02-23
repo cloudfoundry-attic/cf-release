@@ -200,6 +200,7 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: hm9000, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
@@ -310,10 +311,10 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: dea_next, release: cf}
   - {name: dea_logging_agent, release: cf}
   - {name: metron_agent, release: cf}
-  - {name: consul_agent, release: cf}
   networks:
   - name: cf_private
   properties:
