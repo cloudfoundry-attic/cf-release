@@ -1,4 +1,6 @@
 <%
+  require 'json'
+
   def discover_external_ip
     networks = spec.networks.marshal_dump
 
@@ -25,34 +27,6 @@ message_bus_servers:
       password: <%= p('nats.password') %>
 <% end %>
 
-routes:
-<%
-  p("route_registrar.routes").each do |route_config|
-%>
-  - name: <%= route_config['name'] %>
-    port: <%= route_config['port'] %>
-    registration_interval: <%= route_config['registration_interval'] %>
-    uris: <%= route_config['uris'].to_json %>
-
-    <% if route_config['tags'] %>
-    tags:
-      <% route_config['tags'].each do |key, value| %>
-      <%= key %>: <%= value %>
-      <% end %>
-    <% end %>
-
-    <% if route_config['health_check'] %>
-    <% health_check = route_config['health_check'] %>
-    health_check:
-      name: <%= health_check['name'] %>
-      script_path: <%= health_check['script_path'] %>
-      <% if health_check['timeout'] %>
-      timeout: <%= health_check['timeout'] %>
-      <% end %>
-    <% end %>
-
-<%
-  end
-%>
+routes: <%= p('route_registrar.routes').to_json %>
 
 host: <%= discover_external_ip %>
