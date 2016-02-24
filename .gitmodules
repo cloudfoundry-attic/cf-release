@@ -28,9 +28,6 @@
 [submodule "src/consul-release"]
 	path = src/consul-release
 	url = https://github.com/cloudfoundry-incubator/consul-release.git
-[submodule "src/cf-routing-release"]
-	path = src/cf-routing-release
-	url = https://github.com/cloudfoundry-incubator/cf-routing-release.git
 [submodule "src/uaa-release"]
 	path = src/uaa-release
 	url = https://github.com/cloudfoundry/uaa-release
