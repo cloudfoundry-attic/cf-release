@@ -107,6 +107,8 @@ properties:
     jwt:
       verification_key: JWT_VERIFICATION_KEY
       signing_key: JWT_SIGNING_KEY
+    sslCertificate: UAA_SSL_CERTIFICATE
+    sslPrivateKey: UAA_SSL_PRIVATE_KEY
     scim:
       users:
         - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose

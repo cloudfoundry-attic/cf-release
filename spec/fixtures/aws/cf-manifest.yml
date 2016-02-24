@@ -1417,8 +1417,8 @@ properties:
     spring_profiles: null
     ssl:
       port: 8443
-    sslCertificate: SSL_CERT
-    sslPrivateKey: SSL_PRIVATE_KEY
+    sslCertificate: UAA_SSL_CERTIFICATE
+    sslPrivateKey: UAA_SSL_PRIVATE_KEY
     url: https://uaa.DOMAIN
     user: null
     zones: null

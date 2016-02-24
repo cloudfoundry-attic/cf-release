@@ -1412,9 +1412,9 @@ properties:
       - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
     spring_profiles: null
     ssl:
-      port: -1
-    sslCertificate: null
-    sslPrivateKey: null
+      port: 8443
+    sslCertificate: UAA_SSL_CERTIFICATE
+    sslPrivateKey: UAA_SSL_PRIVATE_KEY
     url: https://uaa.DOMAIN
     user: null
     zones: null
