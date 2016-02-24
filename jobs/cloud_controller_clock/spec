@@ -101,6 +101,10 @@ properties:
   cc.failed_jobs.cutoff_age_in_days:
     description: "How old a failed job should stay in cloud controller database before being cleaned up"
     default: 31
+  cc.completed_tasks.cutoff_age_in_days:
+    description: "How long a completed task will stay in cloud controller database before being cleaned up based on last updated time with success or failure."
+    default: 31
+
   cc.pending_packages.frequency_in_seconds:
     description: "How often the package pending cleanup job runs"
     default: 300
