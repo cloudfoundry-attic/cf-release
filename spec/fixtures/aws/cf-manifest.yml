@@ -906,7 +906,6 @@ properties:
         password: null
         private_endpoint: http://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
-        secret: null
         username: null
     bulk_api_password: BULK_API_PASSWORD
     client_max_body_size: 15M
@@ -957,7 +956,6 @@ properties:
         password: null
         private_endpoint: http://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
-        secret: null
         username: null
     external_host: api
     external_port: 9022
@@ -1031,7 +1029,6 @@ properties:
         password: null
         private_endpoint: http://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
-        secret: null
         username: null
     quota_definitions:
       default:
@@ -1052,7 +1049,6 @@ properties:
         password: null
         private_endpoint: http://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
-        secret: null
         username: null
     security_group_definitions:
     - name: public_networks
@@ -1113,7 +1109,6 @@ properties:
       password: null
       private_endpoint: http://blobstore.service.cf.internal
       public_endpoint: http://blobstore.DOMAIN
-      secret: null
       username: null
   ccdb:
     address: CCDB_ADDRESS
