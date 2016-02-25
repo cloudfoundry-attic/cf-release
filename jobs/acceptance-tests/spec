@@ -25,10 +25,6 @@ properties:
   acceptance_tests.skip_ssl_validation:
     default: false
     description: Toggles cli verification of the Elastic Runtime API SSL certificate
-  acceptance_tests.system_domain:
-    description: The system domain for your CF release
-  acceptance_tests.client_secret:
-    description: The client secret for the uaa gorouter client
   acceptance_tests.nodes:
     default: 2
     description: The number of parallel test executors to spawn. The larger the number the higher the stress on the system.
@@ -59,12 +55,6 @@ properties:
   acceptance_tests.include_tasks:
     default: false
     description: Flag to include the v3 task tests dependent on the CC task_creation feature flag.
-  acceptance_tests.include_routing:
-    default: false
-    description: Flag to include the routing test suite.
-  acceptance_tests.include_routing_api:
-    default: false
-    description: Flag to include the routing_api test suite.
   acceptance_tests.include_route_services:
     default: false
     description: Flag to include the route services tests. Diego must be deployed for these tests to pass.

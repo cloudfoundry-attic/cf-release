@@ -41,8 +41,7 @@ skipPackages+=<%= properties.acceptance_tests.include_logging ? "" : "logging," 
 skipPackages+=<%= properties.acceptance_tests.include_operator ? "" : "operator," %>
 skipPackages+=<%= properties.acceptance_tests.include_internet_dependent ? "" : "internet_dependent," %>
 skipPackages+=<%= properties.acceptance_tests.include_services ? "" : "services," %>
-skipPackages+=<%= properties.acceptance_tests.include_routing ? "" : "routing," %>
-skipPackages+=<%= properties.acceptance_tests.include_routing_api ? "" : "routing_api," %>
+skipPackages+=<%= properties.acceptance_tests.include_route_services ? "" : "route_services," %>
 [[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
 
 <% skips = [] %>
