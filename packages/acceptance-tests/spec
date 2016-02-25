@@ -3,7 +3,6 @@ name: acceptance-tests
 dependencies:
   - golang1.4
   - cli
-  - rtr
 files:
   - github.com/cloudfoundry/cf-acceptance-tests/**/*
 excluded_files:

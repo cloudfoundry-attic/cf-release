@@ -7,7 +7,6 @@ packages:
   - golang1.4
   - cli
   - acceptance-tests
-  - rtr
 
 templates:
   run.erb: bin/run
