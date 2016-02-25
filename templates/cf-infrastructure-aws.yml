@@ -42,9 +42,6 @@ properties:
       blobstore_type: fog
       fog_connection: (( meta.fog_config ))
 
-  uaa:
-    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
-
   dea_next:
     deny_networks:
       - 169.254.0.0/16 # AWS Status

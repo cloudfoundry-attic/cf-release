@@ -1344,7 +1344,7 @@ properties:
         countFailuresWithinSeconds: null
         lockoutAfterFailures: null
         lockoutPeriodSeconds: null
-    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
+    catalina_opts: null
     cc:
       client_secret: CC_CLIENT_SECRET
     clients:

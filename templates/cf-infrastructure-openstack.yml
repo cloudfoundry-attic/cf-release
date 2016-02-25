@@ -32,7 +32,6 @@ properties:
   cc: (( merge ))
 
   uaa:
-    catalina_opts: -Xmx768m -XX:MaxPermSize=256m
     clients: (( merge ))
 
   dea_next:

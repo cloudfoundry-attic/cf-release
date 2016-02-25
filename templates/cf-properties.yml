@@ -284,8 +284,7 @@ properties:
     restricted_ips_regex: ~
 
   uaa:
-    catalina_opts: (( merge ))
-
+    catalina_opts: ~
     url: (( "https://uaa." domain ))
     issuer: (( url ))
 
