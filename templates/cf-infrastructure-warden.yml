@@ -186,9 +186,6 @@ properties:
     admin_password: admin
     skip_ssl_validation: true
     nodes: 1
-    system_domain: (( domain ))
-    client_secret: tcp-emitter-secret
-    include_routing: true
     use_http: true
 
   smoke_tests:

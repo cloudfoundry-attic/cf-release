@@ -2563,11 +2563,8 @@ properties:
     admin_user: admin
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
-    client_secret: tcp-emitter-secret
-    include_routing: true
     nodes: 1
     skip_ssl_validation: true
-    system_domain: bosh-lite.com
     use_http: true
   app_domains:
   - bosh-lite.com
