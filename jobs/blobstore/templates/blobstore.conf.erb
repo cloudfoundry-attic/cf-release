@@ -3,7 +3,7 @@ server {
   return 404;
 }
 
-upstream blob_url_singer {
+upstream blob_url_signer {
   server unix:/var/vcap/sys/run/blobstore_url_signer/signer.sock;
 }
 
@@ -39,7 +39,7 @@ server {
     auth_basic "Blobstore Signing";
     auth_basic_user_file write_users;
 
-    proxy_pass http://blob_url_singer;
+    proxy_pass http://blob_url_signer;
   }
 
   # ensure the contents of this location block always match the public server /read/ location block
