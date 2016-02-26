@@ -298,9 +298,7 @@ properties:
       groups: ~
 
     ssl:
-      port: 8443
-    sslCertificate: (( merge ))
-    sslPrivateKey: (( merge ))
+      port: -1
 
     jwt: (( merge ))
 
