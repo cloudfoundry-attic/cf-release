@@ -1042,6 +1042,7 @@ properties:
         memory_limit: 10240
         non_basic_services_allowed: true
         total_routes: 1000
+        total_service_keys: 1000
         total_services: 100
     resource_pool:
       blobstore_type: fog
