@@ -4,6 +4,7 @@ meta:
     default:
        memory_limit: 10240
        total_services: 100
+       total_service_keys: 1000
        non_basic_services_allowed: true
        total_routes: 1000
   default_security_group_definitions:
