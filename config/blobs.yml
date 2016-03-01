@@ -123,10 +123,6 @@ go-buildpack/go_buildpack-cached-v1.7.2.zip:
   object_id: 5972b6f4-6026-47fd-9864-8b052e8f4a55
   sha: 35ff4ffbde64e185bf221008e1d3aacb81db7d5e
   size: 361547569
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.5.zip:
-  object_id: 8d10e76f-3a96-4625-afd8-8586c00a6796
-  sha: 0940c49346411e30af59b60ed6213a8047374b9b
-  size: 46466389
 staticfile-buildpack/staticfile_buildpack-cached-v1.3.1.zip:
   object_id: 756834ff-0523-4251-9032-208f6b81479c
   sha: d84ffdf7306e272d1a09877bb00df9cce1583401
@@ -151,3 +147,7 @@ rootfs/cflinuxfs2-1.38.0.tar.gz:
   object_id: 61b5be50-0229-4329-ae6f-1d4e6f5bc99b
   sha: 65a9358fe8d326655f47e305f4d3c60b7f8eb084
   size: 258521862
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.6.zip:
+  object_id: fbdabd53-54bf-4c0b-80b3-b27258c81933
+  sha: 07684e98dfb04635e58d4373d6e858e9f3c55a8d
+  size: 49496944
