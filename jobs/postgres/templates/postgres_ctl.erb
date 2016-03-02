@@ -69,7 +69,12 @@ function main() {
 
     "stop")
       echo "Stopping PostgreSQL: "
-      su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
+      if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
+        set +e
+        su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
+        su - vcap -c "${PACKAGE_DIR_OLD}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR_OLD}"
+        set -e
+      fi
       wait_pidfile "${PIDFILE}"
 
       ;;
