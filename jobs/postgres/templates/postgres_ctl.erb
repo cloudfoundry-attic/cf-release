@@ -1,71 +1,96 @@
-#!/bin/bash -e
+#!/bin/bash -exu
 
-PACKAGE_DIR=/var/vcap/packages/postgres-9.4.5
-JOB_DIR=/var/vcap/jobs/postgres
-PACKAGE_DIR_OLD=/var/vcap/packages/postgres-9.4.2
+function main() {
+  local action
+  action="${1}"
 
-STORE_DIR=/var/vcap/store
-DATA_DIR=$STORE_DIR/postgres-9.4.5
-DATA_DIR_OLD=$STORE_DIR/postgres-9.4.2
+  local pgversion
+  pgversion="postgres-9.4.6"
 
-RUN_DIR=/var/vcap/sys/run/postgres
-LOG_DIR=/var/vcap/sys/log/postgres
+  JOB_DIR=/var/vcap/jobs/postgres
+  PACKAGE_DIR="/var/vcap/packages/${pgversion}"
+  STORE_DIR=/var/vcap/store
+  DATA_DIR="${STORE_DIR}/${pgversion}"
 
-# external_pid_file in postgresql.conf takes care of
-# overwriting $PIDFILE with actual DB server pid
-PIDFILE=$RUN_DIR/postgres.pid
+  PACKAGE_DIR_OLD=/var/vcap/packages/postgres-unknown
+  DATA_DIR_OLD="${STORE_DIR}/postgres-unknown"
 
-source /var/vcap/packages/common/utils.sh
+  if [[ -d "${STORE_DIR}/postgres-9.4.5" ]]; then
+    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.5"
+    PACKAGE_DIR_OLD=/var/vcap/packages/postgres-9.4.5
+  fi
 
-case "$1" in
-  start)
-    if [ -d $DATA_DIR_OLD -a -f $DATA_DIR_OLD/postgresql.conf ]; then
-      set +e
-      su - vcap -c "$PACKAGE_DIR/bin/pg_ctl stop -m fast -w -D $DATA_DIR"
-      su - vcap -c "$PACKAGE_DIR_OLD/bin/pg_ctl stop -m fast -w -D $DATA_DIR_OLD"
-      set -e
-    fi
+  if [[ -d "${STORE_DIR}/postgres-9.4.2" ]]; then
+    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.2"
+    PACKAGE_DIR_OLD=/var/vcap/packages/postgres-9.4.2
+  fi
 
-    pid_guard $PIDFILE "PostgreSQL"
+  RUN_DIR=/var/vcap/sys/run/postgres
+  LOG_DIR=/var/vcap/sys/log/postgres
 
-    # TODO: This script is responsible for both
-    # starting PostgreSQL and running some queries
-    # (create DBs, roles, applying grants). One problem
-    # that needs to be addressed in the future is that
-    # if some queries fail job is still considered running.
-    # Later we'll change it to use a more involved approach
-    # (i.e. script that brings DB to sync)
+  # external_pid_file in postgresql.conf takes care of
+  # overwriting $PIDFILE with actual DB server pid
+  PIDFILE="${RUN_DIR}/postgres.pid"
 
-    mkdir -p $RUN_DIR
-    chown vcap:vcap $RUN_DIR
+  source /var/vcap/packages/common/utils.sh
 
-    echo "" > $PIDFILE
-    chown vcap:vcap $PIDFILE
+  case "${action}" in
+    "start")
+      if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
+        set +e
+        su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
+        su - vcap -c "${PACKAGE_DIR_OLD}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR_OLD}"
+        set -e
+      fi
 
-    if [ ! -d $LOG_DIR ]; then
-      mkdir -p $LOG_DIR
-      chown vcap:vcap $LOG_DIR
-    fi
+      pid_guard "${PIDFILE}" "PostgreSQL"
 
-    exec $JOB_DIR/bin/postgres_start.sh
-    ;;
+      # TODO: This script is responsible for both
+      # starting PostgreSQL and running some queries
+      # (create DBs, roles, applying grants). One problem
+      # that needs to be addressed in the future is that
+      # if some queries fail job is still considered running.
+      # Later we'll change it to use a more involved approach
+      # (i.e. script that brings DB to sync)
 
-  stop)
-    echo "Stopping PostgreSQL: "
-    su - vcap -c "$PACKAGE_DIR/bin/pg_ctl stop -m fast -w -D $DATA_DIR"
-    wait_pidfile $PIDFILE
+      mkdir -p "${RUN_DIR}"
+      chown vcap:vcap "${RUN_DIR}"
 
-    ;;
+      echo "" > "${PIDFILE}"
+      chown vcap:vcap "${PIDFILE}"
 
-  status)
-    su - vcap -c "$PACKAGE_DIR/bin/pg_ctl status -D $DATA_DIR"
+      if [ ! -d "${LOG_DIR}" ]; then
+        mkdir -p "${LOG_DIR}"
+        chown vcap:vcap "${LOG_DIR}"
+      fi
 
-    ;;
+      exec "${JOB_DIR}/bin/postgres_start.sh"
+      ;;
 
-  *)
-    echo "Usage: $0 {start|stop|status}"
-    exit 1
+    "stop")
+      echo "Stopping PostgreSQL: "
+      if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
+        set +e
+        su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
+        su - vcap -c "${PACKAGE_DIR_OLD}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR_OLD}"
+        set -e
+      fi
+      wait_pidfile "${PIDFILE}"
 
-    ;;
+      ;;
 
-esac
+    "status")
+      su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl status -D ${DATA_DIR}"
+
+      ;;
+
+    *)
+      echo "Usage: ${0} {start|stop|status}"
+      exit 1
+
+      ;;
+
+  esac
+}
+
+main "${1}"
