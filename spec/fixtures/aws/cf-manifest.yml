@@ -1305,7 +1305,7 @@ properties:
       user: ROUTER_USER
   smoke_tests: null
   ssl:
-    skip_cert_verify: false
+    skip_cert_verify: true
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
   system_domain: SYSTEM_DOMAIN

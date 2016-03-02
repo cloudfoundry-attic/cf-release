@@ -53,6 +53,9 @@ properties:
   app_domains:
    - APP_DOMAIN
 
+  ssl:
+    skip_cert_verify: true
+
   cc:
     droplets:
       droplet_directory_key: DROPLET_DIRECTORY_KEY
