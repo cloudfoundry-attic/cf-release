@@ -175,6 +175,7 @@ jobs:
   - name: metron_agent
     release: cf
   update:
+    serial: true
     max_in_flight: 1
 - instances: 0
   name: etcd_z2
@@ -194,6 +195,7 @@ jobs:
   - name: metron_agent
     release: cf
   update:
+    serial: true
     max_in_flight: 1
 - instances: 0
   name: stats_z1
