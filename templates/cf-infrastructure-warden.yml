@@ -1,5 +1,5 @@
 meta:
-  environment: cf-warden
+  environment: cf
 
   stemcell: (( merge || .meta.default_stemcell ))
 
