@@ -326,6 +326,7 @@ jobs:
       metron_agent:
         zone: z1
     update:
+      serial: true
       max_in_flight: 1
 
   - name: etcd_z2
@@ -340,6 +341,7 @@ jobs:
       metron_agent:
         zone: z2
     update:
+      serial: true
       max_in_flight: 1
 
   - name: stats_z1
