@@ -490,3 +490,6 @@ properties:
     description: "The file descriptors made available to each app instance"
     default: 16384
 
+  cc.reserved_private_domains:
+    description: "File location of a list of reserved private domains (for file format, see https://publicsuffix.org/)"
+    default: ~

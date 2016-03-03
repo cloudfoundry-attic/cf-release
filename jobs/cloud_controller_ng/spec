@@ -609,3 +609,7 @@ properties:
   router.route_services_secret:
     description: "Support for route services is disabled when no value is configured."
     default: ""
+
+  cc.reserved_private_domains:
+    description: "File location of a list of reserved private domains (for file format, see https://publicsuffix.org/)"
+    default: ~
