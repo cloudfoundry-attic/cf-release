@@ -63,4 +63,4 @@ jobs:
 
 properties:
   ssl:
-    skip_cert_verify: true
+    skip_cert_verify: false

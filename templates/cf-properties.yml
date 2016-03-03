@@ -33,12 +33,18 @@ properties:
   <<: (( merge ))
   app_ssh: ~
   domain: (( merge ))
+  ssl:
+    skip_cert_verify: (( merge || false ))
 
   blobstore:
     port: (( merge || 80 ))
     admin_users: (( merge || nil ))
     secure_link:
       secret: (( merge || nil ))
+    tls:
+      port: (( merge || 443 ))
+      cert: ~
+      private_key: ~
 
   loggregator_endpoint:
     shared_secret: (( merge ))
@@ -236,7 +242,7 @@ properties:
     external_protocol: ~
 
     webdav_config:
-      private_endpoint: "http://blobstore.service.cf.internal"
+      private_endpoint: "https://blobstore.service.cf.internal"
       public_endpoint: (( "http://blobstore." domain || nil))
       username: ((  properties.blobstore.admin_users.[0].username || nil ))
       password: ((  properties.blobstore.admin_users.[0].password || nil ))
@@ -302,6 +308,9 @@ properties:
       port: -1
     sslCertificate: ~
     sslPrivateKey: ~
+
+    sslCertificate: ~
+    sslPrivateKey: ~ 
 
     jwt: (( merge ))
 

@@ -25,6 +25,56 @@ properties:
         password: blobstore-password
     secure_link:
       secret: blobstore-secret
+    tls:
+      cert: |
+        -----BEGIN CERTIFICATE-----
+        MIIDQjCCAiqgAwIBAgIJAP/z/IO9Vh6HMA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV
+        BAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMSEwHwYDVQQKExhJbnRlcm5ldCBX
+        aWRnaXRzIFB0eSBMdGQwIBcNMTYwMzAxMTg0NzQ3WhgPMjI4OTEyMTQxODQ3NDda
+        MEwxCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxDTE9VREZPVU5EUlkxJjAkBgNVBAMT
+        HWJsb2JzdG9yZS5zZXJ2aWNlLmNmLmludGVybmFsMIIBIjANBgkqhkiG9w0BAQEF
+        AAOCAQ8AMIIBCgKCAQEAmcQD0ryug94fllXGM9+mpfHTrT++ZTGZpZ0KCde0iky7
+        fprXiVIoHMqgCDnPvSmI7AUZ0TIxYZtm9FfIkdtjk0QW8PbXmbxEBQwH75EgPqNS
+        0rkkmwzvVlPI963CTyR0SNpjK8s5GpGO9PQd/OY2AQG1ty1jE1T0YLGdaI2LWsHq
+        Y11WFkPYdOfYVnSZeiJkvOkZdZ5KQjZLfgMtyg3cV7yIA552OQiQn3OAFl15K0Bg
+        XTjHWfgu5vVGDr/dw0/Dlm2M56EIRBvc/XBJ9/+cj++R3ru77EfJF/h5vn1ahSxZ
+        RLWOmDoEOhfDmZ9w/QNWFpHWGJ9dHH7wLN8W/naUkwIDAQABoywwKjAoBgNVHREE
+        ITAfgh1ibG9ic3RvcmUuc2VydmljZS5jZi5pbnRlcm5hbDANBgkqhkiG9w0BAQUF
+        AAOCAQEABHHiEQW+lG2kM987QeRkycXAwASUtZJV8wrbB8PUn9BC799TVXGkpFLr
+        oflUnw4hxAlnwrSYWX+1ueCJ2cR1HoXUMTrwK4a5GUtoHnKJQwnb8K+z7lC+0oqE
+        GX+CTb7pPjxwHKGgRw1jjRNLaf3wxnSMrS73OcikF5aGcHylxdCDhAMDvcX6xuqP
+        kDMh20Kjg5brpRhZdkBIe9Tja8W4MZfugzZrPamvo14mRinZVnpiXodvhGHxkHvZ
+        /SA6HwVuqxoYEC+lqJkLbSqyVPSxLvidKl1Zb6074AZxmVlipmrnEETLaScE98Fp
+        XqP9Bw730tiw8W3mZ3NFDQtwAowlqw==
+        -----END CERTIFICATE-----
+      private_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEpAIBAAKCAQEAmcQD0ryug94fllXGM9+mpfHTrT++ZTGZpZ0KCde0iky7fprX
+        iVIoHMqgCDnPvSmI7AUZ0TIxYZtm9FfIkdtjk0QW8PbXmbxEBQwH75EgPqNS0rkk
+        mwzvVlPI963CTyR0SNpjK8s5GpGO9PQd/OY2AQG1ty1jE1T0YLGdaI2LWsHqY11W
+        FkPYdOfYVnSZeiJkvOkZdZ5KQjZLfgMtyg3cV7yIA552OQiQn3OAFl15K0BgXTjH
+        Wfgu5vVGDr/dw0/Dlm2M56EIRBvc/XBJ9/+cj++R3ru77EfJF/h5vn1ahSxZRLWO
+        mDoEOhfDmZ9w/QNWFpHWGJ9dHH7wLN8W/naUkwIDAQABAoIBAQCWc+n9wCrN0oB7
+        u6+0wAgyZP1mjnGAWFjraE4TNWFs1Qm8JkvxDFc9XLHbep2ejE5yCceqHn+c7s59
+        FIum09CJnt0Hp69ruH+hpJT7PrgbMflvQELmB3EDufVxCy6N+7BgPHc+uZlFOtlz
+        Ko1RD/wVXhPsiNdhagW3uvK3A5AwGvsgr4nsxTGPCDGqjeu93X8o7MAgTFgBKWFj
+        bSjO2zOXdmO6p+WvdbkphLg6eBv9xU5o6D4f26QXR8V09csmzy5fj3D4n4EoJvCf
+        WSZK3yOLb1sjisbkEd7TZQvJ5abo6PSJIXSy4Rpwo1gDZa9PVjwo0pFCiMEdzK49
+        Abvm+Q4RAoGBAMqMAW2hpGdNVqxm0tIqJG4c8c/StAB+tkKVh3uYad91RC+NfsmT
+        bL00eQ3Uh/ikDQ7Rz+KdVj4KWre8cnczGEOu2qu1894rX3NMC/iCCoZQ+n4vy7Z2
+        ZyU1nIto128ppJ8ZF0fHPXYCURYxCsPKOfyxKL8YpNLXciuxNaPF06rJAoGBAMJY
+        Xk4OTmINGIQ4e7pKbxcfqz1umXgB4HPIvzosGW/IFfDkOux/LJOfG+TdVDVwc6Ld
+        aTVxXEwOUbYVvFLT1dyRkgoHsENlho8XOtlAYFTu5emGrjhZhJGD2SRHBd5lh/wl
+        KrocHdlncJpWu5sOx1bSKMFSpi6plRO+2MgxRFZ7AoGBAL4RMYnqRHd32JzBhJYZ
+        W8REvxnRVH6eaXQEE3YE6Vz7Evg4pECOal0Gb45t4QaPE33Tn2u9T1+6obSHTzbS
+        KLPi0mqNvQG/27s7IoSZqzytotJlEZnwdAwzyen8gSVcg5GUnwcJTYB+3g6gCMT/
+        8PhSWrUwcAM2j3m2umorytwZAoGAYO5QQuAxyge8FZ5SX6zmUYMzFlXGZ6uP9k/G
+        yM3b9fu2rco3dWNMqWgvMmwNpwWqNy31XnlmzmxJ5uZaYnlTbkqQqz4AdOz7Ov0c
+        FeVc5p+svle1J1fGnglD0Ss3SyAavfEPqXmCjb9g0ym1MnYhiDUTrLB7QETGnO2Q
+        E/E2o2cCgYAmdOtx7FvbDRHuEQcZQr+dmjj6muvYtNpxLc6hAhPrb3OKI6ORyrt4
+        OsPWOCGa5anAoxhdCspJfUpvyarw/o89LUKRfpWvi0Ex/NtEKuIOsW+n7GLdu7Dk
+        V3Xku5KIWgELUjTvLDtAZfEHHbkFXOPsyTCbIIalH7seWDUongJ3TA==
+        -----END RSA PRIVATE KEY-----
 
   domain: bosh-lite.com
 
@@ -66,6 +116,55 @@ properties:
     diego: (( merge || false ))
 
   uaa:
+    sslCertificate: |
+      -----BEGIN CERTIFICATE-----
+      MIIDQjCCAiqgAwIBAgIJAP/z/IO9Vh6HMA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV
+      BAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMSEwHwYDVQQKExhJbnRlcm5ldCBX
+      aWRnaXRzIFB0eSBMdGQwIBcNMTYwMzAxMTg0NzQ3WhgPMjI4OTEyMTQxODQ3NDda
+      MEwxCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxDTE9VREZPVU5EUlkxJjAkBgNVBAMT
+      HWJsb2JzdG9yZS5zZXJ2aWNlLmNmLmludGVybmFsMIIBIjANBgkqhkiG9w0BAQEF
+      AAOCAQ8AMIIBCgKCAQEAmcQD0ryug94fllXGM9+mpfHTrT++ZTGZpZ0KCde0iky7
+      fprXiVIoHMqgCDnPvSmI7AUZ0TIxYZtm9FfIkdtjk0QW8PbXmbxEBQwH75EgPqNS
+      0rkkmwzvVlPI963CTyR0SNpjK8s5GpGO9PQd/OY2AQG1ty1jE1T0YLGdaI2LWsHq
+      Y11WFkPYdOfYVnSZeiJkvOkZdZ5KQjZLfgMtyg3cV7yIA552OQiQn3OAFl15K0Bg
+      XTjHWfgu5vVGDr/dw0/Dlm2M56EIRBvc/XBJ9/+cj++R3ru77EfJF/h5vn1ahSxZ
+      RLWOmDoEOhfDmZ9w/QNWFpHWGJ9dHH7wLN8W/naUkwIDAQABoywwKjAoBgNVHREE
+      ITAfgh1ibG9ic3RvcmUuc2VydmljZS5jZi5pbnRlcm5hbDANBgkqhkiG9w0BAQUF
+      AAOCAQEABHHiEQW+lG2kM987QeRkycXAwASUtZJV8wrbB8PUn9BC799TVXGkpFLr
+      oflUnw4hxAlnwrSYWX+1ueCJ2cR1HoXUMTrwK4a5GUtoHnKJQwnb8K+z7lC+0oqE
+      GX+CTb7pPjxwHKGgRw1jjRNLaf3wxnSMrS73OcikF5aGcHylxdCDhAMDvcX6xuqP
+      kDMh20Kjg5brpRhZdkBIe9Tja8W4MZfugzZrPamvo14mRinZVnpiXodvhGHxkHvZ
+      /SA6HwVuqxoYEC+lqJkLbSqyVPSxLvidKl1Zb6074AZxmVlipmrnEETLaScE98Fp
+      XqP9Bw730tiw8W3mZ3NFDQtwAowlqw==
+      -----END CERTIFICATE-----
+    sslPrivateKey: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEpAIBAAKCAQEAmcQD0ryug94fllXGM9+mpfHTrT++ZTGZpZ0KCde0iky7fprX
+      iVIoHMqgCDnPvSmI7AUZ0TIxYZtm9FfIkdtjk0QW8PbXmbxEBQwH75EgPqNS0rkk
+      mwzvVlPI963CTyR0SNpjK8s5GpGO9PQd/OY2AQG1ty1jE1T0YLGdaI2LWsHqY11W
+      FkPYdOfYVnSZeiJkvOkZdZ5KQjZLfgMtyg3cV7yIA552OQiQn3OAFl15K0BgXTjH
+      Wfgu5vVGDr/dw0/Dlm2M56EIRBvc/XBJ9/+cj++R3ru77EfJF/h5vn1ahSxZRLWO
+      mDoEOhfDmZ9w/QNWFpHWGJ9dHH7wLN8W/naUkwIDAQABAoIBAQCWc+n9wCrN0oB7
+      u6+0wAgyZP1mjnGAWFjraE4TNWFs1Qm8JkvxDFc9XLHbep2ejE5yCceqHn+c7s59
+      FIum09CJnt0Hp69ruH+hpJT7PrgbMflvQELmB3EDufVxCy6N+7BgPHc+uZlFOtlz
+      Ko1RD/wVXhPsiNdhagW3uvK3A5AwGvsgr4nsxTGPCDGqjeu93X8o7MAgTFgBKWFj
+      bSjO2zOXdmO6p+WvdbkphLg6eBv9xU5o6D4f26QXR8V09csmzy5fj3D4n4EoJvCf
+      WSZK3yOLb1sjisbkEd7TZQvJ5abo6PSJIXSy4Rpwo1gDZa9PVjwo0pFCiMEdzK49
+      Abvm+Q4RAoGBAMqMAW2hpGdNVqxm0tIqJG4c8c/StAB+tkKVh3uYad91RC+NfsmT
+      bL00eQ3Uh/ikDQ7Rz+KdVj4KWre8cnczGEOu2qu1894rX3NMC/iCCoZQ+n4vy7Z2
+      ZyU1nIto128ppJ8ZF0fHPXYCURYxCsPKOfyxKL8YpNLXciuxNaPF06rJAoGBAMJY
+      Xk4OTmINGIQ4e7pKbxcfqz1umXgB4HPIvzosGW/IFfDkOux/LJOfG+TdVDVwc6Ld
+      aTVxXEwOUbYVvFLT1dyRkgoHsENlho8XOtlAYFTu5emGrjhZhJGD2SRHBd5lh/wl
+      KrocHdlncJpWu5sOx1bSKMFSpi6plRO+2MgxRFZ7AoGBAL4RMYnqRHd32JzBhJYZ
+      W8REvxnRVH6eaXQEE3YE6Vz7Evg4pECOal0Gb45t4QaPE33Tn2u9T1+6obSHTzbS
+      KLPi0mqNvQG/27s7IoSZqzytotJlEZnwdAwzyen8gSVcg5GUnwcJTYB+3g6gCMT/
+      8PhSWrUwcAM2j3m2umorytwZAoGAYO5QQuAxyge8FZ5SX6zmUYMzFlXGZ6uP9k/G
+      yM3b9fu2rco3dWNMqWgvMmwNpwWqNy31XnlmzmxJ5uZaYnlTbkqQqz4AdOz7Ov0c
+      FeVc5p+svle1J1fGnglD0Ss3SyAavfEPqXmCjb9g0ym1MnYhiDUTrLB7QETGnO2Q
+      E/E2o2cCgYAmdOtx7FvbDRHuEQcZQr+dmjj6muvYtNpxLc6hAhPrb3OKI6ORyrt4
+      OsPWOCGa5anAoxhdCspJfUpvyarw/o89LUKRfpWvi0Ex/NtEKuIOsW+n7GLdu7Dk
+      V3Xku5KIWgELUjTvLDtAZfEHHbkFXOPsyTCbIIalH7seWDUongJ3TA==
+      -----END RSA PRIVATE KEY-----
     catalina_opts: -Xmx192m -XX:MaxPermSize=128m
     jwt:
       signing_key: |

@@ -12,7 +12,8 @@ pushd nginx-1.8.0
     --prefix=${BOSH_INSTALL_TARGET} \
     --with-pcre=../pcre-8.37 \
     --with-http_dav_module \
-    --with-http_secure_link_module
+    --with-http_secure_link_module \
+    --with-http_ssl_module
 
   make
   make install
