@@ -1,4 +1,4 @@
-Rootfs SHASUM: 9dfd5363b7ee8288213ffb2ac8e4c112f0a24c9a
+Rootfs SHASUM: 155e89fc1eb543eed444f63b8e40ac72286a62f1
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -253,8 +253,8 @@ ii  libisccc90                         1:9.9.5.dfsg-3ubuntu0.7             amd64
 ii  libisccfg90                        1:9.9.5.dfsg-3ubuntu0.7             amd64        Config File Handling Library used by BIND
 ii  libisl10:amd64                     0.12.2-1                            amd64        manipulating sets and relations of integer points bounded by linear constraints
 ii  libitm1:amd64                      4.8.4-2ubuntu1~14.04.1              amd64        GNU Transactional Memory Library
-ii  libjasper-dev                      1.900.1-14ubuntu3.2                 amd64        Development files for the JasPer JPEG-2000 library
-ii  libjasper1:amd64                   1.900.1-14ubuntu3.2                 amd64        JasPer JPEG-2000 runtime library
+ii  libjasper-dev                      1.900.1-14ubuntu3.3                 amd64        Development files for the JasPer JPEG-2000 library
+ii  libjasper1:amd64                   1.900.1-14ubuntu3.3                 amd64        JasPer JPEG-2000 runtime library
 ii  libjbig-dev:amd64                  2.0-2ubuntu4.1                      amd64        JBIGkit development files
 ii  libjbig0:amd64                     2.0-2ubuntu4.1                      amd64        JBIGkit libraries
 ii  libjpeg-dev:amd64                  8c-2ubuntu8                         amd64        Independent JPEG Group's JPEG runtime library (dependency package)
@@ -345,8 +345,8 @@ ii  libpciaccess0:amd64                0.13.2-1                            amd64
 ii  libpcre3:amd64                     1:8.31-2ubuntu2.1                   amd64        Perl 5 Compatible Regular Expression Library - runtime files
 ii  libpcre3-dev:amd64                 1:8.31-2ubuntu2.1                   amd64        Perl 5 Compatible Regular Expression Library - development files
 ii  libpcrecpp0:amd64                  1:8.31-2ubuntu2.1                   amd64        Perl 5 Compatible Regular Expression Library - C++ runtime files
-ii  libpixman-1-0:amd64                0.30.2-2ubuntu1                     amd64        pixel-manipulation library for X and cairo
-ii  libpixman-1-dev                    0.30.2-2ubuntu1                     amd64        pixel-manipulation library for X and cairo (development files)
+ii  libpixman-1-0:amd64                0.30.2-2ubuntu1.1                   amd64        pixel-manipulation library for X and cairo
+ii  libpixman-1-dev                    0.30.2-2ubuntu1.1                   amd64        pixel-manipulation library for X and cairo (development files)
 ii  libplymouth2:amd64                 0.8.8-0ubuntu17.1                   amd64        graphical boot animation and logger - shared libraries
 ii  libpng12-0:amd64                   1.2.50-1ubuntu2.14.04.2             amd64        PNG library - runtime
 ii  libpng12-dev                       1.2.50-1ubuntu2.14.04.2             amd64        PNG library - development
