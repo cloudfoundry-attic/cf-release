@@ -367,6 +367,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+  - name: java-buildpack
+    release: cf
+  - name: java-offline-buildpack
+    release: cf
   - name: go-buildpack
     release: cf
   - name: binary-buildpack
@@ -422,6 +426,10 @@ jobs:
   resource_pool: large_z2
   templates:
   - name: consul_agent
+    release: cf
+  - name: java-buildpack
+    release: cf
+  - name: java-offline-buildpack
     release: cf
   - name: go-buildpack
     release: cf

@@ -34,6 +34,10 @@ meta:
   api_templates:
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
+  - name: java-buildpack
+    release: (( meta.release.name ))
+  - name: java-offline-buildpack
+    release: (( meta.release.name ))
   - name: go-buildpack
     release: (( meta.release.name ))
   - name: binary-buildpack
