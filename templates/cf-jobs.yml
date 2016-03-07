@@ -241,9 +241,10 @@ jobs:
     instances: 2
     persistent_disk: 1024
     resource_pool: small_z1
-    networks:
+    default_networks:
       - name: cf1
-        static_ips: (( merge || nil ))
+        static_ips: ~
+    networks: (( merge || default_networks ))
     update:
       serial: true
       max_in_flight: 1
