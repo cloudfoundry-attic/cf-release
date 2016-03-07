@@ -7,7 +7,10 @@ compilation:
   workers: 6
 director_uuid: DIRECTOR_UUID
 jobs:
-- instances: 2
+- default_networks:
+    - name: cf1
+      static_ips: null
+  instances: 2
   name: consul_z1
   networks:
   - name: cf1
