@@ -111,10 +111,6 @@ java-buildpack/java-buildpack-v3.6.zip:
   object_id: 957d975c-43de-4c1e-83a0-6df8f1a2eb1b
   sha: 3ddf6855baec15fb97cd486312615ce82a354dba
   size: 164535
-php-buildpack/php_buildpack-cached-v4.3.5.zip:
-  object_id: 58735cb4-8386-4c1a-95e6-ef91218987b4
-  sha: 4e7dbfdd1804fa0c052fb19dc5e349c3852180ca
-  size: 227617482
 go-buildpack/go_buildpack-cached-v1.7.3.zip:
   object_id: 44b07e57-13cf-4e5a-a7c3-87c27c86f181
   sha: 68e6bec40374a0b133cdd18ec4850eda7da49bf8
@@ -147,3 +143,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.2.zip:
   object_id: 0a9f3fa6-4b2b-48d5-bf0e-b759fa24a116
   sha: b789ae2df1fc7fec9ebb6066d676b30860f41cd9
   size: 2593660
+php-buildpack/php_buildpack-cached-v4.3.6.zip:
+  object_id: adb2ca6f-79f9-4eed-ae93-f49b35d512d6
+  sha: 83867c711a09360446ba5869b61c8c64122cdbc8
+  size: 273161823
