@@ -59,7 +59,10 @@ properties:
         password: blobstore-password
     secure_link:
       secret: blobstore-secret
-
+    tls:
+      port: 443
+      cert: BLOBSTORE_TLS_CERT
+      private_key: BLOBSTORE_PRIVATE_KEY
   consul:
     encrypt_keys:
       - CONSUL_ENCRYPT_KEY
