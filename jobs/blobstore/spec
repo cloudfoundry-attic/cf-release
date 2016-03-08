@@ -9,6 +9,8 @@ templates:
   blobstore.conf.erb:   config/sites/blobstore.conf
   mime.types:           config/mime.types
   write_users.erb:      config/write_users
+  blobstore.crt.erb:    ssl/blobstore.crt
+  blobstore.key.erb:    ssl/blobstore.key
 
 packages:
 - nginx_webdav
@@ -16,8 +18,17 @@ packages:
 
 properties:
   blobstore.port:
-    description: "TCP port blobstore server (ngnix) listens on"
+    description: TCP port on which the blobstore server (nginx) listens
     default: 80
+  blobstore.tls.port:
+    description: The TCP port on which the internal blobstore server listens
+    default: 443
+
+  blobstore.tls.cert:
+    description: The PEM-encoded certificate (optionally as a certificate chain) for serving blobs over TLS/SSL
+
+  blobstore.tls.private_key:
+    description: The PEM-encoded private key for signing TLS/SSL traffic
 
   blobstore.admin_users:
     description: |

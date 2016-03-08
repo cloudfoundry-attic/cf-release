@@ -9,8 +9,10 @@ upstream blob_url_signer {
 
 # Internal server
 server {
-  listen      <%= p("blobstore.port") %>;
+  listen      <%= p("blobstore.tls.port") %> ssl;
   server_name blobstore.service.cf.internal;
+  ssl_certificate     /var/vcap/jobs/blobstore/ssl/blobstore.crt;
+  ssl_certificate_key /var/vcap/jobs/blobstore/ssl/blobstore.key;
   root        /var/vcap/store/shared/;
 
   allow 10.0.0.0/8;
