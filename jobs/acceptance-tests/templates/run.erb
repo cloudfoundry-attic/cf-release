@@ -62,7 +62,10 @@ skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
 verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
 noColorFlag=<%= properties.acceptance_tests.enable_color ? "" : "-noColor" %>
 
-(bin/test -r $noColorFlag -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing || EXITSTATUS=$?) > >(tee /var/vcap/sys/log/acceptance_tests.stdout.log) 2> >(tee /var/vcap/sys/log/acceptance_tests.stderr.log >&2)
+set +e
+bin/test -r $noColorFlag -slowSpecThreshold=120 -randomizeAllSpecs $verbose -nodes=$nodes $skipPackages $skips -keepGoing > >(tee /var/vcap/sys/log/acceptance_tests.stdout.log) 2> >(tee /var/vcap/sys/log/acceptance_tests.stderr.log >&2)
+EXITSTATUS=$?
+set -e
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 
