@@ -31,7 +31,10 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
-- instances: 0
+- default_networks:
+    - name: cf2
+      static_ips: null
+  instances: 0
   name: consul_z2
   networks:
   - name: cf2
