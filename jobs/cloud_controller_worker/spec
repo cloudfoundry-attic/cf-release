@@ -506,3 +506,7 @@ properties:
   cc.broker_client_max_async_poll_duration_minutes:
     default: 10080
     description: "The max duration the CC will fetch service instance state from a service broker. Default is 1 week"
+
+  cc.reserved_private_domains:
+    description: "File location of a list of reserved private domains (for file format, see https://publicsuffix.org/)"
+    default: ~

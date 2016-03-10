@@ -247,6 +247,8 @@ properties:
       username: ((  properties.blobstore.admin_users.[0].username || nil ))
       password: ((  properties.blobstore.admin_users.[0].password || nil ))
 
+    reserved_private_domains: ~
+
   hm9000:
     url: (( "https://hm9000." domain ))
     port: 5155
