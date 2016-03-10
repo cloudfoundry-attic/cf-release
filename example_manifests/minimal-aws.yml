@@ -342,32 +342,32 @@ properties:
       blobstore_type: webdav
       webdav_config:
         password: PASSWORD
-        private_endpoint: http://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        private_endpoint: https://blobstore.service.cf.internal
+        public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
     droplets:
       blobstore_type: webdav
       webdav_config:
         password: PASSWORD
-        private_endpoint: http://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        private_endpoint: https://blobstore.service.cf.internal
+        public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
     packages:
       blobstore_type: webdav
       webdav_config:
         password: PASSWORD
-        private_endpoint: http://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        private_endpoint: https://blobstore.service.cf.internal
+        public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
     resource_pool:
       blobstore_type: webdav
       webdav_config:
         password: PASSWORD
-        private_endpoint: http://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
+        private_endpoint: https://blobstore.service.cf.internal
+        public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
     bulk_api_password: PASSWORD
