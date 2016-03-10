@@ -794,6 +794,7 @@ properties:
     machines: (( merge || jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
     require_ssl: false
     peer_require_ssl: false
+    advertise_urls_dns_suffix: (( merge || "etcd.service.cf.internal" ))
 
   etcd_metrics_server:
     nats:
