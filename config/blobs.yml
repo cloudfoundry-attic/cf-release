@@ -127,10 +127,6 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.7.zip:
   object_id: 2b725428-eef6-4b54-a1d2-13ddec4fbbb6
   sha: 5f14c3d89c746beb9ad037585a2723e645805185
   size: 52186072
-rootfs/cflinuxfs2-1.42.0.tar.gz:
-  object_id: 4a10d9ed-571c-41ba-b73f-89688e02d000
-  sha: bcc77ab77616aab9f4dd36fe27a1b7d914eeb7cc
-  size: 272717416
 openjdk/openjdk-1.8.0_73-x86_64-mountainlion.tar.gz:
   object_id: 3a368e4a-778b-4249-a70e-80a857fc2ccd
   sha: 9fe451af7b0497d195be197d1813b109a7bce600
@@ -147,3 +143,7 @@ php-buildpack/php_buildpack-cached-v4.3.6.zip:
   object_id: adb2ca6f-79f9-4eed-ae93-f49b35d512d6
   sha: 83867c711a09360446ba5869b61c8c64122cdbc8
   size: 273161823
+rootfs/cflinuxfs2-1.43.0.tar.gz:
+  object_id: 0fa3d3de-db85-444d-ba63-302e1fe3afc8
+  sha: 2b02c3346bc3e84fd81d9fa714dee77bbe41b532
+  size: 272748228
