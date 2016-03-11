@@ -7,6 +7,12 @@ meta:
 
   release:
     name: cf
+  capi_release:
+    name: cf
+  consul_release:
+    name: cf
+  etcd_release:
+    name: cf
 
   consul_servers: (( merge || jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
 
@@ -33,7 +39,7 @@ meta:
 
   api_templates:
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: java-buildpack
     release: (( meta.release.name ))
   - name: java-offline-buildpack
@@ -53,7 +59,7 @@ meta:
   - name: staticfile-buildpack
     release: (( meta.release.name ))
   - name: cloud_controller_ng
-    release: (( meta.release.name ))
+    release: (( meta.capi_release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: statsd-injector
@@ -63,27 +69,27 @@ meta:
 
   api_worker_templates:
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: cloud_controller_worker
-    release: (( meta.release.name ))
+    release: (( meta.capi_release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   clock_templates:
   - name: cloud_controller_clock
-    release: (( meta.release.name ))
+    release: (( meta.capi_release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   consul_templates:
   - name: consul_agent
-    release: (( meta.release.name ))
+    release: (( meta.consul_release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
   dea_templates:
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: dea_next
     release: (( meta.release.name ))
   - name: dea_logging_agent
@@ -93,9 +99,9 @@ meta:
 
   etcd_templates:
   - name: etcd
-    release: (( meta.release.name ))
+    release: (( meta.etcd_release.name ))
   - name: etcd_metrics_server
-    release: (( meta.release.name ))
+    release: (( meta.etcd_release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
 
@@ -105,7 +111,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
 
   hm9000_routes:
   - name: hm9000
@@ -118,7 +124,7 @@ meta:
 
   hm9000_templates:
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: hm9000
     release: (( meta.release.name ))
   - name: metron_agent
@@ -173,23 +179,23 @@ meta:
 
   blobstore_templates:
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: blobstore
-    release: (( meta.release.name ))
+    release: (( meta.capi_release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
 
   nfs_templates:
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: debian_nfs_server
-    release: (( meta.release.name ))
+    release: (( meta.capi_release.name ))
   - name: metron_agent
     release: (( meta.release.name ))
   - name: blobstore
-    release: (( meta.release.name ))
+    release: (( meta.capi_release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
 
@@ -201,7 +207,7 @@ meta:
 
   router_templates:
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: gorouter
     release: (( meta.release.name ))
   - name: metron_agent
@@ -234,7 +240,7 @@ meta:
   - name: metron_agent
     release: (( meta.release.name ))
   - name: consul_agent
-    release: (( meta.consul_templates.consul_agent.release ))
+    release: (( meta.consul_release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
   - name: statsd-injector
