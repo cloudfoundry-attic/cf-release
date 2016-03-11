@@ -46,6 +46,10 @@ properties:
       cert: ~
       private_key: ~
 
+  consul:
+    agent:
+      domain: cf.internal
+
   loggregator_endpoint:
     shared_secret: (( merge ))
 
