@@ -58,16 +58,12 @@ meta:
     release: (( meta.release.name ))
   - name: statsd-injector
     release: (( meta.release.name ))
-  - name: nfs_mounter
-    release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))
 
   api_worker_templates:
   - name: consul_agent
     release: (( meta.consul_templates.consul_agent.release ))
-  - name: nfs_mounter
-    release: (( meta.release.name ))
   - name: cloud_controller_worker
     release: (( meta.release.name ))
   - name: metron_agent
@@ -191,6 +187,8 @@ meta:
   - name: debian_nfs_server
     release: (( meta.release.name ))
   - name: metron_agent
+    release: (( meta.release.name ))
+  - name: blobstore
     release: (( meta.release.name ))
   - name: route_registrar
     release: (( meta.release.name ))

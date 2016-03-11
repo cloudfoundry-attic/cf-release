@@ -171,8 +171,6 @@ jobs:
         release: cf
       - name: statsd-injector
         release: cf
-      - name: nfs_mounter
-        release: cf
       - name: route_registrar
         release: cf
 

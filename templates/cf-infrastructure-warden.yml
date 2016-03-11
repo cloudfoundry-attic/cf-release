@@ -97,15 +97,6 @@ properties:
     url: (( "https://hm9000." domain ))
 
   cc:
-    resource_pool:
-      blobstore_type: webdav
-    packages:
-      blobstore_type: webdav
-    droplets:
-      blobstore_type: webdav
-    buildpacks:
-      blobstore_type: webdav
-
     default_app_memory: 256
     bulk_api_password: bulk-password
     internal_api_password: internal-password
