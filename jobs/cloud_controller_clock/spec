@@ -12,6 +12,7 @@ templates:
   console.erb: bin/console
 
 packages:
+  - capi_utils
   - common
   - cloud_controller_ng
   - nginx
