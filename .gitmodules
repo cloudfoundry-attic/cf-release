@@ -1,9 +1,6 @@
 [submodule "src/github.com/cloudfoundry/gorouter"]
 	path = src/github.com/cloudfoundry/gorouter
 	url = https://github.com/cloudfoundry/gorouter
-[submodule "src/cloud_controller_ng"]
-  path = src/cloud_controller_ng
-  url = https://github.com/cloudfoundry/cloud_controller_ng.git
 [submodule "src/collector"]
   path = src/collector
   url = https://github.com/cloudfoundry/collector.git
@@ -37,6 +34,6 @@
 [submodule "src/buildpacks"]
 	path = src/buildpacks
 	url = https://github.com/cloudfoundry/buildpack-releases
-[submodule "src/github.com/cloudfoundry/blobstore_url_signer"]
-	path = src/github.com/cloudfoundry/blobstore_url_signer
-	url = https://github.com/cloudfoundry/blobstore_url_signer
+[submodule "src/capi-release"]
+	path = src/capi-release
+	url = https://github.com/cloudfoundry/capi-release

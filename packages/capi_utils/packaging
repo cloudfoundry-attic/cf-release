@@ -1,3 +1,0 @@
-set -e -x
-
-cp -a capi_utils/* ${BOSH_INSTALL_TARGET}

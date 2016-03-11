@@ -1,7 +1,0 @@
-set -e -x
-
-cd ${BUILD_DIR}/cloud_controller_ng
-BUNDLE_WITHOUT=development:test bundle package --all --no-install --path ./vendor/cache
-rm -rf ./vendor/cache/ruby
-rm -rf ./vendor/cache/vendor
-bundle config --delete NO_INSTALL
