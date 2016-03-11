@@ -753,6 +753,7 @@ properties:
   <<: (( merge ))
   consul:
     agent:
+      domain: cf-internal
       log_level: (( merge || nil ))
       servers:
         lan: (( meta.consul_servers ))

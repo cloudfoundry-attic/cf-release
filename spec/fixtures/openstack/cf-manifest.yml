@@ -1152,6 +1152,7 @@ properties:
   consul:
     agent:
       log_level: null
+      domain: cf-internal
       servers:
         lan:
         - 10.10.0.137
