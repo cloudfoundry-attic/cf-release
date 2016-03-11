@@ -3101,6 +3101,7 @@ properties:
     - 10.244.0.42
     peer_require_ssl: false
     require_ssl: false
+    advertise_urls_dns_suffix: etcd.service.cf.internal
   etcd_metrics_server:
     nats:
       machines:
