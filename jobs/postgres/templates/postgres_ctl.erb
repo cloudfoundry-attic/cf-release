@@ -32,7 +32,9 @@ function main() {
   # overwriting $PIDFILE with actual DB server pid
   PIDFILE="${RUN_DIR}/postgres.pid"
 
+  set +u
   source /var/vcap/packages/common/utils.sh
+  set -u
 
   case "${action}" in
     "start")
@@ -71,11 +73,15 @@ function main() {
       echo "Stopping PostgreSQL: "
       if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
         set +e
-        su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
         su - vcap -c "${PACKAGE_DIR_OLD}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR_OLD}"
         set -e
       fi
+
+      su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
+
+      set +u
       wait_pidfile "${PIDFILE}"
+      set -u
 
       ;;
 
