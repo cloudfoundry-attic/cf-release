@@ -1144,7 +1144,7 @@ properties:
   consul:
     agent:
       log_level: null
-      domain: cf-internal
+      domain: cf.internal
       servers:
         lan:
         - 10.85.9.247
