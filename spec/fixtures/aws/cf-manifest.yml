@@ -929,6 +929,7 @@ properties:
         username: null
     bulk_api_password: BULK_API_PASSWORD
     client_max_body_size: 15M
+    dea_use_https: false
     db_encryption_key: CCDB_ENCRYPTION_KEY
     db_logging_level: debug2
     default_app_disk_in_mb: 1024
@@ -1167,6 +1168,9 @@ properties:
     allow_host_access: null
     allow_networks:
     - 10.10.0.2/32
+    ca_cert:
+    client_cert:
+    client_key:
     default_health_check_timeout: 60
     deny_networks:
     - 169.254.0.0/16
@@ -1174,6 +1178,7 @@ properties:
     directory_server_protocol: https
     disk_mb: null
     disk_overcommit_factor: null
+    enable_ssl: false
     evacuation_bail_out_time_in_seconds: 600
     heartbeat_interval_in_seconds: 10
     instance_bandwidth_limit: null
@@ -1185,6 +1190,8 @@ properties:
     mtu: null
     post_setup_hook: null
     rlimit_core: 0
+    server_cert:
+    server_key:
     staging_bandwidth_limit: null
     staging_disk_inode_limit: 200000
     staging_disk_limit_mb: 6144
@@ -1618,4 +1625,3 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
-

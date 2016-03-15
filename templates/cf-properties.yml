@@ -249,6 +249,8 @@ properties:
 
     reserved_private_domains: ~
 
+    dea_use_https: false
+
   hm9000:
     url: (( "https://hm9000." domain ))
     port: 5155

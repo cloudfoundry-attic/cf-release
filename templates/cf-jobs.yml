@@ -832,6 +832,13 @@ properties:
     mtu: (( merge || nil ))
     post_setup_hook: null
 
+    ca_cert:
+    client_cert:
+    client_key:
+    enable_ssl: false
+    server_cert:
+    server_key:
+
   loggregator:
     <<: (( merge ))
     etcd:
