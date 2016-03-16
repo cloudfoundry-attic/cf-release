@@ -131,10 +131,6 @@ openjdk/openjdk-1.8.0_73-x86_64-trusty.tar.gz:
   object_id: 3965990f-eb2e-4f1e-8561-22f0f4fc6769
   sha: 251144ff72db0b9c2f73446cbb0549b0ecf3d499
   size: 77620313
-php-buildpack/php_buildpack-cached-v4.3.6.zip:
-  object_id: adb2ca6f-79f9-4eed-ae93-f49b35d512d6
-  sha: 83867c711a09360446ba5869b61c8c64122cdbc8
-  size: 273161823
 rootfs/cflinuxfs2-1.44.0.tar.gz:
   object_id: d01150e1-de7c-424f-a96a-7e53c9fbbc85
   sha: 204b2ccfc5c98e9eccd3a459952f9467a786534b
@@ -147,3 +143,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.8.zip:
   object_id: 1bd3a95c-75c0-4ea7-8e61-cfaad7f79858
   sha: 12cf42829261292c3bf0d7389a3b31c17f0b64e3
   size: 52482430
+php-buildpack/php_buildpack-cached-v4.3.7.zip:
+  object_id: 9de7f350-0f67-41e4-9b80-2cccdf085ebc
+  sha: c3c2148da4e2756e4076b7fda27dfd5f110e59fe
+  size: 273339801
