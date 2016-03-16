@@ -123,10 +123,6 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.14.zip:
   object_id: c85f6f50-4cc6-48ed-9e30-ac44c7642dad
   sha: 348862e6cea83d374aade0bff8380e379806bc93
   size: 255892834
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.7.zip:
-  object_id: 2b725428-eef6-4b54-a1d2-13ddec4fbbb6
-  sha: 5f14c3d89c746beb9ad037585a2723e645805185
-  size: 52186072
 openjdk/openjdk-1.8.0_73-x86_64-mountainlion.tar.gz:
   object_id: 3a368e4a-778b-4249-a70e-80a857fc2ccd
   sha: 9fe451af7b0497d195be197d1813b109a7bce600
@@ -147,3 +143,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.3.zip:
   object_id: c5991ac5-6bb7-4137-ac1f-8f1aaf60369b
   sha: 0a7b6040ed454552d5508c9af81bc442c5c04884
   size: 2594164
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.8.zip:
+  object_id: 1bd3a95c-75c0-4ea7-8e61-cfaad7f79858
+  sha: 12cf42829261292c3bf0d7389a3b31c17f0b64e3
+  size: 52482430
