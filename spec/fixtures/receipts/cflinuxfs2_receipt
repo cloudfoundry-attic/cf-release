@@ -1,4 +1,4 @@
-Rootfs SHASUM: 204b2ccfc5c98e9eccd3a459952f9467a786534b
+Rootfs SHASUM: 624d2cd0265ab6ba42b084211a55d33cbf597aad
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -300,14 +300,15 @@ ii  libmagickcore5:amd64               8:6.7.7.10-6ubuntu3                 amd64
 ii  libmagickcore5-extra:amd64         8:6.7.7.10-6ubuntu3                 amd64        low-level image manipulation library - extra codecs
 ii  libmagickwand-dev                  8:6.7.7.10-6ubuntu3                 amd64        image manipulation library - development files
 ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3                 amd64        image manipulation library
+ii  libmariadbclient-dev               5.5.47-1ubuntu0.14.04.1             amd64        MariaDB database development files
+ii  libmariadbclient18:amd64           5.5.47-1ubuntu0.14.04.1             amd64        MariaDB database client library
+ii  libmariadbd-dev                    5.5.47-1ubuntu0.14.04.1             amd64        MariaDB embedded database development files
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
 ii  libmount1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                             amd64        multiple precision floating-point computation
-ii  libmysqlclient-dev                 5.5.47-0ubuntu0.14.04.1             amd64        MySQL database development files
-ii  libmysqlclient18:amd64             5.5.47-0ubuntu0.14.04.1             amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
@@ -328,10 +329,10 @@ ii  liborc-0.4-0:amd64                 1:0.4.18-1ubuntu1                   amd64
 ii  libp11-kit-dev                     0.20.2-2ubuntu2                     amd64        Library for loading and coordinating access to PKCS#11 modules - development
 ii  libp11-kit0:amd64                  0.20.2-2ubuntu2                     amd64        Library for loading and coordinating access to PKCS#11 modules - runtime
 ii  libpam-cap:amd64                   1:2.24-0ubuntu2                     amd64        PAM module for implementing capabilities
-ii  libpam-modules:amd64               1.1.8-1ubuntu2                      amd64        Pluggable Authentication Modules for PAM
-ii  libpam-modules-bin                 1.1.8-1ubuntu2                      amd64        Pluggable Authentication Modules for PAM - helper binaries
-ii  libpam-runtime                     1.1.8-1ubuntu2                      all          Runtime support for the PAM library
-ii  libpam0g:amd64                     1.1.8-1ubuntu2                      amd64        Pluggable Authentication Modules library
+ii  libpam-modules:amd64               1.1.8-1ubuntu2.2                    amd64        Pluggable Authentication Modules for PAM
+ii  libpam-modules-bin                 1.1.8-1ubuntu2.2                    amd64        Pluggable Authentication Modules for PAM - helper binaries
+ii  libpam-runtime                     1.1.8-1ubuntu2.2                    all          Runtime support for the PAM library
+ii  libpam0g:amd64                     1.1.8-1ubuntu2.2                    amd64        Pluggable Authentication Modules library
 ii  libpango-1.0-0:amd64               1.36.3-1ubuntu1.1                   amd64        Layout and rendering of internationalized text
 ii  libpango1.0-0:amd64                1.36.3-1ubuntu1.1                   amd64        Layout and rendering of internationalized text
 ii  libpangocairo-1.0-0:amd64          1.36.3-1ubuntu1.1                   amd64        Layout and rendering of internationalized text
@@ -476,7 +477,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-79.123                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-83.127                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -490,6 +491,7 @@ ii  make                               3.81-8.2ubuntu3                     amd64
 ii  makedev                            2.3.1-93ubuntu1                     all          creates device files in /dev
 ii  manpages                           3.54-1ubuntu1                       all          Manual pages about using a GNU/Linux system
 ii  manpages-dev                       3.54-1ubuntu1                       all          Manual pages about using GNU/Linux for development
+ii  mariadb-common                     5.5.47-1ubuntu0.14.04.1             all          MariaDB common metapackage
 ii  mawk                               1.3.3-17ubuntu2                     amd64        a pattern scanning and text processing language
 ii  mime-support                       3.54ubuntu1.1                       all          MIME files 'mime.types' & 'mailcap', and support programs
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
