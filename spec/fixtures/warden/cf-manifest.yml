@@ -3397,6 +3397,8 @@ properties:
       password: router
       port: null
       user: router
+  routing_api:
+    enabled: null
   smoke_tests:
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com

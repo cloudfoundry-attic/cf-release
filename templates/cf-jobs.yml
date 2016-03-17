@@ -891,6 +891,9 @@ properties:
     drain_wait: (( merge || nil ))
     skip_oauth_tls_verification: (( merge || nil ))
 
+  routing_api:
+    enabled: (( merge || nil ))
+
   syslog_daemon_config: ~
 
   nfs_server: (( meta.nfs_server ))

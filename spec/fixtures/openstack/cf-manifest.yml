@@ -1338,6 +1338,8 @@ properties:
       password: ROUTER_PASSWORD
       port: null
       user: ROUTER_USER
+  routing_api:
+    enabled: null
   smoke_tests: null
   ssl:
     skip_cert_verify: true
