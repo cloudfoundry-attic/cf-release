@@ -1,5 +1,4 @@
 meta:
-
   stemcell: (( merge || .meta.default_stemcell ))
 
   default_stemcell:
