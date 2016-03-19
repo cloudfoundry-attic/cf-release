@@ -31,9 +31,7 @@ if [ "$infrastructure" != "aws" ] && \
 fi
 
 spiff merge \
-  "${templates}/cf-deployment.yml" \
-  "${templates}/cf-resource-pools.yml" \
-  "${templates}/cf-jobs.yml" \
-  "${templates}/cf-properties.yml" \
+  "${templates}/generic-manifest-mask.yml" \
+  "${templates}/cf.yml" \
   "${templates}/cf-infrastructure-${infrastructure}.yml" \
   "$@"

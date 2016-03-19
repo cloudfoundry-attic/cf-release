@@ -896,11 +896,6 @@ jobs:
   templates:
   - name: smoke-tests
     release: cf
-meta:
-  environment: cf-warden
-  releases:
-  - name: cf
-    version: latest
 name: cf-warden
 networks:
 - name: cf1

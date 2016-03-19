@@ -855,11 +855,6 @@ jobs:
   templates:
   - name: smoke-tests
     release: cf
-meta:
-  environment: ENVIRONMENT
-  releases:
-  - name: cf
-    version: latest
 name: ENVIRONMENT
 networks:
 - cloud_properties:
