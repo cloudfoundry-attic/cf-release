@@ -21,8 +21,8 @@ describe "Manifest Generation" do
     it_behaves_like "generating manifests", "aws"
   end
 
-  context "warden" do
-    it_behaves_like "generating manifests", "warden"
+  context "bosh-lite" do
+    it_behaves_like "generating manifests", "bosh-lite"
   end
 
   context "openstack" do
