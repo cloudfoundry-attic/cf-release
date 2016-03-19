@@ -1,8 +1,0 @@
-properties:
-  dea_next:
-    staging_disk_limit_mb: 2048
-
-  cc:
-    client_max_body_size: 256M
-    packages:
-      max_package_size: 536870912
