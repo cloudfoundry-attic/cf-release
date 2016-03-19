@@ -2,7 +2,8 @@ name: (( meta.environment ))
 
 director_uuid: (( merge ))
 
-releases: (( merge || meta.releases ))
+default_releases: [{name: cf, version: latest}]
+releases: (( merge || default_releases ))
 
 networks: (( merge ))
 
@@ -494,7 +495,7 @@ jobs:
   - name: acceptance_tests
     templates:
     - name: acceptance-tests
-      release: (( meta.release.name ))
+      release: (( meta.cf_release_name ))
     instances: 1
     resource_pool: small_errand
     lifecycle: errand
@@ -504,7 +505,7 @@ jobs:
   - name: smoke_tests
     templates:
     - name: smoke-tests
-      release: (( meta.release.name ))
+      release: (( meta.cf_release_name ))
     instances: 0
     resource_pool: small_errand
     lifecycle: errand
@@ -1100,10 +1101,6 @@ meta:
   # i.e. cf-tabasco
   environment: ~
 
-  releases:
-  - name: cf
-    version: latest
-
   default_env:
     # Default vcap & root password on deployed VMs (ie c1oudc0w)
     # Generated using mkpasswd -m sha-512
@@ -1112,14 +1109,20 @@ meta:
 
   stemcell: (( merge ))
 
-  release:
-    name: cf
-  capi_release:
-    name: cf
-  consul_release:
-    name: cf
-  etcd_release:
-    name: cf
+  cf_release_name: cf
+  capi_release_name: (( releases.capi.name || "cf" ))
+  consul_release_name: (( releases.consul.name || "cf" ))
+  etcd_release_name: (( releases.etcd.name || "cf" ))
+  java_buildpack_release_name: (( releases.java-buildpack-release.name || "cf" ))
+  go_buildpack_release_name: (( releases.go-buildpack-release.name || "cf" ))
+  binary_buildpack_release_name: (( releases.binary-buildpack-release.name || "cf" ))
+  nodejs_buildpack_release_name: (( releases.nodejs-buildpack-release.name || "cf" ))
+  ruby_buildpack_release_name: (( releases.ruby-buildpack-release.name || "cf" ))
+  php_buildpack_release_name: (( releases.php-buildpack-release.name || "cf" ))
+  python_buildpack_release_name: (( releases.python-buildpack-release.name || "cf" ))
+  staticfile_buildpack_release_name: (( releases.staticfile-buildpack-release.name || "cf" ))
+  loggregator_release_name: (( releases.loggregator.name || "cf" ))
+  uaa_release_name: (( releases.uaa.name || "cf" ))
 
   consul_servers: (( merge || jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
 
@@ -1146,79 +1149,79 @@ meta:
 
   api_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: java-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.java_buildpack_release_name ))
   - name: java-offline-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.java_buildpack_release_name ))
   - name: go-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.go_buildpack_release_name ))
   - name: binary-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.binary_buildpack_release_name ))
   - name: nodejs-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.nodejs_buildpack_release_name ))
   - name: ruby-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.ruby_buildpack_release_name ))
   - name: php-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.php_buildpack_release_name ))
   - name: python-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.python_buildpack_release_name ))
   - name: staticfile-buildpack
-    release: (( meta.release.name ))
+    release: (( meta.staticfile_buildpack_release_name ))
   - name: cloud_controller_ng
-    release: (( meta.capi_release.name ))
+    release: (( meta.capi_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: statsd-injector
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: route_registrar
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
 
   api_worker_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: cloud_controller_worker
-    release: (( meta.capi_release.name ))
+    release: (( meta.capi_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   clock_templates:
   - name: cloud_controller_clock
-    release: (( meta.capi_release.name ))
+    release: (( meta.capi_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   consul_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   dea_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: dea_next
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: dea_logging_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   etcd_templates:
   - name: etcd
-    release: (( meta.etcd_release.name ))
+    release: (( meta.etcd_release_name ))
   - name: etcd_metrics_server
-    release: (( meta.etcd_release.name ))
+    release: (( meta.etcd_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   ha_proxy_templates:
   - name: haproxy
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
 
   hm9000_routes:
   - name: hm9000
@@ -1231,21 +1234,21 @@ meta:
 
   hm9000_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: hm9000
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: route_registrar
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
 
   loggregator_templates:
   - name: doppler
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: syslog_drain_binder
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   loggregator_trafficcontroller_routes:
   - name: doppler
@@ -1261,19 +1264,19 @@ meta:
 
   loggregator_trafficcontroller_templates:
   - name: loggregator_trafficcontroller
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: route_registrar
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
 
   nats_templates:
   - name: nats
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: nats_stream_forwarder
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   blobstore_routes:
   - name: blobstore
@@ -1286,45 +1289,45 @@ meta:
 
   blobstore_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: blobstore
-    release: (( meta.capi_release.name ))
+    release: (( meta.capi_release_name ))
   - name: route_registrar
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
 
   nfs_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: debian_nfs_server
-    release: (( meta.capi_release.name ))
+    release: (( meta.capi_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: blobstore
-    release: (( meta.capi_release.name ))
+    release: (( meta.capi_release_name ))
   - name: route_registrar
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
 
   postgres_templates:
   - name: postgres
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   router_templates:
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: gorouter
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   stats_templates:
   - name: collector
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   uaa_routes:
   - name: uaa
@@ -1343,15 +1346,15 @@ meta:
 
   uaa_templates:
   - name: uaa
-    release: (( meta.release.name ))
+    release: (( meta.uaa_release_name ))
   - name: metron_agent
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
   - name: consul_agent
-    release: (( meta.consul_release.name ))
+    release: (( meta.consul_release_name ))
   - name: route_registrar
-    release: (( meta.release.name ))
+    release: (( meta.cf_release_name ))
   - name: statsd-injector
-    release: (( meta.release.name ))
+    release: (( meta.loggregator_release_name ))
 
   default_quota_definitions:
     default:
