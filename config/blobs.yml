@@ -131,10 +131,6 @@ openjdk/openjdk-1.8.0_73-x86_64-trusty.tar.gz:
   object_id: 3965990f-eb2e-4f1e-8561-22f0f4fc6769
   sha: 251144ff72db0b9c2f73446cbb0549b0ecf3d499
   size: 77620313
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.3.zip:
-  object_id: c5991ac5-6bb7-4137-ac1f-8f1aaf60369b
-  sha: 0a7b6040ed454552d5508c9af81bc442c5c04884
-  size: 2594164
 nodejs-buildpack/nodejs_buildpack-cached-v1.5.8.zip:
   object_id: 1bd3a95c-75c0-4ea7-8e61-cfaad7f79858
   sha: 12cf42829261292c3bf0d7389a3b31c17f0b64e3
@@ -147,3 +143,7 @@ rootfs/cflinuxfs2-1.46.0.tar.gz:
   object_id: 67c948ec-60ec-4fee-833a-bf74ec714f06
   sha: 20d90299a7d35a78c2b08fdfd4de3d667e483704
   size: 285084560
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.4.zip:
+  object_id: 9fda5025-5c64-4c82-a6b5-17588fd71e8c
+  sha: b7578493ce911df95239e4637121608d395fce70
+  size: 2594271
