@@ -16,7 +16,6 @@ RUN \
     curl \
     debconf-utils \
     gemnasium-toolbelt \
-    git \
     jq/trusty-backports \
     libcurl4-openssl-dev \
     libmysqlclient-dev \
@@ -29,11 +28,18 @@ RUN \
     libyaml-dev \
     mercurial \
     python-software-properties \
+    software-properties-common \
     python-pip \
     unzip \
     wget \
     zip \
     zlib1g-dev
+
+RUN \
+  add-apt-repository ppa:git-core/ppa -y && \
+  apt-get update && \
+  apt-get install -y git && \
+  apt-get remove -y --purge software-properties-common
 
 RUN  \
   echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections && \
