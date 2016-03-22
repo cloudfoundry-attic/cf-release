@@ -73,7 +73,7 @@ RUN \
   bash -l -c "pip install s3cmd" && \
   bash -l -c "gem update --system" && \
   bash -l -c "gem install bundler --no-rdoc --no-ri" && \
-  bash -l -c "gem install bosh_cli --version 1.3156.0 --no-rdoc --no-ri"
+  bash -l -c "gem install bosh_cli --version 1.3215.0 --no-rdoc --no-ri"
 
 ENV GOPATH $HOME/go
 ENV PATH $HOME/go/bin:/usr/local/go/bin:$PATH
