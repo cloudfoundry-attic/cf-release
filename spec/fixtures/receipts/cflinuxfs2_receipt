@@ -1,4 +1,4 @@
-Rootfs SHASUM: 20d90299a7d35a78c2b08fdfd4de3d667e483704
+Rootfs SHASUM: 106cd4d65b576963eacb31a573267de55547df7e
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -68,9 +68,9 @@ ii  gir1.2-freedesktop                 1.40.0-1ubuntu0.2                   amd64
 ii  gir1.2-gdkpixbuf-2.0               2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library - GObject-Introspection
 ii  gir1.2-glib-2.0                    1.40.0-1ubuntu0.2                   amd64        Introspection data for GLib, GObject, Gio and GModule
 ii  gir1.2-rsvg-2.0                    2.40.2-1                            amd64        gir files for renderer library for SVG files
-ii  git                                1:1.9.1-1ubuntu0.2                  amd64        fast, scalable, distributed revision control system
-ii  git-core                           1:1.9.1-1ubuntu0.2                  all          fast, scalable, distributed revision control system (obsolete)
-ii  git-man                            1:1.9.1-1ubuntu0.2                  all          fast, scalable, distributed revision control system (manual pages)
+ii  git                                1:1.9.1-1ubuntu0.3                  amd64        fast, scalable, distributed revision control system
+ii  git-core                           1:1.9.1-1ubuntu0.3                  all          fast, scalable, distributed revision control system (obsolete)
+ii  git-man                            1:1.9.1-1ubuntu0.3                  all          fast, scalable, distributed revision control system (manual pages)
 ii  gnupg                              1.4.16-1ubuntu2.3                   amd64        GNU privacy guard - a free PGP replacement
 ii  gnupg-curl                         1.4.16-1ubuntu2.3                   amd64        GNU privacy guard - a free PGP replacement (cURL)
 ii  gpgv                               1.4.16-1ubuntu2.3                   amd64        GNU privacy guard - signature verification tool
@@ -302,13 +302,13 @@ ii  libmagickwand-dev                  8:6.7.7.10-6ubuntu3                 amd64
 ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3                 amd64        image manipulation library
 ii  libmariadbclient-dev               5.5.47-1ubuntu0.14.04.1             amd64        MariaDB database development files
 ii  libmariadbclient18:amd64           5.5.47-1ubuntu0.14.04.1             amd64        MariaDB database client library
-ii  libmariadbd-dev                    5.5.47-1ubuntu0.14.04.1             amd64        MariaDB embedded database development files
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
 ii  libmount1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                             amd64        multiple precision floating-point computation
+rc  libmysqlclient18:amd64             5.5.47-0ubuntu0.14.04.1             amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
