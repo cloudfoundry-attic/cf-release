@@ -91,10 +91,6 @@ ruby-2.1.8/yaml-0.1.6.tar.gz:
   object_id: 63b9ac28-38d6-4698-bd99-908f80e90405
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
-python-buildpack/python_buildpack-cached-v1.5.4.zip:
-  object_id: d41bc9e8-4daf-4681-bb96-71a91125c025
-  sha: d77d7634925ecb6bb5130bf659dfb7a4f44a1054
-  size: 266308206
 golang/go1.5.3.linux-amd64.tar.gz:
   object_id: 646ac7b1-2de2-4371-8154-76a2ecd19862
   sha: c5377eca4837968d043b681f00a852a262f0f5f6
@@ -147,3 +143,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.4.zip:
   object_id: 9fda5025-5c64-4c82-a6b5-17588fd71e8c
   sha: b7578493ce911df95239e4637121608d395fce70
   size: 2594271
+python-buildpack/python_buildpack-cached-v1.5.5.zip:
+  object_id: 24c546e2-3609-4c42-ba26-67e1d3d188b3
+  sha: ca60152b78be3f93067cd4f03d01e2db810ac2a8
+  size: 266456922
