@@ -27,7 +27,7 @@ case $1 in
         # This setting determines the time that must elapse before TCP/IP can release a closed connection and reuse
         # its resources. During this TIME_WAIT state, reopening the connection to the client costs less than establishing
         # a new connection. By reducing the value of this entry, TCP/IP can release closed connections faster, making more
-        # resources available for new connections. Addjust this in the presense of many connections sitting in the
+        # resources available for new connections. Adjust this in the presence of many connections sitting in the
         # TIME_WAIT state:
 
         echo 5 > /proc/sys/net/ipv4/tcp_fin_timeout
