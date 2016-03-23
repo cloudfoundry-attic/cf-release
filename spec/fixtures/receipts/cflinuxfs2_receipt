@@ -1,4 +1,4 @@
-Rootfs SHASUM: 106cd4d65b576963eacb31a573267de55547df7e
+Rootfs SHASUM: 0600a241fd996dbc4acb6c109959c602a2b1f857
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -26,7 +26,7 @@ ii  cmake                              2.8.12.2-0ubuntu3                   amd64
 ii  cmake-data                         2.8.12.2-0ubuntu3                   all          CMake data files (modules, templates and documentation)
 ii  comerr-dev                         2.1-1.42.9-3ubuntu1.3               amd64        common error description library - headers and static libraries
 ii  console-setup                      1.70ubuntu8                         all          console font and keymap setup program
-ii  coreutils                          8.21-1ubuntu5.3                     amd64        GNU core utilities
+ii  coreutils                          8.21-1ubuntu5.4                     amd64        GNU core utilities
 ii  cpio                               2.11+dfsg-1ubuntu1.2                amd64        GNU cpio -- a program to manage archives of files
 ii  cpp                                4:4.8.2-1ubuntu6                    amd64        GNU C preprocessor (cpp)
 ii  cpp-4.8                            4.8.4-2ubuntu1~14.04.1              amd64        GNU C preprocessor
@@ -413,9 +413,9 @@ ii  libtext-wrapi18n-perl              0.06-7                              all  
 ii  libthai-data                       0.1.20-3                            all          Data files for Thai language support library
 ii  libthai0:amd64                     0.1.20-3                            amd64        Thai language support library
 ii  libtheora0:amd64                   1.1.1+dfsg.1-3.2                    amd64        Theora Video Compression Codec
-ii  libtiff5:amd64                     4.0.3-7ubuntu0.3                    amd64        Tag Image File Format (TIFF) library
-ii  libtiff5-dev:amd64                 4.0.3-7ubuntu0.3                    amd64        Tag Image File Format library (TIFF), development files
-ii  libtiffxx5:amd64                   4.0.3-7ubuntu0.3                    amd64        Tag Image File Format (TIFF) library -- C++ interface
+ii  libtiff5:amd64                     4.0.3-7ubuntu0.4                    amd64        Tag Image File Format (TIFF) library
+ii  libtiff5-dev:amd64                 4.0.3-7ubuntu0.4                    amd64        Tag Image File Format library (TIFF), development files
+ii  libtiffxx5:amd64                   4.0.3-7ubuntu0.4                    amd64        Tag Image File Format (TIFF) library -- C++ interface
 ii  libtimedate-perl                   2.3000-1                            all          collection of modules to manipulate date/time information
 ii  libtinfo-dev:amd64                 5.9+20140118-1ubuntu1               amd64        developer's library for the low-level terminfo library
 ii  libtinfo5:amd64                    5.9+20140118-1ubuntu1               amd64        shared low-level terminfo library for terminal handling
