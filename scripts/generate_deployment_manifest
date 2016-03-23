@@ -24,16 +24,14 @@ shift
 
 if [ "$infrastructure" != "aws" ] && \
     [ "$infrastructure" != "openstack" ] && \
-    [ "$infrastructure" != "warden" ] && \
+    [ "$infrastructure" != "bosh-lite" ] && \
     [ "$infrastructure" != "vsphere" ] ; then
-  echo "usage: ./scripts/generate_deployment_manifest <aws|openstack|warden|vsphere> [stubs...]" 1>&2
+  echo "usage: ./scripts/generate_deployment_manifest <aws|openstack|bosh-lite|vsphere> [stubs...]" 1>&2
   exit 1
 fi
 
 spiff merge \
-  "${templates}/cf-deployment.yml" \
-  "${templates}/cf-resource-pools.yml" \
-  "${templates}/cf-jobs.yml" \
-  "${templates}/cf-properties.yml" \
+  "${templates}/generic-manifest-mask.yml" \
+  "${templates}/cf.yml" \
   "${templates}/cf-infrastructure-${infrastructure}.yml" \
   "$@"

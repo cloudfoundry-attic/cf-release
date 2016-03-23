@@ -16,6 +16,11 @@ update:
 
 properties:
   <<: (( merge ))
+
+  app_ssh:
+    host_key_fingerprint: a6:d1:08:0b:b0:cb:9b:5f:c4:ba:44:2a:97:26:19:8a
+    oauth_client_id: ssh-proxy
+
   ssl:
     skip_cert_verify: true
 
@@ -82,8 +87,10 @@ properties:
 
   dea_next:
     kernel_network_tuning_enabled: false
-    memory_mb: (( merge || nil ))
-    disk_mb: (( merge || nil ))
+    evacuation_bail_out_time_in_seconds: 0
+    memory_mb: 8192
+    disk_mb: 32768
+    disk_overcommit_factor: 3
     enable_ssl: true
     ca_cert: |
       -----BEGIN CERTIFICATE-----
@@ -244,11 +251,54 @@ properties:
     staging_upload_password: upload-password
     db_encryption_key: db-encryption-key
 
+    allow_app_ssh_access: true
     diego: (( merge || false ))
 
     dea_use_https: true
 
+    security_group_definitions:
+      - name: public_networks
+        rules:
+        - protocol: all
+          destination: 0.0.0.0-9.255.255.255
+        - protocol: all
+          destination: 11.0.0.0-169.253.255.255
+        - protocol: all
+          destination: 169.255.0.0-172.15.255.255
+        - protocol: all
+          destination: 172.32.0.0-192.167.255.255
+        - protocol: all
+          destination: 192.169.0.0-255.255.255.255
+      - name: dns
+        rules:
+        - protocol: tcp
+          destination: 0.0.0.0/0
+          ports: '53'
+        - protocol: udp
+          destination: 0.0.0.0/0
+          ports: '53'
+      - name: services
+        rules:
+        - protocol: all
+          destination: 10.244.1.0/24
+        - protocol: all
+          destination: 10.244.3.0/24
+      - name: load_balancer
+        rules:
+        - protocol: all
+          destination: "10.244.0.34"
+      - name: user_bosh_deployments
+        rules:
+        - protocol: all
+          destination: 10.244.4.0-10.254.0.0
+    default_running_security_groups: ["public_networks", "dns", "services", "load_balancer", "user_bosh_deployments"]
+
   uaa:
+    require_https: false
+    zones:
+      internal:
+        hostnames:
+        - uaa.service.cf.internal
     catalina_opts: -Xmx192m -XX:MaxPermSize=128m
     jwt:
       signing_key: |
@@ -357,6 +407,13 @@ properties:
         secret: tcp-emitter-secret
       tcp_router:
         secret: tcp-router-secret
+      ssh-proxy:
+        authorized-grant-types: authorization_code
+        autoapprove: true
+        override: true
+        redirect-uri: /login
+        scope: openid,cloud_controller.read,cloud_controller.write
+        secret: ssh-proxy-secret
     scim:
       users:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
@@ -414,7 +471,7 @@ properties:
       - tag: uaa
         name: uaadb
         citext: true
-    collect_statement_statistics: null
+    collect_statement_statistics: true
     additional_config: (( merge || nil ))
 
   acceptance_tests:
@@ -805,7 +862,6 @@ jobs:
 compilation:
   cloud_properties:
     name: random
-
 
 resource_pools:
   - name: small_z1
