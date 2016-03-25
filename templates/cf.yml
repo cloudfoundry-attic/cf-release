@@ -538,7 +538,7 @@ properties:
     ca_cert: (( merge ))
     agent_cert: (( merge ))
     agent_key: (( merge ))
-    encrypt_keys: (( merge || [] ))
+    encrypt_keys: (( merge ))
     require_ssl:
     server_cert: (( merge ))
     server_key: (( merge ))
