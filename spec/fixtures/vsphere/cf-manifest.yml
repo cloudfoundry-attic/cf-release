@@ -1151,7 +1151,6 @@ properties:
     ca_cert: CONSUL_CA_CERT
     encrypt_keys:
     - CONSUL_ENCRYPT_KEY
-    require_ssl: null
     server_cert: CONSUL_SERVER_CERT
     server_key: CONSUL_SERVER_KEY
   databases:
