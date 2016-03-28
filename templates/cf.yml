@@ -993,6 +993,7 @@ properties:
     enable_routing_api: (( merge || nil ))
     drain_wait: (( merge || nil ))
     skip_oauth_tls_verification: (( merge || nil ))
+    enable_access_log_streaming: (( merge || nil ))
 
   routing_api:
     enabled: (( merge || nil ))
