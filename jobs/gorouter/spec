@@ -148,5 +148,5 @@ properties:
     description: "Disables UAA authentication"
     default: false
   router.enable_access_log_streaming:
-    description: "Enables streaming of access log to syslog."
+    description: "Enables streaming of access log to syslog. Warning: this comes with a performance cost; due to higher I/O, max request rate is reduced."
     default: false
