@@ -3685,6 +3685,7 @@ properties:
     cipher_suites: null
     debug_addr: null
     drain_wait: null
+    enable_access_log_streaming: null
     enable_routing_api: null
     enable_ssl: null
     extra_headers_to_log: null
