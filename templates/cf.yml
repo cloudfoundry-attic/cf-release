@@ -528,6 +528,7 @@ properties:
       port: (( merge || 443 ))
       cert: ~
       private_key: ~
+      ca_cert: ~
 
   consul:
     agent:
@@ -821,6 +822,7 @@ properties:
       public_endpoint: (( "http://blobstore." domain || nil))
       username: ((  properties.blobstore.admin_users.[0].username || nil ))
       password: ((  properties.blobstore.admin_users.[0].password || nil ))
+      ca_cert: ((  properties.blobstore.tls.ca_cert || nil ))
 
     reserved_private_domains: ~
 

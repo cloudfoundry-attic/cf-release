@@ -63,6 +63,7 @@ properties:
       port: 443
       cert: BLOBSTORE_TLS_CERT
       private_key: BLOBSTORE_PRIVATE_KEY
+      ca_cert: BLOBSTORE_CA_CERT
   consul:
     encrypt_keys:
       - CONSUL_ENCRYPT_KEY

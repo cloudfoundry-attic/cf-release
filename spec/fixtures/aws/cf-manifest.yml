@@ -896,6 +896,7 @@ properties:
       port: 443
       cert: null
       private_key: null
+      ca_cert: null
   cc:
     allow_app_ssh_access: true
     allowed_cors_domains: []
@@ -922,6 +923,7 @@ properties:
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
         username: null
+        ca_cert: null
     bulk_api_password: BULK_API_PASSWORD
     client_max_body_size: 15M
     dea_use_https: false
@@ -973,6 +975,7 @@ properties:
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
         username: null
+        ca_cert: null
     external_host: api
     external_port: 9022
     external_protocol: null
@@ -1046,6 +1049,7 @@ properties:
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
         username: null
+        ca_cert: null
     quota_definitions:
       default:
         memory_limit: 10240
@@ -1068,6 +1072,7 @@ properties:
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.DOMAIN
         username: null
+        ca_cert: null
     security_group_definitions:
     - name: public_networks
       rules:
@@ -1128,6 +1133,7 @@ properties:
       private_endpoint: https://blobstore.service.cf.internal
       public_endpoint: http://blobstore.DOMAIN
       username: null
+      ca_cert: null
   ccdb:
     address: CCDB_ADDRESS
     databases:
