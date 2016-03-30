@@ -837,85 +837,32 @@ properties:
     port: 5155
 
   login:
+    <<: ((merge))
     enabled: true
-    analytics:
-      code: ~
-      domain: ~
-    url: ~
-    catalina_opts: ~
-    protocol: ~
     brand: oss
-    asset_base_url: ~
-    uaa_base: ~
-    self_service_links_enabled: ~
-    signups_enabled: ~
-    invitations_enabled: ~
-    spring_profiles: ~
-    messages: ~
-
-    notifications:
-      url: ~
-
-    smtp:
-      host: ~
-      port: ~
-      user: ~
-      password: ~
-
     links:
+      <<: ((merge || nil))
       passwd: (( "https://console." domain "/password_resets/new" ))
       signup: (( "https://console." domain "/register" ))
-
-    logout: ~
-
-    tiles: ~
-
-    saml: ~
-
-    restricted_ips_regex: ~
-
   uaa:
-    catalina_opts: ~
+    <<: ((merge))
     url: (( "https://uaa." domain ))
     issuer: (( url ))
 
-    no_ssl: ~
-    require_https: ~
-
     scim:
+      <<: ((merge))
       userids_enabled: (( merge || true ))
       users: (( merge ))
-      external_groups: ~
-      groups: ~
 
     ssl:
+      <<: ((merge))
       port: -1
-    sslCertificate: ~
-    sslPrivateKey: ~
-
     jwt: (( merge ))
-
     cc:
       client_secret: (( merge ))
-
     admin:
       client_secret: (( merge ))
-
-    authentication:
-      policy:
-        lockoutAfterFailures: ~
-        countFailuresWithinSeconds: ~
-        lockoutPeriodSeconds: ~
-
-    login: ~
-
-    ldap: ~
-
-    newrelic: ~
     port: 8080
-    spring_profiles: ~
-
-    user: ~
     clients:
       <<: (( merge || nil ))
       login:
@@ -962,11 +909,7 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
 
-    database: ~
-
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
-
-    zones: (( merge || nil ))
 
   uaadb: (( merge ))
 

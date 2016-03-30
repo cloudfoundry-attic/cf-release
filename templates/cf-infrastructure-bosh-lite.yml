@@ -317,13 +317,16 @@ properties:
     default_running_security_groups: ["public_networks", "dns", "services", "load_balancer", "user_bosh_deployments"]
 
   uaa:
+    <<: ((merge))
     require_https: false
     zones:
       internal:
         hostnames:
+        - <<: ((merge))
         - uaa.service.cf.internal
     catalina_opts: -Xmx192m -XX:MaxPermSize=128m
     jwt:
+      <<: ((merge))
       signing_key: |
         -----BEGIN RSA PRIVATE KEY-----
         MIICXAIBAAKBgQDHFr+KICms+tuT1OXJwhCUmR2dKVy7psa8xzElSyzqx7oJyfJ1
@@ -438,7 +441,9 @@ properties:
         scope: openid,cloud_controller.read,cloud_controller.write
         secret: ssh-proxy-secret
     scim:
+      <<: ((merge || nil ))
       users:
+      - <<: ((merge))
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
 
   router:
