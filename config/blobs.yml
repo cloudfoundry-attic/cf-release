@@ -127,10 +127,6 @@ openjdk/openjdk-1.8.0_73-x86_64-trusty.tar.gz:
   object_id: 3965990f-eb2e-4f1e-8561-22f0f4fc6769
   sha: 251144ff72db0b9c2f73446cbb0549b0ecf3d499
   size: 77620313
-php-buildpack/php_buildpack-cached-v4.3.7.zip:
-  object_id: 9de7f350-0f67-41e4-9b80-2cccdf085ebc
-  sha: c3c2148da4e2756e4076b7fda27dfd5f110e59fe
-  size: 273339801
 python-buildpack/python_buildpack-cached-v1.5.5.zip:
   object_id: 24c546e2-3609-4c42-ba26-67e1d3d188b3
   sha: ca60152b78be3f93067cd4f03d01e2db810ac2a8
@@ -151,3 +147,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.9.zip:
   object_id: 69a33f25-b5bd-4da3-a828-4edc9600062e
   sha: f6003862889cbe07b5482c77ccbd3aab728c33d4
   size: 52522481
+php-buildpack/php_buildpack-cached-v4.3.8.zip:
+  object_id: f1bce140-d0be-4267-bd86-1cd5cd7d56d8
+  sha: bf15d17943e6acad5977b3aa8dfcf55830ffd3f5
+  size: 273341571
