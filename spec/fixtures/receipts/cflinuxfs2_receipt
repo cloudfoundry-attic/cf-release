@@ -1,4 +1,4 @@
-Rootfs SHASUM: 0600a241fd996dbc4acb6c109959c602a2b1f857
+Rootfs SHASUM: d6df60327b85f172368805449ae61d20e1b794ac
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -84,8 +84,8 @@ ii  ifupdown                           0.7.47.2ubuntu4.4                   amd64
 ii  imagemagick                        8:6.7.7.10-6ubuntu3                 amd64        image manipulation programs
 ii  imagemagick-common                 8:6.7.7.10-6ubuntu3                 all          image manipulation programs -- infrastructure
 ii  init-system-helpers                1.14                                all          helper tools for all init systems
-ii  initramfs-tools                    0.103ubuntu4.2                      all          tools for generating an initramfs
-ii  initramfs-tools-bin                0.103ubuntu4.2                      amd64        binaries used by initramfs-tools
+ii  initramfs-tools                    0.103ubuntu4.3                      all          tools for generating an initramfs
+ii  initramfs-tools-bin                0.103ubuntu4.3                      amd64        binaries used by initramfs-tools
 ii  initscripts                        2.88dsf-41ubuntu6.3                 amd64        scripts for initializing and shutting down the system
 ii  insserv                            1.14.0-5ubuntu2                     amd64        boot sequence organizer using LSB init.d script dependency information
 ii  iproute2                           3.12.0-2ubuntu1                     amd64        networking and traffic control tools
@@ -343,9 +343,9 @@ ii  libparse-debianchangelog-perl      1.2.0-1ubuntu1                      all  
 ii  libpathplan4                       2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - pathplan library
 ii  libpcap0.8:amd64                   1.5.3-2                             amd64        system interface for user-level packet capture
 ii  libpciaccess0:amd64                0.13.2-1                            amd64        Generic PCI access library for X
-ii  libpcre3:amd64                     1:8.31-2ubuntu2.1                   amd64        Perl 5 Compatible Regular Expression Library - runtime files
-ii  libpcre3-dev:amd64                 1:8.31-2ubuntu2.1                   amd64        Perl 5 Compatible Regular Expression Library - development files
-ii  libpcrecpp0:amd64                  1:8.31-2ubuntu2.1                   amd64        Perl 5 Compatible Regular Expression Library - C++ runtime files
+ii  libpcre3:amd64                     1:8.31-2ubuntu2.2                   amd64        Perl 5 Compatible Regular Expression Library - runtime files
+ii  libpcre3-dev:amd64                 1:8.31-2ubuntu2.2                   amd64        Perl 5 Compatible Regular Expression Library - development files
+ii  libpcrecpp0:amd64                  1:8.31-2ubuntu2.2                   amd64        Perl 5 Compatible Regular Expression Library - C++ runtime files
 ii  libpixman-1-0:amd64                0.30.2-2ubuntu1.1                   amd64        pixel-manipulation library for X and cairo
 ii  libpixman-1-dev                    0.30.2-2ubuntu1.1                   amd64        pixel-manipulation library for X and cairo (development files)
 ii  libplymouth2:amd64                 0.8.8-0ubuntu17.1                   amd64        graphical boot animation and logger - shared libraries
@@ -548,7 +548,7 @@ ii  tcpdump                            4.5.1-2ubuntu1.2                    amd64
 ii  traceroute                         1:2.0.20-0ubuntu0.1                 amd64        Traces the route taken by packets over an IPv4/IPv6 network
 ii  tsconf                             1.0-12                              all          touch screen library common files
 ii  ttf-dejavu-core                    2.34-1ubuntu1                       all          transitional dummy package
-ii  tzdata                             2016b-0ubuntu0.14.04                all          time zone and daylight-saving time data
+ii  tzdata                             2016c-0ubuntu0.14.04                all          time zone and daylight-saving time data
 ii  ubuntu-keyring                     2012.05.19                          all          GnuPG keys of the Ubuntu archive
 ii  ubuntu-minimal                     1.325                               amd64        Minimal core of Ubuntu
 ii  ucf                                3.0027+nmu1                         all          Update Configuration File(s): preserve user changes to config files
