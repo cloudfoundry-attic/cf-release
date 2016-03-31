@@ -1,6 +1,10 @@
 #!/bin/bash
 
+set -eu
+
 export BOSH_USE_BUNDLER=true
+
+which bundler >> /dev/null || echo "Bundler is not installed; install it with gem install bundler" && exit 1
 
 SCRIPT_DIR=$(dirname $0)
 CF_RELEASE_DIR=${CF_RELEASE_DIR:-$SCRIPT_DIR/..}

@@ -1,4 +1,6 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -eu
 
 pushd $(dirname $0) > /dev/null
   SCRIPT_DIR=$(pwd)
