@@ -119,7 +119,7 @@ Create a wildcard DNS entry for your root System Domain (\*.your-cf-domain.com) 
   - Type: A - IPv4 address
   - Value: The Elastic IP create above
   - Click "Create"
-  
+
 If you do NOT have a domain, you can use 0.0.0.0.xip.io for your System Domain and replace the zeroes with your Elastic IP
 
 - Replace REPLACE_WITH_SYSTEM_DOMAIN with your system domain
@@ -132,6 +132,28 @@ Generate a SSL certificate for your System Domain
 - Run "openssl x509 -req -in cf.csr -signkey cf.key -out cf.crt"
 - Run "cat cf.crt && cat cf.key" and replace REPLACE_WITH_SSL_CERT_AND_KEY with this value.
 
+## Create certs for Consul agents to communicate over SSL
+
+The consul agents in `consul-release` (a sub-module of `cf-release`) must
+now communicate over SSL, so they'll have to be configured with SSL
+certificates. You can follow instructions for generating these certs
+[here](https://github.com/cloudfoundry-incubator/consul-release#generating-keys-and-certificates).
+
+Onces you've generated the 5 certificates needed, paste them into your manifest:
+
+```yaml
+properties:
+# ...
+  consul:
+  # ...
+    encrypt_keys:
+    - PASSWORD
+    ca_cert: REPLACE_WITH_CA_CERT          # Replace with consul-certs/server-ca.crt
+    server_cert: REPLACE_WITH_SERVER_CERT  # Replace with consul-certs/server.crt
+    agent_cert: REPLACE_WITH_AGENT_CERT    # Replace with consul-certs/agent.crt
+    server_key: REPLACE_WITH_SERVER_KEY    # Replace with consul-certs/server.key
+    agent_key: REPLACE_WITH_AGENT_KEY      # Replace with consul-certs/agent.key
+```
 
 ## Create and Deploy CF Release
 Download a copy of the latest bosh stemcell.

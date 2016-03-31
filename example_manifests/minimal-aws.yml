@@ -422,7 +422,12 @@ properties:
         - 10.0.16.105
     encrypt_keys:
     - PASSWORD
-    require_ssl: false
+    ca_cert: REPLACE_WITH_CA_CERT
+    server_cert: REPLACE_WITH_SERVER_CERT
+    agent_cert: REPLACE_WITH_AGENT_CERT
+    server_key: REPLACE_WITH_SERVER_KEY
+    agent_key: REPLACE_WITH_AGENT_KEY
+
   blobstore:
     admin_users:
     - password: PASSWORD
