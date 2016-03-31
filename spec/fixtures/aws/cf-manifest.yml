@@ -1254,11 +1254,35 @@ properties:
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
+    analytics:
+      code: null
+      domain: null
+    asset_base_url: null
     brand: oss
+    catalina_opts: null
     enabled: true
+    invitations_enabled: null
     links:
       passwd: https://console.DOMAIN/password_resets/new
       signup: https://console.DOMAIN/register
+    logout: null
+    messages: null
+    notifications:
+      url: null
+    protocol: null
+    restricted_ips_regex: null
+    saml: null
+    self_service_links_enabled: null
+    signups_enabled: null
+    smtp:
+      host: null
+      password: null
+      port: null
+      user: null
+    spring_profiles: null
+    tiles: null
+    uaa_base: null
+    url: null
   metron_agent:
     buffer_size: null
     deployment: ENVIRONMENT
@@ -1336,6 +1360,12 @@ properties:
   uaa:
     admin:
       client_secret: ADMIN_SECRET
+    authentication:
+      policy:
+        countFailuresWithinSeconds: null
+        lockoutAfterFailures: null
+        lockoutPeriodSeconds: null
+    catalina_opts: null
     cc:
       client_secret: CC_CLIENT_SECRET
     clients:
@@ -1382,19 +1412,32 @@ properties:
         authorities: routing.routes.read,routing.router_groups.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-ROUTER-SECRET
+    database: null
     issuer: https://uaa.DOMAIN
     jwt:
       signing_key: JWT_SIGNING_KEY
       verification_key: JWT_VERIFICATION_KEY
+    ldap: null
+    login: null
+    newrelic: null
+    no_ssl: null
     port: 8080
+    require_https: null
     restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
     scim:
+      external_groups: null
+      groups: null
       userids_enabled: true
       users:
       - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
+    spring_profiles: null
     ssl:
       port: -1
+    sslCertificate: null
+    sslPrivateKey: null
     url: https://uaa.DOMAIN
+    user: null
+    zones: null
   uaadb:
     address: UAADB_ADDRESS
     databases:
