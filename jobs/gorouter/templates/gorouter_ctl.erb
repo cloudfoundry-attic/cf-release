@@ -56,7 +56,7 @@ case $1 in
 
     setcap cap_net_bind_service=+ep /var/vcap/packages/gorouter/bin/gorouter
 
-    <% if p("router.enable_routing_api") %>
+    <% if p("routing_api.enabled") %>
       set +e
 
       host <%= p("router.dns_health_check_host") %>

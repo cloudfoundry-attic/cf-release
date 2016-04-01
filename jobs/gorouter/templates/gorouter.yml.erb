@@ -52,7 +52,7 @@ oauth:
   port: <%= p("uaa.ssl.port") %>
   skip_oauth_tls_verification: <%= p("router.skip_oauth_tls_verification") %>
 
-<% if p("router.enable_routing_api") %>
+<% if p("routing_api.enabled") %>
 routing_api:
   uri: http://routing-api.service.cf.internal
   port: <%= p("routing-api.port") %>

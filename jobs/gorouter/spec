@@ -50,9 +50,6 @@ properties:
   router.enable_ssl:
     description: "Enable ssl termination on the router"
     default: false
-  router.enable_routing_api:
-    description: "Enable the GoRouter to receive routes from the Routing API"
-    default: false
   router.dns_health_check_host:
       description: "Host to ping for confirmation of DNS resolution, only used when Routing API is enabled"
       default: "consul.service.cf.internal"
@@ -146,6 +143,9 @@ properties:
     default: 3000
   routing-api.auth_disabled:
     description: "Disables UAA authentication"
+    default: false
+  routing_api.enabled:
+    description: "Enable the GoRouter to receive routes from the Routing API"
     default: false
   router.enable_access_log_streaming:
     description: "Enables streaming of access log to syslog. Warning: this comes with a performance cost; due to higher I/O, max request rate is reduced."
