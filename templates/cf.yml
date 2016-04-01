@@ -828,6 +828,8 @@ properties:
 
     dea_use_https: false
 
+    core_file_pattern: (( merge || "/var/vcap/sys/cores/core-%e-%s-%p-%t" ))
+
   ccdb: (( merge ))
 
   ha_proxy: (( merge || nil ))
