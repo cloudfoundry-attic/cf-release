@@ -4,7 +4,15 @@ set -eu
 
 export BOSH_USE_BUNDLER=true
 
-which bundler >> /dev/null || echo "Bundler is not installed; install it with gem install bundler" && exit 1
+set +e
+hash bundler > /dev/null 2>&1
+bundler_exists=$?
+set -e
+
+if [[ "${bundler_exists}" -ne 0 ]]; then
+  echo "Bundler is not installed; install it with gem install bundler"
+  exit 1
+fi
 
 SCRIPT_DIR=$(dirname $0)
 CF_RELEASE_DIR=${CF_RELEASE_DIR:-$SCRIPT_DIR/..}
