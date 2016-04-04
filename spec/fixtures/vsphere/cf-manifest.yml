@@ -934,6 +934,7 @@ properties:
         ca_cert: BLOBSTORE_CA_CERT
     bulk_api_password: BULK_API_PASSWORD
     client_max_body_size: 15M
+    core_file_pattern: "/var/vcap/sys/cores/core-%e-%s-%p-%t"
     db_encryption_key: DB_ENCRYPTION_KEY
     db_logging_level: debug2
     dea_use_https: false

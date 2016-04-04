@@ -2754,6 +2754,7 @@ properties:
           -----END CERTIFICATE-----
     bulk_api_password: bulk-password
     client_max_body_size: 15M
+    core_file_pattern: "/var/vcap/sys/cores/core-%e-%s-%p-%t"
     db_encryption_key: db-encryption-key
     db_logging_level: debug2
     dea_use_https: true
