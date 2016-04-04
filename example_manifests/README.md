@@ -139,7 +139,7 @@ now communicate over SSL, so they'll have to be configured with SSL
 certificates. You can follow instructions for generating these certs
 [here](https://github.com/cloudfoundry-incubator/consul-release#generating-keys-and-certificates).
 
-Onces you've generated the 5 certificates needed, paste them into your manifest:
+Once you've generated the 3 certificates and 2 keys needed, paste them into your manifest:
 
 ```yaml
 properties:
