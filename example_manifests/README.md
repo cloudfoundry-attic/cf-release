@@ -143,9 +143,9 @@ Once you've generated the 3 certificates and 2 keys needed, paste them into your
 
 ```yaml
 properties:
-# ...
-  consul:
   # ...
+  consul:
+    # ...
     encrypt_keys:
     - PASSWORD
     ca_cert: REPLACE_WITH_CA_CERT          # Replace with consul-certs/server-ca.crt
