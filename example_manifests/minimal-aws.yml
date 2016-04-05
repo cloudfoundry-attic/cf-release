@@ -540,6 +540,7 @@ properties:
   metron_agent:
     zone: z1
     deployment: minimal-aws
+    dropsonde_incoming_port: 3457
   metron_endpoint:
     shared_secret: PASSWORD
   nats:
