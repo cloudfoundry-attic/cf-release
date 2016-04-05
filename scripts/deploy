@@ -6,6 +6,6 @@ pushd $(dirname $0)/.. > /dev/null
   scripts/generate-bosh-lite-dev-manifest
   bosh --parallel 10 sync blobs
   bosh create release --name cf --force
-  bosh -t lite -n upload release
-  bosh -t lite -n deploy
+  bosh -t 192.168.50.4 -n upload release
+  bosh -t 192.168.50.4 -d bosh-lite/deployments/cf.yml -n deploy
 popd > /dev/null
