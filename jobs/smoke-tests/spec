@@ -49,3 +49,6 @@ properties:
   smoke_tests.enable_windows_tests:
     default: false
     description: Toggles a portion of the suite that exercises Windows platform support
+  smoke_tests.backend:
+    default: ''
+    description: Defines the backend to be used. ('dea', 'diego', '' (default))

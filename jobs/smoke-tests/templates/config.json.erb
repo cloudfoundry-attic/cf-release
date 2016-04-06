@@ -32,5 +32,6 @@
   "skip_ssl_validation"  : <%= properties.smoke_tests.skip_ssl_validation %>,
   "syslog_drain_port"    : 514,
   "syslog_ip_address"    : "<%= discover_external_ip %>",
-  "enable_windows_tests" : <%= properties.smoke_tests.enable_windows_tests %>
+  "enable_windows_tests" : <%= properties.smoke_tests.enable_windows_tests %>,
+  "backend"              : "<%= properties.smoke_tests.backend %>"
 }
