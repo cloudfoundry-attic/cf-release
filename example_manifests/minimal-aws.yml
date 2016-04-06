@@ -405,6 +405,7 @@ properties:
     srv_api_uri: https://api.REPLACE_WITH_SYSTEM_DOMAIN
     staging_upload_password: PASSWORD
     staging_upload_user: staging_upload_user
+    dea_use_https: false
   ccdb:
     address: 10.0.16.101
     databases:
@@ -520,6 +521,12 @@ properties:
     advertise_interval_in_seconds: 5
     heartbeat_interval_in_seconds: 10
     memory_mb: 33996
+    ca_cert:
+    client_cert:
+    client_key:
+    enable_ssl: false
+    server_cert:
+    server_key:
   description: Cloud Foundry sponsored by Pivotal
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
