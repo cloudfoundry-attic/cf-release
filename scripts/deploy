@@ -2,8 +2,23 @@
 
 set -e
 
+genmanifest=true
+
+for var in "$@"
+do
+  if [ "$var" == "--no-manifest" ]; then
+    genmanifest=false
+  else
+    echo "Unrecognized option $var"
+    echo "Valid options are: --no-manifest"
+    exit 1
+  fi
+done
+
 pushd $(dirname $0)/.. > /dev/null
-  scripts/generate-bosh-lite-dev-manifest
+  if [ "$genmanifest" == "true" ]; then
+    scripts/generate-bosh-lite-dev-manifest
+  fi
   bosh --parallel 10 sync blobs
   bosh create release --name cf --force
   bosh -t 192.168.50.4 -n upload release
