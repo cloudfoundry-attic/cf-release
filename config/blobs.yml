@@ -115,10 +115,6 @@ postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
   size: 23249307
-ruby-buildpack/ruby_buildpack-cached-v1.6.14.zip:
-  object_id: c85f6f50-4cc6-48ed-9e30-ac44c7642dad
-  sha: 348862e6cea83d374aade0bff8380e379806bc93
-  size: 255892834
 openjdk/openjdk-1.8.0_73-x86_64-mountainlion.tar.gz:
   object_id: 3a368e4a-778b-4249-a70e-80a857fc2ccd
   sha: 9fe451af7b0497d195be197d1813b109a7bce600
@@ -151,3 +147,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.6.zip:
   object_id: 6832b42c-bd5e-41f4-855c-dea41578ce79
   sha: de3bedc191535d4743e0b391458736b183f9209b
   size: 2633884
+ruby-buildpack/ruby_buildpack-cached-v1.6.15.zip:
+  object_id: c69828de-a0fd-4f40-b922-3270b883c209
+  sha: 922f896b3d356c3c16b52efbfb104ba6a100df7e
+  size: 256593698
