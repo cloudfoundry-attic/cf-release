@@ -1244,6 +1244,11 @@ properties:
   hm9000:
     port: 5155
     url: https://hm9000.DOMAIN
+    ca_cert:
+    server_cert:
+    server_key:
+    client_cert:
+    client_key:
   logger_endpoint:
     port: 4443
   loggregator:

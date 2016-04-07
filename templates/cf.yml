@@ -835,6 +835,11 @@ properties:
   hm9000:
     url: (( "https://hm9000." domain ))
     port: 5155
+    ca_cert:
+    server_cert:
+    server_key:
+    client_cert:
+    client_key:
 
   login:
     enabled: true
