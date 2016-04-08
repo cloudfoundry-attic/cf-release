@@ -44,10 +44,11 @@ case $1 in
         # Default value is 0 (disabled). It is generally a safer alternative to tcp_tw_recycle
 
         echo 1 > /proc/sys/net/ipv4/tcp_tw_reuse
-    fi
 
-    # Allow a few more queued connections than are allowed by default
-    echo 1024 > /proc/sys/net/core/somaxconn
+        # Allow a few more queued connections than are allowed by default
+
+        echo 1024 > /proc/sys/net/core/somaxconn
+    fi
 
     # Allowed number of open file descriptors
     ulimit -n 100000
