@@ -911,7 +911,7 @@ properties:
     broker_client_timeout_seconds: 70
     buildpacks:
       blobstore_type: fog
-      buildpack_directory_key: BUILDPACK_DIRECTORY_KEY
+      buildpack_directory_key: DOMAIN-cc-buildpacks
       cdn: null
       fog_connection:
         aws_access_key_id: AWS_ACCESS_KEY
@@ -963,7 +963,7 @@ properties:
     droplets:
       blobstore_type: fog
       cdn: null
-      droplet_directory_key: DROPLET_DIRECTORY_KEY
+      droplet_directory_key: DOMAIN-cc-droplets
       fog_connection:
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY

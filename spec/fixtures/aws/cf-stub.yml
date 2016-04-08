@@ -57,10 +57,6 @@ properties:
     skip_cert_verify: true
 
   cc:
-    droplets:
-      droplet_directory_key: DROPLET_DIRECTORY_KEY
-    buildpacks:
-      buildpack_directory_key: BUILDPACK_DIRECTORY_KEY
     staging_upload_user: STAGING_UPLOAD_USER
     staging_upload_password: STAGING_UPLOAD_PASSWORD
     bulk_api_password: BULK_API_PASSWORD
