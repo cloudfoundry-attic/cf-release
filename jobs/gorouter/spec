@@ -29,7 +29,7 @@ properties:
   router.status.password:
     description: "Password for HTTP basic auth to the varz/status endpoint."
   router.requested_route_registration_interval_in_seconds:
-    description: "Interval at which the router requests routes to be registered."
+    description: "On startup, the router will delay listening for requests by this duration to increase likelihood that it has a complete routing table before serving requests. The router also broadcasts the same duration as a recommended interval to registering clients via NATS."
     default: 20
   router.number_of_cpus:
     description: "Number of CPUs to utilize, the default (-1) will equal the number of available CPUs"
