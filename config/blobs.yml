@@ -131,10 +131,6 @@ golang/go1.6.linux-amd64.tar.gz:
   object_id: 303c7ecb-6a2c-4289-90b9-b0297d30f07f
   sha: 01a6a28dbe31a53103b600979bbbbd63a8104456
   size: 84799480
-rootfs/cflinuxfs2-1.50.0.tar.gz:
-  object_id: 39757649-abbc-4bf8-b736-cc72d3e875ea
-  sha: 4711a0011638c73251964b268ecebc7245252c1f
-  size: 276592212
 staticfile-buildpack/staticfile_buildpack-cached-v1.3.6.zip:
   object_id: 6832b42c-bd5e-41f4-855c-dea41578ce79
   sha: de3bedc191535d4743e0b391458736b183f9209b
@@ -151,3 +147,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.11.zip:
   object_id: b157b8e3-0c22-4172-aceb-65b2fe5ef787
   sha: 3901e0278d8dcbf7e0601a1d01798fcf371f94b4
   size: 63612233
+rootfs/cflinuxfs2-1.51.0.tar.gz:
+  object_id: 8244ac30-2c34-4c07-9425-79fc2021ba7e
+  sha: 07adb4c6ed597e5d969b34c6777a4a9449295c4c
+  size: 276630908
