@@ -107,10 +107,6 @@ java-buildpack/java-buildpack-v3.6.zip:
   object_id: 957d975c-43de-4c1e-83a0-6df8f1a2eb1b
   sha: 3ddf6855baec15fb97cd486312615ce82a354dba
   size: 164535
-go-buildpack/go_buildpack-cached-v1.7.3.zip:
-  object_id: 44b07e57-13cf-4e5a-a7c3-87c27c86f181
-  sha: 68e6bec40374a0b133cdd18ec4850eda7da49bf8
-  size: 383960326
 postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
@@ -151,3 +147,7 @@ rootfs/cflinuxfs2-1.51.0.tar.gz:
   object_id: 8244ac30-2c34-4c07-9425-79fc2021ba7e
   sha: 07adb4c6ed597e5d969b34c6777a4a9449295c4c
   size: 276630908
+go-buildpack/go_buildpack-cached-v1.7.4.zip:
+  object_id: 9e908841-dc4e-40c4-ab33-02f045d593ea
+  sha: 3baee95f9de3fc8b188b78e29778a19bc033c955
+  size: 383965443
