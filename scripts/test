@@ -2,6 +2,16 @@
 
 set -eu
 
+set +e
+hash bundler > /dev/null 2>&1
+bundler_exists=$?
+set -e
+
+if [[ "${bundler_exists}" -ne 0 ]]; then
+  echo 'Bundler is not installed; install it with `gem install bundler`'
+  exit 1
+fi
+
 pushd $(dirname $0) > /dev/null
   SCRIPT_DIR=$(pwd)
 popd > /dev/null
