@@ -135,10 +135,6 @@ rootfs/cflinuxfs2-1.51.0.tar.gz:
   object_id: 8244ac30-2c34-4c07-9425-79fc2021ba7e
   sha: 07adb4c6ed597e5d969b34c6777a4a9449295c4c
   size: 276630908
-go-buildpack/go_buildpack-cached-v1.7.4.zip:
-  object_id: 9e908841-dc4e-40c4-ab33-02f045d593ea
-  sha: 3baee95f9de3fc8b188b78e29778a19bc033c955
-  size: 383965443
 php-buildpack/php_buildpack-cached-v4.3.10.zip:
   object_id: 88d0647c-4f6e-454a-a062-c97346389fdf
   sha: 749aaae1e042fa80b3e79977ea60bb95de257452
@@ -151,3 +147,7 @@ golang/go1.5.4.linux-amd64.tar.gz:
   object_id: a3831241-348f-478b-836c-f86962dcfc79
   sha: 4c919c3390e86e557a8019ea644e835bc493be2a
   size: 80180116
+go-buildpack/go_buildpack-cached-v1.7.5.zip:
+  object_id: 20da47c7-49f4-4ecd-99d8-53dab72f18ca
+  sha: a25a466217b64d5e4d47a6796be8ab23e7b7eeaf
+  size: 472145464
