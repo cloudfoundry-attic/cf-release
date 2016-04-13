@@ -1,7 +1,7 @@
 # Introduction
 
 The `minimal-aws.yml` is an example of a minimalistic deployment of Cloud
-Foundry, including all crucial components for its basic funcionality. it allows
+Foundry, including all crucial components for its basic functionality. it allows
 you to deploy Cloud Foundry for educational purposes, so you can poke around and
 break things. 
 
@@ -131,29 +131,6 @@ Generate a SSL certificate for your System Domain
   - For the Common Name, you must enter "\*." followed by your System Domain
 - Run "openssl x509 -req -in cf.csr -signkey cf.key -out cf.crt"
 - Run "cat cf.crt && cat cf.key" and replace REPLACE_WITH_SSL_CERT_AND_KEY with this value.
-
-## Create certs for Consul agents to communicate over SSL
-
-The consul agents in `consul-release` (a sub-module of `cf-release`) must
-now communicate over SSL, so they'll have to be configured with SSL
-certificates. You can follow instructions for generating these certs
-[here](https://github.com/cloudfoundry-incubator/consul-release#generating-keys-and-certificates).
-
-Once you've generated the 3 certificates and 2 keys needed, paste them into your manifest:
-
-```yaml
-properties:
-  # ...
-  consul:
-    # ...
-    encrypt_keys:
-    - PASSWORD
-    ca_cert: REPLACE_WITH_CA_CERT          # Replace with consul-certs/server-ca.crt
-    server_cert: REPLACE_WITH_SERVER_CERT  # Replace with consul-certs/server.crt
-    agent_cert: REPLACE_WITH_AGENT_CERT    # Replace with consul-certs/agent.crt
-    server_key: REPLACE_WITH_SERVER_KEY    # Replace with consul-certs/server.key
-    agent_key: REPLACE_WITH_AGENT_KEY      # Replace with consul-certs/agent.key
-```
 
 ## Create and Deploy CF Release
 Download a copy of the latest bosh stemcell.
