@@ -1,6 +1,6 @@
 name: gnatsd
 dependencies:
-  - golang1.4
+  - golang1.6
 files:
   - gnatsd/**/*.go
   - gnatsd/LICENSE

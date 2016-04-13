@@ -1,7 +1,7 @@
 ---
 name: acceptance-tests
 dependencies:
-  - golang1.4
+  - golang1.6
   - cli
 files:
   - github.com/cloudfoundry/cf-acceptance-tests/**/*
