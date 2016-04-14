@@ -574,7 +574,7 @@ properties:
         autoapprove: true
         override: true
         redirect-uri: /login
-        scope: openid,cloud_controller.read,cloud_controller.write
+        scope: openid,cloud_controller.read,cloud_controller.write,cloud_controller.admin
         secret: ssh-proxy-secret
     scim:
       users:
