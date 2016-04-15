@@ -2958,6 +2958,8 @@ properties:
           a2avU7gd1ERzy4z0FobouMTCiQ+BDfQHT2Jg8WLbdyEj/TH56w4cF29pQ0coZOC1
           bAzM00WOuWYAt8wwcB2+feZiOUxoMzE13XdDf+XaJwmBmKEKYf56+kJTkQ==
           -----END CERTIFICATE-----
+    security_event_logging:
+      enabled: null
     security_group_definitions:
     - name: public_networks
       rules:

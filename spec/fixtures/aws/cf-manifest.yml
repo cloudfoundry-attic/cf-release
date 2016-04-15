@@ -1073,6 +1073,8 @@ properties:
         public_endpoint: http://blobstore.DOMAIN
         username: null
         ca_cert: null
+    security_event_logging:
+      enabled: null
     security_group_definitions:
     - name: public_networks
       rules:

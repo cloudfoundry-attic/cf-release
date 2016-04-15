@@ -1071,6 +1071,8 @@ properties:
         public_endpoint: http://blobstore.DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
+    security_event_logging:
+      enabled: null
     security_group_definitions:
     - name: public_networks
       rules:
