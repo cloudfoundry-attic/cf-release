@@ -189,25 +189,25 @@ jobs:
     instances: 0
     networks:
       - name: cf2
-        static_ips: []
+        static_ips: (( static_ips(2) ))
 
   - name: router_z2
     instances: 0
     networks:
       - name: cf2
-        static_ips: []
+        static_ips: (( static_ips(5) ))
 
   - name: etcd_z2
     instances: 0
     networks:
       - name: cf2
-        static_ips: []
+        static_ips: (( static_ips(8, 9, 10) ))
 
   - name: consul_z2
     instances: 0
     networks:
       - name: cf2
-        static_ips: []
+        static_ips: (( static_ips(12, 13, 14) ))
 
   - name: loggregator_z2
     instances: 0
