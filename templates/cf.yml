@@ -659,6 +659,8 @@ properties:
     outgoing_port: 8080
     zone: (( merge || nil ))
     disable_access_control: (( merge || nil ))
+    security_event_logging:
+      enabled: (( merge || false ))
 
   logger_endpoint: ~
 
