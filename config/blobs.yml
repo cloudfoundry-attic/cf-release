@@ -19,10 +19,6 @@ nginx/newrelic_nginx_agent.tar.gz:
   object_id: cad4fada-4a11-4b1a-a884-c6f58dacead9
   sha: 98a1b10475371705932fea4769f8ac1b0451106f
   size: 5222
-cli/cf-linux-amd64.tgz:
-  object_id: 738e8df5-1869-4f27-880c-7a495dd9f5be
-  sha: ad1782a564c5bf47270e1bfbe0fdd1298394a1d0
-  size: 6104120
 consul/consul-template_0.9.0_linux_amd64.tar.gz:
   object_id: e83bcdcd-2f31-4b73-8cf8-516d54e8f59a
   sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
@@ -147,3 +143,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.16.zip:
   object_id: 78abf705-5e0a-469f-be56-fa6f1452ba90
   sha: 202f38bad1a7c142025bb8b27976bf2fc80655c5
   size: 259708164
+cli/cli-linux-amd64-6.17.0.tgz:
+  object_id: 5d117da5-f89b-4f1f-918e-a11d018ddf35
+  sha: c552c8f4436a63c2034d47f66fd218426c632112
+  size: 6153376

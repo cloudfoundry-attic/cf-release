@@ -2,7 +2,7 @@ set -e
 
 cd cli
 
-tar xzf cf-linux-amd64.tgz
+tar xzf cli-linux-amd64-6.17.0.tgz
 
 BIN_DIR=${BOSH_INSTALL_TARGET}/bin
 
