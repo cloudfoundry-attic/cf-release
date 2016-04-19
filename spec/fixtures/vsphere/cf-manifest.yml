@@ -1364,6 +1364,8 @@ properties:
     outgoing_port: 8080
     zone: null
     disable_access_control: null
+    security_event_logging:
+      enabled: false
   uaa:
     admin:
       client_secret: ADMIN_SECRET
