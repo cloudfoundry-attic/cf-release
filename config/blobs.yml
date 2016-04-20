@@ -103,14 +103,6 @@ postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
   size: 23249307
-openjdk/openjdk-1.8.0_73-x86_64-mountainlion.tar.gz:
-  object_id: 3a368e4a-778b-4249-a70e-80a857fc2ccd
-  sha: 9fe451af7b0497d195be197d1813b109a7bce600
-  size: 81961289
-openjdk/openjdk-1.8.0_73-x86_64-trusty.tar.gz:
-  object_id: 3965990f-eb2e-4f1e-8561-22f0f4fc6769
-  sha: 251144ff72db0b9c2f73446cbb0549b0ecf3d499
-  size: 77620313
 python-buildpack/python_buildpack-cached-v1.5.5.zip:
   object_id: 24c546e2-3609-4c42-ba26-67e1d3d188b3
   sha: ca60152b78be3f93067cd4f03d01e2db810ac2a8
@@ -147,3 +139,11 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.16.zip:
   object_id: 78abf705-5e0a-469f-be56-fa6f1452ba90
   sha: 202f38bad1a7c142025bb8b27976bf2fc80655c5
   size: 259708164
+openjdk/openjdk-1.8.0_91-x86_64-trusty.tar.gz:
+  object_id: 7f2bff0a-affc-4a65-8665-4d284fde6a45
+  sha: 69c612c7f783aad33f4d73ec9b44e1a2ee50f386
+  size: 78278698
+openjdk/openjdk-1.8.0_91-x86_64-mountainlion.tar.gz:
+  object_id: 27d58881-9532-4c79-a12e-bb1dab3314c3
+  sha: 9e916262cf92d6ca0b09f9261d30aeca05f214d7
+  size: 75516939
