@@ -12,7 +12,7 @@ update:
   max_in_flight: 50
   canary_watch_time: 1000-180000
   update_watch_time: 1000-180000
-  serial: true
+  serial: false
 
 properties:
   <<: (( merge ))

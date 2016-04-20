@@ -4342,6 +4342,6 @@ update:
   canaries: 1
   canary_watch_time: 1000-180000
   max_in_flight: 50
-  serial: true
+  serial: false
   update_watch_time: 1000-180000
 
