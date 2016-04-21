@@ -91,10 +91,6 @@ java-buildpack/java-buildpack-offline-v3.6.zip:
   object_id: b23c8ace-26f2-4270-94ed-a861995826e2
   sha: 886bd2888127429f7f75120d98a187cbf7289c16
   size: 253316417
-java-buildpack/java-buildpack-v3.6.zip:
-  object_id: 957d975c-43de-4c1e-83a0-6df8f1a2eb1b
-  sha: 3ddf6855baec15fb97cd486312615ce82a354dba
-  size: 164535
 postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
@@ -147,3 +143,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.12.zip:
   object_id: 2fd5afc3-c3aa-44b0-bbac-39b131858a59
   sha: 7cde788034ed3b3a43bd0ee2dd6233296cf88c7d
   size: 73321448
+java-buildpack/java-buildpack-v3.7.zip:
+  object_id: 6ef251e1-04e7-4924-aebb-5b1339f8f4de
+  sha: 483c35cf7cc87e2ebb05b2b49ebd1f3223105ec8
+  size: 172718
