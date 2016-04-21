@@ -15,10 +15,6 @@ nginx/nginx-upload-module-2.2.tar.gz:
   object_id: 502854f1-9823-468f-baef-1a8d68823ead
   sha: 74ccd116525a155db76f92a1cd484d9516a70398
   size: 28505
-nginx/newrelic_nginx_agent.tar.gz:
-  object_id: cad4fada-4a11-4b1a-a884-c6f58dacead9
-  sha: 98a1b10475371705932fea4769f8ac1b0451106f
-  size: 5222
 consul/consul-template_0.9.0_linux_amd64.tar.gz:
   object_id: e83bcdcd-2f31-4b73-8cf8-516d54e8f59a
   sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
@@ -83,10 +79,6 @@ ruby-2.1.8/yaml-0.1.6.tar.gz:
   object_id: 63b9ac28-38d6-4698-bd99-908f80e90405
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
-libmariadb/libmariadb.tar.xz:
-  object_id: 4c5f767d-aa47-4c60-be6f-50765e08e9eb
-  sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
-  size: 1260684
 postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
@@ -147,3 +139,11 @@ java-buildpack/java-buildpack-offline-v3.7.zip:
   object_id: 8764bda0-fb49-462d-9161-8bb0157e3b7a
   sha: e6cc674d44a9fa0700f993d91f6e49432f6c3109
   size: 291413238
+libmariadb/libmariadb-5.5.36.tar.xz:
+  object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
+  sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
+  size: 1260684
+nginx/newrelic_nginx_agent-1.2.1.tar.gz:
+  object_id: c1534fd2-f0f4-4f64-be14-49de4e450173
+  sha: 98a1b10475371705932fea4769f8ac1b0451106f
+  size: 5222
