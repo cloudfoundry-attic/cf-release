@@ -15,8 +15,8 @@ nginx/nginx-upload-module-2.2.tar.gz:
   object_id: 502854f1-9823-468f-baef-1a8d68823ead
   sha: 74ccd116525a155db76f92a1cd484d9516a70398
   size: 28505
-nginx/newrelic_nginx_agent-1.2.1.tar.gz:
-  object_id: c63358f6-574a-4e20-9d2b-7e1450368b6d
+nginx/newrelic_nginx_agent.tar.gz:
+  object_id: cad4fada-4a11-4b1a-a884-c6f58dacead9
   sha: 98a1b10475371705932fea4769f8ac1b0451106f
   size: 5222
 consul/consul-template_0.9.0_linux_amd64.tar.gz:
@@ -83,8 +83,8 @@ ruby-2.1.8/yaml-0.1.6.tar.gz:
   object_id: 63b9ac28-38d6-4698-bd99-908f80e90405
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
-libmariadb/libmariadb-5.5.36.tar.xz:
-  object_id: 4827612c-e535-408b-bf60-ba5f25690fdd
+libmariadb/libmariadb.tar.xz:
+  object_id: 4c5f767d-aa47-4c60-be6f-50765e08e9eb
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
   size: 1260684
 postgres/postgresql-9.4.6.tar.gz:
