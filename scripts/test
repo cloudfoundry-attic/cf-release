@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -u
 
 set +e
 hash bundler > /dev/null 2>&1
@@ -21,7 +21,15 @@ cd ${SCRIPT_DIR}/..
 bundle install
 
 export BOSH_USE_BUNDLER=true
-bundle exec bosh --parallel 5 sync blobs
+set +e
+bundle exec bosh --parallel 5 sync blobs | grep 'No blobs to upload'
+blobs_to_upload=$?
+set -e
+
+if [[ "${blobs_to_upload}" -ne 0 ]]; then
+  echo 'You need to upload new blobs. Upload them with `bosh upload blobs`'
+  exit 1
+fi
 
 ${SCRIPT_DIR}/unused_blobs &&
 ${SCRIPT_DIR}/unused_packages &&
