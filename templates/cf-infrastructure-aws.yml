@@ -170,13 +170,13 @@ jobs:
     instances: 1
     networks:
       - name: cf1
-        static_ips: []
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
 
   - name: router_z2
     instances: 1
     networks:
       - name: cf2
-        static_ips: []
+        static_ips: (( static_ips(5, 6, 15, 16, 17, 18, 19, 20) ))
 
   - name: loggregator_z1
     instances: 0
