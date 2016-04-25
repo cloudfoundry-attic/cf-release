@@ -87,10 +87,6 @@ python-buildpack/python_buildpack-cached-v1.5.5.zip:
   object_id: 24c546e2-3609-4c42-ba26-67e1d3d188b3
   sha: ca60152b78be3f93067cd4f03d01e2db810ac2a8
   size: 266456922
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.6.zip:
-  object_id: 6832b42c-bd5e-41f4-855c-dea41578ce79
-  sha: de3bedc191535d4743e0b391458736b183f9209b
-  size: 2633884
 rootfs/cflinuxfs2-1.51.0.tar.gz:
   object_id: 8244ac30-2c34-4c07-9425-79fc2021ba7e
   sha: 07adb4c6ed597e5d969b34c6777a4a9449295c4c
@@ -147,3 +143,7 @@ nginx/newrelic_nginx_agent-1.2.1.tar.gz:
   object_id: c1534fd2-f0f4-4f64-be14-49de4e450173
   sha: 98a1b10475371705932fea4769f8ac1b0451106f
   size: 5222
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.7.zip:
+  object_id: 254749d4-9cf8-4c99-9a1b-debb5ccd4319
+  sha: 1c5ee0dd468dec3e43c8f771176723cfead53496
+  size: 2633348
