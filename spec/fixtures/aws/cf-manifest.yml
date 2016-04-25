@@ -72,8 +72,8 @@ jobs:
       zone: z1
     router:
       servers:
-        z1: []
-        z2: []
+        z1: null
+        z2: null
   resource_pool: router_z1
   templates:
   - name: haproxy
@@ -288,7 +288,7 @@ jobs:
           script_path: /var/vcap/jobs/uaa/bin/health_check
     uaa:
       proxy:
-        servers: []
+        servers: null
   resource_pool: medium_z1
   templates:
   - name: uaa
@@ -330,7 +330,7 @@ jobs:
           script_path: /var/vcap/jobs/uaa/bin/health_check
     uaa:
       proxy:
-        servers: []
+        servers: null
   resource_pool: medium_z2
   templates:
   - name: uaa
@@ -784,7 +784,7 @@ jobs:
   name: router_z1
   networks:
   - name: cf1
-    static_ips: []
+    static_ips: null
   properties:
     consul:
       agent:
@@ -808,7 +808,7 @@ jobs:
   name: router_z2
   networks:
   - name: cf2
-    static_ips: []
+    static_ips: null
   properties:
     consul:
       agent:

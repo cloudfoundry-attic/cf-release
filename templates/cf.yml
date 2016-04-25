@@ -58,8 +58,8 @@ jobs:
       ha_proxy:
       router:
         servers:
-          z1: (( merge || jobs.router_z1.networks.cf1.static_ips ))
-          z2: (( merge || jobs.router_z2.networks.cf2.static_ips ))
+          z1: (( merge || jobs.router_z1.networks.cf1.static_ips || nil ))
+          z2: (( merge || jobs.router_z2.networks.cf2.static_ips || nil ))
       metron_agent:
         zone: z1
     update: (( merge || empty_hash ))
@@ -197,7 +197,7 @@ jobs:
         routes: (( merge || meta.uaa_routes ))
       uaa:
         proxy:
-          servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips))
+          servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
     update: (( merge || empty_hash ))
 
   - name: uaa_z2
@@ -217,7 +217,7 @@ jobs:
         routes: (( merge || meta.uaa_routes ))
       uaa:
         proxy:
-          servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips))
+          servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
     update: (( merge || empty_hash ))
 
   - name: api_z1
