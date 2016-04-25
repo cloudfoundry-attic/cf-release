@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -u
+set -u -o pipefail
 
 set +e
 hash bundler > /dev/null 2>&1
@@ -12,17 +12,21 @@ if [[ "${bundler_exists}" -ne 0 ]]; then
   exit 1
 fi
 
-pushd $(dirname $0) > /dev/null
+pushd "$(dirname "$0")" > /dev/null
   SCRIPT_DIR=$(pwd)
 popd > /dev/null
 
-cd ${SCRIPT_DIR}/..
+cd "${SCRIPT_DIR}/.."
 
 bundle install
 
 export BOSH_USE_BUNDLER=true
+
+exec 3>&1
+output=$(bundle exec bosh --color --parallel 5 sync blobs | tee >(cat - >&3))
+
 set +e
-bundle exec bosh --parallel 5 sync blobs | grep 'No blobs to upload'
+echo "${output}" | grep -q -i "no blobs to upload"
 blobs_to_upload=$?
 set -e
 
@@ -31,6 +35,6 @@ if [[ "${blobs_to_upload}" -ne 0 ]]; then
   exit 1
 fi
 
-${SCRIPT_DIR}/unused_blobs &&
-${SCRIPT_DIR}/unused_packages &&
+"${SCRIPT_DIR}/unused_blobs" &&
+"${SCRIPT_DIR}/unused_packages" &&
 bundle exec rspec
