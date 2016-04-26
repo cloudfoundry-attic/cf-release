@@ -120,12 +120,6 @@ properties:
   metron_endpoint.host:
     description: "The host used to emit messages to the Metron agent."
     default: "127.0.0.1"
-  metron_endpoint.dropsonde_port:
-    description: "The port used to emit dropsonde messages to the Metron agent."
-    default: 3457
-  metron_endpoint.port:
-    description: "The port used to emit legacy messages to the Metron agent."
-    default: 3456
   dropsonde.enabled:
     default: false
     description: "Enable the dropsonde emitter library"
