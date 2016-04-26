@@ -1,4 +1,4 @@
-Rootfs SHASUM: 07adb4c6ed597e5d969b34c6777a4a9449295c4c
+Rootfs SHASUM: e81750116bf059a3b929c3b0edc76a44289cc169
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -6,8 +6,8 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ||/ Name                               Version                             Architecture Description
 +++-==================================-===================================-============-===============================================================================
 ii  adduser                            3.113+nmu3ubuntu3                   all          add and remove users and groups
-ii  apt                                1.0.1ubuntu2.12                     amd64        commandline package manager
-ii  apt-utils                          1.0.1ubuntu2.12                     amd64        package management related utility programs
+ii  apt                                1.0.1ubuntu2.13                     amd64        commandline package manager
+ii  apt-utils                          1.0.1ubuntu2.13                     amd64        package management related utility programs
 ii  aptitude                           0.6.8.2-1ubuntu4                    amd64        terminal-based package manager
 ii  aptitude-common                    0.6.8.2-1ubuntu4                    all          architecture indepedent files for the aptitude package manager
 ii  autoconf                           2.69-6                              all          automatic configure script builder
@@ -105,8 +105,8 @@ ii  laptop-detect                      0.13.7ubuntu2                       amd64
 ii  less                               458-2                               amd64        pager program similar to more
 ii  libacl1:amd64                      2.2.52-1                            amd64        Access control list shared library
 ii  libaio1:amd64                      0.3.109-4                           amd64        Linux kernel AIO access library - shared library
-ii  libapt-inst1.5:amd64               1.0.1ubuntu2.12                     amd64        deb package format runtime library
-ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.12                     amd64        package management runtime library
+ii  libapt-inst1.5:amd64               1.0.1ubuntu2.13                     amd64        deb package format runtime library
+ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.13                     amd64        package management runtime library
 ii  libarchive-extract-perl            0.70-1                              all          generic archive extracting module
 ii  libarchive13:amd64                 3.1.2-7ubuntu2.1                    amd64        Multi-format archive and compression library (shared library)
 ii  libasan0:amd64                     4.8.4-2ubuntu1~14.04.1              amd64        AddressSanitizer -- a fast memory error detector
@@ -308,7 +308,7 @@ ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                             amd64        multiple precision floating-point computation
-rc  libmysqlclient18:amd64             5.5.47-0ubuntu0.14.04.1             amd64        MySQL database client library
+rc  libmysqlclient18:amd64             5.5.49-0ubuntu0.14.04.1             amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
@@ -343,9 +343,9 @@ ii  libparse-debianchangelog-perl      1.2.0-1ubuntu1                      all  
 ii  libpathplan4                       2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - pathplan library
 ii  libpcap0.8:amd64                   1.5.3-2                             amd64        system interface for user-level packet capture
 ii  libpciaccess0:amd64                0.13.2-1                            amd64        Generic PCI access library for X
-ii  libpcre3:amd64                     1:8.31-2ubuntu2.2                   amd64        Perl 5 Compatible Regular Expression Library - runtime files
-ii  libpcre3-dev:amd64                 1:8.31-2ubuntu2.2                   amd64        Perl 5 Compatible Regular Expression Library - development files
-ii  libpcrecpp0:amd64                  1:8.31-2ubuntu2.2                   amd64        Perl 5 Compatible Regular Expression Library - C++ runtime files
+ii  libpcre3:amd64                     1:8.31-2ubuntu2.3                   amd64        Perl 5 Compatible Regular Expression Library - runtime files
+ii  libpcre3-dev:amd64                 1:8.31-2ubuntu2.3                   amd64        Perl 5 Compatible Regular Expression Library - development files
+ii  libpcrecpp0:amd64                  1:8.31-2ubuntu2.3                   amd64        Perl 5 Compatible Regular Expression Library - C++ runtime files
 ii  libpixman-1-0:amd64                0.30.2-2ubuntu1.1                   amd64        pixel-manipulation library for X and cairo
 ii  libpixman-1-dev                    0.30.2-2ubuntu1.1                   amd64        pixel-manipulation library for X and cairo (development files)
 ii  libplymouth2:amd64                 0.8.8-0ubuntu17.1                   amd64        graphical boot animation and logger - shared libraries
@@ -498,7 +498,7 @@ ii  module-init-tools                  15-0ubuntu6                         all  
 ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.7                     amd64        Transitional package to ensure multiarch compatibility
-ii  mysql-common                       5.5.47-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
+ii  mysql-common                       5.5.49-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1               all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64        terminal-related programs and man pages
 ii  net-tools                          1.60-25ubuntu2.1                    amd64        The NET-3 networking toolkit
@@ -548,7 +548,7 @@ ii  tcpdump                            4.5.1-2ubuntu1.2                    amd64
 ii  traceroute                         1:2.0.20-0ubuntu0.1                 amd64        Traces the route taken by packets over an IPv4/IPv6 network
 ii  tsconf                             1.0-12                              all          touch screen library common files
 ii  ttf-dejavu-core                    2.34-1ubuntu1                       all          transitional dummy package
-ii  tzdata                             2016c-0ubuntu0.14.04                all          time zone and daylight-saving time data
+ii  tzdata                             2016d-0ubuntu0.14.04                all          time zone and daylight-saving time data
 ii  ubuntu-keyring                     2012.05.19                          all          GnuPG keys of the Ubuntu archive
 ii  ubuntu-minimal                     1.325                               amd64        Minimal core of Ubuntu
 ii  ucf                                3.0027+nmu1                         all          Update Configuration File(s): preserve user changes to config files
