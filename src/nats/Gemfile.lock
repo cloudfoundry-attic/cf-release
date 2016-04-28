@@ -1,24 +1,27 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    daemons (1.1.9)
-    eventmachine (1.0.3)
-    json_pure (1.8.1)
-    nats (0.5.0.beta.14)
-      daemons (>= 1.1.9)
-      eventmachine (>= 1.0.3)
-      json_pure (>= 1.8.1)
-      thin (>= 1.6.0)
-    rack (1.5.2)
-    thin (1.6.2)
-      daemons (>= 1.0.9)
-      eventmachine (>= 1.0.0)
-      rack (>= 1.0.0)
+    daemons (1.2.3)
+    eventmachine (1.0.7)
+    json_pure (1.8.3)
+    nats (0.6.0)
+      daemons (~> 1.1, >= 1.2.2)
+      eventmachine (~> 1.0, = 1.0.7)
+      json_pure (~> 1.8, >= 1.8.1)
+      thin (~> 1.6, >= 1.6.3)
+    rack (1.6.4)
+    thin (1.6.4)
+      daemons (~> 1.0, >= 1.0.9)
+      eventmachine (~> 1.0, >= 1.0.4)
+      rack (~> 1.0)
     yajl-ruby (1.2.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  nats (~> 0.5.0.beta.0)
+  nats (~> 0.6)
   yajl-ruby
+
+BUNDLED WITH
+   1.11.2
