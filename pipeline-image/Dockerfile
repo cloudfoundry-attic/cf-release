@@ -62,8 +62,10 @@ RUN \
   cd /tmp/ruby-install-0.4.1 && make install && \
   ruby-install ruby 2.1.8 && \
   ruby-install ruby 2.2.4 && \
+  ruby-install ruby 2.3.1 && \
   rm -rf /usr/local/src/ruby-2.1.8 && \
   rm -rf /usr/local/src/ruby-2.2.4 && \
+  rm -rf /usr/local/src/ruby-2.3.1 && \
   rm -rf /tmp/*
 
 RUN \
