@@ -81,9 +81,7 @@ jobs:
       zone: z1
     router:
       servers:
-        z1:
         - 10.85.9.235
-        z2:
         - 10.85.10.235
   resource_pool: router_z1
   templates:

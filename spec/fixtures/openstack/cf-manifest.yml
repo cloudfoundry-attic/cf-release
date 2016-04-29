@@ -83,9 +83,7 @@ jobs:
       zone: z1
     router:
       servers:
-        z1:
         - 10.10.0.130
-        z2: []
   resource_pool: router_z1
   templates:
   - name: haproxy

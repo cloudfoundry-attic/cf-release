@@ -71,9 +71,7 @@ jobs:
     metron_agent:
       zone: z1
     router:
-      servers:
-        z1: null
-        z2: null
+      servers: null
   resource_pool: router_z1
   templates:
   - name: haproxy
