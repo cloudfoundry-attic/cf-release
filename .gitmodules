@@ -37,3 +37,6 @@
 [submodule "src/capi-release"]
 	path = src/capi-release
 	url = https://github.com/cloudfoundry/capi-release
+[submodule "src/nats-release"]
+	path = src/nats-release
+	url = https://github.com/cloudfoundry/nats-release
