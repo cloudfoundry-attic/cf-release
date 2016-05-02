@@ -87,10 +87,6 @@ python-buildpack/python_buildpack-cached-v1.5.5.zip:
   object_id: 24c546e2-3609-4c42-ba26-67e1d3d188b3
   sha: ca60152b78be3f93067cd4f03d01e2db810ac2a8
   size: 266456922
-php-buildpack/php_buildpack-cached-v4.3.10.zip:
-  object_id: 88d0647c-4f6e-454a-a062-c97346389fdf
-  sha: 749aaae1e042fa80b3e79977ea60bb95de257452
-  size: 275004851
 golang/go1.6.1.linux-amd64.tar.gz:
   object_id: a735e999-7658-44e5-ac69-a037337aa52d
   sha: c73492474dcc7a233772d27e948b74468d9f1849
@@ -171,3 +167,7 @@ go-buildpack/go_buildpack-cached-v1.7.7.zip:
   object_id: bf492a45-a1e0-4298-b35e-2ab1c7b4debf
   sha: b4cfbf3a58dcbf3f508f0bd0ddf7f1cc5e4c3a04
   size: 349405357
+php-buildpack/php_buildpack-cached-v4.3.11.zip:
+  object_id: 6c9b7499-4247-4684-b3ef-2acdbdaba7d6
+  sha: 579d6959b2860726ee42ca1c48a0f057a9ab375a
+  size: 275003834
