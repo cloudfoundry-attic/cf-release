@@ -31,10 +31,6 @@ consul/consul_0.5.2_linux_amd64.zip:
   object_id: 74107b66-7502-4e06-bdc2-d2dbea1e73c6
   sha: b3ae610c670fc3b81737d44724ebde969da66ebf
   size: 4803609
-binary-buildpack/binary_buildpack-cached-v1.0.1.zip:
-  object_id: ada385dd-f0b6-43c7-8429-0057766116cc
-  sha: 3e62e3882495cf16686078e7209bf28d3f9d60f5
-  size: 8487
 haproxy/haproxy-1.5.14.tar.gz:
   object_id: 02657a44-3292-4e0b-8b18-bcad061a2381
   sha: 159f5beb8fdc6b8059ae51b53dc935d91c0fb51f
@@ -171,3 +167,7 @@ rootfs/cflinuxfs2-1.54.0.tar.gz:
   object_id: 0b354024-1b8b-4fc1-a175-bf8e24db2754
   sha: 6db5ecf17b161ce86b7902ce69d462412c34ead6
   size: 275421199
+binary-buildpack/binary_buildpack-cached-v1.0.2.zip:
+  object_id: a2708afe-cd7b-4934-8ced-4f068315994c
+  sha: a32d9ae40371d557c7c90eb2affc3d7bba6abe69
+  size: 9358
