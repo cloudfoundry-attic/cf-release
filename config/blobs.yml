@@ -127,10 +127,6 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.7.zip:
   object_id: 254749d4-9cf8-4c99-9a1b-debb5ccd4319
   sha: 1c5ee0dd468dec3e43c8f771176723cfead53496
   size: 2633348
-rootfs/cflinuxfs2-1.52.0.tar.gz:
-  object_id: 55b5880e-9672-4cde-9f8e-f94017e61f80
-  sha: e81750116bf059a3b929c3b0edc76a44289cc169
-  size: 275422490
 ruby-2.2.5/ruby-2.2.5.tar.gz:
   object_id: 9a7262fc-f0af-4bba-be5d-b9d59044071a
   sha: 457707459827bd527347a5cee7b4dc509b486713
@@ -171,3 +167,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.13.zip:
   object_id: 7988717f-4a76-4385-ae22-d64f54ac9645
   sha: 116d565fc06fb9960619c3a9b9baa1dd25a1317d
   size: 83971138
+rootfs/cflinuxfs2-1.54.0.tar.gz:
+  object_id: 0b354024-1b8b-4fc1-a175-bf8e24db2754
+  sha: 6db5ecf17b161ce86b7902ce69d462412c34ead6
+  size: 275421199
