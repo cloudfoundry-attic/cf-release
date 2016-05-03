@@ -416,7 +416,7 @@ properties:
     allow_app_ssh_access: true
     diego: (( merge || false ))
 
-    dea_use_https: false
+    dea_use_https: true
 
     security_group_definitions:
       - name: public_networks
