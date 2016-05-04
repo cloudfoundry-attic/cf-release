@@ -1124,6 +1124,7 @@ properties:
         restart_if_consistently_above_mb: null
     user_buildpacks: []
     users_can_select_backend: true
+    volume_services_enabled: null
     webdav_config:
       password: blobstore-password
       private_endpoint: https://blobstore.service.cf.internal

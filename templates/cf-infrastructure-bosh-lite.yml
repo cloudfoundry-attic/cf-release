@@ -412,6 +412,7 @@ properties:
     staging_upload_user: upload-user
     staging_upload_password: upload-password
     db_encryption_key: db-encryption-key
+    volume_services_enabled: true
 
     allow_app_ssh_access: true
     diego: (( merge || false ))
