@@ -120,9 +120,6 @@ properties:
   metron_endpoint.host:
     description: "The host used to emit messages to the Metron agent."
     default: "127.0.0.1"
-  dropsonde.enabled:
-    default: false
-    description: "Enable the dropsonde emitter library"
 
   uaa.clients.gorouter.secret:
     description: "Password for UAA client for the gorouter."
