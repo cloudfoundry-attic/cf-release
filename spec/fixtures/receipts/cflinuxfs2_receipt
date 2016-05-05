@@ -1,4 +1,4 @@
-Rootfs SHASUM: 6db5ecf17b161ce86b7902ce69d462412c34ead6
+Rootfs SHASUM: d481687df1b7b32d34583bef62906571cc3e4afd
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -278,8 +278,8 @@ ii  libkrb5-dev                        1.12+dfsg-2ubuntu5.2                amd64
 ii  libkrb5support0:amd64              1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Support library
 ii  liblapack-dev                      3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - static version
 ii  liblapack3                         3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - shared version
-ii  liblcms2-2:amd64                   2.5-0ubuntu4                        amd64        Little CMS 2 color management library
-ii  liblcms2-dev:amd64                 2.5-0ubuntu4                        amd64        Little CMS 2 color management library development headers
+ii  liblcms2-2:amd64                   2.5-0ubuntu4.1                      amd64        Little CMS 2 color management library
+ii  liblcms2-dev:amd64                 2.5-0ubuntu4.1                      amd64        Little CMS 2 color management library development headers
 ii  libldap-2.4-2:amd64                2.4.31-1+nmu2ubuntu8.2              amd64        OpenLDAP libraries
 ii  libldap2-dev:amd64                 2.4.31-1+nmu2ubuntu8.2              amd64        OpenLDAP development libraries
 ii  liblocale-gettext-perl             1.05-7build3                        amd64        module using libc functions for internationalization in Perl
@@ -300,8 +300,8 @@ ii  libmagickcore5:amd64               8:6.7.7.10-6ubuntu3                 amd64
 ii  libmagickcore5-extra:amd64         8:6.7.7.10-6ubuntu3                 amd64        low-level image manipulation library - extra codecs
 ii  libmagickwand-dev                  8:6.7.7.10-6ubuntu3                 amd64        image manipulation library - development files
 ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3                 amd64        image manipulation library
-ii  libmariadbclient-dev               5.5.47-1ubuntu0.14.04.1             amd64        MariaDB database development files
-ii  libmariadbclient18:amd64           5.5.47-1ubuntu0.14.04.1             amd64        MariaDB database client library
+ii  libmariadbclient-dev               5.5.49-1ubuntu0.14.04.1             amd64        MariaDB database development files
+ii  libmariadbclient18:amd64           5.5.49-1ubuntu0.14.04.1             amd64        MariaDB database client library
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
 ii  libmount1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
@@ -491,7 +491,7 @@ ii  make                               3.81-8.2ubuntu3                     amd64
 ii  makedev                            2.3.1-93ubuntu1                     all          creates device files in /dev
 ii  manpages                           3.54-1ubuntu1                       all          Manual pages about using a GNU/Linux system
 ii  manpages-dev                       3.54-1ubuntu1                       all          Manual pages about using GNU/Linux for development
-ii  mariadb-common                     5.5.47-1ubuntu0.14.04.1             all          MariaDB common metapackage
+ii  mariadb-common                     5.5.49-1ubuntu0.14.04.1             all          MariaDB common metapackage
 ii  mawk                               1.3.3-17ubuntu2                     amd64        a pattern scanning and text processing language
 ii  mime-support                       3.54ubuntu1.1                       all          MIME files 'mime.types' & 'mailcap', and support programs
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
