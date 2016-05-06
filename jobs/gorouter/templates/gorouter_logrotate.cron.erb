@@ -1,1 +1,0 @@
-*/<%= p("router.logrotate.freq_min") %> * * * * test -x /usr/sbin/logrotate && /usr/sbin/logrotate -s /var/lib/logrotate/gorouter_status /var/vcap/jobs/gorouter/config/logrotate.conf >>/var/vcap/sys/log/gorouter/gorouter_logrotate_cron.log 2>&1

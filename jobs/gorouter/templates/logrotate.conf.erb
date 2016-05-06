@@ -1,8 +1,0 @@
-/var/vcap/data/sys/log/gorouter/*.log /var/vcap/data/sys/log/gorouter/*/*.log {
-  missingok
-  rotate <%= p("router.logrotate.rotate") %>
-  compress
-  delaycompress
-  copytruncate
-  size=<%= p("router.logrotate.size") %>
-}

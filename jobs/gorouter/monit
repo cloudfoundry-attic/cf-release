@@ -1,6 +1,0 @@
-check process gorouter
-  with pidfile /var/vcap/sys/run/gorouter/gorouter.pid
-  start program "/var/vcap/jobs/gorouter/bin/gorouter_ctl start"
-    with timeout 60 seconds
-  stop program "/var/vcap/jobs/gorouter/bin/gorouter_ctl stop"
-  group vcap
