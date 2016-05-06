@@ -28,4 +28,4 @@ tar zxvf ruby-2.3/rubygems-${RUBYGEMS_VERSION}.tgz
   fi
 )
 
-${BOSH_INSTALL_TARGET}/bin/gem install ruby-2.3/bundler-${BUNDLER_VERSION}.gem --no-ri --no-rdoc
+${BOSH_INSTALL_TARGET}/bin/gem install ruby-2.3/bundler-${BUNDLER_VERSION}.gem --local --no-ri --no-rdoc
