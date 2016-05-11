@@ -954,6 +954,7 @@ properties:
       package: php-buildpack
     - name: binary_buildpack
       package: binary-buildpack
+    system_hostnames: null
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
