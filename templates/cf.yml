@@ -680,8 +680,6 @@ properties:
         timeout_in_seconds: ~
       droplet_upload:
         timeout_in_seconds: ~
-      model_deletion:
-        timeout_in_seconds: ~
       generic:
         number_of_workers: ~
 

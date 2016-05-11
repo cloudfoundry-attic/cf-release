@@ -2865,8 +2865,6 @@ properties:
         number_of_workers: null
       global:
         timeout_in_seconds: 14400
-      model_deletion:
-        timeout_in_seconds: null
     logging_level: debug2
     maximum_app_disk_in_mb: 2048
     maximum_health_check_timeout: 180
