@@ -1,4 +1,4 @@
-Rootfs SHASUM: d481687df1b7b32d34583bef62906571cc3e4afd
+Rootfs SHASUM: cfc7c2f4531963915e1ab3c2c7a25b31ac2c61a4
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -96,7 +96,7 @@ ii  isc-dhcp-common                    4.2.4-7ubuntu12.4                   amd64
 ii  jq                                 1.3-1.1ubuntu1                      amd64        lightweight and flexible command-line JSON processor
 ii  kbd                                1.15.5-1ubuntu1                     amd64        Linux console font and keytable utilities
 ii  keyboard-configuration             1.70ubuntu8                         all          system-wide keyboard preferences
-ii  klibc-utils                        2.0.3-0ubuntu1                      amd64        small utilities built with klibc for early boot
+ii  klibc-utils                        2.0.3-0ubuntu1.14.04.1              amd64        small utilities built with klibc for early boot
 ii  kmod                               15-0ubuntu6                         amd64        tools for managing Linux kernel modules
 ii  krb5-config                        2.3                                 all          Configuration files for Kerberos Version 5
 ii  krb5-multidev                      1.12+dfsg-2ubuntu5.2                amd64        Development files for MIT Kerberos without Heimdal conflict
@@ -270,7 +270,7 @@ ii  libkadm5clnt-mit9:amd64            1.12+dfsg-2ubuntu5.2                amd64
 ii  libkadm5srv-mit9:amd64             1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - KDC and Admin Server
 ii  libkdb5-7:amd64                    1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Kerberos database
 ii  libkeyutils1:amd64                 1.5.6-1                             amd64        Linux Key Management Utilities (library)
-ii  libklibc                           2.0.3-0ubuntu1                      amd64        minimal libc subset for use with initramfs
+ii  libklibc                           2.0.3-0ubuntu1.14.04.1              amd64        minimal libc subset for use with initramfs
 ii  libkmod2:amd64                     15-0ubuntu6                         amd64        libkmod shared library
 ii  libkrb5-26-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - libraries
 ii  libkrb5-3:amd64                    1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries
@@ -477,7 +477,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-85.129                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-86.130                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -506,9 +506,9 @@ ii  netbase                            5.2                                 all  
 ii  netcat-openbsd                     1.105-7ubuntu1                      amd64        TCP/IP swiss army knife
 ii  ntpdate                            1:4.2.6.p5+dfsg-3ubuntu2.14.04.8    amd64        client for setting system time from NTP servers
 ii  ocaml-base-nox                     4.01.0-3ubuntu3                     amd64        Runtime system for OCaml bytecode executables (no X)
-ii  openssh-client                     1:6.6p1-2ubuntu2.6                  amd64        secure shell (SSH) client, for secure access to remote machines
-ii  openssh-server                     1:6.6p1-2ubuntu2.6                  amd64        secure shell (SSH) server, for secure access from remote machines
-ii  openssh-sftp-server                1:6.6p1-2ubuntu2.6                  amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
+ii  openssh-client                     1:6.6p1-2ubuntu2.7                  amd64        secure shell (SSH) client, for secure access to remote machines
+ii  openssh-server                     1:6.6p1-2ubuntu2.7                  amd64        secure shell (SSH) server, for secure access from remote machines
+ii  openssh-sftp-server                1:6.6p1-2ubuntu2.7                  amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
 ii  openssl                            1.0.1f-1ubuntu2.19                  amd64        Secure Sockets Layer toolkit - cryptographic utility
 ii  passwd                             1:4.1.5.1-1ubuntu9.2                amd64        change and administer password and group data
 ii  patch                              2.7.1-4ubuntu2.3                    amd64        Apply a diff file to an original

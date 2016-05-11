@@ -159,10 +159,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.2.zip:
   object_id: a2708afe-cd7b-4934-8ced-4f068315994c
   sha: a32d9ae40371d557c7c90eb2affc3d7bba6abe69
   size: 9358
-rootfs/cflinuxfs2-1.55.0.tar.gz:
-  object_id: c96ab47d-22e1-4717-88ab-3966f2c43bcf
-  sha: d481687df1b7b32d34583bef62906571cc3e4afd
-  size: 275425478
 php-buildpack/php_buildpack-cached-v4.3.12.zip:
   object_id: 36152337-93d9-4d99-9120-f3b7a04d3e42
   sha: de0d8945a76c3b1206e16509e8a03e50437a5a68
@@ -171,3 +167,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.14.zip:
   object_id: 715a3cf6-ec8e-4796-b4eb-9d0dd13c0f27
   sha: ddfaa3b5c17aba2d9303306fb1fbae9aa2574b74
   size: 96046461
+rootfs/cflinuxfs2-1.56.0.tar.gz:
+  object_id: e8c2c1c6-77e2-402a-87f0-f7452f1521a8
+  sha: cfc7c2f4531963915e1ab3c2c7a25b31ac2c61a4
+  size: 275446597
