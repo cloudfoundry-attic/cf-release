@@ -908,6 +908,7 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+        use_iam_profile: true
       webdav_config:
         password: null
         private_endpoint: https://blobstore.service.cf.internal
@@ -959,6 +960,7 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+        use_iam_profile: true
       max_staged_droplets_stored: null
       webdav_config:
         password: null
@@ -1023,7 +1025,7 @@ properties:
         record_sql: obfuscated
     packages:
       app_package_directory_key: DOMAIN-cc-packages
-      blobstore_type: fog
+      blobstore_type: webdav
       cdn: null
       fog_connection:
         aws_access_key_id: AWS_ACCESS_KEY
@@ -1033,11 +1035,11 @@ properties:
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
-        password: null
-        private_endpoint: https://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.DOMAIN
-        username: null
-        ca_cert: null
+        password: WEBDAV_BASIC_AUTH_PASSWORD
+        private_endpoint: WEBDAV_PRIVATE_ENDPOINT
+        public_endpoint: WEBDAV_PUBLIC_ENDPOINT
+        username: WEBDAV_BASIC_AUTH_USER
+        ca_cert: WEBDAV_CERT
     quota_definitions:
       default:
         memory_limit: 10240
@@ -1054,6 +1056,7 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+        use_iam_profile: true
       resource_directory_key: DOMAIN-cc-resources
       webdav_config:
         password: null
