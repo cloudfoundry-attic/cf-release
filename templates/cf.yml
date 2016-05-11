@@ -708,7 +708,6 @@ properties:
     min_cli_version: ~
     min_recommended_cli_version: ~
 
-    system_hostnames: ~
     external_host: api
     external_port: 9022
     srv_api_uri: (( "https://" external_host "." domain ))
