@@ -204,7 +204,7 @@ jobs:
         tags:
           component: blobstore
         uris:
-        - blobstore.DOMAIN
+        - blobstore.SYSTEM_DOMAIN
   resource_pool: medium_z1
   templates:
   - name: consul_agent
@@ -239,7 +239,7 @@ jobs:
         tags:
           component: blobstore
         uris:
-        - blobstore.DOMAIN
+        - blobstore.SYSTEM_DOMAIN
   resource_pool: medium_z1
   templates:
   - name: consul_agent
@@ -287,10 +287,10 @@ jobs:
         tags:
           component: uaa
         uris:
-        - uaa.DOMAIN
-        - '*.uaa.DOMAIN'
-        - login.DOMAIN
-        - '*.login.DOMAIN'
+        - uaa.SYSTEM_DOMAIN
+        - '*.uaa.SYSTEM_DOMAIN'
+        - login.SYSTEM_DOMAIN
+        - '*.login.SYSTEM_DOMAIN'
         health_check:
           name: uaa-healthcheck
           script_path: /var/vcap/jobs/uaa/bin/health_check
@@ -330,10 +330,10 @@ jobs:
         tags:
           component: uaa
         uris:
-        - uaa.DOMAIN
-        - '*.uaa.DOMAIN'
-        - login.DOMAIN
-        - '*.login.DOMAIN'
+        - uaa.SYSTEM_DOMAIN
+        - '*.uaa.SYSTEM_DOMAIN'
+        - login.SYSTEM_DOMAIN
+        - '*.login.SYSTEM_DOMAIN'
         health_check:
           name: uaa-healthcheck
           script_path: /var/vcap/jobs/uaa/bin/health_check
@@ -380,7 +380,7 @@ jobs:
         tags:
           component: CloudController
         uris:
-        - api.DOMAIN
+        - api.SYSTEM_DOMAIN
   resource_pool: large_z1
   templates:
   - name: go-buildpack
@@ -436,7 +436,7 @@ jobs:
         tags:
           component: CloudController
         uris:
-        - api.DOMAIN
+        - api.SYSTEM_DOMAIN
   resource_pool: large_z2
   templates:
   - name: consul_agent
@@ -548,7 +548,7 @@ jobs:
         tags:
           component: HM9K
         uris:
-        - hm9000.DOMAIN
+        - hm9000.SYSTEM_DOMAIN
   resource_pool: medium_z1
   templates:
   - name: consul_agent
@@ -579,7 +579,7 @@ jobs:
         tags:
           component: HM9K
         uris:
-        - hm9000.DOMAIN
+        - hm9000.SYSTEM_DOMAIN
   resource_pool: medium_z2
   templates:
   - name: consul_agent
@@ -738,12 +738,12 @@ jobs:
         port: 8081
         registration_interval: 20s
         uris:
-        - doppler.DOMAIN
+        - doppler.SYSTEM_DOMAIN
       - name: loggregator
         port: 8080
         registration_interval: 20s
         uris:
-        - loggregator.DOMAIN
+        - loggregator.SYSTEM_DOMAIN
     traffic_controller:
       zone: z1
   resource_pool: small_z1
@@ -768,12 +768,12 @@ jobs:
         port: 8081
         registration_interval: 20s
         uris:
-        - doppler.DOMAIN
+        - doppler.SYSTEM_DOMAIN
       - name: loggregator
         port: 8080
         registration_interval: 20s
         uris:
-        - loggregator.DOMAIN
+        - loggregator.SYSTEM_DOMAIN
     traffic_controller:
       zone: z2
   resource_pool: small_z2
@@ -923,13 +923,13 @@ properties:
     broker_client_timeout_seconds: 70
     buildpacks:
       blobstore_type: webdav
-      buildpack_directory_key: DOMAIN-cc-buildpacks
+      buildpack_directory_key: SYSTEM_DOMAIN-cc-buildpacks
       cdn: null
       fog_connection: null
       webdav_config:
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.DOMAIN
+        public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
     bulk_api_password: BULK_API_PASSWORD
@@ -972,13 +972,13 @@ properties:
     droplets:
       blobstore_type: webdav
       cdn: null
-      droplet_directory_key: DOMAIN-cc-droplets
+      droplet_directory_key: SYSTEM_DOMAIN-cc-droplets
       fog_connection: null
       max_staged_droplets_stored: null
       webdav_config:
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.DOMAIN
+        public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
     external_host: api
@@ -1037,7 +1037,7 @@ properties:
         enabled: true
         record_sql: obfuscated
     packages:
-      app_package_directory_key: DOMAIN-cc-packages
+      app_package_directory_key: SYSTEM_DOMAIN-cc-packages
       blobstore_type: webdav
       cdn: null
       fog_connection: null
@@ -1046,7 +1046,7 @@ properties:
       webdav_config:
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.DOMAIN
+        public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
     quota_definitions:
@@ -1061,11 +1061,11 @@ properties:
       blobstore_type: webdav
       cdn: null
       fog_connection: null
-      resource_directory_key: DOMAIN-cc-resources
+      resource_directory_key: SYSTEM_DOMAIN-cc-resources
       webdav_config:
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
-        public_endpoint: http://blobstore.DOMAIN
+        public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
     security_event_logging:
@@ -1093,7 +1093,7 @@ properties:
         protocol: udp
     service_usage_events:
       cutoff_age_in_days: 31
-    srv_api_uri: https://api.DOMAIN
+    srv_api_uri: https://api.SYSTEM_DOMAIN
     stacks: null
     staging_upload_password: STAGING_UPLOAD_PASSWORD
     staging_upload_user: STAGING_UPLOAD_USER
@@ -1129,7 +1129,7 @@ properties:
     webdav_config:
       password: blobstore-password
       private_endpoint: https://blobstore.service.cf.internal
-      public_endpoint: http://blobstore.DOMAIN
+      public_endpoint: http://blobstore.SYSTEM_DOMAIN
       username: blobstore-username
       ca_cert: BLOBSTORE_CA_CERT
   ccdb:
@@ -1210,7 +1210,6 @@ properties:
     staging_memory_limit_mb: 1024
   description: null
   disk_quota_enabled: true
-  domain: DOMAIN
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
@@ -1243,7 +1242,7 @@ properties:
   ha_proxy: null
   hm9000:
     port: 5155
-    url: https://hm9000.DOMAIN
+    url: https://hm9000.SYSTEM_DOMAIN
     ca_cert: HM9000_CA_CERT
     server_cert: HM9000_SERVER_CERT
     server_key: HM9000_SERVER_KEY
@@ -1273,8 +1272,8 @@ properties:
     enabled: true
     invitations_enabled: null
     links:
-      passwd: https://console.DOMAIN/password_resets/new
-      signup: https://console.DOMAIN/register
+      passwd: https://console.SYSTEM_DOMAIN/password_resets/new
+      signup: https://console.SYSTEM_DOMAIN/register
     logout: null
     messages: null
     notifications:
@@ -1398,7 +1397,7 @@ properties:
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         autoapprove: true
         override: true
-        redirect-uri: https://login.DOMAIN
+        redirect-uri: https://login.SYSTEM_DOMAIN
         scope: openid,oauth.approvals
         secret: LOGIN_CLIENT_SECRET
       notifications:
@@ -1414,7 +1413,7 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-ROUTER-SECRET
     database: null
-    issuer: https://uaa.DOMAIN
+    issuer: https://uaa.SYSTEM_DOMAIN
     jwt:
       signing_key: JWT_SIGNING_KEY
       verification_key: JWT_VERIFICATION_KEY
@@ -1436,7 +1435,7 @@ properties:
       port: -1
     sslCertificate: null
     sslPrivateKey: null
-    url: https://uaa.DOMAIN
+    url: https://uaa.SYSTEM_DOMAIN
     user: null
     zones: null
   uaadb:

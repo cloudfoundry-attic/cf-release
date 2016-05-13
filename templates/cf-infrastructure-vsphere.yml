@@ -220,7 +220,6 @@ jobs:
 
 properties:
   <<: (( merge ))
-  domain: (( jobs.ha_proxy_z1.networks.cf1.static_ips.[0] ".xip.io" ))
   system_domain_organization: pivotal
 
   ccdb:

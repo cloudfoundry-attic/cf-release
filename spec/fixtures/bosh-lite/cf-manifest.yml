@@ -3668,7 +3668,6 @@ properties:
     staging_memory_limit_mb: 1024
   description: null
   disk_quota_enabled: false
-  domain: bosh-lite.com
   doppler:
     blacklisted_syslog_ranges: null
     debug: false

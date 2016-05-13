@@ -104,7 +104,7 @@ properties:
         bAzM00WOuWYAt8wwcB2+feZiOUxoMzE13XdDf+XaJwmBmKEKYf56+kJTkQ==
         -----END CERTIFICATE-----
 
-  domain: bosh-lite.com
+  system_domain: bosh-lite.com
 
   disk_quota_enabled: false
 
@@ -264,7 +264,7 @@ properties:
     monitor_port: 4221
 
   hm9000:
-    url: (( "https://hm9000." domain ))
+    url: (( "https://hm9000." system_domain ))
     client_cert: |+
       -----BEGIN CERTIFICATE-----
       MIIEJzCCAg+gAwIBAgIRAMLRdtHx2z4T9KQn3x1PnuwwDQYJKoZIhvcNAQELBQAw
@@ -639,8 +639,8 @@ properties:
 
   acceptance_tests:
     <<: (( merge || nil ))
-    api:  (( "api." domain ))
-    apps_domain: (( domain ))
+    api:  (( "api." system_domain ))
+    apps_domain: (( system_domain ))
     admin_user: admin
     admin_password: admin
     skip_ssl_validation: true
@@ -648,8 +648,8 @@ properties:
     use_http: true
 
   smoke_tests:
-    api:  (( "api." domain ))
-    apps_domain: (( domain ))
+    api:  (( "api." system_domain ))
+    apps_domain: (( system_domain ))
     user: admin
     password: admin
     org: SMOKE_TEST_ORG
