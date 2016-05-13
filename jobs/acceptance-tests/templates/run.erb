@@ -18,6 +18,13 @@ rm -rf /var/vcap/sys/log/acceptance_tests/*
 
 cd /var/vcap/packages/acceptance-tests/src/github.com/cloudfoundry/cf-acceptance-tests
 
+# We cannot build/install a package that is not under $GOPATH/src
+# so even though we vendor the ginkgo source code we cannot build it.
+# Here we symlink ginkgo to allow us to build and install it later.
+rm -rf "${GOPATH}/src/github.com/onsi"
+mkdir -p "${GOPATH}/src/github.com/onsi"
+ln -s "${PWD}/vendor/github.com/onsi/ginkgo" "${GOPATH}/src/github.com/onsi/"
+
 echo '################################################################################################################'
 echo $(go version)
 echo CONFIG=$CONFIG
