@@ -29,4 +29,4 @@ tar xzf ruby-2.1.8/ruby-${RUBY_VERSION}.tar.gz
   make install
 )
 
-${BOSH_INSTALL_TARGET}/bin/gem install ruby-2.1.8/bundler-${BUNDLER_VERSION}.gem --no-ri --no-rdoc
+${BOSH_INSTALL_TARGET}/bin/gem install ruby-2.1.8/bundler-${BUNDLER_VERSION}.gem --local --no-ri --no-rdoc
