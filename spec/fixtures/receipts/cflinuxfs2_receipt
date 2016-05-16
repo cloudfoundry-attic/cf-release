@@ -1,4 +1,4 @@
-Rootfs SHASUM: cfc7c2f4531963915e1ab3c2c7a25b31ac2c61a4
+Rootfs SHASUM: e7b69b11c4a1fc176644d6cb818857417a579b35
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -316,8 +316,8 @@ ii  libnettle4:amd64                   2.7.1-1ubuntu0.1                    amd64
 ii  libnewt0.52:amd64                  0.52.15-2ubuntu5                    amd64        Not Erik's Windowing Toolkit - text mode windowing with slang
 ii  libnih-dbus1:amd64                 1.0.3-4ubuntu25                     amd64        NIH D-Bus Bindings Library
 ii  libnih1:amd64                      1.0.3-4ubuntu25                     amd64        NIH Utility Library
-ii  libnl-3-200:amd64                  3.2.21-1                            amd64        library for dealing with netlink sockets
-ii  libnl-genl-3-200:amd64             3.2.21-1                            amd64        library for dealing with netlink sockets - generic netlink
+ii  libnl-3-200:amd64                  3.2.21-1ubuntu1.1                   amd64        library for dealing with netlink sockets
+ii  libnl-genl-3-200:amd64             3.2.21-1ubuntu1.1                   amd64        library for dealing with netlink sockets - generic netlink
 ii  libogg0:amd64                      1.3.1-1ubuntu1                      amd64        Ogg bitstream library
 ii  libopenblas-base                   0.2.8-6ubuntu1                      amd64        Optimized BLAS (linear algebra) library based on GotoBLAS2
 ii  libopenblas-dev                    0.2.8-6ubuntu1                      amd64        Optimized BLAS (linear algebra) library based on GotoBLAS2
@@ -482,8 +482,8 @@ ii  locales                            2.13+git20120306-12.1               all  
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
 ii  logrotate                          3.8.7-1ubuntu1                      amd64        Log rotation utility
-ii  lsb-base                           4.1+Debian11ubuntu6                 all          Linux Standard Base 4.1 init script functionality
-ii  lsb-release                        4.1+Debian11ubuntu6                 all          Linux Standard Base version reporting utility
+ii  lsb-base                           4.1+Debian11ubuntu6.1               all          Linux Standard Base 4.1 init script functionality
+ii  lsb-release                        4.1+Debian11ubuntu6.1               all          Linux Standard Base version reporting utility
 ii  lsof                               4.86+dfsg-1ubuntu2                  amd64        Utility to list open files
 ii  lzma                               9.22-2ubuntu2                       amd64        Compression and decompression in the LZMA format - command line utility
 ii  m4                                 1.4.17-2ubuntu1                     amd64        a macro processing language
