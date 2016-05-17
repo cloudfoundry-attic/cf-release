@@ -103,10 +103,6 @@ cli/cli-linux-amd64-6.17.0.tgz:
   object_id: 5d117da5-f89b-4f1f-918e-a11d018ddf35
   sha: c552c8f4436a63c2034d47f66fd218426c632112
   size: 6153376
-java-buildpack/java-buildpack-v3.7.zip:
-  object_id: 6ef251e1-04e7-4924-aebb-5b1339f8f4de
-  sha: 483c35cf7cc87e2ebb05b2b49ebd1f3223105ec8
-  size: 172718
 java-buildpack/java-buildpack-offline-v3.7.zip:
   object_id: 8764bda0-fb49-462d-9161-8bb0157e3b7a
   sha: e6cc674d44a9fa0700f993d91f6e49432f6c3109
@@ -171,3 +167,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.18.zip:
   object_id: f1232ea4-c5be-4890-9fd9-46b01bf3af0e
   sha: 40aa1780dc549e5556ff418fc8b2cdc5fecfaaf7
   size: 285501145
+java-buildpack/java-buildpack-v3.7.1.zip:
+  object_id: c75e1df8-4a35-43a9-a30b-552e0c3a8327
+  sha: ec1ae2f978e0bb456bcf3145d33ba6c30699f28f
+  size: 172718
