@@ -155,10 +155,6 @@ go-buildpack/go_buildpack-cached-v1.7.8.zip:
   object_id: 0e858596-8fdf-4081-8d16-1febbe060f44
   sha: 5dc19602391fb2571b217d754dd7652e6c76630f
   size: 349407727
-rootfs/cflinuxfs2-1.57.0.tar.gz:
-  object_id: 52f4d62a-9f02-4905-9ef6-4bbca2b2319a
-  sha: e7b69b11c4a1fc176644d6cb818857417a579b35
-  size: 275823405
 ruby-buildpack/ruby_buildpack-cached-v1.6.18.zip:
   object_id: f1232ea4-c5be-4890-9fd9-46b01bf3af0e
   sha: 40aa1780dc549e5556ff418fc8b2cdc5fecfaaf7
@@ -171,3 +167,7 @@ java-buildpack/java-buildpack-offline-v3.7.1.zip:
   object_id: e63f0cfc-2f29-41c3-8260-44bfb8a61884
   sha: 7e7c46bbbeca84f5d93866e0d39333c53471ee2b
   size: 246540469
+rootfs/cflinuxfs2-1.58.0.tar.gz:
+  object_id: 925975c4-ac18-4499-bd52-5ffa141b8706
+  sha: 05eefd203b15f1043ebdde6d89633f5a36eaee69
+  size: 275852231
