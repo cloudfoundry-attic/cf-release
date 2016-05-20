@@ -917,6 +917,7 @@ properties:
         ca_cert: null
     bulk_api_password: BULK_API_PASSWORD
     client_max_body_size: 15M
+    minimum_candidate_stagers: 5
     dea_use_https: false
     db_encryption_key: CCDB_ENCRYPTION_KEY
     db_logging_level: debug2
