@@ -2723,6 +2723,7 @@ properties:
       cdn: null
       fog_connection: null
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -2797,6 +2798,7 @@ properties:
       fog_connection: null
       max_staged_droplets_stored: null
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -2887,6 +2889,7 @@ properties:
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -2928,6 +2931,7 @@ properties:
       fog_connection: null
       resource_directory_key: bosh-lite.com-cc-resources
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -3028,6 +3032,7 @@ properties:
     users_can_select_backend: true
     volume_services_enabled: true
     webdav_config:
+      blobstore_timeout: 5
       password: blobstore-password
       private_endpoint: https://blobstore.service.cf.internal
       public_endpoint: http://blobstore.bosh-lite.com

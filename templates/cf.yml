@@ -816,6 +816,7 @@ properties:
     external_protocol: ~
 
     webdav_config:
+      blobstore_timeout: 5
       private_endpoint: "https://blobstore.service.cf.internal"
       public_endpoint: (( "http://blobstore." system_domain || nil))
       username: ((  properties.blobstore.admin_users.[0].username || nil ))

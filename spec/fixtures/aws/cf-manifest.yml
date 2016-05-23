@@ -911,6 +911,7 @@ properties:
         region: us-east-1
         use_iam_profile: true
       webdav_config:
+        blobstore_timeout: 5
         password: null
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.SYSTEM_DOMAIN
@@ -965,6 +966,7 @@ properties:
         use_iam_profile: true
       max_staged_droplets_stored: null
       webdav_config:
+        blobstore_timeout: 5
         password: null
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.SYSTEM_DOMAIN
@@ -1038,6 +1040,7 @@ properties:
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
+        blobstore_timeout: 5
         password: WEBDAV_BASIC_AUTH_PASSWORD
         private_endpoint: WEBDAV_PRIVATE_ENDPOINT
         public_endpoint: WEBDAV_PUBLIC_ENDPOINT
@@ -1063,6 +1066,7 @@ properties:
         use_iam_profile: true
       resource_directory_key: SYSTEM_DOMAIN-cc-resources
       webdav_config:
+        blobstore_timeout: 5
         password: null
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.SYSTEM_DOMAIN
@@ -1128,6 +1132,7 @@ properties:
     users_can_select_backend: true
     volume_services_enabled: null
     webdav_config:
+      blobstore_timeout: 5
       password: null
       private_endpoint: https://blobstore.service.cf.internal
       public_endpoint: http://blobstore.SYSTEM_DOMAIN

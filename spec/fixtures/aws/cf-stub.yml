@@ -81,6 +81,7 @@ properties:
     packages:
       blobstore_type: webdav
       webdav_config:
+        blobstore_timeout: 5
         public_endpoint: WEBDAV_PUBLIC_ENDPOINT
         private_endpoint: WEBDAV_PRIVATE_ENDPOINT
         username: WEBDAV_BASIC_AUTH_USER

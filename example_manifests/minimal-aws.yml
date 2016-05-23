@@ -341,6 +341,7 @@ properties:
     buildpacks:
       blobstore_type: webdav
       webdav_config:
+        blobstore_timeout: 5
         password: PASSWORD
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
@@ -349,6 +350,7 @@ properties:
     droplets:
       blobstore_type: webdav
       webdav_config:
+        blobstore_timeout: 5
         password: PASSWORD
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
@@ -357,6 +359,7 @@ properties:
     packages:
       blobstore_type: webdav
       webdav_config:
+        blobstore_timeout: 5
         password: PASSWORD
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
@@ -365,6 +368,7 @@ properties:
     resource_pool:
       blobstore_type: webdav
       webdav_config:
+        blobstore_timeout: 5
         password: PASSWORD
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
