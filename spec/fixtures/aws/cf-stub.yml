@@ -63,6 +63,7 @@ properties:
     buildpacks:
       blobstore_type: fog
       fog_connection:
+        blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
@@ -71,6 +72,7 @@ properties:
     droplets:
       blobstore_type: fog
       fog_connection:
+        blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
@@ -87,6 +89,7 @@ properties:
     resource_pool:
       blobstore_type: fog
       fog_connection:
+        blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS

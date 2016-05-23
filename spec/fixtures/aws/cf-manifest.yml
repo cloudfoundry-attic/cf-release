@@ -904,6 +904,7 @@ properties:
       buildpack_directory_key: SYSTEM_DOMAIN-cc-buildpacks
       cdn: null
       fog_connection:
+        blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
@@ -956,6 +957,7 @@ properties:
       cdn: null
       droplet_directory_key: SYSTEM_DOMAIN-cc-droplets
       fog_connection:
+        blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
@@ -1028,6 +1030,7 @@ properties:
       blobstore_type: webdav
       cdn: null
       fog_connection:
+        blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
@@ -1052,6 +1055,7 @@ properties:
       blobstore_type: fog
       cdn: null
       fog_connection:
+        blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
