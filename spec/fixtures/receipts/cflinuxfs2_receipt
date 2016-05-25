@@ -1,4 +1,4 @@
-Rootfs SHASUM: 86927a1ea2d44ae1217b6e3732febcf25fae27bf
+Rootfs SHASUM: b5b297413fa596c6c3a174c4b7d8d4bcedf4b096
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -6,8 +6,8 @@ Desired=Unknown/Install/Remove/Purge/Hold
 ||/ Name                               Version                             Architecture Description
 +++-==================================-===================================-============-===============================================================================
 ii  adduser                            3.113+nmu3ubuntu3                   all          add and remove users and groups
-ii  apt                                1.0.1ubuntu2.13                     amd64        commandline package manager
-ii  apt-utils                          1.0.1ubuntu2.13                     amd64        package management related utility programs
+ii  apt                                1.0.1ubuntu2.14                     amd64        commandline package manager
+ii  apt-utils                          1.0.1ubuntu2.14                     amd64        package management related utility programs
 ii  aptitude                           0.6.8.2-1ubuntu4                    amd64        terminal-based package manager
 ii  aptitude-common                    0.6.8.2-1ubuntu4                    all          architecture indepedent files for the aptitude package manager
 ii  autoconf                           2.69-6                              all          automatic configure script builder
@@ -105,8 +105,8 @@ ii  laptop-detect                      0.13.7ubuntu2                       amd64
 ii  less                               458-2                               amd64        pager program similar to more
 ii  libacl1:amd64                      2.2.52-1                            amd64        Access control list shared library
 ii  libaio1:amd64                      0.3.109-4                           amd64        Linux kernel AIO access library - shared library
-ii  libapt-inst1.5:amd64               1.0.1ubuntu2.13                     amd64        deb package format runtime library
-ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.13                     amd64        package management runtime library
+ii  libapt-inst1.5:amd64               1.0.1ubuntu2.14                     amd64        deb package format runtime library
+ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.14                     amd64        package management runtime library
 ii  libarchive-extract-perl            0.70-1                              all          generic archive extracting module
 ii  libarchive13:amd64                 3.1.2-7ubuntu2.2                    amd64        Multi-format archive and compression library (shared library)
 ii  libasan0:amd64                     4.8.4-2ubuntu1~14.04.3              amd64        AddressSanitizer -- a fast memory error detector
@@ -136,10 +136,10 @@ ii  libboost-iostreams1.54.0:amd64     1.54.0-4ubuntu3.1                   amd64
 ii  libbsd0:amd64                      0.6.0-2ubuntu1                      amd64        utility functions from BSD systems - shared library
 ii  libbz2-1.0:amd64                   1.0.6-5                             amd64        high-quality block-sorting file compressor library - runtime
 ii  libbz2-dev:amd64                   1.0.6-5                             amd64        high-quality block-sorting file compressor library - development
-ii  libc-bin                           2.19-0ubuntu6.7                     amd64        Embedded GNU C Library: Binaries
-ii  libc-dev-bin                       2.19-0ubuntu6.7                     amd64        Embedded GNU C Library: Development binaries
-ii  libc6:amd64                        2.19-0ubuntu6.7                     amd64        Embedded GNU C Library: Shared libraries
-ii  libc6-dev:amd64                    2.19-0ubuntu6.7                     amd64        Embedded GNU C Library: Development Libraries and Header Files
+ii  libc-bin                           2.19-0ubuntu6.8                     amd64        Embedded GNU C Library: Binaries
+ii  libc-dev-bin                       2.19-0ubuntu6.8                     amd64        Embedded GNU C Library: Development binaries
+ii  libc6:amd64                        2.19-0ubuntu6.8                     amd64        Embedded GNU C Library: Shared libraries
+ii  libc6-dev:amd64                    2.19-0ubuntu6.8                     amd64        Embedded GNU C Library: Development Libraries and Header Files
 ii  libcairo-gobject2:amd64            1.13.0~20140204-0ubuntu1.1          amd64        The Cairo 2D vector graphics library (GObject library)
 ii  libcairo-script-interpreter2:amd64 1.13.0~20140204-0ubuntu1.1          amd64        The Cairo 2D vector graphics library (script interpreter)
 ii  libcairo2:amd64                    1.13.0~20140204-0ubuntu1.1          amd64        The Cairo 2D vector graphics library
@@ -497,7 +497,7 @@ ii  mime-support                       3.54ubuntu1.1                       all  
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
 ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
-ii  multiarch-support                  2.19-0ubuntu6.7                     amd64        Transitional package to ensure multiarch compatibility
+ii  multiarch-support                  2.19-0ubuntu6.8                     amd64        Transitional package to ensure multiarch compatibility
 ii  mysql-common                       5.5.49-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1               all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64        terminal-related programs and man pages
