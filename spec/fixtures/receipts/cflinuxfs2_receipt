@@ -1,4 +1,4 @@
-Rootfs SHASUM: ed7b64f3ea806e747b350831d979c4be52ebd842
+Rootfs SHASUM: 53068835bee351eadb44f650ba5260f3c6b9b832
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -201,9 +201,9 @@ ii  libgcc-4.8-dev:amd64               4.8.4-2ubuntu1~14.04.3              amd64
 ii  libgcc1:amd64                      1:4.9.3-0ubuntu4                    amd64        GCC support library
 ii  libgcrypt11:amd64                  1.5.3-2ubuntu4.3                    amd64        LGPL Crypto library - runtime library
 ii  libgcrypt11-dev                    1.5.3-2ubuntu4.3                    amd64        LGPL Crypto library - development files
-ii  libgd-dev:amd64                    2.1.0-3                             amd64        GD Graphics Library (development version)
-ii  libgd2-noxpm-dev                   2.1.0-3                             all          GD Graphics Library (transitional package)
-ii  libgd3:amd64                       2.1.0-3                             amd64        GD Graphics Library
+ii  libgd-dev:amd64                    2.1.0-3ubuntu0.1                    amd64        GD Graphics Library (development version)
+ii  libgd2-noxpm-dev                   2.1.0-3ubuntu0.1                    all          GD Graphics Library (transitional package)
+ii  libgd3:amd64                       2.1.0-3ubuntu0.1                    amd64        GD Graphics Library
 ii  libgdbm3:amd64                     1.8.3-12build1                      amd64        GNU dbm database routines (runtime version)
 ii  libgdk-pixbuf2.0-0:amd64           2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library
 ii  libgdk-pixbuf2.0-common            2.30.7-0ubuntu1.2                   all          GDK Pixbuf library - data files
@@ -477,7 +477,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-86.131                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-87.133                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools

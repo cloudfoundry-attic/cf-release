@@ -147,10 +147,6 @@ python-buildpack/python_buildpack-cached-v1.5.6.zip:
   object_id: cd1d3598-ff44-4752-9826-0fb80223ff95
   sha: 0d1bd59e52f61d4938fba4c01ac221aaa2789c75
   size: 267585855
-rootfs/cflinuxfs2-1.63.0.tar.gz:
-  object_id: 62c6c1e2-efdc-4e39-8cf7-06709ae55ccd
-  sha: ed7b64f3ea806e747b350831d979c4be52ebd842
-  size: 275848136
 consul/consul-template_0.14.0_linux_amd64.zip:
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
@@ -159,3 +155,7 @@ consul/consul_0.6.4_linux_amd64.zip:
   object_id: 817201d3-fa78-4a86-84d9-65ca49eee82a
   sha: 85de555de27cae126f0f89e762f6136e1c7104b6
   size: 6206903
+rootfs/cflinuxfs2-1.64.0.tar.gz:
+  object_id: 01540780-a3b1-409c-b75f-79d8cd632f7a
+  sha: 53068835bee351eadb44f650ba5260f3c6b9b832
+  size: 275477642
