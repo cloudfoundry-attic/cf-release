@@ -79,14 +79,14 @@ properties:
         region: us-east-1
         use_iam_profile: true
     packages:
-      blobstore_type: webdav
-      webdav_config:
+      blobstore_type: fog
+      fog_connection:
         blobstore_timeout: 5
-        public_endpoint: WEBDAV_PUBLIC_ENDPOINT
-        private_endpoint: WEBDAV_PRIVATE_ENDPOINT
-        username: WEBDAV_BASIC_AUTH_USER
-        password: WEBDAV_BASIC_AUTH_PASSWORD
-        ca_cert: WEBDAV_CERT
+        aws_access_key_id: AWS_ACCESS_KEY
+        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+        provider: AWS
+        region: us-east-1
+        use_iam_profile: true
     resource_pool:
       blobstore_type: fog
       fog_connection:
