@@ -97,10 +97,6 @@ jobs:
     properties:
       metron_agent:
         zone: z1
-      consul:
-        agent:
-          services:
-            etcd: {}
     update:
       serial: true
       max_in_flight: 1
@@ -116,10 +112,6 @@ jobs:
     properties:
       metron_agent:
         zone: z2
-      consul:
-        agent:
-          services:
-            etcd: {}
     update:
       serial: true
       max_in_flight: 1
@@ -1230,8 +1222,6 @@ meta:
     release: (( meta.etcd_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   ha_proxy_templates:
   - name: haproxy
