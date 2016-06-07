@@ -4,7 +4,7 @@ pushd $(dirname $0) > /dev/null
   SCRIPT_DIR=$(pwd)
 popd > /dev/null
 
-for f in ${SCRIPT_DIR}/../git_hooks/*
+for f in ${SCRIPT_DIR}/../githooks/pre-commit/*
 do
-  ln -fs ../../git_hooks/$( basename $f ) ${SCRIPT_DIR}/../.git/hooks/$( basename $f )
+  ln -fs ../../githooks/pre-commit/$( basename $f ) ${SCRIPT_DIR}/../.git/hooks/$( basename $f )
 done
