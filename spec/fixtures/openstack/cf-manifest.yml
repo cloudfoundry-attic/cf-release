@@ -1029,6 +1029,7 @@ properties:
     maximum_health_check_timeout: 180
     min_cli_version: null
     min_recommended_cli_version: null
+    minimum_candidate_stagers: null
     newrelic:
       capture_params: false
       developer_mode: false

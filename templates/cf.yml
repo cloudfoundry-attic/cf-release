@@ -826,6 +826,7 @@ properties:
     reserved_private_domains: ~
 
     dea_use_https: false
+    minimum_candidate_stagers: (( merge || nil ))
     volume_services_enabled: (( merge || nil ))
 
     security_event_logging:
