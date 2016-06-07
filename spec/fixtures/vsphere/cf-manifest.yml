@@ -139,10 +139,6 @@ jobs:
   properties:
     metron_agent:
       zone: z1
-    consul:
-      agent:
-        services:
-          etcd: {}
   resource_pool: medium_z1
   templates:
   - name: etcd
@@ -150,8 +146,6 @@ jobs:
   - name: etcd_metrics_server
     release: cf
   - name: metron_agent
-    release: cf
-  - name: consul_agent
     release: cf
   update:
     serial: true
@@ -166,10 +160,6 @@ jobs:
   properties:
     metron_agent:
       zone: z2
-    consul:
-      agent:
-        services:
-          etcd: {}
   resource_pool: medium_z2
   templates:
   - name: etcd
@@ -177,8 +167,6 @@ jobs:
   - name: etcd_metrics_server
     release: cf
   - name: metron_agent
-    release: cf
-  - name: consul_agent
     release: cf
   update:
     serial: true
