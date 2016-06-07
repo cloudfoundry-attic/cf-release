@@ -947,6 +947,7 @@ properties:
     client_max_body_size: 15M
     db_encryption_key: DB_ENCRYPTION_KEY
     db_logging_level: debug2
+    minimum_candidate_stagers: 5
     dea_use_https: false
     default_app_disk_in_mb: 1024
     default_app_memory: 1024
