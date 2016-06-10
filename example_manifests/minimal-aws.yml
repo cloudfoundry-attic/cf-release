@@ -356,6 +356,7 @@ properties:
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
+    external_port: 9022
     packages:
       blobstore_type: webdav
       webdav_config:
