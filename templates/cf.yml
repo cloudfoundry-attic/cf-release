@@ -618,6 +618,8 @@ properties:
     tls:
       ca_cert: ~
     etcd:
+      ca_cert: (( .properties.etcd.ca_cert ))
+      require_ssl: (( .properties.etcd.require_ssl ))
       machines: (( .properties.etcd.machines ))
 
   loggregator_endpoint:
@@ -631,6 +633,9 @@ properties:
     blacklisted_syslog_ranges: ~
     unmarshaller_count: (( merge || 5 ))
     port: (( merge || 4443 ))
+    etcd:
+      client_cert: ~
+      client_key: ~
     tls:
       server_cert: ~
       server_key: ~
@@ -645,6 +650,9 @@ properties:
     preferred_protocol: ~
     enable_buffer: ~
     buffer_size: ~
+    etcd:
+      client_cert: ~
+      client_key: ~
     tls:
       client_cert: ~
       client_key: ~
@@ -656,6 +664,9 @@ properties:
     outgoing_port: 8080
     zone: (( merge || nil ))
     disable_access_control: (( merge || nil ))
+    etcd:
+      client_cert: ~
+      client_key: ~
     security_event_logging:
       enabled: (( merge || false ))
 
