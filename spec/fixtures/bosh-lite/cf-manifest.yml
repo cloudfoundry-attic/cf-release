@@ -3870,8 +3870,8 @@ properties:
     enabled: true
     invitations_enabled: null
     links:
-      passwd: https://console.bosh-lite.com/password_resets/new
-      signup: https://console.bosh-lite.com/register
+      passwd: https://login.bosh-lite.com/forgot_password
+      signup: https://login.bosh-lite.com/create_account
     logout: null
     messages: null
     notifications:

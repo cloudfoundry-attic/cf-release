@@ -1273,8 +1273,8 @@ properties:
     enabled: true
     invitations_enabled: null
     links:
-      passwd: https://console.SYSTEM_DOMAIN/password_resets/new
-      signup: https://console.SYSTEM_DOMAIN/register
+      passwd: https://login.SYSTEM_DOMAIN/forgot_password
+      signup: https://login.SYSTEM_DOMAIN/create_account
     logout: null
     messages: null
     notifications:

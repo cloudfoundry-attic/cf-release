@@ -872,8 +872,8 @@ properties:
       password: ~
 
     links:
-      passwd: (( "https://console." system_domain "/password_resets/new" ))
-      signup: (( "https://console." system_domain "/register" ))
+      passwd: (( "https://login." system_domain "/forgot_password" ))
+      signup: (( "https://login." system_domain "/create_account" ))
 
     logout: ~
 
