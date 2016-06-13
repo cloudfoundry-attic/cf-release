@@ -1227,12 +1227,12 @@ meta:
     release: (( meta.loggregator_release_name ))
 
   clock_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: cloud_controller_clock
     release: (( meta.capi_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   consul_templates:
   - name: consul_agent
@@ -1251,22 +1251,22 @@ meta:
     release: (( meta.loggregator_release_name ))
 
   etcd_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: etcd
     release: (( meta.etcd_release_name ))
   - name: etcd_metrics_server
     release: (( meta.etcd_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   ha_proxy_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: haproxy
     release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   hm9000_routes:
   - name: hm9000
@@ -1288,14 +1288,14 @@ meta:
     release: (( meta.cf_release_name ))
 
   loggregator_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: doppler
     release: (( meta.loggregator_release_name ))
   - name: syslog_drain_binder
     release: (( meta.loggregator_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   loggregator_trafficcontroller_routes:
   - name: doppler
@@ -1310,24 +1310,24 @@ meta:
     - (( "loggregator." .properties.system_domain ))
 
   loggregator_trafficcontroller_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   nats_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: nats
     release: (( meta.cf_release_name ))
   - name: nats_stream_forwarder
     release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   blobstore_routes:
   - name: blobstore
@@ -1361,12 +1361,12 @@ meta:
     release: (( meta.cf_release_name ))
 
   postgres_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: postgres
     release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   router_templates:
   - name: consul_agent
@@ -1377,12 +1377,12 @@ meta:
     release: (( meta.loggregator_release_name ))
 
   stats_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: collector
     release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   uaa_routes:
   - name: uaa
@@ -1400,12 +1400,12 @@ meta:
       script_path: /var/vcap/jobs/uaa/bin/health_check
 
   uaa_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: uaa
     release: (( meta.uaa_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
   - name: statsd-injector
