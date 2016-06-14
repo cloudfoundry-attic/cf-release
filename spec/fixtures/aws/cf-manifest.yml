@@ -910,6 +910,7 @@ properties:
         provider: AWS
         region: us-east-1
         use_iam_profile: true
+      fog_aws_storage_options: null
       webdav_config:
         blobstore_timeout: 5
         password: null
@@ -964,6 +965,7 @@ properties:
         provider: AWS
         region: us-east-1
         use_iam_profile: true
+      fog_aws_storage_options: null
       max_staged_droplets_stored: null
       webdav_config:
         blobstore_timeout: 5
@@ -1039,6 +1041,7 @@ properties:
         provider: AWS
         region: us-east-1
         use_iam_profile: true
+      fog_aws_storage_options: null
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
@@ -1067,6 +1070,7 @@ properties:
         region: us-east-1
         use_iam_profile: true
       resource_directory_key: SYSTEM_DOMAIN-cc-resources
+      fog_aws_storage_options: null
       webdav_config:
         blobstore_timeout: 5
         password: null

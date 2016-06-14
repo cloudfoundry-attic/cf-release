@@ -926,6 +926,7 @@ properties:
       buildpack_directory_key: SYSTEM_DOMAIN-cc-buildpacks
       cdn: null
       fog_connection: null
+      fog_aws_storage_options: null
       webdav_config:
         blobstore_timeout: 5
         password: blobstore-password
@@ -975,6 +976,7 @@ properties:
       cdn: null
       droplet_directory_key: SYSTEM_DOMAIN-cc-droplets
       fog_connection: null
+      fog_aws_storage_options: null
       max_staged_droplets_stored: null
       webdav_config:
         blobstore_timeout: 5
@@ -1044,6 +1046,7 @@ properties:
       blobstore_type: webdav
       cdn: null
       fog_connection: null
+      fog_aws_storage_options: null
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
@@ -1065,6 +1068,7 @@ properties:
       blobstore_type: webdav
       cdn: null
       fog_connection: null
+      fog_aws_storage_options: null
       resource_directory_key: SYSTEM_DOMAIN-cc-resources
       webdav_config:
         blobstore_timeout: 5
