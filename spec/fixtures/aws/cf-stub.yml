@@ -39,6 +39,8 @@ networks:
 properties:
   template_only:
     aws:
+      access_key_id: AWS_ACCESS_KEY
+      secret_access_key: AWS_SECRET_ACCESS_KEY
       availability_zone: ZONE_1
       availability_zone2: ZONE_2
       subnet_ids:
@@ -60,40 +62,40 @@ properties:
     db_encryption_key: CCDB_ENCRYPTION_KEY
     buildpacks:
       blobstore_type: fog
-      buildpack_directory_key: YOUR_AWS_BUILDPACK_BUCKET
       fog_connection:
         blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+        use_iam_profile: true
     droplets:
       blobstore_type: fog
-      droplet_directory_key: YOUR_AWS_DROPLET_BUCKET
       fog_connection:
         blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+        use_iam_profile: true
     packages:
       blobstore_type: fog
-      app_package_directory_key: YOUR_AWS_PACKAGE_BUCKET
       fog_connection:
         blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+        use_iam_profile: true
     resource_pool:
       blobstore_type: fog
-      resource_directory_key: YOUR_AWS_RESOURCE_BUCKET
       fog_connection:
         blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
+        use_iam_profile: true
   ccdb:
     db_scheme: CCDB_SCHEME
     roles:
