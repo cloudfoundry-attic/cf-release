@@ -60,42 +60,6 @@ properties:
     staging_upload_password: STAGING_UPLOAD_PASSWORD
     bulk_api_password: BULK_API_PASSWORD
     db_encryption_key: CCDB_ENCRYPTION_KEY
-    buildpacks:
-      blobstore_type: fog
-      fog_connection:
-        blobstore_timeout: 5
-        aws_access_key_id: AWS_ACCESS_KEY
-        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-        provider: AWS
-        region: us-east-1
-        use_iam_profile: true
-    droplets:
-      blobstore_type: fog
-      fog_connection:
-        blobstore_timeout: 5
-        aws_access_key_id: AWS_ACCESS_KEY
-        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-        provider: AWS
-        region: us-east-1
-        use_iam_profile: true
-    packages:
-      blobstore_type: fog
-      fog_connection:
-        blobstore_timeout: 5
-        aws_access_key_id: AWS_ACCESS_KEY
-        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-        provider: AWS
-        region: us-east-1
-        use_iam_profile: true
-    resource_pool:
-      blobstore_type: fog
-      fog_connection:
-        blobstore_timeout: 5
-        aws_access_key_id: AWS_ACCESS_KEY
-        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-        provider: AWS
-        region: us-east-1
-        use_iam_profile: true
   ccdb:
     db_scheme: CCDB_SCHEME
     roles:

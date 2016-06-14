@@ -909,7 +909,6 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
       fog_aws_storage_options: null
       webdav_config:
         blobstore_timeout: 5
@@ -964,7 +963,6 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
       fog_aws_storage_options: null
       max_staged_droplets_stored: null
       webdav_config:
@@ -1040,7 +1038,6 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
       fog_aws_storage_options: null
       max_package_size: 1073741824
       max_valid_packages_stored: null
@@ -1068,7 +1065,6 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
       resource_directory_key: SYSTEM_DOMAIN-cc-resources
       fog_aws_storage_options: null
       webdav_config:
