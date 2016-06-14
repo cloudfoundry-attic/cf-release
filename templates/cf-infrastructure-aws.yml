@@ -3,13 +3,6 @@ meta:
     z1: (( properties.template_only.aws.availability_zone ))
     z2: (( properties.template_only.aws.availability_zone2 ))
 
-  fog_config:
-    blobstore_timeout: 5
-    provider: AWS
-    aws_access_key_id: (( properties.template_only.aws.access_key_id ))
-    aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
-    region: us-east-1
-
   stemcell: (( merge || .meta.default_stemcell ))
 
   default_stemcell:
@@ -31,16 +24,12 @@ properties:
   cc:
     resource_pool:
       blobstore_type: fog
-      fog_connection: (( meta.fog_config ))
     packages:
       blobstore_type: fog
-      fog_connection: (( meta.fog_config ))
     droplets:
       blobstore_type: fog
-      fog_connection: (( meta.fog_config ))
     buildpacks:
       blobstore_type: fog
-      fog_connection: (( meta.fog_config ))
 
   dea_next:
     deny_networks:

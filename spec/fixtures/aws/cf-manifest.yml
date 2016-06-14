@@ -901,7 +901,7 @@ properties:
     broker_client_timeout_seconds: 70
     buildpacks:
       blobstore_type: fog
-      buildpack_directory_key: SYSTEM_DOMAIN-cc-buildpacks
+      buildpack_directory_key: YOUR_AWS_BUILDPACK_BUCKET
       cdn: null
       fog_connection:
         blobstore_timeout: 5
@@ -909,7 +909,6 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
       webdav_config:
         blobstore_timeout: 5
         password: null
@@ -956,14 +955,13 @@ properties:
     droplets:
       blobstore_type: fog
       cdn: null
-      droplet_directory_key: SYSTEM_DOMAIN-cc-droplets
+      droplet_directory_key: YOUR_AWS_DROPLET_BUCKET
       fog_connection:
         blobstore_timeout: 5
         aws_access_key_id: AWS_ACCESS_KEY
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
       max_staged_droplets_stored: null
       webdav_config:
         blobstore_timeout: 5
@@ -1029,7 +1027,7 @@ properties:
         enabled: true
         record_sql: obfuscated
     packages:
-      app_package_directory_key: SYSTEM_DOMAIN-cc-packages
+      app_package_directory_key: YOUR_AWS_PACKAGE_BUCKET
       blobstore_type: fog
       cdn: null
       fog_connection:
@@ -1038,7 +1036,6 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
@@ -1065,8 +1062,7 @@ properties:
         aws_secret_access_key: AWS_SECRET_ACCESS_KEY
         provider: AWS
         region: us-east-1
-        use_iam_profile: true
-      resource_directory_key: SYSTEM_DOMAIN-cc-resources
+      resource_directory_key: YOUR_AWS_RESOURCE_BUCKET
       webdav_config:
         blobstore_timeout: 5
         password: null
@@ -1354,10 +1350,8 @@ properties:
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   template_only:
     aws:
-      access_key_id: AWS_ACCESS_KEY
       availability_zone: ZONE_1
       availability_zone2: ZONE_2
-      secret_access_key: AWS_SECRET_ACCESS_KEY
       subnet_ids:
         cf1: SUBNET_ID_1
         cf2: SUBNET_ID_2
