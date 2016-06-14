@@ -986,6 +986,7 @@ properties:
   databases: ~
 
   router:
+    enable_proxy: (( merge || nil ))
     enable_ssl: (( merge || nil ))
     ssl_cert: (( merge || nil ))
     ssl_key: (( merge || nil ))
