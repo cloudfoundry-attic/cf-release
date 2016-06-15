@@ -7,10 +7,6 @@ uaa/cloudfoundry-identity-varz-1.0.2.war:
   object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc050928ba58f527
   sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
   size: 5727747
-nginx/headers-more-v0.25.tgz:
-  object_id: a621718d-df24-4205-ba31-6ed8a212732e
-  sha: 514bc3df30b24eb0a06533f1ebaa579b898990f5
-  size: 27973
 nginx/nginx-upload-module-2.2.tar.gz:
   object_id: 502854f1-9823-468f-baef-1a8d68823ead
   sha: 74ccd116525a155db76f92a1cd484d9516a70398
@@ -31,14 +27,6 @@ haproxy/pcre-8.37.tar.gz:
   object_id: 22601a5f-4ef4-4621-80aa-0fa1f8067db6
   sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
   size: 2041593
-nginx/pcre-8.37.tar.gz:
-  object_id: 262a1857-da10-4680-b148-52d7803af7ae
-  sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
-  size: 2041593
-nginx/nginx-1.8.0.tar.gz:
-  object_id: 0d18bbee-b79d-4fec-bba5-635821969fa0
-  sha: 12bad312764feae50246685ab2e74512d1aa9b2f
-  size: 832104
 uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
@@ -159,3 +147,15 @@ php-buildpack/php_buildpack-cached-v4.3.14.zip:
   object_id: 491e1b45-174f-4252-9173-ced61ab5d43a
   sha: de7680e24957184e1fa720077ef0880ad3dce92b
   size: 288277420
+nginx/nginx-1.11.1.tar.gz:
+  object_id: ced13588-cd45-44d4-bf76-0f6d668522ea
+  sha: 6b6172b26628b95c4ad0d6cb5b11eb4aa59c2a83
+  size: 913417
+nginx/headers-more-nginx-module-0.30.tar.gz:
+  object_id: e8f3c630-e139-46b4-9363-c178f444edca
+  sha: a188a399f3e365a0831585a9d7aa0e6ed1a75f0d
+  size: 27793
+nginx/pcre-8.39.tar.gz:
+  object_id: 70c7bafb-4013-4f07-8287-bfb07faa1085
+  sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
+  size: 2062258
