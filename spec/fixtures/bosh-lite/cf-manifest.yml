@@ -2924,6 +2924,7 @@ properties:
     quota_definitions:
       default:
         memory_limit: 10240
+        total_reserved_route_ports: -1
         non_basic_services_allowed: true
         total_routes: 1000
         total_service_keys: 1000

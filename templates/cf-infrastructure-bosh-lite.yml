@@ -7,6 +7,15 @@ meta:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
 
+  default_quota_definitions:
+    default:
+       memory_limit: 10240
+       total_services: 100
+       total_service_keys: 1000
+       non_basic_services_allowed: true
+       total_routes: 1000
+       total_reserved_route_ports: -1
+
 update:
   canaries: 1
   max_in_flight: 50
@@ -413,6 +422,8 @@ properties:
     staging_upload_password: upload-password
     db_encryption_key: db-encryption-key
     volume_services_enabled: true
+
+    quota_definitions: (( merge || meta.default_quota_definitions ))
 
     allow_app_ssh_access: true
     diego: (( merge || false ))
