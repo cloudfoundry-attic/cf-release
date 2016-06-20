@@ -1,8 +1,5 @@
 #!/bin/bash -exu
 
-exec > >(tee -a >(logger -p user.info -t vcap.$(basename $0).stdout) | awk -W interactive '{lineWithDate="echo [`date +\"%Y-%m-%d %H:%M:%S%z\"`] \"" $0 "\""; system(lineWithDate)  }' >>/var/vcap/sys/log/postgres/$(basename $0).log)
-exec 2> >(tee -a >(logger -p user.error -t vcap.$(basename $0).stderr) | awk -W interactive '{lineWithDate="echo [`date +\"%Y-%m-%d %H:%M:%S%z\"`] \"" $0 "\""; system(lineWithDate)  }' >>/var/vcap/sys/log/postgres/$(basename $0).err.log)
-
 function main() {
   local action
   action="${1}"
@@ -36,15 +33,15 @@ function main() {
   PIDFILE="${RUN_DIR}/postgres.pid"
 
   set +u
-  source /var/vcap/packages/postgres-common/utils.sh
+  source /var/vcap/packages/common/utils.sh
   set -u
 
   case "${action}" in
     "start")
       if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
         set +e
-        "${PACKAGE_DIR}/bin/pg_ctl" stop -m fast -w -D ${DATA_DIR}
-        "${PACKAGE_DIR_OLD}/bin/pg_ctl" stop -m fast -w -D ${DATA_DIR_OLD}
+        su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
+        su - vcap -c "${PACKAGE_DIR_OLD}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR_OLD}"
         set -e
       fi
 
@@ -59,8 +56,15 @@ function main() {
       # (i.e. script that brings DB to sync)
 
       mkdir -p "${RUN_DIR}"
+      chown vcap:vcap "${RUN_DIR}"
 
       echo "" > "${PIDFILE}"
+      chown vcap:vcap "${PIDFILE}"
+
+      if [ ! -d "${LOG_DIR}" ]; then
+        mkdir -p "${LOG_DIR}"
+        chown vcap:vcap "${LOG_DIR}"
+      fi
 
       exec "${JOB_DIR}/bin/postgres_start.sh"
       ;;
@@ -69,11 +73,11 @@ function main() {
       echo "Stopping PostgreSQL: "
       if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
         set +e
-        "${PACKAGE_DIR_OLD}/bin/pg_ctl" stop -m fast -w -D ${DATA_DIR_OLD}
+        su - vcap -c "${PACKAGE_DIR_OLD}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR_OLD}"
         set -e
       fi
 
-      "${PACKAGE_DIR}/bin/pg_ctl" stop -m fast -w -D ${DATA_DIR}
+      su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl stop -m fast -w -D ${DATA_DIR}"
 
       set +u
       wait_pidfile "${PIDFILE}"
@@ -82,7 +86,7 @@ function main() {
       ;;
 
     "status")
-      "${PACKAGE_DIR}/bin/pg_ctl" status -D ${DATA_DIR}
+      su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl status -D ${DATA_DIR}"
 
       ;;
 
