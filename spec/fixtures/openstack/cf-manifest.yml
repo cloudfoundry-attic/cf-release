@@ -1376,6 +1376,7 @@ properties:
         lockoutAfterFailures: null
         lockoutPeriodSeconds: null
     catalina_opts: null
+    ca_cert: null
     cc:
       client_secret: CC_CLIENT_SECRET
     clients:

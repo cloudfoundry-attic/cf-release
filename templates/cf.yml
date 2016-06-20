@@ -888,6 +888,7 @@ properties:
     restricted_ips_regex: ~
 
   uaa:
+    ca_cert: (( merge || nil ))
     catalina_opts: ~
     url: (( "https://uaa." system_domain ))
     issuer: (( url ))
