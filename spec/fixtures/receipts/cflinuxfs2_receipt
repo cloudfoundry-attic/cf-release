@@ -1,4 +1,4 @@
-Rootfs SHASUM: 832f1fd625f65187657b94061f66af31ea153a19
+Rootfs SHASUM: 4a6eedfab6f229c1da3cb126182f25d14e9333b9
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -183,8 +183,8 @@ ii  liberror-perl                      0.17-1.1                            all  
 ii  libestr0                           0.1.9-0ubuntu2                      amd64        Helper functions for handling strings (lib)
 ii  libexif-dev                        0.6.21-1ubuntu1                     amd64        library to parse EXIF files (development files)
 ii  libexif12:amd64                    0.6.21-1ubuntu1                     amd64        library to parse EXIF files
-ii  libexpat1:amd64                    2.1.0-4ubuntu1.2                    amd64        XML parsing C library - runtime library
-ii  libexpat1-dev:amd64                2.1.0-4ubuntu1.2                    amd64        XML parsing C library - development kit
+ii  libexpat1:amd64                    2.1.0-4ubuntu1.3                    amd64        XML parsing C library - runtime library
+ii  libexpat1-dev:amd64                2.1.0-4ubuntu1.3                    amd64        XML parsing C library - development kit
 ii  libfakeroot:amd64                  1.20-3ubuntu2                       amd64        tool for simulating superuser privileges - shared libraries
 ii  libffi6:amd64                      3.1~rc1+r3.0.13-12ubuntu0.1         amd64        Foreign Function Interface library runtime
 ii  libfftw3-double3:amd64             3.3.3-7ubuntu3                      amd64        Library for computing Fast Fourier Transforms - Double precision
@@ -479,7 +479,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-87.133                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-88.135                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -562,7 +562,7 @@ ii  util-linux                         2.20.1-5.1ubuntu20.7                amd64
 ii  uuid-dev                           2.20.1-5.1ubuntu20.7                amd64        universally unique id library - headers and static libraries
 ii  vim-common                         2:7.4.052-1ubuntu3                  amd64        Vi IMproved - Common files
 ii  vim-tiny                           2:7.4.052-1ubuntu3                  amd64        Vi IMproved - enhanced vi editor - compact version
-ii  wget                               1.15-1ubuntu1.14.04.1               amd64        retrieves files from the web
+ii  wget                               1.15-1ubuntu1.14.04.2               amd64        retrieves files from the web
 ii  whiptail                           0.52.15-2ubuntu5                    amd64        Displays user-friendly dialog boxes from shell scripts
 ii  x11-common                         1:7.7+1ubuntu8.1                    all          X Window System (X.Org) infrastructure
 ii  x11proto-core-dev                  7.0.26-1~ubuntu2                    all          X11 core wire protocol and auxiliary headers

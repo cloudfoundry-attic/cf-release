@@ -127,10 +127,6 @@ consul/consul_0.6.4_linux_amd64.zip:
   object_id: 817201d3-fa78-4a86-84d9-65ca49eee82a
   sha: 85de555de27cae126f0f89e762f6136e1c7104b6
   size: 6206903
-rootfs/cflinuxfs2-1.66.0.tar.gz:
-  object_id: 734e7dcf-c91f-48a9-9783-a6ff65360c74
-  sha: 832f1fd625f65187657b94061f66af31ea153a19
-  size: 275926227
 staticfile-buildpack/staticfile_buildpack-cached-v1.3.9.zip:
   object_id: b87baa1f-565e-4707-b2b4-e8dde002bbe3
   sha: 5f71f25e1215b9580c44a410862dd545256e001b
@@ -159,3 +155,7 @@ nginx/pcre-8.39.tar.gz:
   object_id: 70c7bafb-4013-4f07-8287-bfb07faa1085
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
+rootfs/cflinuxfs2-1.67.0.tar.gz:
+  object_id: d54d18b3-adb4-43a7-aab0-0674f8ea2842
+  sha: 4a6eedfab6f229c1da3cb126182f25d14e9333b9
+  size: 275920410
