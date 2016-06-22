@@ -15,11 +15,11 @@ mv -f ${depot_path}/etcdCA.crt ${depot_path}/etcd-ca.crt
 mv -f ${depot_path}/etcdCA.key ${depot_path}/etcd-ca.key
 
 # Server certificate to share across the etcd cluster
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name etcd.service.consul --domain '*.etcd.service.consul,etcd.service.consul'
-certstrap --depot-path ${depot_path} sign etcd.service.consul --CA etcd-ca
-mv -f ${depot_path}/etcd.service.consul.key ${depot_path}/server.key
-mv -f ${depot_path}/etcd.service.consul.csr ${depot_path}/server.csr
-mv -f ${depot_path}/etcd.service.consul.crt ${depot_path}/server.crt
+certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name etcd.service.cf.internal --domain '*.etcd.service.cf.internal,etcd.service.cf.internal'
+certstrap --depot-path ${depot_path} sign etcd.service.cf.internal --CA etcd-ca
+mv -f ${depot_path}/etcd.service.cf.internal.key ${depot_path}/server.key
+mv -f ${depot_path}/etcd.service.cf.internal.csr ${depot_path}/server.csr
+mv -f ${depot_path}/etcd.service.cf.internal.crt ${depot_path}/server.crt
 
 # Client certificate to distribute to jobs that access etcd
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name 'clientName'
@@ -34,8 +34,8 @@ mv -f ${depot_path}/peerCA.crt ${depot_path}/peer-ca.crt
 mv -f ${depot_path}/peerCA.key ${depot_path}/peer-ca.key
 
 # Client certificate to distribute across etcd peers
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name etcd.service.consul --domain '*.etcd.service.consul,etcd.service.consul'
-certstrap --depot-path ${depot_path} sign etcd.service.consul --CA peer-ca
-mv -f ${depot_path}/etcd.service.consul.key ${depot_path}/peer.key
-mv -f ${depot_path}/etcd.service.consul.csr ${depot_path}/peer.csr
-mv -f ${depot_path}/etcd.service.consul.crt ${depot_path}/peer.crt
+certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name etcd.service.cf.internal --domain '*.etcd.service.cf.internal,etcd.service.cf.internal'
+certstrap --depot-path ${depot_path} sign etcd.service.cf.internal --CA peer-ca
+mv -f ${depot_path}/etcd.service.cf.internal.key ${depot_path}/peer.key
+mv -f ${depot_path}/etcd.service.cf.internal.csr ${depot_path}/peer.csr
+mv -f ${depot_path}/etcd.service.cf.internal.crt ${depot_path}/peer.crt
