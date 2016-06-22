@@ -38,7 +38,6 @@ networks:
         name: VSPHERE_NETWORK_NAME_2
 
 properties:
-  domain: DOMAIN
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   app_domains:

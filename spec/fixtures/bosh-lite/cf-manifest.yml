@@ -2722,7 +2722,9 @@ properties:
       buildpack_directory_key: bosh-lite.com-cc-buildpacks
       cdn: null
       fog_connection: null
+      fog_aws_storage_options: null
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -2795,8 +2797,10 @@ properties:
       cdn: null
       droplet_directory_key: bosh-lite.com-cc-droplets
       fog_connection: null
+      fog_aws_storage_options: null
       max_staged_droplets_stored: null
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -2870,6 +2874,7 @@ properties:
     maximum_health_check_timeout: 180
     min_cli_version: null
     min_recommended_cli_version: null
+    minimum_candidate_stagers: null
     newrelic:
       capture_params: false
       developer_mode: false
@@ -2884,9 +2889,11 @@ properties:
       blobstore_type: webdav
       cdn: null
       fog_connection: null
+      fog_aws_storage_options: null
       max_package_size: 1073741824
       max_valid_packages_stored: null
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -2917,6 +2924,7 @@ properties:
     quota_definitions:
       default:
         memory_limit: 10240
+        total_reserved_route_ports: -1
         non_basic_services_allowed: true
         total_routes: 1000
         total_service_keys: 1000
@@ -2926,8 +2934,10 @@ properties:
       blobstore_type: webdav
       cdn: null
       fog_connection: null
+      fog_aws_storage_options: null
       resource_directory_key: bosh-lite.com-cc-resources
       webdav_config:
+        blobstore_timeout: 5
         password: blobstore-password
         private_endpoint: https://blobstore.service.cf.internal
         public_endpoint: http://blobstore.bosh-lite.com
@@ -3028,6 +3038,7 @@ properties:
     users_can_select_backend: true
     volume_services_enabled: true
     webdav_config:
+      blobstore_timeout: 5
       password: blobstore-password
       private_endpoint: https://blobstore.service.cf.internal
       public_endpoint: http://blobstore.bosh-lite.com
@@ -3359,6 +3370,9 @@ properties:
     - citext: true
       name: uaadb
       tag: uaa
+    - citext: false
+      name: diego
+      tag: diego
     db_scheme: postgres
     port: 5524
     roles:
@@ -3366,6 +3380,9 @@ properties:
       password: admin
       tag: admin
     - name: uaaadmin
+      password: admin
+      tag: admin
+    - name: diego
       password: admin
       tag: admin
   dea_next:
@@ -3668,7 +3685,6 @@ properties:
     staging_memory_limit_mb: 1024
   description: null
   disk_quota_enabled: false
-  domain: bosh-lite.com
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
@@ -3865,8 +3881,8 @@ properties:
     enabled: true
     invitations_enabled: null
     links:
-      passwd: https://console.bosh-lite.com/password_resets/new
-      signup: https://console.bosh-lite.com/register
+      passwd: https://login.bosh-lite.com/forgot_password
+      signup: https://login.bosh-lite.com/create_account
     logout: null
     messages: null
     notifications:
@@ -3917,6 +3933,7 @@ properties:
     debug_addr: null
     drain_wait: null
     enable_access_log_streaming: null
+    enable_proxy: null
     enable_ssl: null
     extra_headers_to_log: null
     logrotate: null
@@ -3927,7 +3944,6 @@ properties:
     route_services_secret_decrypt_only: null
     route_services_timeout: null
     secure_cookies: null
-    skip_oauth_tls_verification: true
     ssl_cert: null
     ssl_key: null
     ssl_skip_validation: true
@@ -3967,6 +3983,7 @@ properties:
         lockoutAfterFailures: null
         lockoutPeriodSeconds: null
     catalina_opts: -Xmx192m -XX:MaxPermSize=128m
+    ca_cert: null
     cc:
       client_secret: cc-secret
     clients:

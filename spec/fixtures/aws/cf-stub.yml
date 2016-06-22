@@ -47,7 +47,6 @@ properties:
         cf1: SUBNET_ID_1
         cf2: SUBNET_ID_2
 
-  domain: DOMAIN
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   app_domains:
@@ -61,38 +60,6 @@ properties:
     staging_upload_password: STAGING_UPLOAD_PASSWORD
     bulk_api_password: BULK_API_PASSWORD
     db_encryption_key: CCDB_ENCRYPTION_KEY
-    buildpacks:
-      blobstore_type: fog
-      fog_connection:
-        aws_access_key_id: AWS_ACCESS_KEY
-        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-        provider: AWS
-        region: us-east-1
-        use_iam_profile: true
-    droplets:
-      blobstore_type: fog
-      fog_connection:
-        aws_access_key_id: AWS_ACCESS_KEY
-        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-        provider: AWS
-        region: us-east-1
-        use_iam_profile: true
-    packages:
-      blobstore_type: webdav
-      webdav_config:
-        public_endpoint: WEBDAV_PUBLIC_ENDPOINT
-        private_endpoint: WEBDAV_PRIVATE_ENDPOINT
-        username: WEBDAV_BASIC_AUTH_USER
-        password: WEBDAV_BASIC_AUTH_PASSWORD
-        ca_cert: WEBDAV_CERT
-    resource_pool:
-      blobstore_type: fog
-      fog_connection:
-        aws_access_key_id: AWS_ACCESS_KEY
-        aws_secret_access_key: AWS_SECRET_ACCESS_KEY
-        provider: AWS
-        region: us-east-1
-        use_iam_profile: true
   ccdb:
     db_scheme: CCDB_SCHEME
     roles:

@@ -37,7 +37,6 @@ networks:
                                         # to be a semi-valid value, so just copy cf1
 
 properties:
-  domain: DOMAIN
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   app_domains:

@@ -7,18 +7,10 @@ uaa/cloudfoundry-identity-varz-1.0.2.war:
   object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc050928ba58f527
   sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
   size: 5727747
-nginx/headers-more-v0.25.tgz:
-  object_id: a621718d-df24-4205-ba31-6ed8a212732e
-  sha: 514bc3df30b24eb0a06533f1ebaa579b898990f5
-  size: 27973
 nginx/nginx-upload-module-2.2.tar.gz:
   object_id: 502854f1-9823-468f-baef-1a8d68823ead
   sha: 74ccd116525a155db76f92a1cd484d9516a70398
   size: 28505
-consul/consul-template_0.9.0_linux_amd64.tar.gz:
-  object_id: e83bcdcd-2f31-4b73-8cf8-516d54e8f59a
-  sha: a44e441f9347abe64956e5bb30c4d4b0464d1f73
-  size: 2460384
 uaa/newrelic.jar:
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
   sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
@@ -27,10 +19,6 @@ uaa/apache-tomcat-7.0.61.tar.gz:
   object_id: fdad7b89-61f5-4cd1-a003-49c4d872412b
   sha: 98ccbc95d029291e81bf818879ec8a0aa14465df
   size: 8816567
-consul/consul_0.5.2_linux_amd64.zip:
-  object_id: 74107b66-7502-4e06-bdc2-d2dbea1e73c6
-  sha: b3ae610c670fc3b81737d44724ebde969da66ebf
-  size: 4803609
 haproxy/haproxy-1.5.14.tar.gz:
   object_id: 02657a44-3292-4e0b-8b18-bcad061a2381
   sha: 159f5beb8fdc6b8059ae51b53dc935d91c0fb51f
@@ -39,26 +27,6 @@ haproxy/pcre-8.37.tar.gz:
   object_id: 22601a5f-4ef4-4621-80aa-0fa1f8067db6
   sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
   size: 2041593
-nginx/pcre-8.37.tar.gz:
-  object_id: 262a1857-da10-4680-b148-52d7803af7ae
-  sha: 4a24a20c61347d8da4edc86d5475aaf70ac146bb
-  size: 2041593
-nginx/nginx-1.8.0.tar.gz:
-  object_id: 0d18bbee-b79d-4fec-bba5-635821969fa0
-  sha: 12bad312764feae50246685ab2e74512d1aa9b2f
-  size: 832104
-ruby-2.2.4/bundler-1.10.6.gem:
-  object_id: 74aa8a43-e1f6-43d5-b90d-e86a01b2e404
-  sha: 55a37fccd1c0cb5542d468e35d3be46dd0667f73
-  size: 251392
-ruby-2.2.4/ruby-2.2.4.tar.gz:
-  object_id: bb355996-b778-4c98-939c-9716c81f03cd
-  sha: 818e5e157f76d4912ba3a7c7b4fc5156105e83c3
-  size: 16638151
-ruby-2.2.4/rubygems-2.4.8.tgz:
-  object_id: 998e4fd8-fd28-4b7d-8870-5394c26e8303
-  sha: 0db6b2f1cdd2267fe19f1f875057c2f2ce9f5696
-  size: 447712
 uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
@@ -79,10 +47,6 @@ postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
   size: 23249307
-python-buildpack/python_buildpack-cached-v1.5.5.zip:
-  object_id: 24c546e2-3609-4c42-ba26-67e1d3d188b3
-  sha: ca60152b78be3f93067cd4f03d01e2db810ac2a8
-  size: 266456922
 golang/go1.6.1.linux-amd64.tar.gz:
   object_id: a735e999-7658-44e5-ac69-a037337aa52d
   sha: c73492474dcc7a233772d27e948b74468d9f1849
@@ -103,14 +67,6 @@ cli/cli-linux-amd64-6.17.0.tgz:
   object_id: 5d117da5-f89b-4f1f-918e-a11d018ddf35
   sha: c552c8f4436a63c2034d47f66fd218426c632112
   size: 6153376
-java-buildpack/java-buildpack-v3.7.zip:
-  object_id: 6ef251e1-04e7-4924-aebb-5b1339f8f4de
-  sha: 483c35cf7cc87e2ebb05b2b49ebd1f3223105ec8
-  size: 172718
-java-buildpack/java-buildpack-offline-v3.7.zip:
-  object_id: 8764bda0-fb49-462d-9161-8bb0157e3b7a
-  sha: e6cc674d44a9fa0700f993d91f6e49432f6c3109
-  size: 291413238
 libmariadb/libmariadb-5.5.36.tar.xz:
   object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
@@ -143,31 +99,63 @@ ruby-2.3/rubygems-2.6.4.tgz:
   object_id: 5e1e754b-85ec-495c-806e-dccf6daec0aa
   sha: 8ef39e536af2ecd20b0e7a95765fa6a485087ac8
   size: 478582
-ruby-buildpack/ruby_buildpack-cached-v1.6.17.zip:
-  object_id: dca7a255-d14d-4bca-abcc-4611b9d0d26c
-  sha: f5446238d598246474e97f7aea1e8389b26b6a58
-  size: 277520246
 binary-buildpack/binary_buildpack-cached-v1.0.2.zip:
   object_id: a2708afe-cd7b-4934-8ced-4f068315994c
   sha: a32d9ae40371d557c7c90eb2affc3d7bba6abe69
   size: 9358
-php-buildpack/php_buildpack-cached-v4.3.12.zip:
-  object_id: 36152337-93d9-4d99-9120-f3b7a04d3e42
-  sha: de0d8945a76c3b1206e16509e8a03e50437a5a68
-  size: 276744172
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.14.zip:
-  object_id: 715a3cf6-ec8e-4796-b4eb-9d0dd13c0f27
-  sha: ddfaa3b5c17aba2d9303306fb1fbae9aa2574b74
-  size: 96046461
-rootfs/cflinuxfs2-1.56.0.tar.gz:
-  object_id: e8c2c1c6-77e2-402a-87f0-f7452f1521a8
-  sha: cfc7c2f4531963915e1ab3c2c7a25b31ac2c61a4
-  size: 275446597
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.8.zip:
-  object_id: fb15e924-4ae7-4b3d-9939-eaf991551d1d
-  sha: 8b683c2237056089dea24a2a4d70606e8a4a67cf
-  size: 2632036
 go-buildpack/go_buildpack-cached-v1.7.8.zip:
   object_id: 0e858596-8fdf-4081-8d16-1febbe060f44
   sha: 5dc19602391fb2571b217d754dd7652e6c76630f
   size: 349407727
+java-buildpack/java-buildpack-v3.7.1.zip:
+  object_id: c75e1df8-4a35-43a9-a30b-552e0c3a8327
+  sha: ec1ae2f978e0bb456bcf3145d33ba6c30699f28f
+  size: 172718
+java-buildpack/java-buildpack-offline-v3.7.1.zip:
+  object_id: e63f0cfc-2f29-41c3-8260-44bfb8a61884
+  sha: 7e7c46bbbeca84f5d93866e0d39333c53471ee2b
+  size: 246540469
+python-buildpack/python_buildpack-cached-v1.5.6.zip:
+  object_id: cd1d3598-ff44-4752-9826-0fb80223ff95
+  sha: 0d1bd59e52f61d4938fba4c01ac221aaa2789c75
+  size: 267585855
+consul/consul-template_0.14.0_linux_amd64.zip:
+  object_id: 498b302c-a737-4036-8cc7-14a64493338d
+  sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
+  size: 3523492
+consul/consul_0.6.4_linux_amd64.zip:
+  object_id: 817201d3-fa78-4a86-84d9-65ca49eee82a
+  sha: 85de555de27cae126f0f89e762f6136e1c7104b6
+  size: 6206903
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.9.zip:
+  object_id: b87baa1f-565e-4707-b2b4-e8dde002bbe3
+  sha: 5f71f25e1215b9580c44a410862dd545256e001b
+  size: 2642639
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.15.zip:
+  object_id: 64840c25-4975-4a02-ba90-afd8d528e252
+  sha: 45e81feedc259bc4d431f7f2d75ff4a14f93f845
+  size: 101438523
+ruby-buildpack/ruby_buildpack-cached-v1.6.19.zip:
+  object_id: 200b62b2-1605-4ae6-a4bf-663a8abd735b
+  sha: 74b0663ed9d293eac9cce3beb4a6619b3ff58fbf
+  size: 274211831
+php-buildpack/php_buildpack-cached-v4.3.14.zip:
+  object_id: 491e1b45-174f-4252-9173-ced61ab5d43a
+  sha: de7680e24957184e1fa720077ef0880ad3dce92b
+  size: 288277420
+nginx/nginx-1.11.1.tar.gz:
+  object_id: ced13588-cd45-44d4-bf76-0f6d668522ea
+  sha: 6b6172b26628b95c4ad0d6cb5b11eb4aa59c2a83
+  size: 913417
+nginx/headers-more-nginx-module-0.30.tar.gz:
+  object_id: e8f3c630-e139-46b4-9363-c178f444edca
+  sha: a188a399f3e365a0831585a9d7aa0e6ed1a75f0d
+  size: 27793
+nginx/pcre-8.39.tar.gz:
+  object_id: 70c7bafb-4013-4f07-8287-bfb07faa1085
+  sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
+  size: 2062258
+rootfs/cflinuxfs2-1.67.0.tar.gz:
+  object_id: d54d18b3-adb4-43a7-aab0-0674f8ea2842
+  sha: 4a6eedfab6f229c1da3cb126182f25d14e9333b9
+  size: 275920410
