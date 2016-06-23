@@ -224,6 +224,8 @@ jobs:
   resource_pool: small_z1
   templates:
   - {name: doppler, release: cf}
+  - {name: metron_agent, release: cf}
+  - {name: syslog_drain_binder, release: cf}
   networks:
   - name: cf_private
   properties:
