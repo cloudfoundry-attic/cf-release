@@ -860,6 +860,8 @@ properties:
     server_key:
     client_cert:
     client_key:
+    etcd:
+      machines: (( .properties.etcd.machines ))
 
   login:
     enabled: true
