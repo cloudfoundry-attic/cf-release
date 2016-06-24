@@ -39,12 +39,23 @@ function main() {
   fi
 
   if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
-    rm -rf ${DATA_DIR_PREVIOUS}/*
+    pushd "${DATA_DIR_PREVIOUS}" > /dev/null
+      if [ -a "postgresql.conf" ]; then
+        rm -r *
+      fi
+    popd > /dev/null
 
-    cp -r ${DATA_DIR_OLD}/* ${DATA_DIR}
-    cp -r ${DATA_DIR_OLD}/* ${DATA_DIR_PREVIOUS}
+    pushd "${DATA_DIR_OLD}" > /dev/null
+      cp -r * "${DATA_DIR}"
+    popd > /dev/null
 
-    rm -rf ${DATA_DIR_OLD}/*
+    pushd "${DATA_DIR_OLD}" > /dev/null
+      cp -r * "${DATA_DIR_PREVIOUS}"
+    popd > /dev/null
+
+    pushd "${DATA_DIR_OLD}" > /dev/null
+      rm -r *
+    popd > /dev/null
   fi
 
   if [ ! -f "${DATA_DIR}/postgresql.conf" ]; then
