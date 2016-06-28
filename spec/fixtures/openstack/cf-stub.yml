@@ -77,7 +77,7 @@ properties:
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
-    protocol: http
+    protocol: https
   nats:
     user: NATS_USER
     password: NATS_PASSWORD
