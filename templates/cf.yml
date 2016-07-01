@@ -15,7 +15,6 @@ jobs:
     resource_pool: small_z1
     default_networks:
     - name: cf1
-      static_ips: ~
     networks: (( merge || default_networks ))
     update:
       serial: true
@@ -34,7 +33,6 @@ jobs:
     resource_pool: small_z2
     default_networks:
     - name: cf2
-      static_ips: ~
     networks: (( merge || default_networks ))
     update:
       serial: true
@@ -52,7 +50,6 @@ jobs:
     resource_pool: router_z1
     default_networks:
       - name: cf1
-        static_ips: ~
     networks: (( merge || default_networks ))
     properties:
       ha_proxy:
@@ -66,9 +63,9 @@ jobs:
     templates: (( merge || meta.nats_templates ))
     instances: 1
     resource_pool: medium_z1
-    networks:
+    default_networks:
       - name: cf1
-        static_ips: (( merge || nil ))
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z1
@@ -78,9 +75,9 @@ jobs:
     templates: (( merge || meta.nats_templates ))
     instances: 1
     resource_pool: medium_z2
-    networks:
+    default_networks:
       - name: cf2
-        static_ips: (( merge || nil ))
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z2
@@ -91,9 +88,9 @@ jobs:
     instances: 2
     persistent_disk: 10024
     resource_pool: medium_z1
-    networks:
+    default_networks:
       - name: cf1
-        static_ips: (( merge || nil ))
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z1
@@ -106,9 +103,9 @@ jobs:
     instances: 1
     persistent_disk: 10024
     resource_pool: medium_z2
-    networks:
+    default_networks:
       - name: cf2
-        static_ips: (( merge || nil ))
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z2
@@ -120,8 +117,9 @@ jobs:
     templates: (( merge || meta.stats_templates ))
     instances: 1
     resource_pool: small_z1
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z1
@@ -132,9 +130,9 @@ jobs:
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 102400
-    networks:
+    default_networks:
       - name: cf1
-        static_ips: ~
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -151,9 +149,9 @@ jobs:
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 102400
-    networks:
+    default_networks:
       - name: cf1
-        static_ips: ~
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -170,9 +168,9 @@ jobs:
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 4096
-    networks:
+    default_networks:
     - name: cf1
-      static_ips: ~
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z1
@@ -182,8 +180,9 @@ jobs:
     templates: (( merge || meta.uaa_templates ))
     instances: 1
     resource_pool: medium_z1
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -202,8 +201,9 @@ jobs:
     templates: (( merge || meta.uaa_templates ))
     instances: 1
     resource_pool: medium_z2
-    networks:
+    default_networks:
       - name: cf2
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -223,8 +223,9 @@ jobs:
     instances: 1
     resource_pool: large_z1
     persistent_disk: 0
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -241,8 +242,9 @@ jobs:
     instances: 1
     resource_pool: large_z2
     persistent_disk: 0
-    networks:
+    default_networks:
       - name: cf2
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -259,8 +261,9 @@ jobs:
     instances: 1
     resource_pool: medium_z1
     persistent_disk: 0
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z1
@@ -271,8 +274,9 @@ jobs:
     instances: 1
     resource_pool: small_z1
     persistent_disk: 0
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z1
@@ -284,8 +288,9 @@ jobs:
     instances: 1
     resource_pool: small_z2
     persistent_disk: 0
-    networks:
+    default_networks:
       - name: cf2
+    networks: (( merge || default_networks ))
     properties:
       metron_agent:
         zone: z2
@@ -296,8 +301,9 @@ jobs:
     templates: (( merge || meta.hm9000_templates ))
     instances: 1
     resource_pool: medium_z1
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -313,8 +319,9 @@ jobs:
     templates: (( merge || meta.hm9000_templates ))
     instances: 1
     resource_pool: medium_z2
-    networks:
+    default_networks:
       - name: cf2
+    networks: (( merge || default_networks ))
     properties:
       consul:
         agent:
@@ -330,9 +337,9 @@ jobs:
     templates: (( merge || meta.dea_templates ))
     instances: 1
     resource_pool: runner_z1
-    networks:
+    default_networks:
       - name: cf1
-        static_ips: ~
+    networks: (( merge || default_networks ))
     properties:
       dea_next:
         zone: (( merge || "z1" ))
@@ -354,9 +361,9 @@ jobs:
     templates: (( merge || meta.dea_templates ))
     instances: 1
     resource_pool: runner_z2
-    networks:
+    default_networks:
       - name: cf2
-        static_ips: ~
+    networks: (( merge || default_networks ))
     properties:
       dea_next:
         zone: (( merge || "z2" ))
@@ -378,8 +385,9 @@ jobs:
     templates: (( merge || meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z1
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       doppler:
         zone: z1
@@ -391,8 +399,9 @@ jobs:
     templates: (( merge || meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z2
-    networks:
+    default_networks:
       - name: cf2
+    networks: (( merge || default_networks ))
     properties:
       doppler:
         zone: z2
@@ -404,8 +413,9 @@ jobs:
     templates: (( merge || meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z1
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       doppler:
         zone: z1
@@ -417,8 +427,9 @@ jobs:
     templates: (( merge || meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z2
-    networks:
+    default_networks:
       - name: cf2
+    networks: (( merge || default_networks ))
     properties:
       doppler:
         zone: z2
@@ -430,8 +441,9 @@ jobs:
     templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z1
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       traffic_controller:
         zone: z1
@@ -445,8 +457,9 @@ jobs:
     templates: (( merge || meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z2
-    networks:
+    default_networks:
       - name: cf2
+    networks: (( merge || default_networks ))
     properties:
       traffic_controller:
         zone: z2
@@ -462,7 +475,6 @@ jobs:
     resource_pool: router_z1
     default_networks:
       - name: cf1
-        static_ips: ~
     networks: (( merge || default_networks ))
     properties:
       consul:
@@ -479,7 +491,6 @@ jobs:
     resource_pool: router_z2
     default_networks:
       - name: cf2
-        static_ips: ~
     networks: (( merge || default_networks ))
     properties:
       consul:
@@ -497,8 +508,9 @@ jobs:
     instances: 1
     resource_pool: small_errand
     lifecycle: errand
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
 
   - name: smoke_tests
     templates:
@@ -507,8 +519,9 @@ jobs:
     instances: 0
     resource_pool: small_errand
     lifecycle: errand
-    networks:
+    default_networks:
       - name: cf1
+    networks: (( merge || default_networks ))
     properties:
       <<: (( merge ))
 
