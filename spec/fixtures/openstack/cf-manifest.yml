@@ -1225,6 +1225,9 @@ properties:
     - citext: true
       name: uaadb
       tag: uaa
+    - citext: false
+      name: diego
+      tag: diego
     db_scheme: postgres
     port: 5524
     roles:
@@ -1233,6 +1236,9 @@ properties:
       tag: admin
     - name: uaaadmin
       password: UAADB_PASSWORD
+      tag: admin
+    - name: diego
+      password: DIEGODB_PASSWORD
       tag: admin
   dea_next:
     advertise_interval_in_seconds: 5
