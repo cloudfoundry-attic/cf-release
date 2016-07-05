@@ -3749,7 +3749,6 @@ properties:
   dropsonde:
     enabled: true
   etcd:
-    advertise_urls_dns_suffix: etcd.service.cf.internal
     machines:
     - 10.244.0.42
     peer_require_ssl: false
