@@ -63,10 +63,6 @@ openjdk/openjdk-1.8.0_91-x86_64-mountainlion.tar.gz:
   object_id: 27d58881-9532-4c79-a12e-bb1dab3314c3
   sha: 9e916262cf92d6ca0b09f9261d30aeca05f214d7
   size: 75516939
-cli/cli-linux-amd64-6.17.0.tgz:
-  object_id: 5d117da5-f89b-4f1f-918e-a11d018ddf35
-  sha: c552c8f4436a63c2034d47f66fd218426c632112
-  size: 6153376
 libmariadb/libmariadb-5.5.36.tar.xz:
   object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
@@ -115,10 +111,6 @@ java-buildpack/java-buildpack-offline-v3.7.1.zip:
   object_id: e63f0cfc-2f29-41c3-8260-44bfb8a61884
   sha: 7e7c46bbbeca84f5d93866e0d39333c53471ee2b
   size: 246540469
-python-buildpack/python_buildpack-cached-v1.5.6.zip:
-  object_id: cd1d3598-ff44-4752-9826-0fb80223ff95
-  sha: 0d1bd59e52f61d4938fba4c01ac221aaa2789c75
-  size: 267585855
 consul/consul-template_0.14.0_linux_amd64.zip:
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
@@ -155,7 +147,15 @@ nginx/pcre-8.39.tar.gz:
   object_id: 70c7bafb-4013-4f07-8287-bfb07faa1085
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-rootfs/cflinuxfs2-1.67.0.tar.gz:
-  object_id: d54d18b3-adb4-43a7-aab0-0674f8ea2842
-  sha: 4a6eedfab6f229c1da3cb126182f25d14e9333b9
-  size: 275920410
+cli/cf-cli_6.19.0_linux_x86-64.tgz:
+  object_id: 19729ce8-7c1a-47da-8609-bd2d6b8b9b3a
+  sha: 625170654ffa4568dae97b4d3915e87557b29261
+  size: 6450885
+rootfs/cflinuxfs2-1.68.0.tar.gz:
+  object_id: a77aa222-40f9-4031-9bae-5cdb8afb5aac
+  sha: db1f4b5d1e28143105d15a83b57354d45dc504a8
+  size: 275964197
+python-buildpack/python_buildpack-cached-v1.5.7.zip:
+  object_id: eb93e841-81fe-4be1-8aee-c98f64b51ac6
+  sha: 8d06f7a09b1279ba12610f28aa78e961f05bee26
+  size: 267586025

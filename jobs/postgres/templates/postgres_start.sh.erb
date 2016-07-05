@@ -12,12 +12,12 @@ function main() {
   DATA_DIR_PREVIOUS="${STORE_DIR}/postgres-previous"
   DATA_DIR_OLD="${STORE_DIR}/postgres-unknown"
 
-  if [[ -d "${STORE_DIR}/postgres-9.4.5" ]]; then
-    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.5"
+  if [ -d "${STORE_DIR}/postgres-9.4.2" -a -f "${STORE_DIR}/postgres-9.4.2/postgresql.conf" ]; then
+    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.2"
   fi
 
-  if [[ -d "${STORE_DIR}/postgres-9.4.2" ]]; then
-    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.2"
+  if [ -d "${STORE_DIR}/postgres-9.4.5" -a -f "${STORE_DIR}/postgres-9.4.5/postgresql.conf" ]; then
+    DATA_DIR_OLD="${STORE_DIR}/postgres-9.4.5"
   fi
 
   RUN_DIR=/var/vcap/sys/run/postgres
@@ -32,8 +32,6 @@ function main() {
     LD_LIBRARY_PATH="${PACKAGE_DIR}/lib"
   fi
 
-  sysctl -w "kernel.shmmax=284934144"
-
   if [ ! -d "${STORE_DIR}" ]; then
     echo "ERROR: storage directory doesn't exist"
     echo "Please add persistent disk to this job"
@@ -41,29 +39,37 @@ function main() {
   fi
 
   if [ -d "${DATA_DIR_OLD}" -a -f "${DATA_DIR_OLD}/postgresql.conf" ]; then
-    rm -rf "${DATA_DIR_PREVIOUS}"
+    pushd "${DATA_DIR_PREVIOUS}" > /dev/null
+      if [ -a "postgresql.conf" ]; then
+        rm -r *
+      fi
+    popd > /dev/null
 
-    cp -r "${DATA_DIR_OLD}" "${DATA_DIR}"
-    mv "${DATA_DIR_OLD}" "${DATA_DIR_PREVIOUS}"
+    pushd "${DATA_DIR_OLD}" > /dev/null
+      cp -r * "${DATA_DIR}"
+    popd > /dev/null
+
+    pushd "${DATA_DIR_OLD}" > /dev/null
+      cp -r * "${DATA_DIR_PREVIOUS}"
+    popd > /dev/null
+
+    pushd "${DATA_DIR_OLD}" > /dev/null
+      rm -r *
+    popd > /dev/null
   fi
-
-  mkdir -p "${DATA_DIR}"
-  chown -R vcap:vcap "${DATA_DIR}"
 
   if [ ! -f "${DATA_DIR}/postgresql.conf" ]; then
     # initdb creates data directories
-    su - vcap -c "${PACKAGE_DIR}/bin/initdb -E utf8 --locale en_US.UTF-8 -D ${DATA_DIR}"
+    "${PACKAGE_DIR}/bin/initdb" -E utf8 --locale en_US.UTF-8 -D "${DATA_DIR}"
 
     mkdir -p "${DATA_DIR}/pg_log"
-    chown vcap:vcap "${DATA_DIR}/pg_log"
   fi
 
   cp "${JOB_DIR}/config/postgresql.conf" "${JOB_DIR}/config/pg_hba.conf" "${DATA_DIR}"
-  chown vcap:vcap "${DATA_DIR}/postgresql.conf" "${DATA_DIR}/pg_hba.conf"
 
   echo "Starting PostgreSQL: "
-  su - vcap -c "${PACKAGE_DIR}/bin/pg_ctl -o \"-h ${HOST} -p ${PORT}\" \
-                  -w start -D ${DATA_DIR} -l \"${DATA_DIR}/pg_log/startup.log\""
+  "${PACKAGE_DIR}/bin/pg_ctl" -o "-h ${HOST} -p ${PORT}" \
+    -w start -D "${DATA_DIR}" -l "${DATA_DIR}/pg_log/startup.log"
 
   echo "PostgreSQL started successfully"
 
@@ -111,7 +117,7 @@ function create_databases() {
   <% p("databases.databases", []).each do |database| %>
     echo "Trying to create database <%= database["name"] %>..."
     set +e
-    su - vcap -c "${PACKAGE_DIR}/bin/createdb \"<%= database["name"] %>\" -p ${PORT}"
+    "${PACKAGE_DIR}/bin/createdb" "<%= database["name"] %>" -p ${PORT}
     set -e
 
     <% if database["citext"] %>

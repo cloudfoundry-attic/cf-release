@@ -8,7 +8,6 @@ director_uuid: DIRECTOR_UUID
 jobs:
 - default_networks:
   - name: cf1
-    static_ips: null
   instances: 1
   name: consul_z1
   networks:
@@ -33,7 +32,6 @@ jobs:
     serial: true
 - default_networks:
   - name: cf2
-    static_ips: null
   instances: 0
   name: consul_z2
   networks:
@@ -57,7 +55,6 @@ jobs:
     serial: true
 - default_networks:
   - name: cf1
-    static_ips: null
   instances: 1
   name: ha_proxy_z1
   networks:
@@ -170,6 +167,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: nats_z1
   networks:
   - name: cf1
@@ -188,6 +187,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: nats_z2
   networks:
   - name: cf2
@@ -205,6 +206,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: etcd_z1
   networks:
   - name: cf1
@@ -226,6 +229,8 @@ jobs:
     max_in_flight: 1
     serial: true
 - instances: 0
+  default_networks:
+  - name: cf2
   name: etcd_z2
   networks:
   - name: cf2
@@ -246,6 +251,8 @@ jobs:
     max_in_flight: 1
     serial: true
 - instances: 0
+  default_networks:
+  - name: cf1
   name: stats_z1
   networks:
   - name: cf1
@@ -260,10 +267,11 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf1
   name: nfs_z1
   networks:
   - name: cf1
-    static_ips: null
   persistent_disk: 102400
   properties:
     consul:
@@ -295,10 +303,11 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: blobstore_z1
   networks:
   - name: cf1
-    static_ips: null
   persistent_disk: 102400
   properties:
     consul:
@@ -328,6 +337,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: postgres_z1
   networks:
   - name: cf1
@@ -345,6 +356,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: uaa_z1
   networks:
   - name: cf1
@@ -388,6 +401,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: uaa_z2
   networks:
   - name: cf2
@@ -431,6 +446,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: api_z1
   networks:
   - name: cf1
@@ -493,6 +510,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: api_z2
   networks:
   - name: cf2
@@ -551,6 +570,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf1
   name: clock_global
   networks:
   - name: cf1
@@ -566,6 +587,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf1
   name: api_worker_z1
   networks:
   - name: cf1
@@ -589,6 +612,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: api_worker_z2
   networks:
   - name: cf2
@@ -612,6 +637,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: hm9000_z1
   networks:
   - name: cf1
@@ -643,6 +670,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: hm9000_z2
   networks:
   - name: cf2
@@ -674,6 +703,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: runner_z1
   networks:
   - name: cf1
@@ -706,10 +737,11 @@ jobs:
   update:
     max_in_flight: 1
 - instances: 0
+  default_networks:
+  - name: cf2
   name: runner_z2
   networks:
   - name: cf2
-    static_ips: null
   properties:
     consul:
       agent:
@@ -737,6 +769,8 @@ jobs:
   update:
     max_in_flight: 1
 - instances: 0
+  default_networks:
+  - name: cf1
   name: loggregator_z1
   networks:
   - name: cf1
@@ -755,6 +789,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: loggregator_z2
   networks:
   - name: cf2
@@ -773,6 +809,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: doppler_z1
   networks:
   - name: cf1
@@ -791,6 +829,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: doppler_z2
   networks:
   - name: cf2
@@ -809,6 +849,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   name: loggregator_trafficcontroller_z1
   networks:
   - name: cf1
@@ -839,6 +881,8 @@ jobs:
     release: cf
   update: {}
 - instances: 0
+  default_networks:
+  - name: cf2
   name: loggregator_trafficcontroller_z2
   networks:
   - name: cf2
@@ -870,7 +914,6 @@ jobs:
   update: {}
 - default_networks:
   - name: cf1
-    static_ips: null
   instances: 1
   name: router_z1
   networks:
@@ -895,7 +938,6 @@ jobs:
   update: {}
 - default_networks:
   - name: cf2
-    static_ips: null
   instances: 0
   name: router_z2
   networks:
@@ -918,6 +960,8 @@ jobs:
     release: cf
   update: {}
 - instances: 1
+  default_networks:
+  - name: cf1
   lifecycle: errand
   name: acceptance_tests
   networks:
@@ -927,6 +971,8 @@ jobs:
   - name: acceptance-tests
     release: cf
 - instances: 1
+  default_networks:
+  - name: cf1
   lifecycle: errand
   name: smoke_tests
   networks:
@@ -3703,7 +3749,6 @@ properties:
   dropsonde:
     enabled: true
   etcd:
-    advertise_urls_dns_suffix: etcd.service.cf.internal
     machines:
     - 10.244.0.42
     peer_require_ssl: false
@@ -4002,7 +4047,7 @@ properties:
         authorized-grant-types: password,refresh_token
         override: true
         refresh-token-validity: 2592000
-        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
@@ -4101,7 +4146,7 @@ properties:
       groups: null
       userids_enabled: true
       users:
-      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read,routing.router_groups.write
     spring_profiles: null
     ssl:
       port: 8443

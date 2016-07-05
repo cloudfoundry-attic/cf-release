@@ -1,0 +1,47 @@
+#!/bin/bash -exu
+
+pgversion="postgres-9.4.6"
+LOG_DIR=/var/vcap/sys/log/postgres
+STORE_DIR=/var/vcap/store
+DATA_DIR="${STORE_DIR}/${pgversion}"
+RUN_DIR=/var/vcap/sys/run/postgres
+JOB_DIR=/var/vcap/jobs/postgres
+PACKAGE_DIR="/var/vcap/packages/${pgversion}"
+DATA_DIR_PREVIOUS="${STORE_DIR}/postgres-previous"
+DATA_DIR_OLD="${STORE_DIR}/postgres-unknown"
+
+function main() {
+  if [[ -d "${STORE_DIR}/postgres-9.4.5" ]]; then
+    chown -R vcap:vcap "${STORE_DIR}/postgres-9.4.5"
+    chmod 700 "${STORE_DIR}/postgres-9.4.5"
+  fi
+
+  if [[ -d "${STORE_DIR}/postgres-9.4.2" ]]; then
+    chown -R vcap:vcap "${STORE_DIR}/postgres-9.4.2"
+    chmod 700 "${STORE_DIR}/postgres-9.4.2"
+  fi
+
+  mkdir -p "${LOG_DIR}"
+  chown -R vcap:vcap "${LOG_DIR}"
+
+  mkdir -p "${DATA_DIR}"
+  chown -R vcap:vcap "${DATA_DIR}"
+  chmod 700 "${DATA_DIR}"
+
+  mkdir -p "${DATA_DIR_PREVIOUS}"
+  chown -R vcap:vcap "${DATA_DIR_PREVIOUS}"
+  chmod 700 "${DATA_DIR_PREVIOUS}"
+
+  mkdir -p "${RUN_DIR}"
+  chown -R vcap:vcap "${RUN_DIR}"
+
+  mkdir -p "${JOB_DIR}"
+  chown -R vcap:vcap "${JOB_DIR}"
+
+  mkdir -p "${PACKAGE_DIR}"
+  chown -R vcap:vcap "${PACKAGE_DIR}"
+
+  sysctl -w "kernel.shmmax=284934144"
+}
+
+main
