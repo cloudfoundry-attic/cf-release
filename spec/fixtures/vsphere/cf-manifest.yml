@@ -1499,7 +1499,10 @@ properties:
     sslPrivateKey: null
     url: https://uaa.SYSTEM_DOMAIN
     user: null
-    zones: null
+    zones:
+      internal:
+        hostnames:
+        - uaa.service.cf.internal
   uaadb:
     address: 10.85.9.242
     databases:
