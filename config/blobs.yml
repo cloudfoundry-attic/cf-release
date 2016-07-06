@@ -143,10 +143,6 @@ cli/cf-cli_6.19.0_linux_x86-64.tgz:
   object_id: 19729ce8-7c1a-47da-8609-bd2d6b8b9b3a
   sha: 625170654ffa4568dae97b4d3915e87557b29261
   size: 6450885
-rootfs/cflinuxfs2-1.68.0.tar.gz:
-  object_id: a77aa222-40f9-4031-9bae-5cdb8afb5aac
-  sha: db1f4b5d1e28143105d15a83b57354d45dc504a8
-  size: 275964197
 python-buildpack/python_buildpack-cached-v1.5.7.zip:
   object_id: eb93e841-81fe-4be1-8aee-c98f64b51ac6
   sha: 8d06f7a09b1279ba12610f28aa78e961f05bee26
@@ -159,3 +155,7 @@ java-buildpack/java-buildpack-offline-v3.8.zip:
   object_id: 70d6df02-57ec-410f-a26e-09d994ed0783
   sha: ce92663e99fcd1a9fa849aa5c37bfc313f8fdb5f
   size: 256004786
+rootfs/cflinuxfs2-1.69.0.tar.gz:
+  object_id: 37880ea6-3ad4-45ee-beab-cd606eb00e87
+  sha: cca44ea20a4ae2e972f4ce842a4106841c4d4d73
+  size: 275978322
