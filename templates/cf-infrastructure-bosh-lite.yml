@@ -597,6 +597,8 @@ properties:
           - clients.write
           - doppler.firehose
           - routing.router_groups.read
+          - routing.router_groups.write
+
   router:
     status:
       user: router
