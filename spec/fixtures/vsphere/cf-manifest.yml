@@ -1307,6 +1307,11 @@ properties:
     server_key: HM9000_SERVER_KEY
     client_cert: HM9000_CLIENT_CERT
     client_key: HM9000_CLIENT_KEY
+    etcd:
+      machines:
+      - 10.85.9.244
+      - 10.85.9.245
+      - 10.85.10.243
   logger_endpoint: null
   loggregator:
     blacklisted_syslog_ranges: null

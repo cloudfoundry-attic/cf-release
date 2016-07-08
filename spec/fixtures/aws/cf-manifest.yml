@@ -1287,6 +1287,11 @@ properties:
     server_key: HM9000_SERVER_KEY
     client_cert: HM9000_CLIENT_CERT
     client_key: HM9000_CLIENT_KEY
+    etcd:
+      machines:
+      - 10.10.16.20
+      - 10.10.16.35
+      - 10.10.80.19
   logger_endpoint:
     port: 4443
   loggregator:

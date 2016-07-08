@@ -3903,6 +3903,9 @@ properties:
       dIoWKLjpdmEGh1R/y1Xme9uG8+45XjeIhzqq79iKxYIK2gn0+uKjr40XKXYa3EpL
       ZmtUXS4kfpbsUVWHRb7pkl+t3jzlz6YNH8RWZfOhisNGVb7PbM8IAkuuCg==
       -----END CERTIFICATE-----
+    etcd:
+      machines:
+      - 10.244.0.42
   logger_endpoint: null
   loggregator:
     blacklisted_syslog_ranges: null
@@ -4404,4 +4407,3 @@ update:
   max_in_flight: 50
   serial: false
   update_watch_time: 1000-180000
-
