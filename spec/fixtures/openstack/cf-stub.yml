@@ -128,6 +128,8 @@ properties:
       password: CCDB_PASSWORD
     - name: uaaadmin
       password: UAADB_PASSWORD
+    - name: diego
+      password: DIEGODB_PASSWORD
   hm9000:
     server_key: HM9000_SERVER_KEY
     server_cert: HM9000_SERVER_CERT

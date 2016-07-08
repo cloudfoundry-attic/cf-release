@@ -72,6 +72,9 @@ properties:
       - tag: admin
         name: uaaadmin
         password: (( merge ))
+      - tag: admin
+        name: diego
+        password: (( merge ))
     databases:
       - tag: cc
         name: ccdb
@@ -79,6 +82,9 @@ properties:
       - tag: uaa
         name: uaadb
         citext: true
+      - tag: diego
+        name: diego
+        citext: false
     collect_statement_statistics: null
     additional_config: (( merge || nil ))
 
