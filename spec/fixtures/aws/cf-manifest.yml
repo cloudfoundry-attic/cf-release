@@ -1292,6 +1292,10 @@ properties:
       - 10.10.16.20
       - 10.10.16.35
       - 10.10.80.19
+      require_ssl: null
+      ca_cert: null
+      client_cert: null
+      client_key: null
   logger_endpoint:
     port: 4443
   loggregator:

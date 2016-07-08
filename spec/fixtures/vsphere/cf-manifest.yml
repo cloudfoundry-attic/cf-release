@@ -1312,6 +1312,10 @@ properties:
       - 10.85.9.244
       - 10.85.9.245
       - 10.85.10.243
+      require_ssl: null
+      ca_cert: null
+      client_cert: null
+      client_key: null
   logger_endpoint: null
   loggregator:
     blacklisted_syslog_ranges: null

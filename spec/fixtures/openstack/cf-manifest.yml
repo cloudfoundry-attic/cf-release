@@ -1306,6 +1306,10 @@ properties:
     etcd:
       machines:
       - 10.10.0.133
+      require_ssl: null
+      ca_cert: null
+      client_cert: null
+      client_key: null
   logger_endpoint:
     port: 4443
   loggregator:

@@ -862,6 +862,10 @@ properties:
     client_key:
     etcd:
       machines: (( .properties.etcd.machines ))
+      require_ssl:
+      ca_cert:
+      client_cert:
+      client_key:
 
   login:
     enabled: true
