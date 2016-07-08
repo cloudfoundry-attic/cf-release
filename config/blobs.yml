@@ -147,6 +147,10 @@ python-buildpack/python_buildpack-cached-v1.5.7.zip:
   object_id: eb93e841-81fe-4be1-8aee-c98f64b51ac6
   sha: 8d06f7a09b1279ba12610f28aa78e961f05bee26
   size: 267586025
+java-buildpack/java-buildpack-v3.8.zip:
+  object_id: 96507e31-1ef2-404a-8c7f-8b50cbd04587
+  sha: 9845d82b7ca5623e40844fe5ca8c63dd0204a198
+  size: 171388
 java-buildpack/java-buildpack-offline-v3.8.zip:
   object_id: 70d6df02-57ec-410f-a26e-09d994ed0783
   sha: ce92663e99fcd1a9fa849aa5c37bfc313f8fdb5f
@@ -155,7 +159,3 @@ rootfs/cflinuxfs2-1.69.0.tar.gz:
   object_id: 37880ea6-3ad4-45ee-beab-cd606eb00e87
   sha: cca44ea20a4ae2e972f4ce842a4106841c4d4d73
   size: 275978322
-java-buildpack/java-buildpack-v3.8.1.zip:
-  object_id: 7ab40047-feb1-472e-ba4e-6e9ddd847fa2
-  sha: cb76e8200619be960216b4a48865f8bbe4bdf0ec
-  size: 171390
