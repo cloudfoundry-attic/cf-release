@@ -531,12 +531,12 @@ properties:
   app_ssh: ~
 
   blobstore:
-    port: (( merge || 80 ))
+    port: (( merge || 8080 ))
     admin_users: (( merge || nil ))
     secure_link:
       secret: (( merge || nil ))
     tls:
-      port: (( merge || 443 ))
+      port: (( merge || 4443 ))
       cert: ~
       private_key: ~
       ca_cert: ~
@@ -833,7 +833,7 @@ properties:
 
     webdav_config:
       blobstore_timeout: 5
-      private_endpoint: "https://blobstore.service.cf.internal"
+      private_endpoint: "https://blobstore.service.cf.internal:4443"
       public_endpoint: (( "http://blobstore." system_domain || nil))
       username: ((  properties.blobstore.admin_users.[0].username || nil ))
       password: ((  properties.blobstore.admin_users.[0].password || nil ))
