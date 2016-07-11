@@ -125,7 +125,7 @@ jobs:
     route_registrar:
       routes:
       - name: blobstore
-        port: 80
+        port: 8080
         registration_interval: 20s
         tags:
           component: blobstore
@@ -576,7 +576,7 @@ properties:
     secure_link:
       secret: PASSWORD
     tls:
-      port: 443
+      port: 4443
       cert: |+
         -----BEGIN CERTIFICATE-----
         MIIDQjCCAiqgAwIBAgIJANvIxLqHTfmZMA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV
