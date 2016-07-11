@@ -816,6 +816,10 @@ properties:
       IHpqIYccHr3MgRbcEO+1O8aKUPiIkXDN14JHzYQ76mz6xIrWYz3P1pMBL50FTmGm
       OqVUFbm0nNKxu0x0NCD7/EsCYKl9i4VFNWZLLwdmQJl54qbdR+tJ
       -----END RSA PRIVATE KEY-----
+  etcd:
+    machines: [10.0.16.104]
+    peer_require_ssl: false
+    require_ssl: false
 
   logger_endpoint:
     port: 4443
