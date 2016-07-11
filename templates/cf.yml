@@ -1026,7 +1026,7 @@ properties:
     route_services_recommend_https: (( merge || nil ))
     logrotate: (( merge || nil ))
     extra_headers_to_log: (( merge || nil ))
-    debug_addr: (( merge || nil ))
+    debug_address: (( merge || nil ))
     drain_wait: (( merge || nil ))
     enable_access_log_streaming: (( merge || nil ))
 

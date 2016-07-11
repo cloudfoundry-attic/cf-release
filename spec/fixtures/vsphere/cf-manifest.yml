@@ -1397,7 +1397,7 @@ properties:
   request_timeout_in_seconds: 900
   router:
     cipher_suites: null
-    debug_addr: null
+    debug_address: null
     drain_wait: null
     enable_access_log_streaming: null
     enable_proxy: null
