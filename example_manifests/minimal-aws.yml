@@ -576,7 +576,6 @@ properties:
     secure_link:
       secret: PASSWORD
     tls:
-      port: 4443
       cert: |+
         -----BEGIN CERTIFICATE-----
         MIIDQjCCAiqgAwIBAgIJANvIxLqHTfmZMA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV
