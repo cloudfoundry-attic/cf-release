@@ -208,7 +208,7 @@ jobs:
     route_registrar:
       routes:
       - name: blobstore
-        port: 80
+        port: 8080
         registration_interval: 20s
         tags:
           component: blobstore
@@ -244,7 +244,7 @@ jobs:
     route_registrar:
       routes:
       - name: blobstore
-        port: 80
+        port: 8080
         registration_interval: 20s
         tags:
           component: blobstore
@@ -947,11 +947,11 @@ properties:
     admin_users:
     - password: blobstore-password
       username: blobstore-username
-    port: 80
+    port: 8080
     secure_link:
       secret: blobstore-secret
     tls:
-      port: 443
+      port: 4443
       cert: BLOBSTORE_TLS_CERT
       private_key: BLOBSTORE_PRIVATE_KEY
       ca_cert: BLOBSTORE_CA_CERT
@@ -976,7 +976,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: blobstore-password
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
@@ -1027,7 +1027,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: blobstore-password
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
@@ -1098,7 +1098,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: blobstore-password
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
@@ -1119,7 +1119,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: blobstore-password
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: http://blobstore.SYSTEM_DOMAIN
         username: blobstore-username
         ca_cert: BLOBSTORE_CA_CERT
@@ -1184,7 +1184,7 @@ properties:
     webdav_config:
       blobstore_timeout: 5
       password: blobstore-password
-      private_endpoint: https://blobstore.service.cf.internal
+      private_endpoint: https://blobstore.service.cf.internal:4443
       public_endpoint: http://blobstore.SYSTEM_DOMAIN
       username: blobstore-username
       ca_cert: BLOBSTORE_CA_CERT
