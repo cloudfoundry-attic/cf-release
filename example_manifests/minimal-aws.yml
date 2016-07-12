@@ -575,6 +575,7 @@ properties:
       username: blobstore-username
     secure_link:
       secret: PASSWORD
+    tls:
       cert: |+
         -----BEGIN CERTIFICATE-----
         MIIDQjCCAiqgAwIBAgIJANvIxLqHTfmZMA0GCSqGSIb3DQEBBQUAMEUxCzAJBgNV
