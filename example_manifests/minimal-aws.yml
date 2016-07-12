@@ -345,7 +345,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: PASSWORD
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
@@ -354,7 +354,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: PASSWORD
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
@@ -364,7 +364,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: PASSWORD
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
@@ -373,7 +373,7 @@ properties:
       webdav_config:
         blobstore_timeout: 5
         password: PASSWORD
-        private_endpoint: https://blobstore.service.cf.internal
+        private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
         secret: PASSWORD
         username: blobstore-username
