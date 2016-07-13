@@ -99,10 +99,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.2.zip:
   object_id: a2708afe-cd7b-4934-8ced-4f068315994c
   sha: a32d9ae40371d557c7c90eb2affc3d7bba6abe69
   size: 9358
-go-buildpack/go_buildpack-cached-v1.7.8.zip:
-  object_id: 0e858596-8fdf-4081-8d16-1febbe060f44
-  sha: 5dc19602391fb2571b217d754dd7652e6c76630f
-  size: 349407727
 consul/consul-template_0.14.0_linux_amd64.zip:
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
@@ -159,3 +155,7 @@ rootfs/cflinuxfs2-1.70.0.tar.gz:
   object_id: 95b3c239-5e02-4489-ba0c-268fd494ccf3
   sha: e3c232c5e0408f009de8d5490c846520030c8de5
   size: 275977156
+go-buildpack/go_buildpack-cached-v1.7.9.zip:
+  object_id: c4310401-3e4e-4b68-a360-07995a8757b2
+  sha: de7beee47ea2a34d65a0249439ee671b8aabb9d3
+  size: 336373580
