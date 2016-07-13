@@ -1,4 +1,4 @@
-Rootfs SHASUM: cca44ea20a4ae2e972f4ce842a4106841c4d4d73
+Rootfs SHASUM: e3c232c5e0408f009de8d5490c846520030c8de5
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -201,9 +201,9 @@ ii  libgcc-4.8-dev:amd64               4.8.4-2ubuntu1~14.04.3              amd64
 ii  libgcc1:amd64                      1:4.9.3-0ubuntu4                    amd64        GCC support library
 ii  libgcrypt11:amd64                  1.5.3-2ubuntu4.3                    amd64        LGPL Crypto library - runtime library
 ii  libgcrypt11-dev                    1.5.3-2ubuntu4.3                    amd64        LGPL Crypto library - development files
-ii  libgd-dev:amd64                    2.1.0-3ubuntu0.1                    amd64        GD Graphics Library (development version)
-ii  libgd2-noxpm-dev                   2.1.0-3ubuntu0.1                    all          GD Graphics Library (transitional package)
-ii  libgd3:amd64                       2.1.0-3ubuntu0.1                    amd64        GD Graphics Library
+ii  libgd-dev:amd64                    2.1.0-3ubuntu0.2                    amd64        GD Graphics Library (development version)
+ii  libgd2-noxpm-dev                   2.1.0-3ubuntu0.2                    all          GD Graphics Library (transitional package)
+ii  libgd3:amd64                       2.1.0-3ubuntu0.2                    amd64        GD Graphics Library
 ii  libgdbm3:amd64                     1.8.3-12build1                      amd64        GNU dbm database routines (runtime version)
 ii  libgdk-pixbuf2.0-0:amd64           2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library
 ii  libgdk-pixbuf2.0-common            2.30.7-0ubuntu1.2                   all          GDK Pixbuf library - data files
@@ -282,8 +282,8 @@ ii  liblapack-dev                      3.5.0-2ubuntu1                      amd64
 ii  liblapack3                         3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - shared version
 ii  liblcms2-2:amd64                   2.5-0ubuntu4.1                      amd64        Little CMS 2 color management library
 ii  liblcms2-dev:amd64                 2.5-0ubuntu4.1                      amd64        Little CMS 2 color management library development headers
-ii  libldap-2.4-2:amd64                2.4.31-1+nmu2ubuntu8.2              amd64        OpenLDAP libraries
-ii  libldap2-dev:amd64                 2.4.31-1+nmu2ubuntu8.2              amd64        OpenLDAP development libraries
+ii  libldap-2.4-2:amd64                2.4.31-1+nmu2ubuntu8.3              amd64        OpenLDAP libraries
+ii  libldap2-dev:amd64                 2.4.31-1+nmu2ubuntu8.3              amd64        OpenLDAP development libraries
 ii  liblocale-gettext-perl             1.05-7build3                        amd64        module using libc functions for internationalization in Perl
 ii  liblockfile-bin                    1.09-6ubuntu1                       amd64        support binaries for and cli utilities based on liblockfile
 ii  liblockfile1:amd64                 1.09-6ubuntu1                       amd64        NFS-safe locking library
@@ -550,7 +550,7 @@ ii  tcpdump                            4.5.1-2ubuntu1.2                    amd64
 ii  traceroute                         1:2.0.20-0ubuntu0.1                 amd64        Traces the route taken by packets over an IPv4/IPv6 network
 ii  tsconf                             1.0-12                              all          touch screen library common files
 ii  ttf-dejavu-core                    2.34-1ubuntu1                       all          transitional dummy package
-ii  tzdata                             2016d-0ubuntu0.14.04                all          time zone and daylight-saving time data
+ii  tzdata                             2016f-0ubuntu0.14.04                all          time zone and daylight-saving time data
 ii  ubuntu-keyring                     2012.05.19                          all          GnuPG keys of the Ubuntu archive
 ii  ubuntu-minimal                     1.325                               amd64        Minimal core of Ubuntu
 ii  ucf                                3.0027+nmu1                         all          Update Configuration File(s): preserve user changes to config files
