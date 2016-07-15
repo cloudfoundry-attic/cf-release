@@ -111,10 +111,6 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.9.zip:
   object_id: b87baa1f-565e-4707-b2b4-e8dde002bbe3
   sha: 5f71f25e1215b9580c44a410862dd545256e001b
   size: 2642639
-ruby-buildpack/ruby_buildpack-cached-v1.6.19.zip:
-  object_id: 200b62b2-1605-4ae6-a4bf-663a8abd735b
-  sha: 74b0663ed9d293eac9cce3beb4a6619b3ff58fbf
-  size: 274211831
 nginx/nginx-1.11.1.tar.gz:
   object_id: ced13588-cd45-44d4-bf76-0f6d668522ea
   sha: 6b6172b26628b95c4ad0d6cb5b11eb4aa59c2a83
@@ -159,3 +155,7 @@ rootfs/cflinuxfs2-1.71.0.tar.gz:
   object_id: 51f28a90-6690-4933-987e-0a1c24ca926c
   sha: fd72b2c6b356c774fe286e204fcac152e16d1a29
   size: 276001028
+ruby-buildpack/ruby_buildpack-cached-v1.6.20.zip:
+  object_id: 5fafeda6-3469-4f18-b615-eb6e473a219a
+  sha: eb1ec41b140eb0e97be4c2f5c11525109d90668f
+  size: 274211792
