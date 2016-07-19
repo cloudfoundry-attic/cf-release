@@ -72,6 +72,8 @@ properties:
   acceptance_tests.use_http:
     default: false
     description: Flag for using HTTP when making api and application requests rather than the default HTTPS
+  acceptance_tests.include_privileged_container_support:
+    description: Flag for running tests that depend on privileged container support being enabled in your Cloud Foundry.
   acceptance_tests.skip_regex:
     description: Regex for tests that should be skipped
   acceptance_tests.default_timeout:
