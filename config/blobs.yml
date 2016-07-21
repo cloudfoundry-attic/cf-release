@@ -47,10 +47,6 @@ postgres/postgresql-9.4.6.tar.gz:
   object_id: 02b3e2ae-cba1-400f-a5a3-e66605d9d103
   sha: bd031beebd86bf149c497525dccf57eebe5a6add
   size: 23249307
-golang/go1.6.1.linux-amd64.tar.gz:
-  object_id: a735e999-7658-44e5-ac69-a037337aa52d
-  sha: c73492474dcc7a233772d27e948b74468d9f1849
-  size: 84824395
 golang/go1.5.4.linux-amd64.tar.gz:
   object_id: a3831241-348f-478b-836c-f86962dcfc79
   sha: 4c919c3390e86e557a8019ea644e835bc493be2a
@@ -159,3 +155,7 @@ php-buildpack/php_buildpack-cached-v4.3.16.zip:
   object_id: 64af8e51-1f37-4666-a990-d3e8a3ed2f16
   sha: 7caed8f4b2d4aabe10325f243d8effa6b1c98ce7
   size: 293319774
+golang/go1.6.3.darwin-amd64.tar.gz:
+  object_id: 964dfca2-15da-4032-a415-96128a7909be
+  sha: 998c82ce6f2b856bc0c1e508adc27625017e52e7
+  size: 84755819
