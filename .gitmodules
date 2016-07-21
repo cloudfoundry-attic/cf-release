@@ -37,3 +37,6 @@
 [submodule "src/routing-release"]
 	path = src/routing-release
 	url = https://github.com/cloudfoundry-incubator/routing-release
+[submodule "src/postgres-release"]
+	path = src/postgres-release
+	url = https://github.com/cloudfoundry/postgres-release.git
