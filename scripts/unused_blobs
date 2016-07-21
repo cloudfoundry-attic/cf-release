@@ -21,6 +21,9 @@ package_specs.each do |spec_path|
   end
 end
 
-puts unused_blobs.keys
+puts "Unused blobs: #{unused_blobs.keys}" unless unused_blobs.empty?
 
-fail unless unused_blobs.empty?
+# Disabling this so that capi can push blobs without breaking pipelines
+# See https://www.pivotaltracker.com/story/show/121634657 for more
+# fail unless unused_blobs.empty?
+
