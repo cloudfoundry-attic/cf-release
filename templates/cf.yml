@@ -1148,6 +1148,7 @@ meta:
   capi_release_name: (( releases.capi.name || "cf" ))
   consul_release_name: (( releases.consul.name || "cf" ))
   etcd_release_name: (( releases.etcd.name || "cf" ))
+  postgres_release_name: (( releases.postgres.name || "cf" ))
   java_buildpack_release_name: (( releases.java-buildpack-release.name || "cf" ))
   go_buildpack_release_name: (( releases.go-buildpack-release.name || "cf" ))
   binary_buildpack_release_name: (( releases.binary-buildpack-release.name || "cf" ))
@@ -1346,7 +1347,7 @@ meta:
 
   postgres_templates:
   - name: postgres
-    release: (( meta.cf_release_name ))
+    release: (( meta.postgres_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
