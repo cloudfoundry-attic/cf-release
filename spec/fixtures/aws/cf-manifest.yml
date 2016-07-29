@@ -1556,7 +1556,14 @@ properties:
       groups: null
       userids_enabled: true
       users:
-      - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
+      - name: admin
+        password: ADMIN_PASSWORD
+        groups:
+        - scim.write
+        - scim.read
+        - openid
+        - cloud_controller.admin
+        - doppler.firehose
     ssl:
       port: -1
     sslCertificate: null
