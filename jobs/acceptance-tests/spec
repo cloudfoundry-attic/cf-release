@@ -36,9 +36,6 @@ properties:
   acceptance_tests.include_operator:
     default: false
     description: Flag to include the operator tests which may modify the global state of an Elastic Runtime deployment.
-  acceptance_tests.include_logging:
-    default: false
-    description: Flag to include the logging test suite.
   acceptance_tests.include_security_groups:
     default: false
     description: Flag to include the security groups test suite.

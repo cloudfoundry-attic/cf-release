@@ -36,7 +36,6 @@ skipPackages+=<%= properties.acceptance_tests.include_diego_docker ? "" : "docke
 skipPackages+=<%= properties.acceptance_tests.include_backend_compatibility ? "" : "backend_compatibility," %>
 skipPackages+=<%= properties.acceptance_tests.include_v3 ? "" : "v3," %>
 skipPackages+=<%= properties.acceptance_tests.include_security_groups ? "" : "security_groups," %>
-skipPackages+=<%= properties.acceptance_tests.include_logging ? "" : "logging," %>
 skipPackages+=<%= properties.acceptance_tests.include_operator ? "" : "operator," %>
 skipPackages+=<%= properties.acceptance_tests.include_internet_dependent ? "" : "internet_dependent," %>
 skipPackages+=<%= properties.acceptance_tests.include_services ? "" : "services," %>
