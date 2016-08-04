@@ -868,6 +868,8 @@ properties:
       client_key:
 
   login:
+    home_redirect: ~
+    branding: (( merge || nil ))
     enabled: true
     analytics:
       code: ~
