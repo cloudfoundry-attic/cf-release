@@ -1007,6 +1007,7 @@ properties:
   databases: ~
 
   router:
+    suspend_pruning_if_nats_unavailable: (( merge || nil ))
     enable_proxy: (( merge || nil ))
     enable_ssl: (( merge || nil ))
     ssl_cert: (( merge || nil ))

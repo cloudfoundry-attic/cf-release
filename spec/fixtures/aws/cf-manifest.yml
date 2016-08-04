@@ -1373,6 +1373,7 @@ properties:
     share: null
   request_timeout_in_seconds: 900
   router:
+    suspend_pruning_if_nats_unavailable: null
     cipher_suites: null
     debug_address: null
     drain_wait: null
