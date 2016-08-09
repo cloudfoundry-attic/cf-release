@@ -6,6 +6,10 @@ director_uuid: REPLACE_WITH_DIRECTOR_ID
 
 releases:
 - {name: cf, version: latest}
+- {name: diego, version: latest}
+- {name: etcd, version: latest}
+- {name: garden-linux, version: latest}
+- {name: cflinuxfs2-rootfs , version: latest}
 
 networks:
 - name: cf_private
@@ -45,6 +49,24 @@ resource_pools:
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
     instance_type: c3.large
+- name: diego
+  network: cf_private
+  stemcell:
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+    version: REPLACE_WITH_BOSH_STEMCELL_VERSION
+  cloud_properties:
+    availability_zone: REPLACE_WITH_AZ
+    ephemeral_disk:
+      size: 20000
+    instance_type: m3.large
+- name: small
+  network: cf_private
+  stemcell:
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+    version: REPLACE_WITH_BOSH_STEMCELL_VERSION
+  cloud_properties:
+    availability_zone: REPLACE_WITH_AZ
+    instance_type: t2.medium
 
 compilation:
   workers: 6
@@ -62,6 +84,8 @@ update:
   update_watch_time: 5000-600000
 
 jobs:
+
+
 - name: nats_z1
   instances: 1
   resource_pool: small_z1
@@ -105,6 +129,57 @@ jobs:
     consul:
       agent:
         mode: server
+
+- name: diego_z1
+  instances: 1
+  resource_pool: diego
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: etcd
+    release: etcd
+  - name: bbs
+    release: diego
+  - name: auctioneer
+    release: diego
+  - name: rep
+    release: diego
+  - name: garden
+    release: garden-linux
+  - name: cflinuxfs2-rootfs-setup
+    release: cflinuxfs2-rootfs
+  - name: stager
+    release: cf
+  - name: nsync
+    release: cf
+  - name: tps
+    release: cf
+  - name: cc_uploader
+    release: cf
+  - name: ssh_proxy
+    release: diego
+  - name: file_server
+    release: diego
+  - name: route_emitter
+    release: diego
+  - name: metron_agent
+    release: cf
+  persistent_disk: 20480
+  networks:
+    - name: cf_private
+  update:
+    serial: true
+    max_in_flight: 1
+  properties:
+    consul:
+      agent:
+        services:
+          etcd: {}
+    metron_agent:
+      zone: z1
+    diego:
+      rep:
+        zone: z1
 
 - name: blobstore_z1
   instances: 1
@@ -182,6 +257,7 @@ jobs:
   resource_pool: small_z1
   templates:
   - {name: haproxy, release: cf}
+  - {name: consul_agent, release: cf}
   - {name: metron_agent, release: cf}
   networks:
   - name: elastic
@@ -291,11 +367,15 @@ jobs:
     dropsonde: {enabled: true}
 
 properties:
+  app_ssh:
+    host_key_fingerprint: REPLACE_WITH_SSH_HOST_KEY_FINGERPRINT
+    oauth_client_id: ssh-proxy
   networks: {apps: cf_private}
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
   cc:
+    allow_app_ssh_access: true
     default_to_diego_backend: true
-    allow_app_ssh_access: false
+    internal_api_user: internal_user
     buildpacks:
       blobstore_type: webdav
       webdav_config:
@@ -614,7 +694,11 @@ properties:
   description: Cloud Foundry sponsored by Pivotal
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
-    machines: [10.0.16.104]
+    advertise_urls_dns_suffix: etcd.service.cf.internal
+    cluster:
+    - name: diego_z1
+      instances: 1
+    machines: ["etcd.service.cf.internal"]
     peer_require_ssl: false
     require_ssl: false
 
@@ -691,6 +775,14 @@ properties:
         redirect-uri: https://servicesmgmt.REPLACE_WITH_SYSTEM_DOMAIN/auth/cloudfoundry/callback
         scope: openid,cloud_controller.read,cloud_controller.write
         secret: PASSWORD
+      ssh-proxy:
+        authorized-grant-types: authorization_code
+        autoapprove: true
+        override: true
+        redirect-uri: /login
+        scope: openid,cloud_controller.read,cloud_controller.write,cloud_controller.admin
+        secret: PASSWORD
+
     jwt:
       signing_key: |
         -----BEGIN RSA PRIVATE KEY-----
@@ -720,6 +812,102 @@ properties:
     ssl:
       port: -1
     url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN
+  capi:
+    nsync:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      cc:
+        base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
+        basic_auth_password: PASSWORD
+    tps:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      cc:
+        base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
+        basic_auth_password: PASSWORD
+      traffic_controller_url: wss://doppler.REPLACE_WITH_SYSTEM_DOMAIN:443 
+    tps_listener:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      cc:
+        base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
+        basic_auth_password: PASSWORD
+    stager:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      cc:
+        base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
+        basic_auth_password: PASSWORD
+  diego:
+    auctioneer:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+    bbs:
+      active_key_label: active
+      encryption_keys:
+      - label: active
+        passphrase: PASSWORD
+      ca_cert: ""
+      etcd:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      require_ssl: false
+      server_cert: ""
+      server_key: ""
+    converger:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+    rep:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      preloaded_rootfses: ["cflinuxfs2:/var/vcap/packages/cflinuxfs2/rootfs"]
+    route_emitter:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      nats:
+        machines: [10.0.16.103]
+        password: PASSWORD
+        port: 4222
+        user: nats
+    ssl:
+      skip_cert_verify: true
+    ssh_proxy:
+      bbs:
+        ca_cert: ""
+        client_cert: ""
+        client_key: ""
+        require_ssl: false
+      enable_cf_auth: true
+      host_key: |
+        REPLACE_WITH_SSH_HOST_KEY
+      uaa_secret: PASSWORD
+      uaa_token_url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN/oauth/token
 
 # code_snippet cf-minimal-aws end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
