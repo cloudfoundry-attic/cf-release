@@ -135,10 +135,6 @@ golang/go1.6.3.linux-amd64.tar.gz:
   object_id: 7ad4929c-a987-4b84-b686-3c9598951f25
   sha: 5e916ba4dd8c2fc43beafca4c08b334c4d0686f3
   size: 84856920
-rootfs/cflinuxfs2-1.72.0.tar.gz:
-  object_id: 3e822aaf-f7e3-405a-b18d-f53b3caa0c4e
-  sha: ba0594554ace4d257908978fabfac23b3bda9bd6
-  size: 276004008
 binary-buildpack/binary_buildpack-cached-v1.0.3.zip:
   object_id: 0eb81e10-ee29-4f4b-8a62-8a6ba4d1a3a2
   sha: 139e33b71c396dc4406c3b4982d21c23fc77a023
@@ -159,3 +155,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.10.zip:
   object_id: 8817deeb-3799-4ea3-96a1-4c282b1f2bd0
   sha: b476477d537f3b4e29b121b7cd4fde0f57bd730f
   size: 2658753
+rootfs/cflinuxfs2-1.73.0.tar.gz:
+  object_id: 852818c2-9cf7-418d-90b3-a075f41c0b46
+  sha: 774dfbad7da4ad269fd030eb3f7ad9e04d303030
+  size: 276094616
