@@ -196,29 +196,6 @@ jobs:
       servers:
         - 10.0.16.102
 
-- name: hm9000_z1
-  instances: 1
-  resource_pool: small_z1
-  templates:
-  - {name: consul_agent, release: cf}
-  - {name: hm9000, release: cf}
-  - {name: metron_agent, release: cf}
-  - {name: route_registrar, release: cf}
-  networks:
-  - name: cf_private
-  properties:
-    consul:
-      agent:
-        services:
-          hm9000: {}
-    route_registrar:
-      routes:
-      - name: hm9000
-        registration_interval: 20s
-        port: 5155
-        uris:
-        - "hm9000.REPLACE_WITH_SYSTEM_DOMAIN"
-
 - name: doppler_z1
   instances: 1
   resource_pool: small_z1
@@ -313,32 +290,11 @@ jobs:
   properties:
     dropsonde: {enabled: true}
 
-- name: runner_z1
-  instances: 1
-  resource_pool: small_z1
-  templates:
-  - {name: consul_agent, release: cf}
-  - {name: dea_next, release: cf}
-  - {name: dea_logging_agent, release: cf}
-  - {name: metron_agent, release: cf}
-  networks:
-  - name: cf_private
-  properties:
-    consul:
-      agent:
-        services:
-          dea:
-            check:
-              name: dns_health_check
-              script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              interval: 5m
-              status: passing
-    dea_next: {zone: z1}
-
 properties:
   networks: {apps: cf_private}
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
   cc:
+    default_to_diego_backend: true
     allow_app_ssh_access: false
     buildpacks:
       blobstore_type: webdav
@@ -412,7 +368,6 @@ properties:
     srv_api_uri: https://api.REPLACE_WITH_SYSTEM_DOMAIN
     staging_upload_password: PASSWORD
     staging_upload_user: staging_upload_user
-    dea_use_https: false
   ccdb:
     address: 10.0.16.101
     databases:
@@ -656,169 +611,12 @@ properties:
     roles:
     - {name: ccadmin, password: PASSWORD, tag: admin}
     - {name: uaaadmin, password: PASSWORD, tag: admin}
-  dea_next:
-    advertise_interval_in_seconds: 5
-    heartbeat_interval_in_seconds: 10
-    memory_mb: 33996
-    ca_cert:
-    client_cert:
-    client_key:
-    enable_ssl: false
-    server_cert:
-    server_key:
   description: Cloud Foundry sponsored by Pivotal
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
     machines: [10.0.16.104]
     peer_require_ssl: false
     require_ssl: false
-  hm9000:
-    etcd:
-      machines: [10.0.16.104]
-      peer_require_ssl: false
-      require_ssl: false
-    url: https://hm9000.REPLACE_WITH_SYSTEM_DOMAIN
-    port: 5155
-    ca_cert: |
-      -----BEGIN CERTIFICATE-----
-      MIIFBzCCAu+gAwIBAgIBATANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDEwhobTkw
-      MDBDQTAeFw0xNjA0MTMxODU4MTJaFw0yNjA0MTMxODU4MTZaMBMxETAPBgNVBAMT
-      CGhtOTAwMENBMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAtLwB0Bf3
-      exqbh/nmOrDkhw1FH2eQmsVE6xGtu9+IF13ygcL/p2D8UMxFKWsRZ7+Z1DSyrCCm
-      tcgoKJVfuRhfE4xMjbw52VLVmsDIQE4+qF6CVt4ZygP70+1s44eLqZrMo+ikCj7N
-      tD9BNq3UAmkU2IqixaDkyCHpJytILiRazYC5EBEqunkBPn3y9hO1nMVEOBt9v0MS
-      EKOSbrdjx+vHHzYRlVEHG3CuA5q5jwZPxi0eoHdw8YXp3j2L6/PEuluYw58H6nA5
-      P0Y433UwcA1ROSua8l/wwjMoEX6Vm5viwIovjBjAZ8MI5pQtQOIABwRipSxELGhX
-      pYhLfaMW+92x9uxC9DpSkiVBipuuYkeYISxO5b6y4tBPh0b6foKctc0ryTD+pJVD
-      EyLACPAcNgS1wGsMa7YH03G+VXXRjKUqF36D+Zubk3xfXJ+IOvoWOuhC1s0DPxSJ
-      DrGfO0egash9wOsvj7DhZfAUNXQ2OIR3kqg03tmRiJgBmNT8kR7VstxvZHt7axhA
-      vGnH8ZedUzCYrx/JQIsf9zAKNJcZJLqS92AwVzUdy0EX/hPA7m2BAyB2U//JsqFS
-      5czfnyUnK4/7yAxAZxF8PfeKsNme2/fePo115LtWdzSZKVLR5xWxqYlTui4T52Jv
-      7kEhXDqFfRMDL82IuyhTwBDnq7BNrxihNoECAwEAAaNmMGQwDgYDVR0PAQH/BAQD
-      AgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFEnhXKTM30d9/AIyu/nA
-      x8E6tQj+MB8GA1UdIwQYMBaAFEnhXKTM30d9/AIyu/nAx8E6tQj+MA0GCSqGSIb3
-      DQEBCwUAA4ICAQAW4ah78ps3/eZpoW74cDei9YQaFuXHaW8xsoK+J+DKTKpSv6Lt
-      OBmOc9BJXkbQKgThAyo7zBmzoEQC+ME5QfTIknHNsv1gJeOINhVUB6hEDbvq1odI
-      ELTBnSdL52StQYR9hlB36XAsR90lhychC5HIFLzfJQYOB6LQ9EJ0B1vTNXrWZROr
-      PzZSXWJ0x+PjYw0Nr4dc6ZHkRYrE8mF2Ook1hENhXu9Z02gWHZlV0xx4WQDTTovS
-      Ynb+chXWG3YHoeAZN/qUt0wgTLuh2kktXekyAi6a4I5U8Iio62m/9bgybGoGN2yA
-      p6vhWCjPPhzkEA3Q/pDGPjfQxom1b7uQvnve82wGT1LSRc6aXI04zv2iD0LfqFAa
-      Brvw79oP+dtKhgDVebq/qdy9wq9xzduUGuvXWZqy/1mmyQR+9SeSXB3OakOsB5nC
-      VUaVZecJeQU6tdjii5XW9g+iQZquntNj55AcRXPIfJmqVbyjncZGCn4ivyAehZhB
-      pukz9HKeK34woQqXeR2S3dO4rhEeOWFLPGAhO9HSOoElmP/NnZ/mhG6JppZpKB6A
-      qBfiluoSo+OeZuEzB3n/g+HgAFf6EbK2RKlKvjPm3pvG7EpganAFIUcMzocVlSfo
-      LeYCIt44VUQ5YA5s71jWWIGVxtOQ3l8ejFBCkx2PcFZm02W/f+D/YXjLCA==
-      -----END CERTIFICATE-----
-    server_cert: |
-      -----BEGIN CERTIFICATE-----
-      MIIEljCCAn6gAwIBAgIRANIwYP3E3QoZd/vwAFEnQNUwDQYJKoZIhvcNAQELBQAw
-      EzERMA8GA1UEAxMIaG05MDAwQ0EwHhcNMTYwNDEzMTg1ODE2WhcNMTgwNDEzMTg1
-      ODE2WjAuMSwwKgYDVQQDEyNsaXN0ZW5lci1obTkwMDAuc2VydmljZS5jZi5pbnRl
-      cm5hbDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMgCCcECz0qcAnqM
-      b8qwX+1Vt0JQuv4Abtg9RYZEQ6VaCDjST6BJoq9Hyb0b1ZdHMa94GzUZh6i+fFuW
-      2j+3HR+pP6KV465TORB9AfPhbRTzJwn0z3OlNGEwNjy6p3J8bOzozzmqryL+15mx
-      zAHoOvtjR6Yrgrpr9gNhof2t9DW5Nwg7FOxXQGXbGJPWPkM802nTRM2XSue1qEKW
-      lsb1pi67l7z3IwpM/hTqs50miElbBejlSZL0GQo09MamxhYfxTDzeV6sSsoGk1/j
-      thikCKAB8ZrOl1KXqn8yMMT3B2406keCQZ4E93fBUbsfh+725jvyXlgxGNnXb43X
-      YjfxO+MCAwEAAaOByTCBxjAOBgNVHQ8BAf8EBAMCA7gwHQYDVR0lBBYwFAYIKwYB
-      BQUHAwEGCCsGAQUFBwMCMB0GA1UdDgQWBBQ7zgbG0KZw7QvEjlscw93cJJ2EyTAf
-      BgNVHSMEGDAWgBRJ4VykzN9HffwCMrv5wMfBOrUI/jBVBgNVHREETjBMgiUqLmxp
-      c3RlbmVyLWhtOTAwMC5zZXJ2aWNlLmNmLmludGVybmFsgiNsaXN0ZW5lci1obTkw
-      MDAuc2VydmljZS5jZi5pbnRlcm5hbDANBgkqhkiG9w0BAQsFAAOCAgEAWKT/drcR
-      46O156eXKt6vVgP8kaPCVcAX2IhszLyM8OsJEAiX5eTWrwoU6HI+R4Eg+E6pcR5V
-      zgsyVKPa3kQ7Kx2xMhcyH3ragGPv0jJpnuDa46J0DpgumXnjwQ/c9+eJV9wRqDDw
-      Cka48v9cEXoccVDjmNF4Z9J0J8iJAYcvOPs2zUiOHNWyohSBeT/DrpizJNqmQS6Z
-      V7rIgcB2IN/8zTYx2HLTONc0MdOYz2gLfi1pyN29tfBZUG2o2IO61o2IQpXEJN3L
-      LPUK0NwGwlRV3Qca03QfMff8IdZzfg2hcrwcc6ttUqHA7d+UKPaLYBJfsBMPwHiC
-      dr2JT8bE+eYzDdmHFvYd3yTJuMb+3OzKr8+ywqwFbg4fLnced8WPr6FQXo1HEHWj
-      q2Qx/I1981C2vcWBB5/FKVSqL3UTia2kJvC99GBihi+GFEPMH4nMvlDaQ84adsVY
-      0qUbnbRGZ27NPaqoEIrH85su5kAGxa8phFGLfTHhiZVJmk9iSNhkkY0t+9XRsP62
-      taWO8XOh2oScrgjNjPUL+P0dgalhslrf3ABmHqsJ1rAw3r8lgpBccTwAIoPh1kWT
-      VtoVvhImJuFimxBMeMEaiixTi0fmTjpa802gL/iTEUeGbdQuIKtSr/Xpv1bkhmZr
-      iVBKqNDd/PSAuwy/SL0qjvElvePEWbY+G8I=
-      -----END CERTIFICATE-----
-    server_key: |
-      -----BEGIN RSA PRIVATE KEY-----
-      MIIEpAIBAAKCAQEAyAIJwQLPSpwCeoxvyrBf7VW3QlC6/gBu2D1FhkRDpVoIONJP
-      oEmir0fJvRvVl0cxr3gbNRmHqL58W5baP7cdH6k/opXjrlM5EH0B8+FtFPMnCfTP
-      c6U0YTA2PLqncnxs7OjPOaqvIv7XmbHMAeg6+2NHpiuCumv2A2Gh/a30Nbk3CDsU
-      7FdAZdsYk9Y+QzzTadNEzZdK57WoQpaWxvWmLruXvPcjCkz+FOqznSaISVsF6OVJ
-      kvQZCjT0xqbGFh/FMPN5XqxKygaTX+O2GKQIoAHxms6XUpeqfzIwxPcHbjTqR4JB
-      ngT3d8FRux+H7vbmO/JeWDEY2ddvjddiN/E74wIDAQABAoIBAQDEhQwkc6hOPOBK
-      nXayh36Z6mD4be5t6OsA2aNYe/ajn8T4X90RN4j8BON6RsEltTRinvbMw9sBuLjk
-      HWMwu7GIDHqUPAbMoMUvKEUk5liR/yBargqwLKE85WxFW3lwCkXUuiPzG3yePByH
-      zaUQMqjRnQkngxUeKzo8tE/AvI15wleOopLK/VFrmYnamBR9tzXrvosZwg+QW/aP
-      lwNRCNI7TWkE5tnCPIHK4s2R43sujKnlr45a4fk9b+RZL5K+p1DOkMotTFMHJg3a
-      vvo3hw0sl5xzYkjxvi+mZ7+Em8kSByR0baWRxwYleisi3PupRseVVSjoaB/WZJ/K
-      gUeEnyzxAoGBANUChRzxOBCmnP4JJCG3m3mgE8ldVInmDOiQWC+N3myM51FMImwQ
-      6HaRLIuodsB5GcQtagWBQFyntHSdiY9vQ18iNV7mq8/0W/gQ41VQoWf1OGjkW8TD
-      cdLARsIxxCKRatIUmLWDi8IwbB83R406BX7C8dgQSsQme/rgH4lBxUFHAoGBAPBf
-      wYYZisdMYsaud8EiDKjZezQBTJmbe2qM3A+ePlLH5G4v0toAkECHsS2bM4qEysbA
-      hk9LVoRrbzdE3x21XQhtLcfpouUH7b3KBE9byJD1EBZniArkaxlMwsdMotBz7hxi
-      AYcUpJryXdqEQbPOZocX8tT1TtzD0Gg09A2CsB6FAoGBAIa2REcMit+E7459a3tj
-      ahFeWoUj4D4h3pIKD6trdnqCFhzFIJPlkY7Cu0BLt2Z8b/4wlneKyZCPg0GpDAFJ
-      ZXs54DT3fztSGAPnck5XYuyjGhzEJwFmdYrKjTVtUdRm0P6xhe5tliqmgwqu5DJ9
-      ulHzqg1yKEaq7Ae6TFd63+wrAoGAUhwzrE4/VNMoDrx8VfH+pxMbfelPtE0jfIM/
-      jOo+WeLEiks12JhGrnRrtquEkLXJ2tjbSGzw0e0tIZEaMjjI3d8Fu3t41Im/0YwX
-      qtAslC/SXgThuO7MEulgw9nO6Cwh03o7EVyg2fkezE1PcE96QH2SyuI9HTaak247
-      S/4vkU0CgYBD5LJQR8eM1yosJalgS+izmyfxwvm5YpOswo4AIrAeSV6zr0WyJHkz
-      ElyjRw6IVW5dbpM0775+1kNh7VmPRVOq2wP5vzJlAOKrPhlWnzH+835oDZztokFY
-      eUS76fOekZUjWud8a3xOmo6g1jn9w4Te1Pa6zxRaICzQvhyQZrWvhg==
-      -----END RSA PRIVATE KEY-----
-    client_cert: |
-      -----BEGIN CERTIFICATE-----
-      MIIEJzCCAg+gAwIBAgIRAOxDP8BzxZpiy+6J6/d+LZUwDQYJKoZIhvcNAQELBQAw
-      EzERMA8GA1UEAxMIaG05MDAwQ0EwHhcNMTYwNDEzMTg1ODE2WhcNMTgwNDEzMTg1
-      ODE2WjAYMRYwFAYDVQQDDA1obTkwMDBfY2xpZW50MIIBIjANBgkqhkiG9w0BAQEF
-      AAOCAQ8AMIIBCgKCAQEAvuEF9zZzTbO/1eXWzZwlfEl5THSCodG23kQYI8exMeQ4
-      BWTGGbK19EnkFzzrmhM7cmI7mGH8te+XlZ2jrOvD2qGcXBjGt18AhztpXmCRkQd3
-      LkcbE5IBNhJcaT0SmFDoU5zW05eMj9GEZwnDdokxEa9tICC69j27LDnsjiKa4SlF
-      +B4q8B9g5hO02PWGf/FEChzsSoq8OgktNhkMl1H1HDY8MjJTz8KsC2n1XiSKW16U
-      ekF93h84NFpvxaSrpD4KspPA1FtZzJcpp8EHi361A35Jt1v9XcFuvokv/x52o+Xw
-      e3hUcLpq5kHiCcJmbB7UW8mLSBtok3Ts3Lr8MGux7wIDAQABo3EwbzAOBgNVHQ8B
-      Af8EBAMCA7gwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMB0GA1UdDgQW
-      BBSQfoq2GPX2zqZM/2kxNP3PRm4k2zAfBgNVHSMEGDAWgBRJ4VykzN9HffwCMrv5
-      wMfBOrUI/jANBgkqhkiG9w0BAQsFAAOCAgEAF6Xg4PqkhQkfInpCUGSrYpPssDQ1
-      iSKkN27zQuO/mxQRLg1GEQvCk5AR/2p5ECc449ZoDG/8OYTNSbmeGl6nWl4HTcLh
-      rkwrXYes3eXCfLpdNyH1d+Cb7gkVYxtiDhj9S8netJcXb/wwWEaDwzH5EA8dcGLd
-      DR4vmLHsOo75P835RCtN30Dy82a+SVPGDV3TmHzpDGr8UpKzt3XbGDqXIwlJtbio
-      Vu9GFN9GUVrxs7ai8r82InekXRjgrVwT/l8kFQNhwmwnxCkwWja13GRUOm2pBZ2g
-      yMx4/p0awkr6zv9I9lheWe3CdsbcoCrA8+xttlkxlvGM6JMoweCWNH28hr6Z+pmy
-      cgcb3/Ls3e/1QPaxT0LDeXlS9bgxYjrweNx3LKohY22FWT1W2I7/9z6ZI2upzrTV
-      s4HbMrhcwuVpp4wX5P2bcNKoeWgYoYOtgX+iDcVZV+pxwvvSuYnRZgjIyBrFX+q4
-      yv8Xc2h4U+jrOHlOxag5dxkjrqJYHw1uiLlEYcFgyqUARmSownKpkSldzQiNPSPu
-      oACXX9EhGqPp2xDTnRdpD7xUTCuyRTxEeompflYfuclqZYpSQeLzOe+WyxSmc1Og
-      YxbkAJ9OZ9WA5k2WXPohfYfjgXokVXnskw0+aJK73hE/XSOQFt4qPjAzAiht87ND
-      F5mNpU2te4+Biq4=
-      -----END CERTIFICATE-----
-    client_key: |
-      -----BEGIN RSA PRIVATE KEY-----
-      MIIEowIBAAKCAQEAvuEF9zZzTbO/1eXWzZwlfEl5THSCodG23kQYI8exMeQ4BWTG
-      GbK19EnkFzzrmhM7cmI7mGH8te+XlZ2jrOvD2qGcXBjGt18AhztpXmCRkQd3Lkcb
-      E5IBNhJcaT0SmFDoU5zW05eMj9GEZwnDdokxEa9tICC69j27LDnsjiKa4SlF+B4q
-      8B9g5hO02PWGf/FEChzsSoq8OgktNhkMl1H1HDY8MjJTz8KsC2n1XiSKW16UekF9
-      3h84NFpvxaSrpD4KspPA1FtZzJcpp8EHi361A35Jt1v9XcFuvokv/x52o+Xwe3hU
-      cLpq5kHiCcJmbB7UW8mLSBtok3Ts3Lr8MGux7wIDAQABAoIBAB+WIyOWmhwIm70s
-      rJAXv8hCbFUvjpJynr1HLWt2Vyc3aeHSnEmSXjPPqnQB+8biWdsC0HPV+zisLjxu
-      +q/Zz+41AifnXbLogLDgLv6UImKKhrlcwOlLJvIotawglBwqf1eew5n+IR+Hf06B
-      uhu6dilEC13erLGk431dFH0s0s5hecJ2dRMoWvyFnGshtRBE42OsKTdfRJe8Aony
-      qUa67L/06k0W7PCGVZE3i/qI3f4Kn5QE30j1gMjS0tYPKFStBocM43rxasYfJsk7
-      67rPLeyKKGmZOTVjem8Wx6YYvTcpXXllLcZgCljBH7Kk6uXZsgFWw20MXejDAvRj
-      o4uc6AkCgYEAzmkQv8ygg8oZeKelGEgrtP5OgQRkfGEp5RJRsCdtMmUgnBhUaJM0
-      7QrZ99CJDwL/+W+WXtrmCgwRQa428W5D5p4f49LeNQMwbA9R9yhMQ4oy3arP1QYA
-      K3WRyLbW718C7D/H5TWS+39fiG5Oppb3bKSO5tcfzVIEivXb0NflGjUCgYEA7Ly5
-      QLSQWhQyfPK7wmsvb9Oc06r64yATRyY6nuaHghYmr5wRkRO7zEdsS2bT0LpXP+73
-      /yAxLyQd8W200Ub27QG/USv1EMfALvZ8BjJD6uH7ftg5GEzhWMCj9viUHtFZN5SY
-      Wl/dXj7it4/e+cQAn/1136vuJwUU/T06zowXwBMCgYAls/VWQ4dya0EZ0+2JMO2i
-      4uzuDiJYwdrIN/9p4NnGYciCGsOYUoNRZTEJXjMa5d5h7qsV6oAoh6nDSJJKqWyH
-      vIxwrfzezBVVN7suHVNI5v6BlQjfjXgMeC5H7nX2RXGgO8pEqPOPMuX9YsDFF0Bc
-      vPZJXjQ16exggaZEUJtNnQKBgQDlZaaZVZ5/Ow0FWGyqYxSvZr2Tuh2skns7uYaa
-      TUZHvtEz36aCDz4uH5OHqRddLgO3twdml7oxNO0y8hyBoiNJ3CSYMmEhJn5Kw5vA
-      oVqAswPxkPIaYv0F9H2tpohZKIEsQ3gyMqyeU497UhU9rzjvzzo2SDLYaqtBDOD8
-      HnIxMwKBgHM15Rf3MAdjZXdaRMlENG2kA0g/wtN1ayKBkXTA4/B6eBZtfcxfhpLO
-      IHpqIYccHr3MgRbcEO+1O8aKUPiIkXDN14JHzYQ76mz6xIrWYz3P1pMBL50FTmGm
-      OqVUFbm0nNKxu0x0NCD7/EsCYKl9i4VFNWZLLwdmQJl54qbdR+tJ
-      -----END RSA PRIVATE KEY-----
 
   logger_endpoint:
     port: 4443
@@ -922,5 +720,6 @@ properties:
     ssl:
       port: -1
     url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN
+
 # code_snippet cf-minimal-aws end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
