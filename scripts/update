@@ -9,18 +9,20 @@ echo "===> Unversioned changes will be clobbered <==="
 echo ""
 
 root_dir=$(cd $(dirname $0)/.. && pwd)
-cd $root_dir 
+cd $root_dir
 
 set -x # show the commands we are running
 
 git rev-parse @{u} > /dev/null 2>&1 && git pull
 
-# Update submodule pointers; Clean out any submodule changes
-git submodule sync
-git submodule foreach --recursive 'git submodule sync; git clean -d --force --force'
+# Update submodule pointers
+git submodule sync --recursive
 
 # Update submodule content, checkout if necessary
 git submodule update --init --recursive --force
+
+# Clean out any submodule changes
+git submodule foreach --recursive 'git clean -ffd'
 
 git clean -ffd
 
