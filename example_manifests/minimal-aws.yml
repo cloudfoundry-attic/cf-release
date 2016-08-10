@@ -906,6 +906,9 @@ properties:
         REPLACE_WITH_SSH_HOST_KEY
       uaa_secret: PASSWORD
       uaa_token_url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN/oauth/token
+  garden:
+    graph_cleanup_threshold_in_mb: 0
+    persistent_image_list: ["/var/vcap/packages/cflinuxfs2/rootfs"]
 
 # code_snippet cf-minimal-aws end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
