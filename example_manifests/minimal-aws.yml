@@ -57,7 +57,7 @@ resource_pools:
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
     ephemeral_disk:
-      size: 20000
+      size: 40000
     instance_type: m3.large
 - name: small
   network: cf_private
