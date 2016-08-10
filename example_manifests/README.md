@@ -180,7 +180,7 @@ Upload the latest stable version of Cloud Foundry.
 git clone https://github.com/cloudfoundry/cf-release.git
 cd cf-release
 
-bosh upload release releases/cf-GREATEST_NUMBER.yml
+bosh upload release https://bosh.io/d/github.com/cloudfoundry/cf-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/diego-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-rootfs-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry-incubator/garden-linux-release
