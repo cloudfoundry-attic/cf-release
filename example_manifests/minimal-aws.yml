@@ -84,8 +84,6 @@ update:
   update_watch_time: 5000-600000
 
 jobs:
-
-
 - name: nats_z1
   instances: 1
   resource_pool: small_z1
