@@ -821,6 +821,7 @@ properties:
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
         basic_auth_password: PASSWORD
+      diego_privileged_containers: true
     tps:
       bbs:
         ca_cert: ""
