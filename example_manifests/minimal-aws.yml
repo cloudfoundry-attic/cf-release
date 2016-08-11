@@ -58,7 +58,7 @@ resource_pools:
     availability_zone: REPLACE_WITH_AZ
     ephemeral_disk:
       size: 40000
-    instance_type: m3.xlarge
+    instance_type: m3.2xlarge
 - name: small
   network: cf_private
   stemcell:
@@ -884,6 +884,9 @@ properties:
         client_key: ""
         require_ssl: false
       preloaded_rootfses: ["cflinuxfs2:/var/vcap/packages/cflinuxfs2/rootfs"]
+    executor:
+      memory_capacity_mb: 30720
+      disk_capacity_mb: 163840
     route_emitter:
       bbs:
         ca_cert: ""
