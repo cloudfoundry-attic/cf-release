@@ -132,31 +132,6 @@ Generate a SSL certificate for your System Domain
 - Run "openssl x509 -req -in cf.csr -signkey cf.key -out cf.crt"
 - Run "cat cf.crt && cat cf.key" and replace REPLACE_WITH_SSL_CERT_AND_KEY with this value.
 
-### Generate SSH Proxy Host Key and Fingerprint
-
-Run the following to generate a host key for the SSH proxy. When prompted for the key passphrase, hit 'enter' to set no passphrase.
-
-```bash
-ssh-keygen -f ssh-proxy-host-key.pem
-```
-
-If the local `ssh-keygen` supports the `-E` flag, as it does on OS X 10.11 El Capitan or Ubuntu 16.04 Xenial Xerus, generate the MD5 fingerprint of the public host key as follows:
-
-```bash
-ssh-keygen -lf ssh-proxy-host-key.pem.pub -E md5 | cut -d ' ' -f2 | sed 's/MD5://g' > ssh-proxy-host-key-fingerprint
-```
-
-Otherwise, generate the MD5 fingerprint as follows:
-
-```bash
-ssh-keygen -lf ssh-proxy-host-key.pem.pub | cut -d ' ' -f2 > ssh-proxy-host-key-fingerprint
-```
-
-The `ssh-proxy-host-key.pem` file contains the PEM-encoded private host key, and the `ssh-proxy-host-key-fingerprint` file contains the MD5 fingerprint of the public host key.
-
-Replace REPLACE_WITH_SSH_HOST_KEY in the example manifest with the contents of `ssh-proxy-host-key.pem`, making sure to indent the contents correctly for the YAML literal block.
-Replace REPLACE_WITH_SSH_HOST_KEY_FINGERPRINT with the contents of `ssh-proxy-host-key-fingerprint`.
-
 ## Create and Deploy Cloud Foundry
 Download a copy of the latest bosh stemcell.
 
