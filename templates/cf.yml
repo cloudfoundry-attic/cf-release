@@ -45,7 +45,7 @@ jobs:
         zone: z2
 
   - name: ha_proxy_z1
-    templates: (( merge || meta.ha_proxy_templates ))
+    templates: (( merge || meta.user_ha_proxy_templates meta.ha_proxy_templates ))
     instances: 0
     resource_pool: router_z1
     default_networks:
@@ -60,7 +60,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: nats_z1
-    templates: (( merge || meta.nats_templates ))
+    templates: (( merge || meta.user_nats_templates meta.nats_templates ))
     instances: 1
     resource_pool: medium_z1
     default_networks:
@@ -72,7 +72,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: nats_z2
-    templates: (( merge || meta.nats_templates ))
+    templates: (( merge || meta.user_nats_templates meta.nats_templates ))
     instances: 1
     resource_pool: medium_z2
     default_networks:
@@ -84,7 +84,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: etcd_z1
-    templates: (( merge || meta.etcd_templates ))
+    templates: (( merge || meta.user_etcd_templates meta.etcd_templates ))
     instances: 2
     persistent_disk: 10024
     resource_pool: medium_z1
@@ -92,6 +92,7 @@ jobs:
       - name: cf1
     networks: (( merge || default_networks ))
     properties:
+      <<: (( merge ))
       metron_agent:
         zone: z1
     update:
@@ -99,7 +100,7 @@ jobs:
       max_in_flight: 1
 
   - name: etcd_z2
-    templates: (( merge || meta.etcd_templates ))
+    templates: (( merge || meta.user_etcd_templates meta.etcd_templates ))
     instances: 1
     persistent_disk: 10024
     resource_pool: medium_z2
@@ -107,6 +108,7 @@ jobs:
       - name: cf2
     networks: (( merge || default_networks ))
     properties:
+      <<: (( merge ))
       metron_agent:
         zone: z2
     update:
@@ -114,7 +116,7 @@ jobs:
       max_in_flight: 1
 
   - name: stats_z1
-    templates: (( merge || meta.stats_templates ))
+    templates: (( merge || meta.user_stats_templates meta.stats_templates ))
     instances: 1
     resource_pool: small_z1
     default_networks:
@@ -164,7 +166,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: postgres_z1
-    templates: (( merge || meta.postgres_templates ))
+    templates: (( merge || meta.user_postgres_templates meta.postgres_templates ))
     instances: 0
     resource_pool: medium_z1
     persistent_disk: 4096
@@ -257,7 +259,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: clock_global
-    templates: (( merge || meta.clock_templates ))
+    templates: (( merge || meta.user_clock_templates meta.clock_templates ))
     instances: 1
     resource_pool: medium_z1
     persistent_disk: 0
@@ -382,7 +384,7 @@ jobs:
       max_in_flight: 1
 
   - name: loggregator_z1
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || meta.user_loggregator_templates meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z1
     default_networks:
@@ -396,7 +398,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: loggregator_z2
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || meta.user_loggregator_templates meta.loggregator_templates ))
     instances: 0
     resource_pool: medium_z2
     default_networks:
@@ -410,7 +412,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: doppler_z1
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || meta.user_loggregator_templates meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z1
     default_networks:
@@ -424,7 +426,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: doppler_z2
-    templates: (( merge || meta.loggregator_templates ))
+    templates: (( merge || meta.user_loggregator_templates meta.loggregator_templates ))
     instances: 1
     resource_pool: medium_z2
     default_networks:
@@ -438,7 +440,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: loggregator_trafficcontroller_z1
-    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
+    templates: (( merge || meta.user_loggregator_trafficcontroller_templates meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z1
     default_networks:
@@ -454,7 +456,7 @@ jobs:
     update: (( merge || empty_hash ))
 
   - name: loggregator_trafficcontroller_z2
-    templates: (( merge || meta.loggregator_trafficcontroller_templates ))
+    templates: (( merge || meta.user_loggregator_trafficcontroller_templates meta.loggregator_trafficcontroller_templates ))
     instances: 1
     resource_pool: small_z2
     default_networks:
@@ -583,8 +585,24 @@ properties:
     machines: (( merge || jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
     require_ssl: false
     peer_require_ssl: false
+    advertise_urls_dns_suffix:
+    ca_cert:
+    client_cert:
+    client_key:
+    cluster:
+    - instances: (( jobs.etcd_z1.instances ))
+      name: etcd_z1
+    - instances: (( jobs.etcd_z2.instances ))
+      name: etcd_z2
+    peer_ca_cert:
+    peer_client:
+    peer_cert:
+    peer_key:
+    server_cert:
+    server_key:
 
   etcd_metrics_server:
+    etcd:
     nats:
       machines: (( .properties.nats.machines ))
       username: (( .properties.nats.user ))
@@ -631,6 +649,10 @@ properties:
       ca_cert: ~
     etcd:
       machines: (( .properties.etcd.machines ))
+      require_ssl:
+      ca_cert:
+      client_cert:
+      client_key:
 
   loggregator_endpoint:
     shared_secret: (( merge ))
@@ -643,6 +665,7 @@ properties:
     blacklisted_syslog_ranges: ~
     unmarshaller_count: (( merge || 5 ))
     port: (( merge || 4443 ))
+    etcd:
     tls:
       server_cert: ~
       server_key: ~
@@ -660,9 +683,12 @@ properties:
     tls:
       client_cert: ~
       client_key: ~
+    etcd:
 
   metron_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
+
+  syslog_drain_binder:
 
   traffic_controller:
     outgoing_port: 8080
@@ -670,6 +696,7 @@ properties:
     disable_access_control: (( merge || nil ))
     security_event_logging:
       enabled: (( merge || false ))
+    etcd:
 
   logger_endpoint: ~
 
@@ -1224,6 +1251,8 @@ meta:
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
+  user_clock_templates: (( merge || [] ))
+
   clock_templates:
   - name: cloud_controller_clock
     release: (( meta.capi_release_name ))
@@ -1246,6 +1275,8 @@ meta:
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
+  user_etcd_templates: (( merge || [] ))
+
   etcd_templates:
   - name: etcd
     release: (( meta.etcd_release_name ))
@@ -1253,6 +1284,8 @@ meta:
     release: (( meta.etcd_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
+
+  user_ha_proxy_templates: (( merge || [] ))
 
   ha_proxy_templates:
   - name: haproxy
@@ -1281,6 +1314,8 @@ meta:
   - name: route_registrar
     release: (( meta.cf_release_name ))
 
+  user_loggregator_templates: (( merge || [] ))
+
   loggregator_templates:
   - name: doppler
     release: (( meta.loggregator_release_name ))
@@ -1301,6 +1336,8 @@ meta:
     uris:
     - (( "loggregator." .properties.system_domain ))
 
+  user_loggregator_trafficcontroller_templates: (( merge || [] ))
+
   loggregator_trafficcontroller_templates:
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
@@ -1308,6 +1345,8 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+
+  user_nats_templates: (( merge || [] ))
 
   nats_templates:
   - name: nats
@@ -1348,6 +1387,8 @@ meta:
   - name: route_registrar
     release: (( meta.cf_release_name ))
 
+  user_postgres_templates: (( merge || [] ))
+
   postgres_templates:
   - name: postgres
     release: (( meta.postgres_release_name ))
@@ -1361,6 +1402,8 @@ meta:
     release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
+
+  user_stats_templates: (( merge || [] ))
 
   stats_templates:
   - name: collector

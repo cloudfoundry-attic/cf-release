@@ -1,0 +1,120 @@
+jobs:
+- name: etcd_z1
+  properties:
+    metron_agent:
+      zone: z1
+    consul:
+      agent:
+        services:
+          etcd:
+            name: cf-etcd
+- name: etcd_z2
+  properties:
+    metron_agent:
+      zone: z2
+    consul:
+      agent:
+        services:
+          etcd:
+            name: cf-etcd
+properties:
+  doppler:
+    etcd:
+      require_ssl: true
+      ca_cert: (( properties.etcd.ca_cert ))
+      client_cert: (( properties.etcd.client_cert ))
+      client_key: (( properties.etcd.client_key ))
+
+  etcd:
+    advertise_urls_dns_suffix: cf-etcd.service.cf.internal
+    require_ssl: true
+    ca_cert: (( merge ))
+    client_cert: (( merge ))
+    client_key: (( merge ))
+    machines:
+    - cf-etcd.service.cf.internal
+    peer_ca_cert: (( merge ))
+    peer_client: (( merge ))
+    peer_key: (( merge ))
+    peer_cert: ((( merge ))
+    peer_require_ssl: (( merge ))
+    server_cert: (( merge ))
+    server_key: (( merge ))
+
+  etcd_metrics_server:
+    etcd:
+      require_ssl: true
+      ca_cert: (( properties.etcd.ca_cert ))
+      client_cert: (( properties.etcd.client_cert ))
+      client_key: (( properties.etcd.client_key ))
+      dns_suffix: (( properties.etcd.advertise_urls_dns_suffix ))
+
+  hm9000:
+    etcd:
+      require_ssl: true
+      ca_cert: (( properties.etcd.ca_cert ))
+      client_cert: (( properties.etcd.client_cert ))
+      client_key: (( properties.etcd.client_key ))
+
+  loggregator:
+    etcd:
+      require_ssl: true
+      ca_cert: (( properties.etcd.ca_cert ))
+      client_cert: (( properties.etcd.client_cert ))
+      client_key: (( properties.etcd.client_key ))
+
+  metron_agent:
+    etcd:
+      machines: (( properties.etcd.machines ))
+      require_ssl: true
+      ca_cert: (( properties.etcd.ca_cert ))
+      client_cert: (( properties.etcd.client_cert ))
+      client_key: (( properties.etcd.client_key ))
+
+  syslog_drain_binder:
+    etcd:
+      machines: (( properties.etcd.machines ))
+      require_ssl: true
+      ca_cert: (( properties.etcd.ca_cert ))
+      client_cert: (( properties.etcd.client_cert ))
+      client_key: (( properties.etcd.client_key ))
+
+  traffic_controller:
+    etcd:
+      machines: (( properties.etcd.machines ))
+      require_ssl: true
+      ca_cert: (( properties.etcd.ca_cert ))
+      client_cert: (( properties.etcd.client_cert ))
+      client_key: (( properties.etcd.client_key ))
+
+meta:
+  user_clock_templates:
+  - name: consul_agent
+    release: cf
+
+  user_postgres_templates:
+  - name: consul_agent
+    release: cf
+
+  user_ha_proxy_templates:
+  - name: consul_agent
+    release: cf
+
+  user_nats_templates:
+  - name: consul_agent
+    release: cf
+
+  user_stats_templates:
+  - name: consul_agent
+    release: cf
+
+  user_etcd_templates:
+    - name: consul_agent
+      release: cf
+  user_loggregator_templates:
+    - name: consul_agent
+      release: cf
+  user_loggregator_trafficcontroller_templates:
+    - name: consul_agent
+      release: cf
+
