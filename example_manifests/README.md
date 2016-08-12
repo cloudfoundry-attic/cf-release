@@ -157,7 +157,7 @@ The `ssh-proxy-host-key.pem` file contains the PEM-encoded private host key, and
 Replace REPLACE_WITH_SSH_HOST_KEY in the example manifest with the contents of `ssh-proxy-host-key.pem`, making sure to indent the contents correctly for the YAML literal block.
 Replace REPLACE_WITH_SSH_HOST_KEY_FINGERPRINT with the contents of `ssh-proxy-host-key-fingerprint`.
 
-## Create and Deploy CF Release
+## Create and Deploy Cloud Foundry
 Download a copy of the latest bosh stemcell.
 
 ```sh
@@ -177,9 +177,6 @@ Replace REPLACE_WITH_BOSH_STEMCELL_VERSION in the example manifest with the BOSH
 Upload the latest stable version of Cloud Foundry.
 
 ```sh
-git clone https://github.com/cloudfoundry/cf-release.git
-cd cf-release
-
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/cf-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/diego-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-rootfs-release
