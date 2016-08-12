@@ -366,6 +366,9 @@ jobs:
     dropsonde: {enabled: true}
 
 properties:
+  router:
+    route_services_secret: PASSWORD
+    ssl_skip_validation: true
   app_ssh:
     host_key_fingerprint: REPLACE_WITH_SSH_HOST_KEY_FINGERPRINT
     oauth_client_id: ssh-proxy
