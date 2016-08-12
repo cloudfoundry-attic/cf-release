@@ -154,8 +154,6 @@ jobs:
     release: cf
   - name: cc_uploader
     release: cf
-  - name: ssh_proxy
-    release: diego
   - name: file_server
     release: diego
   - name: route_emitter
@@ -369,9 +367,6 @@ properties:
   router:
     route_services_secret: PASSWORD
     ssl_skip_validation: true
-  app_ssh:
-    host_key_fingerprint: REPLACE_WITH_SSH_HOST_KEY_FINGERPRINT
-    oauth_client_id: ssh-proxy
   networks: {apps: cf_private}
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
   cc:
@@ -777,13 +772,6 @@ properties:
         redirect-uri: https://servicesmgmt.REPLACE_WITH_SYSTEM_DOMAIN/auth/cloudfoundry/callback
         scope: openid,cloud_controller.read,cloud_controller.write
         secret: PASSWORD
-      ssh-proxy:
-        authorized-grant-types: authorization_code
-        autoapprove: true
-        override: true
-        redirect-uri: /login
-        scope: openid,cloud_controller.read,cloud_controller.write,cloud_controller.admin
-        secret: PASSWORD
 
     jwt:
       signing_key: |
@@ -903,17 +891,6 @@ properties:
         user: nats
     ssl:
       skip_cert_verify: true
-    ssh_proxy:
-      bbs:
-        ca_cert: ""
-        client_cert: ""
-        client_key: ""
-        require_ssl: false
-      enable_cf_auth: true
-      host_key: |
-        REPLACE_WITH_SSH_HOST_KEY
-      uaa_secret: PASSWORD
-      uaa_token_url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN/oauth/token
   garden:
     graph_cleanup_threshold_in_mb: 0
     persistent_image_list: ["/var/vcap/packages/cflinuxfs2/rootfs"]
