@@ -94,6 +94,11 @@ jobs:
     properties:
       metron_agent:
         zone: z1
+      consul:
+        agent:
+          services:
+            etcd:
+              name: cf-etcd
     update:
       serial: true
       max_in_flight: 1
@@ -109,6 +114,11 @@ jobs:
     properties:
       metron_agent:
         zone: z2
+      consul:
+        agent:
+          services:
+            etcd:
+              name: cf-etcd
     update:
       serial: true
       max_in_flight: 1
@@ -581,10 +591,31 @@ properties:
 
   etcd:
     machines: (( merge || jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
-    require_ssl: false
-    peer_require_ssl: false
+    require_ssl: (( merge || false ))
+    peer_require_ssl: (( .properties.etcd.require_ssl ))
+    advertise_urls_dns_suffix: cf-etcd.service.cf.internal
+    ca_cert: (( merge || "" ))
+    client_cert: (( merge || "" ))
+    client_key: (( merge || "" ))
+    cluster:
+      - instances: (( jobs.etcd_z1.instances ))
+        name: etcd_z1
+      - instances: (( jobs.etcd_z2.instances ))
+        name: etcd_z2
+    peer_ca_cert: (( merge || "" ))
+    peer_client: (( merge || "" ))
+    peer_cert: (( merge || "" ))
+    peer_key: (( merge || "" ))
+    server_cert: (( merge || "" ))
+    server_key: (( merge || "" ))
 
   etcd_metrics_server:
+    etcd:
+      require_ssl: (( .properties.etcd.require_ssl ))
+      ca_cert: (( .properties.etcd.ca_cert ))
+      client_cert: (( .properties.etcd.client_cert ))
+      client_key: (( .properties.etcd.client_key ))
+      dns_suffix: (( .properties.etcd.advertise_urls_dns_suffix ))
     nats:
       machines: (( .properties.nats.machines ))
       username: (( .properties.nats.user ))
@@ -630,7 +661,9 @@ properties:
     tls:
       ca_cert: ~
     etcd:
-      machines: (( .properties.etcd.machines ))
+      machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
+      require_ssl: (( .properties.etcd.require_ssl ))
+      ca_cert: (( .properties.etcd.ca_cert ))
 
   loggregator_endpoint:
     shared_secret: (( merge ))
@@ -648,6 +681,9 @@ properties:
       server_key: ~
       port: ~
       enable: ~
+    etcd:
+      client_cert: (( .properties.etcd.client_cert ))
+      client_key: (( .properties.etcd.client_key ))
 
   doppler_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
@@ -657,6 +693,9 @@ properties:
     preferred_protocol: ~
     enable_buffer: ~
     buffer_size: ~
+    etcd:
+      client_cert: (( .properties.etcd.client_cert ))
+      client_key: (( .properties.etcd.client_key ))
     tls:
       client_cert: ~
       client_key: ~
@@ -670,8 +709,16 @@ properties:
     disable_access_control: (( merge || nil ))
     security_event_logging:
       enabled: (( merge || false ))
+    etcd:
+      client_cert: (( .properties.etcd.client_cert ))
+      client_key: (( .properties.etcd.client_key ))
 
   logger_endpoint: ~
+
+  syslog_drain_binder:
+    etcd:
+      client_cert: (( .properties.etcd.client_cert ))
+      client_key: (( .properties.etcd.client_key ))
 
   cc:
     jobs:
@@ -861,11 +908,11 @@ properties:
     client_cert:
     client_key:
     etcd:
-      machines: (( .properties.etcd.machines ))
-      require_ssl:
-      ca_cert:
-      client_cert:
-      client_key:
+      machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
+      require_ssl: (( .properties.etcd.require_ssl ))
+      ca_cert: (( .properties.etcd.ca_cert ))
+      client_cert: (( .properties.etcd.client_cert ))
+      client_key: (( .properties.etcd.client_key ))
 
   login:
     home_redirect: ~
@@ -1225,6 +1272,8 @@ meta:
     release: (( meta.loggregator_release_name ))
 
   clock_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: cloud_controller_clock
     release: (( meta.capi_release_name ))
   - name: metron_agent
@@ -1247,6 +1296,8 @@ meta:
     release: (( meta.loggregator_release_name ))
 
   etcd_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: etcd
     release: (( meta.etcd_release_name ))
   - name: etcd_metrics_server
@@ -1255,12 +1306,12 @@ meta:
     release: (( meta.loggregator_release_name ))
 
   ha_proxy_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: haproxy
     release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
 
   hm9000_routes:
   - name: hm9000
@@ -1282,6 +1333,8 @@ meta:
     release: (( meta.cf_release_name ))
 
   loggregator_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: doppler
     release: (( meta.loggregator_release_name ))
   - name: syslog_drain_binder
@@ -1302,6 +1355,8 @@ meta:
     - (( "loggregator." .properties.system_domain ))
 
   loggregator_trafficcontroller_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
   - name: metron_agent
@@ -1310,6 +1365,8 @@ meta:
     release: (( meta.cf_release_name ))
 
   nats_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: nats
     release: (( meta.cf_release_name ))
   - name: nats_stream_forwarder
@@ -1349,6 +1406,8 @@ meta:
     release: (( meta.cf_release_name ))
 
   postgres_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: postgres
     release: (( meta.postgres_release_name ))
   - name: metron_agent
@@ -1363,6 +1422,8 @@ meta:
     release: (( meta.loggregator_release_name ))
 
   stats_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: collector
     release: (( meta.cf_release_name ))
   - name: metron_agent
@@ -1384,12 +1445,12 @@ meta:
       script_path: /var/vcap/jobs/uaa/bin/health_check
 
   uaa_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
   - name: uaa
     release: (( meta.uaa_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
   - name: statsd-injector
