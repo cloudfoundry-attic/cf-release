@@ -43,17 +43,6 @@ skipPackages+=<%= properties.acceptance_tests.include_route_services ? "" : "rou
 
 <% skips = [] %>
 <% skips.push("SSO") unless properties.acceptance_tests.include_sso %>
-<%
-case p("acceptance_tests.backend")
-when "diego"
-  skips.push("NO_DIEGO_SUPPORT")
-when "dea"
-  skips.push("NO_DEA_SUPPORT")
-else
-  skips.push("NO_DIEGO_SUPPORT")
-  skips.push("NO_DEA_SUPPORT")
-end
-%>
 <% if_p("acceptance_tests.skip_regex") { skips.push properties.acceptance_tests.skip_regex } %>
 skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
 
