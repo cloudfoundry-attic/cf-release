@@ -3734,6 +3734,7 @@ properties:
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
+    etcd: null
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     port: 4443
@@ -3749,11 +3750,27 @@ properties:
   dropsonde:
     enabled: true
   etcd:
+    advertise_urls_dns_suffix: null
+    ca_cert: null
+    client_cert: null
+    client_key: null
+    cluster:
+    - instances: 1
+      name: etcd_z1
+    - instances: 0
+      name: etcd_z2
     machines:
     - 10.244.0.42
+    peer_ca_cert: null
+    peer_cert: null
+    peer_client: null
+    peer_key: null
     peer_require_ssl: false
     require_ssl: false
+    server_cert: null
+    server_key: null
   etcd_metrics_server:
+    etcd: null
     nats:
       machines:
       - 10.244.0.6
@@ -3915,8 +3932,12 @@ properties:
     blacklisted_syslog_ranges: null
     debug: false
     etcd:
+      ca_cert: null
+      client_cert: null
+      client_key: null
       machines:
       - 10.244.0.42
+      require_ssl: null
     maxRetainedLogMessages: 100
     outgoing_dropsonde_port: 8081
     tls:
@@ -3959,6 +3980,7 @@ properties:
     buffer_size: null
     deployment: cf-warden
     enable_buffer: null
+    etcd: null
     preferred_protocol: null
     tls:
       client_cert: null
@@ -4021,10 +4043,12 @@ properties:
     skip_cert_verify: true
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
+  syslog_drain_binder: null
   system_domain: bosh-lite.com
   system_domain_organization: null
   traffic_controller:
     disable_access_control: null
+    etcd: null
     outgoing_port: 8080
     zone: null
     security_event_logging:
