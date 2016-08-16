@@ -123,10 +123,6 @@ java-buildpack/java-buildpack-v3.8.1.zip:
   object_id: d50a848f-4418-4528-bd70-5712ffc58722
   sha: cb76e8200619be960216b4a48865f8bbe4bdf0ec
   size: 171390
-python-buildpack/python_buildpack-cached-v1.5.8.zip:
-  object_id: df6efcda-25cb-4336-959a-664147ce7638
-  sha: 0265334a8e85eea0706c3a99daecbb5a3efd3951
-  size: 268943100
 golang/go1.6.3.linux-amd64.tar.gz:
   object_id: 7ad4929c-a987-4b84-b686-3c9598951f25
   sha: 5e916ba4dd8c2fc43beafca4c08b334c4d0686f3
@@ -159,3 +155,7 @@ rootfs/cflinuxfs2-1.75.0.tar.gz:
   object_id: cd87ea6a-5388-4ff9-8bd5-f533c58aa856
   sha: 22c6c70e6ef9a27800075ef0b15abf16d232979a
   size: 276086863
+python-buildpack/python_buildpack-cached-v1.5.9.zip:
+  object_id: a7aaa36f-a6cc-4739-b5a3-ea94358edf1a
+  sha: e7f5f9332a763bbce3ac791370bffd9bede511ae
+  size: 268832470
