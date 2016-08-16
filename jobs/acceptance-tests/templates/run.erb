@@ -42,7 +42,6 @@ skipPackages+=<%= properties.acceptance_tests.include_route_services ? "" : "rou
 [[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
 
 <% skips = [] %>
-<% skips.push("SSO") unless properties.acceptance_tests.include_sso %>
 <% if_p("acceptance_tests.skip_regex") { skips.push properties.acceptance_tests.skip_regex } %>
 skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
 

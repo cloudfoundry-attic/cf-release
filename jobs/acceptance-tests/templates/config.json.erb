@@ -30,8 +30,10 @@
     :existing_user => properties.acceptance_tests.existing_user,
     :existing_user_password => properties.acceptance_tests.existing_user_password,
     :use_existing_user => !properties.acceptance_tests.existing_user.nil?,
-    :keep_user_at_suite_end => !properties.acceptance_tests.existing_user.nil?
+    :keep_user_at_suite_end => !properties.acceptance_tests.existing_user.nil?,
+    :include_sso => properties.acceptance_tests.include_sso
   }
+
   config[:default_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.default_timeout
   config[:cf_push_timeout] = properties.acceptance_tests.cf_push_timeout if properties.acceptance_tests.cf_push_timeout
   config[:long_curl_timeout] = properties.acceptance_tests.long_curl_timeout if properties.acceptance_tests.long_curl_timeout
