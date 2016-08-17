@@ -55,7 +55,7 @@ bin/test -r $noColorFlag -slowSpecThreshold=120 -randomizeAllSpecs $verbose \
   2> /var/vcap/sys/log/acceptance_tests.err.log
 EXITSTATUS=$?
 set -e
-tail -c 925696 /var/vcap/sys/log/acceptance_tests.log
+tail -c 905696 /var/vcap/sys/log/acceptance_tests.log
 
 echo "Acceptance Tests Complete; exit status: $EXITSTATUS"
 
