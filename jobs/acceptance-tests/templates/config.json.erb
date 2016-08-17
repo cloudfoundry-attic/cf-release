@@ -31,7 +31,17 @@
     :existing_user_password => properties.acceptance_tests.existing_user_password,
     :use_existing_user => !properties.acceptance_tests.existing_user.nil?,
     :keep_user_at_suite_end => !properties.acceptance_tests.existing_user.nil?,
-    :include_sso => properties.acceptance_tests.include_sso
+    :include_sso => properties.acceptance_tests.include_sso,
+    :include_backend_compatibility => properties.acceptance_tests.include_backend_compatibility,
+    :include_detect => properties.acceptance_tests.include_detect,
+    :include_docker => properties.acceptance_tests.include_diego_docker,
+    :include_internet_dependent => properties.acceptance_tests.include_internet_dependent,
+    :include_route_services => properties.acceptance_tests.include_route_services,
+    :include_routing => properties.acceptance_tests.include_routing,
+    :include_security_groups => properties.acceptance_tests.include_security_groups,
+    :include_services => properties.acceptance_tests.include_services,
+    :include_ssh => properties.acceptance_tests.include_diego_ssh,
+    :include_v3 => properties.acceptance_tests.include_v3
   }
 
   config[:default_timeout] = properties.acceptance_tests.default_timeout if properties.acceptance_tests.default_timeout

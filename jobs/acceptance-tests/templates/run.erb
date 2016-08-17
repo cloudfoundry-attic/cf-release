@@ -30,16 +30,7 @@ EXITSTATUS=0
 
 nodes=<%= properties.acceptance_tests.nodes %>
 
-skipPackages="-skipPackage=helpers,"
-skipPackages+=<%= properties.acceptance_tests.include_diego_ssh ? "" : "ssh," %>
-skipPackages+=<%= properties.acceptance_tests.include_diego_docker ? "" : "docker," %>
-skipPackages+=<%= properties.acceptance_tests.include_backend_compatibility ? "" : "backend_compatibility," %>
-skipPackages+=<%= properties.acceptance_tests.include_v3 ? "" : "v3," %>
-skipPackages+=<%= properties.acceptance_tests.include_security_groups ? "" : "security_groups," %>
-skipPackages+=<%= properties.acceptance_tests.include_internet_dependent ? "" : "internet_dependent," %>
-skipPackages+=<%= properties.acceptance_tests.include_services ? "" : "services," %>
-skipPackages+=<%= properties.acceptance_tests.include_route_services ? "" : "route_services," %>
-[[ $skipPackages == *, ]] && skipPackages=${skipPackages%?} # strip trailing comma
+skipPackages="-skipPackage=helpers"
 
 <% skips = [] %>
 <% if_p("acceptance_tests.skip_regex") { skips.push properties.acceptance_tests.skip_regex } %>
