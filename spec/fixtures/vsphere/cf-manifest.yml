@@ -1435,6 +1435,7 @@ properties:
       client_cert: ""
       client_key: ""
     preferred_protocol: null
+    protocols: null
     tls:
       client_cert: null
       client_key: null
