@@ -1,7 +1,7 @@
 # Introduction
 
 The `minimal-aws.yml` is an example of a minimalistic deployment of Cloud
-Foundry, including all crucial components for its basic functionality. it allows
+Foundry, including all crucial components for its basic functionality. It allows
 you to deploy Cloud Foundry for educational purposes, so you can poke around and
 break things. 
 
