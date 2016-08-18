@@ -603,7 +603,6 @@ properties:
       - instances: (( jobs.etcd_z2.instances ))
         name: etcd_z2
     peer_ca_cert: (( merge || "" ))
-    peer_client: (( merge || "" ))
     peer_cert: (( merge || "" ))
     peer_key: (( merge || "" ))
     server_cert: (( merge || "" ))
