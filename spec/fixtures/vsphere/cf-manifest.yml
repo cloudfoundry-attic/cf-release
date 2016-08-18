@@ -1466,6 +1466,7 @@ properties:
     enable_proxy: null
     enable_ssl: null
     extra_headers_to_log: null
+    logging_level: null
     logrotate: null
     port: null
     requested_route_registration_interval_in_seconds: null

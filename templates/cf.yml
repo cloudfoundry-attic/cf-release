@@ -1056,6 +1056,7 @@ properties:
   databases: ~
 
   router:
+    logging_level: (( merge || nil ))
     suspend_pruning_if_nats_unavailable: (( merge || nil ))
     enable_proxy: (( merge || nil ))
     enable_ssl: (( merge || nil ))

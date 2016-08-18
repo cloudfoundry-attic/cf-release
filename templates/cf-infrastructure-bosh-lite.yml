@@ -589,6 +589,7 @@ properties:
       - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read,routing.router_groups.write
 
   router:
+    logging_level: debug
     status:
       user: router
       password: router
