@@ -1,4 +1,4 @@
-Rootfs SHASUM: 22c6c70e6ef9a27800075ef0b15abf16d232979a
+Rootfs SHASUM: 4c2bdbfd22d271f46356de9b6afa054a1b263cb5
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -52,8 +52,8 @@ ii  fakeroot                           1.20-3ubuntu2                       amd64
 ii  file                               1:5.14-2ubuntu3.3                   amd64        Determines file type using "magic" numbers
 ii  findutils                          4.4.2-7                             amd64        utilities for finding files--find, xargs
 ii  flex                               2.5.35-10.1ubuntu2                  amd64        A fast lexical analyzer generator.
-ii  fontconfig                         2.11.0-0ubuntu4.1                   amd64        generic font configuration library - support binaries
-ii  fontconfig-config                  2.11.0-0ubuntu4.1                   all          generic font configuration library - configuration
+ii  fontconfig                         2.11.0-0ubuntu4.2                   amd64        generic font configuration library - support binaries
+ii  fontconfig-config                  2.11.0-0ubuntu4.2                   all          generic font configuration library - configuration
 ii  fonts-dejavu-core                  2.34-1ubuntu1                       all          Vera font family derivate with additional characters
 ii  fuse                               2.9.2-4ubuntu4.14.04.1              amd64        Filesystem in Userspace
 ii  fuse-emulator-utils                1.1.1-1build1                       amd64        The Free Unix Spectrum Emulator - Utilities
@@ -190,8 +190,8 @@ ii  libffi6:amd64                      3.1~rc1+r3.0.13-12ubuntu0.1         amd64
 ii  libfftw3-double3:amd64             3.3.3-7ubuntu3                      amd64        Library for computing Fast Fourier Transforms - Double precision
 ii  libfl-dev:amd64                    2.5.35-10.1ubuntu2                  amd64        static library for flex (a fast lexical analyzer generator).
 ii  libflac8:amd64                     1.3.0-2ubuntu0.14.04.1              amd64        Free Lossless Audio Codec - runtime C library
-ii  libfontconfig1:amd64               2.11.0-0ubuntu4.1                   amd64        generic font configuration library - runtime
-ii  libfontconfig1-dev                 2.11.0-0ubuntu4.1                   amd64        generic font configuration library - development
+ii  libfontconfig1:amd64               2.11.0-0ubuntu4.2                   amd64        generic font configuration library - runtime
+ii  libfontconfig1-dev                 2.11.0-0ubuntu4.2                   amd64        generic font configuration library - development
 ii  libfreetype6:amd64                 2.5.2-1ubuntu2.5                    amd64        FreeType 2 font engine, shared library files
 ii  libfreetype6-dev                   2.5.2-1ubuntu2.5                    amd64        FreeType 2 font engine, development files
 ii  libfribidi0:amd64                  0.19.6-1                            amd64        Free Implementation of the Unicode BiDi algorithm
