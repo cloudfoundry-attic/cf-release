@@ -828,6 +828,10 @@ jobs:
         - loggregator.SYSTEM_DOMAIN
     traffic_controller:
       zone: z1
+    consul:
+      agent:
+        services:
+          loggregator_trafficcontroller: {}
   resource_pool: small_z1
   templates:
   - name: consul_agent
@@ -862,6 +866,10 @@ jobs:
         - loggregator.SYSTEM_DOMAIN
     traffic_controller:
       zone: z2
+    consul:
+      agent:
+        services:
+          loggregator_trafficcontroller: {}
   resource_pool: small_z2
   templates:
   - name: consul_agent

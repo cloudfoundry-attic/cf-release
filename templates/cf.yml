@@ -457,6 +457,10 @@ jobs:
     properties:
       traffic_controller:
         zone: z1
+      consul:
+        agent:
+          services:
+            loggregator_trafficcontroller: {}
       metron_agent:
         zone: z1
       route_registrar:
@@ -473,6 +477,10 @@ jobs:
     properties:
       traffic_controller:
         zone: z2
+      consul:
+        agent:
+          services:
+            loggregator_trafficcontroller: {}
       metron_agent:
         zone: z2
       route_registrar:
