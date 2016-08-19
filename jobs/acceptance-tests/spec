@@ -30,6 +30,9 @@ properties:
   acceptance_tests.verbose:
     default: false
     description: Whether to pass the -v flag to cf-acceptance-tests
+  acceptance_tests.include_apps:
+    default: true
+    description: Flag to include the apps test suite.
   acceptance_tests.include_sso:
     default: false
     description: Flag to include the services tests that integrate with SSO.

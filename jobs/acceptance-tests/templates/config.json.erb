@@ -31,6 +31,7 @@
     :existing_user_password => properties.acceptance_tests.existing_user_password,
     :use_existing_user => !properties.acceptance_tests.existing_user.nil?,
     :keep_user_at_suite_end => !properties.acceptance_tests.existing_user.nil?,
+    :include_apps => properties.acceptance_tests.include_apps,
     :include_sso => properties.acceptance_tests.include_sso,
     :include_backend_compatibility => properties.acceptance_tests.include_backend_compatibility,
     :include_detect => properties.acceptance_tests.include_detect,
