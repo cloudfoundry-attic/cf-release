@@ -925,14 +925,17 @@ properties:
     protocol: ~
     brand: oss
     asset_base_url: ~
+    uaa_base: ~
     self_service_links_enabled: ~
+    signups_enabled: ~
+    invitations_enabled: ~
+    spring_profiles: ~
     messages: ~
 
     notifications:
       url: ~
 
     smtp:
-      <<: (( merge || nil ))
       host: ~
       port: ~
       user: ~
@@ -943,6 +946,8 @@ properties:
       signup: (( "https://login." system_domain "/create_account" ))
 
     logout: ~
+
+    tiles: ~
 
     saml: ~
 
@@ -988,6 +993,7 @@ properties:
 
     newrelic: ~
     port: 8080
+    spring_profiles: ~
 
     user: ~
     clients:
@@ -1037,6 +1043,8 @@ properties:
         secret: (( merge ))
 
     database: ~
+
+    restricted_ips_regex: 10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|169\.254\.\d{1,3}\.\d{1,3}|127\.\d{1,3}\.\d{1,3}\.\d{1,3}|172\.1[6-9]{1}\.\d{1,3}\.\d{1,3}|172\.2[0-9]{1}\.\d{1,3}\.\d{1,3}|172\.3[0-1]{1}\.\d{1,3}\.\d{1,3}
 
     zones:
       internal:

@@ -340,15 +340,7 @@ jobs:
       scim:
         userids_enabled: true
         users:
-        - name: admin
-          password: PASSWORD
-          groups:
-          - scim.write
-          - scim.read
-          - openid
-          - cloud_controller.admin
-          - doppler.firehose
-          - routing.router_groups.read
+        - admin|PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose,routing.router_groups.read
     uaadb:
       address: 10.0.16.101
       databases:

@@ -115,14 +115,7 @@ properties:
       signing_key: JWT_SIGNING_KEY
     scim:
       users:
-      - name: admin
-        password: ADMIN_PASSWORD
-        groups:
-        - scim.write
-        - scim.read
-        - openid
-        - cloud_controller.admin
-        - doppler.firehose
+        - admin|ADMIN_PASSWORD|scim.write,scim.read,openid,cloud_controller.admin,doppler.firehose
   uaadb:
     db_scheme: UAADB_SCHEME
     roles:

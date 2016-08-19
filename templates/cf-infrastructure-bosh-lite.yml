@@ -586,18 +586,7 @@ properties:
         secret: ssh-proxy-secret
     scim:
       users:
-      - name: admin
-        password: admin
-        groups:
-          - scim.write
-          - scim.read
-          - openid
-          - cloud_controller.admin
-          - clients.read
-          - clients.write
-          - doppler.firehose
-          - routing.router_groups.read
-          - routing.router_groups.write
+      - admin|admin|scim.write,scim.read,openid,cloud_controller.admin,clients.read,clients.write,doppler.firehose,routing.router_groups.read,routing.router_groups.write
 
   router:
     logging_level: debug
