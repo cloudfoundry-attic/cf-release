@@ -154,6 +154,8 @@ jobs:
           -----END CERTIFICATE-----
   - name: api_z1
     templates:
+      - name: consul_agent
+        release: cf
       - name: go-buildpack
         release: cf
       - name: binary-buildpack
