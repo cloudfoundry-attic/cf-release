@@ -423,6 +423,8 @@ jobs:
         - api.SYSTEM_DOMAIN
   resource_pool: large_z1
   templates:
+  - name: consul_agent
+    release: cf
   - name: go-buildpack
     release: cf
   - name: binary-buildpack
