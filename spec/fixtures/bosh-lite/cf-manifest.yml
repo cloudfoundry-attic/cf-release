@@ -3842,7 +3842,7 @@ properties:
       notifications:
         authorities: cloud_controller.admin,scim.read
         authorized-grant-types: client_credentials
-        secret: notification-secret
+        secret: notifications-secret
       ssh-proxy:
         authorized-grant-types: authorization_code
         autoapprove: true

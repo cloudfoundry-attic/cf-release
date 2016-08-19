@@ -564,7 +564,7 @@ properties:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
       notifications:
-        secret: notification-secret
+        secret: notifications-secret
       doppler:
         secret: doppler-secret
       cloud_controller_username_lookup:
