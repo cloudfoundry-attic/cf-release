@@ -138,6 +138,7 @@ jobs:
   - name: consul_agent
     release: cf
   - name: nats
+    consumes: {nats: nil}
     release: cf
   - name: nats_stream_forwarder
     release: cf
@@ -159,6 +160,7 @@ jobs:
   - name: consul_agent
     release: cf
   - name: nats
+    consumes: {nats: nil}
     release: cf
   - name: nats_stream_forwarder
     release: cf
