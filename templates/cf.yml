@@ -919,7 +919,6 @@ properties:
       client_key: (( .properties.etcd.client_key ))
 
   login:
-    home_redirect: ~
     branding: (( merge || nil ))
     enabled: true
     analytics:
