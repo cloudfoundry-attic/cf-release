@@ -700,6 +700,7 @@ properties:
     preferred_protocol: ~
     enable_buffer: ~
     buffer_size: ~
+    protocols: ~
     etcd:
       client_cert: (( .properties.etcd.client_cert ))
       client_key: (( .properties.etcd.client_key ))
