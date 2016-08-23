@@ -32,9 +32,10 @@ nodes=<%= properties.acceptance_tests.nodes %>
 
 skipPackages="-skipPackage=helpers"
 
-<% skips = [] %>
-<% if_p("acceptance_tests.skip_regex") { skips.push properties.acceptance_tests.skip_regex } %>
-skips=<%= skips.empty? ? "" : %Q[-skip="#{skips.join("|")}"] %>
+skips=
+<% if_p("acceptance_tests.skip_regex") do |skip_regex| %>
+  skips="-skip=<%= skip_regex %>"
+<% end %>
 
 verbose=<%= properties.acceptance_tests.verbose ? "-v" : "" %>
 noColorFlag=<%= properties.acceptance_tests.enable_color ? "" : "-noColor" %>
