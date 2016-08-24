@@ -1575,6 +1575,13 @@ properties:
     login: null
     newrelic: null
     no_ssl: null
+    password:
+      policy:
+        minLength: null
+        requireDigit: null
+        requireLowerCaseCharacter: null
+        requireSpecialCharacter: null
+        requireUpperCaseCharacter: null
     port: 8080
     require_https: null
     scim:
