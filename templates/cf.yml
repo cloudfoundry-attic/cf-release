@@ -623,10 +623,6 @@ properties:
       client_cert: (( .properties.etcd.client_cert ))
       client_key: (( .properties.etcd.client_key ))
       dns_suffix: (( .properties.etcd.advertise_urls_dns_suffix ))
-    nats:
-      machines: (( .properties.nats.machines ))
-      username: (( .properties.nats.user ))
-      password: (( .properties.nats.password ))
 
   dea_next:
     memory_overcommit_factor: null

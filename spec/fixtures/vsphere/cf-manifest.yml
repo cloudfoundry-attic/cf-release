@@ -1367,12 +1367,6 @@ properties:
       client_key: ""
       dns_suffix: cf-etcd.service.cf.internal
       require_ssl: false
-    nats:
-      machines:
-      - 10.85.9.231
-      - 10.85.10.231
-      password: NATS_PASSWORD
-      username: NATS_USER
   ha_proxy: null
   hm9000:
     ca_cert: HM9000_CA_CERT
