@@ -1,4 +1,4 @@
-Rootfs SHASUM: a1d144210956045e58af13785859b48de407cf03
+Rootfs SHASUM: b03e1adc6b8ce110bc5feb14a367883b8eeca68a
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -236,7 +236,7 @@ ii  libgtk-3-0:amd64                   3.10.8-0ubuntu1.6                   amd64
 ii  libgtk-3-common                    3.10.8-0ubuntu1.6                   all          common files for the GTK+ graphical user interface library
 ii  libgvc6                            2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - gvc library
 ii  libgvpr2                           2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - gvpr library
-ii  libharfbuzz0b:amd64                0.9.27-1ubuntu1                     amd64        OpenType text shaping engine (shared library)
+ii  libharfbuzz0b:amd64                0.9.27-1ubuntu1.1                   amd64        OpenType text shaping engine (shared library)
 ii  libhcrypto4-heimdal:amd64          1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - crypto library
 ii  libheimbase1-heimdal:amd64         1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - Base library
 ii  libheimntlm0-heimdal:amd64         1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - NTLM support library
@@ -245,8 +245,8 @@ ii  libice-dev:amd64                   2:1.0.8-2                           amd64
 ii  libice6:amd64                      2:1.0.8-2                           amd64        X11 Inter-Client Exchange library
 ii  libicu-dev:amd64                   52.1-3ubuntu0.4                     amd64        Development files for International Components for Unicode
 ii  libicu52:amd64                     52.1-3ubuntu0.4                     amd64        International Components for Unicode
-ii  libidn11:amd64                     1.28-1ubuntu2                       amd64        GNU Libidn library, implementation of IETF IDN specifications
-ii  libidn11-dev                       1.28-1ubuntu2                       amd64        Development files for GNU Libidn, an IDN library
+ii  libidn11:amd64                     1.28-1ubuntu2.1                     amd64        GNU Libidn library, implementation of IETF IDN specifications
+ii  libidn11-dev                       1.28-1ubuntu2.1                     amd64        Development files for GNU Libidn, an IDN library
 ii  libilmbase-dev                     1.0.1-6ubuntu1                      amd64        development files for IlmBase
 ii  libilmbase6:amd64                  1.0.1-6ubuntu1                      amd64        several utility libraries from ILM used by OpenEXR
 ii  libio-string-perl                  1.08-3                              all          Emulate IO::File interface for in-core strings
