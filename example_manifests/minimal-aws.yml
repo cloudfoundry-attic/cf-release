@@ -128,7 +128,33 @@ jobs:
       agent:
         mode: server
 
-- name: diego_z1
+- name: diego_cell_z1
+  instances: 1
+  resource_pool: diego
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: rep
+    release: diego
+  - name: garden
+    release: garden-linux
+  - name: cflinuxfs2-rootfs-setup
+    release: cflinuxfs2-rootfs
+  - name: metron_agent
+    release: cf
+  networks:
+  - name: cf_private
+  update:
+    serial: true
+    max_in_flight: 1
+  properties:
+    metron_agent:
+      zone: z1
+    diego:
+      rep:
+        zone: z1
+
+- name: diego_brain_z1
   instances: 1
   resource_pool: diego
   templates:
@@ -140,12 +166,6 @@ jobs:
     release: diego
   - name: auctioneer
     release: diego
-  - name: rep
-    release: diego
-  - name: garden
-    release: garden-linux
-  - name: cflinuxfs2-rootfs-setup
-    release: cflinuxfs2-rootfs
   - name: stager
     release: cf
   - name: nsync
@@ -162,7 +182,7 @@ jobs:
     release: cf
   persistent_disk: 20480
   networks:
-    - name: cf_private
+  - name: cf_private
   update:
     serial: true
     max_in_flight: 1
@@ -173,9 +193,6 @@ jobs:
           etcd: {}
     metron_agent:
       zone: z1
-    diego:
-      rep:
-        zone: z1
 
 - name: blobstore_z1
   instances: 1
