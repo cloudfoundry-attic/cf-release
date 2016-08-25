@@ -1091,6 +1091,7 @@ properties:
     extra_headers_to_log: (( merge || nil ))
     debug_address: (( merge || nil ))
     drain_wait: (( merge || nil ))
+    healthcheck_user_agent: (( merge || nil ))
     enable_access_log_streaming: (( merge || nil ))
 
   routing_api:
