@@ -49,7 +49,7 @@ resource_pools:
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
     instance_type: c3.large
-- name: diego
+- name: diego_z1
   network: cf_private
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
@@ -59,14 +59,18 @@ resource_pools:
     ephemeral_disk:
       size: 40000
     instance_type: m3.2xlarge
-- name: small
+- name: diego_cell_z1
   network: cf_private
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
     version: REPLACE_WITH_BOSH_STEMCELL_VERSION
   cloud_properties:
     availability_zone: REPLACE_WITH_AZ
-    instance_type: t2.medium
+    ephemeral_disk:
+      size: 80000
+      type: io1
+      iops: 1200
+    instance_type: m3.2xlarge
 
 compilation:
   workers: 6
@@ -130,7 +134,7 @@ jobs:
 
 - name: diego_cell_z1
   instances: 1
-  resource_pool: diego
+  resource_pool: diego_cell_z1
   templates:
   - name: consul_agent
     release: cf
@@ -156,7 +160,7 @@ jobs:
 
 - name: diego_brain_z1
   instances: 1
-  resource_pool: diego
+  resource_pool: diego_z1
   templates:
   - name: consul_agent
     release: cf
