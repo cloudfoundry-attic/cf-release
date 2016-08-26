@@ -15,10 +15,6 @@ uaa/newrelic.jar:
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
   sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
   size: 7064901
-uaa/apache-tomcat-7.0.61.tar.gz:
-  object_id: fdad7b89-61f5-4cd1-a003-49c4d872412b
-  sha: 98ccbc95d029291e81bf818879ec8a0aa14465df
-  size: 8816567
 haproxy/haproxy-1.5.14.tar.gz:
   object_id: 02657a44-3292-4e0b-8b18-bcad061a2381
   sha: 159f5beb8fdc6b8059ae51b53dc935d91c0fb51f
@@ -51,14 +47,6 @@ golang/go1.5.4.linux-amd64.tar.gz:
   object_id: a3831241-348f-478b-836c-f86962dcfc79
   sha: 4c919c3390e86e557a8019ea644e835bc493be2a
   size: 80180116
-openjdk/openjdk-1.8.0_91-x86_64-trusty.tar.gz:
-  object_id: 7f2bff0a-affc-4a65-8665-4d284fde6a45
-  sha: 69c612c7f783aad33f4d73ec9b44e1a2ee50f386
-  size: 78278698
-openjdk/openjdk-1.8.0_91-x86_64-mountainlion.tar.gz:
-  object_id: 27d58881-9532-4c79-a12e-bb1dab3314c3
-  sha: 9e916262cf92d6ca0b09f9261d30aeca05f214d7
-  size: 75516939
 libmariadb/libmariadb-5.5.36.tar.xz:
   object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
@@ -163,3 +151,15 @@ rootfs/cflinuxfs2-1.78.0.tar.gz:
   object_id: 09383705-9b3a-4ab2-9165-b6ed5d1428ba
   sha: b03e1adc6b8ce110bc5feb14a367883b8eeca68a
   size: 276090131
+openjdk/openjdk-1.8.0_101-x86_64-trusty.tar.gz:
+  object_id: af292af2-8e47-487a-8dfd-c7fd0c04caec
+  sha: d77ee059e289ae52fb87812f1a2932268427dc26
+  size: 77696717
+openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
+  object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
+  sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
+  size: 75550921
+uaa/apache-tomcat-8.0.36.tar.gz:
+  object_id: b142bb5b-e401-4946-b872-433c91a6a8d3
+  sha: c711970918f4c0ebd120cf35605795c416e342c8
+  size: 9277365
