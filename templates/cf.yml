@@ -1067,6 +1067,7 @@ properties:
     ssl_key: (( merge || nil ))
     cipher_suites: (( merge || nil ))
     requested_route_registration_interval_in_seconds: (( merge || nil ))
+    load_balancer_healthy_threshold: (( merge || nil ))
     ssl_skip_validation: (( merge || nil ))
     port: (( merge || nil ))
     status:

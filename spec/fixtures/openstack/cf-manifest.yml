@@ -1476,6 +1476,7 @@ properties:
     ssl_cert: null
     ssl_key: null
     ssl_skip_validation: null
+    load_balancer_healthy_threshold: null
     status:
       password: ROUTER_PASSWORD
       port: null
