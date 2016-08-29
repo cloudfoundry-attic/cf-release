@@ -455,6 +455,8 @@ jobs:
       - name: cf1
     networks: (( merge || default_networks ))
     properties:
+      uaa:
+        client_secret: (( .properties.uaa.clients.doppler.secret ))
       traffic_controller:
         zone: z1
       consul:
