@@ -87,6 +87,8 @@ properties:
     description: Timeout for long curls
   acceptance_tests.broker_start_timeout:
     description: Timeout for broker starts
+  acceptance_tests.async_service_operation_timeout:
+    description: Timeout for asynchronous service operations
   acceptance_tests.enable_color:
     description: "Enable colorized output on ginkgo."
     default: true
