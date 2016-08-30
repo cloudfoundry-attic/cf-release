@@ -826,6 +826,9 @@ jobs:
         registration_interval: 20s
         uris:
         - loggregator.SYSTEM_DOMAIN
+    loggregator:
+      uaa:
+        client_secret: DOPPLER_SECRET
     traffic_controller:
       zone: z1
     consul:
@@ -864,6 +867,9 @@ jobs:
         registration_interval: 20s
         uris:
         - loggregator.SYSTEM_DOMAIN
+    loggregator:
+      uaa:
+        client_secret: DOPPLER_SECRET
     traffic_controller:
       zone: z2
     consul:
