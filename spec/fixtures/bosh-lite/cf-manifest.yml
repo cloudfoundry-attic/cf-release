@@ -3762,6 +3762,8 @@ properties:
       port: null
       user: router
     suspend_pruning_if_nats_unavailable: null
+    tracing:
+      enable_zipkin: null
   routing_api:
     enabled: null
   smoke_tests:
