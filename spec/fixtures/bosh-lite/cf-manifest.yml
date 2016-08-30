@@ -859,6 +859,9 @@ jobs:
         registration_interval: 20s
         uris:
         - loggregator.bosh-lite.com
+    loggregator:
+      uaa:
+        client_secret: doppler-secret
     traffic_controller:
       zone: z1
     consul:
@@ -897,6 +900,9 @@ jobs:
         registration_interval: 20s
         uris:
         - loggregator.bosh-lite.com
+    loggregator:
+      uaa:
+        client_secret: doppler-secret
     traffic_controller:
       zone: z2
     consul:
