@@ -1,0 +1,150 @@
+# code_snippet cf-stub-azure start
+---
+director_uuid: REPLACE_WITH_DIRECTOR_UUID
+meta:
+  environment: REPLACE_WITH_ENVIRONMENT
+  reserved_static_ips:
+  - REPLACE_WITH_CLOUD_FOUNDRY_PUBLIC_IP
+
+update:
+  serial: false
+
+networks:
+  - name: reserved
+    type: vip
+ 
+  - name: cf1
+    type: manual
+    subnets:
+    - range: 10.0.16.0/24
+      gateway: 10.0.16.1
+      dns:
+      - 168.63.129.16
+      reserved:
+      - 10.0.16.2 - 10.0.16.3
+      static:
+      - 10.0.16.4 - 10.0.16.100
+      cloud_properties:
+        virtual_network_name: REPLACE_WITH_VNET_NAME
+        subnet_name: REPLACE_WITH_SUBNET_NAME_FOR_CLOUD_FOUNDRY
+        security_group: REPLACE_WITH_NSG_NAME_FOR_CLOUD_FOUNDRY
+  
+  - name: cf2
+    type: manual
+    subnets: (( networks.cf1.subnets )) # cf2 unused by default with the Azure template
+                                        # but the general upstream templates require this
+                                        # to be a semi-valid value, so just copy cf1
+
+properties:
+  system_domain: REPLACE_WITH_SYSTEM_DOMAIN
+  system_domain_organization: REPLACE_WITH_SYSTEM_DOMAIN_ORGANIZATION
+
+  ssl:
+    skip_cert_verify: true
+
+  cc:
+    staging_upload_user: REPLACE_WITH_STAGING_UPLOAD_USER
+    staging_upload_password: REPLACE_WITH_STAGING_UPLOAD_PASSWORD
+    bulk_api_password: REPLACE_WITH_BULK_API_PASSWORD
+    db_encryption_key: REPLACE_WITH_DB_ENCRYPTION_KEY
+    uaa_skip_ssl_validation: true
+
+  blobstore:
+    admin_users:
+      - username: REPLACE_WITH_BLOBSTORE_USERNAME
+        password: REPLACE_WITH_BLOBSTORE_PASSWORD
+    secure_link:
+      secret: REPLACE_WITH_BLOBSTORE_SECRET
+    tls:
+      cert: REPLACE_WITH_BLOBSTORE_TLS_CERT
+      private_key: REPLACE_WITH_BLOBSTORE_PRIVATE_KEY
+      ca_cert: REPLACE_WITH_BLOBSTORE_CA_CERT
+  consul:
+    encrypt_keys:
+      - REPLACE_WITH_CONSUL_ENCRYPT_KEY
+    ca_cert: REPLACE_WITH_CONSUL_CA_CERT
+    server_cert: REPLACE_WITH_CONSUL_SERVER_CERT
+    server_key: REPLACE_WITH_CONSUL_SERVER_KEY
+    agent_cert: REPLACE_WITH_CONSUL_AGENT_CERT
+    agent_key: REPLACE_WITH_CONSUL_AGENT_KEY
+  loggregator_endpoint:
+    shared_secret: REPLACE_WITH_LOGGREGATOR_ENDPOINT_SHARED_SECRET
+  nats:
+    user: REPLACE_WITH_NATS_USER
+    password: REPLACE_WITH_NATS_PASSWORD
+  router:
+    status:
+      user: REPLACE_WITH_ROUTER_USER
+      password: REPLACE_WITH_ROUTER_PASSWORD
+  uaa:
+    admin:
+      client_secret: REPLACE_WITH_ADMIN_SECRET
+    cc:
+      client_secret: REPLACE_WITH_CC_CLIENT_SECRET
+    clients:
+      cc_routing:
+        secret: REPLACE_WITH_CC_ROUTING_SECRET
+      cloud_controller_username_lookup:
+        secret: REPLACE_WITH_CLOUD_CONTROLLER_USERNAME_LOOKUP_SECRET
+      doppler:
+        secret: REPLACE_WITH_DOPPLER_SECRET
+      gorouter:
+        secret: REPLACE_WITH_GOROUTER_SECRET
+      tcp_emitter:
+        secret: REPLACE_WITH_TCP-EMITTER-SECRET
+      tcp_router:
+        secret: REPLACE_WITH_TCP-ROUTER-SECRET
+      login:
+        secret: REPLACE_WITH_LOGIN_CLIENT_SECRET
+      notifications:
+        secret: REPLACE_WITH_NOTIFICATIONS_CLIENT_SECRET
+      cc-service-dashboards:
+        secret: REPLACE_WITH_CC_SERVICE_DASHBOARDS_SECRET
+    jwt:
+      verification_key: REPLACE_WITH_JWT_VERIFICATION_KEY
+      signing_key: REPLACE_WITH_JWT_SIGNING_KEY
+    scim:
+      users:
+      - name: admin
+        password: REPLACE_WITH_ADMIN_PASSWORD
+        groups:
+        - scim.write
+        - scim.read
+        - openid
+        - cloud_controller.admin
+        - doppler.firehose
+
+  ccdb:
+    roles:
+    - name: ccadmin
+      password: REPLACE_WITH_CCDB_PASSWORD
+  uaadb:
+    roles:
+    - name: uaaadmin
+      password: REPLACE_WITH_UAADB_PASSWORD
+  databases:
+    roles:
+    - name: ccadmin
+      password: REPLACE_WITH_CCDB_PASSWORD
+    - name: uaaadmin
+      password: REPLACE_WITH_UAADB_PASSWORD
+    - name: diego
+      password: REPLACE_WITH_DIEGODB_PASSWORD
+  hm9000:
+    server_key: REPLACE_WITH_HM9000_SERVER_KEY
+    server_cert: REPLACE_WITH_HM9000_SERVER_CERT
+    client_key: REPLACE_WITH_HM9000_CLIENT_KEY
+    client_cert: REPLACE_WITH_HM9000_CLIENT_CERT
+    ca_cert: REPLACE_WITH_HM9000_CA_CERT
+
+jobs:
+  - name: ha_proxy_z1
+    networks:
+      - name: cf1
+        default:
+        - dns
+        - gateway
+    properties:
+      ha_proxy:
+        ssl_pem: REPLACE_WITH_HA_PROXY_SSL_PEM
+# code_snippet cf-stub-azure end

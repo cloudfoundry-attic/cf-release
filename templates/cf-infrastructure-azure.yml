@@ -1,0 +1,260 @@
+meta:
+  environment: ~
+  networks: ~
+
+  stemcell:
+    name: bosh-azure-hyperv-ubuntu-trusty-go_agent
+    version: latest
+
+  reserved_static_ips: (( merge ))
+
+  resource_pools:
+    small:
+      cloud_properties:
+        instance_type: Standard_F1
+    medium:
+      cloud_properties:
+          instance_type: Standard_F2
+    large:
+      cloud_properties:
+          instance_type: Standard_F4
+    runner:
+      cloud_properties:
+          instance_type: Standard_D12_v2
+
+networks: (( merge ))
+
+properties:
+  <<: (( merge ))
+  logger_endpoint:
+    port: 4443
+
+  cc: (( merge ))
+
+  uaa:
+    clients: (( merge ))
+
+  dea_next:
+    deny_networks: (( merge || nil ))
+    allow_networks: (( merge || nil ))
+
+  ccdb:
+    address: (( properties.databases.address ))
+    databases:
+    - name: ccdb
+      tag: cc
+    db_scheme: postgres
+    port: 5524
+    roles:
+    - name: ccadmin
+      password: (( merge ))
+      tag: admin
+
+  uaadb:
+    address: (( properties.databases.address ))
+    databases:
+    - name: uaadb
+      tag: uaa
+    db_scheme: postgresql
+    port: 5524
+    roles:
+    - name: uaaadmin
+      password: (( merge ))
+      tag: admin
+
+  databases:
+    db_scheme: postgres
+    address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: (( merge ))
+      - tag: admin
+        name: uaaadmin
+        password: (( merge ))
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+      - tag: uaa
+        name: uaadb
+        citext: true
+    collect_statement_statistics: null
+    additional_config: (( merge || nil ))
+
+compilation:
+  cloud_properties: (( merge || meta.resource_pools.large.cloud_properties ))
+
+resource_pools:
+  - name: small_z1
+    cloud_properties: (( merge || meta.resource_pools.small.cloud_properties ))
+
+  - name: small_z2
+    cloud_properties: (( merge || meta.resource_pools.small.cloud_properties ))
+
+  - name: medium_z1
+    cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties ))
+
+  - name: medium_z2
+    cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties ))
+
+  - name: large_z1
+    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
+
+  - name: large_z2
+    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
+
+  - name: runner_z1
+    cloud_properties: (( merge || meta.resource_pools.runner.cloud_properties  ))
+
+  - name: runner_z2
+    cloud_properties: (( merge || meta.resource_pools.runner.cloud_properties  ))
+
+  - name: router_z1
+    cloud_properties: (( merge || meta.resource_pools.small.cloud_properties  ))
+
+  - name: router_z2
+    cloud_properties: (( merge || meta.resource_pools.small.cloud_properties  ))
+
+# All values for "z2" and network "cf2" are set to null. They'll end up
+# in the final 'spiff merge' manifest with zero instances.
+jobs:
+  - name: ha_proxy_z1
+    instances: 1
+    networks:
+      - name: reserved
+        static_ips: (( meta.reserved_static_ips ))
+      - name: cf1
+        static_ips: (( static_ips(0) ))
+        default: (( merge || nil ))
+    resource_pool: (( merge || "router_z1" ))
+
+  - name: nats_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(2) ))
+    resource_pool: (( merge || "small_z1" ))
+
+  - name: blobstore_z1
+    instances: 1
+    networks:
+      - name: cf1
+    resource_pool: (( merge || "medium_z1" ))
+
+  - name: postgres_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(4) ))
+    resource_pool: (( merge || "medium_z1" ))
+    update:
+      serial: true
+
+  - name: router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(5) ))
+    resource_pool: (( merge || "router_z1" ))
+
+  - name: doppler_z1
+    instances: 1
+    networks:
+      - name: cf1
+    resource_pool: (( merge || "small_z1" ))
+
+  - name: loggregator_trafficcontroller_z1
+    instances: 1
+    networks:
+      - name: cf1
+    resource_pool: (( merge || "small_z1" ))
+
+  - name: etcd_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(8, 9, 10) ))
+    resource_pool: (( merge || "small_z1" ))
+
+  - name: consul_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(12, 13, 14) ))
+    resource_pool: (( merge || "small_z1" ))
+
+  - name: api_z1
+    instances: 1
+    resource_pool: (( merge || "medium_z1" ))
+
+  - name: clock_global
+    instances: 1
+    resource_pool: (( merge || "small_z1" ))
+
+  - name: nfs_z1
+    instances: 0
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(3) ))
+
+  - name: loggregator_z1
+    instances: 0
+
+  - name: nats_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(2) ))
+
+  - name: router_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(5) ))
+
+  - name: etcd_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(8, 9, 10) ))
+
+  - name: consul_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(12, 13, 14) ))
+
+  - name: loggregator_z2
+    instances: 0
+    networks:
+     - name: cf2
+
+  - name: doppler_z2
+    instances: 0
+    networks:
+      - name: cf1
+
+  - name: loggregator_trafficcontroller_z2
+    instances: 0
+    networks:
+      - name: cf2
+
+  - name: uaa_z2
+    instances: 0
+
+  - name: api_z2
+    instances: 0
+
+  - name: api_worker_z2
+    instances: 0
+
+  - name: hm9000_z2
+    instances: 0
+
+  - name: runner_z2
+    instances: 0
+
+  - name: api_worker_z2
+    instances: 0
