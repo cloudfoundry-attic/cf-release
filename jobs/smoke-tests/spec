@@ -52,3 +52,5 @@ properties:
   smoke_tests.backend:
     default: ''
     description: Defines the backend to be used. ('dea', 'diego', '' (default))
+  smoke_tests.cf_dial_timeout_in_seconds:
+    description: Sets the cli timeout (CF_DIAL_TIMEOUT)

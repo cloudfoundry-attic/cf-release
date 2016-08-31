@@ -16,6 +16,9 @@ export GOPATH=${PWD}/Godeps/_workspace:${GOPATH}
 export PATH=${PWD}/Godeps/_workspace/bin:${PATH}
 
 export CONFIG=/var/vcap/jobs/smoke-tests/bin/config.json
+<% if_p("smoke_tests.cf_dial_timeout_in_seconds") do |timeout| %>
+export CF_DIAL_TIMEOUT=<%= timeout %>
+<% end %>
 
 echo '################################################################################################################'
 echo $(go version)
