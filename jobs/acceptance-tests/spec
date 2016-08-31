@@ -120,3 +120,5 @@ properties:
     description: "The default name for the persistent app org."
   acceptance_tests.persistent_app_quota_name:
     description: "The default name for the persistent app quota name."
+  acceptance_tests.cf_dial_timeout_in_seconds:
+    description: Sets the cli timeout (CF_DIAL_TIMEOUT)

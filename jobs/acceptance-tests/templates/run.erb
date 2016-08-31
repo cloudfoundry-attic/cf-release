@@ -13,6 +13,10 @@ export PATH=${GOPATH}/bin:${PATH}
 export CF_COLOR=false
 export CONFIG=/var/vcap/jobs/acceptance-tests/bin/config.json
 
+<% if_p("acceptance_tests.cf_dial_timeout_in_seconds") do |timeout| %>
+export CF_DIAL_TIMEOUT=<%= timeout %>
+<% end %>
+
 mkdir -p /var/vcap/sys/log/acceptance_tests
 rm -rf /var/vcap/sys/log/acceptance_tests/*
 
