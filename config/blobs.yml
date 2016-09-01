@@ -151,10 +151,6 @@ uaa/apache-tomcat-8.0.36.tar.gz:
   object_id: b142bb5b-e401-4946-b872-433c91a6a8d3
   sha: c711970918f4c0ebd120cf35605795c416e342c8
   size: 9277365
-ruby-buildpack/ruby_buildpack-cached-v1.6.22.zip:
-  object_id: 615ff48f-6806-4583-b7b3-b104842a6f51
-  sha: 7e5f94a5388661bb941e7cc14630f1734b0aee43
-  size: 273846995
 php-buildpack/php_buildpack-cached-v4.3.18.zip:
   object_id: d2f32dce-a10e-46f4-a22c-a70e992012ab
   sha: 3c783d2b4f986a69c51b4bc58b259d08202b5688
@@ -167,3 +163,7 @@ cli/cf-cli_6.21.1_linux_x86-64.tgz:
   object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
   sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
   size: 6543090
+ruby-buildpack/ruby_buildpack-cached-v1.6.23.zip:
+  object_id: 759a1e6d-224f-43e0-bf73-94977542d156
+  sha: bfe20e842ddd69b450b08c22029da84882ff0de2
+  size: 273849802
