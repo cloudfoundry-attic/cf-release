@@ -34,8 +34,6 @@ EXITSTATUS=0
 
 nodes=<%= properties.acceptance_tests.nodes %>
 
-skipPackages="-skipPackage=helpers"
-
 skips=
 <% if_p("acceptance_tests.skip_regex") do |skip_regex| %>
   skips="-skip=<%= skip_regex %>"
@@ -46,7 +44,7 @@ noColorFlag=<%= properties.acceptance_tests.enable_color ? "" : "-noColor" %>
 
 set +e
 bin/test -r $noColorFlag -slowSpecThreshold=120 -randomizeAllSpecs $verbose \
-  -nodes=$nodes $skipPackages $skips -keepGoing \
+  -nodes=$nodes -skipPackage=helpers $skips -keepGoing \
   > /var/vcap/sys/log/acceptance_tests.log \
   2> /var/vcap/sys/log/acceptance_tests.err.log
 EXITSTATUS=$?
