@@ -1297,7 +1297,7 @@ properties:
     default_health_check_timeout: 60
     deny_networks: []
     directory_server_protocol: https
-    disk_mb: 2048
+    disk_mb: 10240
     disk_overcommit_factor: null
     enable_ssl: false
     evacuation_bail_out_time_in_seconds: 600
@@ -1306,7 +1306,7 @@ properties:
     instance_disk_inode_limit: 200000
     kernel_network_tuning_enabled: true
     logging_level: debug
-    memory_mb: 1024
+    memory_mb: 8096
     memory_overcommit_factor: null
     mtu: null
     post_setup_hook: null
