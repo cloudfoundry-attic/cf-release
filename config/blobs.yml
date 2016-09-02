@@ -115,10 +115,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.3.zip:
   object_id: 0eb81e10-ee29-4f4b-8a62-8a6ba4d1a3a2
   sha: 139e33b71c396dc4406c3b4982d21c23fc77a023
   size: 9406
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.18.zip:
-  object_id: c7787e51-e8dc-43c0-9426-f83ffe0a3b54
-  sha: 0af1233c7178d9f20bedc1e9c55f909d0d78bc9d
-  size: 102072513
 staticfile-buildpack/staticfile_buildpack-cached-v1.3.10.zip:
   object_id: 8817deeb-3799-4ea3-96a1-4c282b1f2bd0
   sha: b476477d537f3b4e29b121b7cd4fde0f57bd730f
@@ -167,3 +163,7 @@ go-buildpack/go_buildpack-cached-v1.7.12.zip:
   object_id: 40c6dfdf-6647-4472-9435-efefbd39c80d
   sha: f992a4de7969a5249bd92c17d4d6006082c73509
   size: 341394361
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.19.zip:
+  object_id: 6e04a46e-e76c-42dd-ab5b-e804bf11cc18
+  sha: c63499e202c96b8a0e1340cc86fbba52a02267b2
+  size: 102317110
