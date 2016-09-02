@@ -143,10 +143,6 @@ uaa/apache-tomcat-8.0.36.tar.gz:
   object_id: b142bb5b-e401-4946-b872-433c91a6a8d3
   sha: c711970918f4c0ebd120cf35605795c416e342c8
   size: 9277365
-php-buildpack/php_buildpack-cached-v4.3.18.zip:
-  object_id: d2f32dce-a10e-46f4-a22c-a70e992012ab
-  sha: 3c783d2b4f986a69c51b4bc58b259d08202b5688
-  size: 301885064
 golang/go1.7.linux-amd64.tar.gz:
   object_id: c0196ca0-44ab-453e-88af-4f296166175c
   sha: a744e29da97fc3aadad1ee0d7d89b0d899645e50
@@ -167,3 +163,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.19.zip:
   object_id: 6e04a46e-e76c-42dd-ab5b-e804bf11cc18
   sha: c63499e202c96b8a0e1340cc86fbba52a02267b2
   size: 102317110
+php-buildpack/php_buildpack-cached-v4.3.19.zip:
+  object_id: c0d8308e-6efc-49e9-bf90-41179c658035
+  sha: d60455c19f318717f060f46f93cca40b6a4a38ec
+  size: 317913760
