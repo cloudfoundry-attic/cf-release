@@ -1,0 +1,51 @@
+#!/bin/bash -e
+
+[ -z "$DEBUG" ] || set -x
+
+WORKSPACE="${WORKSPACE:-$HOME/workspace}"
+BOSH_LITE_URL="https://192.168.50.4:25555"
+BOSH_LITE_STEMCELL="bosh-warden-boshlite-ubuntu-trusty-go_agent"
+BOSH_LITE_STEMCELL_URL="https://bosh.io/d/stemcells/$BOSH_LITE_STEMCELL"
+
+CF_RELEASE="cf-release"
+CF_RELEASE_URL="https://bosh.io/d/github.com/cloudfoundry/$CF_RELEASE"
+
+read -rep "BOSH manifest for the cf deployment (default: $WORKSPACE/cf-release/bosh-lite/deployments/cf.yml): " BOSH_MANIFEST
+BOSH_MANIFEST="${BOSH_MANIFEST:-$WORKSPACE/cf-release/bosh-lite/deployments/cf.yml}"
+
+main() {
+  upload_stemcell
+  upload_cf_release
+  set_deployment
+  deploy
+}
+
+upload_stemcell() {
+  (
+    cd "$WORKSPACE"
+    [ -f "${BOSH_LITE_STEMCELL}.tgz" ] || curl -L -o "${BOSH_LITE_STEMCELL}.tgz" "$BOSH_LITE_STEMCELL_URL"
+    bosh -t "$BOSH_LITE_URL" upload stemcell --skip-if-exists "${BOSH_LITE_STEMCELL}.tgz"
+  )
+}
+
+upload_cf_release() {
+  (
+    cd "$WORKSPACE"
+    [ -f "${CF_RELEASE}.tgz" ] || curl -L -o "${CF_RELEASE}.tgz" "$CF_RELEASE_URL"
+    bosh -t "$BOSH_LITE_URL" upload release "${CF_RELEASE}.tgz"
+  )
+}
+
+set_deployment() {
+  bosh -t "$BOSH_LITE_URL" deployment "${BOSH_MANIFEST/#\~/$HOME}" ||
+  (
+    echo "Manifest $BOSH_MANIFEST not found, you might want to run scripts/generate-bosh-lite-dev-manifest"
+    return 1
+  )
+}
+
+deploy() {
+  bosh -t "$BOSH_LITE_URL" -n deploy
+}
+
+main
