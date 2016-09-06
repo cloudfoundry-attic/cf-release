@@ -127,10 +127,6 @@ postgres/postgresql-9.4.9.tar.gz:
   object_id: 528861b6-d7c1-4ecd-82b1-d9d56aea62ea
   sha: c9d641eb69885672e5aacee413cd778d88b8420d
   size: 23300245
-rootfs/cflinuxfs2-1.78.0.tar.gz:
-  object_id: 09383705-9b3a-4ab2-9165-b6ed5d1428ba
-  sha: b03e1adc6b8ce110bc5feb14a367883b8eeca68a
-  size: 276090131
 openjdk/openjdk-1.8.0_101-x86_64-trusty.tar.gz:
   object_id: af292af2-8e47-487a-8dfd-c7fd0c04caec
   sha: d77ee059e289ae52fb87812f1a2932268427dc26
@@ -167,3 +163,7 @@ php-buildpack/php_buildpack-cached-v4.3.19.zip:
   object_id: c0d8308e-6efc-49e9-bf90-41179c658035
   sha: d60455c19f318717f060f46f93cca40b6a4a38ec
   size: 317913760
+rootfs/cflinuxfs2-1.79.0.tar.gz:
+  object_id: a9fcf3ed-0a89-44df-91da-69d2704e6a78
+  sha: 229dd7719d97d1efbeaf1d19122e0901de1b167a
+  size: 276111134
