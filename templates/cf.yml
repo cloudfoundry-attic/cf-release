@@ -685,6 +685,7 @@ properties:
     blacklisted_syslog_ranges: ~
     unmarshaller_count: (( merge || 5 ))
     port: (( merge || 4443 ))
+    outgoing_port: (( merge || 8080 ))
     tls:
       server_cert: ~
       server_key: ~
@@ -700,8 +701,6 @@ properties:
   metron_agent:
     deployment: (( meta.environment ))
     preferred_protocol: ~
-    enable_buffer: ~
-    buffer_size: ~
     protocols: ~
     etcd:
       client_cert: (( .properties.etcd.client_cert ))
