@@ -700,8 +700,6 @@ properties:
   metron_agent:
     deployment: (( meta.environment ))
     preferred_protocol: ~
-    enable_buffer: ~
-    buffer_size: ~
     protocols: ~
     etcd:
       client_cert: (( .properties.etcd.client_cert ))

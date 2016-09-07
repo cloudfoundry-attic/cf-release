@@ -1431,9 +1431,7 @@ properties:
       user: null
     url: null
   metron_agent:
-    buffer_size: null
     deployment: ENVIRONMENT
-    enable_buffer: null
     etcd:
       client_cert: ""
       client_key: ""
