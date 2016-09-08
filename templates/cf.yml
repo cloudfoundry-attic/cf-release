@@ -685,6 +685,7 @@ properties:
     blacklisted_syslog_ranges: ~
     unmarshaller_count: (( merge || 5 ))
     port: (( merge || 4443 ))
+    outgoing_port: (( merge || 8080 ))
     tls:
       server_cert: ~
       server_key: ~
