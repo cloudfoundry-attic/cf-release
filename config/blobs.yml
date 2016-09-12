@@ -139,10 +139,6 @@ cli/cf-cli_6.21.1_linux_x86-64.tgz:
   object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
   sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
   size: 6543090
-ruby-buildpack/ruby_buildpack-cached-v1.6.23.zip:
-  object_id: 759a1e6d-224f-43e0-bf73-94977542d156
-  sha: bfe20e842ddd69b450b08c22029da84882ff0de2
-  size: 273849802
 go-buildpack/go_buildpack-cached-v1.7.12.zip:
   object_id: 40c6dfdf-6647-4472-9435-efefbd39c80d
   sha: f992a4de7969a5249bd92c17d4d6006082c73509
@@ -159,3 +155,7 @@ rootfs/cflinuxfs2-1.80.0.tar.gz:
   object_id: 1bc9b320-9da6-4250-a807-177d4cd336cf
   sha: d5419a1a1bec4235798cd14ec05f4ce1e45c65f3
   size: 276117299
+ruby-buildpack/ruby_buildpack-cached-v1.6.24.zip:
+  object_id: 0ac30ff5-3234-431b-b4b1-7698abe04a9c
+  sha: 04ba93de0f26a2b6c6b568aacee6aa5ffc5571a4
+  size: 273555534
