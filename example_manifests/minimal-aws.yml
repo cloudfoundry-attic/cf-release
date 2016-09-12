@@ -851,6 +851,7 @@ properties:
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
         basic_auth_password: PASSWORD
+      traffic_controller_url: wss://doppler.REPLACE_WITH_SYSTEM_DOMAIN:443 
     tps_listener:
       bbs:
         ca_cert: ""
