@@ -32,6 +32,11 @@ frontend http-in
     default_backend http-routers
 <% end %>
 
+listen health_check_http_url
+    bind :8080
+    mode http
+    monitor-uri /health
+
 <% if p("ha_proxy.ssl_pem") %>
 frontend https-in
     mode http
