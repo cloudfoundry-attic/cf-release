@@ -566,6 +566,7 @@ properties:
       ca_cert: ~
 
   consul:
+    dns_config: (( merge || nil ))
     agent:
       domain: cf.internal
       log_level: (( merge || nil ))
