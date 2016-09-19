@@ -1,4 +1,4 @@
-Rootfs SHASUM: d5419a1a1bec4235798cd14ec05f4ce1e45c65f3
+Rootfs SHASUM: 1fb6f4299e88cf90f90a0bfc73969db657fc9200
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -310,7 +310,7 @@ ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                             amd64        multiple precision floating-point computation
-rc  libmysqlclient18:amd64             5.5.50-0ubuntu0.14.04.1             amd64        MySQL database client library
+rc  libmysqlclient18:amd64             5.5.52-0ubuntu0.14.04.1             amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
@@ -484,8 +484,8 @@ ii  locales                            2.13+git20120306-12.1               all  
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
 ii  logrotate                          3.8.7-1ubuntu1                      amd64        Log rotation utility
-ii  lsb-base                           4.1+Debian11ubuntu6.1               all          Linux Standard Base 4.1 init script functionality
-ii  lsb-release                        4.1+Debian11ubuntu6.1               all          Linux Standard Base version reporting utility
+ii  lsb-base                           4.1+Debian11ubuntu6.2               all          Linux Standard Base 4.1 init script functionality
+ii  lsb-release                        4.1+Debian11ubuntu6.2               all          Linux Standard Base version reporting utility
 ii  lsof                               4.86+dfsg-1ubuntu2                  amd64        Utility to list open files
 ii  lzma                               9.22-2ubuntu2                       amd64        Compression and decompression in the LZMA format - command line utility
 ii  m4                                 1.4.17-2ubuntu1                     amd64        a macro processing language
@@ -500,7 +500,7 @@ ii  module-init-tools                  15-0ubuntu6                         all  
 ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.9                     amd64        Transitional package to ensure multiarch compatibility
-ii  mysql-common                       5.5.50-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
+ii  mysql-common                       5.5.52-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1               all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64        terminal-related programs and man pages
 ii  net-tools                          1.60-25ubuntu2.1                    amd64        The NET-3 networking toolkit
