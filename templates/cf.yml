@@ -87,7 +87,7 @@ jobs:
     templates: (( merge || meta.etcd_templates ))
     instances: 2
     persistent_disk: 10024
-    resource_pool: medium_z1
+    resource_pool: large_z1
     default_networks:
       - name: cf1
     networks: (( merge || default_networks ))
@@ -107,7 +107,7 @@ jobs:
     templates: (( merge || meta.etcd_templates ))
     instances: 1
     persistent_disk: 10024
-    resource_pool: medium_z2
+    resource_pool: large_z2
     default_networks:
       - name: cf2
     networks: (( merge || default_networks ))

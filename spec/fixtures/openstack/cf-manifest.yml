@@ -152,7 +152,7 @@ jobs:
             name: cf-etcd
     metron_agent:
       zone: z1
-  resource_pool: medium_z1
+  resource_pool: large_z1
   templates:
   - name: consul_agent
     release: cf
@@ -181,7 +181,7 @@ jobs:
             name: cf-etcd
     metron_agent:
       zone: z2
-  resource_pool: medium_z2
+  resource_pool: large_z2
   templates:
   - name: consul_agent
     release: cf

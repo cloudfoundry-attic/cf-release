@@ -141,7 +141,7 @@ jobs:
             name: cf-etcd
     metron_agent:
       zone: z1
-  resource_pool: medium_z1
+  resource_pool: large_z1
   templates:
   - name: consul_agent
     release: cf
@@ -171,7 +171,7 @@ jobs:
             name: cf-etcd
     metron_agent:
       zone: z2
-  resource_pool: medium_z2
+  resource_pool: large_z2
   templates:
   - name: consul_agent
     release: cf
@@ -1678,7 +1678,7 @@ resource_pools:
     ephemeral_disk:
       size: 65536
       type: gp2
-    instance_type: m3.medium
+    instance_type: m3.large
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
@@ -1692,7 +1692,7 @@ resource_pools:
     ephemeral_disk:
       size: 65536
       type: gp2
-    instance_type: m3.medium
+    instance_type: m3.large
   env:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
