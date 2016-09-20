@@ -22,9 +22,6 @@
 [submodule "src/dea-hm-workspace"]
 	path = src/dea-hm-workspace
 	url = https://github.com/cloudfoundry/dea-hm-workspace
-[submodule "src/buildpacks"]
-	path = src/buildpacks
-	url = https://github.com/cloudfoundry/buildpack-releases
 [submodule "src/capi-release"]
 	path = src/capi-release
 	url = https://github.com/cloudfoundry/capi-release
@@ -37,3 +34,30 @@
 [submodule "src/postgres-release"]
 	path = src/postgres-release
 	url = https://github.com/cloudfoundry/postgres-release.git
+[submodule "src/staticfile-buildpack-release"]
+	path = src/staticfile-buildpack-release
+	url = https://github.com/cloudfoundry/staticfile-buildpack-release
+[submodule "src/go-buildpack-release"]
+	path = src/go-buildpack-release
+	url = https://github.com/cloudfoundry/go-buildpack-release
+[submodule "src/ruby-buildpack-release"]
+	path = src/ruby-buildpack-release
+	url = https://github.com/cloudfoundry/ruby-buildpack-release
+[submodule "src/python-buildpack-release"]
+	path = src/python-buildpack-release
+	url = https://github.com/cloudfoundry/python-buildpack-release
+[submodule "src/php-buildpack-release"]
+	path = src/php-buildpack-release
+	url = https://github.com/cloudfoundry/php-buildpack-release
+[submodule "src/nodejs-buildpack-release"]
+	path = src/nodejs-buildpack-release
+	url = https://github.com/cloudfoundry/nodejs-buildpack-release
+[submodule "src/binary-buildpack-release"]
+	path = src/binary-buildpack-release
+	url = https://github.com/cloudfoundry/binary-buildpack-release
+[submodule "src/java-offline-buildpack-release"]
+	path = src/java-offline-buildpack-release
+	url = https://github.com/cloudfoundry/java-offline-buildpack-release
+[submodule "src/java-buildpack-release"]
+	path = src/java-buildpack-release
+	url = https://github.com/cloudfoundry/java-buildpack-release
