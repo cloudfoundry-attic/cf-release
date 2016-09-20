@@ -131,10 +131,6 @@ cli/cf-cli_6.21.1_linux_x86-64.tgz:
   object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
   sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
   size: 6543090
-go-buildpack/go_buildpack-cached-v1.7.12.zip:
-  object_id: 40c6dfdf-6647-4472-9435-efefbd39c80d
-  sha: f992a4de7969a5249bd92c17d4d6006082c73509
-  size: 341394361
 nodejs-buildpack/nodejs_buildpack-cached-v1.5.19.zip:
   object_id: 6e04a46e-e76c-42dd-ab5b-e804bf11cc18
   sha: c63499e202c96b8a0e1340cc86fbba52a02267b2
@@ -159,3 +155,7 @@ rootfs/cflinuxfs2-1.81.0.tar.gz:
   object_id: a812f35b-eca8-41d8-9f13-35d5b74c2229
   sha: 1fb6f4299e88cf90f90a0bfc73969db657fc9200
   size: 276514873
+go-buildpack/go_buildpack-cached-v1.7.13.zip:
+  object_id: 0cb74378-f2b9-4515-90ce-03ce256f8b7c
+  sha: 79f4ceb7c74bc566315735e78a92d3912a79c843
+  size: 410413441
