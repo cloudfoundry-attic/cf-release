@@ -3134,6 +3134,7 @@ properties:
       tag: admin
   collector: null
   consul:
+    dns_config: null
     agent:
       domain: cf.internal
       log_level: null
