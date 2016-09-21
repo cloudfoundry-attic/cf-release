@@ -560,9 +560,6 @@ properties:
         secret: login-secret
       cc-service-dashboards:
         secret: cc-broker-secret
-        scope: openid,cloud_controller_service_permissions.read
-        authorities: clients.read,clients.write,clients.admin
-        authorized-grant-types: client_credentials
       notifications:
         secret: notifications-secret
       doppler:

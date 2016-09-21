@@ -1053,7 +1053,12 @@ properties:
         authorities: routing.routes.read,routing.router_groups.read
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
-
+      cc-service-dashboards:
+        secret: (( merge ))
+        scope: openid,cloud_controller_service_permissions.read
+        authorities: clients.read,clients.write,clients.admin
+        authorized-grant-types: authorization_code,client_credentials
+ 
     database: ~
 
     zones:
