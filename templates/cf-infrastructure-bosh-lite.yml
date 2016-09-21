@@ -648,6 +648,9 @@ properties:
       - tag: admin
         name: diego
         password: admin
+      - tag: admin
+        name: policy_server
+        password: admin
     databases:
       - tag: cc
         name: ccdb
@@ -657,6 +660,9 @@ properties:
         citext: true
       - tag: diego
         name: diego
+        citext: false
+      - tag: policy_server
+        name: policy_server
         citext: false
     collect_statement_statistics: true
     additional_config: (( merge || nil ))
