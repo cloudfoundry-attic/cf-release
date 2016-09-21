@@ -3481,6 +3481,7 @@ properties:
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     port: 4443
+    outgoing_port: 8081
     tls:
       enable: null
       port: null
