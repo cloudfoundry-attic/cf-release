@@ -1,4 +1,4 @@
-Rootfs SHASUM: 1fb6f4299e88cf90f90a0bfc73969db657fc9200
+Rootfs SHASUM: b95d2b32dc997a08e4d671c8a2ebd82b7e7f9a24
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -65,7 +65,7 @@ ii  gcc-4.8-base:amd64                 4.8.4-2ubuntu1~14.04.3              amd64
 ii  gcc-4.9-base:amd64                 4.9.3-0ubuntu4                      amd64        GCC, the GNU Compiler Collection (base package)
 ii  gdb                                7.7.1-0ubuntu5~14.04.2              amd64        GNU Debugger
 ii  gir1.2-freedesktop                 1.40.0-1ubuntu0.2                   amd64        Introspection data for some FreeDesktop components
-ii  gir1.2-gdkpixbuf-2.0               2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library - GObject-Introspection
+ii  gir1.2-gdkpixbuf-2.0               2.30.7-0ubuntu1.6                   amd64        GDK Pixbuf library - GObject-Introspection
 ii  gir1.2-glib-2.0                    1.40.0-1ubuntu0.2                   amd64        Introspection data for GLib, GObject, Gio and GModule
 ii  gir1.2-rsvg-2.0                    2.40.2-1                            amd64        gir files for renderer library for SVG files
 ii  git                                1:1.9.1-1ubuntu0.3                  amd64        fast, scalable, distributed revision control system
@@ -205,9 +205,9 @@ ii  libgd-dev:amd64                    2.1.0-3ubuntu0.3                    amd64
 ii  libgd2-noxpm-dev                   2.1.0-3ubuntu0.3                    all          GD Graphics Library (transitional package)
 ii  libgd3:amd64                       2.1.0-3ubuntu0.3                    amd64        GD Graphics Library
 ii  libgdbm3:amd64                     1.8.3-12build1                      amd64        GNU dbm database routines (runtime version)
-ii  libgdk-pixbuf2.0-0:amd64           2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library
-ii  libgdk-pixbuf2.0-common            2.30.7-0ubuntu1.2                   all          GDK Pixbuf library - data files
-ii  libgdk-pixbuf2.0-dev               2.30.7-0ubuntu1.2                   amd64        GDK Pixbuf library (development files)
+ii  libgdk-pixbuf2.0-0:amd64           2.30.7-0ubuntu1.6                   amd64        GDK Pixbuf library
+ii  libgdk-pixbuf2.0-common            2.30.7-0ubuntu1.6                   all          GDK Pixbuf library - data files
+ii  libgdk-pixbuf2.0-dev               2.30.7-0ubuntu1.6                   amd64        GDK Pixbuf library (development files)
 ii  libgeoip1:amd64                    1.6.0-1                             amd64        non-DNS IP-to-country resolver library
 ii  libgfortran3:amd64                 4.8.4-2ubuntu1~14.04.3              amd64        Runtime library for GNU Fortran applications
 ii  libgirepository-1.0-1              1.40.0-1ubuntu0.2                   amd64        Library for handling GObject introspection data (runtime library)
@@ -302,8 +302,8 @@ ii  libmagickcore5:amd64               8:6.7.7.10-6ubuntu3.1               amd64
 ii  libmagickcore5-extra:amd64         8:6.7.7.10-6ubuntu3.1               amd64        low-level image manipulation library - extra codecs
 ii  libmagickwand-dev                  8:6.7.7.10-6ubuntu3.1               amd64        image manipulation library - development files
 ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3.1               amd64        image manipulation library
-ii  libmariadbclient-dev               5.5.49-1ubuntu0.14.04.1             amd64        MariaDB database development files
-ii  libmariadbclient18:amd64           5.5.49-1ubuntu0.14.04.1             amd64        MariaDB database client library
+ii  libmariadbclient-dev               5.5.52-1ubuntu0.14.04.1             amd64        MariaDB database development files
+ii  libmariadbclient18:amd64           5.5.52-1ubuntu0.14.04.1             amd64        MariaDB database client library
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
 ii  libmount1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
@@ -479,7 +479,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-95.142                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-96.143                       amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -493,7 +493,7 @@ ii  make                               3.81-8.2ubuntu3                     amd64
 ii  makedev                            2.3.1-93ubuntu1                     all          creates device files in /dev
 ii  manpages                           3.54-1ubuntu1                       all          Manual pages about using a GNU/Linux system
 ii  manpages-dev                       3.54-1ubuntu1                       all          Manual pages about using GNU/Linux for development
-ii  mariadb-common                     5.5.49-1ubuntu0.14.04.1             all          MariaDB common metapackage
+ii  mariadb-common                     5.5.52-1ubuntu0.14.04.1             all          MariaDB common metapackage
 ii  mawk                               1.3.3-17ubuntu2                     amd64        a pattern scanning and text processing language
 ii  mime-support                       3.54ubuntu1.1                       all          MIME files 'mime.types' & 'mailcap', and support programs
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
