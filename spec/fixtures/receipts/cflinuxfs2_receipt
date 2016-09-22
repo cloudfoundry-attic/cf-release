@@ -1,4 +1,4 @@
-Rootfs SHASUM: b95d2b32dc997a08e4d671c8a2ebd82b7e7f9a24
+Rootfs SHASUM: 6eff4384fb16b1e0363794b27a4dd970aa18b5d2
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -363,9 +363,9 @@ ii  libpython-stdlib:amd64             2.7.5-5ubuntu3                      amd64
 ii  libpython2.7-minimal:amd64         2.7.6-8ubuntu0.2                    amd64        Minimal subset of the Python language (version 2.7)
 ii  libpython2.7-stdlib:amd64          2.7.6-8ubuntu0.2                    amd64        Interactive high-level object-oriented language (standard library, version 2.7)
 ii  libpython3-stdlib:amd64            3.4.0-0ubuntu2                      amd64        interactive high-level object-oriented language (default python3 version)
-ii  libpython3.4:amd64                 3.4.3-1ubuntu1~14.04.3              amd64        Shared Python runtime library (version 3.4)
-ii  libpython3.4-minimal:amd64         3.4.3-1ubuntu1~14.04.3              amd64        Minimal subset of the Python language (version 3.4)
-ii  libpython3.4-stdlib:amd64          3.4.3-1ubuntu1~14.04.3              amd64        Interactive high-level object-oriented language (standard library, version 3.4)
+ii  libpython3.4:amd64                 3.4.3-1ubuntu1~14.04.4              amd64        Shared Python runtime library (version 3.4)
+ii  libpython3.4-minimal:amd64         3.4.3-1ubuntu1~14.04.4              amd64        Minimal subset of the Python language (version 3.4)
+ii  libpython3.4-stdlib:amd64          3.4.3-1ubuntu1~14.04.4              amd64        Interactive high-level object-oriented language (standard library, version 3.4)
 ii  libquadmath0:amd64                 4.8.4-2ubuntu1~14.04.3              amd64        GCC Quad-Precision Math Library
 ii  libreadline6:amd64                 6.3-4ubuntu2                        amd64        GNU readline and history libraries, run-time libraries
 ii  libreadline6-dev:amd64             6.3-4ubuntu2                        amd64        GNU readline and history libraries, development files
@@ -398,8 +398,8 @@ ii  libsqlite0-dev                     2.8.17-10ubuntu2                    amd64
 ii  libsqlite3-0:amd64                 3.8.2-1ubuntu2.1                    amd64        SQLite 3 shared library
 ii  libsqlite3-dev:amd64               3.8.2-1ubuntu2.1                    amd64        SQLite 3 development files
 ii  libss2:amd64                       1.42.9-3ubuntu1.3                   amd64        command-line interface parsing library
-ii  libssl-dev:amd64                   1.0.1f-1ubuntu2.19                  amd64        Secure Sockets Layer toolkit - development files
-ii  libssl1.0.0:amd64                  1.0.1f-1ubuntu2.19                  amd64        Secure Sockets Layer toolkit - shared libraries
+ii  libssl-dev:amd64                   1.0.1f-1ubuntu2.20                  amd64        Secure Sockets Layer toolkit - development files
+ii  libssl1.0.0:amd64                  1.0.1f-1ubuntu2.20                  amd64        Secure Sockets Layer toolkit - shared libraries
 ii  libstdc++-4.8-dev:amd64            4.8.4-2ubuntu1~14.04.3              amd64        GNU Standard C++ Library v3 (development files)
 ii  libstdc++6:amd64                   4.8.4-2ubuntu1~14.04.3              amd64        GNU Standard C++ Library v3
 ii  libsub-name-perl                   0.05-1build4                        amd64        module for assigning a new name to referenced sub
@@ -511,7 +511,7 @@ ii  ocaml-base-nox                     4.01.0-3ubuntu3                     amd64
 ii  openssh-client                     1:6.6p1-2ubuntu2.8                  amd64        secure shell (SSH) client, for secure access to remote machines
 ii  openssh-server                     1:6.6p1-2ubuntu2.8                  amd64        secure shell (SSH) server, for secure access from remote machines
 ii  openssh-sftp-server                1:6.6p1-2ubuntu2.8                  amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
-ii  openssl                            1.0.1f-1ubuntu2.19                  amd64        Secure Sockets Layer toolkit - cryptographic utility
+ii  openssl                            1.0.1f-1ubuntu2.20                  amd64        Secure Sockets Layer toolkit - cryptographic utility
 ii  passwd                             1:4.1.5.1-1ubuntu9.2                amd64        change and administer password and group data
 ii  patch                              2.7.1-4ubuntu2.3                    amd64        Apply a diff file to an original
 ii  perl                               5.18.2-2ubuntu1.1                   amd64        Larry Wall's Practical Extraction and Report Language
@@ -527,8 +527,8 @@ ii  python2.7                          2.7.6-8ubuntu0.2                    amd64
 ii  python2.7-minimal                  2.7.6-8ubuntu0.2                    amd64        Minimal subset of the Python language (version 2.7)
 ii  python3                            3.4.0-0ubuntu2                      amd64        interactive high-level object-oriented language (default python3 version)
 ii  python3-minimal                    3.4.0-0ubuntu2                      amd64        minimal subset of the Python language (default python3 version)
-ii  python3.4                          3.4.3-1ubuntu1~14.04.3              amd64        Interactive high-level object-oriented language (version 3.4)
-ii  python3.4-minimal                  3.4.3-1ubuntu1~14.04.3              amd64        Minimal subset of the Python language (version 3.4)
+ii  python3.4                          3.4.3-1ubuntu1~14.04.4              amd64        Interactive high-level object-oriented language (version 3.4)
+ii  python3.4-minimal                  3.4.3-1ubuntu1~14.04.4              amd64        Minimal subset of the Python language (version 3.4)
 ii  quota                              4.01-3                              amd64        disk quota management tools
 ii  readline-common                    6.3-4ubuntu2                        all          GNU readline and history libraries, common files
 ii  resolvconf                         1.69ubuntu1.1                       all          name server information handler
