@@ -714,7 +714,6 @@ properties:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
 
   traffic_controller:
-    outgoing_port: 8080
     zone: (( merge || nil ))
     disable_access_control: (( merge || nil ))
     security_event_logging:
@@ -1367,11 +1366,6 @@ meta:
     registration_interval: 20s
     uris:
     - (( "doppler." .properties.system_domain ))
-  - name: loggregator
-    port: (( .properties.traffic_controller.outgoing_port ))
-    registration_interval: 20s
-    uris:
-    - (( "loggregator." .properties.system_domain ))
 
   loggregator_trafficcontroller_templates:
   - name: consul_agent

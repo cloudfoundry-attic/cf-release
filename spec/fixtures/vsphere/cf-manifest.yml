@@ -821,11 +821,6 @@ jobs:
         registration_interval: 20s
         uris:
         - doppler.SYSTEM_DOMAIN
-      - name: loggregator
-        port: 8080
-        registration_interval: 20s
-        uris:
-        - loggregator.SYSTEM_DOMAIN
     loggregator:
       uaa:
         client_secret: DOPPLER_SECRET
@@ -862,11 +857,6 @@ jobs:
         registration_interval: 20s
         uris:
         - doppler.SYSTEM_DOMAIN
-      - name: loggregator
-        port: 8080
-        registration_interval: 20s
-        uris:
-        - loggregator.SYSTEM_DOMAIN
     loggregator:
       uaa:
         client_secret: DOPPLER_SECRET
@@ -1509,7 +1499,6 @@ properties:
     etcd:
       client_cert: ""
       client_key: ""
-    outgoing_port: 8080
     security_event_logging:
       enabled: false
     zone: null
