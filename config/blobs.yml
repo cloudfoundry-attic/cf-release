@@ -147,10 +147,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.4.zip:
   object_id: 5fd8438c-02be-417b-a55c-ee6d2d25056f
   sha: afde861f4682bc5700d908a41a07158b5f7c84ab
   size: 9492
-ruby-buildpack/ruby_buildpack-cached-v1.6.25.zip:
-  object_id: 400097be-4cc9-444c-b51b-b5a261d3fec5
-  sha: 3bce8b1bd33153d545c373d25f677e5ce51cf53e
-  size: 273512071
 golang/go1.7.windows-amd64.zip:
   object_id: b0faa00a-3907-430a-953d-277c2b74effa
   sha: e276c4b9093369706591ce5d21dfa799b9e0a475
@@ -163,3 +159,7 @@ rootfs/cflinuxfs2-1.85.0.tar.gz:
   object_id: 231ab445-8016-4fe6-a5e3-42171e9ceec6
   sha: b228e2de9f95deb752ca1bfb9ff695c9fa50a5e4
   size: 278183348
+ruby-buildpack/ruby_buildpack-cached-v1.6.26.zip:
+  object_id: 788f68fb-7468-4743-b47f-d1c3b0d089c6
+  sha: 9a7c925a1915f43054600c91698dbae7a30f4a91
+  size: 273483815
