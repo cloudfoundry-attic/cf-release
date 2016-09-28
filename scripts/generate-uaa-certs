@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e -x
+
+# Install certstrap
+go get -v github.com/square/certstrap
+
+# Place keys and certificates here
+depot_path="uaa-certs"
+mkdir -p ${depot_path}
+
+# CA to distribute to use in generating uaa certs
+certstrap --depot-path ${depot_path} init --passphrase '' --common-name uaaCA
+mv -f ${depot_path}/uaaCA.crt ${depot_path}/server-ca.crt
+mv -f ${depot_path}/uaaCA.key ${depot_path}/server-ca.key
+
+# Server certificate to use as uaa
+server_cn=uaa.service.cf.internal
+certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $server_cn
+certstrap --depot-path ${depot_path} sign $server_cn --CA server-ca
+mv -f ${depot_path}/$server_cn.key ${depot_path}/uaa.key
+mv -f ${depot_path}/$server_cn.csr ${depot_path}/uaa.csr
+mv -f ${depot_path}/$server_cn.crt ${depot_path}/uaa.crt
+
