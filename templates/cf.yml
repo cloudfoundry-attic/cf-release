@@ -1072,6 +1072,7 @@ properties:
     logging_level: (( merge || nil ))
     suspend_pruning_if_nats_unavailable: (( merge || nil ))
     enable_proxy: (( merge || nil ))
+    force_forwarded_proto_https: (( merge || nil ))
     enable_ssl: (( merge || nil ))
     ssl_cert: (( merge || nil ))
     ssl_key: (( merge || nil ))
