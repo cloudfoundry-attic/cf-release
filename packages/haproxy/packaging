@@ -2,8 +2,8 @@
 set -e
 
 echo "Extracting pcre..."
-tar xzf haproxy/pcre-8.37.tar.gz
-cd pcre-8.37
+tar xzf haproxy/pcre-8.39.tar.gz
+cd pcre-8.39
 ./configure
 make
 make install
