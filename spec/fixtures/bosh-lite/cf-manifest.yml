@@ -3754,6 +3754,7 @@ properties:
     ssl_key: null
     ssl_skip_validation: true
     load_balancer_healthy_threshold: null
+    balancing_algorithm: null
     status:
       password: router
       port: null
