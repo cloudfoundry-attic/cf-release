@@ -141,7 +141,7 @@ jobs:
   - name: rep
     release: diego
   - name: garden
-    release: garden-linux
+    release: garden-runc
   - name: cflinuxfs2-rootfs-setup
     release: cflinuxfs2-rootfs
   - name: metron_agent
