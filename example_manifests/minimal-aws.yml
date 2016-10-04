@@ -8,7 +8,7 @@ releases:
 - {name: cf, version: latest}
 - {name: diego, version: latest}
 - {name: etcd, version: latest}
-- {name: garden-linux, version: latest}
+- {name: garden-runc, version: latest}
 - {name: cflinuxfs2-rootfs , version: latest}
 
 networks:
