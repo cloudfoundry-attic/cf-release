@@ -3285,6 +3285,9 @@ properties:
     - citext: false
       name: diego
       tag: diego
+    - citext: false
+      name: routing_api
+      tag: routing_api
     db_scheme: postgres
     port: 5524
     roles:
@@ -3295,6 +3298,9 @@ properties:
       password: admin
       tag: admin
     - name: diego
+      password: admin
+      tag: admin
+    - name: routing_api
       password: admin
       tag: admin
   dea_next:

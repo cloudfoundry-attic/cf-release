@@ -645,6 +645,9 @@ properties:
       - tag: admin
         name: diego
         password: admin
+      - tag: admin
+        name: routing_api
+        password: admin
     databases:
       - tag: cc
         name: ccdb
@@ -654,6 +657,9 @@ properties:
         citext: true
       - tag: diego
         name: diego
+        citext: false
+      - tag: routing_api
+        name: routing_api
         citext: false
     collect_statement_statistics: true
     additional_config: (( merge || nil ))
