@@ -1,24 +1,4 @@
-#!/bin/sh
-
-set -e -x
-
-# Install certstrap
-go get -v github.com/square/certstrap
-
-# Place keys and certificates here
-depot_path="blobstore-certs"
-mkdir -p ${depot_path}
-
-# CA to generate blobstore certs
-certstrap --depot-path ${depot_path} init --passphrase '' --common-name blobstoreCA
-mv -f ${depot_path}/blobstoreCA.crt ${depot_path}/server-ca.crt
-mv -f ${depot_path}/blobstoreCA.key ${depot_path}/server-ca.key
-
-# Certificate to use as the blobstore
-server_cn=blobstore.service.cf.internal
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $server_cn
-certstrap --depot-path ${depot_path} sign $server_cn --CA server-ca
-mv -f ${depot_path}/$server_cn.key ${depot_path}/blobstore.key
-mv -f ${depot_path}/$server_cn.csr ${depot_path}/blobstore.csr
-mv -f ${depot_path}/$server_cn.crt ${depot_path}/blobstore.crt
-
+scripts_dir="`dirname "$0"`"
+pushd $scripts_dir
+  ./generate-certs blobstore-certs blobstore.cf.service.internal
+popd
