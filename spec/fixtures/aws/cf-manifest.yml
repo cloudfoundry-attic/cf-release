@@ -1141,6 +1141,7 @@ properties:
         total_routes: 1000
         total_service_keys: 1000
         total_services: 100
+    rate_limiter: null
     reserved_private_domains: null
     resource_pool:
       blobstore_type: fog

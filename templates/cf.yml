@@ -904,6 +904,8 @@ properties:
     security_event_logging:
       enabled: (( merge || nil ))
 
+    rate_limiter: (( merge || nil ))
+
   ccdb: (( merge ))
 
   ha_proxy: (( merge || nil ))
