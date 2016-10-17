@@ -1,4 +1,4 @@
 scripts_dir="`dirname "$0"`"
 pushd $scripts_dir
-  ./generate-certs uaa-certs uaa.cf.service.internal
+  ./generate-certs uaa-certs uaa.service.cf.internal
 popd
