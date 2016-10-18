@@ -4,3 +4,7 @@ scripts_dir="`dirname "$0"`"
 pushd $scripts_dir
   ./generate-certs ../uaa-certs uaa.service.cf.internal
 popd
+
+# export the library
+# run function to make cert authority
+# run functions(s) to make the certs
