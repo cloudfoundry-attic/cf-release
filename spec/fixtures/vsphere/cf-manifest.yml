@@ -1313,7 +1313,7 @@ properties:
     server_key: null
     staging_bandwidth_limit: null
     staging_disk_inode_limit: 200000
-    staging_disk_limit_mb: 6144
+    staging_disk_limit_mb: 2048
     staging_memory_limit_mb: 1024
   description: null
   disk_quota_enabled: true
