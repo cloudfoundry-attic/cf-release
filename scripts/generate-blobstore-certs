@@ -1,4 +1,6 @@
+#!/bin/bash
+
 scripts_dir="`dirname "$0"`"
 pushd $scripts_dir
-  ./generate-certs blobstore-certs blobstore.service.cf.internal
+  ./generate-certs ../blobstore-certs blobstore.service.cf.internal
 popd
