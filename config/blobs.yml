@@ -119,10 +119,6 @@ java-buildpack/java-buildpack-offline-v3.9.zip:
   object_id: 9fae3d80-45f1-4ac4-b996-fbdd96146005
   sha: 53932ca644c0a1f4bddff3a1724bc39361a06f31
   size: 261006933
-binary-buildpack/binary_buildpack-cached-v1.0.4.zip:
-  object_id: 5fd8438c-02be-417b-a55c-ee6d2d25056f
-  sha: afde861f4682bc5700d908a41a07158b5f7c84ab
-  size: 9492
 golang/go1.7.windows-amd64.zip:
   object_id: b0faa00a-3907-430a-953d-277c2b74effa
   sha: e276c4b9093369706591ce5d21dfa799b9e0a475
@@ -163,3 +159,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.12.zip:
   object_id: 57981486-f877-4221-91ae-5bf70772c4e8
   sha: 87e83eb1fb1b45c878f7f559056dad813c2f467a
   size: 2703873
+binary-buildpack/binary_buildpack-cached-v1.0.5.zip:
+  object_id: b321c617-23a3-4e2b-af63-29d60a1d8fcf
+  sha: fe0edb11bcc5d42570f10ff9fe97f0c1b94900d1
+  size: 9571
