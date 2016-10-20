@@ -111,10 +111,6 @@ cli/cf-cli_6.21.1_linux_x86-64.tgz:
   object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
   sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
   size: 6543090
-java-buildpack/java-buildpack-offline-v3.9.zip:
-  object_id: 9fae3d80-45f1-4ac4-b996-fbdd96146005
-  sha: 53932ca644c0a1f4bddff3a1724bc39361a06f31
-  size: 261006933
 golang/go1.7.windows-amd64.zip:
   object_id: b0faa00a-3907-430a-953d-277c2b74effa
   sha: e276c4b9093369706591ce5d21dfa799b9e0a475
@@ -163,3 +159,7 @@ java-buildpack/java-buildpack-v3.10.zip:
   object_id: f5efc2ab-ae9e-4ef0-9df2-46188b5e4809
   sha: ae12d21d29ec2a4ceeaf597dc43f11c52a44cc78
   size: 174486
+java-buildpack/java-buildpack-offline-v3.10.zip:
+  object_id: 660d2edf-3a0e-43f3-80c3-888652b298a8
+  sha: aa0816fa7a6e6cb58648ff6fd76d14e4ddab0954
+  size: 261228676
