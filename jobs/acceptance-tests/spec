@@ -22,7 +22,6 @@ properties:
   acceptance_tests.admin_password:
     description: The Elastic Runtime API admin user's password
   acceptance_tests.skip_ssl_validation:
-    default: false
     description: Toggles cli verification of the Elastic Runtime API SSL certificate
   acceptance_tests.nodes:
     default: 2
@@ -31,49 +30,34 @@ properties:
     default: false
     description: Whether to pass the -v flag to cf-acceptance-tests
   acceptance_tests.include_apps:
-    default: true
     description: Flag to include the apps test suite.
   acceptance_tests.include_sso:
-    default: false
     description: Flag to include the services tests that integrate with SSO.
   acceptance_tests.include_security_groups:
-    default: false
     description: Flag to include the security groups test suite.
   acceptance_tests.include_internet_dependent:
-    default: false
     description: Flag to include the internet dependent test suite.
   acceptance_tests.include_services:
-    default: false
     description: Flag to include the services API test suite.
   acceptance_tests.include_v3:
-    default: false
     description: Flag to include the v3 API test suite.
   acceptance_tests.include_tasks:
-    default: false
     description: Flag to include the v3 task tests dependent on the CC task_creation feature flag.
   acceptance_tests.include_route_services:
-    default: false
     description: Flag to include the route services tests. Diego must be deployed for these tests to pass.
   acceptance_tests.include_routing:
-    default: true
     description: Flag to include the routing tests. Diego must be deployed for these tests to pass.
   acceptance_tests.include_diego_docker:
-    default: false
     description: Flag to include tests related to running Docker apps on Diego. Diego must be deployed and the CC API docker_diego feature flag must be enabled for these tests to pass.
   acceptance_tests.include_diego_ssh:
-    default: false
     description: Flag to include the diego ssh suite
   acceptance_tests.backend:
-    description: App tests push their apps using the backend specified. Route service tests require this flag to be set to diego in order to run.
-    default: ""
+    description: App tests push their apps using the backend specified. If not set, tests that require a specific backend will not be run. Route service tests require this flag to be set to diego in order to run.
   acceptance_tests.include_backend_compatibility:
-    default: false
     description: Flag to inlude whether we check DEA/Diego interoperability
   acceptance_tests.include_detect:
-    default: true
     description: Flag to run tests in the detect suite
   acceptance_tests.use_http:
-    default: false
     description: Flag for using HTTP when making api and application requests rather than the default HTTPS
   acceptance_tests.include_privileged_container_support:
     description: Flag for running tests that depend on privileged container support being enabled in your Cloud Foundry.
