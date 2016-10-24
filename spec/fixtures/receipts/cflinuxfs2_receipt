@@ -1,4 +1,4 @@
-Rootfs SHASUM: f70c2eba1fbc965d51d545ceb80b208519f7035e
+Rootfs SHASUM: 45fefc588af138a15c857c3735c37640b7669969
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -479,7 +479,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-98.145                       amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-100.147                      amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -550,7 +550,7 @@ ii  tcpdump                            4.5.1-2ubuntu1.2                    amd64
 ii  traceroute                         1:2.0.20-0ubuntu0.1                 amd64        Traces the route taken by packets over an IPv4/IPv6 network
 ii  tsconf                             1.0-12                              all          touch screen library common files
 ii  ttf-dejavu-core                    2.34-1ubuntu1                       all          transitional dummy package
-ii  tzdata                             2016g-0ubuntu0.14.04                all          time zone and daylight-saving time data
+ii  tzdata                             2016h-0ubuntu0.14.04                all          time zone and daylight-saving time data
 ii  ubuntu-keyring                     2012.05.19                          all          GnuPG keys of the Ubuntu archive
 ii  ubuntu-minimal                     1.325                               amd64        Minimal core of Ubuntu
 ii  ucf                                3.0027+nmu1                         all          Update Configuration File(s): preserve user changes to config files

@@ -123,10 +123,6 @@ haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-rootfs/cflinuxfs2-1.87.0.tar.gz:
-  object_id: 83954932-c93e-43c9-92f6-d262ac228533
-  sha: f70c2eba1fbc965d51d545ceb80b208519f7035e
-  size: 278224158
 go-buildpack/go_buildpack-cached-v1.7.14.zip:
   object_id: 38961b0b-6c64-415f-b97a-5d0cec2c43c6
   sha: 50de509848ba6809053a97bfaf4c4f13a7623cae
@@ -163,3 +159,7 @@ java-buildpack/java-buildpack-offline-v3.10.zip:
   object_id: 660d2edf-3a0e-43f3-80c3-888652b298a8
   sha: aa0816fa7a6e6cb58648ff6fd76d14e4ddab0954
   size: 261228676
+rootfs/cflinuxfs2-1.88.0.tar.gz:
+  object_id: 32ad9c2d-9b2c-426a-8314-9bad50a0fd34
+  sha: 45fefc588af138a15c857c3735c37640b7669969
+  size: 278249668
