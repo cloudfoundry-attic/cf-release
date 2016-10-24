@@ -79,6 +79,16 @@ properties:
     server_key: CONSUL_SERVER_KEY
     agent_cert: CONSUL_AGENT_CERT
     agent_key: CONSUL_AGENT_KEY
+  etcd:
+    require_ssl: true
+    ca_cert: ETCD_CA_CERT
+    client_cert: ETCD_CLIENT_CERT
+    client_key: ETCD_CLIENT_KEY
+    peer_ca_cert: ETCD_PEER_CA_CERT
+    peer_cert: ETCD_PEER_CERT
+    peer_key: ETC_PEER_KEY
+    server_cert: ETCD_SERVER_CERT
+    server_key: ETCD_SERVER_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
