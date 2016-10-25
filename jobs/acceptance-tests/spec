@@ -51,6 +51,8 @@ properties:
     description: Flag to include tests related to running Docker apps on Diego. Diego must be deployed and the CC API docker_diego feature flag must be enabled for these tests to pass.
   acceptance_tests.include_diego_ssh:
     description: Flag to include the diego ssh suite
+  acceptance_tests.include_zipkin:
+    description: Flag to include the zipkin test suite. include_routing must be set as well for these tests to run. For the tests to pass router.tracing.enable_zipkin must also be set to true.
   acceptance_tests.backend:
     description: App tests push their apps using the backend specified. If not set, tests that require a specific backend will not be run. Route service tests require this flag to be set to diego in order to run.
   acceptance_tests.include_backend_compatibility:
