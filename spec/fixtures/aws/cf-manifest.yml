@@ -1592,9 +1592,9 @@ properties:
         - cloud_controller.admin
         - doppler.firehose
     ssl:
-      port: -1
-    sslCertificate: null
-    sslPrivateKey: null
+      port: 8443
+    sslCertificate: UAA_SERVER_CERT
+    sslPrivateKey: UAA_SERVER_KEY
     url: https://uaa.SYSTEM_DOMAIN
     user: null
     zones:

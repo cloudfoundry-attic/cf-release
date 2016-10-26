@@ -125,6 +125,8 @@ properties:
         - openid
         - cloud_controller.admin
         - doppler.firehose
+    sslCertificate: UAA_SERVER_CERT
+    sslPrivateKey: UAA_SERVER_KEY
   uaadb:
     db_scheme: UAADB_SCHEME
     roles:
