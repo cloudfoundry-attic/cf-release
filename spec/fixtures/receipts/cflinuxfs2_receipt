@@ -1,4 +1,4 @@
-Rootfs SHASUM: 45fefc588af138a15c857c3735c37640b7669969
+Rootfs SHASUM: ade09dfd1c689d36c468a5bb00b0882d0bfbe0e1
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -310,7 +310,7 @@ ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                             amd64        multiple precision floating-point computation
-rc  libmysqlclient18:amd64             5.5.52-0ubuntu0.14.04.1             amd64        MySQL database client library
+rc  libmysqlclient18:amd64             5.5.53-0ubuntu0.14.04.1             amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
@@ -376,6 +376,7 @@ ii  librsvg2-dev                       2.40.2-1                            amd64
 ii  librtmp-dev                        2.4+20121230.gitdf6c518-1           amd64        toolkit for RTMP streams (development files)
 ii  librtmp0:amd64                     2.4+20121230.gitdf6c518-1           amd64        toolkit for RTMP streams (shared library)
 ii  libsasl2-2:amd64                   2.1.25.dfsg1-17build1               amd64        Cyrus SASL - authentication abstraction library
+ii  libsasl2-dev                       2.1.25.dfsg1-17build1               amd64        Cyrus SASL - development files for authentication abstraction library
 ii  libsasl2-modules:amd64             2.1.25.dfsg1-17build1               amd64        Cyrus SASL - pluggable authentication modules
 ii  libsasl2-modules-db:amd64          2.1.25.dfsg1-17build1               amd64        Cyrus SASL - pluggable authentication modules (DB)
 ii  libschroedinger-1.0-0:amd64        1.0.11-2ubuntu1                     amd64        library for encoding/decoding of Dirac video streams
@@ -500,7 +501,7 @@ ii  module-init-tools                  15-0ubuntu6                         all  
 ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.9                     amd64        Transitional package to ensure multiarch compatibility
-ii  mysql-common                       5.5.52-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
+ii  mysql-common                       5.5.53-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1               all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64        terminal-related programs and man pages
 ii  net-tools                          1.60-25ubuntu2.1                    amd64        The NET-3 networking toolkit
@@ -539,7 +540,7 @@ ii  sensible-utils                     0.0.9                               all  
 ii  shared-mime-info                   1.2-0ubuntu3                        amd64        FreeDesktop.org shared MIME database and spec
 ii  sshfs                              2.5-1ubuntu1                        amd64        filesystem client based on SSH File Transfer Protocol
 ii  strace                             4.8-1ubuntu5                        amd64        A system call tracer
-ii  sudo                               1.8.9p5-1ubuntu1.2                  amd64        Provide limited super user privileges to specific users
+ii  sudo                               1.8.9p5-1ubuntu1.3                  amd64        Provide limited super user privileges to specific users
 ii  sysstat                            10.2.0-1                            amd64        system performance tools for Linux
 ii  sysv-rc                            2.88dsf-41ubuntu6.3                 all          System-V-like runlevel change mechanism
 ii  sysvinit-utils                     2.88dsf-41ubuntu6.3                 amd64        System-V-like utilities
