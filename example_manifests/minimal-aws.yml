@@ -444,7 +444,7 @@ properties:
     default_running_security_groups: [public_networks, dns]
     default_staging_security_groups: [public_networks, dns]
     install_buildpacks:
-    - {name: java_buildpack, package: buildpack_java}
+    - {name: java_buildpack, package: java-buildpack}
     - {name: ruby_buildpack, package: ruby-buildpack}
     - {name: nodejs_buildpack, package: nodejs-buildpack}
     - {name: go_buildpack, package: go-buildpack}

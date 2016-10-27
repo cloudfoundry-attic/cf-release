@@ -873,7 +873,7 @@ properties:
       - name: staticfile_buildpack
         package: staticfile-buildpack
       - name: java_buildpack
-        package: buildpack_java
+        package: java-buildpack
       - name: ruby_buildpack
         package: ruby-buildpack
       - name: nodejs_buildpack
@@ -1012,7 +1012,7 @@ properties:
         lockoutAfterFailures: ~
         countFailuresWithinSeconds: ~
         lockoutPeriodSeconds: ~
-        
+
     password:
       policy:
         minLength: ~
@@ -1079,7 +1079,7 @@ properties:
         scope: openid,cloud_controller_service_permissions.read
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: authorization_code,client_credentials
- 
+
     database: ~
 
     zones:

@@ -2827,7 +2827,7 @@ properties:
     - name: staticfile_buildpack
       package: staticfile-buildpack
     - name: java_buildpack
-      package: buildpack_java
+      package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
     - name: nodejs_buildpack
@@ -2898,7 +2898,7 @@ properties:
     - name: staticfile_buildpack
       package: staticfile-buildpack
     - name: java_buildpack
-      package: buildpack_java
+      package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
     - name: nodejs_buildpack
@@ -3076,7 +3076,7 @@ properties:
     - name: staticfile_buildpack
       package: staticfile-buildpack
     - name: java_buildpack
-      package: buildpack_java
+      package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
     - name: nodejs_buildpack
