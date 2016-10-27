@@ -772,6 +772,13 @@ jobs:
       zone: z1
     metron_agent:
       zone: z1
+    consul:
+      agent:
+        services:
+          doppler:
+            name: doppler
+            tags:
+            - z1
   resource_pool: medium_z1
   templates:
   - name: consul_agent
@@ -794,6 +801,13 @@ jobs:
       zone: z2
     metron_agent:
       zone: z2
+    consul:
+      agent:
+        services:
+          doppler:
+            name: doppler
+            tags:
+            - z2
   resource_pool: medium_z2
   templates:
   - name: consul_agent
@@ -829,7 +843,10 @@ jobs:
     consul:
       agent:
         services:
-          loggregator_trafficcontroller: {}
+          loggregator_trafficcontroller:
+            name: loggregator_trafficcontroller
+            tags:
+            - z1
   resource_pool: small_z1
   templates:
   - name: consul_agent
@@ -865,7 +882,10 @@ jobs:
     consul:
       agent:
         services:
-          loggregator_trafficcontroller: {}
+          loggregator_trafficcontroller:
+            name: loggregator_trafficcontroller
+            tags:
+            - z2
   resource_pool: small_z2
   templates:
   - name: consul_agent
