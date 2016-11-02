@@ -14,13 +14,15 @@ generate_end_entity_certs() {
   depot_path=$4
   output_name=$5
 
-  if [ ${domain} != "" ]; then
-    domain_argument="--domain '${domain}'"
+  domain_argument=""
+
+  if [ "${domain}" != "" ]; then
+    domain_argument="--domain ${domain}"
   fi
 
   common_name_path=$(echo $common_name | tr ' ' _)
 
-  certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name "${common_name}" "${domain_argument}"
+  certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name "${common_name}" ${domain_argument}
   certstrap --depot-path "${depot_path}" sign "${common_name_path}" --CA "${ca_name}"
   mv -f "${depot_path}/${common_name_path}.key" "${depot_path}/${output_name}.key"
   mv -f "${depot_path}/${common_name_path}.csr" "${depot_path}/${output_name}.csr"
