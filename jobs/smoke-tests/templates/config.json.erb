@@ -18,6 +18,9 @@
   end
 %>
 {
+<% if_p("smoke_tests.artifacts_directory") do |artifacts_directory| %>
+  "artifacts_directory"  : "<%= artifacts_directory %>",
+<% end %>
   "suite_name"           : "<%= properties.smoke_tests.suite_name %>",
   "api"                  : "<%= properties.smoke_tests.api %>",
   "apps_domain"          : "<%= Array(properties.smoke_tests.apps_domain).first %>",
