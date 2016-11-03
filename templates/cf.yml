@@ -886,6 +886,8 @@ properties:
         package: php-buildpack
       - name: binary_buildpack
         package: binary-buildpack
+      - name: dotnet_core_buildpack
+        package: dotnet-core-buildpack
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
@@ -1249,6 +1251,7 @@ meta:
   php_buildpack_release_name: (( releases.php-buildpack.name || "cf" ))
   python_buildpack_release_name: (( releases.python-buildpack.name || "cf" ))
   staticfile_buildpack_release_name: (( releases.staticfile-buildpack.name || "cf" ))
+  dotnet_core_buildpack_release_name: (( releases.dotnet-core-buildpack.name || "cf" ))
   loggregator_release_name: (( releases.loggregator.name || "cf" ))
   uaa_release_name: (( releases.uaa.name || "cf" ))
 
@@ -1296,6 +1299,8 @@ meta:
     release: (( meta.python_buildpack_release_name ))
   - name: staticfile-buildpack
     release: (( meta.staticfile_buildpack_release_name ))
+  - name: dotnet-core-buildpack
+    release: (( meta.dotnet_core_buildpack_release_name ))
   - name: cloud_controller_ng
     release: (( meta.capi_release_name ))
   - name: metron_agent
