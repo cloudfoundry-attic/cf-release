@@ -1,1 +1,1 @@
-consul-release/src/exiter.ps1
+exit 0
