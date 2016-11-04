@@ -159,10 +159,6 @@ java-buildpack/java-buildpack-offline-v3.10.zip:
   object_id: 660d2edf-3a0e-43f3-80c3-888652b298a8
   sha: aa0816fa7a6e6cb58648ff6fd76d14e4ddab0954
   size: 261228676
-rootfs/cflinuxfs2-1.89.0.tar.gz:
-  object_id: ed4db0f4-1df0-4136-a9b0-31fb7f04ae96
-  sha: ade09dfd1c689d36c468a5bb00b0882d0bfbe0e1
-  size: 278470854
 etcd/etcd-v2.1.1-linux-amd64.tar.gz:
   object_id: ce50df26-f04b-496a-9ac4-32228020df6a
   sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
@@ -175,3 +171,7 @@ golang/go1.7.3.windows-amd64.zip:
   object_id: 0eb3c292-0fee-4bda-a9bc-6b035e2c04f3
   sha: d10f32a97baa97344af80b6fa61374debe12124f
   size: 88850225
+rootfs/cflinuxfs2-1.90.0.tar.gz:
+  object_id: 59059e37-ac07-4822-99b5-f8e4b1a724d8
+  sha: 6620831b4e8e096257e75df01b1f28a62504e6de
+  size: 347809504
