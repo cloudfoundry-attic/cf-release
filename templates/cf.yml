@@ -750,6 +750,16 @@ properties:
       client_key: (( .properties.etcd.client_key ))
 
   cc:
+    diego:
+      use_privileged_containers_for_staging: (( merge || nil ))
+      insecure_docker_registry_list: (( merge || nil ))
+      temporary_local_staging: (( merge || nil ))
+      bbs:
+        url: (( merge || nil ))
+        ca_cert: (( merge || nil ))
+        client_cert: (( merge || nil ))
+        client_key: (( merge || nil))
+
     jobs:
       global:
         timeout_in_seconds: 14400 # 4 hours

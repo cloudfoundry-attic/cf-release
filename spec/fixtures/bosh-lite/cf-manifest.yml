@@ -2859,6 +2859,96 @@ properties:
     - dns
     default_to_diego_backend: false
     development_mode: false
+    diego:
+      insecure_docker_registry_list: null
+      temporary_local_staging: true
+      use_privileged_containers_for_staging: null
+      bbs:
+        url: null
+        ca_cert: |
+          -----BEGIN CERTIFICATE-----
+          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
+          -----END CERTIFICATE-----
+        client_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIEHTCCAgegAwIBAgIRAKjHH3AIMByGKCTAiNiyLPYwCwYJKoZIhvcNAQELMBAx
+          DjAMBgNVBAMTBWJic0NBMB4XDTE1MDkxNTIyMjkyM1oXDTE3MDkxNTIyMjkyNFow
+          FTETMBEGA1UEAxMKYmJzIGNsaWVudDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+          AQoCggEBAPKLCqMmuEKgTrHkFz5xAtUdaODN+tuYoqyx0fuXOBnPCC8UvC9+VAmf
+          rur48XsSyz+1vPfyWNGVBficm/8adKgDxfZr8FF8pXO21q3McrCKq0K6hi3I71r2
+          meDTFFQ7FFW5ln9VmIbv2+7R2Dzc5W0eAjBziPH14Hi2StXiqTPKP4ygLppVib+p
+          Iwm0UHFZHCi2sb8mQgEDfQhvH7frTkP3auiII0k+ld1nFPsY3hXJrnOnPT01CO3/
+          efb3ZUQQWZgkcYYj1RVCjT2s7c7DsjoAAflP3euVCK5+/YgFNFAXR2OUM4SjKK/0
+          fy2Ef84J90vu7jeuPZXBNsO6GELF870CAwEAAaNxMG8wDgYDVR0PAQH/BAQDAgC4
+          MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQUwpu9qHz1
+          dwc81frxHMzpmuEA7FowHwYDVR0jBBgwFoAU2HFnsP9JOWRvKvDs5YSkjx+r/LMw
+          CwYJKoZIhvcNAQELA4ICAQAmAy3juekeu7jAQYI72+WMg73h5r9ebPswcj2RSAgl
+          TOPCCec6yVW/SthxyD8NVfyoDOi6hn/ZvkHx5mSXx2VZ5Fr85C89qWNc551NYHyq
+          zWTpy40gJBTqx3zFAAEz/IVHfVEBnJQ8CJjCplWqc9bar02ZH47ON4eHbtPnHIFZ
+          QVXGfSZ81dvo0GKSvLjzPuRmYh1KYKFx32y7LT+6KwgzsaFdHBnlAic8CHq8E7u9
+          nvsy2X6P7XM8K8mOVLy8JqZ6paGxmd0QmWz/5asTVFi3xDhwK/Kg72nS8FTmy4q4
+          ZGZenWttqYuXBANyP/GIt9YRD50tMHTWTrH3OGK1VNX4tQp7K72MFQuUX4YGywS+
+          Rpuywd5Zxqvxf2TKIGVhFdEWT0e2ecm8lJLbIPzs90b5OMUkNh0vEcpov5NxVGkc
+          RPwM4znSztReHj6TDeM545ZD+IbtmsIvhnA0ZEwZKvTu+kS6OQt1eJ6dn7QrIExb
+          B07oXUCMfVkYKtwuNwyZmRnu702tqdRrlLPKayTGl6j73ZeGh13BywhJAGgCjuXk
+          6ZHORok5UN72pGTsqhGedlf32c8zzbE/Ize4rjyLFJmj/LeJWIyc4rSyG1KGYsFg
+          pkddZTkBCye6gM3HifJQjjXr19pF/RG3slnBDcWLJ0SX8kOfBG0SXcBFa22uGYOF
+          Iw==
+          -----END CERTIFICATE-----
+        client_key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpQIBAAKCAQEA8osKoya4QqBOseQXPnEC1R1o4M3625iirLHR+5c4Gc8ILxS8
+          L35UCZ+u6vjxexLLP7W89/JY0ZUF+Jyb/xp0qAPF9mvwUXylc7bWrcxysIqrQrqG
+          LcjvWvaZ4NMUVDsUVbmWf1WYhu/b7tHYPNzlbR4CMHOI8fXgeLZK1eKpM8o/jKAu
+          mlWJv6kjCbRQcVkcKLaxvyZCAQN9CG8ft+tOQ/dq6IgjST6V3WcU+xjeFcmuc6c9
+          PTUI7f959vdlRBBZmCRxhiPVFUKNPaztzsOyOgAB+U/d65UIrn79iAU0UBdHY5Qz
+          hKMor/R/LYR/zgn3S+7uN649lcE2w7oYQsXzvQIDAQABAoIBAEvVk3bdpWEXlGNk
+          iKv6U8NklaUsYhIFEF/knV4Hsv/Gzq1B03EaE5aKufs36PDtOGVsInB38rNc3+gS
+          t2e00uKxg1T//LzNt0GN2mOu9/Eg+lk7zrZEDCqpzgUQmluXuUzwYRDhJ3aRSnfK
+          Xszw2D8c0dxqU1gr44p6nL1xSCwrpYhj1z2JN8IN0wQmfOE2kphZnnrn8TpJMTjy
+          00IW9LdMyGUXiCQbN29eDY108LhXWzcs5jXdb/APBpI4HkmuZVEJiuV6iM6qeVX9
+          FbVgpQivBAFpGiILeboFrUo+qOpto2EEPu0KoyoqMGCPAoQwri0xa/9j3OE6iTDk
+          4WbbJ+ECgYEA/abBmPz0L+T9H/cZvufsjhW9WthCzAuereTzXdEhDk5kr5PJxbMp
+          DIu9c4vzxJDwpaEEOkBxPoptG/QG5AZ3SCsevQr5kqfZo+OMIWmheb2uL9z8k5hx
+          wq7vvLQ0gLO9L1oZVmm2/F1J8Nku9M5PkWHmBjbHN1pl5HqOlsxODEkCgYEA9Mn0
+          bWTnpnJ4ee8kO0/WOcIDyTV9s4XMaN3lLFhtI8ig6lt6eWA4mSpqRADCs0hngECD
+          iUfal+KHbYAGsvdm7roB+GgoS2Hv/SxSjOxhsaQ1xvYYM+jzIIy3WlCPtaIxHkm5
+          oXVnh4BcvbHUP7yi/lvg8BbK3HDPcPn5Xc9p49UCgYEA5T+x+fOlPyRXImzSeBhl
+          VIWRfmm29XQLFl+3FTPODIANwCJyWpxynUQvFh+HUkEtPoUorP1RXJT/yCPllnHB
+          nRhbz7/7kPDjY5xlKk2uA7nLlLbGER/WsX4qbwLv8OKCOinUfKVPHQezrFqedeOB
+          RoSUwUkBBKZPMRETjndYkwECgYEAkzwh2+a0euYhVt4jQdWcefMbidu1ttREhdLp
+          tEmfo8VaHHxXZ0gb4uyjLDH06hcjwf2L4HeqoG6tnIxD+0NZ0z9oTfyAOA85ZWNS
+          Z9cKT+oAOqLtHdQA4NQiuJz6Q3rB5oDbuaS/V746ihK7IncY5rtmyaI79GmaLE7+
+          0ZEfFN0CgYEA8HTclSd7Z58J2F0qp4xZuD6nK/894LiIpAQAljfVVplrFSK3tyQD
+          XCAuu6OuNcVb7RktBAzVJksp+fT5BeyYYm3KviaD2eXmRnJtpUSzN12VieyBX7Fx
+          BSgiGpK7DUMYgC6mggfL8bPrhWG3B39Q+VC8B6K/Y29xe8HZQThhick=
+          -----END RSA PRIVATE KEY-----
     directories: null
     disable_custom_buildpacks: false
     droplets:

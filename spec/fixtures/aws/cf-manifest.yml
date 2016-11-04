@@ -1062,6 +1062,15 @@ properties:
     - dns
     default_to_diego_backend: false
     development_mode: false
+    diego:
+      insecure_docker_registry_list: null
+      temporary_local_staging: null
+      use_privileged_containers_for_staging: null
+      bbs:
+        url: null
+        ca_cert: null
+        client_cert: null
+        client_key: null
     directories: null
     disable_custom_buildpacks: false
     droplets:
