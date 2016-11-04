@@ -758,7 +758,7 @@ properties:
         authorized-grant-types: implicit,password,refresh_token
         autoapprove: true
         override: true
-        refresh-token-validity: 2592000
+        refresh-token-validity: 604800
         scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read
       cc-service-dashboards:
         authorities: clients.read,clients.write,clients.admin
