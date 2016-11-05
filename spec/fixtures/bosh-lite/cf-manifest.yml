@@ -3594,8 +3594,8 @@ properties:
     blacklisted_syslog_ranges: null
     debug: false
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     port: 4443
@@ -3613,9 +3613,9 @@ properties:
     enabled: true
   etcd:
     advertise_urls_dns_suffix: cf-etcd.service.cf.internal
-    ca_cert: ""
-    client_cert: ""
-    client_key: ""
+    ca_cert: ETCD_CA_CERT
+    client_cert: ETCD_CLIENT_CERT
+    client_key: ETCD_CLIENT_KEY
     cluster:
     - instances: 1
       name: etcd_z1
@@ -3623,20 +3623,20 @@ properties:
       name: etcd_z2
     machines:
     - 10.244.0.42
-    peer_ca_cert: ""
-    peer_cert: ""
-    peer_key: ""
-    peer_require_ssl: false
-    require_ssl: false
-    server_cert: ""
-    server_key: ""
+    peer_ca_cert: ETCD_PEER_CA_CERT
+    peer_cert: ETCD_PEER_CERT
+    peer_key: ETC_PEER_KEY
+    peer_require_ssl: true
+    require_ssl: true
+    server_cert: ETCD_SERVER_CERT
+    server_key: ETCD_SERVER_KEY
   etcd_metrics_server:
     etcd:
-      ca_cert: ""
-      client_cert: ""
-      client_key: ""
+      ca_cert: ETCD_CA_CERT
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
       dns_suffix: cf-etcd.service.cf.internal
-      require_ssl: false
+      require_ssl: true
   ha_proxy: null
   hm9000:
     ca_cert: |+
@@ -3724,12 +3724,12 @@ properties:
       ZYj59Q6AUR9BvPeli7gwedfGWyAl35NGcNq8JG6rL+FWubDWqqc=
       -----END RSA PRIVATE KEY-----
     etcd:
-      ca_cert: ""
-      client_cert: ""
-      client_key: ""
+      ca_cert: ETCD_CA_CERT
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
       machines:
       - cf-etcd.service.cf.internal
-      require_ssl: false
+      require_ssl: true
     port: 5155
     server_cert: |+
       -----BEGIN CERTIFICATE-----
@@ -3793,10 +3793,10 @@ properties:
     blacklisted_syslog_ranges: null
     debug: false
     etcd:
-      ca_cert: ""
+      ca_cert: ETCD_CA_CERT
       machines:
       - cf-etcd.service.cf.internal
-      require_ssl: false
+      require_ssl: true
     maxRetainedLogMessages: 100
     outgoing_dropsonde_port: 8081
     tls:
@@ -3832,8 +3832,8 @@ properties:
   metron_agent:
     deployment: cf-warden
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     preferred_protocol: null
     protocols: null
     tls:
@@ -3906,15 +3906,15 @@ properties:
   syslog_daemon_config: null
   syslog_drain_binder:
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
   system_domain: bosh-lite.com
   system_domain_organization: null
   traffic_controller:
     disable_access_control: null
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     security_event_logging:
       enabled: false
     zone: null
