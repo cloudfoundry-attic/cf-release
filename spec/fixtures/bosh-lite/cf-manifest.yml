@@ -2869,7 +2869,7 @@ properties:
     development_mode: false
     diego:
       insecure_docker_registry_list: null
-      temporary_local_staging: true
+      temporary_local_staging: false
       use_privileged_containers_for_staging: null
       bbs:
         url: null
