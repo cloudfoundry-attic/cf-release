@@ -119,10 +119,6 @@ haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.3.zip:
-  object_id: 268dc538-50bd-48b7-a259-2a92c29b19f1
-  sha: 1139a0e2c305bcfdbffe669e01c41fd2bab2671a
-  size: 122911094
 go-buildpack/go_buildpack-cached-v1.7.14.zip:
   object_id: 38961b0b-6c64-415f-b97a-5d0cec2c43c6
   sha: 50de509848ba6809053a97bfaf4c4f13a7623cae
@@ -175,3 +171,7 @@ rootfs/cflinuxfs2-1.90.0.tar.gz:
   object_id: 59059e37-ac07-4822-99b5-f8e4b1a724d8
   sha: 6620831b4e8e096257e75df01b1f28a62504e6de
   size: 347809504
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.4.zip:
+  object_id: ecb31f87-f77d-4308-a2d8-19c12fe13132
+  sha: 11e1f87a10f55ec5f3faa7a0c694687aa164824e
+  size: 177084124
