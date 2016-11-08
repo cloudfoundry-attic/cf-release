@@ -416,7 +416,7 @@ properties:
       -----END CERTIFICATE-----
   cc:
     diego:
-      temporary_local_staging: true
+      temporary_local_staging: false
       bbs:
         ca_cert: |
           -----BEGIN CERTIFICATE-----
