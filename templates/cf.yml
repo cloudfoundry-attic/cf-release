@@ -44,21 +44,6 @@ jobs:
       metron_agent:
         zone: z2
 
-  - name: ha_proxy_z1
-    templates: (( merge || meta.ha_proxy_templates ))
-    instances: 0
-    resource_pool: router_z1
-    default_networks:
-      - name: cf1
-    networks: (( merge || default_networks ))
-    properties:
-      ha_proxy:
-      router:
-        servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
-      metron_agent:
-        zone: z1
-    update: (( merge || empty_hash ))
-
   - name: nats_z1
     templates: (( merge || meta.nats_templates ))
     instances: 1
@@ -543,6 +528,21 @@ jobs:
             gorouter: {}
       metron_agent:
         zone: z2
+    update: (( merge || empty_hash ))
+
+  - name: ha_proxy_z1
+    templates: (( merge || meta.ha_proxy_templates ))
+    instances: 0
+    resource_pool: router_z1
+    default_networks:
+      - name: cf1
+    networks: (( merge || default_networks ))
+    properties:
+      ha_proxy:
+      router:
+        servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
+      metron_agent:
+        zone: z1
     update: (( merge || empty_hash ))
 
   - name: acceptance_tests

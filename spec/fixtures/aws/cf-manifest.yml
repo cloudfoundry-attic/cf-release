@@ -58,27 +58,6 @@ jobs:
     serial: true
 - default_networks:
   - name: cf1
-  instances: 0
-  name: ha_proxy_z1
-  networks:
-  - name: cf1
-  properties:
-    ha_proxy: null
-    metron_agent:
-      zone: z1
-    router:
-      servers: null
-  resource_pool: router_z1
-  templates:
-  - name: consul_agent
-    release: cf
-  - name: haproxy
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- default_networks:
-  - name: cf1
   instances: 1
   name: nats_z1
   networks:
@@ -924,6 +903,27 @@ jobs:
   - name: consul_agent
     release: cf
   - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- default_networks:
+  - name: cf1
+  instances: 0
+  name: ha_proxy_z1
+  networks:
+  - name: cf1
+  properties:
+    ha_proxy: null
+    metron_agent:
+      zone: z1
+    router:
+      servers: null
+  resource_pool: router_z1
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: haproxy
     release: cf
   - name: metron_agent
     release: cf

@@ -56,83 +56,6 @@ jobs:
 - default_networks:
   - name: cf1
   instances: 1
-  name: ha_proxy_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 10.244.0.34
-  properties:
-    ha_proxy:
-      ssl_pem: |+
-        -----BEGIN CERTIFICATE-----
-        MIIELzCCAhegAwIBAgIRAIikKcVU73yrMvWfbdyPfOIwDQYJKoZIhvcNAQELBQAw
-        GTEXMBUGA1UEAxMOY2VydC1hdXRob3JpdHkwHhcNMTYxMTA3MTg0NDM4WhcNMTgx
-        MTA3MTg0NDM4WjAaMRgwFgYDVQQDEw8qLmJvc2gtbGl0ZS5jb20wggEiMA0GCSqG
-        SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDDORPNTsnhs5eEzk4V3ndnN36P1SSSFMsu
-        HQT8z7EGCCf29gWyYYSZKUIGtOpzleL7Kzi1ww4BIbHjTrQyybUFDoXV8CeAjO1L
-        umK2FR9aTicAcgTFCE5Q7JssSOTzrZT+FqqGCQeal3lOD7NMThYGfn18Vp2jgouV
-        janns7OwoqRoLkJ0IYBAYuf8G/dcc4iCFG9WYOEEqHcktuiY4S+1d+P3V8yfncd7
-        D9v1kbDcA0vxADa6BSoMEYjQ2Gv8tMVfcUxXKnkMIxHIev93inYd0zYHwpxZRRnn
-        lq+NMZZuo1J+YLrqGDIJMZyGN4j+r4uPIOUQ1SADllS67gUa9rV5AgMBAAGjcTBv
-        MA4GA1UdDwEB/wQEAwIDuDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIw
-        HQYDVR0OBBYEFFZuVkoeC5PxO/eEaE098Orf30j/MB8GA1UdIwQYMBaAFDC93/5N
-        uztl0kKzxsZwDq1eRIxJMA0GCSqGSIb3DQEBCwUAA4ICAQA6bY/ww1cPEk1Gk63B
-        TPY/SdVFo+PuFrWXiskTbhtp5mIs4yNzqtZR6b5MpKqzJk8/YD22qQxKExU/v/fX
-        xma5f3w2hWJ+uLHNjoYNHZJSvyyU8MzJ54ESBidlLJb3jOgz4eQfCu6AJfIdNMl+
-        +Ze32NlBOyoCm+viLKhH3gGfkCqgoVhj5XRbrPiCpg5ruv0G4p3eLUcM2vzJ+SW0
-        PykuyH+KNOwrWXBj+5t9S831npSuoBpAjF8F0hxG5WvkDvDh89MYDOjwJWr3sxiX
-        /p2B7N2sHcu/RgFVEBjXyu+QOzasQayTJfmVjTyICJswe4rK5i0Y3VbNQrkaHX1k
-        de1QKGUSJI/jSS1IgTFoBL+VtM+aA2DJBSzZ6rQnJ5qaGJOHdpMOZB+QUgNBSyIm
-        YwLI9d8ql6PazyCIV/Q0woctQUdImzldwhHiJuTEgDAobKxkwvd1372jqzvMLzqi
-        ALG2NvXXpxJrrz+2hauwtTYiGU012uXaSZmwX+VSA/pnXTq0kx1QwzcMuuTbQ0mG
-        2GO8lyPpPQfUA3/CyDIiHc6x7zWvW0vaSgTd4/80fWEPsM6r+0Q5whAXIvimrSXa
-        Rve4kMJyOlwCix+qukVaVIVrUT6Xa1K1WhFrvTcmkghR/GIRfmOf2YLrrrdahX2a
-        zA/Kf+CVcoaF/x2H4r0VKcV3VQ==
-        -----END CERTIFICATE-----
-        -----BEGIN RSA PRIVATE KEY-----
-        MIIEpAIBAAKCAQEAwzkTzU7J4bOXhM5OFd53Zzd+j9UkkhTLLh0E/M+xBggn9vYF
-        smGEmSlCBrTqc5Xi+ys4tcMOASGx4060Msm1BQ6F1fAngIztS7pithUfWk4nAHIE
-        xQhOUOybLEjk862U/haqhgkHmpd5Tg+zTE4WBn59fFado4KLlY2p57OzsKKkaC5C
-        dCGAQGLn/Bv3XHOIghRvVmDhBKh3JLbomOEvtXfj91fMn53Hew/b9ZGw3ANL8QA2
-        ugUqDBGI0Nhr/LTFX3FMVyp5DCMRyHr/d4p2HdM2B8KcWUUZ55avjTGWbqNSfmC6
-        6hgyCTGchjeI/q+LjyDlENUgA5ZUuu4FGva1eQIDAQABAoIBAQCnQTtp5lqn+AmU
-        Snwz2ElMMQtJhz6xuQbqFwqy3e24UTyMJPN0hH/qCKL8w/sp0/yHW9xWPSq+ZXPW
-        XxObf5yLHIolZH8zb4nOG31+qlIWOGbJxuW3OQp/4nZ/VmRxMQI5PooSE6JkG+pd
-        qq3ebfgI0E4KPNsJv0p/csNiM197sBnsl6ga96ay6DNKRuu4fIO0S00wNomd4fnM
-        G0WeSFbdhnmJnO1sD0W4qp9WmrhP0mfpzmDEB9rVHHkWn9MnAGLQaqxZ3biXTaqL
-        SyG3iEzW+Ki7kENiOjX5Bwt2DK5iW1CBhCIxfNF9EtxP5kAWOW9t0vCu8ER15s2x
-        j1fEQygRAoGBAP8TrTK0WEfNdIk9gbHsAqWq//+DNUmF/5ldJmaAh9KF4eVqtHWI
-        EwjEy6yh6jpFPgEtpSBgHwAW0XrtTgAw4AjUxB0Tn9tMSoQx4/K8S0d9FECJ97jW
-        jvaleYXLIwNtautjy9bCM5yYvVLT56jg4nTp0Fx6evcSU8EQgOHIh+pfAoGBAMPt
-        8og7gquSGqQJKm4AjX/4jNo03rGukkosgRbxT9a6/MRaYeiMxQF2KPAg0Rq7tR3X
-        2CYBlxdZ8VTDkPEnfq8BfLSv4Y+9AkD8fl6pErL7GyH4vs1SifcugQLjjwA3JBK3
-        DntpD1+l8Xtq6y+qkc8adioSauxGSWZFWWrL758nAoGAEX257LYtL49JJHgRQrAa
-        Zl3ZfB31M3t60XtvvKunpKoFmYO9qCmSlJFaHhZkR2akH9SPdC7jMVBfQPyw0paH
-        ZlOgtxW3aoRKv9Hj/asnxlkvYFWVpRkhaIxkTuZlGkEQid+oBKwAegaHRPy+7/er
-        z7SQ0yaa9AJPt/d3vwPPPiUCgYACUSMIF2QRMVYdUHpu+JSzybWosu1bPow+Uk5o
-        fgwKpwVsMQFtZZTC0qnjRRAT99pJcw78TBKEVSz0aqehIm1uFl9qJ5ZMQ9jt+c5o
-        wikVcsC8Yxumg+5bvPILnbNINl631fBW50QmRmkXo4kKdELrJw30q2kWSDKAAhvv
-        ll/MCwKBgQC+px6jk0hlHNu6U9LvTNa5BOMG87vN7/7Reh8ZNT0bphSFNBlBc65W
-        aZA2NBKCwWSzSdg+9C0jhA0vwm99iiLIXERNbOgLs6699QvzwSq6OpWxBcprRcFC
-        By8Z68pjlRAiAb5vaEIQ2oMaLbG+4DbCwazNr7MVPzBKcSoUzakiPA==
-        -----END RSA PRIVATE KEY-----
-    metron_agent:
-      zone: z1
-    router:
-      servers:
-      - 10.244.0.22
-  resource_pool: router_z1
-  templates:
-  - name: consul_agent
-    release: cf
-  - name: haproxy
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- default_networks:
-  - name: cf1
-  instances: 1
   name: nats_z1
   networks:
   - name: cf1
@@ -985,6 +908,83 @@ jobs:
   - name: consul_agent
     release: cf
   - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- default_networks:
+  - name: cf1
+  instances: 1
+  name: ha_proxy_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 10.244.0.34
+  properties:
+    ha_proxy:
+      ssl_pem: |+
+        -----BEGIN CERTIFICATE-----
+        MIIELzCCAhegAwIBAgIRAIikKcVU73yrMvWfbdyPfOIwDQYJKoZIhvcNAQELBQAw
+        GTEXMBUGA1UEAxMOY2VydC1hdXRob3JpdHkwHhcNMTYxMTA3MTg0NDM4WhcNMTgx
+        MTA3MTg0NDM4WjAaMRgwFgYDVQQDEw8qLmJvc2gtbGl0ZS5jb20wggEiMA0GCSqG
+        SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDDORPNTsnhs5eEzk4V3ndnN36P1SSSFMsu
+        HQT8z7EGCCf29gWyYYSZKUIGtOpzleL7Kzi1ww4BIbHjTrQyybUFDoXV8CeAjO1L
+        umK2FR9aTicAcgTFCE5Q7JssSOTzrZT+FqqGCQeal3lOD7NMThYGfn18Vp2jgouV
+        janns7OwoqRoLkJ0IYBAYuf8G/dcc4iCFG9WYOEEqHcktuiY4S+1d+P3V8yfncd7
+        D9v1kbDcA0vxADa6BSoMEYjQ2Gv8tMVfcUxXKnkMIxHIev93inYd0zYHwpxZRRnn
+        lq+NMZZuo1J+YLrqGDIJMZyGN4j+r4uPIOUQ1SADllS67gUa9rV5AgMBAAGjcTBv
+        MA4GA1UdDwEB/wQEAwIDuDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIw
+        HQYDVR0OBBYEFFZuVkoeC5PxO/eEaE098Orf30j/MB8GA1UdIwQYMBaAFDC93/5N
+        uztl0kKzxsZwDq1eRIxJMA0GCSqGSIb3DQEBCwUAA4ICAQA6bY/ww1cPEk1Gk63B
+        TPY/SdVFo+PuFrWXiskTbhtp5mIs4yNzqtZR6b5MpKqzJk8/YD22qQxKExU/v/fX
+        xma5f3w2hWJ+uLHNjoYNHZJSvyyU8MzJ54ESBidlLJb3jOgz4eQfCu6AJfIdNMl+
+        +Ze32NlBOyoCm+viLKhH3gGfkCqgoVhj5XRbrPiCpg5ruv0G4p3eLUcM2vzJ+SW0
+        PykuyH+KNOwrWXBj+5t9S831npSuoBpAjF8F0hxG5WvkDvDh89MYDOjwJWr3sxiX
+        /p2B7N2sHcu/RgFVEBjXyu+QOzasQayTJfmVjTyICJswe4rK5i0Y3VbNQrkaHX1k
+        de1QKGUSJI/jSS1IgTFoBL+VtM+aA2DJBSzZ6rQnJ5qaGJOHdpMOZB+QUgNBSyIm
+        YwLI9d8ql6PazyCIV/Q0woctQUdImzldwhHiJuTEgDAobKxkwvd1372jqzvMLzqi
+        ALG2NvXXpxJrrz+2hauwtTYiGU012uXaSZmwX+VSA/pnXTq0kx1QwzcMuuTbQ0mG
+        2GO8lyPpPQfUA3/CyDIiHc6x7zWvW0vaSgTd4/80fWEPsM6r+0Q5whAXIvimrSXa
+        Rve4kMJyOlwCix+qukVaVIVrUT6Xa1K1WhFrvTcmkghR/GIRfmOf2YLrrrdahX2a
+        zA/Kf+CVcoaF/x2H4r0VKcV3VQ==
+        -----END CERTIFICATE-----
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEpAIBAAKCAQEAwzkTzU7J4bOXhM5OFd53Zzd+j9UkkhTLLh0E/M+xBggn9vYF
+        smGEmSlCBrTqc5Xi+ys4tcMOASGx4060Msm1BQ6F1fAngIztS7pithUfWk4nAHIE
+        xQhOUOybLEjk862U/haqhgkHmpd5Tg+zTE4WBn59fFado4KLlY2p57OzsKKkaC5C
+        dCGAQGLn/Bv3XHOIghRvVmDhBKh3JLbomOEvtXfj91fMn53Hew/b9ZGw3ANL8QA2
+        ugUqDBGI0Nhr/LTFX3FMVyp5DCMRyHr/d4p2HdM2B8KcWUUZ55avjTGWbqNSfmC6
+        6hgyCTGchjeI/q+LjyDlENUgA5ZUuu4FGva1eQIDAQABAoIBAQCnQTtp5lqn+AmU
+        Snwz2ElMMQtJhz6xuQbqFwqy3e24UTyMJPN0hH/qCKL8w/sp0/yHW9xWPSq+ZXPW
+        XxObf5yLHIolZH8zb4nOG31+qlIWOGbJxuW3OQp/4nZ/VmRxMQI5PooSE6JkG+pd
+        qq3ebfgI0E4KPNsJv0p/csNiM197sBnsl6ga96ay6DNKRuu4fIO0S00wNomd4fnM
+        G0WeSFbdhnmJnO1sD0W4qp9WmrhP0mfpzmDEB9rVHHkWn9MnAGLQaqxZ3biXTaqL
+        SyG3iEzW+Ki7kENiOjX5Bwt2DK5iW1CBhCIxfNF9EtxP5kAWOW9t0vCu8ER15s2x
+        j1fEQygRAoGBAP8TrTK0WEfNdIk9gbHsAqWq//+DNUmF/5ldJmaAh9KF4eVqtHWI
+        EwjEy6yh6jpFPgEtpSBgHwAW0XrtTgAw4AjUxB0Tn9tMSoQx4/K8S0d9FECJ97jW
+        jvaleYXLIwNtautjy9bCM5yYvVLT56jg4nTp0Fx6evcSU8EQgOHIh+pfAoGBAMPt
+        8og7gquSGqQJKm4AjX/4jNo03rGukkosgRbxT9a6/MRaYeiMxQF2KPAg0Rq7tR3X
+        2CYBlxdZ8VTDkPEnfq8BfLSv4Y+9AkD8fl6pErL7GyH4vs1SifcugQLjjwA3JBK3
+        DntpD1+l8Xtq6y+qkc8adioSauxGSWZFWWrL758nAoGAEX257LYtL49JJHgRQrAa
+        Zl3ZfB31M3t60XtvvKunpKoFmYO9qCmSlJFaHhZkR2akH9SPdC7jMVBfQPyw0paH
+        ZlOgtxW3aoRKv9Hj/asnxlkvYFWVpRkhaIxkTuZlGkEQid+oBKwAegaHRPy+7/er
+        z7SQ0yaa9AJPt/d3vwPPPiUCgYACUSMIF2QRMVYdUHpu+JSzybWosu1bPow+Uk5o
+        fgwKpwVsMQFtZZTC0qnjRRAT99pJcw78TBKEVSz0aqehIm1uFl9qJ5ZMQ9jt+c5o
+        wikVcsC8Yxumg+5bvPILnbNINl631fBW50QmRmkXo4kKdELrJw30q2kWSDKAAhvv
+        ll/MCwKBgQC+px6jk0hlHNu6U9LvTNa5BOMG87vN7/7Reh8ZNT0bphSFNBlBc65W
+        aZA2NBKCwWSzSdg+9C0jhA0vwm99iiLIXERNbOgLs6699QvzwSq6OpWxBcprRcFC
+        By8Z68pjlRAiAb5vaEIQ2oMaLbG+4DbCwazNr7MVPzBKcSoUzakiPA==
+        -----END RSA PRIVATE KEY-----
+    metron_agent:
+      zone: z1
+    router:
+      servers:
+      - 10.244.0.22
+  resource_pool: router_z1
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: haproxy
     release: cf
   - name: metron_agent
     release: cf

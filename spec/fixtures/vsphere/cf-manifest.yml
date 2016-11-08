@@ -60,38 +60,6 @@ jobs:
 - default_networks:
   - name: cf1
   instances: 1
-  name: ha_proxy_z1
-  networks:
-  - name: cf1
-    static_ips:
-    - 10.85.9.233
-  properties:
-    ha_proxy:
-      ssl_pem: |+
-        -----BEGIN RSA PRIVATE KEY-----
-        RSA_PRIVATE_KEY
-        -----END RSA PRIVATE KEY-----
-        -----BEGIN CERTIFICATE-----
-        CERTIFICATE
-        -----END CERTIFICATE-----
-    metron_agent:
-      zone: z1
-    router:
-      servers:
-      - 10.85.9.235
-      - 10.85.10.235
-  resource_pool: router_z1
-  templates:
-  - name: consul_agent
-    release: cf
-  - name: haproxy
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- default_networks:
-  - name: cf1
-  instances: 1
   name: nats_z1
   networks:
   - name: cf1
@@ -945,6 +913,38 @@ jobs:
   - name: consul_agent
     release: cf
   - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- default_networks:
+  - name: cf1
+  instances: 1
+  name: ha_proxy_z1
+  networks:
+  - name: cf1
+    static_ips:
+    - 10.85.9.233
+  properties:
+    ha_proxy:
+      ssl_pem: |+
+        -----BEGIN RSA PRIVATE KEY-----
+        RSA_PRIVATE_KEY
+        -----END RSA PRIVATE KEY-----
+        -----BEGIN CERTIFICATE-----
+        CERTIFICATE
+        -----END CERTIFICATE-----
+    metron_agent:
+      zone: z1
+    router:
+      servers:
+      - 10.85.9.235
+      - 10.85.10.235
+  resource_pool: router_z1
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: haproxy
     release: cf
   - name: metron_agent
     release: cf
