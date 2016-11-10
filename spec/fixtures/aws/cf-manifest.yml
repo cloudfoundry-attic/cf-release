@@ -1644,7 +1644,24 @@ properties:
     sslCertificate: UAA_SERVER_CERT
     sslPrivateKey: UAA_SERVER_KEY
     url: https://uaa.SYSTEM_DOMAIN
-    user: null
+    user:
+      authorities:
+      - openid
+      - scim.me
+      - cloud_controller.read
+      - cloud_controller.write
+      - cloud_controller_service_permissions.read
+      - password.write
+      - uaa.user
+      - approvals.me
+      - oauth.approvals
+      - notification_preferences.read
+      - notification_preferences.write
+      - profile
+      - roles
+      - user_attributes
+      - cloud_controller.user
+      - actuator.read
     zones:
       internal:
         hostnames:

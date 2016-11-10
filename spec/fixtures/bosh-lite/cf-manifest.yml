@@ -4257,7 +4257,24 @@ properties:
       /6wtWeX8QMBcZ6ufxs0VgxPv4P8jczrzqxgszLUK8hdnZEL7+xk=
       -----END RSA PRIVATE KEY-----
     url: https://uaa.bosh-lite.com
-    user: null
+    user:
+      authorities:
+      - openid
+      - scim.me
+      - cloud_controller.read
+      - cloud_controller.write
+      - cloud_controller_service_permissions.read
+      - password.write
+      - uaa.user
+      - approvals.me
+      - oauth.approvals
+      - notification_preferences.read
+      - notification_preferences.write
+      - profile
+      - roles
+      - user_attributes
+      - cloud_controller.user
+      - actuator.read
     zones:
       internal:
         hostnames:
