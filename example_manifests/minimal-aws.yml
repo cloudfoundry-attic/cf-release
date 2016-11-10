@@ -255,6 +255,7 @@ jobs:
   - {name: php-buildpack, release: cf}
   - {name: python-buildpack, release: cf}
   - {name: staticfile-buildpack, release: cf}
+  - {name: dotnet-core-buildpack, release: cf}
   networks:
   - name: cf_private
   properties:
@@ -452,6 +453,7 @@ properties:
     - {name: php_buildpack, package: php-buildpack}
     - {name: staticfile_buildpack, package: staticfile-buildpack}
     - {name: binary_buildpack, package: binary-buildpack}
+    - {name: dotnet_core_buildpack, package: dotnet-core-buildpack}
     internal_api_password: PASSWORD
     quota_definitions:
       default:
