@@ -2,7 +2,7 @@
 
 set -e -x
 
-source $(dirname $0)/certificate_generation_functions.sh
+scripts_folder=$(dirname $0)
 
 # Install certstrap
 go get -v github.com/square/certstrap
@@ -12,12 +12,12 @@ depot_path="hm9000-certs"
 mkdir -p ${depot_path}
 
 # CA to distribute to DEA clients and servers
-generate_ca hm9000CA ${depot_path} hm9000_ca
+${scripts_folder}/generate_ca_cert --common-name "hm9000CA" --depot-path ${depot_path} --output-file hm9000_ca
 
 # Server certificate to share across the bbs cluster
 server_cn=listener-hm9000.service.cf.internal
 server_domain='*.listener-hm9000.service.cf.internal'
-generate_end_entity_certs ${server_cn} "${server_domain},${server_cn}" hm9000_ca ${depot_path} hm9000_server
+${scripts_folder}/generate_end_entity_certs --common-name ${server_cn} --domain "${server_domain},${server_cn}" --ca-name hm9000_ca --depot-path ${depot_path} --output-file hm9000_server
 
 # Client certificate to distribute to jobs that access DEAs
-generate_end_entity_certs hm9000_client '' hm9000_ca ${depot_path} hm9000_client
+${scripts_folder}/generate_end_entity_certs --common-name hm9000_client --ca-name hm9000_ca --depot-path ${depot_path} --output-file hm9000_client

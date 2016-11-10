@@ -2,6 +2,8 @@
 
 set -e -x
 
+scripts_folder=$(dirname $0)
+
 # Install certstrap
 go get -v github.com/square/certstrap
 
@@ -12,8 +14,8 @@ depot_path="uaa-certs"
 mkdir -p ${depot_path}
 
 # CA to generate client certs
-generate_ca "cert-authority" ${depot_path} server-ca
+${scripts_folder}/generate_ca_cert --common-name "cert-authority" --depot-path ${depot_path} --output-file server-ca
 
 # Certificate to use as the client
 server_cn="uaa.service.cf.internal"
-generate_end_entity_certs ${server_cn} "" server-ca ${depot_path} server
+${scripts_folder}/generate_end_entity_certs --common-name ${server_cn} --ca-name server-ca --depot-path ${depot_path} --output-file server
