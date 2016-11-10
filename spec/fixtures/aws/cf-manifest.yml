@@ -821,7 +821,9 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
-  update: {}
+  update:
+    max_in_flight: 1
+    serial: true
 - default_networks:
   - name: cf2
   instances: 1
@@ -860,7 +862,9 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
-  update: {}
+  update:
+    max_in_flight: 1
+    serial: true
 - default_networks:
   - name: cf1
   instances: 1
@@ -1411,6 +1415,12 @@ properties:
     outgoing_dropsonde_port: 8081
     tls:
       ca_cert: null
+      doppler:
+        cert: null
+        key: null
+      trafficcontroller:
+        cert: null
+        key: null
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
@@ -1829,4 +1839,3 @@ update:
   max_in_flight: 1
   serial: true
   update_watch_time: 5000-600000
-
