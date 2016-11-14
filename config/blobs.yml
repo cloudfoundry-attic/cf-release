@@ -119,10 +119,6 @@ haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-python-buildpack/python_buildpack-cached-v1.5.11.zip:
-  object_id: 853d4f79-35a7-41b8-af10-4e3b887af838
-  sha: 83c8f4baeb8dbd0134c4b344994092460d37c5f6
-  size: 267716020
 staticfile-buildpack/staticfile_buildpack-cached-v1.3.12.zip:
   object_id: 57981486-f877-4221-91ae-5bf70772c4e8
   sha: 87e83eb1fb1b45c878f7f559056dad813c2f467a
@@ -175,3 +171,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.23.zip:
   object_id: c1b2b979-20c7-4710-9971-f5597f9974d8
   sha: 087bd90d92f41ea7431d250df8105df1d4cb74a9
   size: 114740105
+python-buildpack/python_buildpack-cached-v1.5.12.zip:
+  object_id: 673b0a0e-d5dc-45c3-ad7a-fd9ce9a4e7e8
+  sha: eb24b89e2d8230200882e2d17c5fc88fdea910a4
+  size: 267714415
