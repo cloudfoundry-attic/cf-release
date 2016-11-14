@@ -119,10 +119,6 @@ haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-go-buildpack/go_buildpack-cached-v1.7.14.zip:
-  object_id: 38961b0b-6c64-415f-b97a-5d0cec2c43c6
-  sha: 50de509848ba6809053a97bfaf4c4f13a7623cae
-  size: 410480799
 python-buildpack/python_buildpack-cached-v1.5.11.zip:
   object_id: 853d4f79-35a7-41b8-af10-4e3b887af838
   sha: 83c8f4baeb8dbd0134c4b344994092460d37c5f6
@@ -175,3 +171,7 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.4.zip:
   object_id: ecb31f87-f77d-4308-a2d8-19c12fe13132
   sha: 11e1f87a10f55ec5f3faa7a0c694687aa164824e
   size: 177084124
+go-buildpack/go_buildpack-cached-v1.7.15.zip:
+  object_id: 3907109e-27d0-411d-87cc-c674c8fcdc82
+  sha: 1cf9accfad31e8245c9a9b98857069100a16ff26
+  size: 411021307
