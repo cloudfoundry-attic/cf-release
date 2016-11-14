@@ -147,10 +147,6 @@ rootfs/cflinuxfs2-1.90.0.tar.gz:
   object_id: 59059e37-ac07-4822-99b5-f8e4b1a724d8
   sha: 6620831b4e8e096257e75df01b1f28a62504e6de
   size: 347809504
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.4.zip:
-  object_id: ecb31f87-f77d-4308-a2d8-19c12fe13132
-  sha: 11e1f87a10f55ec5f3faa7a0c694687aa164824e
-  size: 177084124
 go-buildpack/go_buildpack-cached-v1.7.15.zip:
   object_id: 3907109e-27d0-411d-87cc-c674c8fcdc82
   sha: 1cf9accfad31e8245c9a9b98857069100a16ff26
@@ -175,3 +171,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.13.zip:
   object_id: 936f1d01-eeaa-446b-91f7-2ae815302307
   sha: 859a7b6964f188dc6face47610c7d95436514457
   size: 2702450
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.5.zip:
+  object_id: d6a16bea-d2b5-4e67-8005-f9a540ae46da
+  sha: a156115380a248a1a93d95d359f5fa560d27c1dd
+  size: 177539232
