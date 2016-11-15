@@ -1,4 +1,4 @@
-Rootfs SHASUM: 6620831b4e8e096257e75df01b1f28a62504e6de
+Rootfs SHASUM: 01d469ea88630ba31ce5e7dd8675332e3c5940c2
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -21,6 +21,7 @@ ii  bsdutils                           1:2.20.1-5.1ubuntu20.7              amd64
 ii  build-essential                    11.6ubuntu6                         amd64        Informational list of build-essential packages
 ii  busybox-initramfs                  1:1.21.0-1ubuntu1                   amd64        Standalone shell setup for initramfs
 ii  bzip2                              1.0.6-5                             amd64        high-quality block-sorting file compressor - utilities
+ii  bzr                                2.6.0+bzr6593-1ubuntu1.5            all          easy to use distributed version control system
 ii  ca-certificates                    20160104ubuntu0.14.04.1             all          Common CA certificates
 ii  cmake                              2.8.12.2-0ubuntu3                   amd64        cross-platform, open-source make system
 ii  cmake-data                         2.8.12.2-0ubuntu3                   all          CMake data files (modules, templates and documentation)
@@ -105,6 +106,8 @@ ii  laptop-detect                      0.13.7ubuntu2                       amd64
 ii  less                               458-2                               amd64        pager program similar to more
 ii  libacl1:amd64                      2.2.52-1                            amd64        Access control list shared library
 ii  libaio1:amd64                      0.3.109-4                           amd64        Linux kernel AIO access library - shared library
+ii  libapr1:amd64                      1.5.0-1                             amd64        Apache Portable Runtime Library
+ii  libaprutil1:amd64                  1.5.3-1                             amd64        Apache Portable Runtime Utility Library
 ii  libapt-inst1.5:amd64               1.0.1ubuntu2.15                     amd64        deb package format runtime library
 ii  libapt-pkg4.12:amd64               1.0.1ubuntu2.15                     amd64        package management runtime library
 ii  libarchive-extract-perl            0.70-1                              all          generic archive extracting module
@@ -355,8 +358,8 @@ ii  libpng12-0:amd64                   1.2.50-1ubuntu2.14.04.2             amd64
 ii  libpng12-dev                       1.2.50-1ubuntu2.14.04.2             amd64        PNG library - development
 ii  libpod-latex-perl                  0.61-1                              all          module to convert Pod data to formatted LaTeX
 ii  libpopt0:amd64                     1.16-8ubuntu1                       amd64        lib for parsing cmdline parameters
-ii  libpq-dev                          9.3.14-0ubuntu0.14.04               amd64        header files for libpq5 (PostgreSQL library)
-ii  libpq5                             9.3.14-0ubuntu0.14.04               amd64        PostgreSQL C client library
+ii  libpq-dev                          9.3.15-0ubuntu0.14.04               amd64        header files for libpq5 (PostgreSQL library)
+ii  libpq5                             9.3.15-0ubuntu0.14.04               amd64        PostgreSQL C client library
 ii  libprocps3:amd64                   1:3.3.9-1ubuntu2.2                  amd64        library for accessing process information from /proc
 ii  libpthread-stubs0-dev:amd64        0.3-4                               amd64        pthread stubs not provided by native libc, development files
 ii  libpython-stdlib:amd64             2.7.5-5ubuntu3                      amd64        interactive high-level object-oriented language (default python version)
@@ -387,6 +390,7 @@ ii  libsemanage1:amd64                 2.2-1                               amd64
 ii  libsensors4:amd64                  1:3.3.4-2ubuntu1                    amd64        library to read temperature/voltage/fan sensors
 ii  libsepol1:amd64                    2.2-1ubuntu0.1                      amd64        SELinux library for manipulating binary security policies
 ii  libsepol1-dev                      2.2-1ubuntu0.1                      amd64        SELinux binary policy manipulation library and development files
+ii  libserf-1-1:amd64                  1.3.3-1ubuntu0.1                    amd64        high-performance asynchronous HTTP client library
 ii  libsigc++-2.0-0c2a:amd64           2.2.10-0.2ubuntu2                   amd64        type-safe Signal Framework for C++ - runtime
 ii  libsigsegv2:amd64                  2.10-2                              amd64        Library for handling page faults in a portable way
 ii  libslang2:amd64                    2.2.4-15ubuntu1                     amd64        S-Lang programming library - runtime version
@@ -404,6 +408,7 @@ ii  libssl1.0.0:amd64                  1.0.1f-1ubuntu2.21                  amd64
 ii  libstdc++-4.8-dev:amd64            4.8.4-2ubuntu1~14.04.3              amd64        GNU Standard C++ Library v3 (development files)
 ii  libstdc++6:amd64                   4.8.4-2ubuntu1~14.04.3              amd64        GNU Standard C++ Library v3
 ii  libsub-name-perl                   0.05-1build4                        amd64        module for assigning a new name to referenced sub
+ii  libsvn1:amd64                      1.8.8-1ubuntu3.2                    amd64        Shared libraries used by Apache Subversion
 ii  libswscale2:amd64                  6:9.18-0ubuntu0.14.04.1             amd64        Libav video scaling library
 ii  libsysfs2:amd64                    2.1.0+repack-3ubuntu1               amd64        interface library to sysfs
 ii  libtasn1-6:amd64                   3.4-3ubuntu0.4                      amd64        Manage ASN.1 structures (runtime)
@@ -480,7 +485,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-100.147                      amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-101.148                      amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -496,6 +501,8 @@ ii  manpages                           3.54-1ubuntu1                       all  
 ii  manpages-dev                       3.54-1ubuntu1                       all          Manual pages about using GNU/Linux for development
 ii  mariadb-common                     5.5.52-1ubuntu0.14.04.1             all          MariaDB common metapackage
 ii  mawk                               1.3.3-17ubuntu2                     amd64        a pattern scanning and text processing language
+ii  mercurial                          2.8.2-1ubuntu1.3                    amd64        easy-to-use, scalable distributed version control system
+ii  mercurial-common                   2.8.2-1ubuntu1.3                    all          easy-to-use, scalable distributed version control system (common files)
 ii  mime-support                       3.54ubuntu1.1                       all          MIME files 'mime.types' & 'mailcap', and support programs
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
 ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
@@ -523,6 +530,8 @@ ii  plymouth                           0.8.8-0ubuntu17.1                   amd64
 ii  procps                             1:3.3.9-1ubuntu2.2                  amd64        /proc file system utilities
 ii  psmisc                             22.20-1ubuntu2                      amd64        utilities that use the proc file system
 ii  python                             2.7.5-5ubuntu3                      amd64        interactive high-level object-oriented language (default version)
+ii  python-bzrlib                      2.6.0+bzr6593-1ubuntu1.5            amd64        distributed version control system - python library
+ii  python-configobj                   4.7.2+ds-5build1                    all          simple but powerful config file reader and writer for Python
 ii  python-minimal                     2.7.5-5ubuntu3                      amd64        minimal subset of the Python language (default version)
 ii  python2.7                          2.7.6-8ubuntu0.2                    amd64        Interactive high-level object-oriented language (version 2.7)
 ii  python2.7-minimal                  2.7.6-8ubuntu0.2                    amd64        Minimal subset of the Python language (version 2.7)
@@ -540,6 +549,7 @@ ii  sensible-utils                     0.0.9                               all  
 ii  shared-mime-info                   1.2-0ubuntu3                        amd64        FreeDesktop.org shared MIME database and spec
 ii  sshfs                              2.5-1ubuntu1                        amd64        filesystem client based on SSH File Transfer Protocol
 ii  strace                             4.8-1ubuntu5                        amd64        A system call tracer
+ii  subversion                         1.8.8-1ubuntu3.2                    amd64        Advanced version control system
 ii  sudo                               1.8.9p5-1ubuntu1.3                  amd64        Provide limited super user privileges to specific users
 ii  sysstat                            10.2.0-1                            amd64        system performance tools for Linux
 ii  sysv-rc                            2.88dsf-41ubuntu6.3                 all          System-V-like runlevel change mechanism
