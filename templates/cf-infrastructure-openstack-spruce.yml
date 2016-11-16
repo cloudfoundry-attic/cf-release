@@ -1,0 +1,244 @@
+meta:
+  environment: ~
+  networks: ~
+
+  stemcell: (( grab .meta.default_stemcell ))
+
+  default_stemcell:
+    name: bosh-openstack-kvm-ubuntu-trusty-go_agent
+    version: latest
+
+  floating_static_ips: (( param Replace with floating static ip ))
+
+  resource_pools:
+    small:
+      cloud_properties:
+        instance_type: m1.small
+    medium:
+      cloud_properties:
+          instance_type: m1.medium
+    large:
+      cloud_properties:
+          instance_type: m1.large
+
+networks: (( param Replace with networks ))
+
+properties:
+  logger_endpoint:
+    port: 4443
+
+  uaa:
+    clients: (( param Replace with uaa clients ))
+
+  dea_next:
+    deny_networks: null
+    allow_networks: null
+
+  ccdb:
+    address: (( grab jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    databases:
+    - name: ccdb
+      tag: cc
+    db_scheme: postgres
+    port: 5524
+    roles:
+    - name: ccadmin
+      password: (( param Replace with ccdb admin roles ))
+      tag: admin
+
+  uaadb:
+    address: (( grab jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    databases:
+    - name: uaadb
+      tag: uaa
+    db_scheme: postgresql
+    port: 5524
+    roles:
+    - name: uaaadmin
+      password: (( param Replace with uaa db admin password ))
+      tag: admin
+
+  databases:
+    db_scheme: postgres
+    address: (( grab jobs.postgres_z1.networks.cf1.static_ips.[0] ))
+    port: 5524
+    roles:
+      - tag: admin
+        name: ccadmin
+        password: (( param Replace with password ))
+      - tag: admin
+        name: uaaadmin
+        password: (( param Replace with password ))
+      - tag: admin
+        name: diego
+        password: (( param Replace with password ))
+    databases:
+      - tag: cc
+        name: ccdb
+        citext: true
+      - tag: uaa
+        name: uaadb
+        citext: true
+      - tag: diego
+        name: diego
+        citext: false
+    collect_statement_statistics: null
+    additional_config: null
+
+compilation:
+  cloud_properties: (( grab meta.resource_pools.medium.cloud_properties ))
+
+resource_pools:
+  - name: small_z1
+    cloud_properties: (( grab meta.resource_pools.small.cloud_properties ))
+
+  - name: small_z2
+    cloud_properties: (( grab meta.resource_pools.small.cloud_properties ))
+
+  - name: medium_z1
+    cloud_properties: (( grab meta.resource_pools.medium.cloud_properties ))
+
+  - name: medium_z2
+    cloud_properties: (( grab meta.resource_pools.medium.cloud_properties ))
+
+  - name: large_z1
+    cloud_properties: (( grab meta.resource_pools.large.cloud_properties  ))
+
+  - name: large_z2
+    cloud_properties: (( grab meta.resource_pools.large.cloud_properties  ))
+
+  - name: runner_z1
+    cloud_properties: (( grab meta.resource_pools.large.cloud_properties  ))
+
+  - name: runner_z2
+    cloud_properties: (( grab meta.resource_pools.large.cloud_properties  ))
+
+  - name: router_z1
+    cloud_properties: (( grab meta.resource_pools.medium.cloud_properties  ))
+
+  - name: router_z2
+    cloud_properties: (( grab meta.resource_pools.medium.cloud_properties  ))
+
+
+# This config is for the simplest Openstack config using just one AZ.
+# All values for "z2" and network "cf2" are set to null. They'll end up
+# in the final 'spruce merge' manifest with zero instances.
+jobs:
+  - name: ha_proxy_z1
+    instances: 1
+    networks:
+      - name: floating
+        static_ips: (( grab meta.floating_static_ips ))
+      - name: cf1
+        static_ips: (( static_ips(0) ))
+        default: ~
+
+  - name: nats_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(2, 3) ))
+
+  - name: nfs_z1
+    instances: 0
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(3) ))
+
+  - name: blobstore_z1
+    instances: 1
+    networks:
+      - name: cf1
+
+  - name: postgres_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(4) ))
+
+  - name: router_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(5) ))
+
+  - name: loggregator_z1
+    instances: 0
+    networks:
+      - name: cf1
+
+  - name: doppler_z1
+    instances: 1
+    networks:
+      - name: cf1
+
+  - name: loggregator_trafficcontroller_z1
+    instances: 1
+    networks:
+      - name: cf1
+
+  - name: etcd_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(8, 9, 10) ))
+
+  - name: consul_z1
+    instances: 1
+    networks:
+      - name: cf1
+        static_ips: (( static_ips(12, 13, 14) ))
+
+  - name: nats_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(2) ))
+
+  - name: router_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(5) ))
+
+  - name: etcd_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(8, 9, 10) ))
+
+  - name: consul_z2
+    instances: 0
+    networks:
+      - name: cf2
+        static_ips: (( static_ips(12, 13, 14) ))
+
+  - name: loggregator_z2
+    instances: 0
+    networks:
+     - name: cf2
+
+  - name: doppler_z2
+    instances: 0
+    networks:
+      - name: cf1
+
+  - name: loggregator_trafficcontroller_z2
+    instances: 0
+    networks:
+      - name: cf2
+
+  - name: uaa_z2
+    instances: 0
+
+  - name: api_z2
+    instances: 0
+
+  - name: api_worker_z2
+    instances: 0
+
+  - name: hm9000_z2
+    instances: 0
+
+  - name: runner_z2
+    instances: 0
