@@ -130,6 +130,7 @@ resource_pools:
         type: gp2
       availability_zone: (( meta.zones.z1 ))
       elbs: (( merge || ["cfrouter"] ))
+      <<: (( merge ))
 
   - name: router_z2
     cloud_properties:
@@ -139,6 +140,7 @@ resource_pools:
         type: gp2
       availability_zone: (( meta.zones.z2 ))
       elbs: (( merge || ["cfrouter"] ))
+      <<: (( merge ))
 
   - name: small_errand
     cloud_properties:
