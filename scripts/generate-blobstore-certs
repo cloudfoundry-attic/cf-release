@@ -17,4 +17,3 @@ ${scripts_folder}/generate_ca_cert --common-name "cert-authority" --depot-path $
 server_cn="blobstore.service.cf.internal"
 ${scripts_folder}/generate_end_entity_certs --common-name ${server_cn} --ca-name server-ca --depot-path ${depot_path} --output-file server
 
->>>>>>> Inline generate-certs into generate-blobstore-certs
