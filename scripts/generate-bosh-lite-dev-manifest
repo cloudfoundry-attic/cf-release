@@ -35,7 +35,6 @@ mkdir -p "${CF_RELEASE_DIR}/bosh-lite/deployments"
 
 "${CF_RELEASE_DIR}/scripts/generate_deployment_manifest" \
   bosh-lite \
-  uaa-properties.yml \
   <(echo "director_uuid: ${DIRECTOR_UUID}") \
   "$@" \
   > "${CF_RELEASE_DIR}/bosh-lite/deployments/cf.yml"
