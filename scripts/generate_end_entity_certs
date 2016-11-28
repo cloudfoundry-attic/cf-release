@@ -9,6 +9,7 @@ domain=''
 set -e -x
 
 show_help() {
+  set +x
   echo "Usage: generate_ca_cert [OPTIONS]"
   echo "Output Options:"
   echo "  -n --common-name [REQUIRED]     The common name for the certificate"
@@ -17,6 +18,7 @@ show_help() {
   echo "  -p --depot-path  [REQUIRED]     The depot path (where all files will be written to) for the CA"
   echo "  -o --output-file [REQUIRED]     The output file name of the CA cert and key"
   echo "  -h --help            Show a help message"
+  set -x
   exit 0
 }
 
