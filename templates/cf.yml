@@ -764,6 +764,7 @@ properties:
       use_privileged_containers_for_staging: (( merge || nil ))
       insecure_docker_registry_list: (( merge || nil ))
       temporary_local_staging: (( merge || nil ))
+      temporary_local_tasks: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
         ca_cert: (( merge || nil ))

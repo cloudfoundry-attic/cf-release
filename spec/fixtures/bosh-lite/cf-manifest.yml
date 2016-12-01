@@ -2874,6 +2874,7 @@ properties:
     diego:
       insecure_docker_registry_list: null
       temporary_local_staging: false
+      temporary_local_tasks: false
       use_privileged_containers_for_staging: null
       bbs:
         url: null
