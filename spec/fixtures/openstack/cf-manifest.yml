@@ -810,10 +810,7 @@ jobs:
     consul:
       agent:
         services:
-          loggregator_trafficcontroller:
-            name: loggregator_trafficcontroller
-            tags:
-            - z1
+          loggregator_trafficcontroller: {}
   resource_pool: small_z1
   templates:
   - name: consul_agent
@@ -851,10 +848,7 @@ jobs:
     consul:
       agent:
         services:
-          loggregator_trafficcontroller:
-            name: loggregator_trafficcontroller
-            tags:
-            - z2
+          loggregator_trafficcontroller: {}
   resource_pool: small_z2
   templates:
   - name: consul_agent

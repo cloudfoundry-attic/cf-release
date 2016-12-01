@@ -462,10 +462,7 @@ jobs:
       consul:
         agent:
           services:
-            loggregator_trafficcontroller:
-              name: loggregator_trafficcontroller
-              tags:
-              - z1
+            loggregator_trafficcontroller: {}
       metron_agent:
         zone: z1
       route_registrar:
@@ -490,10 +487,7 @@ jobs:
       consul:
         agent:
           services:
-            loggregator_trafficcontroller:
-              name: loggregator_trafficcontroller
-              tags:
-              - z2
+            loggregator_trafficcontroller: {}
       metron_agent:
         zone: z2
       route_registrar:
