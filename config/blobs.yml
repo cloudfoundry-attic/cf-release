@@ -99,10 +99,6 @@ openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
   object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
   sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
   size: 75550921
-uaa/apache-tomcat-8.0.36.tar.gz:
-  object_id: b142bb5b-e401-4946-b872-433c91a6a8d3
-  sha: c711970918f4c0ebd120cf35605795c416e342c8
-  size: 9277365
 golang/go1.7.linux-amd64.tar.gz:
   object_id: c0196ca0-44ab-453e-88af-4f296166175c
   sha: a744e29da97fc3aadad1ee0d7d89b0d899645e50
@@ -175,3 +171,7 @@ rootfs/cflinuxfs2-1.92.0.tar.gz:
   object_id: 688e2fbe-2808-4ae3-8011-901375d30007
   sha: 850e84d642fd60685c4583265fa47c6ab706f1d4
   size: 356569232
+uaa/apache-tomcat-8.0.39.tar.gz:
+  object_id: 2166a182-9111-48af-87c5-34cc06f68cac
+  sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
+  size: 9304967
