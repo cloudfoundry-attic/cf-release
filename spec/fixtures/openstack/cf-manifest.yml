@@ -1090,6 +1090,7 @@ properties:
       insecure_docker_registry_list: null
       temporary_local_staging: null
       temporary_local_tasks: null
+      temporary_local_apps: null
       use_privileged_containers_for_staging: null
       bbs:
         url: null

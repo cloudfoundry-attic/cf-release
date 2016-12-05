@@ -560,6 +560,7 @@ properties:
     diego:
       temporary_local_staging: false
       temporary_local_tasks: false
+      temporary_local_apps: false
       bbs:
         ca_cert: |
           -----BEGIN CERTIFICATE-----
