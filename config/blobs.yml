@@ -87,10 +87,6 @@ openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
   object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
   sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
   size: 75550921
-golang/go1.7.linux-amd64.tar.gz:
-  object_id: c0196ca0-44ab-453e-88af-4f296166175c
-  sha: a744e29da97fc3aadad1ee0d7d89b0d899645e50
-  size: 81573766
 cli/cf-cli_6.21.1_linux_x86-64.tgz:
   object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
   sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
@@ -123,10 +119,6 @@ consul-windows/consul_0.7.0_windows_amd64.zip:
   object_id: 73276424-7529-4dca-bf47-8370a74cfb87
   sha: b3c92be882b51a5b98b2b6994ef2bb18f57ded8b
   size: 6431639
-golang/go1.7.3.windows-amd64.zip:
-  object_id: 0eb3c292-0fee-4bda-a9bc-6b035e2c04f3
-  sha: d10f32a97baa97344af80b6fa61374debe12124f
-  size: 88850225
 go-buildpack/go_buildpack-cached-v1.7.15.zip:
   object_id: 3907109e-27d0-411d-87cc-c674c8fcdc82
   sha: 1cf9accfad31e8245c9a9b98857069100a16ff26
@@ -175,3 +167,11 @@ ruby-2.3/rubygems-2.6.8.tgz:
   object_id: 2393318f-83ea-4e9c-9d18-83d82ee34d94
   sha: d253fd1caca6103a9e2a69127ac158a3745fbb44
   size: 754300
+golang/go1.7.4.linux-amd64.tar.gz:
+  size: 84021919
+  object_id: 783849db-2186-488f-459f-28d2f22d7b64
+  sha: 2e5baf03d1590e048c84d1d5b4b6f2540efaaea1
+golang/go1.7.4.windows-amd64.zip:
+  size: 90409580
+  object_id: dbebd00d-43b7-434d-6603-c7a8fbcbf779
+  sha: a0da2f5d67e5b800eba811a34ca4b2aa22cca678
