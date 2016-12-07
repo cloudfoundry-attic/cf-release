@@ -55,18 +55,6 @@ ruby-2.2.5/yaml-0.1.6.tar.gz:
   object_id: 1d7ec354-5aa6-4e19-b6e5-51f6d6327814
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
-ruby-2.3/bundler-1.11.2.gem:
-  object_id: 5853a4d1-8574-4a5d-ab0b-d72831a79a48
-  sha: 8eb956dec72da753d3d2a2126c78508b17af434e
-  size: 263168
-ruby-2.3/ruby-2.3.1.tar.gz:
-  object_id: 95a32294-6f17-45b7-8911-ef6729195536
-  sha: c39b4001f7acb4e334cb60a0f4df72d434bef711
-  size: 17797997
-ruby-2.3/rubygems-2.6.4.tgz:
-  object_id: 5e1e754b-85ec-495c-806e-dccf6daec0aa
-  sha: 8ef39e536af2ecd20b0e7a95765fa6a485087ac8
-  size: 478582
 consul/consul-template_0.14.0_linux_amd64.zip:
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
@@ -175,3 +163,15 @@ uaa/apache-tomcat-8.0.39.tar.gz:
   object_id: 2166a182-9111-48af-87c5-34cc06f68cac
   sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
   size: 9304967
+ruby-2.3/bundler-1.13.6.gem:
+  object_id: bad05dd0-86e8-4a45-8a46-70880a1c6dd8
+  sha: c4b33f5e0a6ad4a363d2820260f10454197cceff
+  size: 307200
+ruby-2.3/ruby-2.3.3.tar.gz:
+  object_id: 218c9c26-c0b4-4115-84d1-9f0283d6d633
+  sha: 1014ee699071aa2ddd501907d18cbe15399c997d
+  size: 17813577
+ruby-2.3/rubygems-2.6.8.tgz:
+  object_id: 2393318f-83ea-4e9c-9d18-83d82ee34d94
+  sha: d253fd1caca6103a9e2a69127ac158a3745fbb44
+  size: 754300
