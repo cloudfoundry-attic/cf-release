@@ -15,7 +15,7 @@ tar xzf ruby-2.1.8/yaml-${LIBYAML_VERSION}.tar.gz
     cp ${BOSH_COMPILE_TARGET}/architecture-support/config/config.{guess,sub} ./config
   fi
   ./configure --prefix=${BOSH_INSTALL_TARGET}
-  make -j 3   # Use 3 CPUs, which is 1.5 x 2 (the normal number of compile CPUs)
+  make -j $(getconf _NPROCESSORS_ONLN) || make
   make install
   ldconfig
 )
@@ -25,7 +25,7 @@ tar xzf ruby-2.1.8/ruby-${RUBY_VERSION}.tar.gz
   set -e
   cd ruby-${RUBY_VERSION}
   LDFLAGS="-Wl,-rpath -Wl,${BOSH_INSTALL_TARGET}" ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=${BOSH_INSTALL_TARGET}
-  make
+  make -j $(getconf _NPROCESSORS_ONLN) || make
   make install
 )
 
