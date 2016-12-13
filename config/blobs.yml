@@ -91,10 +91,6 @@ cli/cf-cli_6.21.1_linux_x86-64.tgz:
   object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
   sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
   size: 6543090
-consul/consul_0.7.0_linux_amd64.zip:
-  object_id: f9cfff76-4c3a-4e51-963b-454ccc157003
-  sha: 32d5f51c35b75216cf73cabe0329239355dc4266
-  size: 6470848
 haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
@@ -115,10 +111,6 @@ etcd/etcd-v2.1.1-linux-amd64.tar.gz:
   object_id: ce50df26-f04b-496a-9ac4-32228020df6a
   sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
   size: 5608238
-consul-windows/consul_0.7.0_windows_amd64.zip:
-  object_id: 73276424-7529-4dca-bf47-8370a74cfb87
-  sha: b3c92be882b51a5b98b2b6994ef2bb18f57ded8b
-  size: 6431639
 go-buildpack/go_buildpack-cached-v1.7.15.zip:
   object_id: 3907109e-27d0-411d-87cc-c674c8fcdc82
   sha: 1cf9accfad31e8245c9a9b98857069100a16ff26
@@ -175,3 +167,11 @@ golang/go1.7.4.windows-amd64.zip:
   size: 90409580
   object_id: dbebd00d-43b7-434d-6603-c7a8fbcbf779
   sha: a0da2f5d67e5b800eba811a34ca4b2aa22cca678
+consul/consul_0.7.1_linux_amd64.zip:
+  object_id: 08ad90a5-10ab-48cb-bebe-ead924e9ef32
+  sha: c2be9eebc40bf552e260c7dd31a77cb60474712f
+  size: 7359222
+consul-windows/consul_0.7.1_windows_amd64.zip:
+  object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
+  sha: a4e13dcb189e8235ca6c48029638733e12fb9747
+  size: 7299930
