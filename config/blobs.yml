@@ -139,10 +139,6 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.5.zip:
   object_id: d6a16bea-d2b5-4e67-8005-f9a540ae46da
   sha: a156115380a248a1a93d95d359f5fa560d27c1dd
   size: 177539232
-rootfs/cflinuxfs2-1.92.0.tar.gz:
-  object_id: 688e2fbe-2808-4ae3-8011-901375d30007
-  sha: 850e84d642fd60685c4583265fa47c6ab706f1d4
-  size: 356569232
 uaa/apache-tomcat-8.0.39.tar.gz:
   object_id: 2166a182-9111-48af-87c5-34cc06f68cac
   sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
@@ -175,3 +171,7 @@ consul-windows/consul_0.7.1_windows_amd64.zip:
   object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
   sha: a4e13dcb189e8235ca6c48029638733e12fb9747
   size: 7299930
+rootfs/cflinuxfs2-1.93.0.tar.gz:
+  object_id: 2c31199d-e13d-4b28-965b-a4a8a06d8d00
+  sha: f3d4b3b33f092937b07320db7a3255531bcdfb24
+  size: 356595297

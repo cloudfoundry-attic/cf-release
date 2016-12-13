@@ -1,4 +1,4 @@
-Rootfs SHASUM: 850e84d642fd60685c4583265fa47c6ab706f1d4
+Rootfs SHASUM: f3d4b3b33f092937b07320db7a3255531bcdfb24
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -84,7 +84,7 @@ ii  icu-devtools                       52.1-3ubuntu0.4                     amd64
 ii  ifupdown                           0.7.47.2ubuntu4.4                   amd64        high level tools to configure network interfaces
 ii  imagemagick                        8:6.7.7.10-6ubuntu3.3               amd64        image manipulation programs
 ii  imagemagick-common                 8:6.7.7.10-6ubuntu3.3               all          image manipulation programs -- infrastructure
-ii  init-system-helpers                1.14                                all          helper tools for all init systems
+ii  init-system-helpers                1.14ubuntu1                         all          helper tools for all init systems
 ii  initramfs-tools                    0.103ubuntu4.4                      all          tools for generating an initramfs
 ii  initramfs-tools-bin                0.103ubuntu4.4                      amd64        binaries used by initramfs-tools
 ii  initscripts                        2.88dsf-41ubuntu6.3                 amd64        scripts for initializing and shutting down the system
@@ -127,9 +127,9 @@ ii  libaudit1:amd64                    1:2.3.2-2ubuntu1                    amd64
 ii  libavahi-client3:amd64             0.6.31-4ubuntu1.1                   amd64        Avahi client library
 ii  libavahi-common-data:amd64         0.6.31-4ubuntu1.1                   amd64        Avahi common data files
 ii  libavahi-common3:amd64             0.6.31-4ubuntu1.1                   amd64        Avahi common library
-ii  libavcodec54:amd64                 6:9.18-0ubuntu0.14.04.1             amd64        Libav codec library
-ii  libavformat54:amd64                6:9.18-0ubuntu0.14.04.1             amd64        Libav file format library
-ii  libavutil52:amd64                  6:9.18-0ubuntu0.14.04.1             amd64        Libav utility library
+ii  libavcodec54:amd64                 6:9.20-0ubuntu0.14.04.1             amd64        Libav codec library
+ii  libavformat54:amd64                6:9.20-0ubuntu0.14.04.1             amd64        Libav file format library
+ii  libavutil52:amd64                  6:9.20-0ubuntu0.14.04.1             amd64        Libav utility library
 ii  libbind9-90                        1:9.9.5.dfsg-3ubuntu0.10            amd64        BIND9 Shared Library used by BIND
 ii  libbison-dev:amd64                 2:3.0.2.dfsg-2                      amd64        YACC-compatible parser generator - development library
 ii  libblas-dev                        1.2.20110419-7                      amd64        Basic Linear Algebra Subroutines 3, static library
@@ -305,8 +305,8 @@ ii  libmagickcore5:amd64               8:6.7.7.10-6ubuntu3.3               amd64
 ii  libmagickcore5-extra:amd64         8:6.7.7.10-6ubuntu3.3               amd64        low-level image manipulation library - extra codecs
 ii  libmagickwand-dev                  8:6.7.7.10-6ubuntu3.3               amd64        image manipulation library - development files
 ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3.3               amd64        image manipulation library
-ii  libmariadbclient-dev               5.5.52-1ubuntu0.14.04.1             amd64        MariaDB database development files
-ii  libmariadbclient18:amd64           5.5.52-1ubuntu0.14.04.1             amd64        MariaDB database client library
+ii  libmariadbclient-dev               5.5.53-1ubuntu0.14.04.1             amd64        MariaDB database development files
+ii  libmariadbclient18:amd64           5.5.53-1ubuntu0.14.04.1             amd64        MariaDB database client library
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
 ii  libmount1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
@@ -409,7 +409,7 @@ ii  libstdc++-4.8-dev:amd64            4.8.4-2ubuntu1~14.04.3              amd64
 ii  libstdc++6:amd64                   4.8.4-2ubuntu1~14.04.3              amd64        GNU Standard C++ Library v3
 ii  libsub-name-perl                   0.05-1build4                        amd64        module for assigning a new name to referenced sub
 ii  libsvn1:amd64                      1.8.8-1ubuntu3.2                    amd64        Shared libraries used by Apache Subversion
-ii  libswscale2:amd64                  6:9.18-0ubuntu0.14.04.1             amd64        Libav video scaling library
+ii  libswscale2:amd64                  6:9.20-0ubuntu0.14.04.1             amd64        Libav video scaling library
 ii  libsysfs2:amd64                    2.1.0+repack-3ubuntu1               amd64        interface library to sysfs
 ii  libtasn1-6:amd64                   3.4-3ubuntu0.4                      amd64        Manage ASN.1 structures (runtime)
 ii  libtasn1-6-dev                     3.4-3ubuntu0.4                      amd64        Manage ASN.1 structures (development)
@@ -429,7 +429,7 @@ ii  libtinfo-dev:amd64                 5.9+20140118-1ubuntu1               amd64
 ii  libtinfo5:amd64                    5.9+20140118-1ubuntu1               amd64        shared low-level terminfo library for terminal handling
 ii  libts-0.0-0:amd64                  1.0-12                              amd64        touch screen library
 ii  libtsan0:amd64                     4.8.4-2ubuntu1~14.04.3              amd64        ThreadSanitizer -- a Valgrind-based detector of data races (runtime)
-ii  libudev1:amd64                     204-5ubuntu20.19                    amd64        libudev shared library
+ii  libudev1:amd64                     204-5ubuntu20.20                    amd64        libudev shared library
 ii  libusb-0.1-4:amd64                 2:0.1.12-23.3ubuntu1                amd64        userspace USB programming library
 ii  libustr-1.0-1:amd64                1.0.4-3ubuntu2                      amd64        Micro string library: shared library
 ii  libuuid1:amd64                     2.20.1-5.1ubuntu20.7                amd64        Universally Unique ID library
@@ -485,7 +485,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-103.150                      amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-105.152                      amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -499,7 +499,7 @@ ii  make                               3.81-8.2ubuntu3                     amd64
 ii  makedev                            2.3.1-93ubuntu1                     all          creates device files in /dev
 ii  manpages                           3.54-1ubuntu1                       all          Manual pages about using a GNU/Linux system
 ii  manpages-dev                       3.54-1ubuntu1                       all          Manual pages about using GNU/Linux for development
-ii  mariadb-common                     5.5.52-1ubuntu0.14.04.1             all          MariaDB common metapackage
+ii  mariadb-common                     5.5.53-1ubuntu0.14.04.1             all          MariaDB common metapackage
 ii  mawk                               1.3.3-17ubuntu2                     amd64        a pattern scanning and text processing language
 ii  mercurial                          2.8.2-1ubuntu1.3                    amd64        easy-to-use, scalable distributed version control system
 ii  mercurial-common                   2.8.2-1ubuntu1.3                    all          easy-to-use, scalable distributed version control system (common files)
@@ -561,11 +561,11 @@ ii  tcpdump                            4.5.1-2ubuntu1.2                    amd64
 ii  traceroute                         1:2.0.20-0ubuntu0.1                 amd64        Traces the route taken by packets over an IPv4/IPv6 network
 ii  tsconf                             1.0-12                              all          touch screen library common files
 ii  ttf-dejavu-core                    2.34-1ubuntu1                       all          transitional dummy package
-ii  tzdata                             2016h-0ubuntu0.14.04                all          time zone and daylight-saving time data
+ii  tzdata                             2016j-0ubuntu0.14.04                all          time zone and daylight-saving time data
 ii  ubuntu-keyring                     2012.05.19                          all          GnuPG keys of the Ubuntu archive
 ii  ubuntu-minimal                     1.325                               amd64        Minimal core of Ubuntu
 ii  ucf                                3.0027+nmu1                         all          Update Configuration File(s): preserve user changes to config files
-ii  udev                               204-5ubuntu20.19                    amd64        /dev/ and hotplug management daemon
+ii  udev                               204-5ubuntu20.20                    amd64        /dev/ and hotplug management daemon
 ii  unzip                              6.0-9ubuntu1.5                      amd64        De-archiver for .zip files
 ii  upstart                            1.12.1-0ubuntu4.2                   amd64        event-based init daemon
 ii  ureadahead                         0.100.0-16                          amd64        Read required files in advance
