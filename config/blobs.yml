@@ -111,10 +111,6 @@ etcd/etcd-v2.1.1-linux-amd64.tar.gz:
   object_id: ce50df26-f04b-496a-9ac4-32228020df6a
   sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
   size: 5608238
-python-buildpack/python_buildpack-cached-v1.5.12.zip:
-  object_id: 673b0a0e-d5dc-45c3-ad7a-fd9ce9a4e7e8
-  sha: eb24b89e2d8230200882e2d17c5fc88fdea910a4
-  size: 267714415
 uaa/apache-tomcat-8.0.39.tar.gz:
   object_id: 2166a182-9111-48af-87c5-34cc06f68cac
   sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
@@ -175,3 +171,7 @@ php-buildpack/php_buildpack-cached-v4.3.23.zip:
   object_id: 5e83de9a-e87a-4843-b4bb-7f231178f712
   sha: 840025c969dd0b0d8150bd1144139fc8b0e5764d
   size: 332227325
+python-buildpack/python_buildpack-cached-v1.5.13.zip:
+  object_id: 594bedd3-bb75-4174-9705-9a1e671f92a1
+  sha: e478e73ec210742b74137045707862f13f24f1f3
+  size: 267134556
