@@ -111,10 +111,6 @@ etcd/etcd-v2.1.1-linux-amd64.tar.gz:
   object_id: ce50df26-f04b-496a-9ac4-32228020df6a
   sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
   size: 5608238
-php-buildpack/php_buildpack-cached-v4.3.22.zip:
-  object_id: 64eb0c22-49ee-4568-8a07-68e1450cdea1
-  sha: f13a0a5222bf95d627cce6b9cfd1d2652924c504
-  size: 325501311
 python-buildpack/python_buildpack-cached-v1.5.12.zip:
   object_id: 673b0a0e-d5dc-45c3-ad7a-fd9ce9a4e7e8
   sha: eb24b89e2d8230200882e2d17c5fc88fdea910a4
@@ -175,3 +171,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.24.zip:
   object_id: c67263a7-4e75-4fc4-8677-003446565d21
   sha: 2d104da95c0ad1aa2e137d445b32af636ded2278
   size: 115017999
+php-buildpack/php_buildpack-cached-v4.3.23.zip:
+  object_id: 5e83de9a-e87a-4843-b4bb-7f231178f712
+  sha: 840025c969dd0b0d8150bd1144139fc8b0e5764d
+  size: 332227325
