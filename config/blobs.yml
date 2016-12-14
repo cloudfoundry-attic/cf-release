@@ -135,10 +135,6 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.13.zip:
   object_id: 936f1d01-eeaa-446b-91f7-2ae815302307
   sha: 859a7b6964f188dc6face47610c7d95436514457
   size: 2702450
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.5.zip:
-  object_id: d6a16bea-d2b5-4e67-8005-f9a540ae46da
-  sha: a156115380a248a1a93d95d359f5fa560d27c1dd
-  size: 177539232
 uaa/apache-tomcat-8.0.39.tar.gz:
   object_id: 2166a182-9111-48af-87c5-34cc06f68cac
   sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
@@ -175,3 +171,7 @@ rootfs/cflinuxfs2-1.94.0.tar.gz:
   object_id: 2fe0e3e0-4961-49e8-a39f-205e46cedc33
   sha: adcc38d42428fbf8f3eb48a8f6a034bb09ce64fe
   size: 356582530
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.6.zip:
+  object_id: 42e970aa-6fa3-4084-a69d-385dc432e21c
+  sha: 1cc8547aa27ff33b4d507aeae74bcc282a111091
+  size: 177669127
