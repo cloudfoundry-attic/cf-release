@@ -111,10 +111,6 @@ etcd/etcd-v2.1.1-linux-amd64.tar.gz:
   object_id: ce50df26-f04b-496a-9ac4-32228020df6a
   sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
   size: 5608238
-go-buildpack/go_buildpack-cached-v1.7.15.zip:
-  object_id: 3907109e-27d0-411d-87cc-c674c8fcdc82
-  sha: 1cf9accfad31e8245c9a9b98857069100a16ff26
-  size: 411021307
 php-buildpack/php_buildpack-cached-v4.3.22.zip:
   object_id: 64eb0c22-49ee-4568-8a07-68e1450cdea1
   sha: f13a0a5222bf95d627cce6b9cfd1d2652924c504
@@ -175,3 +171,7 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.6.zip:
   object_id: 42e970aa-6fa3-4084-a69d-385dc432e21c
   sha: 1cc8547aa27ff33b4d507aeae74bcc282a111091
   size: 177669127
+go-buildpack/go_buildpack-cached-v1.7.16.zip:
+  object_id: 4751b160-2492-4d17-9d61-627a82aae0bf
+  sha: c3cd1775095adfa6d20bd532b3ead8f50bba93d2
+  size: 411037160
