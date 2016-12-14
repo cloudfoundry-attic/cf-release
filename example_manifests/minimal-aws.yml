@@ -771,10 +771,12 @@ properties:
     databases:
     - {name: ccdb, tag: cc, citext: true}
     - {name: uaadb, tag: uaa, citext: true}
+    - {name: diego, tag: diego, citext: true}
     port: 5524
     roles:
     - {name: ccadmin, password: PASSWORD, tag: admin}
     - {name: uaaadmin, password: PASSWORD, tag: admin}
+    - {name: diego, password: PASSWORD, tag: admin}
   description: Cloud Foundry sponsored by Pivotal
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
