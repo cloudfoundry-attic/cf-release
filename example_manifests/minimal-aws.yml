@@ -1089,6 +1089,14 @@ properties:
       require_ssl: false
       server_cert: ""
       server_key: ""
+      sql:
+        db_driver: postgres
+        db_host: 10.0.16.101
+        db_port: 5524
+        db_username: diego
+        db_password: PASSWORD
+        db_schema: diego
+        max_open_connections: 500
     converger:
       bbs:
         ca_cert: ""
