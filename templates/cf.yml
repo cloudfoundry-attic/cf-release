@@ -762,9 +762,11 @@ properties:
       temporary_local_apps: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
-        ca_cert: (( merge || nil ))
-        client_cert: (( merge || nil ))
-        client_key: (( merge || nil))
+    tls_port: (( merge || nil ))
+    mutual_tls:
+      ca_cert: (( merge || nil ))
+      public_cert: (( merge || nil ))
+      private_key: (( merge || nil))
 
     jobs:
       global:

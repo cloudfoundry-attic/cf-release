@@ -1095,9 +1095,11 @@ properties:
       use_privileged_containers_for_staging: null
       bbs:
         url: null
-        ca_cert: null
-        client_cert: null
-        client_key: null
+    tls_port: null
+    mutual_tls:
+      ca_cert: null
+      public_cert: null
+      private_key: null
     directories: null
     disable_custom_buildpacks: false
     droplets:
