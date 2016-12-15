@@ -132,6 +132,19 @@ jobs:
       agent:
         mode: server
 
+- name: postgres_z1
+  instances: 1
+  persistent_disk: 1024
+  resource_pool: small_z1
+  templates:
+  - {name: postgres, release: cf}
+  - {name: metron_agent, release: cf}
+  networks:
+  - name: cf_private
+    static_ips: [10.0.16.101]
+  update:
+    serial: true
+
 - name: diego_cell_z1
   instances: 1
   resource_pool: diego_cell_z1
@@ -223,19 +236,6 @@ jobs:
           component: blobstore
         uris:
         - "blobstore.REPLACE_WITH_SYSTEM_DOMAIN"
-
-- name: postgres_z1
-  instances: 1
-  persistent_disk: 1024
-  resource_pool: small_z1
-  templates:
-  - {name: postgres, release: cf}
-  - {name: metron_agent, release: cf}
-  networks:
-  - name: cf_private
-    static_ips: [10.0.16.101]
-  update:
-    serial: true
 
 - name: api_z1
   instances: 1
