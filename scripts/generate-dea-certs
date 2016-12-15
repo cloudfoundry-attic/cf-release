@@ -18,11 +18,11 @@ mv -f ${depot_path}/deaCA.key ${depot_path}/dea_ca.key
 server_cn=dea.service.cf.internal
 server_domain='*.dea.service.cf.internal'
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $server_cn --domain $server_domain
-certstrap --depot-path ${depot_path} sign $server_cn --CA dea_ca
+certstrap --depot-path ${depot_path} sign $server_cn --CA dea_ca --years 5
 mv -f ${depot_path}/$server_cn.key ${depot_path}/dea_server.key
 mv -f ${depot_path}/$server_cn.csr ${depot_path}/dea_server.csr
 mv -f ${depot_path}/$server_cn.crt ${depot_path}/dea_server.crt
 
 # Client certificate to distribute to jobs that access DEAs
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name 'dea client'
-certstrap --depot-path ${depot_path} sign dea_client --CA dea_ca
+certstrap --depot-path ${depot_path} sign dea_client --CA dea_ca --years 5

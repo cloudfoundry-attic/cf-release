@@ -17,8 +17,7 @@ mv -f ${depot_path}/cert-authority.key ${depot_path}/server-ca.key
 # Certificate to use as the client
 server_cn=$2
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $server_cn
-certstrap --depot-path ${depot_path} sign $server_cn --CA server-ca
+certstrap --depot-path ${depot_path} sign $server_cn --CA server-ca --years 5
 mv -f ${depot_path}/$server_cn.key ${depot_path}/server.key
 mv -f ${depot_path}/$server_cn.csr ${depot_path}/server.csr
 mv -f ${depot_path}/$server_cn.crt ${depot_path}/server.crt
-
