@@ -2781,6 +2781,7 @@ properties:
         -----END RSA PRIVATE KEY-----
   cc:
     allow_app_ssh_access: true
+    default_app_ssh_access: null
     allowed_cors_domains: []
     app_events:
       cutoff_age_in_days: 31
