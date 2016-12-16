@@ -1447,6 +1447,9 @@ properties:
       trafficcontroller:
         cert: null
         key: null
+      metron:
+        cert: null
+        key: null
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
