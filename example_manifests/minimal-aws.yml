@@ -7,7 +7,6 @@ director_uuid: REPLACE_WITH_DIRECTOR_ID
 releases:
 - {name: cf, version: latest}
 - {name: diego, version: latest}
-- {name: etcd, version: latest}
 - {name: garden-runc, version: latest}
 - {name: cflinuxfs2-rootfs , version: latest}
 
@@ -177,8 +176,6 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: etcd
-    release: etcd
   - name: bbs
     release: diego
   - name: auctioneer
@@ -207,7 +204,6 @@ jobs:
     consul:
       agent:
         services:
-          etcd: {}
     metron_agent:
       zone: z1
 
