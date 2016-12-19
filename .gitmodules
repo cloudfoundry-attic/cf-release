@@ -61,3 +61,6 @@
 [submodule "src/java-buildpack-release"]
 	path = src/java-buildpack-release
 	url = https://github.com/cloudfoundry/java-buildpack-release
+[submodule "src/dotnet-core-buildpack-release"]
+	path = src/dotnet-core-buildpack-release
+	url = https://github.com/cloudfoundry/dotnet-core-buildpack-release

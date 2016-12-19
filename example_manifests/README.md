@@ -155,7 +155,7 @@ Upload the latest stable version of Cloud Foundry.
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/cf-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/diego-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry/cflinuxfs2-rootfs-release
-bosh upload release https://bosh.io/d/github.com/cloudfoundry-incubator/garden-runc-release
+bosh upload release https://bosh.io/d/github.com/cloudfoundry/garden-runc-release
 bosh upload release https://bosh.io/d/github.com/cloudfoundry-incubator/etcd-release
 
 bosh deployment LOCATION_OF_YOUR_MODIFIED_EXAMPLE_MANIFEST

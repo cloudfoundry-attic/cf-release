@@ -73,6 +73,16 @@ properties:
   dea_next:
     disk_mb: 2048
     memory_mb: 1024
+  etcd:
+    require_ssl: true
+    ca_cert: ETCD_CA_CERT
+    client_cert: ETCD_CLIENT_CERT
+    client_key: ETCD_CLIENT_KEY
+    peer_ca_cert: ETCD_PEER_CA_CERT
+    peer_cert: ETCD_PEER_CERT
+    peer_key: ETC_PEER_KEY
+    server_cert: ETCD_SERVER_CERT
+    server_key: ETCD_SERVER_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
@@ -184,6 +194,8 @@ jobs:
       - name: python-buildpack
         release: cf
       - name: staticfile-buildpack
+        release: cf
+      - name: dotnet-core-buildpack
         release: cf
       - name: cloud_controller_ng
         release: cf

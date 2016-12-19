@@ -1,2 +1,14 @@
 ---
 director_uuid: DIRECTOR_UUID
+
+properties:
+  etcd:
+    require_ssl: true
+    ca_cert: ETCD_CA_CERT
+    client_cert: ETCD_CLIENT_CERT
+    client_key: ETCD_CLIENT_KEY
+    peer_ca_cert: ETCD_PEER_CA_CERT
+    peer_cert: ETCD_PEER_CERT
+    peer_key: ETC_PEER_KEY
+    server_cert: ETCD_SERVER_CERT
+    server_key: ETCD_SERVER_KEY

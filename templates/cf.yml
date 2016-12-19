@@ -44,21 +44,6 @@ jobs:
       metron_agent:
         zone: z2
 
-  - name: ha_proxy_z1
-    templates: (( merge || meta.ha_proxy_templates ))
-    instances: 0
-    resource_pool: router_z1
-    default_networks:
-      - name: cf1
-    networks: (( merge || default_networks ))
-    properties:
-      ha_proxy:
-      router:
-        servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
-      metron_agent:
-        zone: z1
-    update: (( merge || empty_hash ))
-
   - name: nats_z1
     templates: (( merge || meta.nats_templates ))
     instances: 1
@@ -477,15 +462,14 @@ jobs:
       consul:
         agent:
           services:
-            loggregator_trafficcontroller:
-              name: loggregator_trafficcontroller
-              tags:
-              - z1
+            loggregator_trafficcontroller: {}
       metron_agent:
         zone: z1
       route_registrar:
         routes: (( merge || meta.loggregator_trafficcontroller_routes ))
-    update: (( merge || empty_hash ))
+    update:
+      serial: true
+      max_in_flight: 1
 
   - name: loggregator_trafficcontroller_z2
     templates: (( merge || meta.loggregator_trafficcontroller_templates ))
@@ -503,15 +487,14 @@ jobs:
       consul:
         agent:
           services:
-            loggregator_trafficcontroller:
-              name: loggregator_trafficcontroller
-              tags:
-              - z2
+            loggregator_trafficcontroller: {}
       metron_agent:
         zone: z2
       route_registrar:
         routes: (( merge || meta.loggregator_trafficcontroller_routes ))
-    update: (( merge || empty_hash ))
+    update:
+      serial: true
+      max_in_flight: 1
 
   - name: router_z1
     templates: (( merge || meta.router_templates ))
@@ -543,6 +526,21 @@ jobs:
             gorouter: {}
       metron_agent:
         zone: z2
+    update: (( merge || empty_hash ))
+
+  - name: ha_proxy_z1
+    templates: (( merge || meta.ha_proxy_templates ))
+    instances: 0
+    resource_pool: router_z1
+    default_networks:
+      - name: cf1
+    networks: (( merge || default_networks ))
+    properties:
+      ha_proxy:
+      router:
+        servers: (( merge || jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
+      metron_agent:
+        zone: z1
     update: (( merge || empty_hash ))
 
   - name: acceptance_tests
@@ -690,6 +688,15 @@ properties:
     outgoing_dropsonde_port: 8081
     tls:
       ca_cert: ~
+      doppler:
+        cert: ~
+        key: ~
+      trafficcontroller:
+        cert: ~
+        key: ~
+      metron:
+        cert: ~
+        key: ~
     etcd:
       machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
       require_ssl: (( .properties.etcd.require_ssl ))
@@ -750,6 +757,20 @@ properties:
       client_key: (( .properties.etcd.client_key ))
 
   cc:
+    diego:
+      use_privileged_containers_for_staging: (( merge || nil ))
+      insecure_docker_registry_list: (( merge || nil ))
+      temporary_local_staging: (( merge || nil ))
+      temporary_local_tasks: (( merge || nil ))
+      temporary_local_apps: (( merge || nil ))
+      bbs:
+        url: (( merge || nil ))
+    tls_port: (( merge || nil ))
+    mutual_tls:
+      ca_cert: (( merge || nil ))
+      public_cert: (( merge || nil ))
+      private_key: (( merge || nil))
+
     jobs:
       global:
         timeout_in_seconds: 14400 # 4 hours
@@ -782,6 +803,7 @@ properties:
     users_can_select_backend: true
     default_to_diego_backend: false
     allow_app_ssh_access: true
+    default_app_ssh_access: (( merge || nil ))
     default_app_memory: 1024
     default_app_disk_in_mb: 1024
     maximum_app_disk_in_mb: 2048
@@ -873,7 +895,7 @@ properties:
       - name: staticfile_buildpack
         package: staticfile-buildpack
       - name: java_buildpack
-        package: buildpack_java
+        package: java-buildpack
       - name: ruby_buildpack
         package: ruby-buildpack
       - name: nodejs_buildpack
@@ -886,6 +908,8 @@ properties:
         package: php-buildpack
       - name: binary_buildpack
         package: binary-buildpack
+      - name: dotnet_core_buildpack
+        package: dotnet-core-buildpack
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
@@ -1012,7 +1036,7 @@ properties:
         lockoutAfterFailures: ~
         countFailuresWithinSeconds: ~
         lockoutPeriodSeconds: ~
-        
+
     password:
       policy:
         minLength: ~
@@ -1028,7 +1052,25 @@ properties:
     newrelic: ~
     port: 8080
 
-    user: ~
+    user:
+      <<: (( merge || nil ))
+      authorities:
+        - openid
+        - scim.me
+        - cloud_controller.read
+        - cloud_controller.write
+        - cloud_controller_service_permissions.read
+        - password.write
+        - uaa.user
+        - approvals.me
+        - oauth.approvals
+        - notification_preferences.read
+        - notification_preferences.write
+        - profile
+        - roles
+        - user_attributes
+        - cloud_controller.user
+        - actuator.read
     clients:
       <<: (( merge || nil ))
       login:
@@ -1044,8 +1086,8 @@ properties:
         authorized-grant-types: password,refresh_token
         scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
         authorities: uaa.none
-        access-token-validity: 600
-        refresh-token-validity: 2592000
+        access-token-validity: 600 # 10 mins
+        refresh-token-validity: 604800 # 7 days
       notifications:
         secret: (( merge ))
         authorities: cloud_controller.admin,scim.read
@@ -1079,7 +1121,7 @@ properties:
         scope: openid,cloud_controller_service_permissions.read
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: authorization_code,client_credentials
- 
+
     database: ~
 
     zones:
@@ -1242,6 +1284,7 @@ meta:
   etcd_release_name: (( releases.etcd.name || "cf" ))
   postgres_release_name: (( releases.postgres.name || "cf" ))
   java_buildpack_release_name: (( releases.java-buildpack.name || "cf" ))
+  java_offline_buildpack_release_name: (( releases.java-offline-buildpack.name || "cf" ))
   go_buildpack_release_name: (( releases.go-buildpack.name || "cf" ))
   binary_buildpack_release_name: (( releases.binary-buildpack.name || "cf" ))
   nodejs_buildpack_release_name: (( releases.nodejs-buildpack.name || "cf" ))
@@ -1249,6 +1292,7 @@ meta:
   php_buildpack_release_name: (( releases.php-buildpack.name || "cf" ))
   python_buildpack_release_name: (( releases.python-buildpack.name || "cf" ))
   staticfile_buildpack_release_name: (( releases.staticfile-buildpack.name || "cf" ))
+  dotnet_core_buildpack_release_name: (( releases.dotnet-core-buildpack.name || "cf" ))
   loggregator_release_name: (( releases.loggregator.name || "cf" ))
   uaa_release_name: (( releases.uaa.name || "cf" ))
 
@@ -1281,7 +1325,7 @@ meta:
   - name: java-buildpack
     release: (( meta.java_buildpack_release_name ))
   - name: java-offline-buildpack
-    release: (( meta.java_buildpack_release_name ))
+    release: (( meta.java_offline_buildpack_release_name ))
   - name: go-buildpack
     release: (( meta.go_buildpack_release_name ))
   - name: binary-buildpack
@@ -1296,6 +1340,8 @@ meta:
     release: (( meta.python_buildpack_release_name ))
   - name: staticfile-buildpack
     release: (( meta.staticfile_buildpack_release_name ))
+  - name: dotnet-core-buildpack
+    release: (( meta.dotnet_core_buildpack_release_name ))
   - name: cloud_controller_ng
     release: (( meta.capi_release_name ))
   - name: metron_agent

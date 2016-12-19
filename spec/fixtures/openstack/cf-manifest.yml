@@ -56,43 +56,6 @@ jobs:
 - default_networks:
   - name: cf1
   instances: 1
-  name: ha_proxy_z1
-  networks:
-  - name: floating
-    static_ips:
-    - 173.1.1.1
-  - default:
-    - dns
-    - gateway
-    name: cf1
-    static_ips:
-    - 10.10.0.125
-  properties:
-    ha_proxy:
-      ssl_pem: |+
-        -----BEGIN RSA PRIVATE KEY-----
-        RSA_PRIVATE_KEY
-        -----END RSA PRIVATE KEY-----
-        -----BEGIN CERTIFICATE-----
-        SSL_CERTIFICATE_SIGNED_BY_PRIVATE_KEY
-        -----END CERTIFICATE-----
-    metron_agent:
-      zone: z1
-    router:
-      servers:
-      - 10.10.0.130
-  resource_pool: router_z1
-  templates:
-  - name: consul_agent
-    release: cf
-  - name: haproxy
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- default_networks:
-  - name: cf1
-  instances: 1
   name: nats_z1
   networks:
   - name: cf1
@@ -445,6 +408,8 @@ jobs:
     release: cf
   - name: staticfile-buildpack
     release: cf
+  - name: dotnet-core-buildpack
+    release: cf
   - name: cloud_controller_ng
     release: cf
   - name: cloud_controller_clock
@@ -508,6 +473,8 @@ jobs:
   - name: python-buildpack
     release: cf
   - name: staticfile-buildpack
+    release: cf
+  - name: dotnet-core-buildpack
     release: cf
   - name: cloud_controller_ng
     release: cf
@@ -843,10 +810,7 @@ jobs:
     consul:
       agent:
         services:
-          loggregator_trafficcontroller:
-            name: loggregator_trafficcontroller
-            tags:
-            - z1
+          loggregator_trafficcontroller: {}
   resource_pool: small_z1
   templates:
   - name: consul_agent
@@ -857,7 +821,9 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
-  update: {}
+  update:
+    max_in_flight: 1
+    serial: true
 - default_networks:
   - name: cf2
   instances: 0
@@ -882,10 +848,7 @@ jobs:
     consul:
       agent:
         services:
-          loggregator_trafficcontroller:
-            name: loggregator_trafficcontroller
-            tags:
-            - z2
+          loggregator_trafficcontroller: {}
   resource_pool: small_z2
   templates:
   - name: consul_agent
@@ -896,7 +859,9 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
-  update: {}
+  update:
+    max_in_flight: 1
+    serial: true
 - default_networks:
   - name: cf1
   instances: 1
@@ -940,6 +905,43 @@ jobs:
   - name: consul_agent
     release: cf
   - name: gorouter
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- default_networks:
+  - name: cf1
+  instances: 1
+  name: ha_proxy_z1
+  networks:
+  - name: floating
+    static_ips:
+    - 173.1.1.1
+  - default:
+    - dns
+    - gateway
+    name: cf1
+    static_ips:
+    - 10.10.0.125
+  properties:
+    ha_proxy:
+      ssl_pem: |+
+        -----BEGIN RSA PRIVATE KEY-----
+        RSA_PRIVATE_KEY
+        -----END RSA PRIVATE KEY-----
+        -----BEGIN CERTIFICATE-----
+        SSL_CERTIFICATE_SIGNED_BY_PRIVATE_KEY
+        -----END CERTIFICATE-----
+    metron_agent:
+      zone: z1
+    router:
+      servers:
+      - 10.10.0.130
+  resource_pool: router_z1
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: haproxy
     release: cf
   - name: metron_agent
     release: cf
@@ -1025,6 +1027,7 @@ properties:
       private_key: BLOBSTORE_PRIVATE_KEY
   cc:
     allow_app_ssh_access: true
+    default_app_ssh_access: null
     allowed_cors_domains: []
     app_events:
       cutoff_age_in_days: 31
@@ -1059,7 +1062,7 @@ properties:
     - name: staticfile_buildpack
       package: staticfile-buildpack
     - name: java_buildpack
-      package: buildpack_java
+      package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
     - name: nodejs_buildpack
@@ -1072,6 +1075,8 @@ properties:
       package: php-buildpack
     - name: binary_buildpack
       package: binary-buildpack
+    - name: dotnet_core_buildpack
+      package: dotnet-core-buildpack
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
@@ -1082,6 +1087,19 @@ properties:
     - dns
     default_to_diego_backend: false
     development_mode: false
+    diego:
+      insecure_docker_registry_list: null
+      temporary_local_staging: null
+      temporary_local_tasks: null
+      temporary_local_apps: null
+      use_privileged_containers_for_staging: null
+      bbs:
+        url: null
+    tls_port: null
+    mutual_tls:
+      ca_cert: null
+      public_cert: null
+      private_key: null
     directories: null
     disable_custom_buildpacks: false
     droplets:
@@ -1105,7 +1123,7 @@ properties:
     - name: staticfile_buildpack
       package: staticfile-buildpack
     - name: java_buildpack
-      package: buildpack_java
+      package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
     - name: nodejs_buildpack
@@ -1118,6 +1136,8 @@ properties:
       package: php-buildpack
     - name: binary_buildpack
       package: binary-buildpack
+    - name: dotnet_core_buildpack
+      package: dotnet-core-buildpack
     internal_api_password: BULK_API_PASSWORD
     internal_api_user: internal_user
     jobs:
@@ -1224,7 +1244,7 @@ properties:
     - name: staticfile_buildpack
       package: staticfile-buildpack
     - name: java_buildpack
-      package: buildpack_java
+      package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
     - name: nodejs_buildpack
@@ -1237,6 +1257,8 @@ properties:
       package: php-buildpack
     - name: binary_buildpack
       package: binary-buildpack
+    - name: dotnet_core_buildpack
+      package: dotnet-core-buildpack
     system_hostnames: null
     thresholds:
       api:
@@ -1346,8 +1368,8 @@ properties:
     blacklisted_syslog_ranges: null
     debug: false
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     port: 4443
@@ -1365,9 +1387,9 @@ properties:
     enabled: true
   etcd:
     advertise_urls_dns_suffix: cf-etcd.service.cf.internal
-    ca_cert: ""
-    client_cert: ""
-    client_key: ""
+    ca_cert: ETCD_CA_CERT
+    client_cert: ETCD_CLIENT_CERT
+    client_key: ETCD_CLIENT_KEY
     cluster:
     - instances: 1
       name: etcd_z1
@@ -1375,32 +1397,32 @@ properties:
       name: etcd_z2
     machines:
     - 10.10.0.133
-    peer_ca_cert: ""
-    peer_cert: ""
-    peer_key: ""
-    peer_require_ssl: false
-    require_ssl: false
-    server_cert: ""
-    server_key: ""
+    peer_ca_cert: ETCD_PEER_CA_CERT
+    peer_cert: ETCD_PEER_CERT
+    peer_key: ETC_PEER_KEY
+    peer_require_ssl: true
+    require_ssl: true
+    server_cert: ETCD_SERVER_CERT
+    server_key: ETCD_SERVER_KEY
   etcd_metrics_server:
     etcd:
-      ca_cert: ""
-      client_cert: ""
-      client_key: ""
+      ca_cert: ETCD_CA_CERT
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
       dns_suffix: cf-etcd.service.cf.internal
-      require_ssl: false
+      require_ssl: true
   ha_proxy: null
   hm9000:
     ca_cert: HM9000_CA_CERT
     client_cert: HM9000_CLIENT_CERT
     client_key: HM9000_CLIENT_KEY
     etcd:
-      ca_cert: ""
-      client_cert: ""
-      client_key: ""
+      ca_cert: ETCD_CA_CERT
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
       machines:
       - cf-etcd.service.cf.internal
-      require_ssl: false
+      require_ssl: true
     port: 5155
     server_cert: HM9000_SERVER_CERT
     server_key: HM9000_SERVER_KEY
@@ -1411,14 +1433,23 @@ properties:
     blacklisted_syslog_ranges: null
     debug: false
     etcd:
-      ca_cert: ""
+      ca_cert: ETCD_CA_CERT
       machines:
       - cf-etcd.service.cf.internal
-      require_ssl: false
+      require_ssl: true
     maxRetainedLogMessages: 100
     outgoing_dropsonde_port: 8081
     tls:
       ca_cert: null
+      doppler:
+        cert: null
+        key: null
+      trafficcontroller:
+        cert: null
+        key: null
+      metron:
+        cert: null
+        key: null
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
@@ -1450,8 +1481,8 @@ properties:
   metron_agent:
     deployment: ENVIRONMENT
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     preferred_protocol: null
     protocols: null
     tls:
@@ -1516,15 +1547,15 @@ properties:
   syslog_daemon_config: null
   syslog_drain_binder:
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   traffic_controller:
     disable_access_control: null
     etcd:
-      client_cert: ""
-      client_key: ""
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     security_event_logging:
       enabled: false
     zone: null
@@ -1562,7 +1593,7 @@ properties:
         authorities: uaa.none
         authorized-grant-types: password,refresh_token
         override: true
-        refresh-token-validity: 2592000
+        refresh-token-validity: 604800
         scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
       cloud_controller_username_lookup:
         authorities: scim.userids
@@ -1632,7 +1663,24 @@ properties:
     sslCertificate: UAA_SERVER_CERT
     sslPrivateKey: UAA_SERVER_KEY
     url: https://uaa.SYSTEM_DOMAIN
-    user: null
+    user:
+      authorities:
+      - openid
+      - scim.me
+      - cloud_controller.read
+      - cloud_controller.write
+      - cloud_controller_service_permissions.read
+      - password.write
+      - uaa.user
+      - approvals.me
+      - oauth.approvals
+      - notification_preferences.read
+      - notification_preferences.write
+      - profile
+      - roles
+      - user_attributes
+      - cloud_controller.user
+      - actuator.read
     zones:
       internal:
         hostnames:

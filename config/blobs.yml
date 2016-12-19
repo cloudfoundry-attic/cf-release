@@ -55,18 +55,6 @@ ruby-2.2.5/yaml-0.1.6.tar.gz:
   object_id: 1d7ec354-5aa6-4e19-b6e5-51f6d6327814
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
   size: 503012
-ruby-2.3/bundler-1.11.2.gem:
-  object_id: 5853a4d1-8574-4a5d-ab0b-d72831a79a48
-  sha: 8eb956dec72da753d3d2a2126c78508b17af434e
-  size: 263168
-ruby-2.3/ruby-2.3.1.tar.gz:
-  object_id: 95a32294-6f17-45b7-8911-ef6729195536
-  sha: c39b4001f7acb4e334cb60a0f4df72d434bef711
-  size: 17797997
-ruby-2.3/rubygems-2.6.4.tgz:
-  object_id: 5e1e754b-85ec-495c-806e-dccf6daec0aa
-  sha: 8ef39e536af2ecd20b0e7a95765fa6a485087ac8
-  size: 478582
 consul/consul-template_0.14.0_linux_amd64.zip:
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
@@ -99,58 +87,18 @@ openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
   object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
   sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
   size: 75550921
-uaa/apache-tomcat-8.0.36.tar.gz:
-  object_id: b142bb5b-e401-4946-b872-433c91a6a8d3
-  sha: c711970918f4c0ebd120cf35605795c416e342c8
-  size: 9277365
-golang/go1.7.linux-amd64.tar.gz:
-  object_id: c0196ca0-44ab-453e-88af-4f296166175c
-  sha: a744e29da97fc3aadad1ee0d7d89b0d899645e50
-  size: 81573766
 cli/cf-cli_6.21.1_linux_x86-64.tgz:
   object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
   sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
   size: 6543090
-golang/go1.7.windows-amd64.zip:
-  object_id: b0faa00a-3907-430a-953d-277c2b74effa
-  sha: e276c4b9093369706591ce5d21dfa799b9e0a475
-  size: 88793699
-consul/consul_0.7.0_linux_amd64.zip:
-  object_id: f9cfff76-4c3a-4e51-963b-454ccc157003
-  sha: 32d5f51c35b75216cf73cabe0329239355dc4266
-  size: 6470848
 haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-go-buildpack/go_buildpack-cached-v1.7.14.zip:
-  object_id: 38961b0b-6c64-415f-b97a-5d0cec2c43c6
-  sha: 50de509848ba6809053a97bfaf4c4f13a7623cae
-  size: 410480799
-python-buildpack/python_buildpack-cached-v1.5.11.zip:
-  object_id: 853d4f79-35a7-41b8-af10-4e3b887af838
-  sha: 83c8f4baeb8dbd0134c4b344994092460d37c5f6
-  size: 267716020
-php-buildpack/php_buildpack-cached-v4.3.21.zip:
-  object_id: e01b6573-69e1-49b9-9d6c-3d4770a56c29
-  sha: a0778884e5dc07f8cdfebdaf4975d5970b990f74
-  size: 322953560
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.22.zip:
-  object_id: fa8b27e6-a2ae-4251-8bb1-8936ff5db1b1
-  sha: cb84df558d421f482f6b8b06530e5b4279284060
-  size: 102413861
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.12.zip:
-  object_id: 57981486-f877-4221-91ae-5bf70772c4e8
-  sha: 87e83eb1fb1b45c878f7f559056dad813c2f467a
-  size: 2703873
 binary-buildpack/binary_buildpack-cached-v1.0.5.zip:
   object_id: b321c617-23a3-4e2b-af63-29d60a1d8fcf
   sha: fe0edb11bcc5d42570f10ff9fe97f0c1b94900d1
   size: 9571
-ruby-buildpack/ruby_buildpack-cached-v1.6.27.zip:
-  object_id: 62a5388f-6c09-46b4-a982-eed9bd5595ba
-  sha: bb3a74a78c68654707b950a3f3c377d72c346f50
-  size: 273484989
 java-buildpack/java-buildpack-v3.10.zip:
   object_id: f5efc2ab-ae9e-4ef0-9df2-46188b5e4809
   sha: ae12d21d29ec2a4ceeaf597dc43f11c52a44cc78
@@ -159,7 +107,71 @@ java-buildpack/java-buildpack-offline-v3.10.zip:
   object_id: 660d2edf-3a0e-43f3-80c3-888652b298a8
   sha: aa0816fa7a6e6cb58648ff6fd76d14e4ddab0954
   size: 261228676
-rootfs/cflinuxfs2-1.88.0.tar.gz:
-  object_id: 32ad9c2d-9b2c-426a-8314-9bad50a0fd34
-  sha: 45fefc588af138a15c857c3735c37640b7669969
-  size: 278249668
+etcd/etcd-v2.1.1-linux-amd64.tar.gz:
+  object_id: ce50df26-f04b-496a-9ac4-32228020df6a
+  sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
+  size: 5608238
+uaa/apache-tomcat-8.0.39.tar.gz:
+  object_id: 2166a182-9111-48af-87c5-34cc06f68cac
+  sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
+  size: 9304967
+ruby-2.3/bundler-1.13.6.gem:
+  object_id: bad05dd0-86e8-4a45-8a46-70880a1c6dd8
+  sha: c4b33f5e0a6ad4a363d2820260f10454197cceff
+  size: 307200
+ruby-2.3/ruby-2.3.3.tar.gz:
+  object_id: 218c9c26-c0b4-4115-84d1-9f0283d6d633
+  sha: 1014ee699071aa2ddd501907d18cbe15399c997d
+  size: 17813577
+ruby-2.3/rubygems-2.6.8.tgz:
+  object_id: 2393318f-83ea-4e9c-9d18-83d82ee34d94
+  sha: d253fd1caca6103a9e2a69127ac158a3745fbb44
+  size: 754300
+golang/go1.7.4.linux-amd64.tar.gz:
+  size: 84021919
+  object_id: 783849db-2186-488f-459f-28d2f22d7b64
+  sha: 2e5baf03d1590e048c84d1d5b4b6f2540efaaea1
+golang/go1.7.4.windows-amd64.zip:
+  size: 90409580
+  object_id: dbebd00d-43b7-434d-6603-c7a8fbcbf779
+  sha: a0da2f5d67e5b800eba811a34ca4b2aa22cca678
+consul/consul_0.7.1_linux_amd64.zip:
+  object_id: 08ad90a5-10ab-48cb-bebe-ead924e9ef32
+  sha: c2be9eebc40bf552e260c7dd31a77cb60474712f
+  size: 7359222
+consul-windows/consul_0.7.1_windows_amd64.zip:
+  object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
+  sha: a4e13dcb189e8235ca6c48029638733e12fb9747
+  size: 7299930
+rootfs/cflinuxfs2-1.94.0.tar.gz:
+  object_id: 2fe0e3e0-4961-49e8-a39f-205e46cedc33
+  sha: adcc38d42428fbf8f3eb48a8f6a034bb09ce64fe
+  size: 356582530
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.6.zip:
+  object_id: 42e970aa-6fa3-4084-a69d-385dc432e21c
+  sha: 1cc8547aa27ff33b4d507aeae74bcc282a111091
+  size: 177669127
+go-buildpack/go_buildpack-cached-v1.7.16.zip:
+  object_id: 4751b160-2492-4d17-9d61-627a82aae0bf
+  sha: c3cd1775095adfa6d20bd532b3ead8f50bba93d2
+  size: 411037160
+ruby-buildpack/ruby_buildpack-cached-v1.6.29.zip:
+  object_id: f38f6456-32dd-437e-93d5-b5b6a9fadd7a
+  sha: 30c3f2ef508c0c1cddf1ae85e7720f6be19762b7
+  size: 285057964
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.14.zip:
+  object_id: 42c57d75-e503-44e8-8567-560e2d19cdd1
+  sha: 6b86ccde7bbb7c24f7e9d023c1eb3adc778eb633
+  size: 2713420
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.24.zip:
+  object_id: c67263a7-4e75-4fc4-8677-003446565d21
+  sha: 2d104da95c0ad1aa2e137d445b32af636ded2278
+  size: 115017999
+php-buildpack/php_buildpack-cached-v4.3.23.zip:
+  object_id: 5e83de9a-e87a-4843-b4bb-7f231178f712
+  sha: 840025c969dd0b0d8150bd1144139fc8b0e5764d
+  size: 332227325
+python-buildpack/python_buildpack-cached-v1.5.13.zip:
+  object_id: 594bedd3-bb75-4174-9705-9a1e671f92a1
+  sha: e478e73ec210742b74137045707862f13f24f1f3
+  size: 267134556
