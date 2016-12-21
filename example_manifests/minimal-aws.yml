@@ -415,7 +415,7 @@ jobs:
         userids_enabled: true
         users:
           - name: admin
-            password: PASSWORD
+            password: REPLACE_WITH_PASSWORD
             groups:
               - scim.write
               - scim.read
