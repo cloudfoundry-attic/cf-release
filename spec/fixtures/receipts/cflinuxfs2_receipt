@@ -1,4 +1,4 @@
-Rootfs SHASUM: adcc38d42428fbf8f3eb48a8f6a034bb09ce64fe
+Rootfs SHASUM: 620b10eecbb558e5e0f90ea4e3c17573c2440371
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -17,7 +17,7 @@ ii  bash                               4.3-7ubuntu1.5                      amd64
 ii  bind9-host                         1:9.9.5.dfsg-3ubuntu0.10            amd64        Version of 'host' bundled with BIND 9.X
 ii  binutils                           2.24-5ubuntu14.1                    amd64        GNU assembler, linker and binary utilities
 ii  bison                              2:3.0.2.dfsg-2                      amd64        YACC-compatible parser generator
-ii  bsdutils                           1:2.20.1-5.1ubuntu20.7              amd64        Basic utilities from 4.4BSD-Lite
+ii  bsdutils                           1:2.20.1-5.1ubuntu20.9              amd64        Basic utilities from 4.4BSD-Lite
 ii  build-essential                    11.6ubuntu6                         amd64        Informational list of build-essential packages
 ii  busybox-initramfs                  1:1.21.0-1ubuntu1                   amd64        Standalone shell setup for initramfs
 ii  bzip2                              1.0.6-5                             amd64        high-quality block-sorting file compressor - utilities
@@ -85,8 +85,8 @@ ii  ifupdown                           0.7.47.2ubuntu4.4                   amd64
 ii  imagemagick                        8:6.7.7.10-6ubuntu3.3               amd64        image manipulation programs
 ii  imagemagick-common                 8:6.7.7.10-6ubuntu3.3               all          image manipulation programs -- infrastructure
 ii  init-system-helpers                1.14ubuntu1                         all          helper tools for all init systems
-ii  initramfs-tools                    0.103ubuntu4.4                      all          tools for generating an initramfs
-ii  initramfs-tools-bin                0.103ubuntu4.4                      amd64        binaries used by initramfs-tools
+ii  initramfs-tools                    0.103ubuntu4.5                      all          tools for generating an initramfs
+ii  initramfs-tools-bin                0.103ubuntu4.5                      amd64        binaries used by initramfs-tools
 ii  initscripts                        2.88dsf-41ubuntu6.3                 amd64        scripts for initializing and shutting down the system
 ii  insserv                            1.14.0-5ubuntu2                     amd64        boot sequence organizer using LSB init.d script dependency information
 ii  iproute2                           3.12.0-2ubuntu1                     amd64        networking and traffic control tools
@@ -134,7 +134,7 @@ ii  libbind9-90                        1:9.9.5.dfsg-3ubuntu0.10            amd64
 ii  libbison-dev:amd64                 2:3.0.2.dfsg-2                      amd64        YACC-compatible parser generator - development library
 ii  libblas-dev                        1.2.20110419-7                      amd64        Basic Linear Algebra Subroutines 3, static library
 ii  libblas3                           1.2.20110419-7                      amd64        Basic Linear Algebra Reference implementations, shared library
-ii  libblkid1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
+ii  libblkid1:amd64                    2.20.1-5.1ubuntu20.9                amd64        block device id library
 ii  libboost-iostreams1.54.0:amd64     1.54.0-4ubuntu3.1                   amd64        Boost.Iostreams Library
 ii  libbsd0:amd64                      0.6.0-2ubuntu1                      amd64        utility functions from BSD systems - shared library
 ii  libbz2-1.0:amd64                   1.0.6-5                             amd64        high-quality block-sorting file compressor library - runtime
@@ -308,7 +308,7 @@ ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3.3               amd64
 ii  libmariadbclient-dev               5.5.53-1ubuntu0.14.04.1             amd64        MariaDB database development files
 ii  libmariadbclient18:amd64           5.5.53-1ubuntu0.14.04.1             amd64        MariaDB database client library
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
-ii  libmount1:amd64                    2.20.1-5.1ubuntu20.7                amd64        block device id library
+ii  libmount1:amd64                    2.20.1-5.1ubuntu20.9                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                      amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                             amd64        library for decimal floating point arithmetic (runtime library)
@@ -432,7 +432,7 @@ ii  libtsan0:amd64                     4.8.4-2ubuntu1~14.04.3              amd64
 ii  libudev1:amd64                     204-5ubuntu20.20                    amd64        libudev shared library
 ii  libusb-0.1-4:amd64                 2:0.1.12-23.3ubuntu1                amd64        userspace USB programming library
 ii  libustr-1.0-1:amd64                1.0.4-3ubuntu2                      amd64        Micro string library: shared library
-ii  libuuid1:amd64                     2.20.1-5.1ubuntu20.7                amd64        Universally Unique ID library
+ii  libuuid1:amd64                     2.20.1-5.1ubuntu20.9                amd64        Universally Unique ID library
 ii  libva1:amd64                       1.3.0-2                             amd64        Video Acceleration (VA) API for Linux -- runtime
 ii  libvorbis0a:amd64                  1.3.2-1.3ubuntu1                    amd64        The Vorbis General Audio Compression Codec (Decoder library)
 ii  libvorbisenc2:amd64                1.3.2-1.3ubuntu1                    amd64        The Vorbis General Audio Compression Codec (Encoder library)
@@ -485,7 +485,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-105.152                      amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-106.153                      amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools
@@ -505,7 +505,7 @@ ii  mercurial                          2.8.2-1ubuntu1.3                    amd64
 ii  mercurial-common                   2.8.2-1ubuntu1.3                    all          easy-to-use, scalable distributed version control system (common files)
 ii  mime-support                       3.54ubuntu1.1                       all          MIME files 'mime.types' & 'mailcap', and support programs
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
-ii  mount                              2.20.1-5.1ubuntu20.7                amd64        Tools for mounting and manipulating filesystems
+ii  mount                              2.20.1-5.1ubuntu20.9                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.9                     amd64        Transitional package to ensure multiarch compatibility
 ii  mysql-common                       5.5.53-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
@@ -569,8 +569,8 @@ ii  udev                               204-5ubuntu20.20                    amd64
 ii  unzip                              6.0-9ubuntu1.5                      amd64        De-archiver for .zip files
 ii  upstart                            1.12.1-0ubuntu4.2                   amd64        event-based init daemon
 ii  ureadahead                         0.100.0-16                          amd64        Read required files in advance
-ii  util-linux                         2.20.1-5.1ubuntu20.7                amd64        Miscellaneous system utilities
-ii  uuid-dev                           2.20.1-5.1ubuntu20.7                amd64        universally unique id library - headers and static libraries
+ii  util-linux                         2.20.1-5.1ubuntu20.9                amd64        Miscellaneous system utilities
+ii  uuid-dev                           2.20.1-5.1ubuntu20.9                amd64        universally unique id library - headers and static libraries
 ii  vim-common                         2:7.4.052-1ubuntu3.1                amd64        Vi IMproved - Common files
 ii  vim-tiny                           2:7.4.052-1ubuntu3.1                amd64        Vi IMproved - enhanced vi editor - compact version
 ii  wget                               1.15-1ubuntu1.14.04.2               amd64        retrieves files from the web
