@@ -1620,11 +1620,11 @@ properties:
         authorized-grant-types: client_credentials
         secret: NOTIFICATIONS_CLIENT_SECRET
       tcp_emitter:
-        authorities: routing.routes.write,routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-EMITTER-SECRET
       tcp_router:
-        authorities: routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-ROUTER-SECRET
     database: null

@@ -1109,11 +1109,11 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
       tcp_emitter:
-        authorities: routing.routes.write,routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
       tcp_router:
-        authorities: routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
       cc-service-dashboards:
