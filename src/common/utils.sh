@@ -84,5 +84,6 @@ kill_and_wait() {
 }
 
 running_in_container() {
-  grep -q -E '/instance|/docker/' /proc/self/cgroup
+  # look for a non-root cgroup
+  grep --quiet --invert-match ':/$' /proc/self/cgroup
 }
