@@ -143,10 +143,6 @@ consul-windows/consul_0.7.1_windows_amd64.zip:
   object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
   sha: a4e13dcb189e8235ca6c48029638733e12fb9747
   size: 7299930
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.6.zip:
-  object_id: 42e970aa-6fa3-4084-a69d-385dc432e21c
-  sha: 1cc8547aa27ff33b4d507aeae74bcc282a111091
-  size: 177669127
 go-buildpack/go_buildpack-cached-v1.7.16.zip:
   object_id: 4751b160-2492-4d17-9d61-627a82aae0bf
   sha: c3cd1775095adfa6d20bd532b3ead8f50bba93d2
@@ -175,3 +171,7 @@ rootfs/cflinuxfs2-1.95.0.tar.gz:
   object_id: fbbe26b2-c291-4625-802e-6b7a6514b226
   sha: 620b10eecbb558e5e0f90ea4e3c17573c2440371
   size: 356854621
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.8.zip:
+  object_id: df67c8da-f1b6-4326-b24e-c23edee6926b
+  sha: 38e7ec994eb3f3f01cf76246f5d9a1e146b15972
+  size: 379706298
