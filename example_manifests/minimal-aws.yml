@@ -113,7 +113,7 @@ jobs:
     etcd_metrics_server:
       nats:
         machines: [10.0.16.103]
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         username: nats
 
 - name: consul_z1
@@ -299,7 +299,7 @@ jobs:
   properties:
     doppler: {zone: z1}
     doppler_endpoint:
-      shared_secret: PASSWORD
+      shared_secret: REPLACE_WITH_PASSWORD
 
 - name: loggregator_trafficcontroller_z1
   instances: 1
@@ -405,12 +405,12 @@ jobs:
         - "*.login.REPLACE_WITH_SYSTEM_DOMAIN"
     uaa:
       admin:
-        client_secret: PASSWORD
+        client_secret: REPLACE_WITH_PASSWORD
       batch:
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         username: batch_user
       cc:
-        client_secret: PASSWORD
+        client_secret: REPLACE_WITH_PASSWORD
       scim:
         userids_enabled: true
         users:
@@ -430,7 +430,7 @@ jobs:
       db_scheme: postgresql
       port: 5524
       roles:
-      - {name: uaaadmin, password: PASSWORD, tag: admin}
+      - {name: uaaadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
 
 - name: router_z1
   instances: 1
@@ -447,7 +447,7 @@ jobs:
 
 properties:
   router:
-    route_services_secret: PASSWORD
+    route_services_secret: REPLACE_WITH_PASSWORD
     ssl_skip_validation: true
   networks: {apps: cf_private}
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
@@ -459,41 +459,41 @@ properties:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
     droplets:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
     external_port: 9022
     packages:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
     resource_pool:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
-    bulk_api_password: PASSWORD
-    db_encryption_key: PASSWORD
+    bulk_api_password: REPLACE_WITH_PASSWORD
+    db_encryption_key: REPLACE_WITH_PASSWORD
     default_running_security_groups: [public_networks, dns]
     default_staging_security_groups: [public_networks, dns]
     install_buildpacks:
@@ -506,7 +506,7 @@ properties:
     - {name: staticfile_buildpack, package: staticfile-buildpack}
     - {name: binary_buildpack, package: binary-buildpack}
     - {name: dotnet_core_buildpack, package: dotnet-core-buildpack}
-    internal_api_password: PASSWORD
+    internal_api_password: REPLACE_WITH_PASSWORD
     quota_definitions:
       default:
         memory_limit: 102400
@@ -526,7 +526,7 @@ properties:
       - {destination: 0.0.0.0/0, ports: '53', protocol: tcp}
       - {destination: 0.0.0.0/0, ports: '53', protocol: udp}
     srv_api_uri: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-    staging_upload_password: PASSWORD
+    staging_upload_password: REPLACE_WITH_PASSWORD
     staging_upload_user: staging_upload_user
   ccdb:
     address: 10.0.16.101
@@ -535,7 +535,7 @@ properties:
     db_scheme: postgres
     port: 5524
     roles:
-    - {name: ccadmin, password: PASSWORD, tag: admin}
+    - {name: ccadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
   consul:
     agent:
       log_level: null
@@ -544,7 +544,7 @@ properties:
         lan:
         - 10.0.16.105
     encrypt_keys:
-    - PASSWORD
+    - REPLACE_WITH_PASSWORD
     ca_cert: |
       -----BEGIN CERTIFICATE-----
       MIIFBzCCAu+gAwIBAgIBATANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDEwhjb25z
@@ -686,10 +686,10 @@ properties:
 
   blobstore:
     admin_users:
-    - password: PASSWORD
+    - password: REPLACE_WITH_PASSWORD
       username: blobstore-username
     secure_link:
-      secret: PASSWORD
+      secret: REPLACE_WITH_PASSWORD
     tls:
       cert: |+
         -----BEGIN CERTIFICATE-----
@@ -770,9 +770,9 @@ properties:
     - {name: diego, tag: diego, citext: true}
     port: 5524
     roles:
-    - {name: ccadmin, password: PASSWORD, tag: admin}
-    - {name: uaaadmin, password: PASSWORD, tag: admin}
-    - {name: diego, password: PASSWORD, tag: admin}
+    - {name: ccadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
+    - {name: uaaadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
+    - {name: diego, password: REPLACE_WITH_PASSWORD, tag: admin}
   description: Cloud Foundry sponsored by Pivotal
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
@@ -986,7 +986,7 @@ properties:
           Mm/x1fOS7wm60UvswyblASzAEGh2T6Ro+pAVm4RzE1hUonBbFcfa1h4J
           -----END RSA PRIVATE KEY-----
   loggregator_endpoint:
-    shared_secret: PASSWORD
+    shared_secret: REPLACE_WITH_PASSWORD
   metron_agent:
     zone: z1
     deployment: minimal-aws
@@ -994,10 +994,10 @@ properties:
     protocols:
     - udp
   metron_endpoint:
-    shared_secret: PASSWORD
+    shared_secret: REPLACE_WITH_PASSWORD
   nats:
     machines: [10.0.16.103]
-    password: PASSWORD
+    password: REPLACE_WITH_PASSWORD
     port: 4222
     user: nats
   ssl:
@@ -1018,43 +1018,43 @@ properties:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
         scope: openid,cloud_controller_service_permissions.read
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       cc_routing:
         authorities: routing.router_groups.read
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       tcp_router:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       doppler:
         authorities: uaa.resource
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: https://login.REPLACE_WITH_SYSTEM_DOMAIN
         scope: openid,oauth.approvals
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       servicesmgmt:
         authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
         authorized-grant-types: authorization_code,client_credentials,password,implicit
         autoapprove: true
         redirect-uri: https://servicesmgmt.REPLACE_WITH_SYSTEM_DOMAIN/auth/cloudfoundry/callback
         scope: openid,cloud_controller.read,cloud_controller.write
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
 
     jwt:
       signing_key: |
@@ -1094,7 +1094,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
       diego_privileged_containers: true
     tps:
       bbs:
@@ -1104,7 +1104,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
     tps_listener:
       bbs:
         ca_cert: ""
@@ -1113,7 +1113,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
     stager:
       bbs:
         ca_cert: ""
@@ -1122,7 +1122,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
   diego:
     auctioneer:
       bbs:
@@ -1134,7 +1134,7 @@ properties:
       active_key_label: active
       encryption_keys:
       - label: active
-        passphrase: PASSWORD
+        passphrase: REPLACE_WITH_PASSWORD
       ca_cert: ""
       etcd:
         ca_cert: ""
@@ -1149,7 +1149,7 @@ properties:
         db_host: 10.0.16.101
         db_port: 5524
         db_username: diego
-        db_password: PASSWORD
+        db_password: REPLACE_WITH_PASSWORD
         db_schema: diego
         max_open_connections: 500
     converger:
@@ -1176,7 +1176,7 @@ properties:
         require_ssl: false
       nats:
         machines: [10.0.16.103]
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         port: 4222
         user: nats
     ssl:
