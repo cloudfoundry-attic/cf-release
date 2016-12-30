@@ -1122,6 +1122,8 @@ properties:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: authorization_code,client_credentials
 
+    token_endpoint: (( merge || nil ))
+
     database: ~
 
     zones:
@@ -1164,8 +1166,7 @@ properties:
     healthcheck_user_agent: (( merge || nil ))
     enable_access_log_streaming: (( merge || nil ))
 
-  routing_api:
-    enabled: (( merge || nil ))
+  routing_api: (( merge || nil ))
 
   syslog_daemon_config: ~
 

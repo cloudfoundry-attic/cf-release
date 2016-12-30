@@ -4134,8 +4134,7 @@ properties:
     suspend_pruning_if_nats_unavailable: null
     tracing:
       enable_zipkin: null
-  routing_api:
-    enabled: null
+  routing_api: null
   smoke_tests:
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
@@ -4350,6 +4349,7 @@ properties:
       HzneT3ZbOcsEIvK14FecXzV7OqRvOePXSJ2cS8lNqd1k2pxCjliYW4pfQm7e58ma
       /6wtWeX8QMBcZ6ufxs0VgxPv4P8jczrzqxgszLUK8hdnZEL7+xk=
       -----END RSA PRIVATE KEY-----
+    token_endpoint: null
     url: https://uaa.bosh-lite.com
     user:
       authorities:

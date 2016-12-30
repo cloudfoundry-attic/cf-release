@@ -1512,8 +1512,7 @@ properties:
     suspend_pruning_if_nats_unavailable: null
     tracing:
       enable_zipkin: null
-  routing_api:
-    enabled: null
+  routing_api: null
   smoke_tests: null
   ssl:
     skip_cert_verify: true
@@ -1645,6 +1644,7 @@ properties:
       port: 8443
     sslCertificate: UAA_SERVER_CERT
     sslPrivateKey: UAA_SERVER_KEY
+    token_endpoint: null
     url: https://uaa.SYSTEM_DOMAIN
     user:
       authorities:
