@@ -291,13 +291,17 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: doppler, release: cf}
   - {name: metron_agent, release: cf}
   - {name: syslog_drain_binder, release: cf}
   networks:
   - name: cf_private
   properties:
-    doppler: {zone: z1}
+    consul:
+      agent:
+        services:
+          doppler: {}
     doppler_endpoint:
       shared_secret: REPLACE_WITH_PASSWORD
 
@@ -305,6 +309,7 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: loggregator_trafficcontroller, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
