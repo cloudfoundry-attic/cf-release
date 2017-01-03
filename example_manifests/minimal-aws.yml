@@ -298,6 +298,7 @@ jobs:
   networks:
   - name: cf_private
   properties:
+    doppler: {zone: z1}
     consul:
       agent:
         services:
