@@ -95,10 +95,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.5.zip:
   object_id: b321c617-23a3-4e2b-af63-29d60a1d8fcf
   sha: fe0edb11bcc5d42570f10ff9fe97f0c1b94900d1
   size: 9571
-java-buildpack/java-buildpack-offline-v3.10.zip:
-  object_id: 660d2edf-3a0e-43f3-80c3-888652b298a8
-  sha: aa0816fa7a6e6cb58648ff6fd76d14e4ddab0954
-  size: 261228676
 etcd/etcd-v2.1.1-linux-amd64.tar.gz:
   object_id: ce50df26-f04b-496a-9ac4-32228020df6a
   sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
@@ -203,3 +199,7 @@ java-buildpack/java-buildpack-v3.11.zip:
   object_id: 3cb6f72c-a3b7-4493-b2f1-6db018f88392
   sha: 16e00ae9290e73d64673d51d8f2c4d215514c1fd
   size: 177233
+java-buildpack/java-buildpack-offline-v3.11.zip:
+  object_id: 6e0e442b-967d-463d-a504-9fed5d3e6b72
+  sha: 8269b2611736d16ae35dbc3b2a7d839c5f2a448b
+  size: 256031996
