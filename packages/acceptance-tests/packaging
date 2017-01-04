@@ -1,7 +1,4 @@
 set -e -x
 
-export GOROOT=$(readlink -nf /var/vcap/packages/golang1.6)
-export PATH=${GOROOT}/bin:${PATH}
-
 mkdir -p ${BOSH_INSTALL_TARGET}/src
 cp -a . ${BOSH_INSTALL_TARGET}/src
