@@ -37,6 +37,6 @@
   "syslog_ip_address"               : "<%= discover_external_ip %>",
   "enable_windows_tests"            : <%= properties.smoke_tests.enable_windows_tests %>,
   "backend"                         : "<%= properties.smoke_tests.backend %>",
-  "enable_etcd_cluster_check_tests" : "<%= properties.smoke_tests.enable_etcd_cluster_check_tests %>",
+  "enable_etcd_cluster_check_tests" : <%= properties.smoke_tests.enable_etcd_cluster_check_tests %>,
   "etcd_ip_address"                 : "<%= properties.smoke_tests.etcd_ip_address %>"
 }

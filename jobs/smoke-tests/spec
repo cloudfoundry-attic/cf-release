@@ -60,5 +60,5 @@ properties:
     default: false
     description: Sets to validate the security of your etcd cluster; Must provide 'etcd_ip_address' along
   smoke_tests.etcd_ip_address:
-    default: ""
+    default: ''
     description: Etcd ip address to use when running etcd cluster check tests
