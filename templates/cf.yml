@@ -1166,7 +1166,10 @@ properties:
     healthcheck_user_agent: (( merge || nil ))
     enable_access_log_streaming: (( merge || nil ))
 
-  routing_api: (( merge || nil ))
+  routing_api:
+    enabled: (( merge || nil ))
+    uri: (( merge || nil ))
+    port: (( merge || nil ))
 
   syslog_daemon_config: ~
 

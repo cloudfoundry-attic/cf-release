@@ -1538,7 +1538,10 @@ properties:
     suspend_pruning_if_nats_unavailable: null
     tracing:
       enable_zipkin: null
-  routing_api: null
+  routing_api:
+    enabled: null
+    uri: null
+    port: null
   smoke_tests: null
   ssl:
     skip_cert_verify: true
