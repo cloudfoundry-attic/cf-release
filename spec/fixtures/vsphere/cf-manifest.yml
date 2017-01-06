@@ -1570,7 +1570,7 @@ properties:
         requireLowerCaseCharacter: null
         requireSpecialCharacter: null
         requireUpperCaseCharacter: null
-    ca_cert: null
+    ca_cert: UAA_CA_CERT
     catalina_opts: null
     cc:
       client_secret: CC_CLIENT_SECRET
