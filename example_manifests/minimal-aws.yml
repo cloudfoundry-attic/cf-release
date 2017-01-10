@@ -1092,6 +1092,13 @@ properties:
     ssl:
       port: -1
     url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN
+    ca_cert: |
+      REPLACE_WITH_UAA_CA_CERT
+    sslPrivateKey: |
+      REPLACE_WITH_UAA_SSL_KEY
+    sslCertificate: |
+      REPLACE_WITH_UAA_SSL_CERT
+
   capi:
     nsync:
       bbs:
