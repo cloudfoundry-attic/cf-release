@@ -760,6 +760,7 @@ properties:
     diego:
       use_privileged_containers_for_staging: (( merge || nil ))
       insecure_docker_registry_list: (( merge || nil ))
+      pid_limit: (( merge || nil ))
       temporary_local_staging: (( merge || nil ))
       temporary_local_tasks: (( merge || nil ))
       temporary_local_apps: (( merge || nil ))

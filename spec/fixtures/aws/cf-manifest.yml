@@ -1067,6 +1067,7 @@ properties:
       temporary_local_tasks: null
       temporary_local_apps: null
       use_privileged_containers_for_staging: null
+      pid_limit: null
       bbs:
         url: null
     tls_port: null
