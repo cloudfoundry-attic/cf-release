@@ -335,12 +335,17 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: uaa, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
   networks:
   - name: cf_private
   properties:
+    consul:
+      agent:
+        services:
+          uaa: {}
     login:
       saml:
         serviceProviderKey: |
