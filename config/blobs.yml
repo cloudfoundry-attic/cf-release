@@ -139,10 +139,6 @@ python-buildpack/python_buildpack-cached-v1.5.13.zip:
   object_id: 594bedd3-bb75-4174-9705-9a1e671f92a1
   sha: e478e73ec210742b74137045707862f13f24f1f3
   size: 267134556
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.8.zip:
-  object_id: df67c8da-f1b6-4326-b24e-c23edee6926b
-  sha: 38e7ec994eb3f3f01cf76246f5d9a1e146b15972
-  size: 379706298
 nodejs-buildpack/nodejs_buildpack-cached-v1.5.25.zip:
   object_id: 9f4a152c-2c25-4185-83ec-7c57160a99e2
   sha: 16823d90fcba39738545e8d22a32cfb75618f652
@@ -211,3 +207,7 @@ rootfs/cflinuxfs2-1.96.0.tar.gz:
   object_id: 9eec8922-7a2c-4849-ac8a-77d950dc1f8f
   sha: 203fdc7e554fac576a5583d275b29e1c852d5a34
   size: 356882641
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.9.zip:
+  object_id: a033d7e5-069c-4fae-878c-914931250654
+  sha: b5f0fdb67441256f9f1b5da844bc86e31a14369b
+  size: 458590315
