@@ -1094,6 +1094,8 @@ properties:
         spULZVNRxq7veq/fzwIDAQAB
         -----END PUBLIC KEY-----
 
+    ssl:
+      port: 8443
     url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN
     ca_cert: |
       REPLACE_WITH_UAA_CA_CERT
