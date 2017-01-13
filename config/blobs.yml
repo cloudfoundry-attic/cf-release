@@ -127,10 +127,6 @@ consul-windows/consul_0.7.1_windows_amd64.zip:
   object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
   sha: a4e13dcb189e8235ca6c48029638733e12fb9747
   size: 7299930
-go-buildpack/go_buildpack-cached-v1.7.16.zip:
-  object_id: 4751b160-2492-4d17-9d61-627a82aae0bf
-  sha: c3cd1775095adfa6d20bd532b3ead8f50bba93d2
-  size: 411037160
 staticfile-buildpack/staticfile_buildpack-cached-v1.3.14.zip:
   object_id: 42c57d75-e503-44e8-8567-560e2d19cdd1
   sha: 6b86ccde7bbb7c24f7e9d023c1eb3adc778eb633
@@ -211,3 +207,7 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.9.zip:
   object_id: a033d7e5-069c-4fae-878c-914931250654
   sha: b5f0fdb67441256f9f1b5da844bc86e31a14369b
   size: 458590315
+go-buildpack/go_buildpack-cached-v1.7.17.zip:
+  object_id: 3760497d-78cb-4d56-887a-134104ebd543
+  sha: 2be1ba70f3fb73c005177fbb8574912f19e65b36
+  size: 411045973
