@@ -139,10 +139,6 @@ python-buildpack/python_buildpack-cached-v1.5.13.zip:
   object_id: 594bedd3-bb75-4174-9705-9a1e671f92a1
   sha: e478e73ec210742b74137045707862f13f24f1f3
   size: 267134556
-rootfs/cflinuxfs2-1.95.0.tar.gz:
-  object_id: fbbe26b2-c291-4625-802e-6b7a6514b226
-  sha: 620b10eecbb558e5e0f90ea4e3c17573c2440371
-  size: 356854621
 dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.8.zip:
   object_id: df67c8da-f1b6-4326-b24e-c23edee6926b
   sha: 38e7ec994eb3f3f01cf76246f5d9a1e146b15972
@@ -211,3 +207,7 @@ nginx/headers-more-nginx-module-0.32.tar.gz:
   object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
   sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
   size: 28033
+rootfs/cflinuxfs2-1.96.0.tar.gz:
+  object_id: 9eec8922-7a2c-4849-ac8a-77d950dc1f8f
+  sha: 203fdc7e554fac576a5583d275b29e1c852d5a34
+  size: 356882641
