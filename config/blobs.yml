@@ -123,10 +123,6 @@ consul-windows/consul_0.7.1_windows_amd64.zip:
   object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
   sha: a4e13dcb189e8235ca6c48029638733e12fb9747
   size: 7299930
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.14.zip:
-  object_id: 42c57d75-e503-44e8-8567-560e2d19cdd1
-  sha: 6b86ccde7bbb7c24f7e9d023c1eb3adc778eb633
-  size: 2713420
 loggregator-blobs/doppler.xz:
   object_id: 95b4c4b9-fc81-40b0-bc69-ccdd9e72cec0
   sha: 92107aaffb74576bb651a1f640bdc946f4758452
@@ -211,3 +207,7 @@ python-buildpack/python_buildpack-cached-v1.5.14.zip:
   object_id: 6bc33b6c-1ad9-48a1-a6cf-abcbb9055bfc
   sha: 89e9c3a161e9ad62946f425800efd4f57de775e1
   size: 309948142
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.16.zip:
+  object_id: 5fa02e7a-91e7-418d-a4f5-e1ac2c5809c2
+  sha: f6adca3eb40f6f5db8accc12f5d9dfb0f03f0ca3
+  size: 2729706
