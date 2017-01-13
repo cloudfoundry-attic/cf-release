@@ -87,10 +87,6 @@ haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-binary-buildpack/binary_buildpack-cached-v1.0.5.zip:
-  object_id: b321c617-23a3-4e2b-af63-29d60a1d8fcf
-  sha: fe0edb11bcc5d42570f10ff9fe97f0c1b94900d1
-  size: 9571
 etcd/etcd-v2.1.1-linux-amd64.tar.gz:
   object_id: ce50df26-f04b-496a-9ac4-32228020df6a
   sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
@@ -211,3 +207,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.32.zip:
   object_id: d59f2171-8bbd-4a1e-afde-9436f028964b
   sha: 683d5d626d8a44f9cf41ea9415cbbfd4c61b8555
   size: 287649294
+binary-buildpack/binary_buildpack-cached-v1.0.7.zip:
+  object_id: 50494b5c-5948-4dcf-92ca-bc57d46966c2
+  sha: b907168731b2147769c174bca05a9b4ce6549ddf
+  size: 47985
