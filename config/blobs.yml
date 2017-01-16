@@ -21,7 +21,7 @@ haproxy/haproxy-1.5.14.tar.gz:
   size: 1345345
 uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
-  sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
+  sha: '038c11e503bdbc5194c76535b22f5d4b85aeb37f'
   size: 11163261
 ruby-2.1.8/bundler-1.9.4.gem:
   object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
@@ -116,7 +116,7 @@ golang/go1.7.4.windows-amd64.zip:
   object_id: dbebd00d-43b7-434d-6603-c7a8fbcbf779
   sha: a0da2f5d67e5b800eba811a34ca4b2aa22cca678
 consul/consul_0.7.1_linux_amd64.zip:
-  object_id: 08ad90a5-10ab-48cb-bebe-ead924e9ef32
+  object_id: '08ad90a5-10ab-48cb-bebe-ead924e9ef32'
   sha: c2be9eebc40bf552e260c7dd31a77cb60474712f
   size: 7359222
 consul-windows/consul_0.7.1_windows_amd64.zip:
@@ -124,33 +124,33 @@ consul-windows/consul_0.7.1_windows_amd64.zip:
   sha: a4e13dcb189e8235ca6c48029638733e12fb9747
   size: 7299930
 loggregator-blobs/doppler.xz:
-  object_id: 09ab618d-4fe0-4d13-a5a2-48d7cb4b64ab
-  sha: 96c25f8ae9cc081178adf7e6df1282d400f62089
-  size: 3386660
+  object_id: d571cdbd-a64f-4cf8-8537-6c8208620a18
+  sha: 03f200f2c3ddd18e979748c8ce6de2107ed5a8d4
+  size: 3393136
 loggregator-blobs/syslog_drain_binder.xz:
-  object_id: a8c800cd-bf5a-4aff-926f-21538976e84c
-  sha: ba49dbd44741d42fbd013f309474cd1a1d53bd29
-  size: 3236804
+  object_id: 8504b9d7-8acd-4410-935e-35af85022f86
+  sha: 5217fdd24e32cb43952da23bd294748932b3d556
+  size: 3235872
 loggregator-blobs/deaagent.xz:
-  object_id: 56ae902c-9592-4ea4-bcb6-40e2c3d04281
-  sha: 8e6bf0eb25286248892e5c0b1dae265f91602e97
-  size: 2050556
+  object_id: 4da89251-7c55-41af-a6d3-114491271e3b
+  sha: 151a78e37cdf094c09603af86b7b9de6af9e3cba
+  size: 2049384
 loggregator-blobs/trafficcontroller.xz:
-  object_id: 9cb993ed-6d94-49ba-9fa2-3dd04e075f86
-  sha: 4db762d6e52dfa514c723c6cfcd1c4aa0aac3408
-  size: 3400084
+  object_id: 4619053b-b048-4a73-8ceb-15b60848e4b5
+  sha: 3aefd9deb4b7fc0179b7fb3f355c52ff6cb52e94
+  size: 3399676
 loggregator-blobs/statsd-injector.xz:
-  object_id: dcc3d1e0-2d2b-4b2e-85a9-5bdae3667edf
-  sha: 28ce173b9cc8efb66e2b6e836d9c3f195138e051
+  object_id: 96a6ffbf-39c8-45b1-b837-10d37fb71c4e
+  sha: ad76e235056a09d809ed44fdefd72807024cdc77
   size: 1067492
 loggregator-blobs/metron.exe:
-  object_id: 8d411f27-45da-4133-8d71-6d2697391232
-  sha: 21af69b72bbbe8f80a841767a9d42e3c1a1fd4de
+  object_id: 610f17e4-f19a-44da-a9fa-fe8ab22addef
+  sha: 1c9f42db25d084dbf5c52bf2d505fceb9cfcdea9
   size: 11158016
 loggregator-blobs/metron.xz:
-  object_id: 29a5e056-e8a4-47ce-bb98-099c624a5eeb
-  sha: 27076b0486628e0b6e85826b9d7837d833394ff6
-  size: 2533188
+  object_id: 18c209d3-353e-4017-a9b4-0aecc48d7096
+  sha: 0c65d5a2cd541ee2c17f56d58760b81925de6d7f
+  size: 2526836
 java-buildpack/java-buildpack-v3.11.zip:
   object_id: 3cb6f72c-a3b7-4493-b2f1-6db018f88392
   sha: 16e00ae9290e73d64673d51d8f2c4d215514c1fd
