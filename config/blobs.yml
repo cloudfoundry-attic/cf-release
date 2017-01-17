@@ -87,10 +87,6 @@ haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-etcd/etcd-v2.1.1-linux-amd64.tar.gz:
-  object_id: ce50df26-f04b-496a-9ac4-32228020df6a
-  sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
-  size: 5608238
 uaa/apache-tomcat-8.0.39.tar.gz:
   object_id: 2166a182-9111-48af-87c5-34cc06f68cac
   sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
@@ -211,3 +207,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.16.zip:
   object_id: 5fa02e7a-91e7-418d-a4f5-e1ac2c5809c2
   sha: f6adca3eb40f6f5db8accc12f5d9dfb0f03f0ca3
   size: 2729706
+etcd/etcd-v2.2.0-linux-amd64.tar.gz:
+  object_id: 36f83fc5-c59d-420d-acd7-0863fc576221
+  sha: 16c670c159c4477620d17296fc0d15f5fb3cab8d
+  size: 7355454
