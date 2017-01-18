@@ -79,10 +79,6 @@ openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
   object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
   sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
   size: 75550921
-cli/cf-cli_6.21.1_linux_x86-64.tgz:
-  object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
-  sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
-  size: 6543090
 haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
@@ -211,3 +207,7 @@ etcd/etcd-v2.2.0-linux-amd64.tar.gz:
   object_id: 36f83fc5-c59d-420d-acd7-0863fc576221
   sha: 16c670c159c4477620d17296fc0d15f5fb3cab8d
   size: 7355454
+cf-cli_6.23.1_linux_x86-64.tgz:
+  object_id: a1190ebb-d715-4471-80e1-0c4fec566c49
+  sha: a195e99cae5ab17b453b0a0747508c8f3eee5cae
+  size: 6692717
