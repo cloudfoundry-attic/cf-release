@@ -4143,6 +4143,7 @@ properties:
     route_services_secret_decrypt_only: null
     route_services_timeout: null
     secure_cookies: null
+    max_idle_connections: 100
     ssl_cert: null
     ssl_key: null
     ssl_skip_validation: true

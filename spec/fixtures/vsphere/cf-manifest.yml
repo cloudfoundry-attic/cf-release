@@ -1543,6 +1543,7 @@ properties:
     route_services_secret: null
     route_services_secret_decrypt_only: null
     route_services_timeout: null
+    max_idle_connections: null
     secure_cookies: null
     ssl_cert: null
     ssl_key: null
