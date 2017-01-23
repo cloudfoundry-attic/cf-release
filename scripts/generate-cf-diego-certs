@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e -x
+
+# Install certstrap
+go get -v github.com/square/certstrap
+
+# Place keys and certificates here
+depot_path="cf-diego-certs"
+mkdir -p ${depot_path}
+
+# CA to distribute to diego and cloud_controller
+certstrap --depot-path ${depot_path} init --passphrase '' --common-name cf-diego-ca
+
+# Server certificate for cloud controller to act as a TLS server
+cc_cn=cloud-controller-ng.service.cf.internal
+certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $cc_cn
+certstrap --depot-path ${depot_path} sign $cc_cn --CA cf-diego-ca
+mv -f ${depot_path}/$cc_cn.key ${depot_path}/cloud-controller.key
+mv -f ${depot_path}/$cc_cn.csr ${depot_path}/cloud-controller.csr
+mv -f ${depot_path}/$cc_cn.crt ${depot_path}/cloud-controller.crt
+

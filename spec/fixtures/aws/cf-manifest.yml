@@ -485,7 +485,7 @@ jobs:
 - default_networks:
   - name: cf1
   instances: 1
-  name: clock_global
+  name: clock_z1
   networks:
   - name: cf1
   persistent_disk: 0
@@ -522,6 +522,25 @@ jobs:
   - name: consul_agent
     release: cf
   - name: cloud_controller_worker
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- default_networks:
+  - name: cf2
+  instances: 1
+  name: clock_z2
+  networks:
+  - name: cf2
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z2
+  resource_pool: medium_z2
+  templates:
+  - name: consul_agent
+    release: cf
+  - name: cloud_controller_clock
     release: cf
   - name: metron_agent
     release: cf
@@ -1066,7 +1085,9 @@ properties:
       temporary_local_staging: null
       temporary_local_tasks: null
       temporary_local_apps: null
+      temporary_local_tps: null
       use_privileged_containers_for_staging: null
+      pid_limit: null
       bbs:
         url: null
     tls_port: null
@@ -1499,6 +1520,7 @@ properties:
     route_services_secret: null
     route_services_secret_decrypt_only: null
     route_services_timeout: null
+    max_idle_connections: null
     secure_cookies: null
     ssl_cert: null
     ssl_key: null
@@ -1514,6 +1536,8 @@ properties:
       enable_zipkin: null
   routing_api:
     enabled: null
+    uri: null
+    port: null
   smoke_tests: null
   ssl:
     skip_cert_verify: true
@@ -1557,7 +1581,7 @@ properties:
         requireLowerCaseCharacter: null
         requireSpecialCharacter: null
         requireUpperCaseCharacter: null
-    ca_cert: null
+    ca_cert: UAA_CA_CERT
     catalina_opts: null
     cc:
       client_secret: CC_CLIENT_SECRET
@@ -1603,11 +1627,11 @@ properties:
         authorized-grant-types: client_credentials
         secret: NOTIFICATIONS_CLIENT_SECRET
       tcp_emitter:
-        authorities: routing.routes.write,routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-EMITTER-SECRET
       tcp_router:
-        authorities: routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-ROUTER-SECRET
     database: null
@@ -1645,6 +1669,7 @@ properties:
       port: 8443
     sslCertificate: UAA_SERVER_CERT
     sslPrivateKey: UAA_SERVER_KEY
+    token_endpoint: null
     url: https://uaa.SYSTEM_DOMAIN
     user:
       authorities:

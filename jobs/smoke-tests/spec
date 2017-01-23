@@ -56,3 +56,9 @@ properties:
     description: Defines the backend to be used. ('dea', 'diego', '' (default))
   smoke_tests.cf_dial_timeout_in_seconds:
     description: Sets the cli timeout (CF_DIAL_TIMEOUT)
+  smoke_tests.enable_etcd_cluster_check_tests:
+    default: false
+    description: Sets to validate the security of your etcd cluster; Must provide 'etcd_ip_address' along
+  smoke_tests.etcd_ip_address:
+    default: ''
+    description: Etcd ip address to use when running etcd cluster check tests

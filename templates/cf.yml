@@ -251,7 +251,7 @@ jobs:
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
-  - name: clock_global
+  - name: clock_z1
     templates: (( merge || meta.clock_templates ))
     instances: 1
     resource_pool: medium_z1
@@ -276,6 +276,19 @@ jobs:
       metron_agent:
         zone: z1
       nfs_server: (( meta.nfs_server ))
+    update: (( merge || empty_hash ))
+
+  - name: clock_z2
+    templates: (( merge || meta.clock_templates ))
+    instances: 1
+    resource_pool: medium_z2
+    persistent_disk: 0
+    default_networks:
+      - name: cf2
+    networks: (( merge || default_networks ))
+    properties:
+      metron_agent:
+        zone: z2
     update: (( merge || empty_hash ))
 
   - name: api_worker_z2
@@ -760,9 +773,11 @@ properties:
     diego:
       use_privileged_containers_for_staging: (( merge || nil ))
       insecure_docker_registry_list: (( merge || nil ))
+      pid_limit: (( merge || nil ))
       temporary_local_staging: (( merge || nil ))
       temporary_local_tasks: (( merge || nil ))
       temporary_local_apps: (( merge || nil ))
+      temporary_local_tps: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
     tls_port: (( merge || nil ))
@@ -1004,7 +1019,7 @@ properties:
     restricted_ips_regex: ~
 
   uaa:
-    ca_cert: (( merge || nil ))
+    ca_cert: (( merge ))
     catalina_opts: ~
     url: (( "https://uaa." system_domain ))
     issuer: (( url ))
@@ -1109,11 +1124,11 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
       tcp_emitter:
-        authorities: routing.routes.write,routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
       tcp_router:
-        authorities: routing.routes.read,routing.router_groups.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: (( merge ))
       cc-service-dashboards:
@@ -1121,6 +1136,8 @@ properties:
         scope: openid,cloud_controller_service_permissions.read
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: authorization_code,client_credentials
+
+    token_endpoint: (( merge || nil ))
 
     database: ~
 
@@ -1155,6 +1172,7 @@ properties:
     route_services_secret_decrypt_only: (( merge || nil ))
     route_services_timeout: (( merge || nil ))
     route_services_recommend_https: (( merge || nil ))
+    max_idle_connections: (( merge || nil ))
     tracing:
       enable_zipkin: (( merge || nil ))
     logrotate: (( merge || nil ))
@@ -1166,6 +1184,8 @@ properties:
 
   routing_api:
     enabled: (( merge || nil ))
+    uri: (( merge || nil ))
+    port: (( merge || nil ))
 
   syslog_daemon_config: ~
 

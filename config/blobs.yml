@@ -59,14 +59,6 @@ consul/consul-template_0.14.0_linux_amd64.zip:
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
   size: 3523492
-nginx/nginx-1.11.1.tar.gz:
-  object_id: ced13588-cd45-44d4-bf76-0f6d668522ea
-  sha: 6b6172b26628b95c4ad0d6cb5b11eb4aa59c2a83
-  size: 913417
-nginx/headers-more-nginx-module-0.30.tar.gz:
-  object_id: e8f3c630-e139-46b4-9363-c178f444edca
-  sha: a188a399f3e365a0831585a9d7aa0e6ed1a75f0d
-  size: 27793
 nginx/pcre-8.39.tar.gz:
   object_id: 70c7bafb-4013-4f07-8287-bfb07faa1085
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
@@ -87,30 +79,10 @@ openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
   object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
   sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
   size: 75550921
-cli/cf-cli_6.21.1_linux_x86-64.tgz:
-  object_id: 0f4e5011-23d3-4eab-90bd-d6dd5b46c67d
-  sha: 7dc397d2a0d93887ef50bc1f852beb686563049e
-  size: 6543090
 haproxy/pcre-8.39.tar.gz:
   object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
   sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
   size: 2062258
-binary-buildpack/binary_buildpack-cached-v1.0.5.zip:
-  object_id: b321c617-23a3-4e2b-af63-29d60a1d8fcf
-  sha: fe0edb11bcc5d42570f10ff9fe97f0c1b94900d1
-  size: 9571
-java-buildpack/java-buildpack-v3.10.zip:
-  object_id: f5efc2ab-ae9e-4ef0-9df2-46188b5e4809
-  sha: ae12d21d29ec2a4ceeaf597dc43f11c52a44cc78
-  size: 174486
-java-buildpack/java-buildpack-offline-v3.10.zip:
-  object_id: 660d2edf-3a0e-43f3-80c3-888652b298a8
-  sha: aa0816fa7a6e6cb58648ff6fd76d14e4ddab0954
-  size: 261228676
-etcd/etcd-v2.1.1-linux-amd64.tar.gz:
-  object_id: ce50df26-f04b-496a-9ac4-32228020df6a
-  sha: d90a29e051f8dea2f5bb4200610ccbcec45497d7
-  size: 5608238
 uaa/apache-tomcat-8.0.39.tar.gz:
   object_id: 2166a182-9111-48af-87c5-34cc06f68cac
   sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
@@ -143,35 +115,99 @@ consul-windows/consul_0.7.1_windows_amd64.zip:
   object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
   sha: a4e13dcb189e8235ca6c48029638733e12fb9747
   size: 7299930
-rootfs/cflinuxfs2-1.94.0.tar.gz:
-  object_id: 2fe0e3e0-4961-49e8-a39f-205e46cedc33
-  sha: adcc38d42428fbf8f3eb48a8f6a034bb09ce64fe
-  size: 356582530
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.6.zip:
-  object_id: 42e970aa-6fa3-4084-a69d-385dc432e21c
-  sha: 1cc8547aa27ff33b4d507aeae74bcc282a111091
-  size: 177669127
-go-buildpack/go_buildpack-cached-v1.7.16.zip:
-  object_id: 4751b160-2492-4d17-9d61-627a82aae0bf
-  sha: c3cd1775095adfa6d20bd532b3ead8f50bba93d2
-  size: 411037160
-ruby-buildpack/ruby_buildpack-cached-v1.6.29.zip:
-  object_id: f38f6456-32dd-437e-93d5-b5b6a9fadd7a
-  sha: 30c3f2ef508c0c1cddf1ae85e7720f6be19762b7
-  size: 285057964
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.14.zip:
-  object_id: 42c57d75-e503-44e8-8567-560e2d19cdd1
-  sha: 6b86ccde7bbb7c24f7e9d023c1eb3adc778eb633
-  size: 2713420
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.24.zip:
-  object_id: c67263a7-4e75-4fc4-8677-003446565d21
-  sha: 2d104da95c0ad1aa2e137d445b32af636ded2278
-  size: 115017999
-php-buildpack/php_buildpack-cached-v4.3.23.zip:
-  object_id: 5e83de9a-e87a-4843-b4bb-7f231178f712
-  sha: 840025c969dd0b0d8150bd1144139fc8b0e5764d
-  size: 332227325
-python-buildpack/python_buildpack-cached-v1.5.13.zip:
-  object_id: 594bedd3-bb75-4174-9705-9a1e671f92a1
-  sha: e478e73ec210742b74137045707862f13f24f1f3
-  size: 267134556
+loggregator-blobs/doppler.xz:
+  object_id: d571cdbd-a64f-4cf8-8537-6c8208620a18
+  sha: 03f200f2c3ddd18e979748c8ce6de2107ed5a8d4
+  size: 3393136
+loggregator-blobs/syslog_drain_binder.xz:
+  object_id: 8504b9d7-8acd-4410-935e-35af85022f86
+  sha: 5217fdd24e32cb43952da23bd294748932b3d556
+  size: 3235872
+loggregator-blobs/deaagent.xz:
+  object_id: 4da89251-7c55-41af-a6d3-114491271e3b
+  sha: 151a78e37cdf094c09603af86b7b9de6af9e3cba
+  size: 2049384
+loggregator-blobs/trafficcontroller.xz:
+  object_id: 4619053b-b048-4a73-8ceb-15b60848e4b5
+  sha: 3aefd9deb4b7fc0179b7fb3f355c52ff6cb52e94
+  size: 3399676
+loggregator-blobs/statsd-injector.xz:
+  object_id: 96a6ffbf-39c8-45b1-b837-10d37fb71c4e
+  sha: ad76e235056a09d809ed44fdefd72807024cdc77
+  size: 1067492
+loggregator-blobs/metron.exe:
+  object_id: 610f17e4-f19a-44da-a9fa-fe8ab22addef
+  sha: 1c9f42db25d084dbf5c52bf2d505fceb9cfcdea9
+  size: 11158016
+loggregator-blobs/metron.xz:
+  object_id: 18c209d3-353e-4017-a9b4-0aecc48d7096
+  sha: 0c65d5a2cd541ee2c17f56d58760b81925de6d7f
+  size: 2526836
+java-buildpack/java-buildpack-v3.11.zip:
+  object_id: 3cb6f72c-a3b7-4493-b2f1-6db018f88392
+  sha: 16e00ae9290e73d64673d51d8f2c4d215514c1fd
+  size: 177233
+java-buildpack/java-buildpack-offline-v3.11.zip:
+  object_id: 6e0e442b-967d-463d-a504-9fed5d3e6b72
+  sha: 8269b2611736d16ae35dbc3b2a7d839c5f2a448b
+  size: 256031996
+nginx/nginx-1.11.1.tar.gz:
+  object_id: ced13588-cd45-44d4-bf76-0f6d668522ea
+  sha: 6b6172b26628b95c4ad0d6cb5b11eb4aa59c2a83
+  size: 913417
+nginx/nginx-1.11.8.tar.gz:
+  object_id: ad7fccdd-89a0-4462-b5c8-95e4a816f55a
+  sha: 6946c4304aba1e8eef375fc620f569cdd3e3f080
+  size: 964918
+nginx/headers-more-nginx-module-0.30.tar.gz:
+  object_id: e8f3c630-e139-46b4-9363-c178f444edca
+  sha: a188a399f3e365a0831585a9d7aa0e6ed1a75f0d
+  size: 27793
+nginx/headers-more-nginx-module-0.32.tar.gz:
+  object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
+  sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
+  size: 28033
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.9.zip:
+  object_id: a033d7e5-069c-4fae-878c-914931250654
+  sha: b5f0fdb67441256f9f1b5da844bc86e31a14369b
+  size: 458590315
+go-buildpack/go_buildpack-cached-v1.7.17.zip:
+  object_id: 3760497d-78cb-4d56-887a-134104ebd543
+  sha: 2be1ba70f3fb73c005177fbb8574912f19e65b36
+  size: 411045973
+php-buildpack/php_buildpack-cached-v4.3.25.zip:
+  object_id: 18fc0d96-4626-4647-a25f-f4d8dcb62580
+  sha: cfb61703590a635dd1241a49013f4d4f213fba7b
+  size: 334514061
+ruby-buildpack/ruby_buildpack-cached-v1.6.32.zip:
+  object_id: d59f2171-8bbd-4a1e-afde-9436f028964b
+  sha: 683d5d626d8a44f9cf41ea9415cbbfd4c61b8555
+  size: 287649294
+binary-buildpack/binary_buildpack-cached-v1.0.7.zip:
+  object_id: 50494b5c-5948-4dcf-92ca-bc57d46966c2
+  sha: b907168731b2147769c174bca05a9b4ce6549ddf
+  size: 47985
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.27.zip:
+  object_id: 1d4b395a-8c63-4fa2-9188-6f97c4391626
+  sha: 07dd0edc06106a9917c57413ef6078de7286a95d
+  size: 115136743
+python-buildpack/python_buildpack-cached-v1.5.14.zip:
+  object_id: 6bc33b6c-1ad9-48a1-a6cf-abcbb9055bfc
+  sha: 89e9c3a161e9ad62946f425800efd4f57de775e1
+  size: 309948142
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.16.zip:
+  object_id: 5fa02e7a-91e7-418d-a4f5-e1ac2c5809c2
+  sha: f6adca3eb40f6f5db8accc12f5d9dfb0f03f0ca3
+  size: 2729706
+etcd/etcd-v2.2.0-linux-amd64.tar.gz:
+  object_id: 36f83fc5-c59d-420d-acd7-0863fc576221
+  sha: 16c670c159c4477620d17296fc0d15f5fb3cab8d
+  size: 7355454
+cli/cf-cli_6.23.1_linux_x86-64.tgz:
+  object_id: a1190ebb-d715-4471-80e1-0c4fec566c49
+  sha: a195e99cae5ab17b453b0a0747508c8f3eee5cae
+  size: 6692717
+rootfs/cflinuxfs2-1.97.0.tar.gz:
+  object_id: 4cbb15df-7a37-4b44-b15a-b4c68a30d93c
+  sha: 2d2ae943d7a891b9699eb34277903f931d74c035
+  size: 356621767

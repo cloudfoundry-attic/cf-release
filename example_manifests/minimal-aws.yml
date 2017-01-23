@@ -113,7 +113,7 @@ jobs:
     etcd_metrics_server:
       nats:
         machines: [10.0.16.103]
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         username: nats
 
 - name: consul_z1
@@ -291,6 +291,7 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: doppler, release: cf}
   - {name: metron_agent, release: cf}
   - {name: syslog_drain_binder, release: cf}
@@ -298,13 +299,18 @@ jobs:
   - name: cf_private
   properties:
     doppler: {zone: z1}
+    consul:
+      agent:
+        services:
+          doppler: {}
     doppler_endpoint:
-      shared_secret: PASSWORD
+      shared_secret: REPLACE_WITH_PASSWORD
 
 - name: loggregator_trafficcontroller_z1
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: loggregator_trafficcontroller, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
@@ -329,12 +335,17 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
+  - {name: consul_agent, release: cf}
   - {name: uaa, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
   networks:
   - name: cf_private
   properties:
+    consul:
+      agent:
+        services:
+          uaa: {}
     login:
       saml:
         serviceProviderKey: |
@@ -405,17 +416,17 @@ jobs:
         - "*.login.REPLACE_WITH_SYSTEM_DOMAIN"
     uaa:
       admin:
-        client_secret: PASSWORD
+        client_secret: REPLACE_WITH_PASSWORD
       batch:
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         username: batch_user
       cc:
-        client_secret: PASSWORD
+        client_secret: REPLACE_WITH_PASSWORD
       scim:
         userids_enabled: true
         users:
           - name: admin
-            password: PASSWORD
+            password: REPLACE_WITH_PASSWORD
             groups:
               - scim.write
               - scim.read
@@ -430,7 +441,7 @@ jobs:
       db_scheme: postgresql
       port: 5524
       roles:
-      - {name: uaaadmin, password: PASSWORD, tag: admin}
+      - {name: uaaadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
 
 - name: router_z1
   instances: 1
@@ -447,7 +458,7 @@ jobs:
 
 properties:
   router:
-    route_services_secret: PASSWORD
+    route_services_secret: REPLACE_WITH_PASSWORD
     ssl_skip_validation: true
   networks: {apps: cf_private}
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
@@ -459,41 +470,41 @@ properties:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
     droplets:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
     external_port: 9022
     packages:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
     resource_pool:
       blobstore_type: webdav
       webdav_config:
         blobstore_timeout: 5
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         private_endpoint: https://blobstore.service.cf.internal:4443
         public_endpoint: https://blobstore.REPLACE_WITH_SYSTEM_DOMAIN
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         username: blobstore-username
-    bulk_api_password: PASSWORD
-    db_encryption_key: PASSWORD
+    bulk_api_password: REPLACE_WITH_PASSWORD
+    db_encryption_key: REPLACE_WITH_PASSWORD
     default_running_security_groups: [public_networks, dns]
     default_staging_security_groups: [public_networks, dns]
     install_buildpacks:
@@ -506,7 +517,7 @@ properties:
     - {name: staticfile_buildpack, package: staticfile-buildpack}
     - {name: binary_buildpack, package: binary-buildpack}
     - {name: dotnet_core_buildpack, package: dotnet-core-buildpack}
-    internal_api_password: PASSWORD
+    internal_api_password: REPLACE_WITH_PASSWORD
     quota_definitions:
       default:
         memory_limit: 102400
@@ -526,7 +537,7 @@ properties:
       - {destination: 0.0.0.0/0, ports: '53', protocol: tcp}
       - {destination: 0.0.0.0/0, ports: '53', protocol: udp}
     srv_api_uri: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-    staging_upload_password: PASSWORD
+    staging_upload_password: REPLACE_WITH_PASSWORD
     staging_upload_user: staging_upload_user
   ccdb:
     address: 10.0.16.101
@@ -535,7 +546,7 @@ properties:
     db_scheme: postgres
     port: 5524
     roles:
-    - {name: ccadmin, password: PASSWORD, tag: admin}
+    - {name: ccadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
   consul:
     agent:
       log_level: null
@@ -544,7 +555,7 @@ properties:
         lan:
         - 10.0.16.105
     encrypt_keys:
-    - PASSWORD
+    - REPLACE_WITH_PASSWORD
     ca_cert: |
       -----BEGIN CERTIFICATE-----
       MIIFBzCCAu+gAwIBAgIBATANBgkqhkiG9w0BAQsFADATMREwDwYDVQQDEwhjb25z
@@ -686,10 +697,10 @@ properties:
 
   blobstore:
     admin_users:
-    - password: PASSWORD
+    - password: REPLACE_WITH_PASSWORD
       username: blobstore-username
     secure_link:
-      secret: PASSWORD
+      secret: REPLACE_WITH_PASSWORD
     tls:
       cert: |+
         -----BEGIN CERTIFICATE-----
@@ -770,9 +781,9 @@ properties:
     - {name: diego, tag: diego, citext: true}
     port: 5524
     roles:
-    - {name: ccadmin, password: PASSWORD, tag: admin}
-    - {name: uaaadmin, password: PASSWORD, tag: admin}
-    - {name: diego, password: PASSWORD, tag: admin}
+    - {name: ccadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
+    - {name: uaaadmin, password: REPLACE_WITH_PASSWORD, tag: admin}
+    - {name: diego, password: REPLACE_WITH_PASSWORD, tag: admin}
   description: Cloud Foundry sponsored by Pivotal
   domain: REPLACE_WITH_SYSTEM_DOMAIN
   etcd:
@@ -792,155 +803,213 @@ properties:
     tls:
       ca_cert: |
         -----BEGIN CERTIFICATE-----
-        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
+        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
-        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
-        AvlWdefg61dHjYTkNdfowlgukPk=
+        ggIBAOsoCeVDK6nSqGUeB3DjOxqgLjKyHra+nK6ktQ58RCFAFtTrUkEOyUURHHwG
+        wMuabmRX9m7jOy/9QwrcEVSyj7ilhxWSS44o7YI40GrI8hzqsA9PrVQnhALCdt6s
+        wiSIjurMre6hvYfa61miDeQyN4t77NBRh3sqTruyPxvwnw1paeyEmHfuDCt69qFL
+        PslTvVwf7SbeMJeQq2YDBh4Carjtgm7xOxn0lsH7MCelPYrHVmCLbFAinRqIpRCF
+        qaf2TzwgUklOFjZ+maooUFtV+LmuzVQ+W9iRUMCAKMQanMP7zLMCTIW2v1nyGddF
+        UGRq/UuZORnCt9XGOwKAABl/hD756MMl28oVoLSMHTcw8gt3fx/5kb5Xd7Fru5MZ
+        xXx0nWC4HYIJVLf7dcf1DIh4O5HdnnNdjeWdLQPaSkgJPa3lolGlYUPE1cuzVeQ2
+        McMRrLIGJD9mRUrQoLLLtPt/LH9CQ1/4lAbzvT4bT2V92JOeGIWi5T9orf3a2Km6
+        GIeDeP8Yu/hqMrn8elV9AwX/WBS8WvE+PiyDe0MKPfed0vD6d476edhTAWNI2cSa
+        8D+7+Efw53qGrdE6DmuP87Mh+2+UrnaPSmNo8eQzTAXav++iPBjZntsJNTd0SFdn
+        qCpwq9uWU5NX2e9vJMDNiM81wBF/lRxoGQEj9ma+PgtiEw33AgMBAAGjZjBkMA4G
+        A1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBSmj3ei
+        W+T19KXE1gLrDtQw7wm76jAfBgNVHSMEGDAWgBSmj3eiW+T19KXE1gLrDtQw7wm7
+        6jANBgkqhkiG9w0BAQsFAAOCAgEAjY125F6cfpz9kAN3DxtyMg++xDt87gxEFpdJ
+        rKJL67WdS6/B3fRugQ6PEeTS02bYKJZ0K+CxjcP0tDQE5YIE/8xxo9ZyHiRHnYPG
+        ka64Vup1/92A6BU0trK0B+WvmUHlF8wgihvD+zWTwxSI35zZ25fJzRAUMACNKyeB
+        Ga2FWXrPA2skLhvVJhdyB0dK/eRBLr4OKX/oahjleSuNE9k55AEmk5fKdUWN7ZcR
+        +S+mWsJOzSS/Vo4jhcEy0Egh2nPkuEMi1uvjkcc3B6PErrxusbOPrStbkaLl/2YP
+        Oe3R+p76l4GTaXEw3tL3Vf/MmFml2ITAU3+4ZVyR5DSGr2J0Q/olw98SDIxZyuTk
+        QmKPGQ3lOnGFgRD+ISoEYeJBsy1QahYpndtHWNpNuHGmqyplR+bqojITIr7IGNzF
+        883UJaCcIUcq5c+yjgQExooMtdW3KX5Xs2Eutz2IlHzpq+S2Op4j6KF2J6O5Ikxy
+        chOpzbxwV9rxh9HtQQmoz3c7rtKbi61+F1GuKsKnTp+nFnbL0nDneYaWxPYARfIC
+        HUMnKj9OgMijhZt8KrePGcQB2R9szkRzzzGz5tPTv7p3OlOmdik+Y0ajc845zH25
+        8GU9SSfrGInLKGvD3fiEBAgBXZ+jZ30FmT4m6iNp9A38IJQamlcVZ88V3d5fHBU7
+        S4Paiko=
         -----END CERTIFICATE-----
       doppler:
         cert: |
           -----BEGIN CERTIFICATE-----
-          MIIEJjCCAg6gAwIBAgIRAJod3/r4erI2N211W4mSKMQwDQYJKoZIhvcNAQELBQAw
-          GDEWMBQGA1UEAxMNbG9nZ3JlZ2F0b3JDQTAeFw0xNjExMTExOTMwMDNaFw0xODEx
-          MTExOTMwMDNaMBIxEDAOBgNVBAMTB2RvcHBsZXIwggEiMA0GCSqGSIb3DQEBAQUA
-          A4IBDwAwggEKAoIBAQDEB0NLUxCIJBy2/QVYt7qrd+RNpkMgIum34/cIgQd3NDl3
-          rBjswORqtkRsFyKJskmtQtvlpNv+qZby42MziaPC+myI/9FEAIxxd3BP3hYnpWjN
-          uAhhVprx7VdFzRK2NzvxSJOWo6qmm/77p9p+HDFH2b1t6gAKxHxaxP14N2SSychm
-          MFBkoFwvfdJWXkMB+2EvXcY2+asWBx/DUMO1WqgJdHyjOUxxu83S9vTm0h9aFlHT
-          mF8qMYxaxGLU3vE2jc1iehwJyF11tuBWkS8EYVAxihMRmq+nC0acDNRfu4+sGHU7
-          ODtp/L2Y52x5F4C+stADsIM4BzAs0FqIckepJUahAgMBAAGjcTBvMA4GA1UdDwEB
-          /wQEAwIDuDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwHQYDVR0OBBYE
-          FKw1S47eSmT7rvJADQU6oSYzK3EhMB8GA1UdIwQYMBaAFBNmwEvDUAMwBAmPdr9t
-          Zncu0M6GMA0GCSqGSIb3DQEBCwUAA4ICAQB6/klOMrg2mVmz6Flv5PVfrsNa13N+
-          MIfBNua2/QJt5c1UALCJEVLzy2Yj7xj+Za/rN6LyRgT2ezCxpIhrnUcW4Q3XShJK
-          C5WUy4hL8L3u7KKYdNTs/MMFiKpyrE5xeMkezbqq/cMiH/MCaHJ+GV7U+UTxThO8
-          gZfMzo+CS5SPnGGh5hhcqLJLeJl+o+JzX0jetRMzMwixZtoB3my0G0ukxIiYUiKA
-          KMJhJaWrUy8BD79mMV0aLLNJl1jt/fO0XfThm2TTr11bUBZt20zRbJpJbip66nME
-          Dyu9YDTS8+e9yIAhKxVpTnBekYIuEOAQe1JextUTZKLmQ61QVDC2JLOD9iHN3Dv2
-          U/awZvguDQOqleE7wPNoppLUnKV0jHjk9lKkUhBlHEumnMhylvNmaw1xEWl2NJKi
-          Sg0bdNypbjWK0JTaG6EupfrK6tjfTyKxmTZqYsJ9OWCOormeRG71yIf3z+bxkA6F
-          wkrDLebEqhAfHJ38eC+aYDUQXBLA442fdgnmHNjB39JiT1D6HNHadnijTPwaKkz6
-          Bp2HPZKbecinnpm+i9r+WZ0WB2/SSk5lh/vLEDQ9kaSR2Bl0jY158FXT6hv9e/oB
-          bk2gKs83HKbOMMUWwSKXsIfVdPTdXnOmWeOvc9Gt5tVDRWYaCJ9x1D0yyunundan
-          pzOr/ddwcBQRyQ==
+          MIIEJTCCAg2gAwIBAgIQFQCMVUNFH1FbKGcz6u6joDANBgkqhkiG9w0BAQsFADAY
+          MRYwFAYDVQQDEw1sb2dncmVnYXRvckNBMB4XDTE3MDEwMzE3MDE0MFoXDTE5MDEw
+          MzE3MDE0MFowEjEQMA4GA1UEAxMHZG9wcGxlcjCCASIwDQYJKoZIhvcNAQEBBQAD
+          ggEPADCCAQoCggEBAMQHhbBsy93PuZgbv1lGbVt2p45btxFvXjovKtZgqGmHabm9
+          ftAqjLBPL+UzqBrf9GNbCZFZ0HAjfRtanXvEEV2W244U4DSdqxEqwzAkRNx6yQLx
+          6OWc2HKouyuWqLbdEFruPbWZGwsl4cXPliB8jmSWOOVkjsB3fE0T859mXQ/CKnGq
+          tvLCQV69bLWHOzHXtKN6Zug7ZFV84IdutaGJZJE2vPHo+r+oCrx5mPL65F0hLbOh
+          iFuVeZy9314lEMIhBUaKM1oqB2oSPnrAlyQ/kyBcYrNiHjcVLCaYnzbwiE++Ldt8
+          wgS+658fOPH8skzA/YFVGpEIxrE19xxzzNwRtr0CAwEAAaNxMG8wDgYDVR0PAQH/
+          BAQDAgO4MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQU
+          LpnD8gpKwzpAwMR54i6W0rcE/OAwHwYDVR0jBBgwFoAUpo93olvk9fSlxNYC6w7U
+          MO8Ju+owDQYJKoZIhvcNAQELBQADggIBACHEROnHzsGk6XNKtxugVblSTZKfjMxa
+          ptvoXZ0yXI+MYLCj8+w2N1U3uNKgo0GHYREdn0PAdAgoNmlEYwo74+U8USf4Bnzi
+          9eH6iDgk+8kxK4mJkhuTdG4PiXksFKIdVudqqUWwXGVRN6tPivTeU0ktzjC1ucUN
+          W4UwqYrUq9p70GHwzguLCSbJE+Hl3cV/3ddph8N1EIi1Pj34H2kd5MjZY1DzscaW
+          FIQBgIu+3e5cPzWzzPNT2ZqSb3mqEW5diCxP3omd1ZIGjDTu/ijaj4C/n9ax26qv
+          jp0+Wsswcy3jtQyOy85vnAeIgdJB3pkaWr2zGP27JD2Vpqf27H/hrF4VTdLuQ3O5
+          vaa8nHxYAY+3VpRwga/VyWqKlbXBA+6qxJkD/U6TUrW87gDmV5CM8ohXRboNO8xq
+          PqxrUk/OrC6Z2wS0AZWvO7T5ElsxcH1UCleA4mzqUFNDTzASRzv+qAuEFQhg837e
+          kaSd0iuayOxucYuQOdeVcPWSiAsiGKUyrmtIAZA58/8q3y71JTTR0B+RiHaW3RA+
+          VEQ49TlTySufnVl6exqlDmzln5X61lAmBPU9aQIcwjl8Ms7Y1bz3dlIRWANXNi4L
+          Rc/lG0dk9DAdzsDUHaYiOQhhZKAUVgjR5ChASKzULysT402FjNoWRdkUwWKot5qI
+          pj+4TMc/i0Fl
           -----END CERTIFICATE-----
         key: |
           -----BEGIN RSA PRIVATE KEY-----
-          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
+          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
           -----END RSA PRIVATE KEY-----
       trafficcontroller:
         cert: |
           -----BEGIN CERTIFICATE-----
-          MIIELzCCAhegAwIBAgIQI+Ze9mIBouAZsaxnEHEiFzANBgkqhkiG9w0BAQsFADAY
-          MRYwFAYDVQQDEw1sb2dncmVnYXRvckNBMB4XDTE2MTExMTE5MzAwM1oXDTE4MTEx
-          MTE5MzAwM1owHDEaMBgGA1UEAxMRdHJhZmZpY2NvbnRyb2xsZXIwggEiMA0GCSqG
-          SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDg7lfHnS5q1UV1sZpLPdppOsNuxpNghQGR
-          9WMtkdnuBkeNDe6GLsKF1iCg0Y/AQq+3YjUALqL67yvF2SjCxfbg32LCox8V1w2d
-          55gCYsHSzlFiv6LEmwm3vBysjiYbnxUBKw5d45Z54blJI70UlnLe17kX5FPPkr0c
-          nmGfSSSrqAQPsgHd5h+bhqmc/IVaojCKdriTdQ+9xj1bUkH5wT9yIMtbBKptBjvJ
-          o3oUu0KTRlgmuqzA3hBB5JkUGB5B4QutKQjFqUlXUEeBIrh5/lxlLwGejd6/7GI8
-          X0bV9UBofzgdeXR/9Y/CoK5Sn2N+ty9PqwNziXAYimxoq34587KfAgMBAAGjcTBv
-          MA4GA1UdDwEB/wQEAwIDuDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIw
-          HQYDVR0OBBYEFHEVmUXIJkzGYs2KPosPHpivMrXqMB8GA1UdIwQYMBaAFBNmwEvD
-          UAMwBAmPdr9tZncu0M6GMA0GCSqGSIb3DQEBCwUAA4ICAQBHWv2benChnqDnc+MM
-          IM54Q39SRAOYNhNzxmZ+x5MUNevVffKLEcFuJa+jnnupfi3QRL5e6DxNxAbS6xOO
-          tSJmR3Ib/cynQ7kL+VTTsGWdOdA9JGfn0liEXD5maEVptWoMtRtTFWqjpCQmTkkU
-          XALoz1JWlDSi0ksJDV0kGdC89pfvXAhRSA8KTBhV1BrgpWp9RU+AqVtHNXldY91K
-          gwR4OTr63NkSSX+q2HJPnGI339W5qbQeG4k8qeQWt721VmDrJhx+j9NRPd1Pj3Er
-          uwVgEphWD5EtoBE0CbGaQRyUEWacpB1rW80CbNjTXmfEfZzEq/M1YdpL4e3xVdZR
-          74uiEQeO/r8x/Po2JfN1s3PnB/Za2Zv5dzkHPTA3ZguV1Lnu0BPlNiA2rrewO4N9
-          Nt39+lg9/doTFpuIAQ2hKdbTmZ4x1Mu6V4rvRR7wIQ5mv+iN/3VOwgtT/svGWIiU
-          CGWwgQMrZJp1Snd8bL1o9KVBS0BLNiM6LQbjVF1mFmtVDeatYgPORWliBT6sy90I
-          EjyLsrkNgsxO7R8ffI6FjNJwrLAIlpxJAW8KGNyQm3cfD4idBnTObshhAyefx1vG
-          Itj9Lj/Ype4ocQf2OgtjAAGsNs4tPZ4PgxO8ouC14vEPh3G9tGkHEfU6YUo6VHk1
-          vCcXaFFfcADkgfY61jLbWmK4mQ==
+          MIIEMDCCAhigAwIBAgIRAKxRgYmwwP2E8AsVMeUfjiQwDQYJKoZIhvcNAQELBQAw
+          GDEWMBQGA1UEAxMNbG9nZ3JlZ2F0b3JDQTAeFw0xNzAxMDMxNzAxNDBaFw0xOTAx
+          MDMxNzAxNDBaMBwxGjAYBgNVBAMTEXRyYWZmaWNjb250cm9sbGVyMIIBIjANBgkq
+          hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqC+YHjHJvsmcYqN6KIV0Mz0rtwB/ENoT
+          +PW0Ujc7I/i5xtpoZ3e6Ig8w/2Gd7ltj8Ju6M9LAApzQ+4F2L7z7EtJI0FyVtrtV
+          K14QYLFb5wymeeyL4g6hlksXx3SiwlfrvKA6zGTRbxgS0gH7G5YU2sBa8lvlgdI9
+          iufMXpgROK0vwT/7wEX48lN8xJDK3rGu+BtcfbtKlqeO0b4+ZDP8jNJklzQGEyOD
+          WrtsPcFILdMLaHO/1d5TlOrxpGadUSQk0GpWGKz7R0sWKcMTkEdi9AW6/gznOZgb
+          u29XOouqkuSt/Rxw9MucrLcMUGeklP+hQj09ws6JVK1Efje9dIcC9QIDAQABo3Ew
+          bzAOBgNVHQ8BAf8EBAMCA7gwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC
+          MB0GA1UdDgQWBBTtEczHDhJQtzPZz5/1K4vr2y/QfTAfBgNVHSMEGDAWgBSmj3ei
+          W+T19KXE1gLrDtQw7wm76jANBgkqhkiG9w0BAQsFAAOCAgEAQcgarvhP54IPA/Zh
+          Vockogx71QkBd34zR7deNOTbVX0QbLU6eRZNZbI/VZCrKu8hbdxBsj0VfyXdAOcj
+          A9XoEPpww9DGDaz7xpKu2GMrkaZFAPD6l4QtzpeQAVYm4z8IYgjt88bw2HRbZtVG
+          HbZZN23Lfz9yAh2bQltLYhNTm1KaEa/+N3SqLZpYitTGNOn4Zt506h1NaQpSz010
+          YGToBdpxNkoXCflvDoGky4ayeFn2EjAYi4DGeCwhGeFCaujcdJzQqmW3Ig50e3zp
+          hZB8tGeN7TklA21nKABmWv+PjmtqWNvCZ7eUHy4aQlOM4y2Fp/S7K7PKVZnANMZs
+          IHyae5/vjI11j4sVJzYoAnTpX0hgMyPR6GCtMNWZVvE65RqLuOU/c/Ya67qPBQn+
+          wbVx/fW5La0djWPxvBoQVYMETbZan6UEFvYJBNvnSsxkQVNifroYx2Z9qIpQwhZV
+          DoOre+xqftY61OR5R3o8ODst7Vryw/FFc1vWrqqE+GuwEETvb/WWTN73ZCJ1qQSk
+          VS1NDlahRO/HbwV/v7RszkbVZgSF9/stIJDNUOuqOHv7WHkp3zOdg5d0CJNeYkiE
+          A2D1Zg+ootSUp8AhPrD8UkTt4ep0DcBCxFk4VaZ5iYabVX+0K67HgD9TzLhtZLQx
+          NocInR/8JHGmBDbi5A4RiMnM80I=
           -----END CERTIFICATE-----
         key: |
           -----BEGIN RSA PRIVATE KEY-----
-          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
+          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
+          -----END RSA PRIVATE KEY-----
+      metron:
+        cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIEJTCCAg2gAwIBAgIRAO9X2wb3A4SOqLWBL6yaOlEwDQYJKoZIhvcNAQELBQAw
+          GDEWMBQGA1UEAxMNbG9nZ3JlZ2F0b3JDQTAeFw0xNzAxMDMxNzAxNDFaFw0xOTAx
+          MDMxNzAxNDFaMBExDzANBgNVBAMTBm1ldHJvbjCCASIwDQYJKoZIhvcNAQEBBQAD
+          ggEPADCCAQoCggEBAONtfnEBMwlg/AwnISzwh7RjzDgYTek+sPYv/Loy8UfqsHzD
+          FyfzFshiPiWQVSxn9VR3ti/Aajy+EuZK2KFm3WgRPl4JMIDZoC0t8N+0nH3+VqJm
+          cJGc3/ZHaFrqYP8cIcF2pvs/p+M8k51Ci+nEinHQ54aHaxI4FRnA7ES/LCPow6ct
+          79m6e/4W58yutGA3ECW1uVwuLbwrDkeRzByWF2h1jovvybL1MSbQgTI1/FjVU00S
+          zqOHglowH4ZzmvJty4TjswuU2DHCOrqXRiMFiSoeFCB9ePW0tY46x9jVSSnvrJ1y
+          KBzT/n+8CJevsqihxMln5eitgIAEsRjfm+ZVwC8CAwEAAaNxMG8wDgYDVR0PAQH/
+          BAQDAgO4MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQU
+          EDEox4C2Fnp38fqn10AKOhjdkhkwHwYDVR0jBBgwFoAUpo93olvk9fSlxNYC6w7U
+          MO8Ju+owDQYJKoZIhvcNAQELBQADggIBAMnxdt0SjcFuTpdRZdf5AEppL0VByCJD
+          CV6Y/rOJb8rN9erXEmJQ3AgPEXxCZordlhaxVdslb7Uigz5/6EOKV3XiI6rFw2Jw
+          0yk4E3ZIwe79FThh0M0AWoJm3JFRtar465+ocd/nL+DW45p7y4NQpcIhUiU32Cii
+          LXBv/BKhk5UkDGYq61kAb5wZjBfm7Ldljj8e+36yxBxvGxyYUe7FpESdqcUvdNXM
+          0N0pwxCNK7AWbQQc/Jw3HiutZYHgrABeYGrdJttAioCK6L0QE/t7txbYFaUxPU+t
+          VWEDoZ4kTlZnuekfw1T/42JbZ5Fu4+rvrJJiYtKu3SnGSddXyTG/ysWHBoUN84oK
+          7W+Cr/p8s1EW13Z9wx4y104NmIj5pPNE/MXItpm4PmL0b5qFDa1KOl0SpuiWczDC
+          BREhBzKjKtL/nRbBOTBOYfisyP9hFoMw6gMO6VZYgofkPbOJWCXABW8q0lLDJhdS
+          fHB+8A5tjY4llSFN5GhIQIYAIJpDFASp0DME0LDsIagDE93Tdun4n8OOcFMM8VLT
+          gm58Yj2I5ZQ9T0C3Dai8Lm64laEduR9QCek8ruBhttkeTbtGae9Xd/Z/FO6zaWIy
+          sLkujxgTDP8uPqq3OS/Dn4wvGUvOYaD7GQcKRyCD2uAN9GmRCyYSti237m25TwXN
+          at12a/pz9VW7
+          -----END CERTIFICATE-----
+        key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpQIBAAKCAQEA421+cQEzCWD8DCchLPCHtGPMOBhN6T6w9i/8ujLxR+qwfMMX
+          J/MWyGI+JZBVLGf1VHe2L8BqPL4S5krYoWbdaBE+XgkwgNmgLS3w37Scff5WomZw
+          kZzf9kdoWupg/xwhwXam+z+n4zyTnUKL6cSKcdDnhodrEjgVGcDsRL8sI+jDpy3v
+          2bp7/hbnzK60YDcQJbW5XC4tvCsOR5HMHJYXaHWOi+/JsvUxJtCBMjX8WNVTTRLO
+          o4eCWjAfhnOa8m3LhOOzC5TYMcI6updGIwWJKh4UIH149bS1jjrH2NVJKe+snXIo
+          HNP+f7wIl6+yqKHEyWfl6K2AgASxGN+b5lXALwIDAQABAoIBAQCEBkM5nMWg8zE+
+          aNTEftl4qdqa0dkgxyj5sb/X48zXv/E2bBacNW0LZKTJL7GSNsNfhqM3s0649mqI
+          T/jUMZ/kUuZOtqz2j9+BesLzSqjyJ1zpp+g/T79f+/IjnR4z2oPqCFRFVJ3Et5zF
+          1STdzx/DlM9i9Gf+ypnNOoauHgCk0tmK+dZCMXnrkBgda9q7ybJi90meaCETfciS
+          spPMAxhq/7veV29f27I3ybCpP84pif5UnwUX5qEni2so4Hl2w5m2RcoDgr54A9Dg
+          i5Xf4ho6D8kX0D7Oq32MBMv1Yu0vxxAv/9gtr0nCw9BD7aKKHlHGgrdxfDyYpYnb
+          sGS+221xAoGBAP2WzuYF4IFHHeTV1IvEfDthYJt5a6ihOuw/UZaNpcarbZAjmkaA
+          j7Gz98v2p896HEiwI95DDW3wjzxWUNoMTBJ36JQHM6kadzwDnBeJU5ROsawB19ZH
+          Uzft3F5dv7VdS2bch9tiDoHCh2oEJPLLQQzcK6i3PZ1p8/kDYpO8c0HJAoGBAOWX
+          A3GBfeoFJ8eICNlnuC3D6SeeJ2jQF/zU73dUQcdqN8vtUkqQj1Lyg5kerAIh8y/A
+          lKA+ROas33s+wNpTZQ40mOCvfxt9zHdJeqanXk1ocnYvjezr4Xc5Tpsm8MQ8XcEN
+          k7tICn7fLP7T8B+gATPruYft6jsbfOVSFIlJ/K43AoGBANbnHdFbe6WzEgdimuwT
+          iEB+RnObk3vlntyk0EypH6rcjk4PjedffebXoBCuqAmw7xU+iDcMVe4sZgZ5E62l
+          rDYeffAspkARmKg4WuirTTQq+HDPYw1JhqGoJw+lnRhixsqV62AkmiynIUDb4EAN
+          tcPjNfCV0VZ8evA1SS3wDzDZAoGAPhV6DuWPYQsH2MMGcZPEkEub7uSrj4JGGk6S
+          ethD+WLVt8VzLUquFyYRRASxStpXYqBXEIYGJ8KzpCYyDFfkydSbSpbqbkq0UcWC
+          7zHvJEuMOD1fyaN3kr/ia745+TbBu4SqYEh43hoHltlE46hm6t1hjEpfvqAORAzQ
+          FNf3Bj0CgYEA09boP4pR4FgGJBa5Cs4PdiP1MwcRHsCp5coq5BVf9VtAr2WoVGfV
+          fTRgWihkqADIju7cec123e5rVGoYHNsLjvl2cztnOY3DITiBMZxoufmY4XgYSdWb
+          lPoUwE9BGCW8irPh0nfUXBNtzPwTnFZT1ySROYXVaNMISuK+TKn3FP0=
           -----END RSA PRIVATE KEY-----
   loggregator_endpoint:
-    shared_secret: PASSWORD
+    shared_secret: REPLACE_WITH_PASSWORD
   metron_agent:
     zone: z1
     deployment: minimal-aws
     dropsonde_incoming_port: 3457
+    protocols:
+    - udp
   metron_endpoint:
-    shared_secret: PASSWORD
+    shared_secret: REPLACE_WITH_PASSWORD
   nats:
     machines: [10.0.16.103]
-    password: PASSWORD
+    password: REPLACE_WITH_PASSWORD
     port: 4222
     user: nats
   ssl:
@@ -961,43 +1030,43 @@ properties:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
         scope: openid,cloud_controller_service_permissions.read
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       cc_routing:
         authorities: routing.router_groups.read
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
         authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       tcp_router:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       doppler:
         authorities: uaa.resource
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
         authorized-grant-types: authorization_code,client_credentials,refresh_token
         redirect-uri: https://login.REPLACE_WITH_SYSTEM_DOMAIN
         scope: openid,oauth.approvals
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
       servicesmgmt:
         authorities: uaa.resource,oauth.service,clients.read,clients.write,clients.secret
         authorized-grant-types: authorization_code,client_credentials,password,implicit
         autoapprove: true
         redirect-uri: https://servicesmgmt.REPLACE_WITH_SYSTEM_DOMAIN/auth/cloudfoundry/callback
         scope: openid,cloud_controller.read,cloud_controller.write
-        secret: PASSWORD
+        secret: REPLACE_WITH_PASSWORD
 
     jwt:
       signing_key: |
@@ -1026,8 +1095,15 @@ properties:
         -----END PUBLIC KEY-----
 
     ssl:
-      port: -1
+      port: 8443
     url: https://uaa.REPLACE_WITH_SYSTEM_DOMAIN
+    ca_cert: |
+      REPLACE_WITH_UAA_CA_CERT
+    sslPrivateKey: |
+      REPLACE_WITH_UAA_SSL_KEY
+    sslCertificate: |
+      REPLACE_WITH_UAA_SSL_CERT
+
   capi:
     nsync:
       bbs:
@@ -1037,7 +1113,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
       diego_privileged_containers: true
     tps:
       bbs:
@@ -1047,7 +1123,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
     tps_listener:
       bbs:
         ca_cert: ""
@@ -1056,7 +1132,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
     stager:
       bbs:
         ca_cert: ""
@@ -1065,7 +1141,7 @@ properties:
         require_ssl: false
       cc:
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
-        basic_auth_password: PASSWORD
+        basic_auth_password: REPLACE_WITH_PASSWORD
   diego:
     auctioneer:
       bbs:
@@ -1077,7 +1153,7 @@ properties:
       active_key_label: active
       encryption_keys:
       - label: active
-        passphrase: PASSWORD
+        passphrase: REPLACE_WITH_PASSWORD
       ca_cert: ""
       etcd:
         ca_cert: ""
@@ -1092,7 +1168,7 @@ properties:
         db_host: 10.0.16.101
         db_port: 5524
         db_username: diego
-        db_password: PASSWORD
+        db_password: REPLACE_WITH_PASSWORD
         db_schema: diego
         max_open_connections: 500
     converger:
@@ -1119,7 +1195,7 @@ properties:
         require_ssl: false
       nats:
         machines: [10.0.16.103]
-        password: PASSWORD
+        password: REPLACE_WITH_PASSWORD
         port: 4222
         user: nats
     ssl:
