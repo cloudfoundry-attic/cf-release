@@ -21,7 +21,7 @@ haproxy/haproxy-1.5.14.tar.gz:
   size: 1345345
 uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
-  sha: '038c11e503bdbc5194c76535b22f5d4b85aeb37f'
+  sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
   size: 11163261
 ruby-2.1.8/bundler-1.9.4.gem:
   object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
@@ -108,7 +108,7 @@ golang/go1.7.4.windows-amd64.zip:
   object_id: dbebd00d-43b7-434d-6603-c7a8fbcbf779
   sha: a0da2f5d67e5b800eba811a34ca4b2aa22cca678
 consul/consul_0.7.1_linux_amd64.zip:
-  object_id: '08ad90a5-10ab-48cb-bebe-ead924e9ef32'
+  object_id: 08ad90a5-10ab-48cb-bebe-ead924e9ef32
   sha: c2be9eebc40bf552e260c7dd31a77cb60474712f
   size: 7359222
 consul-windows/consul_0.7.1_windows_amd64.zip:
@@ -167,10 +167,6 @@ nginx/headers-more-nginx-module-0.32.tar.gz:
   object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
   sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
   size: 28033
-rootfs/cflinuxfs2-1.96.0.tar.gz:
-  object_id: 9eec8922-7a2c-4849-ac8a-77d950dc1f8f
-  sha: 203fdc7e554fac576a5583d275b29e1c852d5a34
-  size: 356882641
 dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.9.zip:
   object_id: a033d7e5-069c-4fae-878c-914931250654
   sha: b5f0fdb67441256f9f1b5da844bc86e31a14369b
@@ -211,3 +207,7 @@ cli/cf-cli_6.23.1_linux_x86-64.tgz:
   object_id: a1190ebb-d715-4471-80e1-0c4fec566c49
   sha: a195e99cae5ab17b453b0a0747508c8f3eee5cae
   size: 6692717
+rootfs/cflinuxfs2-1.97.0.tar.gz:
+  object_id: 4cbb15df-7a37-4b44-b15a-b4c68a30d93c
+  sha: 2d2ae943d7a891b9699eb34277903f931d74c035
+  size: 356621767
