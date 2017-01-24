@@ -1103,6 +1103,10 @@ properties:
       REPLACE_WITH_UAA_SSL_KEY
     sslCertificate: |
       REPLACE_WITH_UAA_SSL_CERT
+    zones:
+      internal:
+        hostnames:
+        - uaa.service.cf.internal
 
   capi:
     nsync:
