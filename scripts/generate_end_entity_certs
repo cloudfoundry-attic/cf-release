@@ -10,7 +10,7 @@ set -e -x
 
 show_help() {
   set +x
-  echo "Usage: generate_ca_cert [OPTIONS]"
+  echo "Usage: generate_end_entity_certs [OPTIONS]"
   echo "Output Options:"
   echo "  -n --common-name [REQUIRED]     The common name for the certificate"
   echo "  -d --domain      [OPTIONAL]     The domains for the certificate"
