@@ -1118,9 +1118,9 @@ properties:
         url: null
     tls_port: null
     mutual_tls:
-      ca_cert: null
-      public_cert: null
-      private_key: null
+      ca_cert: CC_MUTUAL_TLS_CA_CERT
+      public_cert: CC_MUTUAL_TLS_PUBLIC_CERT
+      private_key: CC_MUTUAL_TLS_PRIVATE_KEY
     directories: null
     disable_custom_buildpacks: false
     droplets:

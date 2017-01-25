@@ -51,6 +51,10 @@ properties:
     bulk_api_password: BULK_API_PASSWORD
     db_encryption_key: DB_ENCRYPTION_KEY
     uaa_skip_ssl_validation: true
+    mutual_tls:
+      ca_cert: CC_MUTUAL_TLS_CA_CERT
+      public_cert: CC_MUTUAL_TLS_PUBLIC_CERT
+      private_key: CC_MUTUAL_TLS_PRIVATE_KEY
 
   blobstore:
     admin_users:

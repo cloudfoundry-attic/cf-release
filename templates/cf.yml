@@ -782,9 +782,9 @@ properties:
         url: (( merge || nil ))
     tls_port: (( merge || nil ))
     mutual_tls:
-      ca_cert: (( merge || nil ))
-      public_cert: (( merge || nil ))
-      private_key: (( merge || nil))
+      ca_cert: (( merge ))
+      public_cert: (( merge ))
+      private_key: (( merge ))
 
     jobs:
       global:
