@@ -1245,6 +1245,7 @@ properties:
         passphrase: REPLACE_WITH_PASSWORD
       ca_cert: ""
       etcd:
+        machines: []
         ca_cert: ""
         client_cert: ""
         client_key: ""
