@@ -1487,7 +1487,8 @@ properties:
       url: null
     protocol: http
     restricted_ips_regex: null
-    saml: null
+    saml:
+      serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
     self_service_links_enabled: null
     smtp:
       host: null

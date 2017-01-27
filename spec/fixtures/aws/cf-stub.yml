@@ -93,6 +93,9 @@ properties:
     peer_key: ETC_PEER_KEY
     server_cert: ETCD_SERVER_CERT
     server_key: ETCD_SERVER_KEY
+  login:
+    saml:
+      serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:

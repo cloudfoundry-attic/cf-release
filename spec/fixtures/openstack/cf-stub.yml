@@ -91,6 +91,8 @@ properties:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
     protocol: http
+    saml:
+      serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
   nats:
     user: NATS_USER
     password: NATS_PASSWORD
