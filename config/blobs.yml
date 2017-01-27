@@ -15,10 +15,6 @@ uaa/newrelic.jar:
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
   sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
   size: 7064901
-haproxy/haproxy-1.5.14.tar.gz:
-  object_id: 02657a44-3292-4e0b-8b18-bcad061a2381
-  sha: 159f5beb8fdc6b8059ae51b53dc935d91c0fb51f
-  size: 1345345
 uaa/cloudfoundry-identity-statsd-1.0.0.war:
   object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
   sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
@@ -59,10 +55,6 @@ consul/consul-template_0.14.0_linux_amd64.zip:
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
   size: 3523492
-nginx/pcre-8.39.tar.gz:
-  object_id: 70c7bafb-4013-4f07-8287-bfb07faa1085
-  sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
-  size: 2062258
 golang/go1.6.3.linux-amd64.tar.gz:
   object_id: 7ad4929c-a987-4b84-b686-3c9598951f25
   sha: 5e916ba4dd8c2fc43beafca4c08b334c4d0686f3
@@ -79,10 +71,6 @@ openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
   object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
   sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
   size: 75550921
-haproxy/pcre-8.39.tar.gz:
-  object_id: 0aab6e30-25b2-4844-90be-997feb090e3a
-  sha: b3aec1f643d9701841e2f9d57ac121a7ff448fc8
-  size: 2062258
 uaa/apache-tomcat-8.0.39.tar.gz:
   object_id: 2166a182-9111-48af-87c5-34cc06f68cac
   sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
@@ -211,3 +199,11 @@ rootfs/cflinuxfs2-1.97.0.tar.gz:
   object_id: 4cbb15df-7a37-4b44-b15a-b4c68a30d93c
   sha: 2d2ae943d7a891b9699eb34277903f931d74c035
   size: 356621767
+haproxy/haproxy-1.5.19.tar.gz:
+  object_id: c1a80f45-f732-4184-917b-ce2cf796ffad
+  sha: 8aa56f4cca4c1bf27c82f60ec2a040f91acb0bc1
+  size: 1362834
+haproxy/pcre-8.40.tar.gz:
+  object_id: 7d3a2a29-6c80-40b6-bf77-74d337b99cea
+  sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
+  size: 2065161
