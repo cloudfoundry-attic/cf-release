@@ -199,10 +199,6 @@ cli/cf-cli_6.23.1_linux_x86-64.tgz:
   object_id: a1190ebb-d715-4471-80e1-0c4fec566c49
   sha: a195e99cae5ab17b453b0a0747508c8f3eee5cae
   size: 6692717
-rootfs/cflinuxfs2-1.97.0.tar.gz:
-  object_id: 4cbb15df-7a37-4b44-b15a-b4c68a30d93c
-  sha: 2d2ae943d7a891b9699eb34277903f931d74c035
-  size: 356621767
 haproxy/haproxy-1.5.19.tar.gz:
   object_id: c1a80f45-f732-4184-917b-ce2cf796ffad
   sha: 8aa56f4cca4c1bf27c82f60ec2a040f91acb0bc1
@@ -215,3 +211,7 @@ nginx/pcre-8.40.tar.gz:
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
   size: 2065161
+rootfs/cflinuxfs2-1.98.0.tar.gz:
+  object_id: da13287b-8c0b-4dd4-8e5d-08cf525a28df
+  sha: 14d107b23633139bc489993408572ce0579a1b62
+  size: 356648564

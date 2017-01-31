@@ -1,4 +1,4 @@
-Rootfs SHASUM: 2d2ae943d7a891b9699eb34277903f931d74c035
+Rootfs SHASUM: 14d107b23633139bc489993408572ce0579a1b62
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -100,8 +100,8 @@ ii  keyboard-configuration             1.70ubuntu8                         all  
 ii  klibc-utils                        2.0.3-0ubuntu1.14.04.2              amd64        small utilities built with klibc for early boot
 ii  kmod                               15-0ubuntu6                         amd64        tools for managing Linux kernel modules
 ii  krb5-config                        2.3                                 all          Configuration files for Kerberos Version 5
-ii  krb5-multidev                      1.12+dfsg-2ubuntu5.2                amd64        Development files for MIT Kerberos without Heimdal conflict
-ii  krb5-user                          1.12+dfsg-2ubuntu5.2                amd64        Basic programs to authenticate using MIT Kerberos
+ii  krb5-multidev                      1.12+dfsg-2ubuntu5.3                amd64        Development files for MIT Kerberos without Heimdal conflict
+ii  krb5-user                          1.12+dfsg-2ubuntu5.3                amd64        Basic programs to authenticate using MIT Kerberos
 ii  laptop-detect                      0.13.7ubuntu2                       amd64        attempt to detect a laptop
 ii  less                               458-2                               amd64        pager program similar to more
 ii  libacl1:amd64                      2.2.52-1                            amd64        Access control list shared library
@@ -232,9 +232,9 @@ ii  libgpm2:amd64                      1.20.4-6.1                          amd64
 ii  libgraphite2-3:amd64               1.3.6-1ubuntu0.14.04.1              amd64        Font rendering engine for Complex Scripts -- library
 ii  libgraphviz-dev                    2.36.0-0ubuntu3.1                   amd64        graphviz libs and headers against which to build applications
 ii  libgsm1:amd64                      1.0.13-4                            amd64        Shared libraries for GSM speech compressor
-ii  libgssapi-krb5-2:amd64             1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - krb5 GSS-API Mechanism
+ii  libgssapi-krb5-2:amd64             1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries - krb5 GSS-API Mechanism
 ii  libgssapi3-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - GSSAPI support library
-ii  libgssrpc4:amd64                   1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - GSS enabled ONCRPC
+ii  libgssrpc4:amd64                   1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries - GSS enabled ONCRPC
 ii  libgtk-3-0:amd64                   3.10.8-0ubuntu1.6                   amd64        GTK+ graphical user interface library
 ii  libgtk-3-common                    3.10.8-0ubuntu1.6                   all          common files for the GTK+ graphical user interface library
 ii  libgvc6                            2.36.0-0ubuntu3.1                   amd64        rich set of graph drawing tools - gvc library
@@ -270,17 +270,17 @@ ii  libjpeg8-dev:amd64                 8c-2ubuntu8                         amd64
 ii  libjs-jquery                       1.7.2+dfsg-2ubuntu1                 all          JavaScript library for dynamic web applications
 ii  libjson-c2:amd64                   0.11-3ubuntu1.2                     amd64        JSON manipulation library - shared library
 ii  libjson0:amd64                     0.11-3ubuntu1.2                     amd64        JSON manipulation library (transitional package)
-ii  libk5crypto3:amd64                 1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Crypto Library
-ii  libkadm5clnt-mit9:amd64            1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Administration Clients
-ii  libkadm5srv-mit9:amd64             1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - KDC and Admin Server
-ii  libkdb5-7:amd64                    1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Kerberos database
+ii  libk5crypto3:amd64                 1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries - Crypto Library
+ii  libkadm5clnt-mit9:amd64            1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries - Administration Clients
+ii  libkadm5srv-mit9:amd64             1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries - KDC and Admin Server
+ii  libkdb5-7:amd64                    1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries - Kerberos database
 ii  libkeyutils1:amd64                 1.5.6-1                             amd64        Linux Key Management Utilities (library)
 ii  libklibc                           2.0.3-0ubuntu1.14.04.2              amd64        minimal libc subset for use with initramfs
 ii  libkmod2:amd64                     15-0ubuntu6                         amd64        libkmod shared library
 ii  libkrb5-26-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1     amd64        Heimdal Kerberos - libraries
-ii  libkrb5-3:amd64                    1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries
-ii  libkrb5-dev                        1.12+dfsg-2ubuntu5.2                amd64        Headers and development libraries for MIT Kerberos
-ii  libkrb5support0:amd64              1.12+dfsg-2ubuntu5.2                amd64        MIT Kerberos runtime libraries - Support library
+ii  libkrb5-3:amd64                    1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries
+ii  libkrb5-dev                        1.12+dfsg-2ubuntu5.3                amd64        Headers and development libraries for MIT Kerberos
+ii  libkrb5support0:amd64              1.12+dfsg-2ubuntu5.3                amd64        MIT Kerberos runtime libraries - Support library
 ii  liblapack-dev                      3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - static version
 ii  liblapack3                         3.5.0-2ubuntu1                      amd64        Library of linear algebra routines 3 - shared version
 ii  liblcms2-2:amd64                   2.5-0ubuntu4.1                      amd64        Little CMS 2 color management library
@@ -305,8 +305,8 @@ ii  libmagickcore5:amd64               8:6.7.7.10-6ubuntu3.3               amd64
 ii  libmagickcore5-extra:amd64         8:6.7.7.10-6ubuntu3.3               amd64        low-level image manipulation library - extra codecs
 ii  libmagickwand-dev                  8:6.7.7.10-6ubuntu3.3               amd64        image manipulation library - development files
 ii  libmagickwand5:amd64               8:6.7.7.10-6ubuntu3.3               amd64        image manipulation library
-ii  libmariadbclient-dev               5.5.53-1ubuntu0.14.04.1             amd64        MariaDB database development files
-ii  libmariadbclient18:amd64           5.5.53-1ubuntu0.14.04.1             amd64        MariaDB database client library
+ii  libmariadbclient-dev               5.5.54-1ubuntu0.14.04.1             amd64        MariaDB database development files
+ii  libmariadbclient18:amd64           5.5.54-1ubuntu0.14.04.1             amd64        MariaDB database client library
 ii  libmodule-pluggable-perl           5.1-1                               all          module for giving  modules the ability to have plugins
 ii  libmount1:amd64                    2.20.1-5.1ubuntu20.9                amd64        block device id library
 ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1             amd64        MP3 encoding library
@@ -429,7 +429,7 @@ ii  libtinfo-dev:amd64                 5.9+20140118-1ubuntu1               amd64
 ii  libtinfo5:amd64                    5.9+20140118-1ubuntu1               amd64        shared low-level terminfo library for terminal handling
 ii  libts-0.0-0:amd64                  1.0-12                              amd64        touch screen library
 ii  libtsan0:amd64                     4.8.4-2ubuntu1~14.04.3              amd64        ThreadSanitizer -- a Valgrind-based detector of data races (runtime)
-ii  libudev1:amd64                     204-5ubuntu20.20                    amd64        libudev shared library
+ii  libudev1:amd64                     204-5ubuntu20.21                    amd64        libudev shared library
 ii  libusb-0.1-4:amd64                 2:0.1.12-23.3ubuntu1                amd64        userspace USB programming library
 ii  libustr-1.0-1:amd64                1.0.4-3ubuntu2                      amd64        Micro string library: shared library
 ii  libuuid1:amd64                     2.20.1-5.1ubuntu20.9                amd64        Universally Unique ID library
@@ -499,7 +499,7 @@ ii  make                               3.81-8.2ubuntu3                     amd64
 ii  makedev                            2.3.1-93ubuntu1                     all          creates device files in /dev
 ii  manpages                           3.54-1ubuntu1                       all          Manual pages about using a GNU/Linux system
 ii  manpages-dev                       3.54-1ubuntu1                       all          Manual pages about using GNU/Linux for development
-ii  mariadb-common                     5.5.53-1ubuntu0.14.04.1             all          MariaDB common metapackage
+ii  mariadb-common                     5.5.54-1ubuntu0.14.04.1             all          MariaDB common metapackage
 ii  mawk                               1.3.3-17ubuntu2                     amd64        a pattern scanning and text processing language
 ii  mercurial                          2.8.2-1ubuntu1.3                    amd64        easy-to-use, scalable distributed version control system
 ii  mercurial-common                   2.8.2-1ubuntu1.3                    all          easy-to-use, scalable distributed version control system (common files)
@@ -565,7 +565,7 @@ ii  tzdata                             2016j-0ubuntu0.14.04                all  
 ii  ubuntu-keyring                     2012.05.19                          all          GnuPG keys of the Ubuntu archive
 ii  ubuntu-minimal                     1.325                               amd64        Minimal core of Ubuntu
 ii  ucf                                3.0027+nmu1                         all          Update Configuration File(s): preserve user changes to config files
-ii  udev                               204-5ubuntu20.20                    amd64        /dev/ and hotplug management daemon
+ii  udev                               204-5ubuntu20.21                    amd64        /dev/ and hotplug management daemon
 ii  unzip                              6.0-9ubuntu1.5                      amd64        De-archiver for .zip files
 ii  upstart                            1.12.1-0ubuntu4.2                   amd64        event-based init daemon
 ii  ureadahead                         0.100.0-16                          amd64        Read required files in advance
