@@ -1370,6 +1370,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   api_worker_templates:
   - name: consul_agent
@@ -1439,6 +1440,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   loggregator_templates:
   - name: consul_agent
@@ -1466,6 +1468,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   nats_templates:
   - name: consul_agent
@@ -1496,6 +1499,7 @@ meta:
     release: (( meta.capi_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   nfs_templates:
   - name: consul_agent
@@ -1508,6 +1512,7 @@ meta:
     release: (( meta.capi_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   postgres_templates:
   - name: consul_agent
@@ -1522,6 +1527,7 @@ meta:
     release: (( meta.consul_release_name ))
   - name: gorouter
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
@@ -1557,6 +1563,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
   - name: statsd-injector
     release: (( meta.loggregator_release_name ))
 

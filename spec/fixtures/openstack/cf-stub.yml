@@ -216,6 +216,7 @@ jobs:
         release: cf
       - name: route_registrar
         release: cf
+        consumes: {nats: nil}
 
   - name: api_worker_z1
     instances: 0

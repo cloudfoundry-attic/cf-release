@@ -211,6 +211,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update: {}
 - default_networks:
   - name: cf1
@@ -245,6 +246,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update: {}
 - default_networks:
   - name: cf1
@@ -309,6 +311,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   - name: statsd-injector
     release: cf
   update: {}
@@ -354,6 +357,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   - name: statsd-injector
     release: cf
   update: {}
@@ -422,6 +426,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update: {}
 - default_networks:
   - name: cf2
@@ -484,6 +489,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update: {}
 - default_networks:
   - name: cf1
@@ -605,6 +611,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update: {}
 - default_networks:
   - name: cf2
@@ -638,6 +645,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update: {}
 - default_networks:
   - name: cf1
@@ -840,6 +848,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update:
     max_in_flight: 1
     serial: true
@@ -878,6 +887,7 @@ jobs:
     release: cf
   - name: route_registrar
     release: cf
+    consumes: {nats: nil}
   update:
     max_in_flight: 1
     serial: true
@@ -902,6 +912,7 @@ jobs:
     release: cf
   - name: gorouter
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   update: {}
@@ -925,6 +936,7 @@ jobs:
     release: cf
   - name: gorouter
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   update: {}
