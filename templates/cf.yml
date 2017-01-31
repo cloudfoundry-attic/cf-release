@@ -1364,6 +1364,7 @@ meta:
     release: (( meta.dotnet_core_buildpack_release_name ))
   - name: cloud_controller_ng
     release: (( meta.capi_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: statsd-injector
@@ -1377,6 +1378,7 @@ meta:
     release: (( meta.consul_release_name ))
   - name: cloud_controller_worker
     release: (( meta.capi_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
@@ -1385,6 +1387,7 @@ meta:
     release: (( meta.consul_release_name ))
   - name: cloud_controller_clock
     release: (( meta.capi_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
