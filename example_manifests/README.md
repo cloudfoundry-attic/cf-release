@@ -8,12 +8,17 @@ break things.
 *IMPORTANT*: This is not meant to be used for a production level deployment as
 it doesn't include features such as high availability and security.
 
+#### Other minimal deployments
+For similar instructions for deploying a minimal CF with other cloud providers,
+below is a list of unsupported example manifests:
+- [Softlayer](https://github.com/cloudfoundry/bosh-softlayer-cpi/blob/master/docs/minimalistic_cf_deployment.md)
+
 # Setup
 
 ## Deploy BOSH director in AWS
 - https://bosh.io/docs/init-aws.html
 
-##Update the BOSH Security Group to allow "cf logs" to work
+## Update the BOSH Security Group to allow "cf logs" to work
 - Click on "VPC" from the Amazon Web Services Dashboard
 - Click on "Security Groups" from the VPC Dashboard
 - Select the "bosh" Security Group
