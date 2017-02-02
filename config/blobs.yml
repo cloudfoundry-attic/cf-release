@@ -131,10 +131,6 @@ loggregator-blobs/metron.xz:
   object_id: 18c209d3-353e-4017-a9b4-0aecc48d7096
   sha: 0c65d5a2cd541ee2c17f56d58760b81925de6d7f
   size: 2526836
-java-buildpack/java-buildpack-offline-v3.11.zip:
-  object_id: 6e0e442b-967d-463d-a504-9fed5d3e6b72
-  sha: 8269b2611736d16ae35dbc3b2a7d839c5f2a448b
-  size: 256031996
 nginx/nginx-1.11.1.tar.gz:
   object_id: ced13588-cd45-44d4-bf76-0f6d668522ea
   sha: 6b6172b26628b95c4ad0d6cb5b11eb4aa59c2a83
@@ -215,3 +211,7 @@ java-buildpack/java-buildpack-v3.12.zip:
   object_id: a2bf3088-4cff-41d6-8264-3b7b7808066a
   sha: 9af6835aeca88ae9bd801c84f979b6d9d3205893
   size: 177434
+java-buildpack/java-buildpack-offline-v3.12.zip:
+  object_id: 49a056bf-ccab-4372-b425-cde718fe88c7
+  sha: 24a80d5e70365821b0c947bded0b419a53fd8639
+  size: 256337299
