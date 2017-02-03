@@ -417,6 +417,7 @@ jobs:
     release: cf
   - name: cloud_controller_ng
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   - name: statsd-injector
@@ -480,6 +481,7 @@ jobs:
     release: cf
   - name: cloud_controller_ng
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   - name: statsd-injector
@@ -504,6 +506,7 @@ jobs:
     release: cf
   - name: cloud_controller_clock
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   update: {}
@@ -529,6 +532,7 @@ jobs:
     release: cf
   - name: cloud_controller_worker
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   update: {}
@@ -548,6 +552,7 @@ jobs:
     release: cf
   - name: cloud_controller_clock
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   update: {}
@@ -573,6 +578,7 @@ jobs:
     release: cf
   - name: cloud_controller_worker
     release: cf
+    consumes: {nats: nil}
   - name: metron_agent
     release: cf
   update: {}
