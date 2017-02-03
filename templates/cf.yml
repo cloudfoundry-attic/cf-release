@@ -710,6 +710,10 @@ properties:
       metron:
         cert: ~
         key: ~
+      syslogdrainbinder:
+        cert: ~
+        key: ~
+
     etcd:
       machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
       require_ssl: (( .properties.etcd.require_ssl ))
