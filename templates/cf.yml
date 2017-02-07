@@ -687,19 +687,19 @@ properties:
     blacklisted_syslog_ranges: ~
     outgoing_dropsonde_port: 8081
     tls:
-      ca_cert: ~
+      ca_cert: (( merge ))
       doppler:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       trafficcontroller:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       metron:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       syslogdrainbinder:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
 
     etcd:
       machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]

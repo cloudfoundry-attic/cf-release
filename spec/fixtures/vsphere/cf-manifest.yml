@@ -1474,19 +1474,19 @@ properties:
     maxRetainedLogMessages: 100
     outgoing_dropsonde_port: 8081
     tls:
-      ca_cert: null
+      ca_cert: LOGGREGATOR_CA_CERT
       doppler:
-        cert: null
-        key: null
+        cert: LOGGREGATOR_DOPPLER_CERT
+        key: LOGGREGATOR_DOPPLER_KEY
       metron:
-        cert: null
-        key: null
+        cert: LOGGREGATOR_METRON_CERT
+        key: LOGGREGATOR_METRON_KEY
       syslogdrainbinder:
-        cert: null
-        key: null
+        cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
+        key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
       trafficcontroller:
-        cert: null
-        key: null
+        cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
+        key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:

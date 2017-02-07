@@ -96,6 +96,21 @@ properties:
   login:
     saml:
       serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
+  loggregator:
+    tls:
+      ca_cert: LOGGREGATOR_CA_CERT
+      doppler:
+        cert: LOGGREGATOR_DOPPLER_CERT
+        key: LOGGREGATOR_DOPPLER_KEY
+      trafficcontroller:
+        cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
+        key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
+      metron:
+        cert: LOGGREGATOR_METRON_CERT
+        key: LOGGREGATOR_METRON_KEY
+      syslogdrainbinder:
+        cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
+        key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
