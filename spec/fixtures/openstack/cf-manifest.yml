@@ -1510,6 +1510,9 @@ properties:
       metron:
         cert: null
         key: null
+      statsd_injector:
+        cert: null
+        key: null
       syslogdrainbinder:
         cert: null
         key: null

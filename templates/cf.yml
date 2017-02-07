@@ -713,6 +713,9 @@ properties:
       syslogdrainbinder:
         cert: ~
         key: ~
+      statsd_injector:
+        cert: ~
+        key: ~
 
     etcd:
       machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
