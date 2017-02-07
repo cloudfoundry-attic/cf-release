@@ -1389,7 +1389,7 @@ jobs:
         consumes: {nats: nil}
       - name: metron_agent
         release: cf
-      - name: statsd-injector
+      - name: statsd_injector
         release: cf
       - name: route_registrar
         release: cf

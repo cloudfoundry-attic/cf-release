@@ -319,7 +319,7 @@ jobs:
       nats: nil
     name: route_registrar
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
   update: {}
 - default_networks:
@@ -365,7 +365,7 @@ jobs:
       nats: nil
     name: route_registrar
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
   update: {}
 - default_networks:
@@ -427,7 +427,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
   - consumes:
       nats: nil
@@ -493,7 +493,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
   - consumes:
       nats: nil
