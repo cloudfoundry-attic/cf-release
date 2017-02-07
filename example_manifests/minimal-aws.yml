@@ -1211,6 +1211,9 @@ properties:
         client_key: ""
         require_ssl: false
       cc:
+        ca_cert: REPLACE_WITH_TPS_CC_CA_CERT
+        client_cert: REPLACE_WITH_TPS_CC_CLIENT_CERT
+        client_key: REPLACE_WITH_TPS_CC_CLIENT_KEY
         base_url: https://api.REPLACE_WITH_SYSTEM_DOMAIN
         basic_auth_password: REPLACE_WITH_PASSWORD
     tps_listener:
