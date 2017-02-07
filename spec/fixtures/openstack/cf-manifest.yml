@@ -509,7 +509,7 @@ jobs:
   update: {}
 - default_networks:
   - name: cf1
-  instances: 0
+  instances: 1
   name: clock_z1
   networks:
   - name: cf1
@@ -557,7 +557,7 @@ jobs:
   update: {}
 - default_networks:
   - name: cf2
-  instances: 0
+  instances: 1
   name: clock_z2
   networks:
   - name: cf2
