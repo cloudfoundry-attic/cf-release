@@ -251,7 +251,7 @@ jobs:
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
-  - name: clock_z1
+  - name: clock_global
     templates: (( merge || meta.clock_templates ))
     instances: 1
     resource_pool: medium_z1
@@ -276,19 +276,6 @@ jobs:
       metron_agent:
         zone: z1
       nfs_server: (( meta.nfs_server ))
-    update: (( merge || empty_hash ))
-
-  - name: clock_z2
-    templates: (( merge || meta.clock_templates ))
-    instances: 1
-    resource_pool: medium_z2
-    persistent_disk: 0
-    default_networks:
-      - name: cf2
-    networks: (( merge || default_networks ))
-    properties:
-      metron_agent:
-        zone: z2
     update: (( merge || empty_hash ))
 
   - name: api_worker_z2
@@ -700,22 +687,22 @@ properties:
     blacklisted_syslog_ranges: ~
     outgoing_dropsonde_port: 8081
     tls:
-      ca_cert: ~
+      ca_cert: (( merge ))
       doppler:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       trafficcontroller:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       metron:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       syslogdrainbinder:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       statsd_injector:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
 
     etcd:
       machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
