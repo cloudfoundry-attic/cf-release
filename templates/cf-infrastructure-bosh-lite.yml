@@ -1358,6 +1358,7 @@ jobs:
     templates:
       - name: consul_agent
         release: cf
+        consumes: {consul: nil}
       - name: java-buildpack
         release: cf
       - name: java-offline-buildpack
