@@ -102,6 +102,9 @@ properties:
       syslogdrainbinder:
         cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
         key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
+      statsd_injector:
+        cert: LOGGREGATOR_STATSDINJECTOR_CERT
+        key: LOGGREGATOR_STATSDINJECTOR_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
@@ -230,7 +233,7 @@ jobs:
         consumes: {nats: nil}
       - name: metron_agent
         release: cf
-      - name: statsd-injector
+      - name: statsd_injector
         release: cf
       - name: route_registrar
         release: cf
