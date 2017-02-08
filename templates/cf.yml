@@ -746,6 +746,9 @@ properties:
   doppler_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
 
+  statsd_injector:
+    deployment: (( meta.environment ))
+
   metron_agent:
     deployment: (( meta.environment ))
     preferred_protocol: ~

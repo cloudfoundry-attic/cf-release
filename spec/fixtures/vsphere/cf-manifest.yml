@@ -1609,6 +1609,8 @@ properties:
   smoke_tests: null
   ssl:
     skip_cert_verify: true
+  statsd_injector:
+    deployment: ENVIRONMENT
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
   syslog_drain_binder:
