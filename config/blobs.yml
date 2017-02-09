@@ -107,10 +107,6 @@ nginx/headers-more-nginx-module-0.32.tar.gz:
   object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
   sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
   size: 28033
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.9.zip:
-  object_id: a033d7e5-069c-4fae-878c-914931250654
-  sha: b5f0fdb67441256f9f1b5da844bc86e31a14369b
-  size: 458590315
 go-buildpack/go_buildpack-cached-v1.7.17.zip:
   object_id: 3760497d-78cb-4d56-887a-134104ebd543
   sha: 2be1ba70f3fb73c005177fbb8574912f19e65b36
@@ -175,3 +171,7 @@ java-buildpack/java-buildpack-offline-v3.13.zip:
   object_id: 76ea4870-a947-419b-bc47-4fa27df83796
   sha: e96543f6192f4f4ffd7f6a6be4acccb0440a221c
   size: 256387741
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.11.zip:
+  object_id: 17f07a77-1554-49c6-91bf-e6afb415258d
+  sha: 509a0b0fd89c84cce6ce0bbd71a3a727276ec4e2
+  size: 458608610
