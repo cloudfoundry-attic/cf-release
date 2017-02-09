@@ -1,4 +1,4 @@
-Rootfs SHASUM: f54adeaf3e45b844f44b89cf5cf3ba4ed9861efc
+Rootfs SHASUM: 5dc8e7ed0875b2f44299d50307c1cb2b62864c6c
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -317,7 +317,7 @@ rc  libmysqlclient18:amd64             5.5.54-0ubuntu0.14.04.1             amd64
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1               amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1               amd64        shared libraries for terminal handling (wide character support)
-ii  libnettle4:amd64                   2.7.1-1ubuntu0.1                    amd64        low level cryptographic library (symmetric and one-way cryptos)
+ii  libnettle4:amd64                   2.7.1-1ubuntu0.2                    amd64        low level cryptographic library (symmetric and one-way cryptos)
 ii  libnewt0.52:amd64                  0.52.15-2ubuntu5                    amd64        Not Erik's Windowing Toolkit - text mode windowing with slang
 ii  libnih-dbus1:amd64                 1.0.3-4ubuntu25                     amd64        NIH D-Bus Bindings Library
 ii  libnih1:amd64                      1.0.3-4ubuntu25                     amd64        NIH Utility Library
@@ -485,7 +485,7 @@ ii  libxt6:amd64                       1:1.1.4-1                           amd64
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                    amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                    amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-107.154                      amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-108.155                      amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1               all          common files for locale support
 ii  lockfile-progs                     0.1.17                              amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                amd64        system login tools

@@ -135,10 +135,6 @@ nginx/nginx-1.11.9.tar.gz:
   object_id: 936dac4a-7f96-43ab-8664-52db265fe3b3
   sha: d8f225e7bb9503ee9084c25f6056a3493dfd4db8
   size: 965463
-rootfs/cflinuxfs2-1.99.0.tar.gz:
-  object_id: 91fd9734-cb7d-4643-9030-707a33250b7a
-  sha: f54adeaf3e45b844f44b89cf5cf3ba4ed9861efc
-  size: 356648744
 java-buildpack/java-buildpack-v3.13.zip:
   object_id: 321643ef-ea7a-4a4b-a059-b93292635995
   sha: 3da0fa3cd046b4889e983edc44562d4a2e16f80c
@@ -175,3 +171,7 @@ python-buildpack/python_buildpack-cached-v1.5.15.zip:
   object_id: 28349431-495d-4959-8ace-b8c74eb9cb13
   sha: 0f5a5248c7fe726d4741cceb85ed078f37f00f07
   size: 311239322
+rootfs/cflinuxfs2-1.100.0.tar.gz:
+  object_id: 8fd33e49-d3b9-4b6a-9b84-e65b2a8e8a11
+  sha: 5dc8e7ed0875b2f44299d50307c1cb2b62864c6c
+  size: 356652263
