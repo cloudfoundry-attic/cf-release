@@ -319,7 +319,7 @@ jobs:
       nats: nil
     name: route_registrar
     release: cf
-  - name: statsd_injector
+  - name: statsd-injector
     release: cf
   update: {}
 - default_networks:
@@ -365,7 +365,7 @@ jobs:
       nats: nil
     name: route_registrar
     release: cf
-  - name: statsd_injector
+  - name: statsd-injector
     release: cf
   update: {}
 - default_networks:
@@ -427,7 +427,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: statsd_injector
+  - name: statsd-injector
     release: cf
   - consumes:
       nats: nil
@@ -493,7 +493,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: statsd_injector
+  - name: statsd-injector
     release: cf
   - consumes:
       nats: nil
@@ -1458,9 +1458,6 @@ properties:
       metron:
         cert: LOGGREGATOR_METRON_CERT
         key: LOGGREGATOR_METRON_KEY
-      statsd_injector:
-        cert: LOGGREGATOR_STATSDINJECTOR_CERT
-        key: LOGGREGATOR_STATSDINJECTOR_KEY
       syslogdrainbinder:
         cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
         key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
@@ -1565,8 +1562,6 @@ properties:
   smoke_tests: null
   ssl:
     skip_cert_verify: true
-  statsd_injector:
-    deployment: ENVIRONMENT
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
   syslog_drain_binder:

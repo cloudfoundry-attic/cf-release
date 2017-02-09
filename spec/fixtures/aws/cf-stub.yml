@@ -111,9 +111,6 @@ properties:
       syslogdrainbinder:
         cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
         key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
-      statsd_injector:
-        cert: LOGGREGATOR_STATSDINJECTOR_CERT
-        key: LOGGREGATOR_STATSDINJECTOR_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:

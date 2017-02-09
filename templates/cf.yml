@@ -700,9 +700,6 @@ properties:
       syslogdrainbinder:
         cert: (( merge ))
         key: (( merge ))
-      statsd_injector:
-        cert: (( merge ))
-        key: (( merge ))
 
     etcd:
       machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
@@ -732,9 +729,6 @@ properties:
 
   doppler_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
-
-  statsd_injector:
-    deployment: (( meta.environment ))
 
   metron_agent:
     deployment: (( meta.environment ))
@@ -1311,7 +1305,6 @@ meta:
   staticfile_buildpack_release_name: (( releases.staticfile-buildpack.name || "cf" ))
   dotnet_core_buildpack_release_name: (( releases.dotnet-core-buildpack.name || "cf" ))
   loggregator_release_name: (( releases.loggregator.name || "cf" ))
-  statsd_injector_release_name: (( releases.statsd-injector.name || "cf" ))
   uaa_release_name: (( releases.uaa.name || "cf" ))
 
   consul_servers: (( merge || jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
@@ -1365,8 +1358,8 @@ meta:
     consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: statsd_injector
-    release: (( meta.statsd_injector_release_name ))
+  - name: statsd-injector
+    release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
     consumes: {nats: nil}
@@ -1565,8 +1558,8 @@ meta:
   - name: route_registrar
     release: (( meta.cf_release_name ))
     consumes: {nats: nil}
-  - name: statsd_injector
-    release: (( meta.statsd_injector_release_name ))
+  - name: statsd-injector
+    release: (( meta.loggregator_release_name ))
 
   default_quota_definitions:
     default:
