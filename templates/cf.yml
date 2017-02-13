@@ -1339,6 +1339,7 @@ meta:
 
   api_templates:
   - name: consul_agent
+    consumes: {consul: nil}
     release: (( meta.consul_release_name ))
   - name: java-buildpack
     release: (( meta.java_buildpack_release_name ))
