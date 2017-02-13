@@ -1367,6 +1367,7 @@ meta:
   api_worker_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: cloud_controller_worker
     release: (( meta.capi_release_name ))
     consumes: {nats: nil}
@@ -1376,6 +1377,7 @@ meta:
   clock_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: cloud_controller_clock
     release: (( meta.capi_release_name ))
     consumes: {nats: nil}
@@ -1385,12 +1387,14 @@ meta:
   consul_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
   dea_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: dea_next
     release: (( meta.cf_release_name ))
   - name: dea_logging_agent
@@ -1401,6 +1405,7 @@ meta:
   etcd_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: etcd
     release: (( meta.etcd_release_name ))
   - name: etcd_metrics_server
@@ -1411,6 +1416,7 @@ meta:
   ha_proxy_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: haproxy
     release: (( meta.cf_release_name ))
   - name: metron_agent
@@ -1428,6 +1434,7 @@ meta:
   hm9000_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: hm9000
     release: (( meta.cf_release_name ))
   - name: metron_agent
@@ -1439,6 +1446,7 @@ meta:
   loggregator_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: doppler
     release: (( meta.loggregator_release_name ))
   - name: syslog_drain_binder
@@ -1456,6 +1464,7 @@ meta:
   loggregator_trafficcontroller_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
   - name: metron_agent
@@ -1467,6 +1476,7 @@ meta:
   nats_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: nats
     consumes: {nats: nil}
     release: (( meta.cf_release_name ))
@@ -1487,6 +1497,7 @@ meta:
   blobstore_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: blobstore
@@ -1498,6 +1509,7 @@ meta:
   nfs_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: debian_nfs_server
     release: (( meta.capi_release_name ))
   - name: metron_agent
@@ -1511,6 +1523,7 @@ meta:
   postgres_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: postgres
     release: (( meta.postgres_release_name ))
   - name: metron_agent
@@ -1519,6 +1532,7 @@ meta:
   router_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: gorouter
     release: (( meta.cf_release_name ))
     consumes: {nats: nil}
@@ -1528,6 +1542,7 @@ meta:
   stats_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: collector
     release: (( meta.cf_release_name ))
   - name: metron_agent
@@ -1551,6 +1566,7 @@ meta:
   uaa_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: uaa
     release: (( meta.uaa_release_name ))
   - name: metron_agent

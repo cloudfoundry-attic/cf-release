@@ -28,6 +28,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: metron_agent
     release: cf
   update:
@@ -52,6 +53,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: metron_agent
     release: cf
   update:
@@ -72,6 +74,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: nats
@@ -96,6 +99,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: nats
@@ -127,6 +131,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: etcd
     release: cf
   - name: etcd_metrics_server
@@ -157,6 +162,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: etcd
     release: cf
   - name: etcd_metrics_server
@@ -179,6 +185,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: collector
     release: cf
   - name: metron_agent
@@ -212,6 +219,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: debian_nfs_server
     release: cf
   - name: metron_agent
@@ -250,6 +258,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: metron_agent
     release: cf
   - name: blobstore
@@ -275,6 +284,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: postgres
     release: cf
   - name: metron_agent
@@ -317,6 +327,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: uaa
     release: cf
   - name: metron_agent
@@ -365,6 +376,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: uaa
     release: cf
   - name: metron_agent
@@ -409,6 +421,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: java-buildpack
     release: cf
   - name: java-offline-buildpack
@@ -475,6 +488,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: java-buildpack
     release: cf
   - name: java-offline-buildpack
@@ -522,6 +536,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: cloud_controller_clock
@@ -549,6 +564,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: cloud_controller_worker
@@ -576,6 +592,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: cloud_controller_worker
@@ -609,6 +626,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: hm9000
     release: cf
   - name: metron_agent
@@ -644,6 +662,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: hm9000
     release: cf
   - name: metron_agent
@@ -677,6 +696,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -709,6 +729,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -732,6 +753,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -754,6 +776,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -783,6 +806,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -812,6 +836,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -848,6 +873,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
@@ -888,6 +914,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
@@ -918,6 +945,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: gorouter
@@ -944,6 +972,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: gorouter
@@ -978,6 +1007,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: haproxy
     release: cf
   - name: metron_agent
