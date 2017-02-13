@@ -64,3 +64,6 @@
 [submodule "src/dotnet-core-buildpack-release"]
 	path = src/dotnet-core-buildpack-release
 	url = https://github.com/cloudfoundry/dotnet-core-buildpack-release
+[submodule "src/statsd-injector-release"]
+	path = src/statsd-injector-release
+	url = https://github.com/cloudfoundry/statsd-injector-release
