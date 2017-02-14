@@ -163,10 +163,6 @@ python-buildpack/python_buildpack-cached-v1.5.15.zip:
   object_id: 28349431-495d-4959-8ace-b8c74eb9cb13
   sha: 0f5a5248c7fe726d4741cceb85ed078f37f00f07
   size: 311239322
-rootfs/cflinuxfs2-1.100.0.tar.gz:
-  object_id: 8fd33e49-d3b9-4b6a-9b84-e65b2a8e8a11
-  sha: 5dc8e7ed0875b2f44299d50307c1cb2b62864c6c
-  size: 356652263
 binary-buildpack/binary_buildpack-cached-v1.0.9.zip:
   object_id: 22f7a05c-609b-4331-8b07-00baf0096995
   sha: e3ef6ad9d62b6c48e9682153815eced16298238e
@@ -175,3 +171,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.17.zip:
   object_id: ff1b645d-a8b3-4226-a252-ba749e20c1a2
   sha: e69dbec80cf8ff3fedfd21f39c8c9adc78c9ea0a
   size: 2732127
+rootfs/cflinuxfs2-1.101.0.tar.gz:
+  object_id: f25a9fd6-96e1-43f5-99b8-3abb38b024ba
+  sha: 0cecd6c2d92b7d3a512dc165fb6925e80c960320
+  size: 286814529
