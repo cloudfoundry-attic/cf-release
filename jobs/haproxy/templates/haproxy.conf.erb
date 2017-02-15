@@ -67,3 +67,19 @@ backend tcp-routers
     <% p("router.servers").each_with_index do |ip, index| %>
         server node<%= index %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>
+
+<% if p("cc.allow_app_ssh_access") %>
+<% if_link("ssh_proxy") do |ssh_proxy| %>
+frontend ssh
+    mode tcp
+    bind :<%= p("app_ssh.port") %>
+    default_backend ssh
+
+backend ssh
+    mode tcp
+    option tcp-check
+    balance leastconn<% ssh_proxy.instances.map do |instance| %>
+    server <%= instance.id %> <%= instance.address %>:2222 check<% end %>
+    timeout server 2h
+<% end %>
+<% end %>
