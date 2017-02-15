@@ -17,7 +17,7 @@ templates:
 
 consumes:
   - name: ssh_proxy
-    type: conn
+    type: ssh_proxy
     optional: true
 
 properties:
