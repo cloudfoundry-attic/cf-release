@@ -1681,6 +1681,7 @@ properties:
         authorities: uaa.resource
         override: true
         secret: DOPPLER_SECRET
+        authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token

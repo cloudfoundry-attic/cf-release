@@ -4416,6 +4416,7 @@ properties:
         authorities: uaa.resource
         override: true
         secret: doppler-secret
+        authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token

@@ -1109,6 +1109,7 @@ properties:
         override: true
         authorities: uaa.resource
         secret: (( merge ))
+        authorized-grant-types: client_credentials
       cloud_controller_username_lookup:
         authorities: scim.userids
         secret: (( merge ))
