@@ -687,16 +687,23 @@ properties:
     blacklisted_syslog_ranges: ~
     outgoing_dropsonde_port: 8081
     tls:
-      ca_cert: ~
+      ca_cert: (( merge ))
       doppler:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       trafficcontroller:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
       metron:
-        cert: ~
-        key: ~
+        cert: (( merge ))
+        key: (( merge ))
+      syslogdrainbinder:
+        cert: (( merge ))
+        key: (( merge ))
+      statsd_injector:
+        cert: (( merge ))
+        key: (( merge ))
+
     etcd:
       machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
       require_ssl: (( .properties.etcd.require_ssl ))
@@ -725,6 +732,9 @@ properties:
 
   doppler_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
+
+  statsd_injector:
+    deployment: (( meta.environment ))
 
   metron_agent:
     deployment: (( meta.environment ))
@@ -764,14 +774,15 @@ properties:
       temporary_local_staging: (( merge || nil ))
       temporary_local_tasks: (( merge || nil ))
       temporary_local_apps: (( merge || nil ))
+      temporary_local_sync: (( merge || nil ))
       temporary_local_tps: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
     tls_port: (( merge || nil ))
     mutual_tls:
-      ca_cert: (( merge || nil ))
-      public_cert: (( merge || nil ))
-      private_key: (( merge || nil))
+      ca_cert: (( merge ))
+      public_cert: (( merge ))
+      private_key: (( merge ))
 
     jobs:
       global:
@@ -1086,7 +1097,7 @@ properties:
       cf:
         override: true
         authorized-grant-types: password,refresh_token
-        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,cloud_controller.global_auditor,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
         authorities: uaa.none
         access-token-validity: 600 # 10 mins
         refresh-token-validity: 604800 # 7 days
@@ -1159,6 +1170,7 @@ properties:
     route_services_secret_decrypt_only: (( merge || nil ))
     route_services_timeout: (( merge || nil ))
     route_services_recommend_https: (( merge || nil ))
+    max_idle_connections: (( merge || nil ))
     tracing:
       enable_zipkin: (( merge || nil ))
     logrotate: (( merge || nil ))
@@ -1300,6 +1312,7 @@ meta:
   staticfile_buildpack_release_name: (( releases.staticfile-buildpack.name || "cf" ))
   dotnet_core_buildpack_release_name: (( releases.dotnet-core-buildpack.name || "cf" ))
   loggregator_release_name: (( releases.loggregator.name || "cf" ))
+  statsd_injector_release_name: (( releases.statsd-injector.name || "cf" ))
   uaa_release_name: (( releases.uaa.name || "cf" ))
 
   consul_servers: (( merge || jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
@@ -1327,6 +1340,7 @@ meta:
 
   api_templates:
   - name: consul_agent
+    consumes: {consul: nil}
     release: (( meta.consul_release_name ))
   - name: java-buildpack
     release: (( meta.java_buildpack_release_name ))
@@ -1350,38 +1364,46 @@ meta:
     release: (( meta.dotnet_core_buildpack_release_name ))
   - name: cloud_controller_ng
     release: (( meta.capi_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-  - name: statsd-injector
-    release: (( meta.loggregator_release_name ))
+  - name: statsd_injector
+    release: (( meta.statsd_injector_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   api_worker_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: cloud_controller_worker
     release: (( meta.capi_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
   clock_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: cloud_controller_clock
     release: (( meta.capi_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
   consul_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
   dea_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: dea_next
     release: (( meta.cf_release_name ))
   - name: dea_logging_agent
@@ -1392,6 +1414,7 @@ meta:
   etcd_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: etcd
     release: (( meta.etcd_release_name ))
   - name: etcd_metrics_server
@@ -1402,6 +1425,7 @@ meta:
   ha_proxy_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: haproxy
     release: (( meta.cf_release_name ))
   - name: metron_agent
@@ -1419,16 +1443,19 @@ meta:
   hm9000_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: hm9000
     release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   loggregator_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: doppler
     release: (( meta.loggregator_release_name ))
   - name: syslog_drain_binder
@@ -1446,16 +1473,19 @@ meta:
   loggregator_trafficcontroller_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   nats_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: nats
     consumes: {nats: nil}
     release: (( meta.cf_release_name ))
@@ -1476,16 +1506,19 @@ meta:
   blobstore_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: blobstore
     release: (( meta.capi_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   nfs_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: debian_nfs_server
     release: (( meta.capi_release_name ))
   - name: metron_agent
@@ -1494,10 +1527,12 @@ meta:
     release: (( meta.capi_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
 
   postgres_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: postgres
     release: (( meta.postgres_release_name ))
   - name: metron_agent
@@ -1506,14 +1541,17 @@ meta:
   router_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: gorouter
     release: (( meta.cf_release_name ))
+    consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
   stats_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: collector
     release: (( meta.cf_release_name ))
   - name: metron_agent
@@ -1537,14 +1575,16 @@ meta:
   uaa_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
+    consumes: {consul: nil}
   - name: uaa
     release: (( meta.uaa_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.cf_release_name ))
-  - name: statsd-injector
-    release: (( meta.loggregator_release_name ))
+    consumes: {nats: nil}
+  - name: statsd_injector
+    release: (( meta.statsd_injector_release_name ))
 
   default_quota_definitions:
     default:
