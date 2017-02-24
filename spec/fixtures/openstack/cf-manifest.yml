@@ -523,8 +523,8 @@ jobs:
   update: {}
 - default_networks:
   - name: cf1
-  instances: 0
-  name: clock_global
+  instances: 1
+  name: clock_z1
   networks:
   - name: cf1
   persistent_disk: 0
@@ -567,6 +567,27 @@ jobs:
   - consumes:
       nats: nil
     name: cloud_controller_worker
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- default_networks:
+  - name: cf2
+  instances: 1
+  name: clock_z2
+  networks:
+  - name: cf2
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z2
+  resource_pool: medium_z2
+  templates:
+  - name: consul_agent
+    release: cf
+  - consumes:
+      nats: nil
+    name: cloud_controller_clock
     release: cf
   - name: metron_agent
     release: cf
