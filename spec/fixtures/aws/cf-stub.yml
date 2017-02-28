@@ -60,6 +60,10 @@ properties:
     staging_upload_password: STAGING_UPLOAD_PASSWORD
     bulk_api_password: BULK_API_PASSWORD
     db_encryption_key: CCDB_ENCRYPTION_KEY
+    mutual_tls:
+      ca_cert: CC_MUTUAL_TLS_CA_CERT
+      public_cert: CC_MUTUAL_TLS_PUBLIC_CERT
+      private_key: CC_MUTUAL_TLS_PRIVATE_KEY
   ccdb:
     db_scheme: CCDB_SCHEME
     roles:
@@ -89,6 +93,27 @@ properties:
     peer_key: ETC_PEER_KEY
     server_cert: ETCD_SERVER_CERT
     server_key: ETCD_SERVER_KEY
+  login:
+    saml:
+      serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
+  loggregator:
+    tls:
+      ca_cert: LOGGREGATOR_CA_CERT
+      doppler:
+        cert: LOGGREGATOR_DOPPLER_CERT
+        key: LOGGREGATOR_DOPPLER_KEY
+      trafficcontroller:
+        cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
+        key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
+      metron:
+        cert: LOGGREGATOR_METRON_CERT
+        key: LOGGREGATOR_METRON_KEY
+      syslogdrainbinder:
+        cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
+        key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
+      statsd_injector:
+        cert: LOGGREGATOR_STATSDINJECTOR_CERT
+        key: LOGGREGATOR_STATSDINJECTOR_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:

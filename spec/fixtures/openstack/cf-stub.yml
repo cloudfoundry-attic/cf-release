@@ -51,6 +51,10 @@ properties:
     bulk_api_password: BULK_API_PASSWORD
     db_encryption_key: DB_ENCRYPTION_KEY
     uaa_skip_ssl_validation: true
+    mutual_tls:
+      ca_cert: CC_MUTUAL_TLS_CA_CERT
+      public_cert: CC_MUTUAL_TLS_PUBLIC_CERT
+      private_key: CC_MUTUAL_TLS_PRIVATE_KEY
 
   blobstore:
     admin_users:
@@ -83,10 +87,30 @@ properties:
     peer_key: ETC_PEER_KEY
     server_cert: ETCD_SERVER_CERT
     server_key: ETCD_SERVER_KEY
+  loggregator:
+    tls:
+      ca_cert: LOGGREGATOR_CA_CERT
+      doppler:
+        cert: LOGGREGATOR_DOPPLER_CERT
+        key: LOGGREGATOR_DOPPLER_KEY
+      trafficcontroller:
+        cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
+        key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
+      metron:
+        cert: LOGGREGATOR_METRON_CERT
+        key: LOGGREGATOR_METRON_KEY
+      syslogdrainbinder:
+        cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
+        key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
+      statsd_injector:
+        cert: LOGGREGATOR_STATSDINJECTOR_CERT
+        key: LOGGREGATOR_STATSDINJECTOR_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
     protocol: http
+    saml:
+      serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
   nats:
     user: NATS_USER
     password: NATS_PASSWORD
@@ -178,6 +202,7 @@ jobs:
     templates:
       - name: consul_agent
         release: cf
+        consumes: {consul: nil}
       - name: java-buildpack
         release: cf
       - name: java-offline-buildpack
@@ -200,22 +225,24 @@ jobs:
         release: cf
       - name: cloud_controller_ng
         release: cf
+        consumes: {nats: nil}
       - name: cloud_controller_clock
         release: cf
+        consumes: {nats: nil}
       - name: cloud_controller_worker
         release: cf
+        consumes: {nats: nil}
       - name: metron_agent
         release: cf
-      - name: statsd-injector
+      - name: statsd_injector
         release: cf
       - name: route_registrar
         release: cf
+        consumes: {nats: nil}
 
   - name: api_worker_z1
     instances: 0
-  - name: clock_z1
-    instances: 0
-  - name: clock_z2
+  - name: clock_global
     instances: 0
 # code_snippet cf-stub-openstack end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

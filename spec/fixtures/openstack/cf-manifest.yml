@@ -25,6 +25,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: metron_agent
     release: cf
   update:
@@ -48,6 +49,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: metron_agent
     release: cf
   update:
@@ -68,8 +70,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: nats
-    consumes: {nats: nil}
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: nats
     release: cf
   - name: nats_stream_forwarder
     release: cf
@@ -90,8 +94,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: nats
-    consumes: {nats: nil}
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: nats
     release: cf
   - name: nats_stream_forwarder
     release: cf
@@ -119,6 +125,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: etcd
     release: cf
   - name: etcd_metrics_server
@@ -148,6 +155,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: etcd
     release: cf
   - name: etcd_metrics_server
@@ -170,6 +178,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: collector
     release: cf
   - name: metron_agent
@@ -203,13 +212,16 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: debian_nfs_server
     release: cf
   - name: metron_agent
     release: cf
   - name: blobstore
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update: {}
 - default_networks:
@@ -239,11 +251,14 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: metron_agent
     release: cf
   - name: blobstore
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update: {}
 - default_networks:
@@ -262,6 +277,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: postgres
     release: cf
   - name: metron_agent
@@ -303,13 +319,16 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: uaa
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
   update: {}
 - default_networks:
@@ -348,13 +367,16 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: uaa
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
   update: {}
 - default_networks:
@@ -390,6 +412,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: java-buildpack
     release: cf
   - name: java-offline-buildpack
@@ -410,17 +433,25 @@ jobs:
     release: cf
   - name: dotnet-core-buildpack
     release: cf
-  - name: cloud_controller_ng
+  - consumes:
+      nats: nil
+    name: cloud_controller_ng
     release: cf
-  - name: cloud_controller_clock
+  - consumes:
+      nats: nil
+    name: cloud_controller_clock
     release: cf
-  - name: cloud_controller_worker
+  - consumes:
+      nats: nil
+    name: cloud_controller_worker
     release: cf
   - name: metron_agent
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update: {}
 - default_networks:
@@ -456,6 +487,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: java-buildpack
     release: cf
   - name: java-offline-buildpack
@@ -476,19 +508,23 @@ jobs:
     release: cf
   - name: dotnet-core-buildpack
     release: cf
-  - name: cloud_controller_ng
+  - consumes:
+      nats: nil
+    name: cloud_controller_ng
     release: cf
   - name: metron_agent
     release: cf
-  - name: statsd-injector
+  - name: statsd_injector
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update: {}
 - default_networks:
   - name: cf1
   instances: 0
-  name: clock_z1
+  name: clock_global
   networks:
   - name: cf1
   persistent_disk: 0
@@ -499,7 +535,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: cloud_controller_clock
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: cloud_controller_clock
     release: cf
   - name: metron_agent
     release: cf
@@ -524,26 +563,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: cloud_controller_worker
-    release: cf
-  - name: metron_agent
-    release: cf
-  update: {}
-- default_networks:
-  - name: cf2
-  instances: 0
-  name: clock_z2
-  networks:
-  - name: cf2
-  persistent_disk: 0
-  properties:
-    metron_agent:
-      zone: z2
-  resource_pool: medium_z2
-  templates:
-  - name: consul_agent
-    release: cf
-  - name: cloud_controller_clock
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: cloud_controller_worker
     release: cf
   - name: metron_agent
     release: cf
@@ -568,7 +591,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: cloud_controller_worker
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: cloud_controller_worker
     release: cf
   - name: metron_agent
     release: cf
@@ -599,11 +625,14 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: hm9000
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update: {}
 - default_networks:
@@ -632,11 +661,14 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: hm9000
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update: {}
 - default_networks:
@@ -663,6 +695,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -695,6 +728,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -718,6 +752,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -740,6 +775,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -754,10 +790,6 @@ jobs:
   networks:
   - name: cf1
   properties:
-    doppler:
-      zone: z1
-    metron_agent:
-      zone: z1
     consul:
       agent:
         services:
@@ -765,10 +797,15 @@ jobs:
             name: doppler
             tags:
             - z1
+    doppler:
+      zone: z1
+    metron_agent:
+      zone: z1
   resource_pool: medium_z1
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -783,10 +820,6 @@ jobs:
   networks:
   - name: cf1
   properties:
-    doppler:
-      zone: z2
-    metron_agent:
-      zone: z2
     consul:
       agent:
         services:
@@ -794,10 +827,15 @@ jobs:
             name: doppler
             tags:
             - z2
+    doppler:
+      zone: z2
+    metron_agent:
+      zone: z2
   resource_pool: medium_z2
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -812,6 +850,13 @@ jobs:
   networks:
   - name: cf1
   properties:
+    consul:
+      agent:
+        services:
+          loggregator_trafficcontroller: {}
+    loggregator:
+      uaa:
+        client_secret: DOPPLER_SECRET
     metron_agent:
       zone: z1
     route_registrar:
@@ -821,24 +866,20 @@ jobs:
         registration_interval: 20s
         uris:
         - doppler.SYSTEM_DOMAIN
-    loggregator:
-      uaa:
-        client_secret: DOPPLER_SECRET
     traffic_controller:
       zone: z1
-    consul:
-      agent:
-        services:
-          loggregator_trafficcontroller: {}
   resource_pool: small_z1
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update:
     max_in_flight: 1
@@ -850,6 +891,13 @@ jobs:
   networks:
   - name: cf2
   properties:
+    consul:
+      agent:
+        services:
+          loggregator_trafficcontroller: {}
+    loggregator:
+      uaa:
+        client_secret: DOPPLER_SECRET
     metron_agent:
       zone: z2
     route_registrar:
@@ -859,24 +907,20 @@ jobs:
         registration_interval: 20s
         uris:
         - doppler.SYSTEM_DOMAIN
-    loggregator:
-      uaa:
-        client_secret: DOPPLER_SECRET
     traffic_controller:
       zone: z2
-    consul:
-      agent:
-        services:
-          loggregator_trafficcontroller: {}
   resource_pool: small_z2
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
     release: cf
-  - name: route_registrar
+  - consumes:
+      nats: nil
+    name: route_registrar
     release: cf
   update:
     max_in_flight: 1
@@ -900,7 +944,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: gorouter
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: gorouter
     release: cf
   - name: metron_agent
     release: cf
@@ -923,7 +970,10 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-  - name: gorouter
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: gorouter
     release: cf
   - name: metron_agent
     release: cf
@@ -960,6 +1010,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: haproxy
     release: cf
   - name: metron_agent
@@ -1046,7 +1097,6 @@ properties:
       private_key: BLOBSTORE_PRIVATE_KEY
   cc:
     allow_app_ssh_access: true
-    default_app_ssh_access: null
     allowed_cors_domains: []
     app_events:
       cutoff_age_in_days: 31
@@ -1077,6 +1127,7 @@ properties:
     dea_use_https: false
     default_app_disk_in_mb: 1024
     default_app_memory: 1024
+    default_app_ssh_access: null
     default_buildpacks:
     - name: staticfile_buildpack
       package: staticfile-buildpack
@@ -1107,20 +1158,16 @@ properties:
     default_to_diego_backend: false
     development_mode: false
     diego:
-      insecure_docker_registry_list: null
-      temporary_local_staging: null
-      temporary_local_tasks: null
-      temporary_local_apps: null
-      temporary_local_tps: null
-      use_privileged_containers_for_staging: null
-      pid_limit: null
       bbs:
         url: null
-    tls_port: null
-    mutual_tls:
-      ca_cert: null
-      public_cert: null
-      private_key: null
+      insecure_docker_registry_list: null
+      pid_limit: null
+      temporary_local_apps: null
+      temporary_local_staging: null
+      temporary_local_tasks: null
+      temporary_local_sync: null
+      temporary_local_tps: null
+      use_privileged_containers_for_staging: null
     directories: null
     disable_custom_buildpacks: false
     droplets:
@@ -1186,6 +1233,10 @@ properties:
     min_cli_version: null
     min_recommended_cli_version: null
     minimum_candidate_stagers: null
+    mutual_tls:
+      ca_cert: CC_MUTUAL_TLS_CA_CERT
+      private_key: CC_MUTUAL_TLS_PRIVATE_KEY
+      public_cert: CC_MUTUAL_TLS_PUBLIC_CERT
     newrelic:
       capture_params: false
       developer_mode: false
@@ -1290,6 +1341,7 @@ properties:
         alert_if_above_mb: null
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
+    tls_port: null
     user_buildpacks: []
     users_can_select_backend: true
     volume_services_enabled: null
@@ -1313,7 +1365,6 @@ properties:
       tag: admin
   collector: null
   consul:
-    dns_config: null
     agent:
       domain: cf.internal
       log_level: null
@@ -1323,6 +1374,7 @@ properties:
     agent_cert: CONSUL_AGENT_CERT
     agent_key: CONSUL_AGENT_KEY
     ca_cert: CONSUL_CA_CERT
+    dns_config: null
     encrypt_keys:
     - CONSUL_ENCRYPT_KEY
     server_cert: CONSUL_SERVER_CERT
@@ -1393,8 +1445,8 @@ properties:
       client_key: ETCD_CLIENT_KEY
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
-    port: 4443
     outgoing_port: 8081
+    port: 4443
     tls:
       enable: null
       port: null
@@ -1461,16 +1513,22 @@ properties:
     maxRetainedLogMessages: 100
     outgoing_dropsonde_port: 8081
     tls:
-      ca_cert: null
+      ca_cert: LOGGREGATOR_CA_CERT
       doppler:
-        cert: null
-        key: null
-      trafficcontroller:
-        cert: null
-        key: null
+        cert: LOGGREGATOR_DOPPLER_CERT
+        key: LOGGREGATOR_DOPPLER_KEY
       metron:
-        cert: null
-        key: null
+        cert: LOGGREGATOR_METRON_CERT
+        key: LOGGREGATOR_METRON_KEY
+      statsd_injector:
+        cert: LOGGREGATOR_STATSDINJECTOR_CERT
+        key: LOGGREGATOR_STATSDINJECTOR_KEY
+      syslogdrainbinder:
+        cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
+        key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
+      trafficcontroller:
+        cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
+        key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
@@ -1491,7 +1549,8 @@ properties:
       url: null
     protocol: http
     restricted_ips_regex: null
-    saml: null
+    saml:
+      serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
     self_service_links_enabled: null
     smtp:
       host: null
@@ -1529,30 +1588,30 @@ properties:
     share: null
   request_timeout_in_seconds: 900
   router:
+    balancing_algorithm: null
     cipher_suites: null
     debug_address: null
     drain_wait: null
-    healthcheck_user_agent: null
     enable_access_log_streaming: null
     enable_proxy: null
-    force_forwarded_proto_https: null
     enable_ssl: null
     extra_headers_to_log: null
+    force_forwarded_proto_https: null
+    healthcheck_user_agent: null
+    load_balancer_healthy_threshold: null
     logging_level: null
     logrotate: null
+    max_idle_connections: null
     port: null
     requested_route_registration_interval_in_seconds: null
     route_services_recommend_https: null
     route_services_secret: null
     route_services_secret_decrypt_only: null
     route_services_timeout: null
-    max_idle_connections: null
     secure_cookies: null
     ssl_cert: null
     ssl_key: null
     ssl_skip_validation: null
-    load_balancer_healthy_threshold: null
-    balancing_algorithm: null
     status:
       password: ROUTER_PASSWORD
       port: null
@@ -1562,11 +1621,13 @@ properties:
       enable_zipkin: null
   routing_api:
     enabled: null
-    uri: null
     port: null
+    uri: null
   smoke_tests: null
   ssl:
     skip_cert_verify: true
+  statsd_injector:
+    deployment: ENVIRONMENT
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
   syslog_drain_binder:
@@ -1591,34 +1652,27 @@ properties:
         countFailuresWithinSeconds: null
         lockoutAfterFailures: null
         lockoutPeriodSeconds: null
-    password:
-      policy:
-        minLength: null
-        requireDigit: null
-        requireLowerCaseCharacter: null
-        requireSpecialCharacter: null
-        requireUpperCaseCharacter: null
     ca_cert: UAA_CA_CERT
     catalina_opts: null
     cc:
       client_secret: CC_CLIENT_SECRET
     clients:
-      cc_routing:
-        authorities: routing.router_groups.read
-        authorized-grant-types: client_credentials
-        secret: CC_ROUTING_SECRET
       cc-service-dashboards:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: authorization_code,client_credentials
         scope: openid,cloud_controller_service_permissions.read
         secret: CC_SERVICE_DASHBOARDS_SECRET
+      cc_routing:
+        authorities: routing.router_groups.read
+        authorized-grant-types: client_credentials
+        secret: CC_ROUTING_SECRET
       cf:
         access-token-validity: 600
         authorities: uaa.none
         authorized-grant-types: password,refresh_token
         override: true
         refresh-token-validity: 604800
-        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,cloud_controller.global_auditor,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
@@ -1627,6 +1681,7 @@ properties:
         authorities: uaa.resource
         override: true
         secret: DOPPLER_SECRET
+        authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
@@ -1674,14 +1729,14 @@ properties:
       groups: null
       userids_enabled: true
       users:
-      - name: admin
-        password: ADMIN_PASSWORD
-        groups:
+      - groups:
         - scim.write
         - scim.read
         - openid
         - cloud_controller.admin
         - doppler.firehose
+        name: admin
+        password: ADMIN_PASSWORD
     ssl:
       port: 8443
     sslCertificate: UAA_SERVER_CERT
