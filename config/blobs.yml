@@ -159,10 +159,6 @@ php-buildpack/php_buildpack-cached-v4.3.27.zip:
   object_id: f03a74d1-1492-497d-a7b9-5612432d3dc0
   sha: 18b6bb1f719d62287968ea690dd169962306e948
   size: 439371517
-rootfs/cflinuxfs2-1.105.0.tar.gz:
-  object_id: a0f01380-3773-4e9e-a92d-1db3173544b2
-  sha: 331a8e3ba8498d21728ac9103c859bf56f9a344c
-  size: 286857906
 consul/consul_0.7.4_linux_amd64.zip:
   object_id: 73ac78c1-4f77-4e71-98a1-44d01a0e9d34
   sha: 5d2ccf2bfe7ec35263fbb582701f01283bf66648
@@ -175,3 +171,7 @@ consul/consul-template_0.18.1_linux_amd64.zip:
   object_id: e2d02a4b-2330-40ae-90cd-d4e5bdba0ecf
   sha: 7328b86dc95ee0106872e7c70eddae9717ed55ec
   size: 2524699
+rootfs/cflinuxfs2-1.106.0.tar.gz:
+  object_id: 3b64a99b-458b-4896-b8c4-dbb3b7c66c73
+  sha: dbdc331204e3c9e0c92dbeb350ee5474994149f2
+  size: 286866097
