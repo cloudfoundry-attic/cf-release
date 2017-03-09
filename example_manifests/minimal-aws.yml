@@ -1,3 +1,14 @@
+# ==============================================================================
+# WARNING:
+# This deployment manifest is not meant to be used for anything besides
+# experimentation or getting acquainted with CF and BOSH.
+#
+# This manifest contains hard-coded passwords and private keys for simplicity.
+# As a result, it is NOT SECURE.
+#
+# Please leave this warning in place so other deployers can see it.
+# ==============================================================================
+
 # The following line helps maintain current documentation at http://docs.cloudfoundry.org.
 # code_snippet cf-minimal-aws start
 ---
