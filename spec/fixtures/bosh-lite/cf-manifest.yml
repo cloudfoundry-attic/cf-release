@@ -2946,6 +2946,7 @@ properties:
       temporary_local_tasks: false
       temporary_local_sync: false
       temporary_local_tps: false
+      temporary_cc_uploader_mtls: false
       use_privileged_containers_for_staging: null
     directories: null
     disable_custom_buildpacks: false

@@ -776,6 +776,7 @@ properties:
       temporary_local_apps: (( merge || nil ))
       temporary_local_sync: (( merge || nil ))
       temporary_local_tps: (( merge || nil ))
+      temporary_cc_uploader_mtls: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
     tls_port: (( merge || nil ))
