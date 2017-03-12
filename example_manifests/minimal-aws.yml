@@ -1429,6 +1429,7 @@ properties:
       memory_capacity_mb: 30720
       disk_capacity_mb: 163840
     route_emitter:
+      healthcheck_address: 127.0.0.1:17012
       bbs:
         ca_cert: ""
         client_cert: ""
