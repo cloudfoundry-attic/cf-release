@@ -729,6 +729,7 @@ properties:
       temporary_local_apps: false
       temporary_local_sync: false
       temporary_local_tps: false
+      temporary_cc_uploader_mtls: false
 
     mutual_tls:
       ca_cert: |
