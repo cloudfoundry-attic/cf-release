@@ -7,16 +7,13 @@ The unfortunate side-effect is that
 certificate management has become a complex aspect of the operator experience.
 To reduce confusion about how to generate and sign various certificates,
 we're providing this doc that hopes
-to give a step-by-step guide to generating these certificates,
+to explain the relationship between certificates and their certificate authorities,
 and
-to explain the relationship between certificates and their certificate authorities.
+to give a step-by-step guide to generating these certificates.
 
 ## Table of contents
-- Step-by-step guide
 - <a href='#cert-architecture'>An explanation of the certificate architecture</a>
-
-## Step-by-step guide to generating certificates
-
+- <a href='#guide'>Step-by-step guide</a>
 
 ## <a name='cert-architecture'></a> The Certificate Architecture
 In order for one component to trust that an SSL certificate is valid,
@@ -72,3 +69,130 @@ Note that,
 even if you aren't deploying Diego yet,
 the `cf-diego-ca` is still required for signing certificates
 used by the Cloud Controller's interactions with other components.
+
+## <a name='guide'></a>Step-by-step guide to generating certificates
+
+### Start by generating certs for the small "cliques"
+
+#### Consul
+Generate the certs and keys:
+```
+./scripts/generate-consul-certs
+```
+
+The script creates a CA for consul,
+generates a keypair for both the agents and servers,
+and signs the them with the CA.
+Place the following generated values in the your stub or manifest:
+
+| Script output | Properties |
+| ------------- | -------- |
+| consul-certs/server-ca.crt | `properties.consul.ca_cert` |
+| consul-certs/server.crt | `properties.consul.server_cert` |
+| consul-certs/server.key | `properties.consul.server_key` |
+| consul-certs/agent.crt | `properties.consul.agent_cert` |
+| consul-certs/agent.key | `properties.consul.agent_key` |
+
+#### Etcd
+Generate the certs and keys:
+```
+./scripts/generate-etcd-certs
+```
+
+The script creates two CAs,
+one for client/server interactions
+and another for internal peer interaction.
+It uses those CAs to sign the three keypairs it generates.
+
+| Script output | Properties |
+| ------------- | -------- |
+| etcd-certs/etcd-ca.crt | <ul><li>`properties.etcd.ca_cert`</li><li>`properties.loggregator.etcd.ca_cert`</li></ul> |
+| etcd-certs/server.crt | `properties.etcd.server_cert` |
+| etcd-certs/server.key | `properties.etcd.server_key` |
+| etcd-certs/client.crt | <ul><li>`properties.etcd.client_cert`</li><li>`properties.doppler.etcd.client_cert`</li><li>`properties.traffic_controller.etcd.client_cert`</li><li>`properties.syslog_drain_binder.etcd.client_cert`</li></uls> |
+| etcd-certs/client.key | <ul><li>`properties.etcd.client_key`</li><li>`properties.doppler.etcd.client_key`</li><li>`properties.traffic_controller.etcd.client_key`</li><li>`properties.syslog_drain_binder.etcd.client_key`</li></uls> |
+| etcd-certs/peer-ca.crt | `properties.etcd.peer_ca_cert` |
+| etcd-certs/peer.crt | `properties.etcd.peer_cert` |
+| etcd-certs/peer.key | `properties.etcd.peer_key` |
+
+#### Blobstore (if you're deploying your own)
+Generate the certs and keys:
+```
+./scripts/generate-blobstore-certs
+```
+
+The script generates a CA and a certificate for the WebDAV blobstore.
+
+| Script Output | Properties |
+| ------------- | ---------- |
+| blobstore-certs/server-ca.crt | `properties.blobstore.tls.ca_cert` |
+| blobstore-certs/server.crt | `properties.blobstore.tls.server_cert` |
+| blobstore-certs/server.key | `properties.blobstore.tls.server_key` |
+
+#### UAA
+Generate the certs and keys:
+```
+./scripts/generate-uaa-certs
+```
+
+The script generates a CA and sert for the UAA.
+
+| Script Output | Properties |
+| ------------- | ---------- |
+| uaa-certs/server-ca.crt | `properties.uaa.ca_cert` |
+| uaa-certs/server.crt | `properties.uaa.server_cert` |
+| uaa-certs/server.key | `properties.uaa.server_key` |
+
+### The interrelated components
+
+#### First, generate the `cf-diego-ca`
+Generate the certs and keys:
+```
+./scripts/generate-cf-diego-ca
+```
+
+The script generates mutual TLS certs for the Cloud Controller,
+as well as the `cf-diego-ca` that will be used to sign other certificates.
+
+| Script Output | Properties |
+| ------------- | -------- |
+| cf-diego-certs/cf-diego-ca.crt | <ul> <li>`properties.cc.mutual_tls.ca_cert`</li> <li>`properties.capi.tps.cc.ca_cert` in the Diego manifest</li></ul> |
+| cf-diego-certs/cloud_controller.crt | `properties.cc.mutual_tls.public_cert` |
+| cf-diego-certs/cloud_controller.crt | `properties.cc.mutual_tls.public_cert` |
+
+#### Next, generate the certificates for Diego
+Generate the certs and keys using the script in
+[diego-release](https://github.com/cloudfoundry/diego-release).
+These certs must be signed by `cf-diego-ca`:
+```
+../diego-release/scripts/generate-diego-certs ./cf-diego-certs
+```
+
+
+| Script Output | Properties |
+| ------------- | ---------- |
+| diego-certs/client.key | `properties.capi.tps.cc.client_key` |
+| diego-certs/client.crt | `properties.capi.tps.cc.client_cert` |
+
+#### Last, generate the certificates for Loggregator
+Generate the certificates and keys:
+```
+./scripts/generate-loggregator-certs cf-diego-certs/cf-diego-ca.crt cf-diego-certs/cf-diego-ca.key
+```
+
+This certificates creates certificates
+for traffic controller, doppler, metron, and syslog_drain_binder.
+The first three certificates are signed by a newly-generated loggregatorCA,
+and the syslog_drain_binder is signed by the `cf-diego-ca`.
+
+| Script Output | Properties |
+| ------------- | ---------- |
+| loggregator-certs/loggregator-ca.crt | `properties.loggregator.tls.ca_cert` |
+| loggregator-certs/doppler.crt | `properties.loggregator.tls.doppler.cert` |
+| loggregator-certs/doppler.key | `properties.loggregator.tls.doppler.key` |
+| loggregator-certs/metron.crt | `properties.loggregator.tls.metron.cert` |
+| loggregator-certs/metron.key | `properties.loggregator.tls.metron.key` |
+| loggregator-certs/trafficcontroller.crt | `properties.loggregator.tls.trafficcontroller.crt` |
+| loggregator-certs/trafficcontroller.key | `properties.loggregator.tls.trafficcontroller.key` |
+| loggregator-certs/syslogdrainbinder.crt | `properties.loggregator.tls.syslogdrainbinder.crt` |
+| loggregator-certs/syslogdrainbinder.key | `properties.loggregator.tls.syslogdrainbinder.key` |
