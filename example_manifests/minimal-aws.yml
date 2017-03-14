@@ -269,6 +269,7 @@ jobs:
   - {name: python-buildpack, release: cf}
   - {name: staticfile-buildpack, release: cf}
   - {name: dotnet-core-buildpack, release: cf}
+  - {name: statsd_injector, release: cf}
   networks:
   - name: cf_private
   properties:
@@ -356,6 +357,7 @@ jobs:
   - {name: uaa, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
+  - {name: statsd_injector, release: cf}
   networks:
   - name: cf_private
   properties:
@@ -1590,6 +1592,63 @@ properties:
           r9VbFYHuey9V3GOIfAg55tNPe8IkjufTjq6g8SgS9qMAes/EMh20c2APZCKj1J61
           0CsdG265PIrDYSvSjPccz+X5nxl9OAa6tA3hd84LNqkqlrdejKI9
           -----END RSA PRIVATE KEY-----
+      statsd_injector:
+        cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIELDCCAhSgAwIBAgIQN0+YTdjEDH7nA9zS9sx6HTANBgkqhkiG9w0BAQsFADAY
+          MRYwFAYDVQQDEw1sb2dncmVnYXRvckNBMB4XDTE3MDMxMzIzMzk0MVoXDTE5MDMx
+          MzIzMzk0MVowGTEXMBUGA1UEAxMOc3RhdHNkaW5qZWN0b3IwggEiMA0GCSqGSIb3
+          DQEBAQUAA4IBDwAwggEKAoIBAQD8HHKLNiveCALOjE6N5yi1rhqEu5V//RlG+0SI
+          nXeLBwcRROOfyjG5AMBcZbRXe6M7DIPKpt9fTYrZEUYDfgEHjPRYl2k020wzKWuW
+          AgfcZNYeCV9hEcN0elZpt93bC1Heg8G9A6sX/G5bOpIJLOX11Gc9XBKndNbMFiRK
+          N6vS2jkF9323DhP0bI5d5wVMke0iRVUNYnVb0dt8i6keORkgxc3lzSjAQM1U/orc
+          jJet/rRi1tHcWljy3dFK6IjBzNfdZBnxKMP1/BWTMgsvqqxDmqMfJInn3mu3AfSZ
+          Dnm4FelBfZ0qQIhvsaCxanvFUQFv1ReQHvVgKAgXu1ufjrF/AgMBAAGjcTBvMA4G
+          A1UdDwEB/wQEAwIDuDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwHQYD
+          VR0OBBYEFCJfEACFkAKLOnvyNSS26B3YqzMWMB8GA1UdIwQYMBaAFGoryZ7HHFH+
+          DRCa+Du6r/sWQDnxMA0GCSqGSIb3DQEBCwUAA4ICAQC/nlbdsvtoPde8AL0/RCDi
+          9gQlxJqjpo3/1li3h84igX3UuhRT0cKK6yYwDpmpm6qxACxIwkhtBwBhNQ4kiBqu
+          9oqteW26a0bdW33p3VDBZZ4yyuFimrtb8XVyrOdNTh28/yxx2Sw/3fv4a+S6/Poy
+          n8rowYMZa6xfcH1FxZbV9AYsvREki2ho45kJtZR1Feh6kcUOTUWFZDQmECjLt+M5
+          XH3pAUjh2jOR/6lBTKjZpUSNgHhzvvoYOBRGA3H874NU0veLkx0mZuKy3isTTFth
+          gaaz5qx4nuJzgzuPnVbtkchNPHCjUVhzYnCBSpL0HTItGkP2ibZSrULbDRKhHNAx
+          +Yg5RcBYUVZCVgGhu4BTdKE0yb1WwDhTDT/lrMTpqzt7YvORKC51aAmMcm8ltcfV
+          rNpruTYWAptxdHZ15WQaCKtUF7jB+LgJBKPAHjCVl5xIjZ1fWDfHtTpnS72Fv8YN
+          J2aMeUJnDXHO/k9Cbk7ZsRKaq5w5vXaYElQnt12IVuPt5/2dqurIvmn7KUBiU6bf
+          Fry7u/9rvIEDKZwtRFyXedNFsCMxqFJH3OE/mk9xyTfLd4a2ayPxNnnEiodxZI+E
+          Tze3tJ7RHIusNgvQt8mJudU1s4KjvmlL/ckhMpmxB8Z0HfiIw4iVmG/3mUXfbm8l
+          6CUSFbNOy8iyOTa3KHGtoA==
+          -----END CERTIFICATE-----
+        key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEowIBAAKCAQEA/BxyizYr3ggCzoxOjecota4ahLuVf/0ZRvtEiJ13iwcHEUTj
+          n8oxuQDAXGW0V3ujOwyDyqbfX02K2RFGA34BB4z0WJdpNNtMMylrlgIH3GTWHglf
+          YRHDdHpWabfd2wtR3oPBvQOrF/xuWzqSCSzl9dRnPVwSp3TWzBYkSjer0to5Bfd9
+          tw4T9GyOXecFTJHtIkVVDWJ1W9HbfIupHjkZIMXN5c0owEDNVP6K3IyXrf60YtbR
+          3FpY8t3RSuiIwczX3WQZ8SjD9fwVkzILL6qsQ5qjHySJ595rtwH0mQ55uBXpQX2d
+          KkCIb7GgsWp7xVEBb9UXkB71YCgIF7tbn46xfwIDAQABAoIBAHVgCTQnFGVa9XOU
+          fz4x0RJE7LO/YeskuxABC/dO2MkxjGjN2ewbButLHkPmVgAk3+ot+W3wIy8Luwk0
+          sZQOpgwN4/UbCTBCqUdokV5Vs7M4fzecxXs7+fPQwUqXAANrUcJ3NUv62T1hmT+A
+          FV2QOcAqE6bNpyGvlBGQfXTQVn7jjfowkGR/oS5cD8of+rqP3QpGDaFSeWpkrhF9
+          Kw4X4LrozZi0RcptRCrzA56gSGrOfndql5p1p6gdLH1WGueUIWF67EH+NzU2hYai
+          R8lvowW9MEwKuPYs2spjEvWuLYLCc1SWvtDItQ4v3y9b/uc6KFFPd5VUPUIdOw/H
+          Mc1lfAECgYEA/hSsK0oMpSsaeG5oFewC1Lk6am9/bJFIRbT/bIaov+lvUuucSJe+
+          Z4C6bNaEqal4t8yVz4Uw7ropSTorcZDgREqbQmndLfOaPsX8Qu/ts4rl6ljAXg23
+          1D3Tajy/YMuUjJVodP8E5s0ej4tNhpYsTJMu9akWwhGGq9vobxKtdWECgYEA/gP3
+          VO8WDvRNIl4/ZdMc7PcLhXhusMEoDd/it7thxrwF/3Y3EDpWgyjHSLLm+zbwxAV2
+          +5YCmeVvOU+tLkzayAPY+E86dcMsUg9TdogIT6pXGrHCgGrQqyVuuwRe6UKOEF0Q
+          S64OV750nbT8wRI0jQes53eDAqh8EIvQOdXYst8CgYANwVjAzzV4C6lXM8L2zNwq
+          YAzFjlu7qPHctDvPyEqCeUTJnG/NjkmEmPd+xO5RsRcT/ENwBKntgq6RhFCtyUYa
+          7F8TbV/ICRQkqdtKVGrt+WsRENT5QozdNKupaLiDqQHVypDpJJVDWX96DfSYgLDN
+          RHqaWhkdUI2V6EXhHYW+gQKBgQDWv6ekSJUPg36Kpb9XaIm11I4LAuwhxssEH9le
+          l65sA53Wgay/rXJiZGFGluksTSBzuGMFA6ejUBMeErxIvnTgUFBobSLxWFXp8kcP
+          mKXeJBaL3OihBKzxZC4fMezDq57LOsKCGN7LU5rnkZF18Nw4ttp4vdMmtiZdHral
+          jqMrZQKBgDVrV4N0WNGFB1IYEAbAcLS4vIR2gMXu+sjxUC91Q6RRI6bRv/BrLxq3
+          zteindrCmh5MprpR1oeC3jgUzCmAqeBDbjButvCUrEK30aV18YFwHO9bCOKVnFsI
+          +vrE+girauuzj5luNvTksH2fnvmjHbHgGvkK8c0ENLsD0B70D5FW
+          -----END RSA PRIVATE KEY-----
+  statsd_injector:
+    deployment: cf
   loggregator_endpoint:
     shared_secret: REPLACE_WITH_PASSWORD
   metron_agent:

@@ -174,7 +174,7 @@ These certs must be signed by `cf-diego-ca`:
 | diego-certs/client.key | `properties.capi.tps.cc.client_key` |
 | diego-certs/client.crt | `properties.capi.tps.cc.client_cert` |
 
-#### Last, generate the certificates for Loggregator
+#### Generate the certificates for Loggregator
 Generate the certificates and keys:
 ```
 ./scripts/generate-loggregator-certs cf-diego-certs/cf-diego-ca.crt cf-diego-certs/cf-diego-ca.key
@@ -196,3 +196,15 @@ and the syslog_drain_binder is signed by the `cf-diego-ca`.
 | loggregator-certs/trafficcontroller.key | `properties.loggregator.tls.trafficcontroller.key` |
 | loggregator-certs/syslogdrainbinder.crt | `properties.loggregator.tls.syslogdrainbinder.crt` |
 | loggregator-certs/syslogdrainbinder.key | `properties.loggregator.tls.syslogdrainbinder.key` |
+
+#### Last, generate the certs for statsd-injector
+Generate the certificates and keys.
+These certs must be signed by the loggregator CA:
+```
+./scripts/generate-statsd-injector-certs loggregator-certs/loggregator-ca.crt loggregator-certs/loggregator-ca.key
+```
+
+| Script Output | Properties |
+| ------------- | ---------- |
+| statsd-injector-certs/doppler.crt | `properties.loggregator.tls.statsd_injector.cert` |
+| statsd-injector-certs/doppler.key | `properties.loggregator.tls.statsd_injector.key` |
