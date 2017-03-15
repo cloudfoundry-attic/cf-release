@@ -127,10 +127,6 @@ java-buildpack/java-buildpack-v3.13.zip:
   object_id: 321643ef-ea7a-4a4b-a059-b93292635995
   sha: 3da0fa3cd046b4889e983edc44562d4a2e16f80c
   size: 177750
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.11.zip:
-  object_id: 17f07a77-1554-49c6-91bf-e6afb415258d
-  sha: 509a0b0fd89c84cce6ce0bbd71a3a727276ec4e2
-  size: 458608610
 go-buildpack/go_buildpack-cached-v1.7.18.zip:
   object_id: c007aa34-87bc-4b87-98f4-8170f25ea011
   sha: 802ac3c562e13e1b785489a301edc1d1c01009bd
@@ -175,3 +171,7 @@ java-buildpack/java-buildpack-offline-v3.14.zip:
   object_id: a644d166-f9c3-4d9d-93f9-66002a5cc0a5
   sha: 4a6194237d4d541d0eabad1961ebc8569f396512
   size: 261461620
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.12.zip:
+  object_id: 4ac701a4-92d2-4cf9-8eb6-ca5b7b192f3d
+  sha: 168da17076f6077ec0572750d31f2046d86a7e33
+  size: 458663511
