@@ -127,10 +127,6 @@ java-buildpack/java-buildpack-v3.13.zip:
   object_id: 321643ef-ea7a-4a4b-a059-b93292635995
   sha: 3da0fa3cd046b4889e983edc44562d4a2e16f80c
   size: 177750
-java-buildpack/java-buildpack-offline-v3.13.zip:
-  object_id: 76ea4870-a947-419b-bc47-4fa27df83796
-  sha: e96543f6192f4f4ffd7f6a6be4acccb0440a221c
-  size: 256387741
 dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.11.zip:
   object_id: 17f07a77-1554-49c6-91bf-e6afb415258d
   sha: 509a0b0fd89c84cce6ce0bbd71a3a727276ec4e2
@@ -175,3 +171,7 @@ rootfs/cflinuxfs2-1.107.0.tar.gz:
   object_id: 35e0b69a-a408-42e1-a3c0-0a354990b350
   sha: c2f25ba9cd0d58365e98bfd3cdd83a88edb89b89
   size: 286872525
+java-buildpack/java-buildpack-offline-v3.14.zip:
+  object_id: a644d166-f9c3-4d9d-93f9-66002a5cc0a5
+  sha: 4a6194237d4d541d0eabad1961ebc8569f396512
+  size: 261461620
