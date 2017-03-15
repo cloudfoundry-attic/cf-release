@@ -127,10 +127,6 @@ java-buildpack/java-buildpack-v3.13.zip:
   object_id: 321643ef-ea7a-4a4b-a059-b93292635995
   sha: 3da0fa3cd046b4889e983edc44562d4a2e16f80c
   size: 177750
-ruby-buildpack/ruby_buildpack-cached-v1.6.34.zip:
-  object_id: 1bbe038c-427f-4a9c-873f-2c2b444f5ac5
-  sha: 4632ad762fefba9cd4b56b1c994ed97cc0991577
-  size: 293816963
 nodejs-buildpack/nodejs_buildpack-cached-v1.5.29.zip:
   object_id: d63d3197-e9b3-4659-ab5d-5f1683bf9ebd
   sha: e1ef8b75816686ee58291c7bed4db14ff062fae1
@@ -175,3 +171,7 @@ go-buildpack/go_buildpack-cached-v1.7.19.zip:
   object_id: 4867437f-fa56-468c-962d-715f329e128a
   sha: 2c3de94d4f6cdda41536b3b83907fded858e95d4
   size: 357236311
+ruby-buildpack/ruby_buildpack-cached-v1.6.35.zip:
+  object_id: b712668c-ab4b-44ac-ad17-a0dca354cb99
+  sha: cfe93add79e6dde4271648c9c4696a1adbe74595
+  size: 293826099
