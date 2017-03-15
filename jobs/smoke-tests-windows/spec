@@ -1,0 +1,64 @@
+---
+name: smoke-tests-windows
+
+description: "The smoke tests errand can be configured to run quick set of tests against a specific Cloud Foundry API endpoint to determine is basic push-application functionality works. Consider running the acceptance tests errand for a more extensive set of tests."
+
+packages:
+  - golang1.7-windows
+  - cli-windows
+  - smoke-tests-windows
+
+templates:
+  run.ps1.erb: bin/run.ps1
+  config.json.erb: bin/config.json
+
+properties:
+  smoke_tests.suite_name:
+    default: CF_SMOKE_TESTS
+    description: A token used by the tests when creating Apps / Spaces
+  smoke_tests.api:
+    description: The Elastic Runtime API endpoint URL
+  smoke_tests.apps_domain:
+    description: The Elastic Runtime Application Domain
+  smoke_tests.user:
+    description: The Elastic Runtime API user
+  smoke_tests.password:
+    description: The Elastic Runtime API user's password
+  smoke_tests.org:
+    description: The Elastic Runtime organization name to use when running tests
+  smoke_tests.space:
+    description: The Elastic Runtime space name to use when running tests
+  smoke_tests.use_existing_org:
+    default: false
+    description: Toggles setup and cleanup of the Elastic Runtime organization
+  smoke_tests.use_existing_space:
+    default: false
+    description: Toggles setup and cleanup of the Elastic Runtime space
+  smoke_tests.logging_app:
+    default: ''
+    description: The Elastic Runtime app name to use when running logging tests
+  smoke_tests.runtime_app:
+    default: ''
+    description: The Elastic Runtime app name to use when running runtime tests
+  smoke_tests.skip_ssl_validation:
+    default: false
+    description: Toggles cli verification of the Elastic Runtime API SSL certificate
+  smoke_tests.ginkgo_opts:
+    default: ''
+    description: Ginkgo options for the smoke tests
+  smoke_tests.enable_windows_tests:
+    default: false
+    description: Toggles a portion of the suite that exercises Windows platform support
+  smoke_tests.artifacts_directory:
+    description: The directory in which to store test CF_TRACE output.
+  smoke_tests.backend:
+    default: ''
+    description: Defines the backend to be used. ('dea', 'diego', '' (default))
+  smoke_tests.cf_dial_timeout_in_seconds:
+    description: Sets the cli timeout (CF_DIAL_TIMEOUT)
+  smoke_tests.enable_etcd_cluster_check_tests:
+    default: false
+    description: Sets to validate the security of your etcd cluster; Must provide 'etcd_ip_address' along
+  smoke_tests.etcd_ip_address:
+    default: ''
+    description: Etcd ip address to use when running etcd cluster check tests
