@@ -107,10 +107,6 @@ nginx/headers-more-nginx-module-0.32.tar.gz:
   object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
   sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
   size: 28033
-etcd/etcd-v2.2.0-linux-amd64.tar.gz:
-  object_id: 36f83fc5-c59d-420d-acd7-0863fc576221
-  sha: 16c670c159c4477620d17296fc0d15f5fb3cab8d
-  size: 7355454
 cli/cf-cli_6.23.1_linux_x86-64.tgz:
   object_id: a1190ebb-d715-4471-80e1-0c4fec566c49
   sha: a195e99cae5ab17b453b0a0747508c8f3eee5cae
@@ -127,10 +123,6 @@ nginx/pcre-8.40.tar.gz:
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
   size: 2065161
-nginx/nginx-1.11.9.tar.gz:
-  object_id: 936dac4a-7f96-43ab-8664-52db265fe3b3
-  sha: d8f225e7bb9503ee9084c25f6056a3493dfd4db8
-  size: 965463
 java-buildpack/java-buildpack-v3.13.zip:
   object_id: 321643ef-ea7a-4a4b-a059-b93292635995
   sha: 3da0fa3cd046b4889e983edc44562d4a2e16f80c
@@ -155,10 +147,6 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.29.zip:
   object_id: d63d3197-e9b3-4659-ab5d-5f1683bf9ebd
   sha: e1ef8b75816686ee58291c7bed4db14ff062fae1
   size: 81816455
-php-buildpack/php_buildpack-cached-v4.3.26.zip:
-  object_id: a3037c8c-ee75-4be2-aa19-e97942c2860c
-  sha: 73671b55d96e772830cbfff659b923405f0aab80
-  size: 439371553
 python-buildpack/python_buildpack-cached-v1.5.15.zip:
   object_id: 28349431-495d-4959-8ace-b8c74eb9cb13
   sha: 0f5a5248c7fe726d4741cceb85ed078f37f00f07
@@ -171,7 +159,19 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.3.17.zip:
   object_id: ff1b645d-a8b3-4226-a252-ba749e20c1a2
   sha: e69dbec80cf8ff3fedfd21f39c8c9adc78c9ea0a
   size: 2732127
-rootfs/cflinuxfs2-1.101.0.tar.gz:
-  object_id: f25a9fd6-96e1-43f5-99b8-3abb38b024ba
-  sha: 0cecd6c2d92b7d3a512dc165fb6925e80c960320
-  size: 286814529
+etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
+  object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
+  sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
+  size: 6517667
+php-buildpack/php_buildpack-cached-v4.3.27.zip:
+  object_id: f03a74d1-1492-497d-a7b9-5612432d3dc0
+  sha: 18b6bb1f719d62287968ea690dd169962306e948
+  size: 439371517
+nginx/nginx-1.11.10.tar.gz:
+  object_id: 8f4dc117-a382-4f23-bedf-c56baec6d350
+  sha: d9c4e3361c0802eaa90aa924b8981c5d3ed771dc
+  size: 967773
+rootfs/cflinuxfs2-1.107.0.tar.gz:
+  object_id: 35e0b69a-a408-42e1-a3c0-0a354990b350
+  sha: c2f25ba9cd0d58365e98bfd3cdd83a88edb89b89
+  size: 286872525

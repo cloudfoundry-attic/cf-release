@@ -774,7 +774,9 @@ properties:
       temporary_local_staging: (( merge || nil ))
       temporary_local_tasks: (( merge || nil ))
       temporary_local_apps: (( merge || nil ))
+      temporary_local_sync: (( merge || nil ))
       temporary_local_tps: (( merge || nil ))
+      temporary_cc_uploader_mtls: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
     tls_port: (( merge || nil ))
@@ -1108,6 +1110,7 @@ properties:
         override: true
         authorities: uaa.resource
         secret: (( merge ))
+        authorized-grant-types: client_credentials
       cloud_controller_username_lookup:
         authorities: scim.userids
         secret: (( merge ))
@@ -1313,6 +1316,7 @@ meta:
   loggregator_release_name: (( releases.loggregator.name || "cf" ))
   statsd_injector_release_name: (( releases.statsd-injector.name || "cf" ))
   uaa_release_name: (( releases.uaa.name || "cf" ))
+  routing_release_name: (( releases.routing.name || "cf" ))
 
   consul_servers: (( merge || jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
 
@@ -1369,7 +1373,7 @@ meta:
   - name: statsd_injector
     release: (( meta.statsd_injector_release_name ))
   - name: route_registrar
-    release: (( meta.cf_release_name ))
+    release: (( meta.routing_release_name ))
     consumes: {nats: nil}
 
   api_worker_templates:
@@ -1448,7 +1452,7 @@ meta:
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
-    release: (( meta.cf_release_name ))
+    release: (( meta.routing_release_name ))
     consumes: {nats: nil}
 
   loggregator_templates:
@@ -1478,7 +1482,7 @@ meta:
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
-    release: (( meta.cf_release_name ))
+    release: (( meta.routing_release_name ))
     consumes: {nats: nil}
 
   nats_templates:
@@ -1511,7 +1515,7 @@ meta:
   - name: blobstore
     release: (( meta.capi_release_name ))
   - name: route_registrar
-    release: (( meta.cf_release_name ))
+    release: (( meta.routing_release_name ))
     consumes: {nats: nil}
 
   nfs_templates:
@@ -1525,7 +1529,7 @@ meta:
   - name: blobstore
     release: (( meta.capi_release_name ))
   - name: route_registrar
-    release: (( meta.cf_release_name ))
+    release: (( meta.routing_release_name ))
     consumes: {nats: nil}
 
   postgres_templates:
@@ -1542,7 +1546,7 @@ meta:
     release: (( meta.consul_release_name ))
     consumes: {consul: nil}
   - name: gorouter
-    release: (( meta.cf_release_name ))
+    release: (( meta.routing_release_name ))
     consumes: {nats: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
@@ -1580,7 +1584,7 @@ meta:
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
-    release: (( meta.cf_release_name ))
+    release: (( meta.routing_release_name ))
     consumes: {nats: nil}
   - name: statsd_injector
     release: (( meta.statsd_injector_release_name ))

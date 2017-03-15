@@ -1153,7 +1153,9 @@ properties:
       temporary_local_apps: null
       temporary_local_staging: null
       temporary_local_tasks: null
+      temporary_local_sync: null
       temporary_local_tps: null
+      temporary_cc_uploader_mtls: null
       use_privileged_containers_for_staging: null
     directories: null
     disable_custom_buildpacks: false
@@ -1649,6 +1651,10 @@ properties:
     cc:
       client_secret: CC_CLIENT_SECRET
     clients:
+      cc_routing:
+        authorities: routing.router_groups.read
+        secret: CC_ROUTING_SECRET
+        authorized-grant-types: client_credentials
       cc-service-dashboards:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: authorization_code,client_credentials
@@ -1673,6 +1679,7 @@ properties:
         authorities: uaa.resource
         override: true
         secret: DOPPLER_SECRET
+        authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token

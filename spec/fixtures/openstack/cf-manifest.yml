@@ -1165,7 +1165,9 @@ properties:
       temporary_local_apps: null
       temporary_local_staging: null
       temporary_local_tasks: null
+      temporary_local_sync: null
       temporary_local_tps: null
+      temporary_cc_uploader_mtls: null
       use_privileged_containers_for_staging: null
     directories: null
     disable_custom_buildpacks: false
@@ -1680,6 +1682,7 @@ properties:
         authorities: uaa.resource
         override: true
         secret: DOPPLER_SECRET
+        authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
