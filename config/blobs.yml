@@ -123,10 +123,6 @@ nginx/pcre-8.40.tar.gz:
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
   size: 2065161
-java-buildpack/java-buildpack-v3.13.zip:
-  object_id: 321643ef-ea7a-4a4b-a059-b93292635995
-  sha: 3da0fa3cd046b4889e983edc44562d4a2e16f80c
-  size: 177750
 nodejs-buildpack/nodejs_buildpack-cached-v1.5.29.zip:
   object_id: d63d3197-e9b3-4659-ab5d-5f1683bf9ebd
   sha: e1ef8b75816686ee58291c7bed4db14ff062fae1
@@ -175,3 +171,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.35.zip:
   object_id: b712668c-ab4b-44ac-ad17-a0dca354cb99
   sha: cfe93add79e6dde4271648c9c4696a1adbe74595
   size: 293826099
+java-buildpack/java-buildpack-v3.14.zip:
+  object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
+  sha: fb642100976fbff97e6faa2deeafdea47fb510e4
+  size: 181236
