@@ -148,7 +148,7 @@ The script generates a CA and sert for the UAA.
 #### First, generate the `cf-diego-ca`
 Generate the certs and keys:
 ```
-./scripts/generate-cf-diego-ca
+./scripts/generate-cf-diego-certs
 ```
 
 The script generates mutual TLS certs for the Cloud Controller,
@@ -192,9 +192,9 @@ and the syslog_drain_binder is signed by the `cf-diego-ca`.
 | loggregator-certs/doppler.key | `properties.loggregator.tls.doppler.key` |
 | loggregator-certs/metron.crt | `properties.loggregator.tls.metron.cert` |
 | loggregator-certs/metron.key | `properties.loggregator.tls.metron.key` |
-| loggregator-certs/trafficcontroller.crt | `properties.loggregator.tls.trafficcontroller.crt` |
+| loggregator-certs/trafficcontroller.crt | `properties.loggregator.tls.trafficcontroller.cert` |
 | loggregator-certs/trafficcontroller.key | `properties.loggregator.tls.trafficcontroller.key` |
-| loggregator-certs/syslogdrainbinder.crt | `properties.loggregator.tls.syslogdrainbinder.crt` |
+| loggregator-certs/syslogdrainbinder.crt | `properties.loggregator.tls.syslogdrainbinder.cert` |
 | loggregator-certs/syslogdrainbinder.key | `properties.loggregator.tls.syslogdrainbinder.key` |
 
 #### Last, generate the certs for statsd-injector
