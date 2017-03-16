@@ -135,10 +135,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.9.zip:
   object_id: 22f7a05c-609b-4331-8b07-00baf0096995
   sha: e3ef6ad9d62b6c48e9682153815eced16298238e
   size: 50284
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.17.zip:
-  object_id: ff1b645d-a8b3-4226-a252-ba749e20c1a2
-  sha: e69dbec80cf8ff3fedfd21f39c8c9adc78c9ea0a
-  size: 2732127
 etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
   object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
   sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
@@ -175,3 +171,7 @@ java-buildpack/java-buildpack-v3.14.zip:
   object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
   sha: fb642100976fbff97e6faa2deeafdea47fb510e4
   size: 181236
+staticfile-buildpack/staticfile_buildpack-cached-v1.3.18.zip:
+  object_id: 9bffe476-1cee-4b0f-99f2-3d55e6f3d60a
+  sha: 6bcc874f710f823fbf486b5a2626f6287374ce96
+  size: 2738644
