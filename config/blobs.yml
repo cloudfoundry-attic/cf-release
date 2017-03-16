@@ -131,10 +131,6 @@ etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
   object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
   sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
   size: 6517667
-php-buildpack/php_buildpack-cached-v4.3.27.zip:
-  object_id: f03a74d1-1492-497d-a7b9-5612432d3dc0
-  sha: 18b6bb1f719d62287968ea690dd169962306e948
-  size: 439371517
 nginx/nginx-1.11.10.tar.gz:
   object_id: 8f4dc117-a382-4f23-bedf-c56baec6d350
   sha: d9c4e3361c0802eaa90aa924b8981c5d3ed771dc
@@ -175,3 +171,7 @@ nodejs-buildpack/nodejs_buildpack-cached-v1.5.30.zip:
   object_id: 498c5e0c-5481-420b-8ea8-ad7a3de01873
   sha: 1f06b3cdced535e48120304d6101afff587c2f5a
   size: 81757152
+php-buildpack/php_buildpack-cached-v4.3.28.zip:
+  object_id: 99528538-8768-49bb-9bd3-23d05cd43a97
+  sha: ac8469d475c8c7b25dcb9850918ce3325a6a4e33
+  size: 348827275
