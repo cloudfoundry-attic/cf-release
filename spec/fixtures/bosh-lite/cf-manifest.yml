@@ -4439,6 +4439,7 @@ properties:
         authorized-grant-types: client_credentials
         secret: cc-routing-secret
       cf:
+        secret: ''
         access-token-validity: 600
         authorities: uaa.none
         authorized-grant-types: password,refresh_token
@@ -4456,7 +4457,7 @@ properties:
         authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: gorouter-secret
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
@@ -4479,11 +4480,11 @@ properties:
         secret: ssh-proxy-secret
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: tcp-emitter-secret
       tcp_router:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: tcp-router-secret
     database: null
     issuer: https://uaa.bosh-lite.com

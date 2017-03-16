@@ -1701,6 +1701,7 @@ properties:
         authorized-grant-types: client_credentials
         secret: CC_ROUTING_SECRET
       cf:
+        secret: ''
         access-token-validity: 600
         authorities: uaa.none
         authorized-grant-types: password,refresh_token
@@ -1718,7 +1719,7 @@ properties:
         authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: GOROUTER_SECRET
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
@@ -1734,11 +1735,11 @@ properties:
         secret: NOTIFICATION_SECRET
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: TCP-EMITTER-SECRET
       tcp_router:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: TCP-ROUTER-SECRET
     database: null
     issuer: https://uaa.SYSTEM_DOMAIN

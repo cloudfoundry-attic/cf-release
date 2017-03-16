@@ -1124,6 +1124,7 @@ properties:
         authorities: uaa.none
         access-token-validity: 600 # 10 mins
         refresh-token-validity: 604800 # 7 days
+        secret: ''
       notifications:
         secret: (( merge ))
         authorities: cloud_controller.admin,scim.read
@@ -1143,15 +1144,15 @@ properties:
         authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: (( merge ))
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: (( merge ))
       tcp_router:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: (( merge ))
       cc-service-dashboards:
         secret: (( merge ))
