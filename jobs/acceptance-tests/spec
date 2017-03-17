@@ -107,4 +107,12 @@ properties:
   acceptance_tests.persistent_app_quota_name:
     description: "The default name for the persistent app quota name."
   acceptance_tests.cf_dial_timeout_in_seconds:
-    description: Sets the cli timeout (CF_DIAL_TIMEOUT)
+    description: "Sets the cli timeout (CF_DIAL_TIMEOUT)."
+  acceptance_tests.detect_timeout:
+    description: "Timeout for buildpack detection."
+  acceptance_tests.timeout_scale:
+    description: "Used primarily to scale default timeouts for test setup and teardown actions (e.g. creating an org) as opposed to main test actions (e.g. pushing an app)."
+  acceptance_tests.sleep_timeout:
+    description: "Configures SleepTimeout variable used by some tests that wait for some actions to happen."
+  acceptance_tests.test_password:
+    description: "Password to use for temporary user created during tests."
