@@ -585,6 +585,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - consumes:
       nats: nil
     name: cloud_controller_clock
