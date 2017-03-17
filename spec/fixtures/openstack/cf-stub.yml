@@ -242,7 +242,7 @@ jobs:
 
   - name: api_worker_z1
     instances: 0
-  - name: clock_global
-    instances: 0
+  - name: clock_z1
+    instances: 1
 # code_snippet cf-stub-openstack end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.
