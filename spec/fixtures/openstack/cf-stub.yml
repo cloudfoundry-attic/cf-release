@@ -110,6 +110,7 @@ properties:
   login:
     protocol: http
     saml:
+      serviceProviderCertificate: SERVICE_PROVIDER_CERTIFICATE
       serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
   nats:
     user: NATS_USER

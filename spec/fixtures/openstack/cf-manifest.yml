@@ -1573,6 +1573,7 @@ properties:
     protocol: http
     restricted_ips_regex: null
     saml:
+      serviceProviderCertificate: SERVICE_PROVIDER_CERTIFICATE
       serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
     self_service_links_enabled: null
     smtp:
