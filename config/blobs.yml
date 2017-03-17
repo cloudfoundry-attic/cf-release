@@ -123,10 +123,6 @@ nginx/pcre-8.40.tar.gz:
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
   size: 2065161
-binary-buildpack/binary_buildpack-cached-v1.0.9.zip:
-  object_id: 22f7a05c-609b-4331-8b07-00baf0096995
-  sha: e3ef6ad9d62b6c48e9682153815eced16298238e
-  size: 50284
 etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
   object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
   sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
@@ -175,3 +171,7 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.13.zip:
   object_id: 775bc17a-edd9-4c57-a572-a884b6813cd5
   sha: ab2f34b2d16b1f0a94f8059484d703c00a43bbe7
   size: 590029657
+binary-buildpack/binary_buildpack-cached-v1.0.10.zip:
+  object_id: ce5ea83f-6747-4eaf-b71e-f36a14ebe1b8
+  sha: a5317fe0a7b0917981e766553a66fcd33ba75a47
+  size: 50843
