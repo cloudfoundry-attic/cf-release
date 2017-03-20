@@ -1,4 +1,4 @@
-Rootfs SHASUM: 91142c76b6c1ec3d8f752f84a5301033936d6f6f
+Rootfs SHASUM: 5328f390f79a767608330ab36d000929f585e3c2
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -195,8 +195,8 @@ ii  libfl-dev:amd64                    2.5.35-10.1ubuntu2                  amd64
 ii  libflac8:amd64                     1.3.0-2ubuntu0.14.04.1              amd64        Free Lossless Audio Codec - runtime C library
 ii  libfontconfig1:amd64               2.11.0-0ubuntu4.2                   amd64        generic font configuration library - runtime
 ii  libfontconfig1-dev                 2.11.0-0ubuntu4.2                   amd64        generic font configuration library - development
-ii  libfreetype6:amd64                 2.5.2-1ubuntu2.5                    amd64        FreeType 2 font engine, shared library files
-ii  libfreetype6-dev                   2.5.2-1ubuntu2.5                    amd64        FreeType 2 font engine, development files
+ii  libfreetype6:amd64                 2.5.2-1ubuntu2.6                    amd64        FreeType 2 font engine, shared library files
+ii  libfreetype6-dev                   2.5.2-1ubuntu2.6                    amd64        FreeType 2 font engine, development files
 ii  libfribidi0:amd64                  0.19.6-1                            amd64        Free Implementation of the Unicode BiDi algorithm
 ii  libfuse-dev                        2.9.2-4ubuntu4.14.04.1              amd64        Filesystem in Userspace (development)
 ii  libfuse2:amd64                     2.9.2-4ubuntu4.14.04.1              amd64        Filesystem in Userspace (library)
@@ -221,10 +221,10 @@ ii  libglib2.0-dev                     2.40.2-0ubuntu1                     amd64
 ii  libgmp-dev:amd64                   2:5.1.3+dfsg-1ubuntu1               amd64        Multiprecision arithmetic library developers tools
 ii  libgmp10:amd64                     2:5.1.3+dfsg-1ubuntu1               amd64        Multiprecision arithmetic library
 ii  libgmpxx4ldbl:amd64                2:5.1.3+dfsg-1ubuntu1               amd64        Multiprecision arithmetic library (C++ bindings)
-ii  libgnutls-dev                      2.12.23-12ubuntu2.6                 amd64        GNU TLS library - development files
-ii  libgnutls-openssl27:amd64          2.12.23-12ubuntu2.6                 amd64        GNU TLS library - OpenSSL wrapper
-ii  libgnutls26:amd64                  2.12.23-12ubuntu2.6                 amd64        GNU TLS library - runtime library
-ii  libgnutlsxx27:amd64                2.12.23-12ubuntu2.6                 amd64        GNU TLS library - C++ runtime library
+ii  libgnutls-dev                      2.12.23-12ubuntu2.7                 amd64        GNU TLS library - development files
+ii  libgnutls-openssl27:amd64          2.12.23-12ubuntu2.7                 amd64        GNU TLS library - OpenSSL wrapper
+ii  libgnutls26:amd64                  2.12.23-12ubuntu2.7                 amd64        GNU TLS library - runtime library
+ii  libgnutlsxx27:amd64                2.12.23-12ubuntu2.7                 amd64        GNU TLS library - C++ runtime library
 ii  libgomp1:amd64                     4.8.4-2ubuntu1~14.04.3              amd64        GCC OpenMP (GOMP) support library
 ii  libgpg-error-dev                   1.12-0.2ubuntu1                     amd64        library for common error values and messages in GnuPG components (development)
 ii  libgpg-error0:amd64                1.12-0.2ubuntu1                     amd64        library for common error values and messages in GnuPG components
