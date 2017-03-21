@@ -126,8 +126,8 @@ The script generates a CA and a certificate for the WebDAV blobstore.
 | Script Output | Properties |
 | ------------- | ---------- |
 | blobstore-certs/server-ca.crt | `properties.blobstore.tls.ca_cert` |
-| blobstore-certs/server.crt | `properties.blobstore.tls.server_cert` |
-| blobstore-certs/server.key | `properties.blobstore.tls.server_key` |
+| blobstore-certs/server.crt | `properties.blobstore.tls.cert` |
+| blobstore-certs/server.key | `properties.blobstore.tls.private_key` |
 
 #### UAA
 Generate the certs and keys:
