@@ -523,8 +523,8 @@ jobs:
   update: {}
 - default_networks:
   - name: cf1
-  instances: 0
-  name: clock_global
+  instances: 1
+  name: clock_z1
   networks:
   - name: cf1
   persistent_disk: 0
@@ -567,6 +567,28 @@ jobs:
   - consumes:
       nats: nil
     name: cloud_controller_worker
+    release: cf
+  - name: metron_agent
+    release: cf
+  update: {}
+- default_networks:
+  - name: cf2
+  instances: 1
+  name: clock_z2
+  networks:
+  - name: cf2
+  persistent_disk: 0
+  properties:
+    metron_agent:
+      zone: z2
+  resource_pool: medium_z2
+  templates:
+  - name: consul_agent
+    release: cf
+    consumes: {consul: nil}
+  - consumes:
+      nats: nil
+    name: cloud_controller_clock
     release: cf
   - name: metron_agent
     release: cf
@@ -1167,6 +1189,7 @@ properties:
       temporary_local_tasks: null
       temporary_local_sync: null
       temporary_local_tps: null
+      temporary_cc_uploader_mtls: null
       use_privileged_containers_for_staging: null
     directories: null
     disable_custom_buildpacks: false
@@ -1550,6 +1573,7 @@ properties:
     protocol: http
     restricted_ips_regex: null
     saml:
+      serviceProviderCertificate: SERVICE_PROVIDER_CERTIFICATE
       serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
     self_service_links_enabled: null
     smtp:

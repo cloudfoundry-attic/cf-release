@@ -17,6 +17,8 @@ blobstore-certs/
 bosh-lite/deployments/*
 bosh-lite/tmp/*
 cf-diego-certs/
+loggregator-certs/
+statsd-injector-certs/
 config/dev.yml
 config/private.yml
 consul-certs/
