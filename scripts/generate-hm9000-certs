@@ -2,6 +2,8 @@
 
 set -e -x
 
+scripts_folder=$(dirname $0)
+
 # Install certstrap
 go get -v github.com/square/certstrap
 
@@ -10,19 +12,12 @@ depot_path="hm9000-certs"
 mkdir -p ${depot_path}
 
 # CA to distribute to DEA clients and servers
-certstrap --depot-path ${depot_path} init --passphrase '' --common-name hm9000CA
-mv -f ${depot_path}/hm9000CA.crt ${depot_path}/hm9000_ca.crt
-mv -f ${depot_path}/hm9000CA.key ${depot_path}/hm9000_ca.key
+${scripts_folder}/generate_ca_cert --common-name "hm9000CA" --depot-path ${depot_path} --output-file hm9000_ca
 
 # Server certificate to share across the bbs cluster
 server_cn=listener-hm9000.service.cf.internal
 server_domain='*.listener-hm9000.service.cf.internal'
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $server_cn --domain $server_domain,$server_cn
-certstrap --depot-path ${depot_path} sign $server_cn --CA hm9000_ca
-mv -f ${depot_path}/$server_cn.key ${depot_path}/hm9000_server.key
-mv -f ${depot_path}/$server_cn.csr ${depot_path}/hm9000_server.csr
-mv -f ${depot_path}/$server_cn.crt ${depot_path}/hm9000_server.crt
+${scripts_folder}/generate_end_entity_certs --common-name ${server_cn} --domain "${server_domain},${server_cn}" --ca-name hm9000_ca --depot-path ${depot_path} --output-file hm9000_server
 
 # Client certificate to distribute to jobs that access DEAs
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name 'hm9000_client' 
-certstrap --depot-path ${depot_path} sign hm9000_client --CA hm9000_ca
+${scripts_folder}/generate_end_entity_certs --common-name hm9000_client --ca-name hm9000_ca --depot-path ${depot_path} --output-file hm9000_client

@@ -1,6 +1,19 @@
 #!/bin/bash
+set -e -x
 
-scripts_dir="`dirname "$0"`"
-pushd $scripts_dir
-  ./generate-certs ../blobstore-certs blobstore.service.cf.internal
-popd
+# Install certstrap
+go get -v github.com/square/certstrap
+
+scripts_folder=$(dirname $0)
+
+# Place keys and certificates here
+depot_path="blobstore-certs"
+mkdir -p ${depot_path}
+
+# CA to generate server cert
+${scripts_folder}/generate_ca_cert --common-name "cert-authority" --depot-path ${depot_path} --output-file server-ca
+
+# Certificate to use for the server
+server_cn="blobstore.service.cf.internal"
+${scripts_folder}/generate_end_entity_certs --common-name ${server_cn} --ca-name server-ca --depot-path ${depot_path} --output-file server
+
