@@ -171,8 +171,8 @@ These certs must be signed by `cf-diego-ca`:
 
 | Script Output | Properties |
 | ------------- | ---------- |
-| diego-certs/client.key | `properties.capi.tps.cc.client_key` |
-| diego-certs/client.crt | `properties.capi.tps.cc.client_cert` |
+| diego-certs/tps-certs/client.key | `properties.capi.tps.cc.client_key` |
+| diego-certs/tps-certs/client.crt | `properties.capi.tps.cc.client_cert` |
 
 #### Generate the certificates for Loggregator
 Generate the certificates and keys:
