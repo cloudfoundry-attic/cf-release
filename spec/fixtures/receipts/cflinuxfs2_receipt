@@ -1,4 +1,4 @@
-Rootfs SHASUM: 5328f390f79a767608330ab36d000929f585e3c2
+Rootfs SHASUM: 997639d1b8d8e5484b12b8b2a9b3e46558130a3e
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -139,10 +139,10 @@ ii  libboost-iostreams1.54.0:amd64     1.54.0-4ubuntu3.1                   amd64
 ii  libbsd0:amd64                      0.6.0-2ubuntu1                      amd64        utility functions from BSD systems - shared library
 ii  libbz2-1.0:amd64                   1.0.6-5                             amd64        high-quality block-sorting file compressor library - runtime
 ii  libbz2-dev:amd64                   1.0.6-5                             amd64        high-quality block-sorting file compressor library - development
-ii  libc-bin                           2.19-0ubuntu6.9                     amd64        Embedded GNU C Library: Binaries
-ii  libc-dev-bin                       2.19-0ubuntu6.9                     amd64        Embedded GNU C Library: Development binaries
-ii  libc6:amd64                        2.19-0ubuntu6.9                     amd64        Embedded GNU C Library: Shared libraries
-ii  libc6-dev:amd64                    2.19-0ubuntu6.9                     amd64        Embedded GNU C Library: Development Libraries and Header Files
+ii  libc-bin                           2.19-0ubuntu6.10                    amd64        Embedded GNU C Library: Binaries
+ii  libc-dev-bin                       2.19-0ubuntu6.10                    amd64        Embedded GNU C Library: Development binaries
+ii  libc6:amd64                        2.19-0ubuntu6.10                    amd64        Embedded GNU C Library: Shared libraries
+ii  libc6-dev:amd64                    2.19-0ubuntu6.10                    amd64        Embedded GNU C Library: Development Libraries and Header Files
 ii  libcairo-gobject2:amd64            1.13.0~20140204-0ubuntu1.1          amd64        The Cairo 2D vector graphics library (GObject library)
 ii  libcairo-script-interpreter2:amd64 1.13.0~20140204-0ubuntu1.1          amd64        The Cairo 2D vector graphics library (script interpreter)
 ii  libcairo2:amd64                    1.13.0~20140204-0ubuntu1.1          amd64        The Cairo 2D vector graphics library
@@ -507,7 +507,7 @@ ii  mime-support                       3.54ubuntu1.1                       all  
 ii  module-init-tools                  15-0ubuntu6                         all          transitional dummy package (module-init-tools to kmod)
 ii  mount                              2.20.1-5.1ubuntu20.9                amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                amd64        filesystem mounting tool
-ii  multiarch-support                  2.19-0ubuntu6.9                     amd64        Transitional package to ensure multiarch compatibility
+ii  multiarch-support                  2.19-0ubuntu6.10                    amd64        Transitional package to ensure multiarch compatibility
 ii  mysql-common                       5.5.54-0ubuntu0.14.04.1             all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1               all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1               amd64        terminal-related programs and man pages
