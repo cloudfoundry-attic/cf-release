@@ -147,10 +147,6 @@ java-buildpack/java-buildpack-v3.14.zip:
   object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
   sha: fb642100976fbff97e6faa2deeafdea47fb510e4
   size: 181236
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.18.zip:
-  object_id: 9bffe476-1cee-4b0f-99f2-3d55e6f3d60a
-  sha: 6bcc874f710f823fbf486b5a2626f6287374ce96
-  size: 2738644
 python-buildpack/python_buildpack-cached-v1.5.16.zip:
   object_id: 8d5bc31c-cb19-4378-ba3c-55e95f4fe65c
   sha: 76d2fcec3268aa53c33dc732fd6598adc4111686
@@ -179,3 +175,7 @@ binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
   object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
   sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
   size: 55014
+staticfile-buildpack/staticfile_buildpack-cached-v1.4.0.zip:
+  object_id: c938bf10-1f9b-46bd-ad49-51bb00ae64c1
+  sha: ba3f8e3522ec4033db405599e4ba9a253cbb3005
+  size: 6505284
