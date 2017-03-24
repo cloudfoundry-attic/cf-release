@@ -163,10 +163,6 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.13.zip:
   object_id: 775bc17a-edd9-4c57-a572-a884b6813cd5
   sha: ab2f34b2d16b1f0a94f8059484d703c00a43bbe7
   size: 590029657
-binary-buildpack/binary_buildpack-cached-v1.0.10.zip:
-  object_id: ce5ea83f-6747-4eaf-b71e-f36a14ebe1b8
-  sha: a5317fe0a7b0917981e766553a66fcd33ba75a47
-  size: 50843
 php-buildpack/php_buildpack-cached-v4.3.29.zip:
   object_id: 5aaa637c-196b-455f-93ac-2319f246fc63
   sha: 3928acc7ea82c4adaee390c0bb6a6639a24e06c1
@@ -179,3 +175,7 @@ rootfs/cflinuxfs2-1.111.0.tar.gz:
   object_id: 1d32ffb5-72d0-4de1-9437-4c34aad9d51b
   sha: e685ee28f59243c289471f6ab38446be9a719383
   size: 286894302
+binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
+  object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
+  sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
+  size: 55014
