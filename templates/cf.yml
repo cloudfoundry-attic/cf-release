@@ -1433,6 +1433,7 @@ meta:
     consumes: {consul: nil}
   - name: etcd
     release: (( meta.etcd_release_name ))
+    consumes: {etcd: nil}
   - name: etcd_metrics_server
     release: (( meta.etcd_release_name ))
   - name: metron_agent
