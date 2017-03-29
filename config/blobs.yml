@@ -167,10 +167,6 @@ nginx/nginx-1.11.11.tar.gz:
   object_id: 45d294be-d397-43f0-845a-0ad7a9aadded
   sha: 2ace229d7108c023201eb4de0556ae7f5cc60e38
   size: 979864
-rootfs/cflinuxfs2-1.111.0.tar.gz:
-  object_id: 1d32ffb5-72d0-4de1-9437-4c34aad9d51b
-  sha: e685ee28f59243c289471f6ab38446be9a719383
-  size: 286894302
 binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
   object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
   sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
@@ -179,3 +175,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.4.0.zip:
   object_id: c938bf10-1f9b-46bd-ad49-51bb00ae64c1
   sha: ba3f8e3522ec4033db405599e4ba9a253cbb3005
   size: 6505284
+rootfs/cflinuxfs2-1.112.0.tar.gz:
+  object_id: 67e54f0d-3b59-418f-a726-6793f7fddd46
+  sha: 18bae3a51ecd622f15ce9e05880eb1c1246621ed
+  size: 286899234
