@@ -1,3 +1,4 @@
+---
 debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
   sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
@@ -178,3 +179,7 @@ rootfs/cflinuxfs2-1.112.0.tar.gz:
   object_id: 67e54f0d-3b59-418f-a726-6793f7fddd46
   sha: 18bae3a51ecd622f15ce9e05880eb1c1246621ed
   size: 286899234
+cli/cf-cli_6.23.1_winx64.zip:
+  object_id: 7d795e93-1127-497d-9deb-4c92866e31c4
+  sha: 22c09fbaaaed4ed305896de28a3c1bf9b346ff93
+  size: 6759874
