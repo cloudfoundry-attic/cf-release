@@ -790,6 +790,7 @@ properties:
       temporary_local_sync: (( merge || nil ))
       temporary_local_tps: (( merge || nil ))
       temporary_cc_uploader_mtls: (( merge || nil ))
+      temporary_droplet_download_mtls: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
     tls_port: (( merge || nil ))
