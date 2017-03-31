@@ -1,0 +1,52 @@
+#!/bin/bash
+
+common_name=''
+depot_path=''
+output_path=''
+ca_name=''
+domain=''
+
+set -e -x
+
+show_help() {
+  set +x
+  echo "Usage: generate_end_entity_certs [OPTIONS]"
+  echo "Output Options:"
+  echo "  -n --common-name [REQUIRED]     The common name for the certificate"
+  echo "  -d --domain      [OPTIONAL]     The domains for the certificate"
+  echo "  -c --ca-name     [REQUIRED]     The certificate authority name for the certificate"
+  echo "  -p --depot-path  [REQUIRED]     The depot path (where all files will be written to) for the CA"
+  echo "  -o --output-file [REQUIRED]     The output file name of the CA cert and key"
+  echo "  -h --help            Show a help message"
+  set -x
+  exit 0
+}
+
+while true; do
+  case "$1" in
+    -n | --common-name ) common_name="$2"; shift 2;;
+    -d | --domain ) domain="$2"; shift 2;;
+    -c | --ca-name ) ca_name="$2"; shift 2;;
+    -p | --depot-path ) depot_path="$2"; shift 2;;
+    -o | --output-file ) output_path="$2"; shift 2 ;;
+    -h | --help )
+      show_help ;;
+    * ) break ;;
+  esac
+done
+
+if [ "${common_name}" == "" -o "${depot_path}" == "" -o "${output_path}" == "" -o "${ca_name}" == "" ]; then
+  show_help
+fi
+
+if [ "${domain}" != "" ]; then
+  domain_argument="--domain ${domain}"
+fi
+
+common_name_path=$(echo $common_name | tr ' ' _)
+
+certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name "${common_name}" ${domain_argument}
+certstrap --depot-path "${depot_path}" sign "${common_name_path}" --CA "${ca_name}"
+mv -f "${depot_path}/${common_name_path}.key" "${depot_path}/${output_path}.key"
+mv -f "${depot_path}/${common_name_path}.csr" "${depot_path}/${output_path}.csr"
+mv -f "${depot_path}/${common_name_path}.crt" "${depot_path}/${output_path}.crt"

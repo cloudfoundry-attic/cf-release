@@ -6,7 +6,7 @@ This repository contains the Cloud Foundry source code. Cloud Foundry is deploye
 
 * [Documentation](http://docs.cloudfoundry.org/)
 * [Release Notes](https://github.com/cloudfoundry/cf-release/releases)
-* [Continuous Integration Pipeline](https://runtime.ci.cf-app.com/pipelines/cf-release?groups=cf-release)
+* [Continuous Integration Pipeline](https://release-integration.ci.cf-app.com/teams/main/pipelines/cf-release)
 * [Mailing List](https://lists.cloudfoundry.org/archives/list/cf-dev@lists.cloudfoundry.org/)
 
 #### Table of Contents

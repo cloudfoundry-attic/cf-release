@@ -730,7 +730,7 @@ properties:
       temporary_local_sync: false
       temporary_local_tps: false
       temporary_cc_uploader_mtls: false
-
+      temporary_droplet_download_mtls: false
     mutual_tls:
       ca_cert: |
         -----BEGIN CERTIFICATE-----
@@ -1458,7 +1458,10 @@ jobs:
   - name: api_z2
     persistent_disk: 4096
     instances: 0
-  - name: clock_global
+  - name: clock_z1
+    persistent_disk: 4096
+    instances: 0
+  - name: clock_z2
     persistent_disk: 4096
     instances: 0
   - name: api_worker_z2

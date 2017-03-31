@@ -126,8 +126,8 @@ The script generates a CA and a certificate for the WebDAV blobstore.
 | Script Output | Properties |
 | ------------- | ---------- |
 | blobstore-certs/server-ca.crt | `properties.blobstore.tls.ca_cert` |
-| blobstore-certs/server.crt | `properties.blobstore.tls.server_cert` |
-| blobstore-certs/server.key | `properties.blobstore.tls.server_key` |
+| blobstore-certs/server.crt | `properties.blobstore.tls.cert` |
+| blobstore-certs/server.key | `properties.blobstore.tls.private_key` |
 
 #### UAA
 Generate the certs and keys:
@@ -140,8 +140,8 @@ The script generates a CA and sert for the UAA.
 | Script Output | Properties |
 | ------------- | ---------- |
 | uaa-certs/server-ca.crt | `properties.uaa.ca_cert` |
-| uaa-certs/server.crt | `properties.uaa.server_cert` |
-| uaa-certs/server.key | `properties.uaa.server_key` |
+| uaa-certs/server.crt | `properties.uaa.sslCertificate` |
+| uaa-certs/server.key | `properties.uaa.sslPrivateKey` |
 
 ### The interrelated components
 
@@ -158,7 +158,7 @@ as well as the `cf-diego-ca` that will be used to sign other certificates.
 | ------------- | -------- |
 | cf-diego-certs/cf-diego-ca.crt | <ul> <li>`properties.cc.mutual_tls.ca_cert`</li> <li>`properties.capi.tps.cc.ca_cert` in the Diego manifest</li></ul> |
 | cf-diego-certs/cloud_controller.crt | `properties.cc.mutual_tls.public_cert` |
-| cf-diego-certs/cloud_controller.crt | `properties.cc.mutual_tls.public_cert` |
+| cf-diego-certs/cloud_controller.key | `properties.cc.mutual_tls.private_key` |
 
 #### Next, generate the certificates for Diego
 Generate the certs and keys using the script in
@@ -171,8 +171,8 @@ These certs must be signed by `cf-diego-ca`:
 
 | Script Output | Properties |
 | ------------- | ---------- |
-| diego-certs/client.key | `properties.capi.tps.cc.client_key` |
-| diego-certs/client.crt | `properties.capi.tps.cc.client_cert` |
+| diego-certs/tps-certs/client.key | `properties.capi.tps.cc.client_key` |
+| diego-certs/tps-certs/client.crt | `properties.capi.tps.cc.client_cert` |
 
 #### Generate the certificates for Loggregator
 Generate the certificates and keys:

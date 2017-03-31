@@ -123,55 +123,63 @@ nginx/pcre-8.40.tar.gz:
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
   size: 2065161
-java-buildpack/java-buildpack-v3.13.zip:
-  object_id: 321643ef-ea7a-4a4b-a059-b93292635995
-  sha: 3da0fa3cd046b4889e983edc44562d4a2e16f80c
-  size: 177750
-java-buildpack/java-buildpack-offline-v3.13.zip:
-  object_id: 76ea4870-a947-419b-bc47-4fa27df83796
-  sha: e96543f6192f4f4ffd7f6a6be4acccb0440a221c
-  size: 256387741
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.11.zip:
-  object_id: 17f07a77-1554-49c6-91bf-e6afb415258d
-  sha: 509a0b0fd89c84cce6ce0bbd71a3a727276ec4e2
-  size: 458608610
-go-buildpack/go_buildpack-cached-v1.7.18.zip:
-  object_id: c007aa34-87bc-4b87-98f4-8170f25ea011
-  sha: 802ac3c562e13e1b785489a301edc1d1c01009bd
-  size: 411059376
-ruby-buildpack/ruby_buildpack-cached-v1.6.34.zip:
-  object_id: 1bbe038c-427f-4a9c-873f-2c2b444f5ac5
-  sha: 4632ad762fefba9cd4b56b1c994ed97cc0991577
-  size: 293816963
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.29.zip:
-  object_id: d63d3197-e9b3-4659-ab5d-5f1683bf9ebd
-  sha: e1ef8b75816686ee58291c7bed4db14ff062fae1
-  size: 81816455
-python-buildpack/python_buildpack-cached-v1.5.15.zip:
-  object_id: 28349431-495d-4959-8ace-b8c74eb9cb13
-  sha: 0f5a5248c7fe726d4741cceb85ed078f37f00f07
-  size: 311239322
-binary-buildpack/binary_buildpack-cached-v1.0.9.zip:
-  object_id: 22f7a05c-609b-4331-8b07-00baf0096995
-  sha: e3ef6ad9d62b6c48e9682153815eced16298238e
-  size: 50284
-staticfile-buildpack/staticfile_buildpack-cached-v1.3.17.zip:
-  object_id: ff1b645d-a8b3-4226-a252-ba749e20c1a2
-  sha: e69dbec80cf8ff3fedfd21f39c8c9adc78c9ea0a
-  size: 2732127
 etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
   object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
   sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
   size: 6517667
-php-buildpack/php_buildpack-cached-v4.3.27.zip:
-  object_id: f03a74d1-1492-497d-a7b9-5612432d3dc0
-  sha: 18b6bb1f719d62287968ea690dd169962306e948
-  size: 439371517
 nginx/nginx-1.11.10.tar.gz:
   object_id: 8f4dc117-a382-4f23-bedf-c56baec6d350
   sha: d9c4e3361c0802eaa90aa924b8981c5d3ed771dc
   size: 967773
-rootfs/cflinuxfs2-1.107.0.tar.gz:
-  object_id: 35e0b69a-a408-42e1-a3c0-0a354990b350
-  sha: c2f25ba9cd0d58365e98bfd3cdd83a88edb89b89
-  size: 286872525
+java-buildpack/java-buildpack-offline-v3.14.zip:
+  object_id: a644d166-f9c3-4d9d-93f9-66002a5cc0a5
+  sha: 4a6194237d4d541d0eabad1961ebc8569f396512
+  size: 261461620
+go-buildpack/go_buildpack-cached-v1.7.19.zip:
+  object_id: 4867437f-fa56-468c-962d-715f329e128a
+  sha: 2c3de94d4f6cdda41536b3b83907fded858e95d4
+  size: 357236311
+ruby-buildpack/ruby_buildpack-cached-v1.6.35.zip:
+  object_id: b712668c-ab4b-44ac-ad17-a0dca354cb99
+  sha: cfe93add79e6dde4271648c9c4696a1adbe74595
+  size: 293826099
+java-buildpack/java-buildpack-v3.14.zip:
+  object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
+  sha: fb642100976fbff97e6faa2deeafdea47fb510e4
+  size: 181236
+python-buildpack/python_buildpack-cached-v1.5.16.zip:
+  object_id: 8d5bc31c-cb19-4378-ba3c-55e95f4fe65c
+  sha: 76d2fcec3268aa53c33dc732fd6598adc4111686
+  size: 311232371
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.30.zip:
+  object_id: 498c5e0c-5481-420b-8ea8-ad7a3de01873
+  sha: 1f06b3cdced535e48120304d6101afff587c2f5a
+  size: 81757152
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.13.zip:
+  object_id: 775bc17a-edd9-4c57-a572-a884b6813cd5
+  sha: ab2f34b2d16b1f0a94f8059484d703c00a43bbe7
+  size: 590029657
+php-buildpack/php_buildpack-cached-v4.3.29.zip:
+  object_id: 5aaa637c-196b-455f-93ac-2319f246fc63
+  sha: 3928acc7ea82c4adaee390c0bb6a6639a24e06c1
+  size: 350984130
+nginx/nginx-1.11.11.tar.gz:
+  object_id: 45d294be-d397-43f0-845a-0ad7a9aadded
+  sha: 2ace229d7108c023201eb4de0556ae7f5cc60e38
+  size: 979864
+binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
+  object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
+  sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
+  size: 55014
+staticfile-buildpack/staticfile_buildpack-cached-v1.4.0.zip:
+  object_id: c938bf10-1f9b-46bd-ad49-51bb00ae64c1
+  sha: ba3f8e3522ec4033db405599e4ba9a253cbb3005
+  size: 6505284
+rootfs/cflinuxfs2-1.112.0.tar.gz:
+  object_id: 67e54f0d-3b59-418f-a726-6793f7fddd46
+  sha: 18bae3a51ecd622f15ce9e05880eb1c1246621ed
+  size: 286899234
+cli/cf-cli_6.23.1_winx64.zip:
+  object_id: 7d795e93-1127-497d-9deb-4c92866e31c4
+  sha: 22c09fbaaaed4ed305896de28a3c1bf9b346ff93
+  size: 6759874

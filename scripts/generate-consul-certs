@@ -1,1 +1,20 @@
-../src/consul-release/scripts/generate-certs
+#!/bin/sh
+
+set -e -x
+
+scripts_folder=$(dirname $0)
+
+# Install certstrap
+go get -v github.com/square/certstrap
+
+# Place keys and certificates here
+depot_path="consul-certs"
+mkdir -p ${depot_path}
+
+${scripts_folder}/generate_ca_cert --common-name "consulCA" --depot-path ${depot_path} --output-file server-ca
+
+# Server certificate to share across the consul cluster
+${scripts_folder}/generate_end_entity_certs --common-name server.dc1.cf.internal --ca-name server-ca --depot-path ${depot_path} --output-file server
+
+# Agent certificate to distribute to jobs that access consul
+${scripts_folder}/generate_end_entity_certs --common-name 'consul agent' --ca-name server-ca --depot-path ${depot_path} --output-file agent

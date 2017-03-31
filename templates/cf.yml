@@ -251,7 +251,7 @@ jobs:
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
-  - name: clock_global
+  - name: clock_z1
     templates: (( merge || meta.clock_templates ))
     instances: 1
     resource_pool: medium_z1
@@ -276,6 +276,19 @@ jobs:
       metron_agent:
         zone: z1
       nfs_server: (( meta.nfs_server ))
+    update: (( merge || empty_hash ))
+
+  - name: clock_z2
+    templates: (( merge || meta.clock_templates ))
+    instances: 1
+    resource_pool: medium_z2
+    persistent_disk: 0
+    default_networks:
+      - name: cf2
+    networks: (( merge || default_networks ))
+    properties:
+      metron_agent:
+        zone: z2
     update: (( merge || empty_hash ))
 
   - name: api_worker_z2
@@ -777,6 +790,7 @@ properties:
       temporary_local_sync: (( merge || nil ))
       temporary_local_tps: (( merge || nil ))
       temporary_cc_uploader_mtls: (( merge || nil ))
+      temporary_droplet_download_mtls: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
     tls_port: (( merge || nil ))

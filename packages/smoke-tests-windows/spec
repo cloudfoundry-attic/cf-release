@@ -1,0 +1,10 @@
+---
+name: smoke-tests-windows
+dependencies:
+  - cli
+files:
+  - smoke-tests/**/*
+excluded_files:
+  - smoke-tests-windows/smoke/results/*
+  - smoke-tests-windows/*config.json
+  - smoke-tests-windows/**/*.test

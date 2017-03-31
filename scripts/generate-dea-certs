@@ -2,6 +2,8 @@
 
 set -e -x
 
+scripts_folder=$(dirname $0)
+
 # Install certstrap
 go get -v github.com/square/certstrap
 
@@ -10,19 +12,12 @@ depot_path="dea-certs"
 mkdir -p ${depot_path}
 
 # CA to distribute to DEA clients and servers
-certstrap --depot-path ${depot_path} init --passphrase '' --common-name deaCA
-mv -f ${depot_path}/deaCA.crt ${depot_path}/dea_ca.crt
-mv -f ${depot_path}/deaCA.key ${depot_path}/dea_ca.key
+${scripts_folder}/generate_ca_cert --common-name "deaCA" --depot-path ${depot_path} --output-file dea_ca
 
 # Server certificate to share across the bbs cluster
 server_cn=dea.service.cf.internal
 server_domain='*.dea.service.cf.internal'
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $server_cn --domain $server_domain
-certstrap --depot-path ${depot_path} sign $server_cn --CA dea_ca
-mv -f ${depot_path}/$server_cn.key ${depot_path}/dea_server.key
-mv -f ${depot_path}/$server_cn.csr ${depot_path}/dea_server.csr
-mv -f ${depot_path}/$server_cn.crt ${depot_path}/dea_server.crt
+${scripts_folder}/generate_end_entity_certs --common-name ${server_cn} --ca-name dea_ca --domain ${server_domain} --depot-path ${depot_path} --output-file dea_server
 
 # Client certificate to distribute to jobs that access DEAs
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name 'dea client'
-certstrap --depot-path ${depot_path} sign dea_client --CA dea_ca
+${scripts_folder}/generate_end_entity_certs --common-name 'dea client' --ca-name dea_ca --depot-path ${depot_path} --output-file dea_client

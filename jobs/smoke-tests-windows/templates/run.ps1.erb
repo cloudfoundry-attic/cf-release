@@ -1,0 +1,31 @@
+$env:GOROOT="C:\var\vcap\packages\golang1.7-windows\go"
+$env:GOPATH="C:\var\vcap\packages\smoke-tests-windows"
+$env:PATH="${env:GOPATH}\bin;${env:GOROOT}\bin;${env:PATH}"
+$env:PATH="C:\var\vcap\packages\cli-windows\bin;${env:PATH}"
+
+cd "C:\var\vcap\packages\smoke-tests-windows\src\github.com\cloudfoundry\cf-smoke-tests"
+
+Create-Item -Type Directory -Force "${env:GOPATH}\src"
+Copy-Item -Recurse -Force ".\vendor\*" "${env:GOPATH}\src"
+
+go install github.com/onsi/ginkgo/ginkgo
+
+$env:CONFIG="C:\var\vcap\jobs\smoke-tests-windows\bin\config.json"
+<% if_p("smoke_tests.cf_dial_timeout_in_seconds") do |timeout| %>
+$env:CF_DIAL_TIMEOUT="<%= timeout %>"
+<% end %>
+
+Write-Host '################################################################################################################'
+go version
+Write-Host CONFIG=${env:CONFIG}
+Get-ChildItem env:
+Write-Host '################################################################################################################'
+
+Write-Host "Running smoke tests..."
+
+$EXITSTATUS=0
+ginkgo -r --succinct -slowSpecThreshold=300 <%= properties.smoke_tests.ginkgo_opts %>
+$EXITSTATUS=$LASTEXITCODE
+
+Write-Host "Smoke Tests Complete; exit status: $EXITSTATUS"
+exit $EXITSTATUS

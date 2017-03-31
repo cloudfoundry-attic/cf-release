@@ -1,0 +1,23 @@
+. ./exiter.ps1
+$path = "cli/cf-cli_6.23.1_winx64.zip"
+$installTarget = "${env:BOSH_INSTALL_TARGET}/bin"
+
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+function Unzip {
+  param(
+    [string]$zipfile,
+    [string]$outpath
+  )
+
+  [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
+}
+
+try {
+  New-Item -Path $installTarget -ItemType directory -Force
+  Unzip $path $installTarget
+} catch {
+  $Host.UI.WriteErrorLine($_.Exception.Message)
+  Exit 1
+}
+
+Exit 0
