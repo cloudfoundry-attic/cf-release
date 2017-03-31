@@ -128,6 +128,7 @@ jobs:
     consumes: {consul: nil}
   - name: etcd
     release: cf
+    consumes: {etcd: nil}
   - name: etcd_metrics_server
     release: cf
   - name: metron_agent
@@ -158,6 +159,7 @@ jobs:
     consumes: {consul: nil}
   - name: etcd
     release: cf
+    consumes: {etcd: nil}
   - name: etcd_metrics_server
     release: cf
   - name: metron_agent
