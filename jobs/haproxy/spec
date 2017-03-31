@@ -15,6 +15,11 @@ templates:
   consul_template_ctl:       bin/consul_template_ctl
   cert.pem.erb:              config/cert.pem
 
+consumes:
+  - name: ssh_proxy
+    type: ssh_proxy
+    optional: true
+
 properties:
   ha_proxy.ssl_pem:
     description: "SSL certificate (PEM file)"

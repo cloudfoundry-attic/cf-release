@@ -1,4 +1,9 @@
-<% if p("cc.allow_app_ssh_access") %>
+<%
+has_link = false
+%>
+
+<% if p("cc.allow_app_ssh_access") && !has_link %>
+<% if_link("ssh_proxy") {  }.else do %>
 check process consul_template
   with pidfile /var/vcap/sys/run/consul_template/pid
   start program "/var/vcap/jobs/haproxy/bin/consul_template_ctl start"
@@ -11,6 +16,7 @@ check file haproxy_config
   if changed timestamp then exec "/var/vcap/jobs/haproxy/bin/haproxy_ctl reload"
   group vcap
   depends on haproxy
+<% end %>
 <% end %>
 
 check process haproxy
