@@ -20,6 +20,10 @@ consumes:
     type: ssh_proxy
     optional: true
 
+  - name: router
+    type: router
+    optional: true
+
 properties:
   ha_proxy.ssl_pem:
     description: "SSL certificate (PEM file)"
