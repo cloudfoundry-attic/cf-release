@@ -147,10 +147,6 @@ java-buildpack/java-buildpack-v3.14.zip:
   object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
   sha: fb642100976fbff97e6faa2deeafdea47fb510e4
   size: 181236
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.30.zip:
-  object_id: 498c5e0c-5481-420b-8ea8-ad7a3de01873
-  sha: 1f06b3cdced535e48120304d6101afff587c2f5a
-  size: 81757152
 dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.13.zip:
   object_id: 775bc17a-edd9-4c57-a572-a884b6813cd5
   sha: ab2f34b2d16b1f0a94f8059484d703c00a43bbe7
@@ -183,3 +179,7 @@ python-buildpack/python_buildpack-cached-v1.5.17.zip:
   object_id: 19effc5e-c98d-4ed9-b6a7-99b3592c8672
   sha: cc3d553bea1439e7907719c9a84c5a0ae0240539
   size: 353353535
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.31.zip:
+  object_id: cf6ed32c-8ce1-4ba6-91f1-d1e3ab5ffcaf
+  sha: fffdb247334465bcfc16fb0568ae41893e4c7b67
+  size: 82535952
