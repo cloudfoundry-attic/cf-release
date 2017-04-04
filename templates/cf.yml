@@ -1447,6 +1447,7 @@ meta:
   - name: haproxy
     release: (( meta.cf_release_name ))
     consumes: {ssh_proxy: nil}
+    consumes: {router: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
