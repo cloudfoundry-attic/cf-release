@@ -1038,6 +1038,7 @@ jobs:
   - name: haproxy
     release: cf
     consumes: {ssh_proxy: nil}
+    consumes: {router: nil}
   - name: metron_agent
     release: cf
   update: {}
