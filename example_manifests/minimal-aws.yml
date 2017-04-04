@@ -478,6 +478,8 @@ properties:
   router:
     route_services_secret: REPLACE_WITH_PASSWORD
     ssl_skip_validation: true
+    status:
+      password: REPLACE_WITH_PASSWORD
   networks: {apps: cf_private}
   app_domains: [REPLACE_WITH_SYSTEM_DOMAIN]
   cc:
