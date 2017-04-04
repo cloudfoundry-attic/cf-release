@@ -52,11 +52,21 @@ frontend ssl-in
     default_backend tcp-routers
 <% end %>
 
+<%
+  ips = []
+
+  if_p("router.servers") do |servers|
+    ips = servers
+  end.else do
+    ips = link("router").instances.map(&:address)
+  end
+%>
+
 backend http-routers
     mode http
     balance roundrobin
 
-    <% p("router.servers").each_with_index do |ip, index| %>
+    <% ips.each_with_index do |ip, index| %>
         server node<%= index %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>
 
@@ -64,7 +74,7 @@ backend tcp-routers
     mode tcp
     balance roundrobin
 
-    <% p("router.servers").each_with_index do |ip, index| %>
+    <% ips.each_with_index do |ip, index| %>
         server node<%= index %> <%= ip %>:<%= p("router.port") %> check inter 1000
     <% end %>
 
