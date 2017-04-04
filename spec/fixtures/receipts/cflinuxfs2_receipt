@@ -1,4 +1,4 @@
-Rootfs SHASUM: 18bae3a51ecd622f15ce9e05880eb1c1246621ed
+Rootfs SHASUM: 3f72e53cec6679132b1388975e6339b3d13fc52f
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -85,8 +85,8 @@ ii  ifupdown                           0.7.47.2ubuntu4.4                        
 ii  imagemagick                        8:6.7.7.10-6ubuntu3.6                      amd64        image manipulation programs
 ii  imagemagick-common                 8:6.7.7.10-6ubuntu3.6                      all          image manipulation programs -- infrastructure
 ii  init-system-helpers                1.14ubuntu1                                all          helper tools for all init systems
-ii  initramfs-tools                    0.103ubuntu4.6                             all          tools for generating an initramfs
-ii  initramfs-tools-bin                0.103ubuntu4.6                             amd64        binaries used by initramfs-tools
+ii  initramfs-tools                    0.103ubuntu4.7                             all          tools for generating an initramfs
+ii  initramfs-tools-bin                0.103ubuntu4.7                             amd64        binaries used by initramfs-tools
 ii  initscripts                        2.88dsf-41ubuntu6.3                        amd64        scripts for initializing and shutting down the system
 ii  insserv                            1.14.0-5ubuntu2                            amd64        boot sequence organizer using LSB init.d script dependency information
 ii  iproute2                           3.12.0-2ubuntu1                            amd64        networking and traffic control tools
@@ -485,7 +485,7 @@ ii  libxt6:amd64                       1:1.1.4-1                                
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                           amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                           amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                           amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-113.160                             amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-116.163                             amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1                      all          common files for locale support
 ii  lockfile-progs                     0.1.17                                     amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                       amd64        system login tools
@@ -496,7 +496,7 @@ ii  lsof                               4.86+dfsg-1ubuntu2                       
 ii  lzma                               9.22-2ubuntu2                              amd64        Compression and decompression in the LZMA format - command line utility
 ii  m4                                 1.4.17-2ubuntu1                            amd64        a macro processing language
 ii  make                               3.81-8.2ubuntu3                            amd64        An utility for Directing compilation.
-ii  makedev                            2.3.1-93ubuntu1                            all          creates device files in /dev
+ii  makedev                            2.3.1-93ubuntu2~ubuntu14.04.1              all          creates device files in /dev
 ii  manpages                           3.54-1ubuntu1                              all          Manual pages about using a GNU/Linux system
 ii  manpages-dev                       3.54-1ubuntu1                              all          Manual pages about using GNU/Linux for development
 ii  mariadb-common                     5.5.54-1ubuntu0.14.04.1                    all          MariaDB common metapackage

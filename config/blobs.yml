@@ -155,10 +155,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
   object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
   sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
   size: 55014
-rootfs/cflinuxfs2-1.112.0.tar.gz:
-  object_id: 67e54f0d-3b59-418f-a726-6793f7fddd46
-  sha: 18bae3a51ecd622f15ce9e05880eb1c1246621ed
-  size: 286899234
 cli/cf-cli_6.23.1_winx64.zip:
   object_id: 7d795e93-1127-497d-9deb-4c92866e31c4
   sha: 22c09fbaaaed4ed305896de28a3c1bf9b346ff93
@@ -183,3 +179,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.36.zip:
   object_id: 3a6eafaf-4e0d-4b1c-aab3-35d45a9ee447
   sha: 30341a7e27c846f7bebb3e4f36cee96963771a74
   size: 323898643
+rootfs/cflinuxfs2-1.113.0.tar.gz:
+  object_id: 75768b54-ca35-4a21-ad70-cd2fa69f8fe5
+  sha: 3f72e53cec6679132b1388975e6339b3d13fc52f
+  size: 286941818
