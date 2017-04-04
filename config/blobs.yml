@@ -159,10 +159,6 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.13.zip:
   object_id: 775bc17a-edd9-4c57-a572-a884b6813cd5
   sha: ab2f34b2d16b1f0a94f8059484d703c00a43bbe7
   size: 590029657
-php-buildpack/php_buildpack-cached-v4.3.29.zip:
-  object_id: 5aaa637c-196b-455f-93ac-2319f246fc63
-  sha: 3928acc7ea82c4adaee390c0bb6a6639a24e06c1
-  size: 350984130
 nginx/nginx-1.11.11.tar.gz:
   object_id: 45d294be-d397-43f0-845a-0ad7a9aadded
   sha: 2ace229d7108c023201eb4de0556ae7f5cc60e38
@@ -183,3 +179,7 @@ cli/cf-cli_6.23.1_winx64.zip:
   object_id: 7d795e93-1127-497d-9deb-4c92866e31c4
   sha: 22c09fbaaaed4ed305896de28a3c1bf9b346ff93
   size: 6759874
+php-buildpack/php_buildpack-cached-v4.3.30.zip:
+  object_id: f03fe8fc-3a4f-491c-9985-841ccdbc7c72
+  sha: 4f1f6f53f308d7ae737e1f6958daf253007eedee
+  size: 350985258
