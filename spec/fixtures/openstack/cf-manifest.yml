@@ -575,7 +575,7 @@ jobs:
   update: {}
 - default_networks:
   - name: cf2
-  instances: 1
+  instances: 0
   name: clock_z2
   networks:
   - name: cf2
