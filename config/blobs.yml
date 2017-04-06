@@ -143,10 +143,6 @@ java-buildpack/java-buildpack-v3.14.zip:
   object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
   sha: fb642100976fbff97e6faa2deeafdea47fb510e4
   size: 181236
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.13.zip:
-  object_id: 775bc17a-edd9-4c57-a572-a884b6813cd5
-  sha: ab2f34b2d16b1f0a94f8059484d703c00a43bbe7
-  size: 590029657
 nginx/nginx-1.11.11.tar.gz:
   object_id: 45d294be-d397-43f0-845a-0ad7a9aadded
   sha: 2ace229d7108c023201eb4de0556ae7f5cc60e38
@@ -183,3 +179,7 @@ rootfs/cflinuxfs2-1.113.0.tar.gz:
   object_id: 75768b54-ca35-4a21-ad70-cd2fa69f8fe5
   sha: 3f72e53cec6679132b1388975e6339b3d13fc52f
   size: 286941818
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.15.zip:
+  object_id: 5e036751-3b42-4d3f-aa84-2c530a0dbfb7
+  sha: 7dbaed57cde7287a3a795fdb795eaa630c3139bc
+  size: 590023989
