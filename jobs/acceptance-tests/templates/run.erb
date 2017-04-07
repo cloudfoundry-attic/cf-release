@@ -17,6 +17,10 @@ export CONFIG=/var/vcap/jobs/acceptance-tests/bin/config.json
 export CF_DIAL_TIMEOUT=<%= timeout %>
 <% end %>
 
+export CF_PLUGIN_HOME=$(mktemp -d)
+
+cf install-plugin /var/vcap/packages/cli-network-policy-plugin/plugin/network-policy-plugin-linux64 -f
+
 mkdir -p /var/vcap/sys/log/acceptance_tests
 rm -rf /var/vcap/sys/log/acceptance_tests/*
 

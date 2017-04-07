@@ -1,0 +1,7 @@
+set -e
+
+mkdir -p ${BOSH_INSTALL_TARGET}/plugin
+
+cp container-networking/v0-14-0-network-policy-plugin-linux64 ${BOSH_INSTALL_TARGET}/plugin/network-policy-plugin-linux64
+
+chmod +x ${BOSH_INSTALL_TARGET}/plugin/network-policy-plugin-linux64
