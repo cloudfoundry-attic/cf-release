@@ -892,6 +892,7 @@ jobs:
     consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: cf
+    consumes: {doppler: nil}
   - name: metron_agent
     release: cf
   - consumes:
@@ -933,6 +934,7 @@ jobs:
     consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: cf
+    consumes: {doppler: nil}
   - name: metron_agent
     release: cf
   - consumes:

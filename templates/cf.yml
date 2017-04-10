@@ -1496,6 +1496,7 @@ meta:
     consumes: {consul: nil}
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
+    consumes: {doppler: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
