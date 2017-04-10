@@ -135,10 +135,6 @@ java-buildpack/java-buildpack-offline-v3.14.zip:
   object_id: a644d166-f9c3-4d9d-93f9-66002a5cc0a5
   sha: 4a6194237d4d541d0eabad1961ebc8569f396512
   size: 261461620
-go-buildpack/go_buildpack-cached-v1.7.19.zip:
-  object_id: 4867437f-fa56-468c-962d-715f329e128a
-  sha: 2c3de94d4f6cdda41536b3b83907fded858e95d4
-  size: 357236311
 java-buildpack/java-buildpack-v3.14.zip:
   object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
   sha: fb642100976fbff97e6faa2deeafdea47fb510e4
@@ -191,3 +187,7 @@ postgres/postgresql-9.6.2.tar.gz:
   object_id: 0accb732-2327-4b3e-bf1c-af4bbe466ef8
   sha: 3159151f2fc74ec3e684ec0dc8949494b608fb3c
   size: 25450827
+go-buildpack/go_buildpack-cached-v1.8.0.zip:
+  object_id: 4618b11c-82ee-4dc6-831f-72d96c935c26
+  sha: 36e6c8a9a0c56bccd27c654a23423399796e1b2c
+  size: 359383998
