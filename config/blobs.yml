@@ -135,10 +135,6 @@ java-buildpack/java-buildpack-offline-v3.14.zip:
   object_id: a644d166-f9c3-4d9d-93f9-66002a5cc0a5
   sha: 4a6194237d4d541d0eabad1961ebc8569f396512
   size: 261461620
-java-buildpack/java-buildpack-v3.14.zip:
-  object_id: 9f64f6b3-54f1-41d9-a844-44c01bb3e2ee
-  sha: fb642100976fbff97e6faa2deeafdea47fb510e4
-  size: 181236
 nginx/nginx-1.11.11.tar.gz:
   object_id: 45d294be-d397-43f0-845a-0ad7a9aadded
   sha: 2ace229d7108c023201eb4de0556ae7f5cc60e38
@@ -191,3 +187,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.4.4.zip:
   object_id: bb85344c-88ec-4756-b9f2-ee034b2877bc
   sha: a0c321d4bacfdaa1ff75dffb72bb49c5faf52286
   size: 6596156
+java-buildpack/java-buildpack-v3.15.zip:
+  object_id: 2bf74a61-722d-42ea-8e7e-7ea699d2d4cc
+  sha: b1e63292064d1a5eebe188edeae569e8c64ea397
+  size: 170303
