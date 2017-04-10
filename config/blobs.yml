@@ -163,10 +163,6 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.4.2.zip:
   object_id: 64ebc086-fb1d-4247-9158-142d0c354768
   sha: 348a961955b132af5f63d91e957b2e8b93227c13
   size: 6591275
-ruby-buildpack/ruby_buildpack-cached-v1.6.36.zip:
-  object_id: 3a6eafaf-4e0d-4b1c-aab3-35d45a9ee447
-  sha: 30341a7e27c846f7bebb3e4f36cee96963771a74
-  size: 323898643
 rootfs/cflinuxfs2-1.113.0.tar.gz:
   object_id: 75768b54-ca35-4a21-ad70-cd2fa69f8fe5
   sha: 3f72e53cec6679132b1388975e6339b3d13fc52f
@@ -191,3 +187,7 @@ go-buildpack/go_buildpack-cached-v1.8.0.zip:
   object_id: 4618b11c-82ee-4dc6-831f-72d96c935c26
   sha: 36e6c8a9a0c56bccd27c654a23423399796e1b2c
   size: 359383998
+ruby-buildpack/ruby_buildpack-cached-v1.6.37.zip:
+  object_id: 87359619-55cd-43a6-bb47-5dfcc5c226fe
+  sha: af7ae55e9a1d6bb5dead9e22c8321c6dc306b2d6
+  size: 324475058
