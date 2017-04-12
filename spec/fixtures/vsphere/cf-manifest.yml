@@ -1710,7 +1710,7 @@ properties:
         secret: DOPPLER_SECRET
         authorized-grant-types: client_credentials
       gorouter:
-        authorities: routing.routes.read
+        authorities: routing.routes.read, routing.router_groups.read
         authorized-grant-types: client_credentials,refresh_token
         secret: GOROUTER_SECRET
       login:
