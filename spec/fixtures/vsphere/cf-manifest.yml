@@ -1730,7 +1730,7 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-EMITTER-SECRET
       tcp_router:
-        authorities: routing.routes.read
+        authorities: routing.routes.read, routing.router_groups.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-ROUTER-SECRET
     database: null

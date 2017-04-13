@@ -4475,7 +4475,7 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         secret: tcp-emitter-secret
       tcp_router:
-        authorities: routing.routes.read
+        authorities: routing.routes.read, routing.router_groups.read
         authorized-grant-types: client_credentials,refresh_token
         secret: tcp-router-secret
     database: null
