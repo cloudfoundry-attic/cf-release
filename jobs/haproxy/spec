@@ -21,7 +21,7 @@ consumes:
     optional: true
 
   - name: router
-    type: router
+    type: http-router
     optional: true
 
 properties:
