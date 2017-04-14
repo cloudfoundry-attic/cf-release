@@ -1841,6 +1841,92 @@ properties:
 
   capi:
     cc_uploader:
+      mutual_tls:
+        ca_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIE7DCCAtSgAwIBAgIBATANBgkqhkiG9w0BAQsFADAWMRQwEgYDVQQDEwtjZi1k
+          aWVnby1jYTAeFw0xNzA0MDYxNjAyMzJaFw0yNzA0MDYxNjAyMzNaMBYxFDASBgNV
+          BAMTC2NmLWRpZWdvLWNhMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA
+          wJdPwHWX7s1Hir+6q+syY/yF/bNapSFz50d2Jz7iaK2xShyY/mYOp7dC30wARD4H
+          utScuVAqc16RSgQ47K0HDjkJqlAoxJTTPJahT60UnKsUrOXETYZD5bTNkt9/cB4F
+          8bmqfNvnsNzG6OV3+4R/gmJWixK78LGLVOUZeY7n78+TgbtUJEVX64x3rYGfskdD
+          g2Vq/lGRAPKbADlfds2cHnmQiEPLH8wIWcRPCWfCSW2h11Ha0lAT2P1W59cQVO+K
+          yJgmNW7CAs84JFYBVAjCLZO0oCkl1FclU9chrI583k6oKLOxz3Zip/DrMZpvg4U/
+          J1lLKCidfWW2TIUNdTmZeBsXnLv8Rt7KBokhs9ShALFOSGpac1b4lfAb3jSyo8NB
+          up0phyNhYzfSUQ6UAyLB+JqtfNX2mXCqXJHBLnn8aA6NNmsFme3cKlupHaGyFD9D
+          9piBJrskyj98jZOl5SX/b+d87F6YK8lbFi8bm9ErKXglq7Wr2g6tfPi32F4Dl62l
+          fHy590ryCETsdGP5wgNjNRtZfOUCLfzmM9Zgt8u3A5tPuYmlY6GeeUwgzpo1Lg/2
+          nN5TEFN8S2PkaazHJtnzDLhHXd1z3183kVZ5TsY6FuRvU6aLxnwnBPRpq/QQtQzL
+          2QL4bqup5CuZ2JvuhPGyFARUicsldJxYiH8/EMMgtb0CAwEAAaNFMEMwDgYDVR0P
+          AQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFMNnb86pM6uy
+          Dw2YrMsEgYGBLJ/oMA0GCSqGSIb3DQEBCwUAA4ICAQAJmoUK66vSHUmdp1voaydi
+          8hfDqoNOFSwg0hf650IRz3QzDWvJSE9vkH8lX8uhsgTRQMf0slwEK0ULfknYbxdV
+          Mq6hAjFzq76wxus7hxeinGo9SGHpe3Kb2RsNCspG6fmzAQC3lwMJOvdfg0zEzxvv
+          U//8ZrYiR3p2Pp1Ulrm1oQRYIFJAdKjd8giXrlVG8ENbvskTmvA+JdJZQTHQWp3n
+          N6QxdSKxHFyqWeXMulEBU9KPE4NpLXK34ms0ynSLloyU4zC7qxoU8uODNwTQw0PE
+          RwxzoMP+iuGFQFEX+oWc8teDJG/YJaLi1ZIm6T4Gh0Cnhkj2xWkOREkpp26ZV+bz
+          VzHJnW3oe1R/40xPNmKjrim0Ega0gSJPSlvOqmggvsMmLHef8cifyxGr9owVhu4s
+          dXLJAsyJeS+gyL6FxwWFnIlAMEKx8HuGtdXtKFyoIzvTWNVXZCl+wX01rbRSzvKV
+          nZFFwPxqG9V1gY8KRas1tN5ZAl+vmoXQS9euNVUgyC7/Fi1jalLY/UDkiGTTzfnA
+          /UN6LN+3HuYBNew7f6UsQn8Xh0XHJy9wkWCU8XV9IDuchjf4WhjrGLMQPnCb7a/9
+          Q+VY6DPknKXyBrd8HKHS7jinWgl8uRw9QcGJcG9UcesK65Zeksn80Efx/6bzMF0w
+          D00XFpEuxSlUvYEjinHT8g==
+          -----END CERTIFICATE-----
+        server_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIEYzCCAkugAwIBAgIRAMuS2SFpc0hVEtGcOmuXHsMwDQYJKoZIhvcNAQELBQAw
+          FjEUMBIGA1UEAxMLY2YtZGllZ28tY2EwHhcNMTcwNDE0MDEzMjA5WhcNMTkwNDE0
+          MDEzMjA5WjAjMSEwHwYDVQQDExhjZWxsLnNlcnZpY2UuY2YuaW50ZXJuYWwwggEi
+          MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDa+m2wc1Y0IGW1U5yAdvepdegY
+          67E+76dJftQMRFnmUJCvNEMCMnD+CtIPnz1rvBdRWvqO6u/06AnPb8Tto76C0bdI
+          oHSl08LljjcCUR+yWu4L7dwpk0KrJkFMOK6Se3Om40F6YIFSxLSQqRZx5ZT3k2mP
+          p83IdrjO+Ln7aae46fjmg5nTAYh4UpO03VXNeCbQpd/MzDJJ/ja4UXClE5ovosJr
+          nueWPKEtyO5KLgyfagcdBrkYJ2RejjEsAWdILdCJPmjFFiKlAz7frfI9IJvfx/lY
+          DskqfIS2nH7EhrvF1oMStn/dx3cM0T/MiKDX4uRMSZl3O0uGWzFzoCWWbnmrAgMB
+          AAGjgZ4wgZswDgYDVR0PAQH/BAQDAgO4MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggr
+          BgEFBQcDAjAdBgNVHQ4EFgQUwTmNgGRUtNq2PNEjiNDkDseXq0IwHwYDVR0jBBgw
+          FoAUw2dvzqkzq7IPDZisywSBgYEsn+gwKgYDVR0RBCMwIYIfY2MtdXBsb2FkZXIu
+          c2VydmljZS5jZi5pbnRlcm5hbDANBgkqhkiG9w0BAQsFAAOCAgEAFbc3fOb2OCEJ
+          M8VLrvMkw3T8iQD+TokSBOhZA+ZbENb2YH57cxI9Wiksfi5gk6wmPZCx/kJ4BSo3
+          oEOjqB7k+jP6lvae/JlCtangiGg/eElGhqkCoiHXYqWhk4BVzxLiRSGrUKh6XaG/
+          hSlVGuCt+O2LF650sOuQ5SUCAwCFIn7c+4VAWiEMrfhioyTCKHCBBSrZDvqoI+tK
+          JwvgDEaNo2DOZ57cqu5k1mkPTK/wkHrt/603gNM24im8NGIZT6JtAsUh9WplbAYd
+          QnfUcuMM3R7idGcwHrmPE3bSZX7AGjuEeCetVqu7PXDV9O6txzeO96jraN5+HTtU
+          cUukB899PbV3Jhwi8JjldpPO04KrQ+MyosSxd2yiw8nwS5+me42YUk2OQdR0OLpN
+          dC9xqZcc+Rh2O2i0u+MW3B51bKLv7wOzItT5TZr277CMZUPuwjOQwjHdwuLMDpvq
+          KjLwsmeSzeT9L57T+/25vDdXrERJvKJBOfxB7ZTsTQ047+hhjmrB6OHaRuQnVMiL
+          pTuH4XtoNDzvEBtsY70ORpbQnpUQBufSX3+av7nzXwwhbykoDZWm8pFdQbsft7TI
+          /k0GQYudKcrG4+9C0gP73o4ScqH5Upo2iXnM18Ug8nkDspaD8x/iXpCr+wVO0s1e
+          DZZ7tC6d4DvUUsvQPabyxWN3KX+Vzms=
+          -----END CERTIFICATE-----
+        server_key: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpAIBAAKCAQEA2vptsHNWNCBltVOcgHb3qXXoGOuxPu+nSX7UDERZ5lCQrzRD
+          AjJw/grSD589a7wXUVr6jurv9OgJz2/E7aO+gtG3SKB0pdPC5Y43AlEfslruC+3c
+          KZNCqyZBTDiukntzpuNBemCBUsS0kKkWceWU95Npj6fNyHa4zvi5+2mnuOn45oOZ
+          0wGIeFKTtN1VzXgm0KXfzMwySf42uFFwpROaL6LCa57nljyhLcjuSi4Mn2oHHQa5
+          GCdkXo4xLAFnSC3QiT5oxRYipQM+363yPSCb38f5WA7JKnyEtpx+xIa7xdaDErZ/
+          3cd3DNE/zIig1+LkTEmZdztLhlsxc6Allm55qwIDAQABAoIBAEwQg3uwhLg0rL/Q
+          3GMvcBYYU9gcPwR6oOSBvszIDWZYg/moMMKZnPBR9+ffS6mZu4vSC4kLiPDMjWPW
+          ElTt9SZiDMWYnwxfQ6sTvH38igMdXOUd6cUzVww2jKYaZmGRqnnFJSCKV0HV/Fbn
+          tVk5A4cAWMHC61OAEfArLAduCwnK76SLGe6DDISzDix6u5ChpPcShyvY4hQBSg95
+          scq4Cxs79Jt61+coYBTs/5p/KD8sMsvPpGtv31CQjK9Mn7eBl/dWxUmUSqSfHtQa
+          pBRz3GribhJ4tE8MeENiYhkc0j+BTWFogleYa4Mjogyl2GF7Exj0DUxb7wKos45G
+          eXJFPjkCgYEA4EZH/pw6Btrz/WESVMfsYk6MPQhTB9xdhaTvMywmQgLKCTyi75qW
+          TIdS4WvTz4k91X8ov2AQuwspoLIILZL2QohurZ0x+Nykqd2OoGvzs+vcRiZc3qHe
+          x1OqhIxnDroRVQ3rnSzUn+up3h9tQ2ekKf3KjYZMPLsbWKKtWTjYvrUCgYEA+fRZ
+          zlEu/yv0L3AQlvC6fxruDrIqUHYRndlN6rO7F0w4aWSbsW4F22kyFrmjoOhgauC3
+          NdAx+qiIY6G7yr+r8yfbs0e4ZNU5vL8scNpok0RfHH8cQSXid77svi+iaP8uNmN0
+          /DeJEMctpKC0WJ8tjLTcYUzCtpnz/qgx6+Z9Mt8CgYB2vz+nY/ilYJEHe7pFAYX7
+          lzNRrXKpGti5xlaQdbPcB7YJpf1veB5UbuJHUNxZaoU+4ZEloyu4nXRxDVKfLs0M
+          9UgEzNKEve7BsfmunvnuLdf3nKBXkMVwLLCAdgarGYHL0w8JrY73DcRnQ6SKp/mX
+          8jSpMo5zKW6VQ60dLKg2cQKBgQC64xlWqtqxzcJoyaiNwvYeXRtLf6klufHYDQc2
+          CiZD+ChhnOjQVAwrDk92MF0IzVZx8wzpPn5wBRzdKatIn+FIEDAzrtdPBSKDXoky
+          5Aq2ubNHkj6k81eN4wIN/X24dbuuzNRGVJu2IMaexc2ySWn8P6pbUdJwR1HowQd6
+          cz5/DwKBgQDQDCcvh/QIqc3V7K/pq/kjyHoJMIYlItra3Jwtsda8VtzII1Untcf1
+          xzkvCRWFSEdN9S6C7Nzkgm8ExCQ50afp/6XSRatf8NNBEhNfIev7pqe8pgGDsMcx
+          IL2zQiMGPYYVTv5u2j1CR2FTMyAstSm1Mmo8gC6+98JBrKeOrMUyDQ==
+          -----END RSA PRIVATE KEY-----
       cc:
         ca_cert: |
           -----BEGIN CERTIFICATE-----

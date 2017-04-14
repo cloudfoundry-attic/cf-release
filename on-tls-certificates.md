@@ -156,7 +156,7 @@ as well as the `cf-diego-ca` that will be used to sign other certificates.
 
 | Script Output | Properties |
 | ------------- | -------- |
-| cf-diego-certs/cf-diego-ca.crt | <ul> <li>`properties.cc.mutual_tls.ca_cert`</li> <li>`properties.capi.tps.cc.ca_cert` in the Diego manifest</li> <li>`properties.capi.cc_uploader.cc.ca_cert` in the Diego manifest</li></ul> |
+| cf-diego-certs/cf-diego-ca.crt | <ul> <li>`properties.cc.mutual_tls.ca_cert`</li> <li>`properties.capi.tps.cc.ca_cert` in the Diego manifest</li> <li>`properties.capi.cc_uploader.cc.ca_cert` in the Diego manifest</li> <li>`properties.capi.cc_uploader.mutual_tls.ca_cert` in the Diego manifest</li></ul> |
 | cf-diego-certs/cloud_controller.crt | `properties.cc.mutual_tls.public_cert` |
 | cf-diego-certs/cloud_controller.key | `properties.cc.mutual_tls.private_key` |
 
@@ -175,6 +175,8 @@ These certs must be signed by `cf-diego-ca`:
 | diego-certs/tps-certs/client.crt | `properties.capi.tps.cc.client_cert` |
 | diego-certs/cc-uploader-certs/cc/client.crt | `properties.capi.cc_uploader.cc.client_cert` |
 | diego-certs/cc-uploader-certs/cc/client.key | `properties.capi.cc_uploader.cc.client_key` |
+| diego-certs/cc-uploader-certs/server.crt | `properties.capi.cc_uploader.mutual_tls.server_cert` |
+| diego-certs/cc-uploader-certs/server.key | `properties.capi.cc_uploader.mutual_tls.server_key` |
 
 #### Generate the certificates for Loggregator
 Generate the certificates and keys:
