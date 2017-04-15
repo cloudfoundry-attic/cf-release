@@ -51,7 +51,6 @@ properties:
     default: 900
   router.servers:
     description: "Array of router IPs"
-    default: []
   router.port:
     description: "Listening port for Router"
     default: 80
