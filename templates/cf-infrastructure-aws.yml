@@ -6,8 +6,8 @@ meta:
   fog_config:
     blobstore_timeout: 5
     provider: AWS
-    aws_access_key_id: (( properties.template_only.aws.access_key_id ))
-    aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
+    aws_access_key_id: (( properties.fog_aws_key.aws_access_key_id ))
+    aws_secret_access_key: (( properties.fog_aws_key.aws_secret_access_key ))
     region: us-east-1
 
   stemcell: (( merge || .meta.default_stemcell ))
@@ -19,6 +19,10 @@ meta:
 properties:
   <<: (( merge ))
   template_only: (( merge ))
+
+  fog_aws_key:
+    aws_access_key_id: (( properties.template_only.aws.access_key_id ))
+    aws_secret_access_key: (( properties.template_only.aws.secret_access_key ))
 
   logger_endpoint:
     port: 4443
