@@ -41,6 +41,7 @@ properties:
     buildpacks:
       blobstore_type: fog
       fog_connection: (( meta.fog_config ))
+    diego: (( merge || false ))
 
   dea_next:
     deny_networks:
