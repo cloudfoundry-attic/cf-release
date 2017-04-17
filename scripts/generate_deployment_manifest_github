@@ -1,0 +1,56 @@
+#!/bin/bash
+# Usage: 
+# The point of this script is to allow manifest generation using github as a
+#   source instead of submodules.
+#
+# Call from a wrapper script like this: 
+# #!/bin/bash
+#
+# ref=`git ls-tree HEAD cf-release | awk '{print $3}'` #the ref of cf-release
+# tmpfile=$(mktemp -t generate_cf_manifest)
+# echo $tmpfile 1>&2
+# curl https://raw.githubusercontent.com/pivotal-cloudops/cf-release/${ref}/scripts/generate_deployment_manifest_github > $tmpfile 2>/dev/null
+# chmod +x $tmpfile
+# $tmpfile aws ${ref} stubs/my-stub.yml
+
+set -ef -o pipefail
+
+if [ -n "${CF_DEPLOYMENT_TRACE}" ]; then
+  set -x
+fi
+
+set -u
+
+infrastructure="${1}"
+shift
+if [ "$infrastructure" != "aws" ] && \
+    [ "$infrastructure" != "openstack" ] && \
+    [ "$infrastructure" != "warden" ] && \
+    [ "$infrastructure" != "vsphere" ] ; then
+  echo "usage: ./scripts/generate_deployment_manifest <aws|openstack|warden|vsphere> <git-ref> [stubs...]" 1>&2
+  exit 1
+fi
+
+myref="${1}"
+shift
+[[ -n "$myref" ]] || {
+  echo "Please supply a ref to pull from github" 1>&2
+  exit 1
+}
+
+templates="cf-deployment.yml
+  cf-resource-pools.yml
+  cf-jobs.yml
+  cf-lamb.yml
+  cf-properties.yml
+  cf-infrastructure-${infrastructure}.yml"
+tmpdir=$(mktemp -dt generate_deployment_manifest_github)
+
+for i in $templates
+do
+  echo "fetching $i to ${tmpdir}/${i}" 1>&2
+  curl https://raw.githubusercontent.com/cloudfoundry/cf-release/${myref}/templates/${i} > ${tmpdir}/${i} 2>/dev/null
+  full_path_to_templates+="$tmpdir/$i "
+done
+
+spiff merge $full_path_to_templates "$@"
