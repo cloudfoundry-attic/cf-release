@@ -1,5 +1,5 @@
 . ./exiter.ps1
-$path = "cli/cf-cli_6.23.1_winx64.zip"
+$path = "cli/cf-cli_6.26.0_winx64.zip"
 $installTarget = "${env:BOSH_INSTALL_TARGET}/bin"
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem

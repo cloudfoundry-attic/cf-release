@@ -107,10 +107,6 @@ nginx/headers-more-nginx-module-0.32.tar.gz:
   object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
   sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
   size: 28033
-cli/cf-cli_6.23.1_linux_x86-64.tgz:
-  object_id: a1190ebb-d715-4471-80e1-0c4fec566c49
-  sha: a195e99cae5ab17b453b0a0747508c8f3eee5cae
-  size: 6692717
 haproxy/haproxy-1.5.19.tar.gz:
   object_id: c1a80f45-f732-4184-917b-ce2cf796ffad
   sha: 8aa56f4cca4c1bf27c82f60ec2a040f91acb0bc1
@@ -135,10 +131,6 @@ binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
   object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
   sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
   size: 55014
-cli/cf-cli_6.23.1_winx64.zip:
-  object_id: 7d795e93-1127-497d-9deb-4c92866e31c4
-  sha: 22c09fbaaaed4ed305896de28a3c1bf9b346ff93
-  size: 6759874
 php-buildpack/php_buildpack-cached-v4.3.30.zip:
   object_id: f03fe8fc-3a4f-491c-9985-841ccdbc7c72
   sha: 4f1f6f53f308d7ae737e1f6958daf253007eedee
@@ -191,3 +183,11 @@ golang/go1.8.linux-amd64.tar.gz:
   object_id: 981ceeb2-b4b7-47e2-a3f4-9ca90fe20806
   sha: a93fe8fc245e3554f956bc823f30ef4eb23c2068
   size: 89803580
+cf-cli_6.26.0_linux_x86-64.tgz:
+  object_id: b1875d82-a533-4090-9f30-4fb2084d60ba
+  sha: 6fe2df0ef09820a3a46db5cac9152fb8f1ecca02
+  size: 5174999
+cf-cli_6.26.0_winx64.zip:
+  object_id: 758dfb94-01c7-4b3a-9983-56ebfbeb3612
+  sha: 653f3d3b0f93f414ca787e421403e0e0475793ec
+  size: 5239878
