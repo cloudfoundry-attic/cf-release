@@ -57,8 +57,8 @@ frontend ssl-in
 
   if_p("router.servers") do |servers|
     ips = servers
-  end.else do
-    ips = link("router").instances.map(&:address)
+  end.else_if_link("router") do |router|
+    ips = router.instances.map(&:address)
   end
 %>
 
