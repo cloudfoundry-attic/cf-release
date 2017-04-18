@@ -104,3 +104,4 @@ $ bundle && bundle exec git_release_notes html --from=v210 --to=v212 > /tmp/chan
 
 Please read the [contributors' guide](https://github.com/cloudfoundry/cf-release/blob/master/CONTRIBUTING.md) 
 
+test
