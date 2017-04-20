@@ -32,4 +32,8 @@ describe "Manifest Generation" do
   context "vsphere" do
     it_behaves_like "generating manifests", "vsphere"
   end
+
+  context "azure" do
+    it_behaves_like "generating manifests", "azure"
+  end
 end
