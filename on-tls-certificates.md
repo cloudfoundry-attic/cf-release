@@ -210,5 +210,5 @@ These certs must be signed by the loggregator CA:
 
 | Script Output | Properties |
 | ------------- | ---------- |
-| statsd-injector-certs/doppler.crt | `properties.loggregator.tls.statsd_injector.cert` |
-| statsd-injector-certs/doppler.key | `properties.loggregator.tls.statsd_injector.key` |
+| statsd-injector-certs/statsdinjector.crt | `properties.loggregator.tls.statsd_injector.cert` |
+| statsd-injector-certs/statsdinjector.key | `properties.loggregator.tls.statsd_injector.key` |
