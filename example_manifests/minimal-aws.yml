@@ -117,7 +117,7 @@ jobs:
   - {name: etcd, release: cf}
   - {name: etcd_metrics_server, release: cf}
   - {name: metron_agent, release: cf}
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   networks:
   - name: cf_private
     static_ips: [10.0.16.104]
@@ -139,7 +139,7 @@ jobs:
   resource_pool: small_z1
   templates:
   - {name: metron_agent, release: cf}
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   networks:
   - name: cf_private
     static_ips: [10.0.16.105]
@@ -167,6 +167,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
+    consumes: {consul: nil}
   - name: rep
     release: diego
   - name: garden
@@ -192,6 +193,7 @@ jobs:
   resource_pool: diego_z1
   templates:
   - name: consul_agent
+    consumes: {consul: nil}
     release: cf
   - name: bbs
     release: diego
@@ -232,7 +234,7 @@ jobs:
   - {name: blobstore, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   networks:
   - name: cf_private
   properties:
@@ -259,7 +261,7 @@ jobs:
   - {name: cloud_controller_clock, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   - {name: go-buildpack, release: cf}
   - {name: binary-buildpack, release: cf}
   - {name: nodejs-buildpack, release: cf}
@@ -290,7 +292,7 @@ jobs:
   resource_pool: small_z1
   templates:
   - {name: haproxy, release: cf}
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   - {name: metron_agent, release: cf}
   networks:
   - name: elastic
@@ -309,7 +311,7 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   - {name: doppler, release: cf}
   - {name: metron_agent, release: cf}
   - {name: syslog_drain_binder, release: cf}
@@ -328,7 +330,7 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   - {name: loggregator_trafficcontroller, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
@@ -353,7 +355,7 @@ jobs:
   instances: 1
   resource_pool: small_z1
   templates:
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   - {name: uaa, release: cf}
   - {name: metron_agent, release: cf}
   - {name: route_registrar, release: cf}
@@ -467,7 +469,7 @@ jobs:
   templates:
   - {name: gorouter, release: cf}
   - {name: metron_agent, release: cf}
-  - {name: consul_agent, release: cf}
+  - {name: consul_agent, release: cf, consumes: {consul: nil}}
   networks:
   - name: cf_private
     static_ips: [10.0.16.102]
