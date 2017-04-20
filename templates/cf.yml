@@ -425,6 +425,7 @@ jobs:
       - name: cf1
     networks: (( merge || default_networks ))
     properties:
+      <<: (( merge ))
       doppler:
         zone: z1
       metron_agent:
@@ -446,6 +447,7 @@ jobs:
       - name: cf2
     networks: (( merge || default_networks ))
     properties:
+      <<: (( merge ))
       doppler:
         zone: z2
       metron_agent:
@@ -467,6 +469,7 @@ jobs:
       - name: cf1
     networks: (( merge || default_networks ))
     properties:
+      <<: (( merge ))
       loggregator:
         uaa:
           client_secret: (( .properties.uaa.clients.doppler.secret ))
@@ -492,6 +495,7 @@ jobs:
       - name: cf2
     networks: (( merge || default_networks ))
     properties:
+      <<: (( merge ))
       loggregator:
         uaa:
           client_secret: (( .properties.uaa.clients.doppler.secret ))
