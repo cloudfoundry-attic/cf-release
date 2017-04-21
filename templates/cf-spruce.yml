@@ -1,0 +1,1523 @@
+name: (( grab meta.environment ))
+
+default_releases: [{name: cf, version: latest}]
+releases: (( grab default_releases ))
+
+networks: (( param Replace with IaaS networking ))
+
+jobs:
+  - name: consul_z1
+    templates: (( grab meta.consul_templates ))
+    instances: 2
+    persistent_disk: 1024
+    resource_pool: small_z1
+    default_networks:
+    - name: cf1
+    networks: (( grab jobs.consul_z1.default_networks ))
+    update:
+      serial: true
+      max_in_flight: 1
+    properties:
+      consul:
+        agent:
+          mode: server
+      metron_agent:
+        zone: z1
+
+  - name: consul_z2
+    templates: (( grab meta.consul_templates ))
+    instances: 1
+    persistent_disk: 1024
+    resource_pool: small_z2
+    default_networks:
+    - name: cf2
+    networks: (( grab jobs.consul_z2.default_networks ))
+    update:
+      serial: true
+      max_in_flight: 1
+    properties:
+      consul:
+        agent:
+          mode: server
+      metron_agent:
+        zone: z2
+
+  - name: ha_proxy_z1
+    templates: (( grab meta.ha_proxy_templates ))
+    instances: 0
+    resource_pool: router_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab default_networks ))
+    properties:
+      ha_proxy:
+      router:
+        servers: (( grab jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
+      metron_agent:
+        zone: z1
+    update: (( grab empty_hash ))
+
+  - name: nats_z1
+    templates: (( grab meta.nats_templates ))
+    instances: 1
+    resource_pool: medium_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.ha_proxy_z1.default_networks ))
+    properties:
+      metron_agent:
+        zone: z1
+    update: (( grab empty_hash ))
+
+  - name: nats_z2
+    templates: (( grab meta.nats_templates ))
+    instances: 1
+    resource_pool: medium_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab default_networks ))
+    properties:
+      metron_agent:
+        zone: z2
+    update: (( grab empty_hash ))
+
+  - name: etcd_z1
+    templates: (( grab meta.etcd_templates ))
+    instances: 2
+    persistent_disk: 10024
+    resource_pool: large_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.nats_z2.default_networks ))
+    properties:
+      metron_agent:
+        zone: z1
+      consul:
+        agent:
+          services:
+            etcd:
+              name: cf-etcd
+    update:
+      serial: true
+      max_in_flight: 1
+
+  - name: etcd_z2
+    templates: (( grab meta.etcd_templates ))
+    instances: 1
+    persistent_disk: 10024
+    resource_pool: large_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.etcd_z2.default_networks ))
+    properties:
+      metron_agent:
+        zone: z2
+      consul:
+        agent:
+          services:
+            etcd:
+              name: cf-etcd
+    update:
+      serial: true
+      max_in_flight: 1
+
+  - name: stats_z1
+    templates: (( grab meta.stats_templates ))
+    instances: 1
+    resource_pool: small_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.stats_z1.default_networks ))
+    properties:
+      metron_agent:
+        zone: z1
+    update: (( grab empty_hash ))
+
+  - name: nfs_z1
+    templates: (( grab meta.nfs_templates ))
+    instances: 0
+    resource_pool: medium_z1
+    persistent_disk: 102400
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.nfs_z1.default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            blobstore: {}
+      metron_agent:
+        zone: z1
+      route_registrar:
+        routes: (( grab meta.blobstore_routes ))
+    update: (( grab empty_hash ))
+
+  - name: blobstore_z1
+    templates: (( grab meta.blobstore_templates ))
+    instances: 0
+    resource_pool: medium_z1
+    persistent_disk: 102400
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.blobstore_z1.default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            blobstore: {}
+      metron_agent:
+        zone: z1
+      route_registrar:
+        routes: (( grab meta.blobstore_routes ))
+    update: (( grab empty_hash ))
+
+  - name: postgres_z1
+    templates: (( grab meta.postgres_templates ))
+    instances: 0
+    resource_pool: medium_z1
+    persistent_disk: 4096
+    default_networks:
+    - name: cf1
+    networks: (( grab jobs.postgres_z1.default_networks ))
+    properties:
+      metron_agent:
+        zone: z1
+    update: (( grab empty_hash ))
+
+  - name: uaa_z1
+    templates: (( grab meta.uaa_templates ))
+    instances: 1
+    resource_pool: medium_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.uaa_z1.default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            uaa: {}
+      metron_agent:
+        zone: z1
+      route_registrar:
+        routes: (( grab meta.uaa_routes ))
+      uaa:
+        proxy:
+          servers: (( grab jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
+    update: (( grab empty_hash ))
+
+  - name: uaa_z2
+    templates: (( grab meta.uaa_templates ))
+    instances: 1
+    resource_pool: medium_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.uaa_z2.default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            uaa: {}
+      metron_agent:
+        zone: z2
+      route_registrar:
+        routes: (( grab meta.uaa_routes ))
+      uaa:
+        proxy:
+          servers: (( grab jobs.router_z1.networks.cf1.static_ips jobs.router_z2.networks.cf2.static_ips || nil ))
+    update: (( grab empty_hash ))
+
+  - name: api_z1
+    templates: (( grab meta.api_templates ))
+    instances: 1
+    resource_pool: large_z1
+    persistent_disk: 0
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.api_z1.default_networks ))
+    properties:
+      consul:
+        agent:
+          services: (( grab meta.api_consul_services ))
+      metron_agent:
+        zone: z1
+      route_registrar:
+        routes: (( grab meta.api_routes ))
+      nfs_server: (( grab meta.nfs_server ))
+    update: (( grab empty_hash ))
+
+  - name: api_z2
+    templates: (( grab meta.api_templates ))
+    instances: 1
+    resource_pool: large_z2
+    persistent_disk: 0
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.api_z2.default_networks ))
+    properties:
+      consul:
+        agent:
+          services: (( grab meta.api_consul_services ))
+      metron_agent:
+        zone: z2
+      route_registrar:
+        routes: (( grab meta.api_routes ))
+      nfs_server: (( grab meta.nfs_server ))
+    update: (( grab empty_hash ))
+
+  - name: clock_global
+    templates: (( grab meta.clock_templates ))
+    instances: 1
+    resource_pool: medium_z1
+    persistent_disk: 0
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.clock_global.default_networks ))
+    properties:
+      metron_agent:
+        zone: z1
+    update: (( grab empty_hash ))
+
+  - name: api_worker_z1
+    templates: (( grab meta.api_worker_templates ))
+    instances: 1
+    resource_pool: small_z1
+    persistent_disk: 0
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.api_worker_z1.default_networks ))
+    properties:
+      metron_agent:
+        zone: z1
+      nfs_server: (( grab meta.nfs_server ))
+    update: (( grab empty_hash ))
+
+  - name: api_worker_z2
+    templates: (( grab meta.api_worker_templates ))
+    instances: 1
+    resource_pool: small_z2
+    persistent_disk: 0
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.api_worker_z2.default_networks ))
+    properties:
+      metron_agent:
+        zone: z2
+      nfs_server: (( grab meta.nfs_server ))
+    update: (( grab empty_hash ))
+
+  - name: hm9000_z1
+    templates: (( grab meta.hm9000_templates ))
+    instances: 1
+    resource_pool: medium_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.hm9000_z1.default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            hm9000: {}
+      metron_agent:
+        zone: z1
+      route_registrar:
+        routes: (( grab meta.hm9000_routes ))
+    update: (( grab empty_hash ))
+
+  - name: hm9000_z2
+    templates: (( grab meta.hm9000_templates ))
+    instances: 1
+    resource_pool: medium_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.hm9000_z2.default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            hm9000: {}
+      metron_agent:
+        zone: z2
+      route_registrar:
+        routes: (( grab meta.hm9000_routes ))
+    update: (( grab empty_hash ))
+
+  - name: runner_z1
+    templates: (( grab meta.dea_templates ))
+    instances: 1
+    resource_pool: runner_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.runner_z1.default_networks ))
+    properties:
+      dea_next:
+        zone: "z1"
+      metron_agent:
+        zone: z1
+      consul:
+        agent:
+          services:
+            dea:
+              check:
+                name: dns_health_check
+                script: /var/vcap/jobs/dea_next/bin/dns_health_check
+                interval: 5m
+                status: passing
+    update:
+      max_in_flight: 1
+
+  - name: runner_z2
+    templates: (( grab meta.dea_templates ))
+    instances: 1
+    resource_pool: runner_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.runner_z2.default_networks ))
+    properties:
+      dea_next:
+        zone: "z2"
+      metron_agent:
+        zone: z2
+      consul:
+        agent:
+          services:
+            dea:
+              check:
+                name: dns_health_check
+                script: /var/vcap/jobs/dea_next/bin/dns_health_check
+                interval: 5m
+                status: passing
+    update:
+      max_in_flight: 1
+
+  - name: loggregator_z1
+    templates: (( grab meta.loggregator_templates ))
+    instances: 0
+    resource_pool: medium_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.loggregator_z1.default_networks ))
+    properties:
+      doppler:
+        zone: z1
+      metron_agent:
+        zone: z1
+    update: (( grab empty_hash ))
+
+  - name: loggregator_z2
+    templates: (( grab meta.loggregator_templates ))
+    instances: 0
+    resource_pool: medium_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.loggregator_z2.default_networks ))
+    properties:
+      doppler:
+        zone: z2
+      metron_agent:
+        zone: z2
+    update: (( grab empty_hash ))
+
+  - name: doppler_z1
+    templates: (( grab meta.loggregator_templates ))
+    instances: 1
+    resource_pool: medium_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.doppler_z1.default_networks ))
+    properties:
+      doppler:
+        zone: z1
+      metron_agent:
+        zone: z1
+      consul:
+        agent:
+          services:
+            doppler:
+              name: doppler
+              tags:
+              - z1
+    update: (( grab empty_hash ))
+
+  - name: doppler_z2
+    templates: (( grab meta.loggregator_templates ))
+    instances: 1
+    resource_pool: medium_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.doppler_z2.default_networks ))
+    properties:
+      doppler:
+        zone: z2
+      metron_agent:
+        zone: z2
+      consul:
+        agent:
+          services:
+            doppler:
+              name: doppler
+              tags:
+              - z2
+    update: (( grab empty_hash ))
+
+  - name: loggregator_trafficcontroller_z1
+    templates: (( grab meta.loggregator_trafficcontroller_templates ))
+    instances: 1
+    resource_pool: small_z1
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.loggregator_trafficcontroller_z1.default_networks ))
+    properties:
+      loggregator:
+        uaa:
+          client_secret: (( grab .properties.uaa.clients.doppler.secret ))
+      traffic_controller:
+        zone: z1
+      consul:
+        agent:
+          services:
+            loggregator_trafficcontroller:
+              name: loggregator_trafficcontroller
+              tags:
+              - z1
+      metron_agent:
+        zone: z1
+      route_registrar:
+        routes: (( grab meta.loggregator_trafficcontroller_routes ))
+    update: (( grab empty_hash ))
+
+  - name: loggregator_trafficcontroller_z2
+    templates: (( grab meta.loggregator_trafficcontroller_templates ))
+    instances: 1
+    resource_pool: small_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab jobs.loggregator_trafficcontroller_z2.default_networks ))
+    properties:
+      loggregator:
+        uaa:
+          client_secret: (( grab .properties.uaa.clients.doppler.secret ))
+      traffic_controller:
+        zone: z2
+      consul:
+        agent:
+          services:
+            loggregator_trafficcontroller:
+              name: loggregator_trafficcontroller
+              tags:
+              - z2
+      metron_agent:
+        zone: z2
+      route_registrar:
+        routes: (( grab meta.loggregator_trafficcontroller_routes ))
+    update: (( grab empty_hash ))
+
+  - name: router_z1
+    templates: (( grab meta.router_templates ))
+    instances: 1
+    resource_pool: router_z1
+    default_networks:
+    - name: cf1
+    networks: (( grab default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            gorouter: {}
+      metron_agent:
+        zone: z1
+    update: (( grab empty_hash ))
+
+  - name: router_z2
+    templates: (( grab meta.router_templates ))
+    instances: 1
+    resource_pool: router_z2
+    default_networks:
+      - name: cf2
+    networks: (( grab default_networks ))
+    properties:
+      consul:
+        agent:
+          services:
+            gorouter: {}
+      metron_agent:
+        zone: z2
+    update: (( grab empty_hash ))
+
+  - name: acceptance_tests
+    templates:
+    - name: acceptance-tests
+      release: (( grab meta.cf_release_name ))
+    instances: 1
+    resource_pool: small_errand
+    lifecycle: errand
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.acceptance_tests.default_networks ))
+
+  - name: smoke_tests
+    templates:
+    - name: smoke-tests
+      release: (( grab meta.cf_release_name ))
+    instances: 0
+    resource_pool: small_errand
+    lifecycle: errand
+    default_networks:
+      - name: cf1
+    networks: (( grab jobs.smoke_tests.default_networks ))
+    properties: ~
+
+properties:
+
+  app_ssh: ~
+
+  blobstore:
+    port: 8080
+    admin_users: ~
+    secure_link:
+      secret: ~
+    tls:
+      port: 4443
+      cert: ~
+      private_key: ~
+      ca_cert: ~
+
+  consul:
+    dns_config: ~
+    agent:
+      domain: cf.internal
+      log_level: ~
+      servers:
+        lan: (( grab meta.consul_servers ))
+    ca_cert: (( param Replace with CA Cert ))
+    agent_cert: (( param Replace with agent cert ))
+    agent_key: (( param Replace with key ))
+    encrypt_keys: (( param Replace with encryp keys ))
+    server_cert: (( param Replace with server cert ))
+    server_key: (( param Replace with server key ))
+
+  dropsonde:
+    enabled: true
+
+  support_address: "http://support.cloudfoundry.com"
+  description: null
+  ssl:
+    skip_cert_verify: false
+  system_domain: (( param Replace with the system domain ))
+  system_domain_organization: ~
+  app_domains:
+    - (( grab properties.system_domain ))
+
+  disk_quota_enabled: true
+
+  request_timeout_in_seconds: 900
+
+  nats:
+    user: (( param Replace with nats user ))
+    password: (( param Replace with nats password ))
+    port: 4222
+    machines: (( grab jobs.nats_z1.networks.cf1.static_ips jobs.nats_z2.networks.cf2.static_ips ))
+    debug: false
+    trace: false
+    monitor_port: 0
+    prof_port: 0
+
+  etcd:
+    machines: (( grab jobs.etcd_z1.networks.cf1.static_ips jobs.etcd_z2.networks.cf2.static_ips ))
+    require_ssl: false
+    peer_require_ssl: (( grab .properties.etcd.require_ssl ))
+    advertise_urls_dns_suffix: cf-etcd.service.cf.internal
+    ca_cert: ""
+    client_cert: ""
+    client_key: ""
+    cluster:
+      - instances: (( grab jobs.etcd_z1.instances ))
+        name: etcd_z1
+      - instances: (( grab jobs.etcd_z2.instances ))
+        name: etcd_z2
+    peer_ca_cert: ""
+    peer_cert: ""
+    peer_key: ""
+    server_cert: ""
+    server_key: ""
+
+  etcd_metrics_server:
+    etcd:
+      require_ssl: (( grab .properties.etcd.require_ssl ))
+      ca_cert: (( grab .properties.etcd.ca_cert ))
+      client_cert: (( grab .properties.etcd.client_cert ))
+      client_key: (( grab .properties.etcd.client_key ))
+      dns_suffix: (( grab .properties.etcd.advertise_urls_dns_suffix ))
+
+  dea_next:
+    memory_overcommit_factor: null
+    disk_overcommit_factor: null
+    instance_bandwidth_limit: null
+    staging_bandwidth_limit: null
+    memory_mb: null
+    disk_mb: null
+    staging_disk_inode_limit: 200000
+    instance_disk_inode_limit: 200000
+    deny_networks: []
+    allow_networks: []
+    kernel_network_tuning_enabled: true
+    directory_server_protocol: https
+    evacuation_bail_out_time_in_seconds: 600
+    logging_level: debug
+    staging_disk_limit_mb: 4096
+    staging_memory_limit_mb: 1024
+    default_health_check_timeout: 60
+    advertise_interval_in_seconds: 5
+    heartbeat_interval_in_seconds: 10
+    rlimit_core: 0
+    allow_host_access: ~
+    mtu: null
+    post_setup_hook: null
+
+    ca_cert:
+    client_cert:
+    client_key:
+    enable_ssl: false
+    server_cert:
+    server_key:
+
+  loggregator:
+    maxRetainedLogMessages: 100
+    debug: false
+    blacklisted_syslog_ranges: ~
+    outgoing_dropsonde_port: 8081
+    tls:
+      ca_cert: ~
+    etcd:
+      machines:
+        - (( grab .properties.etcd.advertise_urls_dns_suffix ))
+      require_ssl: (( grab .properties.etcd.require_ssl ))
+      ca_cert: (( grab .properties.etcd.ca_cert ))
+
+  loggregator_endpoint:
+    shared_secret: (( param Replace with shared secret ))
+
+  doppler:
+    message_drain_buffer_size: ~
+    zone: null
+    maxRetainedLogMessages: 100
+    debug: false
+    blacklisted_syslog_ranges: ~
+    unmarshaller_count: 5
+    port: 4443
+    outgoing_port: 8081
+    tls:
+      server_cert: ~
+      server_key: ~
+      port: ~
+      enable: ~
+    etcd:
+      client_cert: (( grab .properties.etcd.client_cert ))
+      client_key: (( grab .properties.etcd.client_key ))
+
+  doppler_endpoint:
+    shared_secret: (( grab .properties.loggregator_endpoint.shared_secret ))
+
+  metron_agent:
+    deployment: (( grab meta.environment ))
+    preferred_protocol: ~
+    protocols: ~
+    etcd:
+      client_cert: (( grab .properties.etcd.client_cert ))
+      client_key: (( grab .properties.etcd.client_key ))
+    tls:
+      client_cert: ~
+      client_key: ~
+
+  metron_endpoint:
+    shared_secret: (( grab .properties.loggregator_endpoint.shared_secret ))
+
+  traffic_controller:
+    zone: null
+    disable_access_control: null
+    security_event_logging:
+      enabled: false
+    etcd:
+      client_cert: (( grab .properties.etcd.client_cert ))
+      client_key: (( grab .properties.etcd.client_key ))
+
+  logger_endpoint: ~
+
+  syslog_drain_binder:
+    etcd:
+      client_cert: (( grab .properties.etcd.client_cert ))
+      client_key: (( grab .properties.etcd.client_key ))
+
+  cc:
+    jobs:
+      global:
+        timeout_in_seconds: 14400 # 4 hours
+      app_bits_packer:
+        timeout_in_seconds: ~
+      app_events_cleanup:
+        timeout_in_seconds: ~
+      app_usage_events_cleanup:
+        timeout_in_seconds: ~
+      blobstore_delete:
+        timeout_in_seconds: ~
+      blobstore_upload:
+        timeout_in_seconds: ~
+      droplet_deletion:
+        timeout_in_seconds: ~
+      droplet_upload:
+        timeout_in_seconds: ~
+      generic:
+        number_of_workers: ~
+
+    app_events:
+      cutoff_age_in_days: 31
+    app_usage_events:
+      cutoff_age_in_days: 31
+    service_usage_events:
+      cutoff_age_in_days: 31
+    audit_events:
+      cutoff_age_in_days: 31
+
+    users_can_select_backend: true
+    default_to_diego_backend: false
+    allow_app_ssh_access: true
+    default_app_memory: 1024
+    default_app_disk_in_mb: 1024
+    maximum_app_disk_in_mb: 2048
+    client_max_body_size: 15M
+
+    default_health_check_timeout: 60
+    maximum_health_check_timeout: 180
+
+    min_cli_version: ~
+
+    system_hostnames: ~
+    external_host: api
+    external_port: 9022
+    srv_api_uri: (( concat "https://" properties.cc.external_host "." properties.system_domain ))
+
+    bulk_api_password: (( param Replace with buld api password ))
+    internal_api_user: "internal_user"
+    internal_api_password: (( grab properties.cc.bulk_api_password ))
+
+    logging_level: debug2
+    db_logging_level: debug2
+
+    staging_upload_user: (( param Replace with staging upload user ))
+    staging_upload_password: (( param Replacw with staging updload user password ))
+
+    db_encryption_key: (( param Replace with db encryption key ))
+
+    directories: ~
+
+    disable_custom_buildpacks: false
+
+    broker_client_timeout_seconds: 70
+    broker_client_default_async_poll_interval_seconds: ~
+    broker_client_max_async_poll_duration_minutes: ~
+
+    resource_pool:
+      blobstore_type: "webdav"
+      webdav_config: (( grab properties.cc.webdav_config ))
+      resource_directory_key: (( concat properties.system_domain "-cc-resources" ))
+      fog_connection: ~
+      fog_aws_storage_options: ~
+      cdn: ~
+
+    packages:
+      blobstore_type: "webdav"
+      webdav_config: (( grab properties.cc.webdav_config ))
+      app_package_directory_key: (( concat properties.system_domain "-cc-packages" ))
+      fog_connection: ~
+      fog_aws_storage_options: ~
+      cdn: ~
+      max_package_size: 1073741824
+      max_valid_packages_stored: ~
+
+    droplets:
+      blobstore_type: "webdav"
+      webdav_config: (( grab properties.cc.webdav_config ))
+      droplet_directory_key: (( concat properties.system_domain "-cc-droplets" ))
+      fog_connection: ~
+      fog_aws_storage_options: ~
+      cdn: ~
+      max_staged_droplets_stored: ~
+
+    development_mode: false
+
+    newrelic:
+      license_key: ~
+      environment_name: (( grab meta.environment ))
+      developer_mode: (( grab properties.cc.development_mode ))
+      monitor_mode: false
+      capture_params: false
+      transaction_tracer:
+        enabled: true
+        record_sql: "obfuscated"
+
+    buildpacks:
+      blobstore_type: "webdav"
+      webdav_config: (( grab properties.cc.webdav_config ))
+      buildpack_directory_key: (( concat properties.system_domain "-cc-buildpacks" ))
+      fog_connection: ~
+      fog_aws_storage_options: ~
+      cdn: ~
+    quota_definitions: (( grab meta.default_quota_definitions ))
+    default_quota_definition: default
+
+    user_buildpacks: []
+    system_buildpacks: (( grab properties.cc.default_buildpacks ))
+    default_buildpacks:
+      - name: staticfile_buildpack
+        package: staticfile-buildpack
+      - name: java_buildpack
+        package: java-buildpack
+      - name: ruby_buildpack
+        package: ruby-buildpack
+      - name: nodejs_buildpack
+        package: nodejs-buildpack
+      - name: go_buildpack
+        package: go-buildpack
+      - name: python_buildpack
+        package: python-buildpack
+      - name: php_buildpack
+        package: php-buildpack
+      - name: binary_buildpack
+        package: binary-buildpack
+
+    install_buildpacks: (( grab properties.cc.system_buildpacks properties.cc.user_buildpacks ))
+
+    stacks: ~
+
+    security_group_definitions: (( grab meta.default_security_group_definitions ))
+    default_running_security_groups: ["public_networks", "dns"]
+    default_staging_security_groups: ["public_networks", "dns"]
+
+    allowed_cors_domains: []
+    thresholds:
+      api:
+        alert_if_above_mb: ~
+        restart_if_consistently_above_mb: ~
+        restart_if_above_mb: ~
+      worker:
+        alert_if_above_mb: ~
+        restart_if_consistently_above_mb: ~
+        restart_if_above_mb: ~
+    external_protocol: ~
+
+    webdav_config:
+      blobstore_timeout: 5
+      private_endpoint: "https://blobstore.service.cf.internal:4443"
+      public_endpoint: (( concat "http://blobstore."  properties.system_domain  || nil))
+      username: ((  grab properties.blobstore.admin_users.[0].username || nil ))
+      password: ((  grab properties.blobstore.admin_users.[0].password || nil ))
+      ca_cert: ((  grab properties.blobstore.tls.ca_cert || nil ))
+
+    reserved_private_domains: ~
+
+    dea_use_https: false
+    minimum_candidate_stagers: null
+    volume_services_enabled: null
+
+    security_event_logging:
+      enabled: null
+
+    rate_limiter: null
+
+  ccdb: (( param Replace with cc db ))
+
+  ha_proxy: null
+
+  hm9000:
+    url: (( concat "https://hm9000." properties.system_domain ))
+    port: 5155
+    ca_cert:
+    server_cert:
+    server_key:
+    client_cert:
+    client_key:
+    etcd:
+      machines: [(( grab .properties.etcd.advertise_urls_dns_suffix ))]
+      require_ssl: (( grab .properties.etcd.require_ssl ))
+      ca_cert: (( grab .properties.etcd.ca_cert ))
+      client_cert: (( grab .properties.etcd.client_cert ))
+      client_key: (( grab .properties.etcd.client_key ))
+
+  login:
+    branding: null
+    enabled: true
+    analytics:
+      code: ~
+      domain: ~
+    url: ~
+    catalina_opts: ~
+    protocol: ~
+    brand: oss
+    asset_base_url: ~
+    self_service_links_enabled: ~
+    messages: ~
+
+    notifications:
+      url: ~
+
+    smtp:
+      host: ~
+      port: ~
+      user: ~
+      password: ~
+
+    links:
+      passwd: (( concat "https://login." properties.system_domain "/forgot_password" ))
+      signup: (( concat "https://login." properties.system_domain "/create_account" ))
+
+    logout: ~
+
+    saml: ~
+
+    restricted_ips_regex: ~
+
+  uaa:
+    ca_cert: null
+    catalina_opts: ~
+    url: (( concat "https://uaa." properties.system_domain ))
+    issuer: (( grab properties.uaa.url ))
+
+    no_ssl: ~
+    require_https: ~
+
+    scim:
+      userids_enabled: true
+      users: (( param Replace with users ))
+      external_groups: ~
+      groups: ~
+
+    ssl:
+      port: 8443
+    sslCertificate: (( param Replace with ssl certificate ))
+    sslPrivateKey: (( param Replace with private key ))
+
+    jwt: (( param Replace with JWT ))
+
+    cc:
+      client_secret: (( param Replace with client secret ))
+
+    admin:
+      client_secret: (( param Replace with client secret ))
+
+    authentication:
+      policy:
+        lockoutAfterFailures: ~
+        countFailuresWithinSeconds: ~
+        lockoutPeriodSeconds: ~
+
+    password:
+      policy:
+        minLength: ~
+        requireUpperCaseCharacter: ~
+        requireLowerCaseCharacter: ~
+        requireDigit: ~
+        requireSpecialCharacter: ~
+
+    login: ~
+
+    ldap: ~
+
+    newrelic: ~
+    port: 8080
+
+    user: ~
+    clients:
+      login:
+        override: true
+        scope: openid,oauth.approvals
+        authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
+        secret: (( param Replace with login secret ))
+        authorized-grant-types: authorization_code,client_credentials,refresh_token
+        redirect-uri: (( concat "https://login." properties.system_domain ))
+        autoapprove: true
+      cf:
+        override: true
+        authorized-grant-types: password,refresh_token
+        scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
+        authorities: uaa.none
+        access-token-validity: 600
+        refresh-token-validity: 2592000
+      notifications:
+        secret: (( param Replaced with login secret ))
+        authorities: cloud_controller.admin,scim.read
+        authorized-grant-types: client_credentials
+      doppler:
+        override: true
+        authorities: uaa.resource
+        secret: (( param Replaced with login secret ))
+      cloud_controller_username_lookup:
+        authorities: scim.userids
+        secret: (( param Replaced with login secret ))
+        authorized-grant-types: client_credentials
+      cc_routing:
+        authorities: routing.router_groups.read
+        secret: (( param Replaced with login secret ))
+        authorized-grant-types: client_credentials
+      gorouter:
+        authorities: routing.routes.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: (( param Replaced with login secret ))
+      tcp_emitter:
+        authorities: routing.routes.write,routing.routes.read,routing.router_groups.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: (( param Replaced with login secret ))
+      tcp_router:
+        authorities: routing.routes.read,routing.router_groups.read
+        authorized-grant-types: client_credentials,refresh_token
+        secret: (( param Replaced with login secret ))
+      cc-service-dashboards:
+        secret: (( param Replaced with login secret ))
+        scope: openid,cloud_controller_service_permissions.read
+        authorities: clients.read,clients.write,clients.admin
+        authorized-grant-types: authorization_code,client_credentials
+
+    database: ~
+
+    zones:
+      internal:
+        hostnames: ["uaa.service.cf.internal"]
+
+  uaadb: (( param Replace with uaa db ))
+
+  databases: ~
+
+  router:
+    logging_level: null
+    suspend_pruning_if_nats_unavailable: null
+    enable_proxy: null
+    force_forwarded_proto_https: null
+    enable_ssl: null
+    ssl_cert: null
+    ssl_key: null
+    cipher_suites: null
+    requested_route_registration_interval_in_seconds: null
+    load_balancer_healthy_threshold: null
+    balancing_algorithm: null
+    ssl_skip_validation: null
+    port: null
+    status:
+      user: (( param Replace with status user ))
+      password: (( param Replace with status user password ))
+      port: null
+    secure_cookies: null
+    route_services_secret: null
+    route_services_secret_decrypt_only: null
+    route_services_timeout: null
+    route_services_recommend_https: null
+    tracing:
+      enable_zipkin: null
+    logrotate: null
+    extra_headers_to_log: null
+    debug_address: null
+    drain_wait: null
+    healthcheck_user_agent: null
+    enable_access_log_streaming: null
+
+  routing_api:
+    enabled: null
+
+  syslog_daemon_config: ~
+
+  nfs_server: (( grab meta.nfs_server ))
+
+  collector: null
+
+  acceptance_tests: null
+
+  smoke_tests: null
+
+compilation:
+  workers: 6
+  network: cf1
+  reuse_compilation_vms: true
+  cloud_properties: (( param Replace with cloud properties ))
+
+update:
+  canaries: 1
+  max_in_flight: 1
+  canary_watch_time: 30000-600000
+  update_watch_time: 5000-600000
+  serial: true
+
+resource_pools:
+  - name: small_z1
+    network: cf1
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: small_z2
+    network: cf2
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: medium_z1
+    network: cf1
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: medium_z2
+    network: cf2
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: large_z1
+    network: cf1
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: large_z2
+    network: cf2
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: runner_z1
+    network: cf1
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: runner_z2
+    network: cf2
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: router_z1
+    network: "cf1"
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: router_z2
+    network: "cf2"
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( param Replace with cloud properties ))
+    env: (( grab meta.default_env ))
+
+  - name: small_errand
+    network: cf1
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( grab resource_pools.small_z1.cloud_properties ))
+    env: (( grab meta.default_env ))
+
+  - name: xlarge_errand
+    network: cf1
+    stemcell: (( grab meta.stemcell ))
+    cloud_properties: (( grab resource_pools.large_z1.cloud_properties ))
+    env: (( grab meta.default_env ))
+
+meta:
+  # override this in your stub to set the environment name,
+  # which is used for the deployment name
+  #
+  # i.e. cf-tabasco
+  environment: (( param Replace with an name for you environment. Usually the Openstack tenant ))
+
+  default_env:
+    # Default vcap & root password on deployed VMs (ie c1oudc0w)
+    # Generated using mkpasswd -m sha-512
+    bosh:
+      password: "$6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0"
+
+  stemcell: (( param Replace with the stemcell ))
+
+  cf_release_name: cf
+  capi_release_name: (( grab releases.capi.name || "cf" ))
+  consul_release_name: (( grab releases.consul.name || "cf" ))
+  etcd_release_name: (( grab releases.etcd.name || "cf" ))
+  postgres_release_name: (( grab releases.postgres.name || "cf" ))
+  java_buildpack_release_name: (( grab releases.java-buildpack.name || "cf" ))
+  go_buildpack_release_name: (( grab releases.go-buildpack.name || "cf" ))
+  binary_buildpack_release_name: (( grab releases.binary-buildpack.name || "cf" ))
+  nodejs_buildpack_release_name: (( grab releases.nodejs-buildpack.name || "cf" ))
+  ruby_buildpack_release_name: (( grab releases.ruby-buildpack.name || "cf" ))
+  php_buildpack_release_name: (( grab releases.php-buildpack.name || "cf" ))
+  python_buildpack_release_name: (( grab releases.python-buildpack.name || "cf" ))
+  staticfile_buildpack_release_name: (( grab releases.staticfile-buildpack.name || "cf" ))
+  loggregator_release_name: (( grab releases.loggregator.name || "cf" ))
+  uaa_release_name: (( grab releases.uaa.name || "cf" ))
+
+  consul_servers: (( grab jobs.consul_z1.networks.cf1.static_ips jobs.consul_z2.networks.cf2.static_ips ))
+
+  hm9000_routes:
+  - name: hm9000
+    port: (( grab .properties.hm9000.port ))
+    registration_interval: 20s
+    tags:
+      component: HM9K
+    uris:
+    - (( concat "hm9000." .properties.system_domain ))
+
+  loggregator_trafficcontroller_routes:
+  - name: doppler
+    port: (( grab .properties.loggregator.outgoing_dropsonde_port ))
+    registration_interval: 20s
+    uris:
+    - (( concat "doppler." .properties.system_domain ))
+
+  loggregator_trafficcontroller_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: loggregator_trafficcontroller
+    release: (( grab meta.loggregator_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+  - name: route_registrar
+    release: (( grab meta.cf_release_name ))
+
+  loggregator_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: doppler
+    release: (( grab meta.loggregator_release_name ))
+  - name: syslog_drain_binder
+    release: (( grab meta.loggregator_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+
+  dea_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: dea_next
+    release: (( grab meta.cf_release_name ))
+  - name: dea_logging_agent
+    release: (( grab meta.loggregator_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  hm9000_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: hm9000
+    release: (( grab meta.cf_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+  - name: route_registrar
+    release: (( grab meta.cf_release_name ))
+
+  nfs_client_ranges:
+    - (( grab .networks.cf1.subnets.[0].range || nil ))
+    - (( grab .networks.cf2.subnets.[0].range || nil ))
+
+  nfs_server:
+    address: (( grab jobs.nfs_z1.networks.cf1.static_ips.[0] || nil ))
+    allow_from_entries: (( grab meta.nfs_client_ranges ))
+    share: ~
+
+  api_routes:
+  - name: api
+    tags:
+      component: CloudController
+    port: (( grab .properties.cc.external_port ))
+    registration_interval: 20s
+    uris:
+    - (( concat "api." .properties.system_domain ))
+
+  api_consul_services:
+    cloud_controller_ng: {}
+
+  api_worker_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: cloud_controller_worker
+    release: (( grab meta.capi_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  clock_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: cloud_controller_clock
+    release: (( grab meta.capi_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  api_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: java-buildpack
+    release: (( grab meta.java_buildpack_release_name ))
+  - name: java-offline-buildpack
+    release: (( grab meta.java_buildpack_release_name ))
+  - name: go-buildpack
+    release: (( grab meta.go_buildpack_release_name ))
+  - name: binary-buildpack
+    release: (( grab meta.binary_buildpack_release_name ))
+  - name: nodejs-buildpack
+    release: (( grab meta.nodejs_buildpack_release_name ))
+  - name: ruby-buildpack
+    release: (( grab meta.ruby_buildpack_release_name ))
+  - name: php-buildpack
+    release: (( grab meta.php_buildpack_release_name ))
+  - name: python-buildpack
+    r  elease: (( grab meta.python_buildpack_release_name ))
+  - name: staticfile-buildpack
+    release: (( grab meta.staticfile_buildpack_release_name ))
+  - name: cloud_controller_ng
+    release: (( grab meta.capi_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+  - name: statsd-injector
+    release: (( grab meta.loggregator_release_name ))
+  - name: route_registrar
+    release: (( grab meta.cf_release_name ))
+
+  uaa_routes:
+  - name: uaa
+    port: (( grab .properties.uaa.port ))
+    registration_interval: 4s
+    tags:
+      component: uaa
+    uris:
+    - (( concat "uaa." .properties.system_domain ))
+    - (( concat "*.uaa." .properties.system_domain ))
+    - (( concat "login." .properties.system_domain ))
+    - (( concat "*.login." .properties.system_domain ))
+    health_check:
+      name: uaa-healthcheck
+      script_path: /var/vcap/jobs/uaa/bin/health_check
+
+  uaa_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: uaa
+    release: (( grab meta.uaa_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+  - name: route_registrar
+    release: (( grab meta.cf_release_name ))
+  - name: statsd-injector
+    release: (( grab meta.loggregator_release_name ))
+
+  postgres_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: postgres
+    release: (( grab meta.postgres_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  consul_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  etcd_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: etcd
+    release: (( grab meta.etcd_release_name ))
+  - name: etcd_metrics_server
+    release: (( grab meta.etcd_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  router_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: gorouter
+    release: (( grab meta.cf_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  ha_proxy_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: haproxy
+    release: (( grab meta.cf_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  nats_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: nats
+    consumes: {nats: nil}
+    release: (( grab meta.cf_release_name ))
+  - name: nats_stream_forwarder
+    release: (( grab meta.cf_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  stats_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: collector
+    release: (( grab meta.cf_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+
+  nfs_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: debian_nfs_server
+    release: (( grab meta.capi_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+  - name: blobstore
+    release: (( grab meta.capi_release_name ))
+  - name: route_registrar
+    release: (( grab meta.cf_release_name ))
+
+  blobstore_templates:
+  - name: consul_agent
+    release: (( grab meta.consul_release_name ))
+  - name: metron_agent
+    release: (( grab meta.loggregator_release_name ))
+  - name: blobstore
+    release: (( grab meta.capi_release_name ))
+  - name: route_registrar
+    release: (( grab meta.cf_release_name ))
+
+  blobstore_routes:
+  - name: blobstore
+    port: (( grab .properties.blobstore.port ))
+    registration_interval: 20s
+    tags:
+      component: blobstore
+    uris:
+    - (( concat "blobstore." .properties.system_domain ))
+
+  default_quota_definitions:
+    default:
+       memory_limit: 10240
+       total_services: 100
+       total_service_keys: 1000
+       non_basic_services_allowed: true
+       total_routes: 1000
+
+  default_security_group_definitions:
+  - name: public_networks
+    rules:
+    - protocol: all
+      destination: 0.0.0.0-9.255.255.255
+    - protocol: all
+      destination: 11.0.0.0-169.253.255.255
+    - protocol: all
+      destination: 169.255.0.0-172.15.255.255
+    - protocol: all
+      destination: 172.32.0.0-192.167.255.255
+    - protocol: all
+      destination: 192.169.0.0-255.255.255.255
+  - name: dns
+    rules:
+    - protocol: tcp
+      destination: 0.0.0.0/0
+      ports: '53'
+    - protocol: udp
+      destination: 0.0.0.0/0
+      ports: '53'
+
+empty_hash: {}
