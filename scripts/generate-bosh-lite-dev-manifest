@@ -33,10 +33,18 @@ fi
 
 mkdir -p "${CF_RELEASE_DIR}/bosh-lite/deployments"
 
+mkdir uaaCerts
+openssl req -newkey rsa:2048 -nodes -x509 -keyout uaaCerts/sp.key.pem -out uaaCerts/sp.cert.pem -days 1460 -subj '/'
+jq -n --arg spKey "`cat uaaCerts/sp.key.pem`" --arg spCert "`cat uaaCerts/sp.cert.pem`" '{"properties":{"login":{"saml":{"serviceProviderKey":$spKey,"serviceProviderKeyPassword":"","serviceProviderCertificate":$spCert}}}}' > uaa-properties.json
+rm -rf uaaCerts
+
 "${CF_RELEASE_DIR}/scripts/generate_deployment_manifest" \
   bosh-lite \
+  uaa-properties.json \
   <(echo "director_uuid: ${DIRECTOR_UUID}") \
   "$@" \
   > "${CF_RELEASE_DIR}/bosh-lite/deployments/cf.yml"
+
+rm uaa-properties.json
 
 bosh deployment "${CF_RELEASE_DIR}/bosh-lite/deployments/cf.yml"
