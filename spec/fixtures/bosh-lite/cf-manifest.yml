@@ -323,6 +323,7 @@ jobs:
     consumes: {consul: nil}
   - name: uaa
     release: cf
+    consumes: {router: nil}
   - name: metron_agent
     release: cf
   - consumes:
@@ -371,6 +372,7 @@ jobs:
     consumes: {consul: nil}
   - name: uaa
     release: cf
+    consumes: {router: nil}
   - name: metron_agent
     release: cf
   - consumes:

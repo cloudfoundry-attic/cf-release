@@ -1603,7 +1603,7 @@ meta:
     consumes: {consul: nil}
   - name: uaa
     release: (( meta.uaa_release_name ))
-    consumes: {http-router: nil}
+    consumes: {router: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
