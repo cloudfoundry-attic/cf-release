@@ -143,10 +143,6 @@ postgres/postgresql-9.6.2.tar.gz:
   object_id: 0accb732-2327-4b3e-bf1c-af4bbe466ef8
   sha: 3159151f2fc74ec3e684ec0dc8949494b608fb3c
   size: 25450827
-go-buildpack/go_buildpack-cached-v1.7.19.zip:
-  object_id: 4867437f-fa56-468c-962d-715f329e128a
-  sha: 2c3de94d4f6cdda41536b3b83907fded858e95d4
-  size: 357236311
 ruby-buildpack/ruby_buildpack-cached-v1.6.37.zip:
   object_id: 87359619-55cd-43a6-bb47-5dfcc5c226fe
   sha: af7ae55e9a1d6bb5dead9e22c8321c6dc306b2d6
@@ -195,3 +191,7 @@ rootfs/cflinuxfs2-1.115.0.tar.gz:
   object_id: 121bcb34-cf22-4b8c-9f27-1a926e7dcd29
   sha: 2982562482dd0fc8f59f010f98b0160739462603
   size: 286953258
+go-buildpack/go_buildpack-cached-v1.8.1.zip:
+  object_id: 04322f9c-8a1b-436b-9791-ec0ea245a6e1
+  sha: c9b0c071c02c883be398048bb2a1ee7f2d20f021
+  size: 432884011
