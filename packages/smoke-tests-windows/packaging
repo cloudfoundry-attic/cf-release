@@ -1,3 +1,5 @@
+. ./exiter.ps1
+
 $REPO_DIR="${env:BOSH_INSTALL_TARGET}\src\github.com\cloudfoundry\cf-smoke-tests"
 
 mkdir ${REPO_DIR}

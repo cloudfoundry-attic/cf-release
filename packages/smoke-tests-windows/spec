@@ -4,6 +4,7 @@ dependencies:
   - cli
 files:
   - smoke-tests/**/*
+  - exiter.ps1
 excluded_files:
   - smoke-tests-windows/smoke/results/*
   - smoke-tests-windows/*config.json
