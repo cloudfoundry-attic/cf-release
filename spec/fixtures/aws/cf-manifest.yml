@@ -1694,7 +1694,7 @@ properties:
         secret: DOPPLER_SECRET
         authorized-grant-types: client_credentials
       gorouter:
-        authorities: routing.routes.read, routing.router_groups.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: GOROUTER_SECRET
       login:
@@ -1714,7 +1714,7 @@ properties:
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-EMITTER-SECRET
       tcp_router:
-        authorities: routing.routes.read, routing.router_groups.read
+        authorities: routing.routes.read
         authorized-grant-types: client_credentials,refresh_token
         secret: TCP-ROUTER-SECRET
     database: null
