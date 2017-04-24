@@ -1,92 +1,51 @@
----
-debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
-  object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
-  sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
-  size: 169618
-uaa/cloudfoundry-identity-varz-1.0.2.war:
-  object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc050928ba58f527
-  sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
-  size: 5727747
-nginx/nginx-upload-module-2.2.tar.gz:
-  object_id: 502854f1-9823-468f-baef-1a8d68823ead
-  sha: 74ccd116525a155db76f92a1cd484d9516a70398
-  size: 28505
-uaa/newrelic.jar:
-  object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
-  sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
-  size: 7064901
-uaa/cloudfoundry-identity-statsd-1.0.0.war:
-  object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
-  sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
-  size: 11163261
-ruby-2.1.8/bundler-1.9.4.gem:
-  object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
-  sha: ea3f17a76a8249049b5589c9b5421af72189babc
-  size: 244224
-ruby-2.1.8/ruby-2.1.8.tar.gz:
-  object_id: 6e90c843-f647-4f85-80f2-769cd3688258
-  sha: c7e50159357afd87b13dc5eaf4ac486a70011149
-  size: 15154017
-ruby-2.1.8/yaml-0.1.6.tar.gz:
-  object_id: 63b9ac28-38d6-4698-bd99-908f80e90405
-  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
-  size: 503012
-libmariadb/libmariadb-5.5.36.tar.xz:
-  object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
-  sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
-  size: 1260684
-nginx/newrelic_nginx_agent-1.2.1.tar.gz:
-  object_id: c1534fd2-f0f4-4f64-be14-49de4e450173
-  sha: 98a1b10475371705932fea4769f8ac1b0451106f
-  size: 5222
-ruby-2.2.5/ruby-2.2.5.tar.gz:
-  object_id: 9a7262fc-f0af-4bba-be5d-b9d59044071a
-  sha: 457707459827bd527347a5cee7b4dc509b486713
-  size: 16654395
-ruby-2.2.5/bundler-1.11.2.gem:
-  object_id: 61e0839e-176e-41a1-a13b-ee53337794a3
-  sha: 8eb956dec72da753d3d2a2126c78508b17af434e
-  size: 263168
-ruby-2.2.5/yaml-0.1.6.tar.gz:
-  object_id: 1d7ec354-5aa6-4e19-b6e5-51f6d6327814
-  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
-  size: 503012
+binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
+  size: 55014
+  object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
+  sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
+cli/cf-cli_6.26.0_linux_x86-64.tgz:
+  size: 5174999
+  object_id: db58b893-9d3e-477e-96ae-9941d3cebea9
+  sha: 6fe2df0ef09820a3a46db5cac9152fb8f1ecca02
+cli/cf-cli_6.26.0_winx64.zip:
+  size: 5239878
+  object_id: aefa451b-b95c-4ed1-8c9c-87cdc4266bc6
+  sha: 653f3d3b0f93f414ca787e421403e0e0475793ec
+consul-windows/consul_0.7.1_windows_amd64.zip:
+  size: 7299930
+  object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
+  sha: a4e13dcb189e8235ca6c48029638733e12fb9747
 consul/consul-template_0.14.0_linux_amd64.zip:
+  size: 3523492
   object_id: 498b302c-a737-4036-8cc7-14a64493338d
   sha: f932301f69a477253e4e4bf3c60159ea77cf28a8
-  size: 3523492
+consul/consul_0.7.1_linux_amd64.zip:
+  size: 7359222
+  object_id: 08ad90a5-10ab-48cb-bebe-ead924e9ef32
+  sha: c2be9eebc40bf552e260c7dd31a77cb60474712f
+container-networking/v0-14-0-network-policy-plugin-linux64:
+  size: 8472248
+  object_id: 8fb4ea2d-7f93-4ea4-bfeb-c7b973c2d6b9
+  sha: df087aee2480e2ec67a6b0433fddd351b9f2cc21
+debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
+  size: 169618
+  object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
+  sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.15.zip:
+  size: 590023989
+  object_id: 5e036751-3b42-4d3f-aa84-2c530a0dbfb7
+  sha: 7dbaed57cde7287a3a795fdb795eaa630c3139bc
+etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
+  size: 6517667
+  object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
+  sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
+go-buildpack/go_buildpack-cached-v1.8.1.zip:
+  size: 432884011
+  object_id: 04322f9c-8a1b-436b-9791-ec0ea245a6e1
+  sha: c9b0c071c02c883be398048bb2a1ee7f2d20f021
 golang/go1.6.3.linux-amd64.tar.gz:
+  size: 84856920
   object_id: 7ad4929c-a987-4b84-b686-3c9598951f25
   sha: 5e916ba4dd8c2fc43beafca4c08b334c4d0686f3
-  size: 84856920
-postgres/postgresql-9.4.9.tar.gz:
-  object_id: 528861b6-d7c1-4ecd-82b1-d9d56aea62ea
-  sha: c9d641eb69885672e5aacee413cd778d88b8420d
-  size: 23300245
-openjdk/openjdk-1.8.0_101-x86_64-trusty.tar.gz:
-  object_id: af292af2-8e47-487a-8dfd-c7fd0c04caec
-  sha: d77ee059e289ae52fb87812f1a2932268427dc26
-  size: 77696717
-openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
-  object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
-  sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
-  size: 75550921
-uaa/apache-tomcat-8.0.39.tar.gz:
-  object_id: 2166a182-9111-48af-87c5-34cc06f68cac
-  sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
-  size: 9304967
-ruby-2.3/bundler-1.13.6.gem:
-  object_id: bad05dd0-86e8-4a45-8a46-70880a1c6dd8
-  sha: c4b33f5e0a6ad4a363d2820260f10454197cceff
-  size: 307200
-ruby-2.3/ruby-2.3.3.tar.gz:
-  object_id: 218c9c26-c0b4-4115-84d1-9f0283d6d633
-  sha: 1014ee699071aa2ddd501907d18cbe15399c997d
-  size: 17813577
-ruby-2.3/rubygems-2.6.8.tgz:
-  object_id: 2393318f-83ea-4e9c-9d18-83d82ee34d94
-  sha: d253fd1caca6103a9e2a69127ac158a3745fbb44
-  size: 754300
 golang/go1.7.4.linux-amd64.tar.gz:
   size: 84021919
   object_id: 783849db-2186-488f-459f-28d2f22d7b64
@@ -95,107 +54,147 @@ golang/go1.7.4.windows-amd64.zip:
   size: 90409580
   object_id: dbebd00d-43b7-434d-6603-c7a8fbcbf779
   sha: a0da2f5d67e5b800eba811a34ca4b2aa22cca678
-consul/consul_0.7.1_linux_amd64.zip:
-  object_id: 08ad90a5-10ab-48cb-bebe-ead924e9ef32
-  sha: c2be9eebc40bf552e260c7dd31a77cb60474712f
-  size: 7359222
-consul-windows/consul_0.7.1_windows_amd64.zip:
-  object_id: 0c43024e-2d4a-4b97-8cb7-c566d2147e80
-  sha: a4e13dcb189e8235ca6c48029638733e12fb9747
-  size: 7299930
-nginx/headers-more-nginx-module-0.32.tar.gz:
-  object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
-  sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
-  size: 28033
-haproxy/haproxy-1.5.19.tar.gz:
-  object_id: c1a80f45-f732-4184-917b-ce2cf796ffad
-  sha: 8aa56f4cca4c1bf27c82f60ec2a040f91acb0bc1
-  size: 1362834
-haproxy/pcre-8.40.tar.gz:
-  object_id: 7d3a2a29-6c80-40b6-bf77-74d337b99cea
-  sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
-  size: 2065161
-nginx/pcre-8.40.tar.gz:
-  object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
-  sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
-  size: 2065161
-etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
-  object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
-  sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
-  size: 6517667
-nginx/nginx-1.11.11.tar.gz:
-  object_id: 45d294be-d397-43f0-845a-0ad7a9aadded
-  sha: 2ace229d7108c023201eb4de0556ae7f5cc60e38
-  size: 979864
-nginx/nginx-1.11.13.tar.gz:
-  object_id: 052934ff-450e-484f-78a5-bdf78c7e996a
-  sha: 84f27729754796181dc39d47da761c7e85eb3ae2
-  size: 980784
-binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
-  object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
-  sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
-  size: 55014
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.15.zip:
-  object_id: 5e036751-3b42-4d3f-aa84-2c530a0dbfb7
-  sha: 7dbaed57cde7287a3a795fdb795eaa630c3139bc
-  size: 590023989
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.32.zip:
-  object_id: 9aa976de-d5d8-4a47-8967-2a652ff042c4
-  sha: 1fe2ad895dfc85f37d915790d78152c89a52f4ae
-  size: 82429753
-container-networking/v0-14-0-network-policy-plugin-linux64:
-  object_id: 8fb4ea2d-7f93-4ea4-bfeb-c7b973c2d6b9
-  sha: df087aee2480e2ec67a6b0433fddd351b9f2cc21
-  size: 8472248
-postgres/postgresql-9.6.2.tar.gz:
-  object_id: 0accb732-2327-4b3e-bf1c-af4bbe466ef8
-  sha: 3159151f2fc74ec3e684ec0dc8949494b608fb3c
-  size: 25450827
-ruby-buildpack/ruby_buildpack-cached-v1.6.37.zip:
-  object_id: 87359619-55cd-43a6-bb47-5dfcc5c226fe
-  sha: af7ae55e9a1d6bb5dead9e22c8321c6dc306b2d6
-  size: 324475058
-java-buildpack/java-buildpack-v3.15.zip:
-  object_id: 2bf74a61-722d-42ea-8e7e-7ea699d2d4cc
-  sha: b1e63292064d1a5eebe188edeae569e8c64ea397
-  size: 170303
-java-buildpack/java-buildpack-offline-v3.15.zip:
-  object_id: be678542-02e5-41e9-b002-69859ecb19de
-  sha: b14943521d1f8d1a7026f2516c1017fa6d2809f4
-  size: 277180400
 golang/go1.8.linux-amd64.tar.gz:
+  size: 89803580
   object_id: 981ceeb2-b4b7-47e2-a3f4-9ca90fe20806
   sha: a93fe8fc245e3554f956bc823f30ef4eb23c2068
-  size: 89803580
-cli/cf-cli_6.26.0_linux_x86-64.tgz:
-  object_id: db58b893-9d3e-477e-96ae-9941d3cebea9
-  sha: 6fe2df0ef09820a3a46db5cac9152fb8f1ecca02
-  size: 5174999
-cli/cf-cli_6.26.0_winx64.zip:
-  object_id: aefa451b-b95c-4ed1-8c9c-87cdc4266bc6
-  sha: 653f3d3b0f93f414ca787e421403e0e0475793ec
-  size: 5239878
 golang/go1.8.windows-amd64.zip:
+  size: 95976688
   object_id: 643d1977-7a08-4cd1-95e2-86c38435dade
   sha: e31d11df0ac5d8e16a64c8dcfce706589842410f
-  size: 95976688
-rootfs/cflinuxfs2-1.115.0.tar.gz:
-  object_id: 121bcb34-cf22-4b8c-9f27-1a926e7dcd29
-  sha: 2982562482dd0fc8f59f010f98b0160739462603
-  size: 286953258
-go-buildpack/go_buildpack-cached-v1.8.1.zip:
-  object_id: 04322f9c-8a1b-436b-9791-ec0ea245a6e1
-  sha: c9b0c071c02c883be398048bb2a1ee7f2d20f021
-  size: 432884011
-staticfile-buildpack/staticfile_buildpack-cached-v1.4.5.zip:
-  object_id: 3c5c1223-1045-4e08-9e9c-00cbd28fb8f5
-  sha: b17a745f15b7442ad5c7df8196947bf337a14195
-  size: 5515489
+haproxy/haproxy-1.5.19.tar.gz:
+  size: 1362834
+  object_id: c1a80f45-f732-4184-917b-ce2cf796ffad
+  sha: 8aa56f4cca4c1bf27c82f60ec2a040f91acb0bc1
+haproxy/pcre-8.40.tar.gz:
+  size: 2065161
+  object_id: 7d3a2a29-6c80-40b6-bf77-74d337b99cea
+  sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
+java-buildpack/java-buildpack-offline-v3.15.zip:
+  size: 277180400
+  object_id: be678542-02e5-41e9-b002-69859ecb19de
+  sha: b14943521d1f8d1a7026f2516c1017fa6d2809f4
+java-buildpack/java-buildpack-v3.15.zip:
+  size: 170303
+  object_id: 2bf74a61-722d-42ea-8e7e-7ea699d2d4cc
+  sha: b1e63292064d1a5eebe188edeae569e8c64ea397
+libmariadb/libmariadb-5.5.36.tar.xz:
+  size: 1260684
+  object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
+  sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
+nginx/headers-more-nginx-module-0.32.tar.gz:
+  size: 28033
+  object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
+  sha: aadb7f0b6c5b5b9cae2af72984e03dc2fbf3fecb
+nginx/newrelic_nginx_agent-1.2.1.tar.gz:
+  size: 5222
+  object_id: c1534fd2-f0f4-4f64-be14-49de4e450173
+  sha: 98a1b10475371705932fea4769f8ac1b0451106f
+nginx/nginx-1.11.11.tar.gz:
+  size: 979864
+  object_id: 45d294be-d397-43f0-845a-0ad7a9aadded
+  sha: 2ace229d7108c023201eb4de0556ae7f5cc60e38
+nginx/nginx-1.11.13.tar.gz:
+  size: 980784
+  object_id: 052934ff-450e-484f-78a5-bdf78c7e996a
+  sha: 84f27729754796181dc39d47da761c7e85eb3ae2
+nginx/nginx-upload-module-2.2.tar.gz:
+  size: 28505
+  object_id: 502854f1-9823-468f-baef-1a8d68823ead
+  sha: 74ccd116525a155db76f92a1cd484d9516a70398
+nginx/pcre-8.40.tar.gz:
+  size: 2065161
+  object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
+  sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.32.zip:
+  size: 82429753
+  object_id: 9aa976de-d5d8-4a47-8967-2a652ff042c4
+  sha: 1fe2ad895dfc85f37d915790d78152c89a52f4ae
+openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
+  size: 75550921
+  object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
+  sha: d9374652844bfd7bcdce8f8b605fb57fd76c9e36
+openjdk/openjdk-1.8.0_101-x86_64-trusty.tar.gz:
+  size: 77696717
+  object_id: af292af2-8e47-487a-8dfd-c7fd0c04caec
+  sha: d77ee059e289ae52fb87812f1a2932268427dc26
 php-buildpack/php_buildpack-cached-v4.3.31.zip:
+  size: 352244645
   object_id: dcf87596-5375-4c0c-99f0-6363127c78bf
   sha: 916d21ea50826c6e2a2d3a9f85bd699487d430ef
-  size: 352244645
+postgres/postgresql-9.4.9.tar.gz:
+  size: 23300245
+  object_id: 528861b6-d7c1-4ecd-82b1-d9d56aea62ea
+  sha: c9d641eb69885672e5aacee413cd778d88b8420d
+postgres/postgresql-9.6.2.tar.gz:
+  size: 25450827
+  object_id: 0accb732-2327-4b3e-bf1c-af4bbe466ef8
+  sha: 3159151f2fc74ec3e684ec0dc8949494b608fb3c
 python-buildpack/python_buildpack-cached-v1.5.18.zip:
+  size: 407683992
   object_id: 029f8199-8c1e-4f10-9f3a-0d389dd35c61
   sha: 93d2d61340bfb72368833da35bab3a982dc85eb6
-  size: 407683992
+rootfs/cflinuxfs2-1.115.0.tar.gz:
+  size: 286953258
+  object_id: 121bcb34-cf22-4b8c-9f27-1a926e7dcd29
+  sha: 2982562482dd0fc8f59f010f98b0160739462603
+ruby-2.1.8/bundler-1.9.4.gem:
+  size: 244224
+  object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
+  sha: ea3f17a76a8249049b5589c9b5421af72189babc
+ruby-2.1.8/ruby-2.1.8.tar.gz:
+  size: 15154017
+  object_id: 6e90c843-f647-4f85-80f2-769cd3688258
+  sha: c7e50159357afd87b13dc5eaf4ac486a70011149
+ruby-2.1.8/yaml-0.1.6.tar.gz:
+  size: 503012
+  object_id: 63b9ac28-38d6-4698-bd99-908f80e90405
+  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
+ruby-2.2.5/bundler-1.11.2.gem:
+  size: 263168
+  object_id: 61e0839e-176e-41a1-a13b-ee53337794a3
+  sha: 8eb956dec72da753d3d2a2126c78508b17af434e
+ruby-2.2.5/ruby-2.2.5.tar.gz:
+  size: 16654395
+  object_id: 9a7262fc-f0af-4bba-be5d-b9d59044071a
+  sha: 457707459827bd527347a5cee7b4dc509b486713
+ruby-2.2.5/yaml-0.1.6.tar.gz:
+  size: 503012
+  object_id: 1d7ec354-5aa6-4e19-b6e5-51f6d6327814
+  sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
+ruby-2.3/bundler-1.13.6.gem:
+  size: 307200
+  object_id: bad05dd0-86e8-4a45-8a46-70880a1c6dd8
+  sha: c4b33f5e0a6ad4a363d2820260f10454197cceff
+ruby-2.3/ruby-2.3.3.tar.gz:
+  size: 17813577
+  object_id: 218c9c26-c0b4-4115-84d1-9f0283d6d633
+  sha: 1014ee699071aa2ddd501907d18cbe15399c997d
+ruby-2.3/rubygems-2.6.8.tgz:
+  size: 754300
+  object_id: 2393318f-83ea-4e9c-9d18-83d82ee34d94
+  sha: d253fd1caca6103a9e2a69127ac158a3745fbb44
+ruby-buildpack/ruby_buildpack-cached-v1.6.37.zip:
+  size: 324475058
+  object_id: 87359619-55cd-43a6-bb47-5dfcc5c226fe
+  sha: af7ae55e9a1d6bb5dead9e22c8321c6dc306b2d6
+staticfile-buildpack/staticfile_buildpack-cached-v1.4.5.zip:
+  size: 5515489
+  object_id: 3c5c1223-1045-4e08-9e9c-00cbd28fb8f5
+  sha: b17a745f15b7442ad5c7df8196947bf337a14195
+uaa/apache-tomcat-8.0.39.tar.gz:
+  size: 9304967
+  object_id: 2166a182-9111-48af-87c5-34cc06f68cac
+  sha: 18c54a81e05df39dec9ac02b143875a29b5502d5
+uaa/cloudfoundry-identity-statsd-1.0.0.war:
+  size: 11163261
+  object_id: 03f0688e-c6f3-4a27-8d5c-694b4dda0907
+  sha: 038c11e503bdbc5194c76535b22f5d4b85aeb37f
+uaa/cloudfoundry-identity-varz-1.0.2.war:
+  size: 5727747
+  object_id: rest/objects/4e4e78bca21e121204e4e86ee151bc050928ba58f527
+  sha: 8c35ed35fb6dfc4a97a243447763c635812066e8
+uaa/newrelic.jar:
+  size: 7064901
+  object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
+  sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
