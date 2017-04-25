@@ -14,8 +14,8 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 10.10.16.37
-    - 10.10.16.38
+    - 10.0.31.217
+    - 10.0.31.218
   persistent_disk: 1024
   properties:
     consul:
@@ -40,7 +40,7 @@ jobs:
   networks:
   - name: cf2
     static_ips:
-    - 10.10.80.37
+    - 10.0.47.217
   persistent_disk: 1024
   properties:
     consul:
@@ -65,7 +65,7 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 10.10.16.11
+    - 10.0.31.191
   properties:
     metron_agent:
       zone: z1
@@ -90,7 +90,7 @@ jobs:
   networks:
   - name: cf2
     static_ips:
-    - 10.10.80.11
+    - 10.0.47.191
   properties:
     metron_agent:
       zone: z2
@@ -115,8 +115,8 @@ jobs:
   networks:
   - name: cf1
     static_ips:
-    - 10.10.16.20
-    - 10.10.16.35
+    - 10.0.31.200
+    - 10.0.31.215
   persistent_disk: 10024
   properties:
     consul:
@@ -148,7 +148,7 @@ jobs:
   networks:
   - name: cf2
     static_ips:
-    - 10.10.80.19
+    - 10.0.47.199
   persistent_disk: 10024
   properties:
     consul:
@@ -401,8 +401,8 @@ jobs:
     nfs_server:
       address: null
       allow_from_entries:
-      - 10.10.16.0/20
-      - 10.10.80.0/20
+      - 10.0.16.0/20
+      - 10.0.32.0/20
       share: null
     route_registrar:
       routes:
@@ -468,8 +468,8 @@ jobs:
     nfs_server:
       address: null
       allow_from_entries:
-      - 10.10.16.0/20
-      - 10.10.80.0/20
+      - 10.0.16.0/20
+      - 10.0.32.0/20
       share: null
     route_registrar:
       routes:
@@ -553,8 +553,8 @@ jobs:
     nfs_server:
       address: null
       allow_from_entries:
-      - 10.10.16.0/20
-      - 10.10.80.0/20
+      - 10.0.16.0/20
+      - 10.0.32.0/20
       share: null
   resource_pool: small_z1
   templates:
@@ -603,8 +603,8 @@ jobs:
     nfs_server:
       address: null
       allow_from_entries:
-      - 10.10.16.0/20
-      - 10.10.80.0/20
+      - 10.0.16.0/20
+      - 10.0.32.0/20
       share: null
   resource_pool: small_z2
   templates:
@@ -1051,30 +1051,32 @@ networks:
   subnets:
   - cloud_properties:
       security_groups:
-      - cf
+      - SECURITY_GROUP_ID_1
       subnet: SUBNET_ID_1
     dns:
-    - 10.10.0.2
-    gateway: 10.10.16.1
-    range: 10.10.16.0/20
+    - 10.0.0.2
+    gateway: 10.0.16.1
+    range: 10.0.16.0/20
     reserved:
-    - 10.10.16.2 - 10.10.16.9
+    - 10.0.16.2-10.0.16.3
+    - 10.0.31.255
     static:
-    - 10.10.16.10 - 10.10.16.255
+    - 10.0.31.190-10.0.31.254
 - name: cf2
   subnets:
   - cloud_properties:
       security_groups:
-      - cf
+      - SECURITY_GROUP_ID_2
       subnet: SUBNET_ID_2
     dns:
-    - 10.10.0.2
-    gateway: 10.10.80.1
-    range: 10.10.80.0/20
+    - 10.0.0.2
+    gateway: 10.0.32.1
+    range: 10.0.32.0/20
     reserved:
-    - 10.10.80.2 - 10.10.80.9
+    - 10.0.32.2-10.0.32.3
+    - 10.0.47.255
     static:
-    - 10.10.80.10 - 10.10.80.255
+    - 10.0.47.190-10.0.47.254
 properties:
   acceptance_tests: null
   app_domains:
@@ -1387,9 +1389,9 @@ properties:
       log_level: null
       servers:
         lan:
-        - 10.10.16.37
-        - 10.10.16.38
-        - 10.10.80.37
+        - 10.0.31.217
+        - 10.0.31.218
+        - 10.0.47.217
     agent_cert: CONSUL_AGENT_CERT
     agent_key: CONSUL_AGENT_KEY
     ca_cert: CONSUL_CA_CERT
@@ -1403,14 +1405,14 @@ properties:
     advertise_interval_in_seconds: 5
     allow_host_access: null
     allow_networks:
-    - 10.10.0.2/32
+    - 10.0.0.2/32
     ca_cert: null
     client_cert: null
     client_key: null
     default_health_check_timeout: 60
     deny_networks:
     - 169.254.0.0/16
-    - 10.10.0.0/16
+    - 10.0.0.0/16
     directory_server_protocol: https
     disk_mb: null
     disk_overcommit_factor: null
@@ -1466,9 +1468,9 @@ properties:
     - instances: 1
       name: etcd_z2
     machines:
-    - 10.10.16.20
-    - 10.10.16.35
-    - 10.10.80.19
+    - 10.0.31.200
+    - 10.0.31.215
+    - 10.0.47.199
     peer_ca_cert: ETCD_PEER_CA_CERT
     peer_cert: ETCD_PEER_CERT
     peer_key: ETC_PEER_KEY
@@ -1503,8 +1505,8 @@ properties:
     port: 4443
   loggregator:
     blacklisted_syslog_ranges:
-    - end: 10.10.255.255
-      start: 10.10.0.0
+    - end: 10.0.255.255
+      start: 10.0.0.0
     debug: false
     etcd:
       ca_cert: ETCD_CA_CERT
@@ -1574,8 +1576,8 @@ properties:
   nats:
     debug: false
     machines:
-    - 10.10.16.11
-    - 10.10.80.11
+    - 10.0.31.191
+    - 10.0.47.191
     monitor_port: 0
     password: NATS_PASSWORD
     port: 4222
@@ -1585,8 +1587,8 @@ properties:
   nfs_server:
     address: null
     allow_from_entries:
-    - 10.10.16.0/20
-    - 10.10.80.0/20
+    - 10.0.16.0/20
+    - 10.0.32.0/20
     share: null
   request_timeout_in_seconds: 900
   router:

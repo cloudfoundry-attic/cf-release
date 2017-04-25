@@ -43,9 +43,7 @@ properties:
       fog_connection: (( meta.fog_config ))
 
   dea_next:
-    deny_networks:
-      - 169.254.0.0/16 # AWS Status
-      - 10.10.0.0/16
+    deny_networks: (( merge || ["169.254.0.0/16", "10.10.0.0/16"] )) # 169.254.0.0 is for AWS Status
     allow_networks: (( merge || ["10.10.0.2/32"] )) # Amazon DNS
 
 compilation:

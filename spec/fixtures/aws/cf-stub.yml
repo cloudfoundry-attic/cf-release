@@ -9,31 +9,33 @@ director_uuid: DIRECTOR_UUID
 networks:
 - name: cf1
   subnets:
-    - range: 10.10.16.0/20
+    - range: 10.0.16.0/20
       reserved:
-        - 10.10.16.2 - 10.10.16.9
+      - 10.0.16.2-10.0.16.3
+      - 10.0.31.255
       static:
-        - 10.10.16.10 - 10.10.16.255
-      gateway: 10.10.16.1
+      - 10.0.31.190-10.0.31.254
+      gateway: 10.0.16.1
       dns:
-        - 10.10.0.2
+        - 10.0.0.2
       cloud_properties:
         security_groups:
-          - cf
+          - SECURITY_GROUP_ID_1
         subnet: (( properties.template_only.aws.subnet_ids.cf1 ))
 - name: cf2
   subnets:
-    - range: 10.10.80.0/20
+    - range: 10.0.32.0/20
       reserved:
-        - 10.10.80.2 - 10.10.80.9
+      - 10.0.32.2-10.0.32.3
+      - 10.0.47.255
       static:
-        - 10.10.80.10 - 10.10.80.255
-      gateway: 10.10.80.1
+      - 10.0.47.190-10.0.47.254
+      gateway: 10.0.32.1
       dns:
-        - 10.10.0.2
+        - 10.0.0.2
       cloud_properties:
         security_groups:
-          - cf
+          - SECURITY_GROUP_ID_2
         subnet: (( properties.template_only.aws.subnet_ids.cf2 ))
 
 properties:
@@ -54,6 +56,13 @@ properties:
 
   ssl:
     skip_cert_verify: true
+
+  dea_next:
+    allow_networks:
+    - 10.0.0.2/32
+    deny_networks:
+    - 169.254.0.0/16
+    - 10.0.0.0/16
 
   cc:
     staging_upload_user: STAGING_UPLOAD_USER
@@ -97,6 +106,9 @@ properties:
     saml:
       serviceProviderKey: SERVICE_PROVIDER_PRIVATE_KEY
   loggregator:
+    blacklisted_syslog_ranges:
+    - end: 10.0.255.255
+      start: 10.0.0.0
     tls:
       ca_cert: LOGGREGATOR_CA_CERT
       doppler:
