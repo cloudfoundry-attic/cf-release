@@ -71,10 +71,6 @@ haproxy/pcre-8.40.tar.gz:
   size: 2065161
   object_id: 7d3a2a29-6c80-40b6-bf77-74d337b99cea
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
-java-buildpack/java-buildpack-offline-v3.15.zip:
-  size: 277180400
-  object_id: be678542-02e5-41e9-b002-69859ecb19de
-  sha: b14943521d1f8d1a7026f2516c1017fa6d2809f4
 libmariadb/libmariadb-5.5.36.tar.xz:
   size: 1260684
   object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
@@ -199,3 +195,7 @@ java-buildpack/java-buildpack-v3.16.zip:
   object_id: 9a0fbe0b-8232-4469-9cc1-74222abbe263
   sha: ba7e7bf98e81926c22a1aa713a79a6a3582186c5
   size: 170355
+java-buildpack/java-buildpack-offline-v3.16.zip:
+  object_id: 8bce5914-014a-4b5e-bd0e-00ec822fcc47
+  sha: 0592fe11b2c49aa4dafabc2d0493540174f42c0f
+  size: 277353138
