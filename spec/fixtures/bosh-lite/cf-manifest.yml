@@ -2979,6 +2979,7 @@ properties:
       temporary_cc_uploader_mtls: false
       temporary_droplet_download_mtls: false
       use_privileged_containers_for_staging: null
+      use_privileged_containers_for_running: null
     directories: null
     disable_custom_buildpacks: false
     droplets:
