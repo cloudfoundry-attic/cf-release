@@ -1,4 +1,4 @@
-Rootfs SHASUM: 2982562482dd0fc8f59f010f98b0160739462603
+Rootfs SHASUM: 60d6be9c688267c30ea5f52b0554538d9b4e609d
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -149,9 +149,9 @@ ii  libcairo2:amd64                    1.13.0~20140204-0ubuntu1.1               
 ii  libcairo2-dev                      1.13.0~20140204-0ubuntu1.1                 amd64        Development files for the Cairo 2D graphics library
 ii  libcap2:amd64                      1:2.24-0ubuntu2                            amd64        support for getting/setting POSIX.1e capabilities
 ii  libcap2-bin                        1:2.24-0ubuntu2                            amd64        basic utility programs for using capabilities
-ii  libcdt5                            2.36.0-0ubuntu3.1                          amd64        rich set of graph drawing tools - cdt library
+ii  libcdt5                            2.36.0-0ubuntu3.2                          amd64        rich set of graph drawing tools - cdt library
 ii  libcgmanager0:amd64                0.24-0ubuntu7.5                            amd64        Central cgroup manager daemon (client library)
-ii  libcgraph6                         2.36.0-0ubuntu3.1                          amd64        rich set of graph drawing tools - cgraph library
+ii  libcgraph6                         2.36.0-0ubuntu3.2                          amd64        rich set of graph drawing tools - cgraph library
 ii  libck-connector0:amd64             0.4.5-3.1ubuntu2                           amd64        ConsoleKit libraries
 ii  libclass-accessor-perl             0.34-1                                     all          Perl module that automatically generates accessors
 ii  libcloog-isl4:amd64                0.18.2-1                                   amd64        Chunky Loop Generator (runtime library)
@@ -230,15 +230,18 @@ ii  libgpg-error-dev                   1.12-0.2ubuntu1                          
 ii  libgpg-error0:amd64                1.12-0.2ubuntu1                            amd64        library for common error values and messages in GnuPG components
 ii  libgpm2:amd64                      1.20.4-6.1                                 amd64        General Purpose Mouse - shared library
 ii  libgraphite2-3:amd64               1.3.6-1ubuntu0.14.04.1                     amd64        Font rendering engine for Complex Scripts -- library
-ii  libgraphviz-dev                    2.36.0-0ubuntu3.1                          amd64        graphviz libs and headers against which to build applications
+ii  libgraphviz-dev                    2.36.0-0ubuntu3.2                          amd64        graphviz libs and headers against which to build applications
 ii  libgsm1:amd64                      1.0.13-4                                   amd64        Shared libraries for GSM speech compressor
 ii  libgssapi-krb5-2:amd64             1.12+dfsg-2ubuntu5.3                       amd64        MIT Kerberos runtime libraries - krb5 GSS-API Mechanism
 ii  libgssapi3-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1            amd64        Heimdal Kerberos - GSSAPI support library
 ii  libgssrpc4:amd64                   1.12+dfsg-2ubuntu5.3                       amd64        MIT Kerberos runtime libraries - GSS enabled ONCRPC
 ii  libgtk-3-0:amd64                   3.10.8-0ubuntu1.6                          amd64        GTK+ graphical user interface library
 ii  libgtk-3-common                    3.10.8-0ubuntu1.6                          all          common files for the GTK+ graphical user interface library
-ii  libgvc6                            2.36.0-0ubuntu3.1                          amd64        rich set of graph drawing tools - gvc library
-ii  libgvpr2                           2.36.0-0ubuntu3.1                          amd64        rich set of graph drawing tools - gvpr library
+ii  libgtk2.0-0:amd64                  2.24.23-0ubuntu1.4                         amd64        GTK+ graphical user interface library
+ii  libgtk2.0-common                   2.24.23-0ubuntu1.4                         all          common files for the GTK+ graphical user interface library
+ii  libgvc6                            2.36.0-0ubuntu3.2                          amd64        rich set of graph drawing tools - gvc library
+ii  libgvc6-plugins-gtk                2.36.0-0ubuntu3.2                          amd64        rich set of graph drawing tools - gtk plugins
+ii  libgvpr2                           2.36.0-0ubuntu3.2                          amd64        rich set of graph drawing tools - gvpr library
 ii  libharfbuzz0b:amd64                0.9.27-1ubuntu1.1                          amd64        OpenType text shaping engine (shared library)
 ii  libhcrypto4-heimdal:amd64          1.6~git20131207+dfsg-1ubuntu1.1            amd64        Heimdal Kerberos - crypto library
 ii  libheimbase1-heimdal:amd64         1.6~git20131207+dfsg-1ubuntu1.1            amd64        Heimdal Kerberos - Base library
@@ -313,7 +316,7 @@ ii  libmp3lame0:amd64                  3.99.5+repack1-3ubuntu1                  
 ii  libmpc3:amd64                      1.0.1-1ubuntu1                             amd64        multiple precision complex floating-point library
 ii  libmpdec2:amd64                    2.4.0-6                                    amd64        library for decimal floating point arithmetic (runtime library)
 ii  libmpfr4:amd64                     3.1.2-1                                    amd64        multiple precision floating-point computation
-rc  libmysqlclient18:amd64             5.5.54-0ubuntu0.14.04.1                    amd64        MySQL database client library
+rc  libmysqlclient18:amd64             5.5.55-0ubuntu0.14.04.1                    amd64        MySQL database client library
 ii  libncurses5:amd64                  5.9+20140118-1ubuntu1                      amd64        shared libraries for terminal handling
 ii  libncurses5-dev:amd64              5.9+20140118-1ubuntu1                      amd64        developer's libraries for ncurses
 ii  libncursesw5:amd64                 5.9+20140118-1ubuntu1                      amd64        shared libraries for terminal handling (wide character support)
@@ -345,7 +348,7 @@ ii  libpangoft2-1.0-0:amd64            1.36.3-1ubuntu1.1                        
 ii  libpangox-1.0-0:amd64              0.0.2-4ubuntu1                             amd64        pango library X backend
 ii  libpangoxft-1.0-0:amd64            1.36.3-1ubuntu1.1                          amd64        Layout and rendering of internationalized text
 ii  libparse-debianchangelog-perl      1.2.0-1ubuntu1                             all          parse Debian changelogs and output them in other formats
-ii  libpathplan4                       2.36.0-0ubuntu3.1                          amd64        rich set of graph drawing tools - pathplan library
+ii  libpathplan4                       2.36.0-0ubuntu3.2                          amd64        rich set of graph drawing tools - pathplan library
 ii  libpcap0.8:amd64                   1.5.3-2                                    amd64        system interface for user-level packet capture
 ii  libpciaccess0:amd64                0.13.2-1                                   amd64        Generic PCI access library for X
 ii  libpcre3:amd64                     1:8.31-2ubuntu2.3                          amd64        Perl 5 Compatible Regular Expression Library - runtime files
@@ -463,7 +466,7 @@ ii  libxcursor1:amd64                  1:1.1.14-1                               
 ii  libxdamage1:amd64                  1:1.1.4-1ubuntu1                           amd64        X11 damaged region extension library
 ii  libxdmcp-dev:amd64                 1:1.1.1-1                                  amd64        X11 authorisation library (development headers)
 ii  libxdmcp6:amd64                    1:1.1.1-1                                  amd64        X11 Display Manager Control Protocol library
-ii  libxdot4                           2.36.0-0ubuntu3.1                          amd64        rich set of graph drawing tools - xdot library
+ii  libxdot4                           2.36.0-0ubuntu3.2                          amd64        rich set of graph drawing tools - xdot library
 ii  libxext-dev:amd64                  2:1.3.2-1ubuntu0.0.14.04.1                 amd64        X11 miscellaneous extensions library (development headers)
 ii  libxext6:amd64                     2:1.3.2-1ubuntu0.0.14.04.1                 amd64        X11 miscellaneous extension library
 ii  libxfixes3:amd64                   1:5.0.1-1ubuntu1.1                         amd64        X11 miscellaneous 'fixes' extension library
@@ -478,14 +481,14 @@ ii  libxpm4:amd64                      1:3.5.10-1ubuntu0.1                      
 ii  libxrandr2:amd64                   2:1.5.0-1~trusty1                          amd64        X11 RandR extension library
 ii  libxrender-dev:amd64               1:0.9.8-1build0.14.04.1                    amd64        X Rendering Extension client library (development files)
 ii  libxrender1:amd64                  1:0.9.8-1build0.14.04.1                    amd64        X Rendering Extension client library
-ii  libxslt1-dev:amd64                 1.1.28-2build1                             amd64        XSLT 1.0 processing library - development kit
-ii  libxslt1.1:amd64                   1.1.28-2build1                             amd64        XSLT 1.0 processing library - runtime library
+ii  libxslt1-dev:amd64                 1.1.28-2ubuntu0.1                          amd64        XSLT 1.0 processing library - development kit
+ii  libxslt1.1:amd64                   1.1.28-2ubuntu0.1                          amd64        XSLT 1.0 processing library - runtime library
 ii  libxt-dev:amd64                    1:1.1.4-1                                  amd64        X11 toolkit intrinsics library (development headers)
 ii  libxt6:amd64                       1:1.1.4-1                                  amd64        X11 toolkit intrinsics library
 ii  libxvidcore4:amd64                 2:1.3.2-9ubuntu1                           amd64        Open source MPEG-4 video codec (library)
 ii  libyaml-0-2:amd64                  0.1.4-3ubuntu3.1                           amd64        Fast YAML 1.1 parser and emitter library
 ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                           amd64        Fast YAML 1.1 parser and emitter library (development)
-ii  linux-libc-dev:amd64               3.13.0-116.163                             amd64        Linux Kernel Headers for development
+ii  linux-libc-dev:amd64               3.13.0-117.164                             amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1                      all          common files for locale support
 ii  lockfile-progs                     0.1.17                                     amd64        Programs for locking and unlocking files and mailboxes
 ii  login                              1:4.1.5.1-1ubuntu9.2                       amd64        system login tools
@@ -508,7 +511,7 @@ ii  module-init-tools                  15-0ubuntu6                              
 ii  mount                              2.20.1-5.1ubuntu20.9                       amd64        Tools for mounting and manipulating filesystems
 ii  mountall                           2.53                                       amd64        filesystem mounting tool
 ii  multiarch-support                  2.19-0ubuntu6.11                           amd64        Transitional package to ensure multiarch compatibility
-ii  mysql-common                       5.5.54-0ubuntu0.14.04.1                    all          MySQL database common files, e.g. /etc/mysql/my.cnf
+ii  mysql-common                       5.5.55-0ubuntu0.14.04.1                    all          MySQL database common files, e.g. /etc/mysql/my.cnf
 ii  ncurses-base                       5.9+20140118-1ubuntu1                      all          basic terminal type definitions
 ii  ncurses-bin                        5.9+20140118-1ubuntu1                      amd64        terminal-related programs and man pages
 ii  net-tools                          1.60-25ubuntu2.1                           amd64        The NET-3 networking toolkit
