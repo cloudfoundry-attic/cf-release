@@ -785,6 +785,7 @@ properties:
 
   cc:
     diego:
+      use_privileged_containers_for_running: (( merge || nil ))
       use_privileged_containers_for_staging: (( merge || nil ))
       insecure_docker_registry_list: (( merge || nil ))
       pid_limit: (( merge || nil ))
