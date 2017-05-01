@@ -527,6 +527,9 @@ jobs:
             gorouter: {}
       metron_agent:
         zone: z1
+      router:
+        isolation_segments: (( merge || [] ))
+        routing_table_sharding_mode: all
     update: (( merge || empty_hash ))
 
   - name: router_z2
@@ -543,6 +546,9 @@ jobs:
             gorouter: {}
       metron_agent:
         zone: z2
+      router:
+        isolation_segments: (( merge || [] ))
+        routing_table_sharding_mode: all
     update: (( merge || empty_hash ))
 
   - name: ha_proxy_z1

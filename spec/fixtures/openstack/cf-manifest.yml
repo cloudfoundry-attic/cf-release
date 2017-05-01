@@ -968,6 +968,9 @@ jobs:
           gorouter: {}
     metron_agent:
       zone: z1
+    router:
+      isolation_segments: []
+      routing_table_sharding_mode: all
   resource_pool: router_z1
   templates:
   - name: consul_agent
@@ -994,6 +997,9 @@ jobs:
           gorouter: {}
     metron_agent:
       zone: z2
+    router:
+      isolation_segments: []
+      routing_table_sharding_mode: all
   resource_pool: router_z2
   templates:
   - name: consul_agent
