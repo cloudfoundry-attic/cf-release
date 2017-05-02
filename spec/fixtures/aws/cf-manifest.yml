@@ -1163,7 +1163,7 @@ properties:
     default_staging_security_groups:
     - public_networks
     - dns
-    default_to_diego_backend: false
+    default_to_diego_backend: true
     development_mode: false
     diego:
       bbs:

@@ -722,7 +722,6 @@ properties:
       ZmtUXS4kfpbsUVWHRb7pkl+t3jzlz6YNH8RWZfOhisNGVb7PbM8IAkuuCg==
       -----END CERTIFICATE-----
   cc:
-    default_to_diego_backend: false
     diego:
       temporary_local_staging: false
       temporary_local_tasks: false
