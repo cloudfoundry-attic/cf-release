@@ -840,7 +840,7 @@ properties:
       cutoff_age_in_days: 31
 
     users_can_select_backend: true
-    default_to_diego_backend: false
+    default_to_diego_backend: true
     allow_app_ssh_access: true
     default_app_ssh_access: (( merge || nil ))
     default_app_memory: 1024
