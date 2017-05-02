@@ -1,4 +1,4 @@
-Rootfs SHASUM: 60d6be9c688267c30ea5f52b0554538d9b4e609d
+Rootfs SHASUM: d6743b150429e4b69671a2854850fc37803c7452
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -80,7 +80,7 @@ ii  gsfonts                            1:8.11+urwcyr1.0.7~pre44-4.2ubuntu1      
 ii  gzip                               1.6-3ubuntu1                               amd64        GNU compression utilities
 ii  hicolor-icon-theme                 0.13-1                                     all          default fallback theme for FreeDesktop.org icon themes
 ii  hostname                           3.15ubuntu1                                amd64        utility to set/show the host name or domain name
-ii  icu-devtools                       52.1-3ubuntu0.5                            amd64        Development utilities for International Components for Unicode
+ii  icu-devtools                       52.1-3ubuntu0.6                            amd64        Development utilities for International Components for Unicode
 ii  ifupdown                           0.7.47.2ubuntu4.4                          amd64        high level tools to configure network interfaces
 ii  imagemagick                        8:6.7.7.10-6ubuntu3.6                      amd64        image manipulation programs
 ii  imagemagick-common                 8:6.7.7.10-6ubuntu3.6                      all          image manipulation programs -- infrastructure
@@ -249,8 +249,8 @@ ii  libheimntlm0-heimdal:amd64         1.6~git20131207+dfsg-1ubuntu1.1          
 ii  libhx509-5-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1            amd64        Heimdal Kerberos - X509 support library
 ii  libice-dev:amd64                   2:1.0.8-2                                  amd64        X11 Inter-Client Exchange library (development headers)
 ii  libice6:amd64                      2:1.0.8-2                                  amd64        X11 Inter-Client Exchange library
-ii  libicu-dev:amd64                   52.1-3ubuntu0.5                            amd64        Development files for International Components for Unicode
-ii  libicu52:amd64                     52.1-3ubuntu0.5                            amd64        International Components for Unicode
+ii  libicu-dev:amd64                   52.1-3ubuntu0.6                            amd64        Development files for International Components for Unicode
+ii  libicu52:amd64                     52.1-3ubuntu0.6                            amd64        International Components for Unicode
 ii  libidn11:amd64                     1.28-1ubuntu2.1                            amd64        GNU Libidn library, implementation of IETF IDN specifications
 ii  libidn11-dev                       1.28-1ubuntu2.1                            amd64        Development files for GNU Libidn, an IDN library
 ii  libilmbase-dev                     1.0.1-6ubuntu1                             amd64        development files for IlmBase
