@@ -19,7 +19,7 @@ releases:
 - {name: cf, version: latest}
 - {name: diego, version: latest}
 - {name: garden-runc, version: latest}
-- {name: cflinuxfs2-rootfs , version: latest}
+- {name: cflinuxfs2 , version: latest}
 
 networks:
 - name: cf_private
@@ -173,7 +173,7 @@ jobs:
   - name: garden
     release: garden-runc
   - name: cflinuxfs2-rootfs-setup
-    release: cflinuxfs2-rootfs
+    release: cflinuxfs2
   - name: metron_agent
     release: cf
   networks:
