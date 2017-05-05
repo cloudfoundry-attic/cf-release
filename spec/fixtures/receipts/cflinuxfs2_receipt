@@ -1,4 +1,4 @@
-Rootfs SHASUM: d6743b150429e4b69671a2854850fc37803c7452
+Rootfs SHASUM: 777ec0aeeafe97a1d42b1226dc147618829169f6
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -13,7 +13,7 @@ ii  aptitude-common                    0.6.8.2-1ubuntu4                         
 ii  autoconf                           2.69-6                                     all          automatic configure script builder
 ii  base-files                         7.2ubuntu5.5                               amd64        Debian base system miscellaneous files
 ii  base-passwd                        3.5.33                                     amd64        Debian base system master password and group files
-ii  bash                               4.3-7ubuntu1.5                             amd64        GNU Bourne Again SHell
+ii  bash                               4.3-7ubuntu1.6                             amd64        GNU Bourne Again SHell
 ii  bind9-host                         1:9.9.5.dfsg-3ubuntu0.14                   amd64        Version of 'host' bundled with BIND 9.X
 ii  binutils                           2.24-5ubuntu14.1                           amd64        GNU assembler, linker and binary utilities
 ii  bison                              2:3.0.2.dfsg-2                             amd64        YACC-compatible parser generator
@@ -491,7 +491,7 @@ ii  libyaml-dev:amd64                  0.1.4-3ubuntu3.1                         
 ii  linux-libc-dev:amd64               3.13.0-117.164                             amd64        Linux Kernel Headers for development
 ii  locales                            2.13+git20120306-12.1                      all          common files for locale support
 ii  lockfile-progs                     0.1.17                                     amd64        Programs for locking and unlocking files and mailboxes
-ii  login                              1:4.1.5.1-1ubuntu9.2                       amd64        system login tools
+ii  login                              1:4.1.5.1-1ubuntu9.4                       amd64        system login tools
 ii  logrotate                          3.8.7-1ubuntu1                             amd64        Log rotation utility
 ii  lsb-base                           4.1+Debian11ubuntu6.2                      all          Linux Standard Base 4.1 init script functionality
 ii  lsb-release                        4.1+Debian11ubuntu6.2                      all          Linux Standard Base version reporting utility
@@ -523,7 +523,7 @@ ii  openssh-client                     1:6.6p1-2ubuntu2.8                       
 ii  openssh-server                     1:6.6p1-2ubuntu2.8                         amd64        secure shell (SSH) server, for secure access from remote machines
 ii  openssh-sftp-server                1:6.6p1-2ubuntu2.8                         amd64        secure shell (SSH) sftp server module, for SFTP access from remote machines
 ii  openssl                            1.0.1f-1ubuntu2.22                         amd64        Secure Sockets Layer toolkit - cryptographic utility
-ii  passwd                             1:4.1.5.1-1ubuntu9.2                       amd64        change and administer password and group data
+ii  passwd                             1:4.1.5.1-1ubuntu9.4                       amd64        change and administer password and group data
 ii  patch                              2.7.1-4ubuntu2.3                           amd64        Apply a diff file to an original
 ii  perl                               5.18.2-2ubuntu1.1                          amd64        Larry Wall's Practical Extraction and Report Language
 ii  perl-base                          5.18.2-2ubuntu1.1                          amd64        minimal Perl system
