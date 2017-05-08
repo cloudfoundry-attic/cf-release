@@ -770,9 +770,6 @@ properties:
       client_cert: ~
       client_key: ~
 
-  metron_endpoint:
-    shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
-
   traffic_controller:
     zone: (( merge || nil ))
     disable_access_control: (( merge || nil ))
