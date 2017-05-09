@@ -1414,7 +1414,7 @@ jobs:
     templates:
       - name: consul_agent
         release: cf
-        consumes: {consul: nil}
+        consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
       - name: java-buildpack
         release: cf
       - name: java-offline-buildpack
