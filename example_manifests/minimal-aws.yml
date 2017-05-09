@@ -1660,6 +1660,8 @@ properties:
     dropsonde_incoming_port: 3457
     protocols:
     - udp
+  metron_endpoint:
+    shared_secret: REPLACE_WITH_PASSWORD
   nats:
     machines: [10.0.16.103]
     password: REPLACE_WITH_PASSWORD
