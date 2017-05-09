@@ -1,4 +1,4 @@
-Rootfs SHASUM: 777ec0aeeafe97a1d42b1226dc147618829169f6
+Rootfs SHASUM: 7cb56a3118174c26efe91971edcc28453a3ca7c9
 
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
@@ -15,7 +15,7 @@ ii  base-files                         7.2ubuntu5.5                             
 ii  base-passwd                        3.5.33                                     amd64        Debian base system master password and group files
 ii  bash                               4.3-7ubuntu1.6                             amd64        GNU Bourne Again SHell
 ii  bind9-host                         1:9.9.5.dfsg-3ubuntu0.14                   amd64        Version of 'host' bundled with BIND 9.X
-ii  binutils                           2.24-5ubuntu14.1                           amd64        GNU assembler, linker and binary utilities
+ii  binutils                           2.24-5ubuntu14.2                           amd64        GNU assembler, linker and binary utilities
 ii  bison                              2:3.0.2.dfsg-2                             amd64        YACC-compatible parser generator
 ii  bsdutils                           1:2.20.1-5.1ubuntu20.9                     amd64        Basic utilities from 4.4BSD-Lite
 ii  build-essential                    11.6ubuntu6                                amd64        Informational list of build-essential packages
@@ -195,8 +195,8 @@ ii  libfl-dev:amd64                    2.5.35-10.1ubuntu2                       
 ii  libflac8:amd64                     1.3.0-2ubuntu0.14.04.1                     amd64        Free Lossless Audio Codec - runtime C library
 ii  libfontconfig1:amd64               2.11.0-0ubuntu4.2                          amd64        generic font configuration library - runtime
 ii  libfontconfig1-dev                 2.11.0-0ubuntu4.2                          amd64        generic font configuration library - development
-ii  libfreetype6:amd64                 2.5.2-1ubuntu2.7                           amd64        FreeType 2 font engine, shared library files
-ii  libfreetype6-dev                   2.5.2-1ubuntu2.7                           amd64        FreeType 2 font engine, development files
+ii  libfreetype6:amd64                 2.5.2-1ubuntu2.8                           amd64        FreeType 2 font engine, shared library files
+ii  libfreetype6-dev                   2.5.2-1ubuntu2.8                           amd64        FreeType 2 font engine, development files
 ii  libfribidi0:amd64                  0.19.6-1                                   amd64        Free Implementation of the Unicode BiDi algorithm
 ii  libfuse-dev                        2.9.2-4ubuntu4.14.04.1                     amd64        Filesystem in Userspace (development)
 ii  libfuse2:amd64                     2.9.2-4ubuntu4.14.04.1                     amd64        Filesystem in Userspace (library)
@@ -379,8 +379,8 @@ ii  libroken18-heimdal:amd64           1.6~git20131207+dfsg-1ubuntu1.1          
 ii  librsvg2-2:amd64                   2.40.2-1                                   amd64        SAX-based renderer library for SVG files (runtime)
 ii  librsvg2-common:amd64              2.40.2-1                                   amd64        SAX-based renderer library for SVG files (extra runtime)
 ii  librsvg2-dev                       2.40.2-1                                   amd64        SAX-based renderer library for SVG files (development)
-ii  librtmp-dev                        2.4+20121230.gitdf6c518-1                  amd64        toolkit for RTMP streams (development files)
-ii  librtmp0:amd64                     2.4+20121230.gitdf6c518-1                  amd64        toolkit for RTMP streams (shared library)
+ii  librtmp-dev                        2.4+20121230.gitdf6c518-1ubuntu0.1         amd64        toolkit for RTMP streams (development files)
+ii  librtmp0:amd64                     2.4+20121230.gitdf6c518-1ubuntu0.1         amd64        toolkit for RTMP streams (shared library)
 ii  libsasl2-2:amd64                   2.1.25.dfsg1-17build1                      amd64        Cyrus SASL - authentication abstraction library
 ii  libsasl2-dev                       2.1.25.dfsg1-17build1                      amd64        Cyrus SASL - development files for authentication abstraction library
 ii  libsasl2-modules:amd64             2.1.25.dfsg1-17build1                      amd64        Cyrus SASL - pluggable authentication modules
