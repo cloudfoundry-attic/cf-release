@@ -1576,10 +1576,12 @@ resource_pools:
   - name: router_z1
     cloud_properties:
       name: random
+      <<: (( merge ))
 
   - name: router_z2
     cloud_properties:
       name: random
+      <<: (( merge ))
 
   - name: small_errand
     cloud_properties:
