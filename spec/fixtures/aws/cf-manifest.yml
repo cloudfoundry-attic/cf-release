@@ -1578,8 +1578,6 @@ properties:
     tls:
       client_cert: null
       client_key: null
-  metron_endpoint:
-    shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   nats:
     debug: false
     machines:
