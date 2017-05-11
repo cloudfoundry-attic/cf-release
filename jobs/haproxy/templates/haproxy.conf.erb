@@ -36,6 +36,9 @@ listen health_check_http_url
     bind :8080
     mode http
     monitor-uri /health
+    acl http-routers_down nbsrv(http-routers) eq 0
+    acl tcp-routers_down nbsrv(tcp-routers) eq 0
+    monitor fail if http-routers_down OR tcp-routers_down
 
 <% if p("ha_proxy.ssl_pem") %>
 frontend https-in
