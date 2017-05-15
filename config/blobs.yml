@@ -39,10 +39,6 @@ etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
   size: 6517667
   object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
   sha: c1315a7a4ecb52f7d3e5b54775a4d8f735dc33f8
-go-buildpack/go_buildpack-cached-v1.8.1.zip:
-  size: 432884011
-  object_id: 04322f9c-8a1b-436b-9791-ec0ea245a6e1
-  sha: c9b0c071c02c883be398048bb2a1ee7f2d20f021
 golang/go1.6.3.linux-amd64.tar.gz:
   size: 84856920
   object_id: 7ad4929c-a987-4b84-b686-3c9598951f25
@@ -199,3 +195,7 @@ rootfs/cflinuxfs2-1.120.0.tar.gz:
   object_id: ab8f6a31-8b85-4cd6-9536-993f75368b73
   sha: 82792d94d5e9c517c345500b2dc0dbe5d06666de
   size: 289206042
+go-buildpack/go-buildpack-v1.8.2.zip:
+  object_id: 20ba2f57-bd8b-442e-a63a-1ec610726b81
+  sha: 5bce015a906c3a7df3de9810c3ab5476b6e2fbba
+  size: 4882924
