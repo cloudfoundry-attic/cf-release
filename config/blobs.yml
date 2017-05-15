@@ -191,11 +191,11 @@ java-buildpack/java-buildpack-offline-v3.16.zip:
   object_id: 8bce5914-014a-4b5e-bd0e-00ec822fcc47
   sha: 0592fe11b2c49aa4dafabc2d0493540174f42c0f
   size: 277353138
-rootfs/cflinuxfs2-1.119.0.tar.gz:
-  object_id: 1df2ba7e-077e-4cdd-9824-f8ad0df26f16
-  sha: 7cb56a3118174c26efe91971edcc28453a3ca7c9
-  size: 289193663
 postgres/postgresql-9.6.3.tar.gz:
   object_id: fdf49a31-a873-41fa-9739-5747a0e5e439
   sha: f596ca487e0c4d41ccc628b1d69b180fb23402db
   size: 25536998
+rootfs/cflinuxfs2-1.120.0.tar.gz:
+  object_id: ab8f6a31-8b85-4cd6-9536-993f75368b73
+  sha: 82792d94d5e9c517c345500b2dc0dbe5d06666de
+  size: 289206042
