@@ -103,10 +103,6 @@ openjdk/openjdk-1.8.0_101-x86_64-trusty.tar.gz:
   size: 77696717
   object_id: af292af2-8e47-487a-8dfd-c7fd0c04caec
   sha: d77ee059e289ae52fb87812f1a2932268427dc26
-php-buildpack/php_buildpack-cached-v4.3.31.zip:
-  size: 352244645
-  object_id: dcf87596-5375-4c0c-99f0-6363127c78bf
-  sha: 916d21ea50826c6e2a2d3a9f85bd699487d430ef
 postgres/postgresql-9.4.9.tar.gz:
   size: 23300245
   object_id: 528861b6-d7c1-4ecd-82b1-d9d56aea62ea
@@ -199,3 +195,7 @@ go-buildpack/go-buildpack-v1.8.2.zip:
   object_id: 20ba2f57-bd8b-442e-a63a-1ec610726b81
   sha: 5bce015a906c3a7df3de9810c3ab5476b6e2fbba
   size: 4882924
+php-buildpack/php-buildpack-v4.3.33.zip:
+  object_id: 77e265fa-6e82-4d14-b77c-dc7139926bc7
+  sha: f50a74f2e7b33ff6a217c0d2fa4ff0ee1c9a9f1f
+  size: 283974
