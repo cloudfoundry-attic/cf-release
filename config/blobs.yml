@@ -1,8 +1,4 @@
 ---
-binary-buildpack/binary_buildpack-cached-v1.0.11.zip:
-  size: 55014
-  object_id: ce358e30-eb59-4c5b-8fdb-580a7f672703
-  sha: 25dd0e9b84a16b7dbc72bb56bf0b36c1c16bf79c
 cli/cf-cli_6.26.0_linux_x86-64.tgz:
   size: 5174999
   object_id: db58b893-9d3e-477e-96ae-9941d3cebea9
@@ -199,3 +195,7 @@ ruby-buildpack/ruby_buildpack-cached-v1.6.39.zip:
   object_id: 94dde96c-45d6-468e-aef2-37dce823efce
   sha: 661b02eccf1e695620f236bc7999855e2e3a8037
   size: 321327290
+binary-buildpack/binary_buildpack-cached-v1.0.12.zip:
+  object_id: aa240b8b-cd04-4653-acf5-d39f51d856ab
+  sha: fc2eec8c135cbab813e32dc38b92f0776f361ff3
+  size: 59160
