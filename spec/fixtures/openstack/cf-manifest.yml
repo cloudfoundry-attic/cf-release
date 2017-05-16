@@ -1697,8 +1697,7 @@ properties:
     clients:
       cc-service-dashboards:
         authorities: clients.read,clients.write,clients.admin
-        authorized-grant-types: authorization_code,client_credentials
-        scope: openid,cloud_controller_service_permissions.read
+        authorized-grant-types: client_credentials
         secret: CC_SERVICE_DASHBOARDS_SECRET
       cc_routing:
         authorities: routing.router_groups.read

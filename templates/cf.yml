@@ -1156,9 +1156,8 @@ properties:
         secret: (( merge ))
       cc-service-dashboards:
         secret: (( merge ))
-        scope: openid,cloud_controller_service_permissions.read
         authorities: clients.read,clients.write,clients.admin
-        authorized-grant-types: authorization_code,client_credentials
+        authorized-grant-types: client_credentials
 
     token_endpoint: (( merge || nil ))
 
