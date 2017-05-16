@@ -27,10 +27,6 @@ debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   size: 169618
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
   sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
-dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.15.zip:
-  size: 590023989
-  object_id: 5e036751-3b42-4d3f-aa84-2c530a0dbfb7
-  sha: 7dbaed57cde7287a3a795fdb795eaa630c3139bc
 etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
   size: 6517667
   object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
@@ -199,3 +195,7 @@ staticfile-buildpack/staticfile_buildpack-cached-v1.4.6.zip:
   object_id: ad8377d3-7ce1-4300-9b1e-2bc3490295d3
   sha: bf3d322657f38eed87c745df0f26921b7a6ebb39
   size: 8039362
+dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.18.zip:
+  object_id: bbcc273e-b473-4943-8443-4f63b877c408
+  sha: 56d5228d9cf357e0981fb3c4b3a76143fa55b95b
+  size: 641719963
