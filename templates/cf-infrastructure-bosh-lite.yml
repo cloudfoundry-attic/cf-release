@@ -1005,7 +1005,7 @@ properties:
         authorized-grant-types: authorization_code
         autoapprove: true
         override: true
-        redirect-uri: https://login.(( system_domain ))/login
+        redirect-uri: (( "https://login." system_domain "/login" ))
         scope: openid,cloud_controller.read,cloud_controller.write,cloud_controller.admin
         secret: ssh-proxy-secret
     scim:
