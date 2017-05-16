@@ -1672,9 +1672,10 @@ properties:
   uaa:
     clients:
       cf:
+        secret: ""
         access-token-validity: 600
         authorities: uaa.none
-        authorized-grant-types: implicit,password,refresh_token
+        authorized-grant-types: password,refresh_token
         autoapprove: true
         override: true
         refresh-token-validity: 604800
@@ -1694,18 +1695,19 @@ properties:
         authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: REPLACE_WITH_PASSWORD
       tcp_emitter:
         authorities: routing.routes.write,routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: REPLACE_WITH_PASSWORD
       tcp_router:
         authorities: routing.routes.read
-        authorized-grant-types: client_credentials,refresh_token
+        authorized-grant-types: client_credentials
         secret: REPLACE_WITH_PASSWORD
       doppler:
         authorities: uaa.resource
+        authorized-grant-types: client_credentials
         secret: REPLACE_WITH_PASSWORD
       login:
         authorities: oauth.login,scim.write,clients.read,notifications.write,critical_notifications.write,emails.write,scim.userids,password.write
