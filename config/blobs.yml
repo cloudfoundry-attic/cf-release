@@ -87,10 +87,6 @@ nginx/pcre-8.40.tar.gz:
   size: 2065161
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
-nodejs-buildpack/nodejs_buildpack-cached-v1.5.32.zip:
-  size: 82429753
-  object_id: 9aa976de-d5d8-4a47-8967-2a652ff042c4
-  sha: 1fe2ad895dfc85f37d915790d78152c89a52f4ae
 openjdk/openjdk-1.8.0_101-x86_64-mountainlion.tar.gz:
   size: 75550921
   object_id: c3dab272-8db3-4bd2-8836-f06e63640a9e
@@ -199,3 +195,7 @@ binary-buildpack/binary_buildpack-cached-v1.0.12.zip:
   object_id: aa240b8b-cd04-4653-acf5-d39f51d856ab
   sha: fc2eec8c135cbab813e32dc38b92f0776f361ff3
   size: 59160
+nodejs-buildpack/nodejs_buildpack-cached-v1.5.34.zip:
+  object_id: 92212332-0fe2-49a6-8e9b-f69ce46dd6a6
+  sha: a5d8ecec3b46b347f5d6a89b8ecfa2b282a71a09
+  size: 78975245
