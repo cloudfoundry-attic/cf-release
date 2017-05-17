@@ -25,7 +25,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: metron_agent
     release: cf
   update:
@@ -49,7 +49,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: metron_agent
     release: cf
   update:
@@ -70,7 +70,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: nats
@@ -94,7 +94,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: nats
@@ -125,7 +125,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: etcd
     release: cf
     consumes: {etcd: nil}
@@ -156,7 +156,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: etcd
     release: cf
     consumes: {etcd: nil}
@@ -180,7 +180,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: collector
     release: cf
   - name: metron_agent
@@ -213,7 +213,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: debian_nfs_server
     release: cf
   - name: metron_agent
@@ -252,7 +252,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: metron_agent
     release: cf
   - name: blobstore
@@ -278,7 +278,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: postgres
     release: cf
   - name: metron_agent
@@ -320,7 +320,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: uaa
     release: cf
     consumes: {router: nil}
@@ -369,7 +369,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: uaa
     release: cf
     consumes: {router: nil}
@@ -415,7 +415,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: java-buildpack
     release: cf
   - name: java-offline-buildpack
@@ -490,7 +490,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: java-buildpack
     release: cf
   - name: java-offline-buildpack
@@ -538,7 +538,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_clock
@@ -566,7 +566,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_worker
@@ -588,7 +588,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_clock
@@ -616,7 +616,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_worker
@@ -650,7 +650,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: hm9000
     release: cf
   - name: metron_agent
@@ -686,7 +686,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: hm9000
     release: cf
   - name: metron_agent
@@ -722,7 +722,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -755,7 +755,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: dea_next
     release: cf
   - name: dea_logging_agent
@@ -779,7 +779,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -802,7 +802,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -832,7 +832,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -862,7 +862,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -899,7 +899,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: loggregator_trafficcontroller
     release: cf
     consumes: {doppler: nil}
@@ -941,7 +941,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: loggregator_trafficcontroller
     release: cf
     consumes: {doppler: nil}
@@ -976,7 +976,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: gorouter
@@ -1005,7 +1005,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: gorouter
@@ -1085,7 +1085,7 @@ jobs:
   templates:
   - name: consul_agent
     release: cf
-    consumes: {consul: nil, consul_client: nil, consul_server: nil, consul_common: nil}
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: haproxy
     release: cf
     consumes: {ssh_proxy: nil}
