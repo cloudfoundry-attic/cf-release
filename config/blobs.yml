@@ -167,10 +167,6 @@ postgres/postgresql-9.6.3.tar.gz:
   object_id: fdf49a31-a873-41fa-9739-5747a0e5e439
   sha: f596ca487e0c4d41ccc628b1d69b180fb23402db
   size: 25536998
-rootfs/cflinuxfs2-1.120.0.tar.gz:
-  object_id: df6ad377-43d4-44ae-811f-1eb8e5773432
-  sha: 82792d94d5e9c517c345500b2dc0dbe5d06666de
-  size: 289206042
 go-buildpack/go_buildpack-cached-v1.8.2.zip:
   object_id: 16abdccf-8451-496b-a2d1-3dbbf68d2cca
   sha: 5a3686c7265dd7d1ea9928b65515d202591af05b
@@ -199,3 +195,7 @@ dotnet-core-buildpack/dotnet-core_buildpack-cached-v1.0.18.zip:
   object_id: bbcc273e-b473-4943-8443-4f63b877c408
   sha: 56d5228d9cf357e0981fb3c4b3a76143fa55b95b
   size: 641719963
+rootfs/cflinuxfs2-1.121.0.tar.gz:
+  object_id: 0f5ec5b3-2173-4857-9f37-119ad521e641
+  sha: 4867ab5864e6c9f79c5176949a31fc11391eb735
+  size: 289207755
