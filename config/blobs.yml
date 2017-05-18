@@ -1,3 +1,4 @@
+---
 binary-buildpack/binary_buildpack-cached-v1.0.12.zip:
   size: 59160
   object_id: aa240b8b-cd04-4653-acf5-d39f51d856ab
@@ -134,10 +135,6 @@ python-buildpack/python_buildpack-cached-v1.5.18.zip:
   size: 407683992
   object_id: 029f8199-8c1e-4f10-9f3a-0d389dd35c61
   sha: 93d2d61340bfb72368833da35bab3a982dc85eb6
-rootfs/cflinuxfs2-1.122.0.tar.gz:
-  size: 289225982
-  object_id: 61159d75-8d2e-483a-92a3-71550c52b065
-  sha: 36201c464c215bf604eeffd1c5a612745b8546f4
 ruby-2.1.8/bundler-1.9.4.gem:
   size: 244224
   object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
@@ -202,3 +199,7 @@ uaa/newrelic.jar:
   size: 7064901
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
   sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
+rootfs/cflinuxfs2-1.123.0.tar.gz:
+  object_id: 28b17c65-55ea-4037-8451-85588624a806
+  sha: f1eed1d41904f3c0f5789b846792fa8e559893c5
+  size: 289216426
