@@ -70,6 +70,8 @@ properties:
     description: Flag for running tests that depend on having isolation segments in your Cloud Foundry.
   acceptance_tests.isolation_segment_name:
     description: The name of the isolation segment to use for running isolation segment tests.
+  acceptance_tests.isolation_segment_domain:
+    description: The domain that routes to the isolated router for running isolation segment tests.
   acceptance_tests.include_persistent_app:
     description: Flag to include the persistent app test.
   acceptance_tests.skip_regex:
