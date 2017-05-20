@@ -33,10 +33,6 @@ properties:
   uaa:
     clients: (( merge ))
 
-  dea_next:
-    deny_networks: (( merge || nil ))
-    allow_networks: (( merge || nil ))
-
   ccdb:
     address: (( jobs.postgres_z1.networks.cf1.static_ips.[0] ))
     databases:
@@ -108,12 +104,6 @@ resource_pools:
     cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
 
   - name: large_z2
-    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
-
-  - name: runner_z1
-    cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
-
-  - name: runner_z2
     cloud_properties: (( merge || meta.resource_pools.large.cloud_properties  ))
 
   - name: router_z1
@@ -237,12 +227,6 @@ jobs:
     instances: 0
 
   - name: api_worker_z2
-    instances: 0
-
-  - name: hm9000_z2
-    instances: 0
-
-  - name: runner_z2
     instances: 0
 
   - name: clock_z2

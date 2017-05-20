@@ -42,10 +42,6 @@ properties:
       blobstore_type: fog
       fog_connection: (( meta.fog_config ))
 
-  dea_next:
-    deny_networks: (( merge || ["169.254.0.0/16", "10.10.0.0/16"] )) # 169.254.0.0 is for AWS Status
-    allow_networks: (( merge || ["10.10.0.2/32"] )) # Amazon DNS
-
 compilation:
   cloud_properties:
     instance_type: c3.large
@@ -101,22 +97,6 @@ resource_pools:
       instance_type: m3.large
       ephemeral_disk:
         size: 65_536
-        type: gp2
-      availability_zone: (( meta.zones.z2 ))
-
-  - name: runner_z1
-    cloud_properties:
-      instance_type: m3.large
-      ephemeral_disk:
-        size: 102_400
-        type: gp2
-      availability_zone: (( meta.zones.z1 ))
-
-  - name: runner_z2
-    cloud_properties:
-      instance_type: m3.large
-      ephemeral_disk:
-        size: 102_400
         type: gp2
       availability_zone: (( meta.zones.z2 ))
 

@@ -57,13 +57,6 @@ properties:
   ssl:
     skip_cert_verify: true
 
-  dea_next:
-    allow_networks:
-    - 10.0.0.2/32
-    deny_networks:
-    - 169.254.0.0/16
-    - 10.0.0.0/16
-
   cc:
     staging_upload_user: STAGING_UPLOAD_USER
     staging_upload_password: STAGING_UPLOAD_PASSWORD
@@ -186,12 +179,5 @@ properties:
         name: uaadb
     address: UAADB_ADDRESS
     port: UAADB_PORT
-  hm9000:
-    server_key: HM9000_SERVER_KEY
-    server_cert: HM9000_SERVER_CERT
-    client_key: HM9000_CLIENT_KEY
-    client_cert: HM9000_CLIENT_CERT
-    ca_cert: HM9000_CA_CERT
-
 # code_snippet cf-stub-aws end
 # The previous line helps maintain current documentation at http://docs.cloudfoundry.org.

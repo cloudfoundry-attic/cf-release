@@ -74,9 +74,6 @@ properties:
     server_key: CONSUL_SERVER_KEY
     agent_cert: CONSUL_AGENT_CERT
     agent_key: CONSUL_AGENT_KEY
-  dea_next:
-    disk_mb: 2048
-    memory_mb: 1024
   etcd:
     require_ssl: true
     ca_cert: ETCD_CA_CERT
@@ -176,12 +173,6 @@ properties:
       password: UAADB_PASSWORD
     - name: diego
       password: DIEGODB_PASSWORD
-  hm9000:
-    server_key: HM9000_SERVER_KEY
-    server_cert: HM9000_SERVER_CERT
-    client_key: HM9000_CLIENT_KEY
-    client_cert: HM9000_CLIENT_CERT
-    ca_cert: HM9000_CA_CERT
 
 jobs:
   - name: ha_proxy_z1

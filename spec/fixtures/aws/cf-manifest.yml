@@ -620,144 +620,6 @@ jobs:
   update: {}
 - default_networks:
   - name: cf1
-  instances: 1
-  name: hm9000_z1
-  networks:
-  - name: cf1
-  properties:
-    consul:
-      agent:
-        services:
-          hm9000: {}
-    metron_agent:
-      zone: z1
-    route_registrar:
-      routes:
-      - name: hm9000
-        port: 5155
-        registration_interval: 20s
-        tags:
-          component: HM9K
-        uris:
-        - hm9000.SYSTEM_DOMAIN
-  resource_pool: medium_z1
-  templates:
-  - name: consul_agent
-    release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: hm9000
-    release: cf
-  - name: metron_agent
-    release: cf
-  - consumes:
-      nats: nil
-    name: route_registrar
-    release: cf
-  update: {}
-- default_networks:
-  - name: cf2
-  instances: 1
-  name: hm9000_z2
-  networks:
-  - name: cf2
-  properties:
-    consul:
-      agent:
-        services:
-          hm9000: {}
-    metron_agent:
-      zone: z2
-    route_registrar:
-      routes:
-      - name: hm9000
-        port: 5155
-        registration_interval: 20s
-        tags:
-          component: HM9K
-        uris:
-        - hm9000.SYSTEM_DOMAIN
-  resource_pool: medium_z2
-  templates:
-  - name: consul_agent
-    release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: hm9000
-    release: cf
-  - name: metron_agent
-    release: cf
-  - consumes:
-      nats: nil
-    name: route_registrar
-    release: cf
-  update: {}
-- default_networks:
-  - name: cf1
-  instances: 1
-  name: runner_z1
-  networks:
-  - name: cf1
-  properties:
-    consul:
-      agent:
-        services:
-          dea:
-            check:
-              interval: 5m
-              name: dns_health_check
-              script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              status: passing
-    dea_next:
-      zone: z1
-    metron_agent:
-      zone: z1
-  resource_pool: runner_z1
-  templates:
-  - name: consul_agent
-    release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: dea_next
-    release: cf
-  - name: dea_logging_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-  update:
-    max_in_flight: 1
-- default_networks:
-  - name: cf2
-  instances: 1
-  name: runner_z2
-  networks:
-  - name: cf2
-  properties:
-    consul:
-      agent:
-        services:
-          dea:
-            check:
-              interval: 5m
-              name: dns_health_check
-              script: /var/vcap/jobs/dea_next/bin/dns_health_check
-              status: passing
-    dea_next:
-      zone: z2
-    metron_agent:
-      zone: z2
-  resource_pool: runner_z2
-  templates:
-  - name: consul_agent
-    release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: dea_next
-    release: cf
-  - name: dea_logging_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-  update:
-    max_in_flight: 1
-- default_networks:
-  - name: cf1
   instances: 0
   name: loggregator_z1
   networks:
@@ -1132,7 +994,6 @@ properties:
     client_max_body_size: 15M
     db_encryption_key: CCDB_ENCRYPTION_KEY
     db_logging_level: debug2
-    dea_use_https: false
     default_app_disk_in_mb: 1024
     default_app_memory: 1024
     default_app_ssh_access: null
@@ -1408,39 +1269,6 @@ properties:
     server_cert: CONSUL_SERVER_CERT
     server_key: CONSUL_SERVER_KEY
   databases: null
-  dea_next:
-    advertise_interval_in_seconds: 5
-    allow_host_access: null
-    allow_networks:
-    - 10.0.0.2/32
-    ca_cert: null
-    client_cert: null
-    client_key: null
-    default_health_check_timeout: 60
-    deny_networks:
-    - 169.254.0.0/16
-    - 10.0.0.0/16
-    directory_server_protocol: https
-    disk_mb: null
-    disk_overcommit_factor: null
-    enable_ssl: false
-    evacuation_bail_out_time_in_seconds: 600
-    heartbeat_interval_in_seconds: 10
-    instance_bandwidth_limit: null
-    instance_disk_inode_limit: 200000
-    kernel_network_tuning_enabled: true
-    logging_level: debug
-    memory_mb: null
-    memory_overcommit_factor: null
-    mtu: null
-    post_setup_hook: null
-    rlimit_core: 0
-    server_cert: null
-    server_key: null
-    staging_bandwidth_limit: null
-    staging_disk_inode_limit: 200000
-    staging_disk_limit_mb: 4096
-    staging_memory_limit_mb: 1024
   description: null
   disk_quota_enabled: true
   doppler:
@@ -1493,21 +1321,6 @@ properties:
       dns_suffix: cf-etcd.service.cf.internal
       require_ssl: true
   ha_proxy: null
-  hm9000:
-    ca_cert: HM9000_CA_CERT
-    client_cert: HM9000_CLIENT_CERT
-    client_key: HM9000_CLIENT_KEY
-    etcd:
-      ca_cert: ETCD_CA_CERT
-      client_cert: ETCD_CLIENT_CERT
-      client_key: ETCD_CLIENT_KEY
-      machines:
-      - cf-etcd.service.cf.internal
-      require_ssl: true
-    port: 5155
-    server_cert: HM9000_SERVER_CERT
-    server_key: HM9000_SERVER_KEY
-    url: https://hm9000.SYSTEM_DOMAIN
   logger_endpoint:
     port: 4443
   loggregator:
@@ -1878,34 +1691,6 @@ resource_pools:
     bosh:
       password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
   name: large_z2
-  network: cf2
-  stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
-    version: latest
-- cloud_properties:
-    availability_zone: ZONE_1
-    ephemeral_disk:
-      size: 102400
-      type: gp2
-    instance_type: m3.large
-  env:
-    bosh:
-      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
-  name: runner_z1
-  network: cf1
-  stemcell:
-    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
-    version: latest
-- cloud_properties:
-    availability_zone: ZONE_2
-    ephemeral_disk:
-      size: 102400
-      type: gp2
-    instance_type: m3.large
-  env:
-    bosh:
-      password: $6$4gDD3aV0rdqlrKC$2axHCxGKIObs6tAmMTqYCspcdvQXh3JJcvWOY2WGb4SrdXtnCyNaWlrf3WEqvYR2MYizEGp3kMmbpwBC6jsHt0
-  name: runner_z2
   network: cf2
   stemcell:
     name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent

@@ -305,90 +305,6 @@ jobs:
       nfs_server: (( meta.nfs_server ))
     update: (( merge || empty_hash ))
 
-  - name: hm9000_z1
-    templates: (( merge || meta.hm9000_templates ))
-    instances: 1
-    resource_pool: medium_z1
-    default_networks:
-      - name: cf1
-    networks: (( merge || default_networks ))
-    properties:
-      consul:
-        agent:
-          services:
-            hm9000: {}
-      metron_agent:
-        zone: z1
-      route_registrar:
-        routes: (( merge || meta.hm9000_routes ))
-    update: (( merge || empty_hash ))
-
-  - name: hm9000_z2
-    templates: (( merge || meta.hm9000_templates ))
-    instances: 1
-    resource_pool: medium_z2
-    default_networks:
-      - name: cf2
-    networks: (( merge || default_networks ))
-    properties:
-      consul:
-        agent:
-          services:
-            hm9000: {}
-      metron_agent:
-        zone: z2
-      route_registrar:
-        routes: (( merge || meta.hm9000_routes ))
-    update: (( merge || empty_hash ))
-
-  - name: runner_z1
-    templates: (( merge || meta.dea_templates ))
-    instances: 1
-    resource_pool: runner_z1
-    default_networks:
-      - name: cf1
-    networks: (( merge || default_networks ))
-    properties:
-      dea_next:
-        zone: (( merge || "z1" ))
-      metron_agent:
-        zone: z1
-      consul:
-        agent:
-          services:
-            dea:
-              check:
-                name: dns_health_check
-                script: /var/vcap/jobs/dea_next/bin/dns_health_check
-                interval: 5m
-                status: passing
-    update:
-      max_in_flight: 1
-
-  - name: runner_z2
-    templates: (( merge || meta.dea_templates ))
-    instances: 1
-    resource_pool: runner_z2
-    default_networks:
-      - name: cf2
-    networks: (( merge || default_networks ))
-    properties:
-      dea_next:
-        zone: (( merge || "z2" ))
-      metron_agent:
-        zone: z2
-      consul:
-        agent:
-          services:
-            dea:
-              check:
-                name: dns_health_check
-                script: /var/vcap/jobs/dea_next/bin/dns_health_check
-                interval: 5m
-                status: passing
-    update:
-      max_in_flight: 1
-
   - name: loggregator_z1
     templates: (( merge || meta.loggregator_templates ))
     instances: 0
@@ -672,38 +588,6 @@ properties:
       client_key: (( .properties.etcd.client_key ))
       dns_suffix: (( .properties.etcd.advertise_urls_dns_suffix ))
 
-  dea_next:
-    memory_overcommit_factor: null
-    disk_overcommit_factor: null
-    instance_bandwidth_limit: (( merge || nil ))
-    staging_bandwidth_limit: (( merge || nil ))
-    memory_mb: (( merge || nil ))
-    disk_mb: (( merge || nil ))
-    staging_disk_inode_limit: 200000
-    instance_disk_inode_limit: 200000
-    deny_networks: (( merge || [] ))
-    allow_networks: (( merge || [] ))
-    kernel_network_tuning_enabled: true
-    directory_server_protocol: https
-    evacuation_bail_out_time_in_seconds: 600
-    logging_level: debug
-    staging_disk_limit_mb: 4096
-    staging_memory_limit_mb: 1024
-    default_health_check_timeout: 60
-    advertise_interval_in_seconds: 5
-    heartbeat_interval_in_seconds: 10
-    rlimit_core: (( merge || 0 ))
-    allow_host_access: ~
-    mtu: (( merge || nil ))
-    post_setup_hook: null
-
-    ca_cert:
-    client_cert:
-    client_key:
-    enable_ssl: false
-    server_cert:
-    server_key:
-
   loggregator:
     maxRetainedLogMessages: 100
     debug: (( merge || false ))
@@ -977,7 +861,6 @@ properties:
 
     reserved_private_domains: ~
 
-    dea_use_https: false
     minimum_candidate_stagers: (( merge || nil ))
     volume_services_enabled: (( merge || nil ))
 
@@ -989,21 +872,6 @@ properties:
   ccdb: (( merge ))
 
   ha_proxy: (( merge || nil ))
-
-  hm9000:
-    url: (( "https://hm9000." system_domain ))
-    port: 5155
-    ca_cert:
-    server_cert:
-    server_key:
-    client_cert:
-    client_key:
-    etcd:
-      machines: [(( .properties.etcd.advertise_urls_dns_suffix ))]
-      require_ssl: (( .properties.etcd.require_ssl ))
-      ca_cert: (( .properties.etcd.ca_cert ))
-      client_cert: (( .properties.etcd.client_cert ))
-      client_key: (( .properties.etcd.client_key ))
 
   login:
     branding: (( merge || nil ))
@@ -1269,18 +1137,6 @@ resource_pools:
     cloud_properties: (( merge ))
     env: (( merge || meta.default_env ))
 
-  - name: runner_z1
-    network: cf1
-    stemcell: (( meta.stemcell ))
-    cloud_properties: (( merge ))
-    env: (( merge || meta.default_env ))
-
-  - name: runner_z2
-    network: cf2
-    stemcell: (( meta.stemcell ))
-    cloud_properties: (( merge ))
-    env: (( merge || meta.default_env ))
-
   - name: router_z1
     network: (( merge || "cf1" ))
     stemcell: (( meta.stemcell ))
@@ -1425,17 +1281,6 @@ meta:
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
-  dea_templates:
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: dea_next
-    release: (( meta.cf_release_name ))
-  - name: dea_logging_agent
-    release: (( meta.loggregator_release_name ))
-  - name: metron_agent
-    release: (( meta.loggregator_release_name ))
-
   etcd_templates:
   - name: consul_agent
     release: (( meta.consul_release_name ))
@@ -1458,27 +1303,6 @@ meta:
     consumes: {router: nil}
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
-
-  hm9000_routes:
-  - name: hm9000
-    port: (( .properties.hm9000.port ))
-    registration_interval: 20s
-    tags:
-      component: HM9K
-    uris:
-    - (( "hm9000." .properties.system_domain ))
-
-  hm9000_templates:
-  - name: consul_agent
-    release: (( meta.consul_release_name ))
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: hm9000
-    release: (( meta.cf_release_name ))
-  - name: metron_agent
-    release: (( meta.loggregator_release_name ))
-  - name: route_registrar
-    release: (( meta.routing_release_name ))
-    consumes: {nats: nil}
 
   loggregator_templates:
   - name: consul_agent

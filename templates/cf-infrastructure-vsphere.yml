@@ -42,18 +42,6 @@ meta:
         disk: 10240
         cpu: 1
 
-    runner_z1:
-      cloud_properties:
-        ram: 16384
-        disk: 32768
-        cpu: 2
-
-    runner_z2:
-      cloud_properties:
-        ram: 16384
-        disk: 32768
-        cpu: 2
-
     router_z1:
       cloud_properties:
         ram: 1024
@@ -97,12 +85,6 @@ resource_pools:
 
   - name: large_z2
     cloud_properties: (( merge || meta.resource_pools.large_z2.cloud_properties ))
-
-  - name: runner_z1
-    cloud_properties: (( merge || meta.resource_pools.runner_z1.cloud_properties ))
-
-  - name: runner_z2
-    cloud_properties: (( merge || meta.resource_pools.runner_z2.cloud_properties ))
 
   - name: router_z1
     cloud_properties: (( merge || meta.resource_pools.router_z1.cloud_properties ))
