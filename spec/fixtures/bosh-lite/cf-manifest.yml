@@ -2659,6 +2659,7 @@ properties:
     nodes: 1
     skip_ssl_validation: true
     use_http: true
+    backend: diego
   app_domains:
   - bosh-lite.com
   app_ssh:
