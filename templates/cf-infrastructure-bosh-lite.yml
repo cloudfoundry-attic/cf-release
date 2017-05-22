@@ -851,6 +851,7 @@ properties:
     skip_ssl_validation: true
     nodes: 1
     use_http: true
+    backend: diego
 
   smoke_tests:
     api:  (( "api." system_domain ))
