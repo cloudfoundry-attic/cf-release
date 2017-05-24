@@ -1,0 +1,21 @@
+. ./exiter.ps1
+$path="golang/go1.8.windows-amd64.zip"
+
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+function Unzip
+{
+	param([string]$zipfile, [string]$outpath)
+
+	[System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
+}
+
+try
+{
+	Unzip $path ${env:BOSH_INSTALL_TARGET}
+}
+catch
+{
+	$Host.UI.WriteErrorLine($_.Exception.Message)
+	Exit 1
+}
+Exit 0
