@@ -1,5 +1,5 @@
 . ./exiter.ps1
-$path="golang/go1.8.2.windows-amd64.zip"
+$path="golang/go1.8.3.windows-amd64.zip"
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 function Unzip
