@@ -1101,6 +1101,7 @@ update:
   serial: true
 
 resource_pools:
+  - <<: (( merge ))
   - name: small_z1
     network: cf1
     stemcell: (( meta.stemcell ))

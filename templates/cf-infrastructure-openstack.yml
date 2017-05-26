@@ -88,6 +88,7 @@ compilation:
   cloud_properties: (( merge || meta.resource_pools.medium.cloud_properties ))
 
 resource_pools:
+  - <<: (( merge ))
   - name: small_z1
     cloud_properties: (( merge || meta.resource_pools.small.cloud_properties ))
 
