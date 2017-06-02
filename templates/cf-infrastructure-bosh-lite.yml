@@ -836,6 +836,9 @@ properties:
       - tag: diego
         name: diego
         citext: false
+      - tag: diego
+        name: locket
+        citext: false
       - tag: routing_api
         name: routing_api
         citext: false

@@ -81,6 +81,9 @@ properties:
       - tag: diego
         name: diego
         citext: false
+      - tag: diego
+        name: locket
+        citext: false
     collect_statement_statistics: null
     additional_config: (( merge || nil ))
 
