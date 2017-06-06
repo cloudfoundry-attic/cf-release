@@ -43,10 +43,6 @@ expat/expat-2.2.0.tar.bz2:
   size: 414352
   object_id: 879fb468-db40-4462-5c7f-9ae52bb8b8f0
   sha: 8453bc52324be4c796fd38742ec48470eef358b3
-go-buildpack/go_buildpack-cached-v1.8.2.zip:
-  size: 435298514
-  object_id: 16abdccf-8451-496b-a2d1-3dbbf68d2cca
-  sha: 5a3686c7265dd7d1ea9928b65515d202591af05b
 golang/go1.6.3.linux-amd64.tar.gz:
   size: 84856920
   object_id: 7ad4929c-a987-4b84-b686-3c9598951f25
@@ -219,3 +215,7 @@ golang/go1.8.3.linux-amd64.tar.gz:
   object_id: 7c7afa17-ac33-43f5-9a1b-5ecc01cde3a1
   sha: 838c415896ef5ecd395dfabde5e7e6f8ac943c8e
   size: 90029041
+go-buildpack/go-buildpack-v1.8.4.zip:
+  object_id: 0c0adbef-0f1a-4498-9844-f5955db5967c
+  sha: 757e9044a347b2ecbda672e9374f1d8f643b1b90
+  size: 4765414
