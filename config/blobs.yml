@@ -1,8 +1,4 @@
 ---
-binary-buildpack/binary_buildpack-cached-v1.0.12.zip:
-  size: 59160
-  object_id: aa240b8b-cd04-4653-acf5-d39f51d856ab
-  sha: fc2eec8c135cbab813e32dc38b92f0776f361ff3
 cli/cf-cli_6.26.0_linux_x86-64.tgz:
   size: 5174999
   object_id: db58b893-9d3e-477e-96ae-9941d3cebea9
@@ -219,3 +215,7 @@ php-buildpack/php-buildpack-v4.3.34.zip:
   object_id: 16e21732-6d4b-49ca-9447-d488fb6e46d2
   sha: e9998dce8b0f840590fe0ca74d52d03ecdb321d5
   size: 288980
+binary-buildpack/binary-buildpack-v1.0.13.zip:
+  object_id: 1445c14d-9c92-4683-b09b-a13ff4cca032
+  sha: 6fe4d6849959a16db7e66759f0cd36b5a858b3c2
+  size: 62975
