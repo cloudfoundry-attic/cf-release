@@ -1293,6 +1293,9 @@ properties:
     - citext: false
       name: diego
       tag: diego
+    - citext: false
+      name: locket
+      tag: diego
     db_scheme: postgres
     port: 5524
     roles:

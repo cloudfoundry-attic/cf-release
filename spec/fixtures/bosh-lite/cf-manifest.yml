@@ -3391,6 +3391,9 @@ properties:
       name: diego
       tag: diego
     - citext: false
+      name: locket
+      tag: diego
+    - citext: false
       name: routing_api
       tag: routing_api
     db_scheme: postgres
