@@ -67,10 +67,6 @@ java-buildpack/java-buildpack-offline-v3.16.zip:
   size: 277353138
   object_id: 8bce5914-014a-4b5e-bd0e-00ec822fcc47
   sha: 0592fe11b2c49aa4dafabc2d0493540174f42c0f
-java-buildpack/java-buildpack-v3.16.zip:
-  size: 170355
-  object_id: 9a0fbe0b-8232-4469-9cc1-74222abbe263
-  sha: ba7e7bf98e81926c22a1aa713a79a6a3582186c5
 libmariadb/libmariadb-5.5.36.tar.xz:
   size: 1260684
   object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
@@ -219,3 +215,7 @@ dotnet-core-buildpack/dotnet-core-buildpack-v1.0.19.zip:
   object_id: f88a2de4-4905-4e03-9f10-b8d87beee492
   sha: 297735594e5a28213086d7925d2fb915b0ca7a58
   size: 85776
+java-buildpack/java-buildpack-v3.17.zip:
+  object_id: 9052d919-c2df-48a2-b09e-58fa21f34bef
+  sha: 5c1ae2614ff2135d80028aa918d3a0b8daa209c9
+  size: 171751
