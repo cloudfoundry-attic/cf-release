@@ -420,8 +420,6 @@ jobs:
     consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: java-buildpack
     release: cf
-  - name: java-offline-buildpack
-    release: cf
   - name: go-buildpack
     release: cf
   - name: binary-buildpack
@@ -486,8 +484,6 @@ jobs:
     release: cf
     consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: java-buildpack
-    release: cf
-  - name: java-offline-buildpack
     release: cf
   - name: go-buildpack
     release: cf

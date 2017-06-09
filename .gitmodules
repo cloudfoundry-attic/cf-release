@@ -52,9 +52,6 @@
 [submodule "src/binary-buildpack-release"]
 	path = src/binary-buildpack-release
 	url = https://github.com/cloudfoundry/binary-buildpack-release
-[submodule "src/java-offline-buildpack-release"]
-	path = src/java-offline-buildpack-release
-	url = https://github.com/cloudfoundry/java-offline-buildpack-release
 [submodule "src/java-buildpack-release"]
 	path = src/java-buildpack-release
 	url = https://github.com/cloudfoundry/java-buildpack-release

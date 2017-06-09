@@ -1182,7 +1182,6 @@ meta:
   etcd_release_name: (( releases.etcd.name || "cf" ))
   postgres_release_name: (( releases.postgres.name || "cf" ))
   java_buildpack_release_name: (( releases.java-buildpack.name || "cf" ))
-  java_offline_buildpack_release_name: (( releases.java-offline-buildpack.name || "cf" ))
   go_buildpack_release_name: (( releases.go-buildpack.name || "cf" ))
   binary_buildpack_release_name: (( releases.binary-buildpack.name || "cf" ))
   nodejs_buildpack_release_name: (( releases.nodejs-buildpack.name || "cf" ))
@@ -1225,8 +1224,6 @@ meta:
     release: (( meta.consul_release_name ))
   - name: java-buildpack
     release: (( meta.java_buildpack_release_name ))
-  - name: java-offline-buildpack
-    release: (( meta.java_offline_buildpack_release_name ))
   - name: go-buildpack
     release: (( meta.go_buildpack_release_name ))
   - name: binary-buildpack
