@@ -16,4 +16,4 @@ update: (( merge ))
 
 resource_pools: (( merge ))
 
-variables: (( merge ))
+variables: (( merge || nil ))
