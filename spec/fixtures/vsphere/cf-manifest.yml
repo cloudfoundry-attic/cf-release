@@ -79,8 +79,6 @@ jobs:
       nats: nil
     name: nats
     release: cf
-  - name: nats_stream_forwarder
-    release: cf
   - name: metron_agent
     release: cf
   update: {}
@@ -103,8 +101,6 @@ jobs:
   - consumes:
       nats: nil
     name: nats
-    release: cf
-  - name: nats_stream_forwarder
     release: cf
   - name: metron_agent
     release: cf

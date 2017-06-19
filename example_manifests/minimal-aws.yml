@@ -103,7 +103,6 @@ jobs:
   resource_pool: small_z1
   templates:
   - {name: nats, release: cf}
-  - {name: nats_stream_forwarder, release: cf}
   - {name: metron_agent, release: cf}
   networks:
   - name: cf_private

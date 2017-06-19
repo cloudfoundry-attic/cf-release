@@ -1339,8 +1339,6 @@ meta:
   - name: nats
     consumes: {nats: nil}
     release: (( meta.cf_release_name ))
-  - name: nats_stream_forwarder
-    release: (( meta.cf_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
