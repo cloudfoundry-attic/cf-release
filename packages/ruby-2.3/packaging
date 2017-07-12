@@ -11,7 +11,7 @@ tar xzf ruby-2.3/ruby-${RUBY_VERSION}.tar.gz
   set -e
   cd ruby-${RUBY_VERSION}
   LDFLAGS="-Wl,-rpath -Wl,${BOSH_INSTALL_TARGET}" ./configure --prefix=${BOSH_INSTALL_TARGET} --disable-install-doc --with-opt-dir=${BOSH_INSTALL_TARGET}
-  make
+  make -j $(getconf _NPROCESSORS_ONLN) || make
   make install
 )
 
