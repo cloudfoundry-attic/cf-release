@@ -1063,6 +1063,7 @@ properties:
     route_services_timeout: (( merge || nil ))
     route_services_recommend_https: (( merge || nil ))
     max_idle_connections: (( merge || nil ))
+    tls_pem: (( merge || nil ))
     tracing:
       enable_zipkin: (( merge || nil ))
     logrotate: (( merge || nil ))

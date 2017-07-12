@@ -3893,6 +3893,7 @@ properties:
       port: null
       user: router
     suspend_pruning_if_nats_unavailable: null
+    tls_pem: null
     tracing:
       enable_zipkin: null
   routing_api:
