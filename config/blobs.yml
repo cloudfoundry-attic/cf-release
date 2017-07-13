@@ -187,10 +187,6 @@ binary-buildpack/binary-buildpack-v1.0.13.zip:
   object_id: 1445c14d-9c92-4683-b09b-a13ff4cca032
   sha: 6fe4d6849959a16db7e66759f0cd36b5a858b3c2
   size: 62975
-nodejs-buildpack/nodejs-buildpack-v1.5.36.zip:
-  object_id: 94e264d8-5f14-40a8-bdbb-eb33e297ba64
-  sha: 0bbc77fd41c3af5e003b0b07fbf5187b095cbd7e
-  size: 89612
 python-buildpack/python-buildpack-v1.5.19.zip:
   object_id: cffb956b-45d7-4524-b1ab-a8b30ac7b280
   sha: c7607c284fce49b6769049b9b421512fe94b0373
@@ -219,3 +215,7 @@ staticfile-buildpack/staticfile-buildpack-v1.4.10.zip:
   object_id: 144b07c9-f554-45b7-97ea-e14b22e6fada
   sha: a1cbbe61dfff3d58345b709637e1a1d754d8287b
   size: 5347075
+nodejs-buildpack/nodejs-buildpack-v1.6.2.zip:
+  object_id: b3098520-4f01-4d62-828b-ade793b2eb6e
+  sha: 729242b1c96c525a234d190140ee49485e3792b8
+  size: 4819870
