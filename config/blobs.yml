@@ -199,10 +199,6 @@ java-buildpack/java-buildpack-v3.18.zip:
   object_id: f3f4518f-730b-4829-89b3-f7af2f44c90a
   sha: 26be9c9010eb6699ff3849c0692619ed889d2ece
   size: 181073
-ruby-buildpack/ruby-buildpack-v1.6.43.zip:
-  object_id: fa2b4b49-17dd-4b71-a25d-bbbc7f1d8597
-  sha: f520344b0b679736187ead0ad31cbabf759aef9c
-  size: 82754
 staticfile-buildpack/staticfile-buildpack-v1.4.10.zip:
   object_id: 144b07c9-f554-45b7-97ea-e14b22e6fada
   sha: a1cbbe61dfff3d58345b709637e1a1d754d8287b
@@ -219,3 +215,7 @@ dotnet-core-buildpack/dotnet-core-buildpack-v1.0.22.zip:
   object_id: e51e21f6-83e0-4a58-8492-54b87958f7d6
   sha: d738f726cfff75b9cbd61dd0f7a57a99c5e0cadc
   size: 86446
+ruby-buildpack/ruby-buildpack-v1.6.44.zip:
+  object_id: 09b2fa08-b113-4d6c-9e9c-ec4a5793114d
+  sha: f95c6713daa9076c2b662ec95f73ba01a5c210ac
+  size: 82783
