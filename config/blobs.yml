@@ -179,10 +179,6 @@ python-buildpack/python-buildpack-v1.5.20.zip:
   object_id: 3cf7f9da-9ee6-4a63-b678-4d744411375d
   sha: 22b015e666f537b5de52e26ebdc4de26df040b6f
   size: 81787
-dotnet-core-buildpack/dotnet-core-buildpack-v1.0.22.zip:
-  object_id: e51e21f6-83e0-4a58-8492-54b87958f7d6
-  sha: d738f726cfff75b9cbd61dd0f7a57a99c5e0cadc
-  size: 86446
 ruby-buildpack/ruby-buildpack-v1.6.44.zip:
   object_id: 09b2fa08-b113-4d6c-9e9c-ec4a5793114d
   sha: f95c6713daa9076c2b662ec95f73ba01a5c210ac
@@ -207,3 +203,7 @@ uaa/apache-tomcat-8.5.16.tar.gz:
   size: 9417469
   object_id: eeb161ee-4b05-4480-7378-8ef36d532545
   sha: 6ae7b007fc17eb2821585e2651edaca90708a75b
+dotnet-core-buildpack/dotnet-core-buildpack-v1.0.23.zip:
+  object_id: a9bd37c4-75ce-4663-b361-7a36ca6197a9
+  sha: 238d4d82997ab52aac72d81c0e6bb5857091ced2
+  size: 86558
