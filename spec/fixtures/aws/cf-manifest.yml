@@ -25,9 +25,12 @@ jobs:
       zone: z1
   resource_pool: small_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: metron_agent
     release: cf
   update:
@@ -50,9 +53,12 @@ jobs:
       zone: z2
   resource_pool: small_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: metron_agent
     release: cf
   update:
@@ -71,9 +77,12 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: nats
@@ -94,9 +103,12 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: nats
@@ -124,12 +136,16 @@ jobs:
       zone: z1
   resource_pool: large_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: etcd
+  - consumes:
+      etcd: nil
+    name: etcd
     release: cf
-    consumes: {etcd: nil}
   - name: etcd_metrics_server
     release: cf
   - name: metron_agent
@@ -156,12 +172,16 @@ jobs:
       zone: z2
   resource_pool: large_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: etcd
+  - consumes:
+      etcd: nil
+    name: etcd
     release: cf
-    consumes: {etcd: nil}
   - name: etcd_metrics_server
     release: cf
   - name: metron_agent
@@ -180,9 +200,12 @@ jobs:
       zone: z1
   resource_pool: small_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: collector
     release: cf
   - name: metron_agent
@@ -213,9 +236,12 @@ jobs:
         - blobstore.SYSTEM_DOMAIN
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: debian_nfs_server
     release: cf
   - name: metron_agent
@@ -252,9 +278,12 @@ jobs:
         - blobstore.SYSTEM_DOMAIN
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: metron_agent
     release: cf
   - name: blobstore
@@ -276,9 +305,12 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: postgres
     release: cf
   - name: metron_agent
@@ -317,12 +349,16 @@ jobs:
         servers: null
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: uaa
+  - consumes:
+      router: nil
+    name: uaa
     release: cf
-    consumes: {router: nil}
   - name: metron_agent
     release: cf
   - consumes:
@@ -365,12 +401,16 @@ jobs:
         servers: null
   resource_pool: medium_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: uaa
+  - consumes:
+      router: nil
+    name: uaa
     release: cf
-    consumes: {router: nil}
   - name: metron_agent
     release: cf
   - consumes:
@@ -411,9 +451,12 @@ jobs:
         - api.SYSTEM_DOMAIN
   resource_pool: large_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: java-buildpack
     release: cf
   - name: go-buildpack
@@ -476,9 +519,12 @@ jobs:
         - api.SYSTEM_DOMAIN
   resource_pool: large_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: java-buildpack
     release: cf
   - name: go-buildpack
@@ -522,9 +568,12 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_clock
@@ -550,9 +599,12 @@ jobs:
       share: null
   resource_pool: small_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_worker
@@ -572,9 +624,12 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_clock
@@ -600,9 +655,12 @@ jobs:
       share: null
   resource_pool: small_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: cloud_controller_worker
@@ -623,9 +681,12 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -646,9 +707,12 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -676,9 +740,12 @@ jobs:
       zone: z1
   resource_pool: medium_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -706,9 +773,12 @@ jobs:
       zone: z2
   resource_pool: medium_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: cf
   - name: syslog_drain_binder
@@ -743,12 +813,16 @@ jobs:
       zone: z1
   resource_pool: small_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: loggregator_trafficcontroller
+  - consumes:
+      doppler: nil
+    name: loggregator_trafficcontroller
     release: cf
-    consumes: {doppler: nil}
   - name: metron_agent
     release: cf
   - consumes:
@@ -785,12 +859,16 @@ jobs:
       zone: z2
   resource_pool: small_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: loggregator_trafficcontroller
+  - consumes:
+      doppler: nil
+    name: loggregator_trafficcontroller
     release: cf
-    consumes: {doppler: nil}
   - name: metron_agent
     release: cf
   - consumes:
@@ -819,9 +897,12 @@ jobs:
       routing_table_sharding_mode: all
   resource_pool: router_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: gorouter
@@ -848,9 +929,12 @@ jobs:
       routing_table_sharding_mode: all
   resource_pool: router_z2
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - consumes:
       nats: nil
     name: gorouter
@@ -872,13 +956,16 @@ jobs:
       servers: null
   resource_pool: router_z1
   templates:
-  - name: consul_agent
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
     release: cf
-    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
-  - name: haproxy
+  - consumes:
+      router: nil
+    name: haproxy
     release: cf
-    consumes: {ssh_proxy: nil}
-    consumes: {router: nil}
   - name: metron_agent
     release: cf
   update: {}
@@ -1023,15 +1110,15 @@ properties:
         url: null
       insecure_docker_registry_list: null
       pid_limit: null
-      temporary_local_apps: null
-      temporary_local_staging: null
-      temporary_local_tasks: null
-      temporary_local_sync: null
-      temporary_local_tps: null
       temporary_cc_uploader_mtls: null
       temporary_droplet_download_mtls: null
-      use_privileged_containers_for_staging: null
+      temporary_local_apps: null
+      temporary_local_staging: null
+      temporary_local_sync: null
+      temporary_local_tasks: null
+      temporary_local_tps: null
       use_privileged_containers_for_running: null
+      use_privileged_containers_for_staging: null
     directories: null
     disable_custom_buildpacks: false
     droplets:
@@ -1077,6 +1164,7 @@ properties:
       package: dotnet-core-buildpack
     internal_api_password: BULK_API_PASSWORD
     internal_api_user: internal_user
+    internal_service_hostname: cloud-controller-ng.service.cf.internal
     jobs:
       app_bits_packer:
         timeout_in_seconds: null
@@ -1220,7 +1308,7 @@ properties:
         alert_if_above_mb: null
         restart_if_above_mb: null
         restart_if_consistently_above_mb: null
-    tls_port: null
+    tls_port: CC_MUTUAL_TLS_PORT
     user_buildpacks: []
     users_can_select_backend: true
     volume_services_enabled: null
@@ -1329,6 +1417,9 @@ properties:
     outgoing_dropsonde_port: 8081
     tls:
       ca_cert: LOGGREGATOR_CA_CERT
+      cc_trafficcontroller:
+        cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
+        key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
       doppler:
         cert: LOGGREGATOR_DOPPLER_CERT
         key: LOGGREGATOR_DOPPLER_KEY
@@ -1491,21 +1582,21 @@ properties:
         secret: CC_ROUTING_SECRET
       cf:
         access-token-validity: 600
-        secret: ''
         authorities: uaa.none
         authorized-grant-types: password,refresh_token
         override: true
         refresh-token-validity: 604800
         scope: cloud_controller.read,cloud_controller.write,openid,password.write,cloud_controller.admin,cloud_controller.admin_read_only,cloud_controller.global_auditor,scim.read,scim.write,doppler.firehose,uaa.user,routing.router_groups.read,routing.router_groups.write
+        secret: ""
       cloud_controller_username_lookup:
         authorities: scim.userids
         authorized-grant-types: client_credentials
         secret: CLOUD_CONTROLLER_USERNAME_LOOKUP_SECRET
       doppler:
         authorities: uaa.resource
+        authorized-grant-types: client_credentials
         override: true
         secret: DOPPLER_SECRET
-        authorized-grant-types: client_credentials
       gorouter:
         authorities: routing.routes.read
         authorized-grant-types: client_credentials

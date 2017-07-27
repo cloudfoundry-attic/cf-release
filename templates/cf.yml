@@ -601,6 +601,9 @@ properties:
       trafficcontroller:
         cert: (( merge ))
         key: (( merge ))
+      cc_trafficcontroller:
+        cert: (( merge ))
+        key: (( merge ))
       metron:
         cert: (( merge ))
         key: (( merge ))
@@ -685,7 +688,7 @@ properties:
       temporary_droplet_download_mtls: (( merge || nil ))
       bbs:
         url: (( merge || nil ))
-    tls_port: (( merge || nil ))
+    tls_port: (( merge ))
     mutual_tls:
       ca_cert: (( merge ))
       public_cert: (( merge ))
@@ -739,6 +742,7 @@ properties:
     external_host: api
     external_port: 9022
     srv_api_uri: (( "https://" external_host "." system_domain ))
+    internal_service_hostname: "cloud-controller-ng.service.cf.internal"
 
     bulk_api_password: (( merge ))
     internal_api_user: "internal_user"

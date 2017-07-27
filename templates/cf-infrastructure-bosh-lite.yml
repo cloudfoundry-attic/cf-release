@@ -207,6 +207,61 @@ properties:
           7hFspdP/knOG4YGHJEFpIKK+Mt3g1/9meOGXrt3+Kzehw1gwZ8mNtkCvpRwmjcTm
           KyDv5AZS9FrM8tTQ3kn9uDw4hedlm8k23UpAU6y1Pt43rtWOJhQ=
           -----END RSA PRIVATE KEY-----
+      cc_trafficcontroller:
+        cert: |+
+          -----BEGIN CERTIFICATE-----
+          MIIEJzCCAg+gAwIBAgIQICde7NKhhXt7JAIcyEHb8zANBgkqhkiG9w0BAQsFADAQ
+          MQ4wDAYDVQQDEwViYnNDQTAeFw0xNzA3MjcxNjMzNTVaFw0xOTA3MjcxNjMzNTVa
+          MBwxGjAYBgNVBAMTEXRyYWZmaWNjb250cm9sbGVyMIIBIjANBgkqhkiG9w0BAQEF
+          AAOCAQ8AMIIBCgKCAQEAuU6+umLIwxo8Y0PUwYPC5CzRMGTKTTZRmdayKAiOL0X2
+          BfvmqMpBczX7Y/y73EsKDMTrNNUHfd5nbQ6aKR1VkL66JXM6QqdpgnkIWMW+J9oY
+          LQUfRyOeZWWCE/e1Q6e1fy8zkfabBIsm1Dos0ZgjETOoGumAGrCHK+kgfB+JwyLc
+          R54QINjE/rcsW0vno0HRhtrtb//cIJEQQFJLcFgnmFsJzVlnlkhGYi4QWVb5XqKt
+          mLvQcZQFbFgGafVte9qVB1+Qr1Eh9rA9nOdhnA5Z7llGn0E5AhKGXjthp+nZVXz6
+          ne75c2ZQvZHrpctpQi1d/IkbHu9juTpldEBuSUCkOwIDAQABo3EwbzAOBgNVHQ8B
+          Af8EBAMCA7gwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMB0GA1UdDgQW
+          BBTMIqywMC60JbyKpp8tSTtq3qJRezAfBgNVHSMEGDAWgBTYcWew/0k5ZG8q8Ozl
+          hKSPH6v8szANBgkqhkiG9w0BAQsFAAOCAgEAFVhDBM3qbc3cAmfOX0nsA5NL+/43
+          vL40RJJFy0e5Yij/e07EZCcPoX64beoWPWj7KpmozQRQSr7/tkVIuVTDu0VvR/9J
+          dkJePGHw0PMFqVfvSsT1y7/6At0mcx9Ma/I3PvsllAQJHjdjpdPjlEgpKEtq/rOQ
+          6NjmMkUBQhOdGsO/3837QxGd0a6aGDZuDf5f+G5kL4LLZCWm2EC7pltXMqoE1rNM
+          z/0PLFqq62AyntgIwhun9UBlg0RD7PfQK4Z6cpHTn+Ox7upQhUnLIFk/ugXouXlg
+          JiCa62SUNnrHSrX3dyIycQ/kfP76OVAtD7LOEdV966FUZvJgd2bdatIDWkz4lZQt
+          ij0X+Jx//c1fSqDAdE4vEPzPWRmcbdPJ1PEdatavjnYmK9O/9O6VdSOhc2AG56gx
+          6IicT5x2jgeX72op0fZnUhTm08qp+54KPoTTjIJBklTFVA5suDkoicnC3h7BSFBV
+          9TJO8vWXEMbxAaKbG1Y1vYYGHY4InlAy+/F+gfLXLEdJP8p5uGXMdEnjr3KgPy+O
+          i+vGbjljg/He+SooLruV45wn7FtlX7XQaEmKLg0V1nd8xFV6pT65yJjnijC+hKWB
+          gkFv7rwdIKVx0hruKinTgpbAtzE01cF2CrWtAEt4JL2ftIsZM9m68ejqZ2S5/GdT
+          AblaAhCTNGbp8ws=
+          -----END CERTIFICATE-----
+        key: |+
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpQIBAAKCAQEAuU6+umLIwxo8Y0PUwYPC5CzRMGTKTTZRmdayKAiOL0X2Bfvm
+          qMpBczX7Y/y73EsKDMTrNNUHfd5nbQ6aKR1VkL66JXM6QqdpgnkIWMW+J9oYLQUf
+          RyOeZWWCE/e1Q6e1fy8zkfabBIsm1Dos0ZgjETOoGumAGrCHK+kgfB+JwyLcR54Q
+          INjE/rcsW0vno0HRhtrtb//cIJEQQFJLcFgnmFsJzVlnlkhGYi4QWVb5XqKtmLvQ
+          cZQFbFgGafVte9qVB1+Qr1Eh9rA9nOdhnA5Z7llGn0E5AhKGXjthp+nZVXz6ne75
+          c2ZQvZHrpctpQi1d/IkbHu9juTpldEBuSUCkOwIDAQABAoIBAQCgIZ0NwbmNZ4mR
+          mhcrVqo+tT/cGuz6xhrD3tS7ZZFA5qsQRrrvV0AxyA9COy830ZyQpkY+tGwx59Pm
+          WPz81H2RhE+ldyp8WOEDP4Xn+JE3LO9BUDDUL8J8Crjaem8oVK+xhV+CHeGdjoXy
+          VYdPY7HB9qqo/uiVp8BXQLCysipA9c+hX3AsN2W2BL/ho5n9VSBKh+mBsMuUoXU7
+          rjtlay4W4a1eWnp1h/2T9ZkEdN6xqCMvsAbSh4O1+47N/d2OSyWjZG+GFK0lc2m9
+          BEUmYA+VKvoR1Cv9V/Usn9riOdmCXGig7+y+Iv8vKirRVKFxRhx6KiXc8ZvmGhe5
+          Pt9w/2KpAoGBAMT6J2zGFZCIUp/qexBPQ1RjnrVhUicRHz5o+/6BX1IJrPajhEuH
+          5pd+VD47nQ0uSzFzQnogMp/p71UeeKBdf75BrdSsdL6v6XyQYKWLm8vdVbFwZU+0
+          Qdi045rfwbypkIon2KhTZigMl49VP2kvKv+Uof8tDmac3cU7AMIyFRs3AoGBAPDV
+          b0pDzkHpwQxyGhXz/aG0Q8ETLxduDOwFtYevkl1xWmXZZNIjwG3IrtB+OhGftJYg
+          Im51XqyYCsP5lKAdCUdl/nVZ/UknI/wvvoKgQHqYqqmGgdcLRF1p9pGnbkFUnR3W
+          SnlUHLizCHtxpImlgG7U3fkzfm6/rU0Q6T2IZWkdAoGAcqqJHtolHZEuQCeY4kKy
+          GEMx1bbEwzdFb+hfoaWgXrqBNMa1sd54DwKceensIAst/KhzL3Lk5ZCiIXPulrQ3
+          NAM59U87WvI+wqOtj1E5LbE4PGYIpCB0IHoU8UiGmJRBLxvJFRwPoQrLg8YFdu7d
+          YhEdSNXqxzNUKoeRhnrvLHsCgYEAiSsXcvYBsRsBQCRw5RYN3J7+hCZ4COE+bOOn
+          i/uc4qngMehK+0EvpZfKsadjTYxn36W31q/011rVrt8lHrjLAyZ9crtpftPTNBzB
+          Zkb90pXHhjy9EQ0yx/3FWRpCuuUFg+v8iPQ2U6Bs8Vo9u8ROzVFiiEAi/9MeUqmS
+          HuDj2aUCgYEAmcQZRyrMUamx2od76Lo1xJqts61Pu8PsUys6WCW8cbLGavz6cYEK
+          N7Hl8QPPnfl9qcfI8tqQaG7ZStuMQGoRZbQV77B6yZ96q6Wau5oCRTCUMEAWU8nc
+          l2haLRdvTVLyNrsBAJ3BSJmtDP42IIRuDG4r5ZKYlJnYtbRa5d7AhvE=
+          -----END RSA PRIVATE KEY-----
       trafficcontroller:
         cert: |+
           -----BEGIN CERTIFICATE-----
@@ -441,6 +496,7 @@ properties:
       temporary_local_tps: false
       temporary_cc_uploader_mtls: false
       temporary_droplet_download_mtls: false
+    tls_port: 9023
     mutual_tls:
       ca_cert: |
         -----BEGIN CERTIFICATE-----

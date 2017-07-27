@@ -51,6 +51,7 @@ properties:
     staging_upload_password: STAGING_UPLOAD_PASSWORD
     bulk_api_password: BULK_API_PASSWORD
     db_encryption_key: DB_ENCRYPTION_KEY
+    tls_port: CC_MUTUAL_TLS_PORT
     mutual_tls:
       ca_cert: CC_MUTUAL_TLS_CA_CERT
       public_cert: CC_MUTUAL_TLS_PUBLIC_CERT
@@ -91,6 +92,9 @@ properties:
         cert: LOGGREGATOR_DOPPLER_CERT
         key: LOGGREGATOR_DOPPLER_KEY
       trafficcontroller:
+        cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
+        key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
+      cc_trafficcontroller:
         cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
         key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
       metron:
