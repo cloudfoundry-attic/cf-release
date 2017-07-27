@@ -48,6 +48,10 @@ certstrap --depot-path ${depot_path} sign doppler --CA loggregator-ca
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name trafficcontroller
 certstrap --depot-path ${depot_path} sign trafficcontroller --CA loggregator-ca
 
+# Traffic Controller<->CAPI mutual TLS certificate
+certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name cc_trafficcontroller
+certstrap --depot-path ${depot_path} sign cc_trafficcontroller --CA ${bbs_ca_name}
+
 # Metron certificate
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name metron
 certstrap --depot-path ${depot_path} sign metron --CA loggregator-ca
