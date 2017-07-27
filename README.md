@@ -15,7 +15,6 @@ You'll need to use the Ruby CLI for that, but you should be able to run `upload-
 #### Table of Contents
 1. [About Branches](#about-branches)
 1. [Repository Contents](#repository-contents)
-1. [Cloud Foundry Components (V2)](#cloud-foundry-components-v2)
 1. [Running Cloud Foundry](#running-cloud-foundry)
 1. [Useful Scripts](#useful-scripts)
 1. [Ask Questions](#ask-questions)
@@ -56,24 +55,6 @@ To run BOSH and Cloud Foundry locally, use [BOSH-Lite](https://github.com/cloudf
 To run BOSH and Cloud Foundry in the cloud, there are several supported IaaS providers, primarily AWS, vSphere, and OpenStack.
 
 Full instructions on infrastructure setup, building Cloud Foundry, and deploying Cloud Foundry with BOSH are available on our [documentation site](http://docs.cloudfoundry.org/deploying/).
-
-## Cloud Foundry Components (V2)
-
-The current development efforts center on V2, also known as NG. For information on what the core team is working on, please see [our roadmap](http://github.com/cloudfoundry-community/cf-docs-contrib/wiki#roadmap-and-trackers).
-
-The components in a V2 deployment are:
-
-| Component                                                                     | Description                                                                                                                                                         |
-|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Cloud Controller (cc)](http://github.com/cloudfoundry/cloud_controller_ng) | The primary API entry point for Cloud Foundry. API documentation [here.](http://apidocs.cloudfoundry.org)                                                                                                                     |
-| [gorouter](https://github.com/cloudfoundry/gorouter)                          | The central router that manages traffic to applications deployed on Cloud Foundry.                                                                                  |
-| [DEA (dea_next)](https://github.com/cloudfoundry/dea_ng)                      | The droplet execution agent (DEA) performs two key activities in Cloud Foundry: staging and hosting applications.                                                   |
-| [Health Manager](https://github.com/cloudfoundry/hm9000)                      | The health manager monitors the state of the applications and ensures that started applications are indeed running, their versions and number of instances correct. |
-| [UAA](https://github.com/cloudfoundry/uaa)                                    | The UAA (User Account and Authentication) is the identity management service for Cloud Foundry.                                           |
-| [Collector](https://github.com/cloudfoundry/collector)                                    | The collector will discover the various components on the message bus and query their /healthz and /varz interfaces.                                           |
-| [Loggregator](https://github.com/cloudfoundry/loggregator)                                    | Loggregator is the user application logging subsystem for Cloud Foundry.                                           |
-
-
 
 ## Useful Scripts
 
