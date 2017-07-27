@@ -184,7 +184,7 @@ Generate the certificates and keys:
 ./scripts/generate-loggregator-certs cf-diego-certs/cf-diego-ca.crt cf-diego-certs/cf-diego-ca.key
 ```
 
-This certificates creates certificates
+This script creates certificates
 for traffic controller, doppler, metron, and syslog_drain_binder.
 The first three certificates are signed by a newly-generated loggregatorCA,
 and the syslog_drain_binder is signed by the `cf-diego-ca`.
@@ -198,6 +198,8 @@ and the syslog_drain_binder is signed by the `cf-diego-ca`.
 | loggregator-certs/metron.key | `properties.loggregator.tls.metron.key` |
 | loggregator-certs/trafficcontroller.crt | `properties.loggregator.tls.trafficcontroller.cert` |
 | loggregator-certs/trafficcontroller.key | `properties.loggregator.tls.trafficcontroller.key` |
+| loggregator-certs/cc_trafficcontroller.crt | `properties.loggregator.tls.cc_trafficcontroller.cert` |
+| loggregator-certs/cc_trafficcontroller.key | `properties.loggregator.tls.cc_trafficcontroller.key` |
 | loggregator-certs/syslogdrainbinder.crt | `properties.loggregator.tls.syslogdrainbinder.cert` |
 | loggregator-certs/syslogdrainbinder.key | `properties.loggregator.tls.syslogdrainbinder.key` |
 
