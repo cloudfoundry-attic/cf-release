@@ -4,6 +4,9 @@ Cloud Foundry is an open platform as a service (PaaS) that provides a choice of 
 
 This repository contains the Cloud Foundry source code. Cloud Foundry is deployed as a BOSH release.  See the [BOSH](http://bosh.io/) documentation for more information on BOSH.
 
+**NB: Due to the symlinks present in cf-release, the v2 `bosh` CLI will fail to perform `create-release` against this repo.
+You'll need to use the Ruby CLI for that, but you should be able to run `upload-release` and `deploy` using the new CLI.**
+
 * [Documentation](http://docs.cloudfoundry.org/)
 * [Release Notes](https://github.com/cloudfoundry/cf-release/releases)
 * [Continuous Integration Pipeline](https://release-integration.ci.cf-app.com/teams/main/pipelines/cf-release)
