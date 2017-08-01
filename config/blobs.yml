@@ -191,10 +191,6 @@ dotnet-core-buildpack/dotnet-core-buildpack-v1.0.23.zip:
   object_id: a9bd37c4-75ce-4663-b361-7a36ca6197a9
   sha: 238d4d82997ab52aac72d81c0e6bb5857091ced2
   size: 86558
-ruby-buildpack/ruby-buildpack-v1.6.45.zip:
-  object_id: 5387129a-63aa-4743-bd20-c09e8e59aa4b
-  sha: c75abdd680451f590da9b27ef3e8b16449149a44
-  size: 83449
 nodejs-buildpack/nodejs-buildpack-v1.6.4.zip:
   object_id: 7e39f6a7-9861-4ce9-a7b5-9d41f487d420
   sha: 3ed781480cadbd4804932d03f4a8bf2a010ce4da
@@ -207,3 +203,7 @@ go-buildpack/go-buildpack-v1.8.6.zip:
   object_id: 2025f30e-f4d6-4150-b838-10988f7aa5b0
   sha: 93ab4ceecf49967c003f0ea0f023dd9261aaa770
   size: 4795726
+ruby-buildpack/ruby-buildpack-v1.6.46.zip:
+  object_id: 0afd9a99-ddde-4272-ae97-16bf4e12b117
+  sha: 00bbaa2d2c8554bcb9a7887ce4bb02cb8c4841d2
+  size: 83565
