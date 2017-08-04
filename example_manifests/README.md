@@ -1,9 +1,31 @@
+# Deprecation warning
+**As of CF 271, the example manifest that used to be provided here is removed.
+You can checkout v270 or earlier if you still want to use it.**
+
+We decided to remove this example manifest
+because it's rarely updated,
+and suggests the use of outdated
+(and in some cases, broken)
+tooling.
+If you're looking to get started on Cloud Foundry for the first time,
+take a look instead at [cf-deployment](https://github.com/cloudfoundry/cf-deployment).
+It is actively developed by the CF Release Integration team,
+and uses the latest tooling.
+
+If you have any questions or concerns about this manifest,
+feel free to get in touch with David Sabeti (@dsabeti),
+or ask in #release-integration channel in the [Cloud Foundry Slack](https://cloudfoundry.slack.com).
+
+We'll leave the original README below:
+
+---
+
 # Introduction
 
 The `minimal-aws.yml` is an example of a minimalistic deployment of Cloud
 Foundry, including all crucial components for its basic functionality. it allows
 you to deploy Cloud Foundry for educational purposes, so you can poke around and
-break things. 
+break things.
 
 *IMPORTANT*: This is not meant to be used for a production level deployment as
 it doesn't include features such as high availability and security.
@@ -176,10 +198,10 @@ cd $HOME/workspace
 git clone https://github.com/cloudfoundry/cf-acceptance-tests.git
 ```
 
-For a first application, you can push a light weight ruby application called 
+For a first application, you can push a light weight ruby application called
 [Dora](https://github.com/cloudfoundry/cf-acceptance-tests/tree/master/assets/dora)
-which is found at `$HOME/workspace/cf-acceptance-tests/assets/dora`. Lastly you can follow the 
-[application deploy instructions](http://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html) and 
+which is found at `$HOME/workspace/cf-acceptance-tests/assets/dora`. Lastly you can follow the
+[application deploy instructions](http://docs.cloudfoundry.org/devguide/deploy-apps/deploy-app.html) and
 push dora into your Cloud Foundry deployment.
 
 ## SSH onto your CF Machines
@@ -192,4 +214,3 @@ bosh ssh VM_FROM_BOSH_VMS_COMMAND/INSTANCE_NUMBER --gateway_host YOUR_PUBLIC_BOS
 ```
 
 Note that this command will ask you to setup the password for sudo during the login processs.
-
