@@ -695,7 +695,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: syslog_drain_binder
+  - name: adapter
     release: cf
   - name: metron_agent
     release: cf
@@ -721,7 +721,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: syslog_drain_binder
+  - name: adapter
     release: cf
   - name: metron_agent
     release: cf
@@ -732,6 +732,8 @@ jobs:
   name: doppler_z1
   networks:
   - name: cf1
+    static_ips:
+    - 10.244.0.82
   properties:
     consul:
       agent:
@@ -754,7 +756,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: syslog_drain_binder
+  - name: adapter
     release: cf
   - name: metron_agent
     release: cf
@@ -765,6 +767,7 @@ jobs:
   name: doppler_z2
   networks:
   - name: cf2
+    static_ips: []
   properties:
     consul:
       agent:
@@ -787,7 +790,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: syslog_drain_binder
+  - name: adapter
     release: cf
   - name: metron_agent
     release: cf
@@ -826,10 +829,15 @@ jobs:
     name: consul_agent
     release: cf
   - consumes:
-      doppler: nil
+      doppler:
+        grpc_port: 8082
+      instances:
+      - address: 10.244.0.82
     name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
+    release: cf
+  - name: reverse_log_proxy
     release: cf
   - consumes:
       nats: nil
@@ -872,14 +880,51 @@ jobs:
     name: consul_agent
     release: cf
   - consumes:
-      doppler: nil
+      doppler:
+        grpc_port: 8082
+      instances:
+      - address: 10.244.0.82
     name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
     release: cf
+  - name: reverse_log_proxy
+    release: cf
   - consumes:
       nats: nil
     name: route_registrar
+    release: cf
+  update:
+    max_in_flight: 1
+    serial: true
+- consumes:
+    adapter_addrs:
+      instances:
+      - address: 10.244.0.82
+      properties:
+        scalablesyslog:
+          adapter:
+            port: 4443
+  default_networks:
+  - name: cf1
+  instances: 1
+  name: loggregator_scheduler_z1
+  networks:
+  - name: cf1
+  properties:
+    metron_agent:
+      zone: z1
+  resource_pool: small_z1
+  templates:
+  - consumes:
+      consul_client: nil
+      consul_common: nil
+      consul_server: nil
+    name: consul_agent
+    release: cf
+  - name: metron_agent
+    release: cf
+  - name: scheduler
     release: cf
   update:
     max_in_flight: 1
@@ -3496,9 +3541,7 @@ properties:
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
-    etcd:
-      client_cert: ETCD_CLIENT_CERT
-      client_key: ETCD_CLIENT_KEY
+    disable_announce: true
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     outgoing_port: 8081
@@ -4043,6 +4086,37 @@ properties:
     enabled: null
     port: null
     uri: null
+  scalablesyslog:
+    adapter:
+      logs:
+        addr: reverse-log-proxy.service.cf.internal:8082
+    scheduler:
+      require_opt_in: false
+      api:
+        url: https://cloud-controller-ng.service.cf.internal:9023
+      tls:
+        api:
+          ca: DIEGO_CA
+          cert: CLOUD_CONTROLLER_CERT
+          key: CLOUD_CONTROLLER_KEY
+          cn: "cloud-controller-ng.service.cf.internal"
+        client:
+          ca: SCALABLESYSLOG_CA
+          cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
+          key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
+          adapter_cn: "ss-scheduler"
+      adapter_rlp:
+        tls:
+          ca: SCALABLESYSLOG_CA
+          cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
+          key: SCALABLESYSLOG_ADAPTER_RLP_KEY
+          cn: "reverselogproxy"
+      adapter:
+        tls:
+          ca: SCALABLESYSLOG_CA
+          cert: SCALABLESYSLOG_ADAPTER_CERT
+          key: SCALABLESYSLOG_ADAPTER_KEY
+          cn: "ss-adapter"
   smoke_tests:
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
@@ -4058,10 +4132,6 @@ properties:
     deployment: cf-warden
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
-  syslog_drain_binder:
-    etcd:
-      client_cert: ETCD_CLIENT_CERT
-      client_key: ETCD_CLIENT_KEY
   system_domain: bosh-lite.com
   system_domain_organization: null
   traffic_controller:
