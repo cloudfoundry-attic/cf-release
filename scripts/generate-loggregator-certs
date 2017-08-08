@@ -27,8 +27,8 @@ else
     bbs_ca_cert_path=$(readlink ${1})
     bbs_ca_key_path=$(readlink ${2})
     bbs_ca_name=$(basename ${bbs_ca_cert_path} ".crt")
-    ln -s ${bbs_ca_cert_path} ${depot_path}/
-    ln -s ${bbs_ca_key_path} ${depot_path}/
+    ln -sf ${bbs_ca_cert_path} ${depot_path}/
+    ln -sf ${bbs_ca_key_path} ${depot_path}/
 fi
 
 # Install certstrap
@@ -60,6 +60,22 @@ certstrap --depot-path ${depot_path} sign metron --CA loggregator-ca
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name reverselogproxy
 certstrap --depot-path ${depot_path} sign reverselogproxy --CA loggregator-ca
 
-# Syslog drain binder certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name syslogdrainbinder
-certstrap --depot-path ${depot_path} sign syslogdrainbinder --CA ${bbs_ca_name}
+# CA to distribute to scalable-syslog certs
+certstrap --depot-path "$depot_path" init --passphrase '' --common-name scalable-syslog-ca
+
+# Scheduler certificate (to communicate with adapter)
+certstrap --depot-path "$depot_path" request-cert --passphrase '' --common-name ss-scheduler
+certstrap --depot-path "$depot_path" sign ss-scheduler --CA scalable-syslog-ca
+
+# Scheduler CAPI certificate (cert used to communicate with API to fetch
+# syslog drain bindings
+certstrap --depot-path "$depot_path" request-cert --passphrase '' --common-name ss-scheduler-cc
+certstrap --depot-path "$depot_path" sign ss-scheduler-cc --CA "$bbs_ca_name"
+
+# Adapter certificate (to communicate with scheduler)
+certstrap --depot-path "$depot_path" request-cert --passphrase '' --common-name ss-adapter
+certstrap --depot-path "$depot_path" sign ss-adapter --CA scalable-syslog-ca
+
+# Adapter RLP certificate (cert used to communicate with Reverse Logging Proxy)
+certstrap --depot-path "$depot_path" request-cert --passphrase '' --common-name ss-adapter-rlp
+certstrap --depot-path "$depot_path" sign ss-adapter-rlp --CA loggregator-ca
