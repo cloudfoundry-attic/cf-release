@@ -689,7 +689,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -715,7 +715,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -726,8 +726,6 @@ jobs:
   name: doppler_z1
   networks:
   - name: cf1
-    static_ips:
-    - 10.0.31.210
   properties:
     consul:
       agent:
@@ -750,7 +748,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -761,8 +759,6 @@ jobs:
   name: doppler_z2
   networks:
   - name: cf2
-    static_ips:
-    - 10.0.47.211
   properties:
     consul:
       agent:
@@ -785,7 +781,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -824,16 +820,10 @@ jobs:
     name: consul_agent
     release: cf
   - consumes:
-      doppler:
-        grpc_port: 8082
-      instances:
-      - address: 10.0.31.210
-      - address: 10.0.47.211
+      doppler: nil
     name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
-    release: cf
-  - name: reverse_log_proxy
     release: cf
   - consumes:
       nats: nil
@@ -876,53 +866,14 @@ jobs:
     name: consul_agent
     release: cf
   - consumes:
-      doppler:
-        grpc_port: 8082
-      instances:
-      - address: 10.0.31.210
-      - address: 10.0.47.211
+      doppler: nil
     name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
     release: cf
-  - name: reverse_log_proxy
-    release: cf
   - consumes:
       nats: nil
     name: route_registrar
-    release: cf
-  update:
-    max_in_flight: 1
-    serial: true
-- consumes:
-    adapter_addrs:
-      instances:
-      - address: 10.0.31.210
-      - address: 10.0.47.211
-      properties:
-        scalablesyslog:
-          adapter:
-            port: 4443
-  default_networks:
-  - name: cf1
-  instances: 1
-  name: loggregator_scheduler_z1
-  networks:
-  - name: cf1
-  properties:
-    metron_agent:
-      zone: z1
-  resource_pool: small_z1
-  templates:
-  - consumes:
-      consul_client: nil
-      consul_common: nil
-      consul_server: nil
-    name: consul_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: scheduler
     release: cf
   update:
     max_in_flight: 1
@@ -1403,7 +1354,9 @@ properties:
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
-    disable_announce: true
+    etcd:
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     outgoing_port: 8081
@@ -1576,37 +1529,6 @@ properties:
     enabled: null
     port: null
     uri: null
-  scalablesyslog:
-    adapter:
-      logs:
-        addr: reverse-log-proxy.service.cf.internal:8082
-    scheduler:
-      require_opt_in: false
-      api:
-        url: https://cloud-controller-ng.service.cf.internal:9023
-      tls:
-        api:
-          ca: DIEGO_CA
-          cert: CLOUD_CONTROLLER_CERT
-          key: CLOUD_CONTROLLER_KEY
-          cn: "cloud-controller-ng.service.cf.internal"
-        client:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
-          key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
-          adapter_cn: "ss-scheduler"
-      adapter_rlp:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-          key: SCALABLESYSLOG_ADAPTER_RLP_KEY
-          cn: "reverselogproxy"
-      adapter:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_CERT
-          key: SCALABLESYSLOG_ADAPTER_KEY
-          cn: "ss-adapter"
   smoke_tests: null
   ssl:
     skip_cert_verify: true
@@ -1614,6 +1536,10 @@ properties:
     deployment: ENVIRONMENT
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
+  syslog_drain_binder:
+    etcd:
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   template_only:

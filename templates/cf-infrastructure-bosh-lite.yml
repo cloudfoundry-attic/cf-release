@@ -7,9 +7,6 @@ meta:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
 
-  doppler_static_link_addresses:
-    - address: (( jobs.doppler_z1.networks.cf1.static_ips.[0] ))
-
   default_quota_definitions:
     default:
        memory_limit: 10240
@@ -1111,13 +1108,11 @@ jobs:
     instances: 1
     networks:
       - name: cf1
-        static_ips: (( static_ips(20) ))
 
   - name: doppler_z2
     instances: 0
     networks:
       - name: cf2
-        static_ips: (( static_ips(21) ))
 
   - name: etcd_z1
     instances: 1
