@@ -61,3 +61,6 @@
 [submodule "src/statsd-injector-release"]
 	path = src/statsd-injector-release
 	url = https://github.com/cloudfoundry/statsd-injector-release
+[submodule "src/scalable-syslog-release"]
+	path = src/scalable-syslog-release
+	url = https://github.com/cloudfoundry/scalable-syslog-release.git

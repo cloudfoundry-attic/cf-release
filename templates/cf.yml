@@ -429,6 +429,28 @@ jobs:
       serial: true
       max_in_flight: 1
 
+  - name: loggregator_scheduler_z1
+    templates: (( merge || meta.scheduler_templates ))
+    instances: 1
+    consumes:
+      adapter_addrs:
+        instances: (( meta.doppler_static_link_addresses ))
+        properties:
+          scalablesyslog:
+            adapter:
+              port: (( .properties.scalablesyslog.adapter.port || 4443 ))
+    resource_pool: small_z1
+    default_networks:
+      - name: cf1
+    networks: (( merge || default_networks ))
+    properties:
+      <<: (( merge ))
+      metron_agent:
+        zone: z1
+    update:
+      serial: true
+      max_in_flight: 1
+
   - name: router_z1
     templates: (( merge || meta.router_templates ))
     instances: 1
@@ -636,9 +658,7 @@ properties:
       server_key: ~
       port: ~
       enable: ~
-    etcd:
-      client_cert: (( .properties.etcd.client_cert ))
-      client_key: (( .properties.etcd.client_key ))
+    disable_announce: true
 
   doppler_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
@@ -667,11 +687,6 @@ properties:
       client_key: (( .properties.etcd.client_key ))
 
   logger_endpoint: ~
-
-  syslog_drain_binder:
-    etcd:
-      client_cert: (( .properties.etcd.client_cert ))
-      client_key: (( .properties.etcd.client_key ))
 
   cc:
     diego:
@@ -910,6 +925,38 @@ properties:
     saml: ~
 
     restricted_ips_regex: ~
+
+  scalablesyslog:
+    adapter:
+      logs:
+        addr: reverse-log-proxy.service.cf.internal:8082
+    scheduler:
+      require_opt_in: false
+      api:
+        url: https://cloud-controller-ng.service.cf.internal:9023
+      tls:
+        client:
+          ca: (( merge ))
+          cert: (( merge ))
+          key: (( merge ))
+          adapter_cn: "ss-scheduler"
+        api:
+          ca: (( merge ))
+          cert: (( merge ))
+          key: (( merge ))
+          cn: "cloud-controller-ng.service.cf.internal"
+      adapter:
+        tls:
+          ca: (( merge ))
+          cert: (( merge ))
+          key: (( merge ))
+          cn: "ss-adapter"
+      adapter_rlp:
+        tls:
+          ca: (( merge ))
+          cert: (( merge ))
+          key: (( merge ))
+          cn: "reverselogproxy"
 
   uaa:
     ca_cert: (( merge ))
@@ -1196,6 +1243,7 @@ meta:
   staticfile_buildpack_release_name: (( releases.staticfile-buildpack.name || "cf" ))
   dotnet_core_buildpack_release_name: (( releases.dotnet-core-buildpack.name || "cf" ))
   loggregator_release_name: (( releases.loggregator.name || "cf" ))
+  scalable_syslog_release_name: (( releases.scalable_syslog.name || "cf" ))
   statsd_injector_release_name: (( releases.statsd-injector.name || "cf" ))
   uaa_release_name: (( releases.uaa.name || "cf" ))
   routing_release_name: (( releases.routing.name || "cf" ))
@@ -1312,8 +1360,8 @@ meta:
     consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: doppler
     release: (( meta.loggregator_release_name ))
-  - name: syslog_drain_binder
-    release: (( meta.loggregator_release_name ))
+  - name: adapter
+    release: (( meta.scalable_syslog_release_name ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
 
@@ -1330,12 +1378,31 @@ meta:
     consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
-    consumes: {doppler: nil}
+    consumes:
+      instances: (( meta.doppler_static_link_addresses ))
+      doppler:
+        grpc_port: (( .properties.doppler.grpc_port || 8082 ))
   - name: metron_agent
+    release: (( meta.loggregator_release_name ))
+  - name: reverse_log_proxy
     release: (( meta.loggregator_release_name ))
   - name: route_registrar
     release: (( meta.routing_release_name ))
     consumes: {nats: nil}
+
+  doppler_static_link_addresses: (( merge || meta.default_doppler_static_link_addresses ))
+  default_doppler_static_link_addresses:
+    - address: (( jobs.doppler_z1.networks.cf1.static_ips.[0] ))
+    - address: (( jobs.doppler_z2.networks.cf2.static_ips.[0] || nil ))
+
+  scheduler_templates:
+  - name: consul_agent
+    release: (( meta.consul_release_name ))
+    consumes: {consul_client: nil, consul_server: nil, consul_common: nil}
+  - name: metron_agent
+    release: (( meta.loggregator_release_name ))
+  - name: scheduler
+    release: (( meta.scalable_syslog_release_name ))
 
   nats_templates:
   - name: consul_agent
