@@ -1507,9 +1507,6 @@ properties:
       statsd_injector:
         cert: LOGGREGATOR_STATSDINJECTOR_CERT
         key: LOGGREGATOR_STATSDINJECTOR_KEY
-      syslogdrainbinder:
-        cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
-        key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
       trafficcontroller:
         cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
         key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
