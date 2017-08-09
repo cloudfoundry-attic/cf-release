@@ -695,7 +695,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -721,7 +721,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -732,8 +732,6 @@ jobs:
   name: doppler_z1
   networks:
   - name: cf1
-    static_ips:
-    - 10.244.0.82
   properties:
     consul:
       agent:
@@ -756,7 +754,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -767,7 +765,6 @@ jobs:
   name: doppler_z2
   networks:
   - name: cf2
-    static_ips: []
   properties:
     consul:
       agent:
@@ -790,7 +787,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -828,20 +825,11 @@ jobs:
       consul_server: nil
     name: consul_agent
     release: cf
-  - name: loggregator_trafficcontroller
-    consumes:
+  - consumes:
       doppler: nil
+    name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
-    release: cf
-  - name: reverse_log_proxy
-    consumes:
-      doppler:
-        properties:
-          doppler:
-            grpc_port: 8082
-        instances:
-        - address: 10.244.0.82
     release: cf
   - consumes:
       nats: nil
@@ -883,56 +871,15 @@ jobs:
       consul_server: nil
     name: consul_agent
     release: cf
-  - name: loggregator_trafficcontroller
-    consumes:
+  - consumes:
       doppler: nil
+    name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
-    release: cf
-  - name: reverse_log_proxy
-    consumes:
-      doppler:
-        properties:
-          doppler:
-            grpc_port: 8082
-        instances:
-        - address: 10.244.0.82
     release: cf
   - consumes:
       nats: nil
     name: route_registrar
-    release: cf
-  update:
-    max_in_flight: 1
-    serial: true
-- default_networks:
-  - name: cf1
-  instances: 1
-  name: loggregator_scheduler_z1
-  networks:
-  - name: cf1
-  properties:
-    metron_agent:
-      zone: z1
-  resource_pool: small_z1
-  templates:
-  - consumes:
-      consul_client: nil
-      consul_common: nil
-      consul_server: nil
-    name: consul_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-  - name: scheduler
-    consumes:
-      adapter_addrs:
-        instances:
-        - address: 10.244.0.82
-        properties:
-          scalablesyslog:
-            adapter:
-              port: 4443
     release: cf
   update:
     max_in_flight: 1
@@ -3549,8 +3496,9 @@ properties:
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
-    disable_announce: true
-    disable_syslog_drains: true
+    etcd:
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     outgoing_port: 8081
@@ -3855,6 +3803,61 @@ properties:
           YF0IEFdiT5/tBbeT0bWR4bOWY44/ffhBDLXdBJAbAD/2cx6K3N7Ql1kDjXpXEbfm
           Va9xBdEAjoP5n3bLketxuTrbFL7lOh910fRu7X4uv9T9Fa/j+K+6oA==
           -----END RSA PRIVATE KEY-----
+      syslogdrainbinder:
+        cert: |+
+          -----BEGIN CERTIFICATE-----
+          MIIEJzCCAg+gAwIBAgIQEuYF7FYn1JzL7UKQSP6xAjANBgkqhkiG9w0BAQsFADAQ
+          MQ4wDAYDVQQDEwViYnNDQTAeFw0xNzAzMDcxOTIzMDJaFw0xOTAzMDcxOTIzMDJa
+          MBwxGjAYBgNVBAMTEXN5c2xvZ2RyYWluYmluZGVyMIIBIjANBgkqhkiG9w0BAQEF
+          AAOCAQ8AMIIBCgKCAQEApm6fj5jsOKcTl1DbtesAwbScQkQKq9MtOCLsTlIFWaZk
+          nbUp0s/2n2rIr0Dd9VtybDI9v4xpZ57BezM2OrQ4DILxeaVyqQgA+eNcorsb+ZIy
+          g+ULVjax6FJIa+eFb+ljUj97o7tnR0iHdzN4TRzNqMvEzmIdkeq6UAP+kpP9Z7Wc
+          yBGbtGSJI8afow4HYR3tf28V2knTwQvAhW9c3Auvhn+jugj40DpJ2K25P9UO6Ep1
+          QWS9MK7BOuE9ZePB0Pe6tXFUeE+nCGOtIpTX+q0NxdmpMs2wdmx2s9tZ4bbBN8XH
+          HKBLRBreyM1Dx9JIZuJ44hqGtQso8Ftsmef7vgcMKwIDAQABo3EwbzAOBgNVHQ8B
+          Af8EBAMCA7gwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMB0GA1UdDgQW
+          BBSXJzGJlm0X6Ev98Zw5rZoBEBK3TDAfBgNVHSMEGDAWgBTYcWew/0k5ZG8q8Ozl
+          hKSPH6v8szANBgkqhkiG9w0BAQsFAAOCAgEAAYQ5AkU/4JDZbeS9E3TjXdpw4lgC
+          ZDSIxrKx3bkpOar0VkNTNlcxBdkXWNxm4Zh3ZgPRDYvP26HtyTpfzPxxUo2dla5p
+          E4e5bM+HSr1V4Kxx4TR3/bYnEF230dsBXdNJQXDpdDNwgE9E4lJwzrgAR7umDjOD
+          w1abyIfE1Jyaucmp/lPnbfG1Rhl/BaRsdxgPPOwMY/0T5e7uyqF52I4GD9EWNTTl
+          9mlqR4EyFwafHUI1VlyNXK7W98TejruworXjeXrYLHXUriPSroO4Obqniqy6m7Ff
+          RO18SyBlLkMhB8zReKE07AxIrJSnyOfBwdty1xQccsMqUcCwuMatQop76wCLIPT+
+          YlzLpRXAJ+qvD6kKpbxOoXvSAu6sXAiJ1KNg65eop21n+9B4arF+amekgEoXDVXz
+          E6GIthouWFZGwNPU7L0x2sl/UyEo+AywWSlQR+xp1sxhFeE21tFo7zdGMFbpzPFA
+          wAX3Nb47uL72BEHh5sx7mjQJIAP+2m5XFNyZwNiV2/Qt49dglI+4qpmshVQv5k0H
+          QkvzjuNMfmWp6FoChc53P2rF+hMKO/M/BbspjO5KvsmJL7lw8ylwOIrvUgVm2oFj
+          OMAL/5mwehaEC6BuDzcu5zUYuct8JJDErpEBvw+bLLmOPc1L/1XUVoT+rHfQCraS
+          H2So6vDz0Rdflyk=
+          -----END CERTIFICATE-----
+        key: |+
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEowIBAAKCAQEApm6fj5jsOKcTl1DbtesAwbScQkQKq9MtOCLsTlIFWaZknbUp
+          0s/2n2rIr0Dd9VtybDI9v4xpZ57BezM2OrQ4DILxeaVyqQgA+eNcorsb+ZIyg+UL
+          Vjax6FJIa+eFb+ljUj97o7tnR0iHdzN4TRzNqMvEzmIdkeq6UAP+kpP9Z7WcyBGb
+          tGSJI8afow4HYR3tf28V2knTwQvAhW9c3Auvhn+jugj40DpJ2K25P9UO6Ep1QWS9
+          MK7BOuE9ZePB0Pe6tXFUeE+nCGOtIpTX+q0NxdmpMs2wdmx2s9tZ4bbBN8XHHKBL
+          RBreyM1Dx9JIZuJ44hqGtQso8Ftsmef7vgcMKwIDAQABAoIBADpGM6JQ9i0j+w0Z
+          Z8S7wykP90KQlnfxWjz0pW8K8wqf400BGOLSpFTPS/NpMA5v9ZGCyfIe1O1OPgrI
+          NK27WoCu/KQOVSZwQf89J7tm7nWlRgC+mwiV4BcrcGYvy54Sxw8OYVlEDfZ8o8oO
+          AIpnkm8O4hstaZMk8BWCQInMPYcpFFnFw6jMiJ1MZfXaGJz9J5qb4Q0xCCnfs0iA
+          UPQBOj641/UXH0aT5UU35RmgTq8zd7yqSsjS47zqTBLTWgEqQI1cyuseyBXHQX81
+          +Jrl5Re3/H4eASmk8AJUsF6/wm3FWFiELIxR+QVO4Mx7h2nlAvYVqI5vFP7ZOz76
+          SOhjv5ECgYEA1X3IV0xkYMokWJimmudHQmOCtTHuNPXmcZn9Q/uBN4fpC7z3b9H8
+          bIp+xFXwcDLAwfv9hIbl2rbxzlGQNg9G4Vb4NsVuGqEeEMGyFCF9uTcqqRT7cXzq
+          aNHj+cLhrPqnwfoLADO3f986YcdlHj0S1vYiFJwoqZ1sRU+dTrktpxkCgYEAx5Ib
+          sIZ6H4Qu64vb933eVlM1Mo9HJ+0HSQyg5z1nEUfLO2HUc3+jzMJzbfaP10mUBTj/
+          S/7anw0iFTn5PSUIjPnf09W8dpCI4RszBj1zYgQXB3TBa15s5RfDvK2Vu4To2Ty6
+          NUr5c1YOpdrZUEG/VcH4y6heMR7D+mgeB76MCeMCgYEAhfbb1AvXoPS3QfDn+qPO
+          D1aqGlEujIURCY/7YMFdIB9kmT0Gd2Bo6SMu0Lysl3sBgbhCKPsNGOVbbn+34nRL
+          ofMU5imVIZigaRtiR0eMwMBhQKAt99TOst+iEoO7YPQYeJwScxoAt3i4Bcs9JHBm
+          dgUU9aHX0jc6TXPb3h5NC2ECgYB2hU4Oev7CAtV+q9PZ2pWVfNsGCNNAYeNGvco9
+          KlkwiQuoW4Q5h582tnCo6JoqSBcxNtVfQ56AgOMx6fkcGAdI+gi0nKXNYC76SRX3
+          ab1Bg55NnkhURIK1V3S2c/yNnfRPN2J6zejxVzVhyGPw5usDuivQf1BZKaVH7FeR
+          T9eI8wKBgBCdJOIQczQ7lyVF843lZCRtpBNpxxZM3y9VxotNmApNBg7lOLj7qXKX
+          UgxW8zKQ4SGn/f9iVmMLJ+0ZDoGDr7gRv+Y8PiEiFJFFWHPOreUf+7lJUhF8RiUl
+          L7/78//m/8oEAS1Puv/a07GrEVL7SVkxOeZ72tRbsffMsH+Ke0sa
+          -----END RSA PRIVATE KEY-----
       trafficcontroller:
         cert: |+
           -----BEGIN CERTIFICATE-----
@@ -3909,61 +3912,6 @@ properties:
           VetdAoGAbKXfLFBWzR+Vok2cqX2FZoFFbLpYecsHNVxEobja25dW/f+ftWoqCp4E
           SGUmNEkhOz7LGN6HSrn6ARba6XL6aoJLGpueMVJIUbPjvLbGBCHBmCfZAXbZARtu
           6Z99fucmOGWsJShDyy1gTAXhZ167gEekRviUwkgsFmWZNTzLdf4=
-          -----END RSA PRIVATE KEY-----
-      reverse_log_proxy:
-        cert: |+
-          -----BEGIN CERTIFICATE-----
-          MIIELTCCAhWgAwIBAgIQcEIjH0Uos0yEGciWyytWXDANBgkqhkiG9w0BAQsFADAY
-          MRYwFAYDVQQDEw1sb2dncmVnYXRvckNBMB4XDTE3MDMwNzE5MjMwMVoXDTE5MDMw
-          NzE5MjMwMVowGjEYMBYGA1UEAxMPcmV2ZXJzZWxvZ3Byb3h5MIIBIjANBgkqhkiG
-          9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3mDxdgHpXyxaNf2jsHpIDrCULTxlhU0OYqIW
-          T4j37TpkHk30Fx3aI7WniVhCs8E3KgHhm1CMkE35xsAoFotteORxCso7R78blJVR
-          aIVKmmv/Awb/wO/aFgXQzNN7p87TsQ7FC3GYofLJL7huCsEKVuOTMeYw8AaizsHN
-          VxVgijw6JjYmKIANurWi++H8AcVrpwJqN+zkxmKODegee2MR5dLB/qnA0yw5HIEi
-          Kw0yjlxEf1WllJkX6MBTynrBPBt0AqiKOdxjuvYz50wxkBk5/yD2BXPLJj2eJjvp
-          tphMkt4to5Q4jBm01xWKBamSksgZupM2SNKW2VVVCjkmlht0JQIDAQABo3EwbzAO
-          BgNVHQ8BAf8EBAMCA7gwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMB0G
-          A1UdDgQWBBQAWkra718nzoupV33bB6v1IFml/TAfBgNVHSMEGDAWgBQ+LDk1BESd
-          7Z6G/GO9ox+n+1oIyzANBgkqhkiG9w0BAQsFAAOCAgEAbMq6EkNbgE2i5A2FhP8l
-          ZE3SEb3ClWWyqNhJKyNAkxl/aH+1ziyFufPullAZl5zrLJlCsinX+m4Xz73EKpcj
-          QtSMG77lseUubiIC8wmwA7v1MC9ZXIEF8DF2e96VOtsoc70yewdz2Nt6qBA0b/3G
-          Pvw0UcK3h64xuJ5tlRnPxDG6wHuAV4sGqEFF0kJSf+/5ids8zGZ02jUegjQcmEzP
-          Eldn3eZoBhx+U2/R2N1kBLwNM9nfLEIynEwDsQ6NB6wnSkuIujdjJ3o9FI/3SEba
-          ruJ66hGm7BMxSCL4a4eAEx5aOd/rxR0CxrcYfAQpo1HJjdoiOyfhe/GlXmAjdmCl
-          +mF69F1LHAPvKWdSjJNZqqXqwdk9ETnNAXLJmKq+giaivqZmbVSiPMnyo32J8pYs
-          /JbeFyrqrBucfm42HxswWqy1ssn3faH7//U6M7bd+dWbadDMsw2kB+2ghMOczhDr
-          v5oOF7o+HtQMr/2+xtdDzh8rrypm20S0/kQgPaI7WylI6Wy930wPmeyjs+cW1nUa
-          KVm4ZGYW11mEaHW80eeOQceyRBqN7g4KgKaa5upMbtqLDzxJ/Ho+dIzEsEjOtZGl
-          z/AgcInk0yVJqAiShpVV+/sJELMZmKg7pFJ5Dttkh5QXS2iWd9y2mCA2xKklTY48
-          EevLdp+vCxrI480oj5ATKIw=
-          -----END CERTIFICATE-----
-        key: |+
-          -----BEGIN RSA PRIVATE KEY-----
-          MIIEowIBAAKCAQEA3mDxdgHpXyxaNf2jsHpIDrCULTxlhU0OYqIWT4j37TpkHk30
-          Fx3aI7WniVhCs8E3KgHhm1CMkE35xsAoFotteORxCso7R78blJVRaIVKmmv/Awb/
-          wO/aFgXQzNN7p87TsQ7FC3GYofLJL7huCsEKVuOTMeYw8AaizsHNVxVgijw6JjYm
-          KIANurWi++H8AcVrpwJqN+zkxmKODegee2MR5dLB/qnA0yw5HIEiKw0yjlxEf1Wl
-          lJkX6MBTynrBPBt0AqiKOdxjuvYz50wxkBk5/yD2BXPLJj2eJjvptphMkt4to5Q4
-          jBm01xWKBamSksgZupM2SNKW2VVVCjkmlht0JQIDAQABAoIBAQC73P//pmvFyE1J
-          kUXov9UB+/CiKoTFUSyW7MGWXWq9kXelFkvf/4saYcrwP4zSGKeGqGI0eJ7XBdi+
-          K/Vx3kYUPEC3UdM0sGEXa/GDMB+vRw7/Orly/+2oby9O6lZrlFHIIWcbXNMJ9XY7
-          Bz6HfT9D2iuumv26uJBvxM+5Ask03UsuCxuszOFrdASV3mE7/cH00sDGCwnahHyf
-          ewqCoD78kJQQIB2ajsGtarmr/cKW7wl1sLzGXuAJwEkBM/2DStkeuoYNHzHI3x2i
-          uHaZt9c8HfWnrffVb5ZoK1kBpbaju7u7YsqL0E5D7M2EMhbhQcWMYudk8nobejpd
-          /3CJsHpBAoGBAOjxqJXGaNE8KTF30e5IGdKgHAHeq6m0Me+JVLBAdIADvImBQ223
-          u20NDqVw+jFFWf7Z/9p0qbIU0iwFRakUfBTveU+VpFjx2DX8F8ltHUjiq/abN58e
-          GPo5ikwaloiM0EdKkajMzNVp6K42r+Yiismkq19ivzKM8Eq8wavexUTVAoGBAPRj
-          lLfpuEn4qagjV0nPhKDMBpieOaS6civIFMh5weaJo5VBTXVyCzlED2zb7Gu8sxdc
-          vVe3ouhxwnczjRxgA3LD6iirkKnYmSoeduC+nKrcbfYUwWf5QckF3zJlX2b1CDqS
-          HLzMotzAuAQqYa6t7ZNE/18MiaDVjikz67iBE1oRAoGAb5yCQykqxb4Gmr4nZv1C
-          6ilu4fJ327sMBhKN8lkfuMqRhmzaCvLyqcCM2PY12m+5PCPltB0bxci2HwNzqhy3
-          iyxmupwff8J47vzXxNo0It0AugsK7oF0REhXnDlNESYvEUmIWxGtvz+cjgSD6Ud5
-          qj3tIqnkpGrlI1onjZsSd/UCgYAbZ5NEsFO3D8hOj2/5WejgcyCGOq/yFeo5mJ0k
-          AetJY8PRN9pswhYaHNSx+1NenXFjvEWLMY92C1OoNEKtnOKmGuwGFX8KXLyIKZRh
-          DV7aFg/KmXc6povG8/6cUxvIms+KadoJHdVhdcbsyKfdg6lxazpLuUcxnuDrI+RZ
-          8zdtUQKBgDTWIbKU85Ie0jB2QxLyU7JJcWJwDxPr2xCxcqWh9ge6Nn802M6GAKR2
-          bV4jyGY7tbbB3Q7o5i945Uv2uMjyY052x6rLVBJLdPInu9KtK4uxyWvrchM5Pzlj
-          m1nueaB35NVtM3BZueuaaTUYffOGxnk6EqYqu6XVAPxGaaKj4f0Q
           -----END RSA PRIVATE KEY-----
   loggregator_endpoint:
     shared_secret: loggregator-secret
@@ -4095,36 +4043,6 @@ properties:
     enabled: null
     port: null
     uri: null
-  scalablesyslog:
-    scheduler:
-      require_opt_in: false
-      api:
-        url: https://cloud-controller-ng.service.cf.internal:9023
-      tls:
-        api:
-          ca: DIEGO_CA
-          cert: CLOUD_CONTROLLER_CERT
-          key: CLOUD_CONTROLLER_KEY
-          cn: "cloud-controller-ng.service.cf.internal"
-        client:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
-          key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
-          adapter_cn: "ss-scheduler"
-    adapter_rlp:
-      tls:
-        ca: SCALABLESYSLOG_CA
-        cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-        key: SCALABLESYSLOG_ADAPTER_RLP_KEY
-        cn: "reverselogproxy"
-    adapter:
-      logs:
-        addr: reverse-log-proxy.service.cf.internal:8082
-      tls:
-        ca: SCALABLESYSLOG_CA
-        cert: SCALABLESYSLOG_ADAPTER_CERT
-        key: SCALABLESYSLOG_ADAPTER_KEY
-        cn: "ss-adapter"
   smoke_tests:
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
@@ -4140,6 +4058,10 @@ properties:
     deployment: cf-warden
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
+  syslog_drain_binder:
+    etcd:
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
   system_domain: bosh-lite.com
   system_domain_organization: null
   traffic_controller:
