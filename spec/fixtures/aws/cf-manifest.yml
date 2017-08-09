@@ -826,9 +826,9 @@ jobs:
   - consumes:
       doppler:
         grpc_port: 8082
-      instances:
-      - address: 10.0.31.210
-      - address: 10.0.47.211
+        instances:
+        - address: 10.0.31.210
+        - address: 10.0.47.211
     name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
@@ -878,9 +878,9 @@ jobs:
   - consumes:
       doppler:
         grpc_port: 8082
-      instances:
-      - address: 10.0.31.210
-      - address: 10.0.47.211
+        instances:
+        - address: 10.0.31.210
+        - address: 10.0.47.211
     name: loggregator_trafficcontroller
     release: cf
   - name: metron_agent
