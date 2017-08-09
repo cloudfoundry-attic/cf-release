@@ -652,6 +652,7 @@ properties:
       port: ~
       enable: ~
     disable_announce: true
+    disable_syslog_drains: true
 
   doppler_endpoint:
     shared_secret: (( .properties.loggregator_endpoint.shared_secret ))
