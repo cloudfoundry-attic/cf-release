@@ -1597,8 +1597,7 @@ properties:
     route_services_secret_decrypt_only: null
     route_services_timeout: null
     secure_cookies: null
-    ssl_cert: null
-    ssl_key: null
+    tls_pem: null
     ssl_skip_validation: null
     status:
       password: ROUTER_PASSWORD
