@@ -26,13 +26,13 @@ properties:
           ca: SCALABLESYSLOG_CA
           cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
           key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
-      adapter_rlp:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-          key: SCALABLESYSLOG_ADAPTER_RLP_KEY
-      adapter:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_CERT
-          key: SCALABLESYSLOG_ADAPTER_KEY
+    adapter_rlp:
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
+        key: SCALABLESYSLOG_ADAPTER_RLP_KEY
+    adapter:
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_CERT
+        key: SCALABLESYSLOG_ADAPTER_KEY

@@ -829,16 +829,20 @@ jobs:
       consul_server: nil
     name: consul_agent
     release: cf
-  - consumes:
-      doppler:
-        grpc_port: 8082
-        instances:
-        - address: 10.10.0.145
-    name: loggregator_trafficcontroller
+  - name: loggregator_trafficcontroller
+    consumes:
+      doppler: nil
     release: cf
   - name: metron_agent
     release: cf
   - name: reverse_log_proxy
+    consumes:
+      doppler:
+        properties:
+          doppler:
+            grpc_port: 8082
+        instances:
+        - address: 10.10.0.145
     release: cf
   - consumes:
       nats: nil
@@ -880,16 +884,20 @@ jobs:
       consul_server: nil
     name: consul_agent
     release: cf
-  - consumes:
-      doppler:
-        grpc_port: 8082
-        instances:
-        - address: 10.10.0.145
-    name: loggregator_trafficcontroller
+  - name: loggregator_trafficcontroller
+    consumes:
+      doppler: nil
     release: cf
   - name: metron_agent
     release: cf
   - name: reverse_log_proxy
+    consumes:
+      doppler:
+        properties:
+          doppler:
+            grpc_port: 8082
+        instances:
+        - address: 10.10.0.145
     release: cf
   - consumes:
       nats: nil
@@ -898,15 +906,7 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
-- consumes:
-    adapter_addrs:
-      instances:
-      - address: 10.10.0.145
-      properties:
-        scalablesyslog:
-          adapter:
-            port: 4443
-  default_networks:
+- default_networks:
   - name: cf1
   instances: 1
   name: loggregator_scheduler_z1
@@ -926,6 +926,14 @@ jobs:
   - name: metron_agent
     release: cf
   - name: scheduler
+    consumes:
+      adapter_addrs:
+        instances:
+        - address: 10.10.0.145
+        properties:
+          scalablesyslog:
+            adapter:
+              port: 4443
     release: cf
   update:
     max_in_flight: 1
@@ -1510,6 +1518,9 @@ properties:
       trafficcontroller:
         cert: LOGGREGATOR_TRAFFICCONTROLLER_CERT
         key: LOGGREGATOR_TRAFFICCONTROLLER_KEY
+      reverse_log_proxy:
+        cert: LOGGREGATOR_REVERSELOGPROXY_CERT
+        key: LOGGREGATOR_REVERSELOGPROXY_KEY
   loggregator_endpoint:
     shared_secret: LOGGREGATOR_ENDPOINT_SHARED_SECRET
   login:
@@ -1605,9 +1616,6 @@ properties:
     port: null
     uri: null
   scalablesyslog:
-    adapter:
-      logs:
-        addr: reverse-log-proxy.service.cf.internal:8082
     scheduler:
       require_opt_in: false
       api:
@@ -1623,18 +1631,20 @@ properties:
           cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
           key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
           adapter_cn: "ss-scheduler"
-      adapter_rlp:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-          key: SCALABLESYSLOG_ADAPTER_RLP_KEY
-          cn: "reverselogproxy"
-      adapter:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_CERT
-          key: SCALABLESYSLOG_ADAPTER_KEY
-          cn: "ss-adapter"
+    adapter_rlp:
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
+        key: SCALABLESYSLOG_ADAPTER_RLP_KEY
+        cn: "reverselogproxy"
+    adapter:
+      logs:
+        addr: reverse-log-proxy.service.cf.internal:8082
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_CERT
+        key: SCALABLESYSLOG_ADAPTER_KEY
+        cn: "ss-adapter"
   smoke_tests: null
   ssl:
     skip_cert_verify: true

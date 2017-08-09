@@ -828,16 +828,20 @@ jobs:
       consul_server: nil
     name: consul_agent
     release: cf
-  - consumes:
-      doppler:
-        grpc_port: 8082
-        instances:
-        - address: 10.244.0.82
-    name: loggregator_trafficcontroller
+  - name: loggregator_trafficcontroller
+    consumes:
+      doppler: nil
     release: cf
   - name: metron_agent
     release: cf
   - name: reverse_log_proxy
+    consumes:
+      doppler:
+        properties:
+          doppler:
+            grpc_port: 8082
+        instances:
+        - address: 10.244.0.82
     release: cf
   - consumes:
       nats: nil
@@ -879,16 +883,20 @@ jobs:
       consul_server: nil
     name: consul_agent
     release: cf
-  - consumes:
-      doppler:
-        grpc_port: 8082
-        instances:
-        - address: 10.244.0.82
-    name: loggregator_trafficcontroller
+  - name: loggregator_trafficcontroller
+    consumes:
+      doppler: nil
     release: cf
   - name: metron_agent
     release: cf
   - name: reverse_log_proxy
+    consumes:
+      doppler:
+        properties:
+          doppler:
+            grpc_port: 8082
+        instances:
+        - address: 10.244.0.82
     release: cf
   - consumes:
       nats: nil
@@ -897,15 +905,7 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
-- consumes:
-    adapter_addrs:
-      instances:
-      - address: 10.244.0.82
-      properties:
-        scalablesyslog:
-          adapter:
-            port: 4443
-  default_networks:
+- default_networks:
   - name: cf1
   instances: 1
   name: loggregator_scheduler_z1
@@ -925,6 +925,14 @@ jobs:
   - name: metron_agent
     release: cf
   - name: scheduler
+    consumes:
+      adapter_addrs:
+        instances:
+        - address: 10.244.0.82
+        properties:
+          scalablesyslog:
+            adapter:
+              port: 4443
     release: cf
   update:
     max_in_flight: 1
@@ -3901,6 +3909,61 @@ properties:
           SGUmNEkhOz7LGN6HSrn6ARba6XL6aoJLGpueMVJIUbPjvLbGBCHBmCfZAXbZARtu
           6Z99fucmOGWsJShDyy1gTAXhZ167gEekRviUwkgsFmWZNTzLdf4=
           -----END RSA PRIVATE KEY-----
+      reverse_log_proxy:
+        cert: |+
+          -----BEGIN CERTIFICATE-----
+          MIIELTCCAhWgAwIBAgIQcEIjH0Uos0yEGciWyytWXDANBgkqhkiG9w0BAQsFADAY
+          MRYwFAYDVQQDEw1sb2dncmVnYXRvckNBMB4XDTE3MDMwNzE5MjMwMVoXDTE5MDMw
+          NzE5MjMwMVowGjEYMBYGA1UEAxMPcmV2ZXJzZWxvZ3Byb3h5MIIBIjANBgkqhkiG
+          9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3mDxdgHpXyxaNf2jsHpIDrCULTxlhU0OYqIW
+          T4j37TpkHk30Fx3aI7WniVhCs8E3KgHhm1CMkE35xsAoFotteORxCso7R78blJVR
+          aIVKmmv/Awb/wO/aFgXQzNN7p87TsQ7FC3GYofLJL7huCsEKVuOTMeYw8AaizsHN
+          VxVgijw6JjYmKIANurWi++H8AcVrpwJqN+zkxmKODegee2MR5dLB/qnA0yw5HIEi
+          Kw0yjlxEf1WllJkX6MBTynrBPBt0AqiKOdxjuvYz50wxkBk5/yD2BXPLJj2eJjvp
+          tphMkt4to5Q4jBm01xWKBamSksgZupM2SNKW2VVVCjkmlht0JQIDAQABo3EwbzAO
+          BgNVHQ8BAf8EBAMCA7gwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMB0G
+          A1UdDgQWBBQAWkra718nzoupV33bB6v1IFml/TAfBgNVHSMEGDAWgBQ+LDk1BESd
+          7Z6G/GO9ox+n+1oIyzANBgkqhkiG9w0BAQsFAAOCAgEAbMq6EkNbgE2i5A2FhP8l
+          ZE3SEb3ClWWyqNhJKyNAkxl/aH+1ziyFufPullAZl5zrLJlCsinX+m4Xz73EKpcj
+          QtSMG77lseUubiIC8wmwA7v1MC9ZXIEF8DF2e96VOtsoc70yewdz2Nt6qBA0b/3G
+          Pvw0UcK3h64xuJ5tlRnPxDG6wHuAV4sGqEFF0kJSf+/5ids8zGZ02jUegjQcmEzP
+          Eldn3eZoBhx+U2/R2N1kBLwNM9nfLEIynEwDsQ6NB6wnSkuIujdjJ3o9FI/3SEba
+          ruJ66hGm7BMxSCL4a4eAEx5aOd/rxR0CxrcYfAQpo1HJjdoiOyfhe/GlXmAjdmCl
+          +mF69F1LHAPvKWdSjJNZqqXqwdk9ETnNAXLJmKq+giaivqZmbVSiPMnyo32J8pYs
+          /JbeFyrqrBucfm42HxswWqy1ssn3faH7//U6M7bd+dWbadDMsw2kB+2ghMOczhDr
+          v5oOF7o+HtQMr/2+xtdDzh8rrypm20S0/kQgPaI7WylI6Wy930wPmeyjs+cW1nUa
+          KVm4ZGYW11mEaHW80eeOQceyRBqN7g4KgKaa5upMbtqLDzxJ/Ho+dIzEsEjOtZGl
+          z/AgcInk0yVJqAiShpVV+/sJELMZmKg7pFJ5Dttkh5QXS2iWd9y2mCA2xKklTY48
+          EevLdp+vCxrI480oj5ATKIw=
+          -----END CERTIFICATE-----
+        key: |+
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEowIBAAKCAQEA3mDxdgHpXyxaNf2jsHpIDrCULTxlhU0OYqIWT4j37TpkHk30
+          Fx3aI7WniVhCs8E3KgHhm1CMkE35xsAoFotteORxCso7R78blJVRaIVKmmv/Awb/
+          wO/aFgXQzNN7p87TsQ7FC3GYofLJL7huCsEKVuOTMeYw8AaizsHNVxVgijw6JjYm
+          KIANurWi++H8AcVrpwJqN+zkxmKODegee2MR5dLB/qnA0yw5HIEiKw0yjlxEf1Wl
+          lJkX6MBTynrBPBt0AqiKOdxjuvYz50wxkBk5/yD2BXPLJj2eJjvptphMkt4to5Q4
+          jBm01xWKBamSksgZupM2SNKW2VVVCjkmlht0JQIDAQABAoIBAQC73P//pmvFyE1J
+          kUXov9UB+/CiKoTFUSyW7MGWXWq9kXelFkvf/4saYcrwP4zSGKeGqGI0eJ7XBdi+
+          K/Vx3kYUPEC3UdM0sGEXa/GDMB+vRw7/Orly/+2oby9O6lZrlFHIIWcbXNMJ9XY7
+          Bz6HfT9D2iuumv26uJBvxM+5Ask03UsuCxuszOFrdASV3mE7/cH00sDGCwnahHyf
+          ewqCoD78kJQQIB2ajsGtarmr/cKW7wl1sLzGXuAJwEkBM/2DStkeuoYNHzHI3x2i
+          uHaZt9c8HfWnrffVb5ZoK1kBpbaju7u7YsqL0E5D7M2EMhbhQcWMYudk8nobejpd
+          /3CJsHpBAoGBAOjxqJXGaNE8KTF30e5IGdKgHAHeq6m0Me+JVLBAdIADvImBQ223
+          u20NDqVw+jFFWf7Z/9p0qbIU0iwFRakUfBTveU+VpFjx2DX8F8ltHUjiq/abN58e
+          GPo5ikwaloiM0EdKkajMzNVp6K42r+Yiismkq19ivzKM8Eq8wavexUTVAoGBAPRj
+          lLfpuEn4qagjV0nPhKDMBpieOaS6civIFMh5weaJo5VBTXVyCzlED2zb7Gu8sxdc
+          vVe3ouhxwnczjRxgA3LD6iirkKnYmSoeduC+nKrcbfYUwWf5QckF3zJlX2b1CDqS
+          HLzMotzAuAQqYa6t7ZNE/18MiaDVjikz67iBE1oRAoGAb5yCQykqxb4Gmr4nZv1C
+          6ilu4fJ327sMBhKN8lkfuMqRhmzaCvLyqcCM2PY12m+5PCPltB0bxci2HwNzqhy3
+          iyxmupwff8J47vzXxNo0It0AugsK7oF0REhXnDlNESYvEUmIWxGtvz+cjgSD6Ud5
+          qj3tIqnkpGrlI1onjZsSd/UCgYAbZ5NEsFO3D8hOj2/5WejgcyCGOq/yFeo5mJ0k
+          AetJY8PRN9pswhYaHNSx+1NenXFjvEWLMY92C1OoNEKtnOKmGuwGFX8KXLyIKZRh
+          DV7aFg/KmXc6povG8/6cUxvIms+KadoJHdVhdcbsyKfdg6lxazpLuUcxnuDrI+RZ
+          8zdtUQKBgDTWIbKU85Ie0jB2QxLyU7JJcWJwDxPr2xCxcqWh9ge6Nn802M6GAKR2
+          bV4jyGY7tbbB3Q7o5i945Uv2uMjyY052x6rLVBJLdPInu9KtK4uxyWvrchM5Pzlj
+          m1nueaB35NVtM3BZueuaaTUYffOGxnk6EqYqu6XVAPxGaaKj4f0Q
+          -----END RSA PRIVATE KEY-----
   loggregator_endpoint:
     shared_secret: loggregator-secret
   login:
@@ -4032,9 +4095,6 @@ properties:
     port: null
     uri: null
   scalablesyslog:
-    adapter:
-      logs:
-        addr: reverse-log-proxy.service.cf.internal:8082
     scheduler:
       require_opt_in: false
       api:
@@ -4050,18 +4110,20 @@ properties:
           cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
           key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
           adapter_cn: "ss-scheduler"
-      adapter_rlp:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-          key: SCALABLESYSLOG_ADAPTER_RLP_KEY
-          cn: "reverselogproxy"
-      adapter:
-        tls:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_ADAPTER_CERT
-          key: SCALABLESYSLOG_ADAPTER_KEY
-          cn: "ss-adapter"
+    adapter_rlp:
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
+        key: SCALABLESYSLOG_ADAPTER_RLP_KEY
+        cn: "reverselogproxy"
+    adapter:
+      logs:
+        addr: reverse-log-proxy.service.cf.internal:8082
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_CERT
+        key: SCALABLESYSLOG_ADAPTER_KEY
+        cn: "ss-adapter"
   smoke_tests:
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
