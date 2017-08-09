@@ -1376,9 +1376,9 @@ meta:
   - name: loggregator_trafficcontroller
     release: (( meta.loggregator_release_name ))
     consumes:
-      instances: (( meta.doppler_static_link_addresses ))
       doppler:
         grpc_port: (( .properties.doppler.grpc_port || 8082 ))
+        instances: (( meta.doppler_static_link_addresses ))
   - name: metron_agent
     release: (( meta.loggregator_release_name ))
   - name: reverse_log_proxy
