@@ -4,7 +4,7 @@ name: acceptance-tests
 description: "The acceptance tests errand can be configured to run full acceptance test suite against a specific Cloud Foundry API endpoint. Consider running smoke tests errand for a smaller set of tests."
 
 packages:
-  - golang1.7
+  - golang1.8.3
   - cli
   - cli-network-policy-plugin
   - acceptance-tests
