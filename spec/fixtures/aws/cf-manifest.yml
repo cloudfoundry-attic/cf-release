@@ -449,6 +449,10 @@ jobs:
           component: CloudController
         uris:
         - api.SYSTEM_DOMAIN
+        health_check:
+          name: api-health-check
+          script_path: "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_health_check"
+          timeout: 3s
   resource_pool: large_z1
   templates:
   - consumes:
@@ -517,6 +521,10 @@ jobs:
           component: CloudController
         uris:
         - api.SYSTEM_DOMAIN
+        health_check:
+          name: api-health-check
+          script_path: "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_health_check"
+          timeout: 3s
   resource_pool: large_z2
   templates:
   - consumes:
