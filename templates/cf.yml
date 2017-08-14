@@ -1218,6 +1218,10 @@ meta:
     registration_interval: 20s
     uris:
     - (( "api." .properties.system_domain ))
+    health_check:
+      name: api-health-check
+      script_path: "/var/vcap/jobs/cloud_controller_ng/bin/cloud_controller_ng_health_check"
+      timeout: 3s
 
   api_consul_services:
     cloud_controller_ng: {}
