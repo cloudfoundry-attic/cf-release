@@ -175,10 +175,6 @@ uaa/apache-tomcat-8.5.16.tar.gz:
   size: 9417469
   object_id: eeb161ee-4b05-4480-7378-8ef36d532545
   sha: 6ae7b007fc17eb2821585e2651edaca90708a75b
-dotnet-core-buildpack/dotnet-core-buildpack-v1.0.23.zip:
-  object_id: a9bd37c4-75ce-4663-b361-7a36ca6197a9
-  sha: 238d4d82997ab52aac72d81c0e6bb5857091ced2
-  size: 86558
 go-buildpack/go-buildpack-v1.8.6.zip:
   object_id: 2025f30e-f4d6-4150-b838-10988f7aa5b0
   sha: 93ab4ceecf49967c003f0ea0f023dd9261aaa770
@@ -207,3 +203,7 @@ staticfile-buildpack/staticfile-buildpack-v1.4.13.zip:
   object_id: 81dc0c92-b546-41d0-a4f0-ff2e9590629d
   sha: f9977b5efe405f28cb83436137128db2dc8ab31e
   size: 4072783
+dotnet-core-buildpack/dotnet-core-buildpack-v1.0.24.zip:
+  object_id: 9daf3b8e-7d04-4088-a961-b4a9f0db2bf4
+  sha: 8d75ce7b47ff80a7e9f77cc3b1c7ceffee323bc7
+  size: 91504
