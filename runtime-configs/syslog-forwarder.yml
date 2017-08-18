@@ -1,0 +1,16 @@
+addons:
+- name: syslog_forwarder
+  jobs:
+  - name: syslog_forwarder
+    release: syslog
+  properties:
+    syslog:
+      address: ((address))
+      port: ((port))
+      transport: ((transport))
+      fallback_servers: ((fallback_servers))
+      custom_rule: ((custom_rule))
+
+releases:
+- name: syslog
+  version: '11'
