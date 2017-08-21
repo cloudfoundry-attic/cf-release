@@ -6,7 +6,7 @@ For more information about runtime-configs, see the documentation on [bosh.io](h
 
 The files in the `runtime-configs` folder use `bosh` variables to configure themselves.  `bosh` variables look like strings wrapped in double-parenthesis, like `((address))`.  If you are using the ruby `bosh` cli then it will not allow you to configure these variables on the command line.  Instead, you will need to configure them by manually editing the file to provide the required values. After editing this file, you will need to set the runtime config on your `bosh` director:
 ```
-bosh -t TARGET upload runtime-config cf-release/runtime-configs/syslog-forwarder.yml
+bosh -t TARGET update runtime-config cf-release/runtime-configs/syslog-forwarder.yml
 ```
 
 Then, you must re-deploy any `bosh` deployments to pick up the runtime config change.
