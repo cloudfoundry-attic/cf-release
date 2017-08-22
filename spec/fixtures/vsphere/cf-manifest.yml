@@ -1684,6 +1684,7 @@ properties:
     sslPrivateKey: UAA_SERVER_KEY
     token_endpoint: null
     url: https://uaa.SYSTEM_DOMAIN
+    internal_url: https://uaa.service.cf.internal:8443
     user:
       authorities:
       - openid

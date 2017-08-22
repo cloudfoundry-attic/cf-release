@@ -4289,6 +4289,7 @@ properties:
       -----END RSA PRIVATE KEY-----
     token_endpoint: null
     url: https://uaa.bosh-lite.com
+    internal_url: https://uaa.service.cf.internal:8443
     user:
       authorities:
       - openid

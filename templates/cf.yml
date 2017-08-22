@@ -915,6 +915,7 @@ properties:
     ca_cert: (( merge ))
     catalina_opts: ~
     url: (( "https://uaa." system_domain ))
+    internal_url: (( merge || "https://uaa.service.cf.internal:8443" ))
     issuer: (( url ))
 
     no_ssl: ~
