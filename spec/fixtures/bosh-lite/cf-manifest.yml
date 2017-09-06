@@ -2894,6 +2894,8 @@ properties:
       package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
+    - name: dotnet_core_buildpack
+      package: dotnet-core-buildpack
     - name: nodejs_buildpack
       package: nodejs-buildpack
     - name: go_buildpack
@@ -2904,8 +2906,6 @@ properties:
       package: php-buildpack
     - name: binary_buildpack
       package: binary-buildpack
-    - name: dotnet_core_buildpack
-      package: dotnet-core-buildpack
     default_health_check_timeout: 60
     default_quota_definition: default
     default_running_security_groups:
@@ -2981,6 +2981,8 @@ properties:
       package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
+    - name: dotnet_core_buildpack
+      package: dotnet-core-buildpack
     - name: nodejs_buildpack
       package: nodejs-buildpack
     - name: go_buildpack
@@ -2991,8 +2993,6 @@ properties:
       package: php-buildpack
     - name: binary_buildpack
       package: binary-buildpack
-    - name: dotnet_core_buildpack
-      package: dotnet-core-buildpack
     internal_api_password: internal-password
     internal_api_user: internal_user
     internal_service_hostname: cloud-controller-ng.service.cf.internal
@@ -3248,6 +3248,8 @@ properties:
       package: java-buildpack
     - name: ruby_buildpack
       package: ruby-buildpack
+    - name: dotnet_core_buildpack
+      package: dotnet-core-buildpack
     - name: nodejs_buildpack
       package: nodejs-buildpack
     - name: go_buildpack
@@ -3258,8 +3260,6 @@ properties:
       package: php-buildpack
     - name: binary_buildpack
       package: binary-buildpack
-    - name: dotnet_core_buildpack
-      package: dotnet-core-buildpack
     system_hostnames: null
     thresholds:
       api:

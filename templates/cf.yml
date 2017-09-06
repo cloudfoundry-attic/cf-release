@@ -822,6 +822,8 @@ properties:
         package: java-buildpack
       - name: ruby_buildpack
         package: ruby-buildpack
+      - name: dotnet_core_buildpack
+        package: dotnet-core-buildpack
       - name: nodejs_buildpack
         package: nodejs-buildpack
       - name: go_buildpack
@@ -832,8 +834,6 @@ properties:
         package: php-buildpack
       - name: binary_buildpack
         package: binary-buildpack
-      - name: dotnet_core_buildpack
-        package: dotnet-core-buildpack
 
     install_buildpacks: (( system_buildpacks user_buildpacks ))
 
