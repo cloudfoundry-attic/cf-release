@@ -740,8 +740,6 @@ jobs:
         services:
           doppler:
             name: doppler
-            tags:
-            - z1
     doppler:
       zone: z1
     metron_agent:
@@ -773,8 +771,6 @@ jobs:
         services:
           doppler:
             name: doppler
-            tags:
-            - z2
     doppler:
       zone: z2
     metron_agent:
