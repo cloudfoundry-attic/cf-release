@@ -351,8 +351,6 @@ jobs:
           services:
             doppler:
               name: doppler
-              tags:
-              - z1
     update: (( merge || empty_hash ))
 
   - name: doppler_z2
@@ -373,8 +371,6 @@ jobs:
           services:
             doppler:
               name: doppler
-              tags:
-              - z2
     update: (( merge || empty_hash ))
 
   - name: loggregator_trafficcontroller_z1
