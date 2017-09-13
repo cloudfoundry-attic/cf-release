@@ -12,3 +12,26 @@ properties:
     peer_key: ETC_PEER_KEY
     server_cert: ETCD_SERVER_CERT
     server_key: ETCD_SERVER_KEY
+  scalablesyslog:
+    adapter:
+      logs:
+        addr: reverse-log-proxy.service.cf.internal:8082
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_CERT
+        key: SCALABLESYSLOG_ADAPTER_KEY
+    adapter_rlp:
+      tls:
+        ca: SCALABLESYSLOG_CA
+        cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
+        key: SCALABLESYSLOG_ADAPTER_RLP_KEY
+    scheduler:
+      tls:
+        api:
+          ca: DIEGO_CA
+          cert: CLOUD_CONTROLLER_CERT
+          key: CLOUD_CONTROLLER_KEY
+        client:
+          ca: SCALABLESYSLOG_CA
+          cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
+          key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY

@@ -61,3 +61,6 @@
 [submodule "src/statsd-injector-release"]
 	path = src/statsd-injector-release
 	url = https://github.com/cloudfoundry/statsd-injector-release
+[submodule "src/cf-syslog-drain-release"]
+	path = src/cf-syslog-drain-release
+	url = https://github.com/cloudfoundry/cf-syslog-drain-release

@@ -3,6 +3,9 @@ meta:
 
   stemcell: (( merge || .meta.default_stemcell ))
 
+  doppler_static_addresses:
+  - (( jobs.doppler_z1.networks.cf1.static_ips.[0] ))
+
   default_stemcell:
     name: bosh-warden-boshlite-ubuntu-trusty-go_agent
     version: latest
@@ -838,7 +841,39 @@ properties:
     route_services_secret: route-services-secret
     max_idle_connections: 100
     route_services_recommend_https: false
+  scalablesyslog:
+    adapter:
+      tls:
+        ca: |
 
+        cert: |
+
+        key: |
+
+    adapter_rlp:
+      tls:
+        ca: |
+
+        cert: |
+
+        key: |
+
+    scheduler:
+      tls:
+        api:
+          ca: |
+
+          cert: |
+
+          key: |
+
+        client:
+          ca: |
+
+          cert: |
+
+          key: |
+            
   ccdb:
     db_scheme: postgres
     address: (( properties.databases.address ))
@@ -1108,11 +1143,13 @@ jobs:
     instances: 1
     networks:
       - name: cf1
+        static_ips: (( static_ips(20) ))
 
   - name: doppler_z2
     instances: 0
     networks:
       - name: cf2
+        static_ips: (( static_ips(21) ))
 
   - name: etcd_z1
     instances: 1
