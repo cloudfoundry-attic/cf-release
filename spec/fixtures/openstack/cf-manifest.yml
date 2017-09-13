@@ -839,7 +839,9 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: reverse_log_proxy
+  - consumes:
+      doppler: nil
+    name: reverse_log_proxy
     release: cf
   - consumes:
       nats: nil
@@ -887,7 +889,9 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: reverse_log_proxy
+  - consumes:
+      doppler: nil
+    name: reverse_log_proxy
     release: cf
   - consumes:
       nats: nil
@@ -896,9 +900,7 @@ jobs:
   update:
     max_in_flight: 1
     serial: true
-- consumes:
-    adapter_addrs: nil
-  default_networks:
+- default_networks:
   - name: cf1
   instances: 1
   name: loggregator_scheduler_z1
@@ -917,7 +919,9 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - name: scheduler
+  - consumes:
+      adapter_addrs: nil
+    name: scheduler
     release: cf
   update:
     max_in_flight: 1
@@ -1500,6 +1504,9 @@ properties:
       metron:
         cert: LOGGREGATOR_METRON_CERT
         key: LOGGREGATOR_METRON_KEY
+      reverse_log_proxy:
+        cert: LOGGREGATOR_REVERSELOGPROXY_CERT
+        key: LOGGREGATOR_REVERSELOGPROXY_KEY
       statsd_injector:
         cert: LOGGREGATOR_STATSDINJECTOR_CERT
         key: LOGGREGATOR_STATSDINJECTOR_KEY

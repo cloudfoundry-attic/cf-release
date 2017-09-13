@@ -428,7 +428,6 @@ jobs:
   - name: loggregator_scheduler_z1
     templates: (( merge || meta.scheduler_templates ))
     instances: 1
-    consumes: {adapter_addrs: nil}
     resource_pool: small_z1
     default_networks:
       - name: cf1
@@ -619,6 +618,9 @@ properties:
         cert: (( merge ))
         key: (( merge ))
       metron:
+        cert: (( merge ))
+        key: (( merge ))
+      reverse_log_proxy:
         cert: (( merge ))
         key: (( merge ))
       syslogdrainbinder:
@@ -1382,6 +1384,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: reverse_log_proxy
     release: (( meta.loggregator_release_name ))
+    consumes: {doppler: nil}
   - name: route_registrar
     release: (( meta.routing_release_name ))
     consumes: {nats: nil}
@@ -1399,6 +1402,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: scheduler
     release: (( meta.cf_syslog_drain_release_name ))
+    consumes: {adapter_addrs: nil}
 
   nats_templates:
   - name: consul_agent

@@ -117,6 +117,9 @@ properties:
       metron:
         cert: LOGGREGATOR_METRON_CERT
         key: LOGGREGATOR_METRON_KEY
+      reverse_log_proxy:
+        cert: LOGGREGATOR_REVERSELOGPROXY_CERT
+        key: LOGGREGATOR_REVERSELOGPROXY_KEY
       syslogdrainbinder:
         cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
         key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
