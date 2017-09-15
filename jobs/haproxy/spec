@@ -46,6 +46,12 @@ properties:
   ha_proxy.enable_stats_socket:
     description: "Whether to enable a socket that can be used to query errors and status"
     default: false
+  ha_proxy.disable_tls_10:
+    default: true
+    description: "Disable TLS 1.0 in HA Proxy"
+  ha_proxy.disable_tls_11:
+    default: true
+    description: "Disable TLS 1.1 in HA Proxy"
   request_timeout_in_seconds:
     description: "Server and client timeouts in seconds"
     default: 900

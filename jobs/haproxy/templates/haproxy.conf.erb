@@ -9,6 +9,15 @@ global
     <% if p("ha_proxy.enable_stats_socket") %>
     stats socket /var/vcap/sys/run/haproxy/stats
     <% end %>
+    <% if p("ha_proxy.disable_tls_10") %>
+    ssl-default-bind-options no-tlsv10
+    <% end %>
+    <% if p("ha_proxy.disable_tls_11") %>
+    ssl-default-bind-options no-tlsv11
+    <% end %>
+    <% if p("ha_proxy.disable_tls_10") && p("ha_proxy.disable_tls_11") %>
+    ssl-default-bind-options no-tlsv10 no-tlsv11
+    <% end %>
 
 defaults
     log global
@@ -40,7 +49,7 @@ listen health_check_http_url
 <% if p("ha_proxy.ssl_pem") %>
 frontend https-in
     mode http
-    bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3 no-tlsv10 no-tlsv11 ciphers <%= p("ha_proxy.ssl_ciphers") %>
+    bind :443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3 ciphers <%= p("ha_proxy.ssl_ciphers") %>
     option httplog
     option forwardfor
     reqadd X-Forwarded-Proto:\ https
@@ -48,7 +57,7 @@ frontend https-in
 
 frontend ssl-in
     mode tcp
-    bind :4443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3 no-tlsv10 no-tlsv11 ciphers <%= p("ha_proxy.ssl_ciphers") %>
+    bind :4443 ssl crt /var/vcap/jobs/haproxy/config/cert.pem no-sslv3 ciphers <%= p("ha_proxy.ssl_ciphers") %>
     default_backend tcp-routers
 <% end %>
 
