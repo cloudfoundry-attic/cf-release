@@ -1435,6 +1435,9 @@ properties:
     blacklisted_syslog_ranges: null
     debug: false
     disable_announce: true
+    etcd:
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
     grpc_port: 8082
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null

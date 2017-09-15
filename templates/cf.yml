@@ -653,6 +653,9 @@ properties:
       server_key: ~
       port: ~
       enable: ~
+    etcd:
+      client_cert: (( .properties.etcd.client_cert ))
+      client_key: (( .properties.etcd.client_key ))
     disable_announce: true
 
   doppler_endpoint:
