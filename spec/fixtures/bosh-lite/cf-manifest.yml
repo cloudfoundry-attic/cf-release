@@ -4322,7 +4322,7 @@ properties:
           X0QebShhcnXCU8eV0QD+L7TqMdNpwp26ENmgEqwyu7NeGWgoI29QRBbReqaFQkaE
           46623n90BYijIsFaD8m453/Be6KfsxOleCn/fKA0dAafn8oTBN4E+A==
           -----END RSA PRIVATE KEY-----
-        cn: "reverselogproxy"
+        cn: "ss-adapter-rlp"
     scheduler:
       require_opt_in: false
       api:
@@ -4499,7 +4499,7 @@ properties:
             1MPKvTYHe1qkFl181+HIkii/+qj76WSkI49ZC/gdRMxaj6FrTOyHOdr4O6aClZ4W
             obOy7yufAu51Wkwd8ZgTez+v6I6PaTSrxp2Th6dBFh23SDsZT7stPQ==
             -----END RSA PRIVATE KEY-----
-          adapter_cn: "ss-scheduler"
+          adapter_cn: "ss-adapter"
   smoke_tests:
     api: api.bosh-lite.com
     apps_domain: bosh-lite.com
