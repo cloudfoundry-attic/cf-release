@@ -199,10 +199,6 @@ python-buildpack/python-buildpack-v1.5.24.zip:
   object_id: a1a81524-5087-4fe8-ba03-90a439f28c91
   sha: de8e4b137ba7056ea86912f8f21be13b4cc075c1
   size: 81357
-dotnet-core-buildpack/dotnet-core-buildpack-v1.0.24.zip:
-  object_id: 9daf3b8e-7d04-4088-a961-b4a9f0db2bf4
-  sha: 8d75ce7b47ff80a7e9f77cc3b1c7ceffee323bc7
-  size: 91504
 staticfile-buildpack/staticfile-buildpack-v1.4.14.zip:
   object_id: 885877be-ed16-4f7f-b8f5-31d5bc88a90a
   sha: 8f1fd07f2207fe48f1f51c082d29329bb53091f0
@@ -215,3 +211,7 @@ mariadb_connector_c/mariadb-connector-c-2.3.0-src.tar.gz:
   object_id: c8145788-04f7-4e78-8261-64acba9df3f8
   sha: 35f4c58c9d54d970b931c5df880718062efbb3c7
   size: 536647
+dotnet-core-buildpack/dotnet-core-buildpack-v1.0.26.zip:
+  object_id: 7697a725-cfae-4114-9e3d-ccad0c88d1be
+  sha: 97686fd28acd7d79e55093b6891f7ad7cff06967
+  size: 92137
