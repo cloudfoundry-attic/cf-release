@@ -805,6 +805,7 @@ jobs:
       agent:
         services:
           loggregator_trafficcontroller: {}
+          reverse_log_proxy: {}
     loggregator:
       uaa:
         client_secret: DOPPLER_SECRET
@@ -855,6 +856,7 @@ jobs:
       agent:
         services:
           loggregator_trafficcontroller: {}
+          reverse_log_proxy: {}
     loggregator:
       uaa:
         client_secret: DOPPLER_SECRET
