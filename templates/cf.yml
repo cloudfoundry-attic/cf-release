@@ -917,6 +917,10 @@ properties:
     no_ssl: ~
     require_https: ~
 
+    limitedFunctionality:
+      enabled: (( merge || nil ))
+      whitelist: (( merge || nil ))
+
     scim:
       userids_enabled: (( merge || true ))
       users: (( merge ))
