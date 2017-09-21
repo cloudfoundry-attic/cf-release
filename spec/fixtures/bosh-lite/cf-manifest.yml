@@ -4121,6 +4121,10 @@ properties:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
         secret: cc-broker-secret
+      cc_service_key_client:
+        authorities: credhub.read,credhub.write
+        authorized-grant-types: client_credentials
+        secret: cc-service-key-client-secret
       cc_routing:
         authorities: routing.router_groups.read
         authorized-grant-types: client_credentials
