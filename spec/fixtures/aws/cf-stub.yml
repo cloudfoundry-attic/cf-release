@@ -141,6 +141,8 @@ properties:
     clients:
       cc_routing:
         secret: CC_ROUTING_SECRET
+      cc_service_key_client:
+        secret: CC_SERVICE_KEY_CLIENT_SECRET
       cloud_controller_username_lookup:
         secret: CLOUD_CONTROLLER_USERNAME_LOOKUP_SECRET
       doppler:
