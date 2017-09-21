@@ -6,7 +6,6 @@ description: "The acceptance tests errand can be configured to run full acceptan
 packages:
   - golang1.8.3
   - cli
-  - cli-network-policy-plugin
   - acceptance-tests
 
 templates:
