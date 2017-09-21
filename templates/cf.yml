@@ -919,7 +919,9 @@ properties:
 
     limitedFunctionality:
       enabled: (( merge || nil ))
-      whitelist: (( merge || nil ))
+      whitelist:
+        endpoints: (( merge || nil ))
+        methods: (( merge || nil ))
 
     scim:
       userids_enabled: (( merge || true ))

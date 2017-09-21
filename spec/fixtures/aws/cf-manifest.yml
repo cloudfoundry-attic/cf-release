@@ -1631,6 +1631,13 @@ properties:
       signing_key: JWT_SIGNING_KEY
       verification_key: JWT_VERIFICATION_KEY
     ldap: null
+    limitedFunctionality:
+      enabled: true
+      whitelist:
+        endpoints:
+          - UAA_WHITELISTED_ENDPOINT
+        methods:
+          - UAA_WHITELISTED_METHOD
     login: null
     newrelic: null
     no_ssl: null
