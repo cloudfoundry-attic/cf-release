@@ -815,6 +815,8 @@ properties:
         secret: doppler-secret
       cloud_controller_username_lookup:
         secret: cloud-controller-username-lookup-secret
+      cc_service_key_client:
+        secret: cc-service-key-client-secret
       cc_routing:
         secret: cc-routing-secret
       gorouter:

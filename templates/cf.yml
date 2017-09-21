@@ -1059,6 +1059,10 @@ properties:
         authorities: scim.userids
         secret: (( merge ))
         authorized-grant-types: client_credentials
+      cc_service_key_client:
+        authorities: credhub.read,credhub.write
+        authorized-grant-types: client_credentials
+        secret: (( merge ))
       cc_routing:
         authorities: routing.router_groups.read
         secret: (( merge ))

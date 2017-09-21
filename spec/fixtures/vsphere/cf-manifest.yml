@@ -1676,6 +1676,10 @@ properties:
         authorities: clients.read,clients.write,clients.admin
         authorized-grant-types: client_credentials
         secret: CC_SERVICE_DASHBOARDS_SECRET
+      cc_service_key_client:
+        authorities: credhub.read,credhub.write
+        authorized-grant-types: client_credentials
+        secret: CC_SERVICE_KEY_CLIENT_SECRET
       cc_routing:
         authorities: routing.router_groups.read
         authorized-grant-types: client_credentials
