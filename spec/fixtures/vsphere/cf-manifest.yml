@@ -1574,6 +1574,7 @@ properties:
   request_timeout_in_seconds: 900
   router:
     balancing_algorithm: null
+    ca_certs: null
     cipher_suites: null
     debug_address: null
     drain_wait: null
@@ -1594,8 +1595,6 @@ properties:
     route_services_secret_decrypt_only: null
     route_services_timeout: null
     secure_cookies: null
-    ssl_cert: null
-    ssl_key: null
     ssl_skip_validation: null
     status:
       password: ROUTER_PASSWORD
