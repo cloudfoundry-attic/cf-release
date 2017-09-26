@@ -391,7 +391,6 @@ jobs:
         agent:
           services:
             loggregator_trafficcontroller: {}
-            reverse_log_proxy: {}
       metron_agent:
         zone: z1
       route_registrar:
@@ -418,7 +417,6 @@ jobs:
         agent:
           services:
             loggregator_trafficcontroller: {}
-            reverse_log_proxy: {}
       metron_agent:
         zone: z2
       route_registrar:
