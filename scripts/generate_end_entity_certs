@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 common_name=''
 depot_path=''
@@ -6,7 +6,7 @@ output_path=''
 ca_name=''
 domain=''
 
-set -e -x
+set -e
 
 show_help() {
   set +x
@@ -35,7 +35,7 @@ while true; do
   esac
 done
 
-if [ "${common_name}" == "" -o "${depot_path}" == "" -o "${output_path}" == "" -o "${ca_name}" == "" ]; then
+if [[ "${common_name}" == "" || "${depot_path}" == "" || "${output_path}" == "" || "${ca_name}" == "" ]]; then
   show_help
 fi
 
@@ -43,7 +43,7 @@ if [ "${domain}" != "" ]; then
   domain_argument="--domain ${domain}"
 fi
 
-common_name_path=$(echo $common_name | tr ' ' _)
+common_name_path=$(echo "$common_name" | tr ' ' _)
 
 certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name "${common_name}" ${domain_argument}
 certstrap --depot-path "${depot_path}" sign "${common_name_path}" --CA "${ca_name}"
