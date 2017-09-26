@@ -1399,7 +1399,7 @@ meta:
 
   doppler_static_addresses: (( merge || meta.default_doppler_static_addresses ))
   default_doppler_static_addresses:
-  - (( jobs.doppler_z1.networks.cf1.static_ips.[0] ))
+  - (( jobs.doppler_z1.networks.cf1.static_ips.[0] || nil ))
   - (( jobs.doppler_z2.networks.cf2.static_ips.[0] || nil ))
 
   scheduler_templates:
