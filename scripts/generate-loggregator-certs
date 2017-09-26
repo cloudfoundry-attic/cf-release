@@ -1,65 +1,72 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 
 if [ "$1" = "" ]; then
-    echo "usage: $0 <bbs-ca.crt> <bbs-ca.key>"
-    echo "       $0 no-bbs-ca"
+    echo "usage: $0 <cf-credentials-folder> [--recreate-ca]"
+    echo "       $0 no-bbs-ca [--recreate-ca]"
     exit 1
 fi
 
-set -x
-
 readlink() {
   (
-    cd $(dirname $1)
-    echo $PWD/$(basename $1)
+    cd "$(dirname "$1")"
+    echo "$PWD/$(basename "$1")"
   )
 }
 
 # Place keys and certificates here
 depot_path=$(readlink ./loggregator-certs)
-mkdir -p ${depot_path}
+mkdir -p "${depot_path}"
+ca_name="loggregator-ca"
 
-if [ "$1" = "no-bbs-ca" ]; then
-    bbs_ca_name="loggregator-ca"
+if [ "$1" == "no-bbs-ca" ]; then
+    bbs_ca_name="$ca_name"
 else
-    bbs_ca_cert_path=$(readlink ${1})
-    bbs_ca_key_path=$(readlink ${2})
-    bbs_ca_name=$(basename ${bbs_ca_cert_path} ".crt")
-    ln -s ${bbs_ca_cert_path} ${depot_path}/
-    ln -s ${bbs_ca_key_path} ${depot_path}/
+    bbs_ca_cert_path="$(find "$1" -name 'cf-diego-ca.crt')"
+    bbs_ca_key_path="$(find "$1" -name 'cf-diego-ca.key')"
+    bbs_ca_name="cf-diego-ca"
+    if [[ ! -f "$bbs_ca_cert_path" || ! -f "$bbs_ca_key_path" ]]; then
+        echo -e "\e[1m\e[33m[ERROR] Please execute generate-cf-diego-certs before running this script.\e[0m"
+        exit 1
+    fi
+    ln -s "${bbs_ca_cert_path}" "${depot_path}"/
+    ln -s "${bbs_ca_key_path}" "${depot_path}"/
 fi
 
-# Install certstrap
-go get -v github.com/square/certstrap
-
-# CA to distribute to loggregator certs
-certstrap --depot-path ${depot_path} init --passphrase '' --common-name loggregatorCA
-mv -f ${depot_path}/loggregatorCA.crt ${depot_path}/loggregator-ca.crt
-mv -f ${depot_path}/loggregatorCA.key ${depot_path}/loggregator-ca.key
-mv -f ${depot_path}/loggregatorCA.crl ${depot_path}/loggregator-ca.crl
+if [[ "$2" == "--recreate-ca" ]] || [[ -z "$2" && ! -f "$depot_path/$ca_name.crt" ]]; then
+  # CA to distribute to loggregator certs
+  certstrap --depot-path "${depot_path}" init --passphrase '' --common-name loggregatorCA
+  mv -f "${depot_path}/loggregatorCA.crt" "${depot_path}/$ca_name.crt"
+  mv -f "${depot_path}/loggregatorCA.key" "${depot_path}/$ca_name.key"
+  mv -f "${depot_path}/loggregatorCA.crl" "${depot_path}/$ca_name.crl"
+elif [[ -z "$2" && -f "$depot_path/$ca_name.crt" ]]; then
+  echo -e "\e[1m\e[33m[INFO] Using existing loggregator CA, recreating only client/server certificates\e[0m"
+fi
+find "${depot_path}" -type f -not -name "$ca_name*" -delete
 
 # Doppler certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name doppler
-certstrap --depot-path ${depot_path} sign doppler --CA loggregator-ca
+certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name doppler
+certstrap --depot-path "${depot_path}" sign doppler --CA "$ca_name"
 
 # Traffic Controller certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name trafficcontroller
-certstrap --depot-path ${depot_path} sign trafficcontroller --CA loggregator-ca
+certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name trafficcontroller
+certstrap --depot-path "${depot_path}" sign trafficcontroller --CA "$ca_name"
 
 # Traffic Controller<->CAPI mutual TLS certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name cc_trafficcontroller
-certstrap --depot-path ${depot_path} sign cc_trafficcontroller --CA ${bbs_ca_name}
+certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name cc_trafficcontroller
+certstrap --depot-path "${depot_path}" sign cc_trafficcontroller --CA "${bbs_ca_name}"
 
 # Metron certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name metron
-certstrap --depot-path ${depot_path} sign metron --CA loggregator-ca
+certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name metron
+certstrap --depot-path "${depot_path}" sign metron --CA "$ca_name"
 
 # Reverse Log Proxy certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name reverselogproxy
-certstrap --depot-path ${depot_path} sign reverselogproxy --CA loggregator-ca
+certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name reverselogproxy
+certstrap --depot-path "${depot_path}" sign reverselogproxy --CA "$ca_name"
 
 # Syslog drain binder certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name syslogdrainbinder
-certstrap --depot-path ${depot_path} sign syslogdrainbinder --CA ${bbs_ca_name}
+certstrap --depot-path "${depot_path}" request-cert --passphrase '' --common-name syslogdrainbinder
+certstrap --depot-path "${depot_path}" sign syslogdrainbinder --CA "${bbs_ca_name}"
+
+rm -f "${depot_path}"/cf-diego-ca.{crt,key}

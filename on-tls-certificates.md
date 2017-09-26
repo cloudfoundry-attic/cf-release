@@ -77,10 +77,10 @@ used by the Cloud Controller's interactions with other components.
 #### Consul
 Generate the certs and keys:
 ```
-./scripts/generate-consul-certs
+./scripts/generate-consul-certs [--with-ca]
 ```
 
-The script creates a CA for consul,
+The script creates a CA (if the parameter `--with-ca` is given) for consul,
 generates a keypair for both the agents and servers,
 and signs the them with the CA.
 Place the following generated values in the your stub or manifest:
@@ -96,10 +96,10 @@ Place the following generated values in the your stub or manifest:
 #### Etcd
 Generate the certs and keys:
 ```
-./scripts/generate-etcd-certs
+./scripts/generate-etcd-certs [--with-ca]
 ```
 
-The script creates two CAs,
+The script creates two CAs (if the parameter `--with-ca` is given),
 one for client/server interactions
 and another for internal peer interaction.
 It uses those CAs to sign the three keypairs it generates.
@@ -118,10 +118,10 @@ It uses those CAs to sign the three keypairs it generates.
 #### Blobstore (if you're deploying your own)
 Generate the certs and keys:
 ```
-./scripts/generate-blobstore-certs
+./scripts/generate-blobstore-certs [--with-ca]
 ```
 
-The script generates a CA and a certificate for the WebDAV blobstore.
+The script generates a CA (if the parameter `--with-ca` is given) and a certificate for the WebDAV blobstore.
 
 | Script Output | Properties |
 | ------------- | ---------- |
@@ -132,10 +132,10 @@ The script generates a CA and a certificate for the WebDAV blobstore.
 #### UAA
 Generate the certs and keys:
 ```
-./scripts/generate-uaa-certs
+./scripts/generate-uaa-certs [--with-ca]
 ```
 
-The script generates a CA and sert for the UAA.
+The script generates a CA (if the parameter `--with-ca` is given) and sert for the UAA.
 
 | Script Output | Properties |
 | ------------- | ---------- |
@@ -148,11 +148,11 @@ The script generates a CA and sert for the UAA.
 #### First, generate the `cf-diego-ca`
 Generate the certs and keys:
 ```
-./scripts/generate-cf-diego-certs
+./scripts/generate-cf-diego-certs [--with-ca]
 ```
 
 The script generates mutual TLS certs for the Cloud Controller,
-as well as the `cf-diego-ca` that will be used to sign other certificates.
+as well as the `cf-diego-ca` (if the parameter `--with-ca` is given) that will be used to sign other certificates.
 
 | Script Output | Properties |
 | ------------- | -------- |
@@ -181,12 +181,12 @@ These certs must be signed by `cf-diego-ca`:
 #### Generate the certificates for Loggregator
 Generate the certificates and keys:
 ```
-./scripts/generate-loggregator-certs cf-diego-certs/cf-diego-ca.crt cf-diego-certs/cf-diego-ca.key
+./scripts/generate-loggregator-certs cf-diego-certs/cf-diego-ca.crt cf-diego-certs/cf-diego-ca.key [--with-ca]
 ```
 
 This script creates certificates
 for traffic controller, doppler, metron, and syslog_drain_binder.
-The first three certificates are signed by a newly-generated loggregatorCA,
+The first three certificates are signed by a newly-generated (if the parameter `--with-ca` is given) loggregatorCA,
 and the syslog_drain_binder is signed by the `cf-diego-ca`.
 
 | Script Output | Properties |
