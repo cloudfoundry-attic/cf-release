@@ -1596,7 +1596,7 @@ properties:
       tls:
         ca: SCALABLESYSLOG_CA
         cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-        cn: ss-adapter-rlp
+        cn: reverselogproxy
         key: SCALABLESYSLOG_ADAPTER_RLP_KEY
     scheduler:
       api:
@@ -1609,7 +1609,7 @@ properties:
           cn: cloud-controller-ng.service.cf.internal
           key: CLOUD_CONTROLLER_KEY
         client:
-          adapter_cn: ss-adapter
+          adapter_cn: ss-scheduler
           ca: SCALABLESYSLOG_CA
           cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
           key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
