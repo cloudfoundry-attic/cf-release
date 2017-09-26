@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Install certstrap
+go get -v github.com/square/certstrap
+
+pushd "$(dirname "$0")/.." > /dev/null
+    creds_folder="$1" && shift
+    recreate="$1"
+    scripts/generate-consul-certs "$recreate"
+    scripts/generate-etcd-certs "$recreate"
+    scripts/generate-blobstore-certs "$recreate"
+    scripts/generate-uaa-certs "$recreate"
+    scripts/generate-cf-diego-certs "$recreate"
+    scripts/generate-loggregator-certs "$creds_folder" "$recreate"
+    scripts/generate-statsd-injector-certs "$creds_folder" "$recreate"
+popd > /dev/null

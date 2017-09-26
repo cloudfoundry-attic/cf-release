@@ -1,27 +1,28 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-set -e -x
+set -e
 
-scripts_folder=$(dirname $0)
-
-# Install certstrap
-go get -v github.com/square/certstrap
+scripts_folder="$(dirname "$0")"
 
 # Place keys and certificates here
 depot_path="etcd-certs"
 mkdir -p ${depot_path}
 
-# CA to distribute to etcd clients and servers
-${scripts_folder}/generate_ca_cert --common-name "etcdCA" --depot-path ${depot_path} --output-file etcd-ca
+
+if [[ "$1" == "--recreate-ca" ]] || [[ -z "$1" && ! -f "$depot_path/etcd-ca.crt" ]]; then
+    # CA to distribute to etcd clients and servers
+    "${scripts_folder}"/generate_ca_cert --common-name "etcdCA" --depot-path "${depot_path}" --output-file etcd-ca
+    # CA to distribute across etcd peerss
+    "${scripts_folder}"/generate_ca_cert --common-name "peerCA" --depot-path "${depot_path}" --output-file peer-ca
+elif [[ -z "$1" && -f "$depot_path/etcd-ca.crt" ]]; then
+    echo -e "\e[1m\e[33m[INFO] Using existing etcd/peer CA, recreating only client/server certificates\e[0m"
+fi
 
 # Server certificate to share across the etcd cluster
-${scripts_folder}/generate_end_entity_certs --common-name "cf-etcd.service.cf.internal" --ca-name etcd-ca --domain '*.cf-etcd.service.cf.internal,cf-etcd.service.cf.internal' --depot-path ${depot_path} --output-file server
+"${scripts_folder}"/generate_end_entity_certs --common-name "cf-etcd.service.cf.internal" --ca-name etcd-ca --domain '*.cf-etcd.service.cf.internal,cf-etcd.service.cf.internal' --depot-path "${depot_path}" --output-file server
 
 # Client certificate to distribute to jobs that access etcd
-${scripts_folder}/generate_end_entity_certs --common-name "clientName" --ca-name etcd-ca --depot-path ${depot_path} --output-file client
-
-# CA to distribute across etcd peers
-${scripts_folder}/generate_ca_cert --common-name "peerCA" --depot-path ${depot_path} --output-file peer-ca
+"${scripts_folder}"/generate_end_entity_certs --common-name "clientName" --ca-name etcd-ca --depot-path "${depot_path}" --output-file client
 
 # Client certificate to distribute across etcd peers
-${scripts_folder}/generate_end_entity_certs --common-name cf-etcd.service.cf.internal --domain '*.cf-etcd.service.cf.internal,cf-etcd.service.cf.internal' --ca-name peer-ca --depot-path ${depot_path} --output-file peer
+"${scripts_folder}"/generate_end_entity_certs --common-name cf-etcd.service.cf.internal --domain '*.cf-etcd.service.cf.internal,cf-etcd.service.cf.internal' --ca-name peer-ca --depot-path "${depot_path}" --output-file peer

@@ -1,20 +1,22 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-set -e -x
+set -e
 
-scripts_folder=$(dirname $0)
-
-# Install certstrap
-go get -v github.com/square/certstrap
+scripts_folder="$(dirname "$0")"
 
 # Place keys and certificates here
 depot_path="consul-certs"
 mkdir -p ${depot_path}
+ca_name="consul-ca"
 
-${scripts_folder}/generate_ca_cert --common-name "consulCA" --depot-path ${depot_path} --output-file server-ca
+if [[ "$1" == "--recreate-ca" ]] || [[ -z "$1" && ! -f "$depot_path/$ca_name.crt" ]]; then
+  "${scripts_folder}"/generate_ca_cert --common-name "consulCA" --depot-path ${depot_path} --output-file "$ca_name"
+elif [[ -z "$1" && -f "$depot_path/$ca_name.crt" ]]; then
+  echo -e "\e[1m\e[33m[INFO] Using existing consul CA, recreating only client/server certificates\e[0m"
+fi
 
 # Server certificate to share across the consul cluster
-${scripts_folder}/generate_end_entity_certs --common-name server.dc1.cf.internal --ca-name server-ca --depot-path ${depot_path} --output-file server
+"${scripts_folder}"/generate_end_entity_certs --common-name server.dc1.cf.internal --ca-name "$ca_name" --depot-path ${depot_path} --output-file server
 
 # Agent certificate to distribute to jobs that access consul
-${scripts_folder}/generate_end_entity_certs --common-name 'consul agent' --ca-name server-ca --depot-path ${depot_path} --output-file agent
+"${scripts_folder}"/generate_end_entity_certs --common-name 'consul agent' --ca-name "$ca_name" --depot-path ${depot_path} --output-file agent

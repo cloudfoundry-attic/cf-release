@@ -1,22 +1,25 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-set -e -x
+set -e
 
-# Install certstrap
-go get -v github.com/square/certstrap
+scripts_folder="$(dirname "$0")"
 
 # Place keys and certificates here
 depot_path="cf-diego-certs"
-mkdir -p ${depot_path}
+ca_name="cf-diego-ca"
+mkdir -p "${depot_path}"
 
-# CA to distribute to diego and cloud_controller
-certstrap --depot-path ${depot_path} init --passphrase '' --common-name cf-diego-ca
+if [[ "$1" == "--recreate-ca" ]] || [[ -z "$1" && ! -f "$depot_path/$ca_name.crt" ]]; then
+  # CA to distribute to diego and cloud_controller
+  "${scripts_folder}"/generate_ca_cert --common-name "cfdiegoCA" --depot-path ${depot_path} --output-file "$ca_name"
+elif [[ -z "$1" && -f "$depot_path/$ca_name.crt" ]]; then
+  echo -e "\e[1m\e[33m[INFO] Using existing cf-diego CA, recreating only client/server certificates\e[0m"
+fi
 
 # Server certificate for cloud controller to act as a TLS server
 cc_cn=cloud-controller-ng.service.cf.internal
 certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name $cc_cn
-certstrap --depot-path ${depot_path} sign $cc_cn --CA cf-diego-ca
+certstrap --depot-path ${depot_path} sign $cc_cn --CA "$ca_name"
 mv -f ${depot_path}/$cc_cn.key ${depot_path}/cloud-controller.key
 mv -f ${depot_path}/$cc_cn.csr ${depot_path}/cloud-controller.csr
 mv -f ${depot_path}/$cc_cn.crt ${depot_path}/cloud-controller.crt
-
