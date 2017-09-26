@@ -942,7 +942,7 @@ properties:
         ca: (( merge ))
         cert: (( merge ))
         key: (( merge ))
-        cn: "reverselogproxy"
+        cn: "ss-adapter-rlp"
     scheduler:
       require_opt_in: false
       api:

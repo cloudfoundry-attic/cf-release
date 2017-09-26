@@ -1598,7 +1598,7 @@ properties:
       tls:
         ca: SCALABLESYSLOG_CA
         cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-        cn: reverselogproxy
+        cn: ss-adapter-rlp
         key: SCALABLESYSLOG_ADAPTER_RLP_KEY
     scheduler:
       api:
