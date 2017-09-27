@@ -191,10 +191,6 @@ python-buildpack/python-buildpack-v1.5.24.zip:
   object_id: a1a81524-5087-4fe8-ba03-90a439f28c91
   sha: de8e4b137ba7056ea86912f8f21be13b4cc075c1
   size: 81357
-java-buildpack/java-buildpack-v4.5.zip:
-  object_id: 7ae70fdb-13ee-4748-ad1f-24a1d2f5f84c
-  sha: 5369b47e7f3f8238dce763d84b3a5ebbcc5e81a8
-  size: 201318
 mariadb_connector_c/mariadb-connector-c-2.3.0-src.tar.gz:
   object_id: c8145788-04f7-4e78-8261-64acba9df3f8
   sha: 35f4c58c9d54d970b931c5df880718062efbb3c7
@@ -223,3 +219,7 @@ cli/cf-cli_6.31.0_winx64.zip:
   object_id: 44b7b2e2-d2e7-4e59-ae4f-587763a89450
   sha: 4dcda267010e525c1ad1cbd370c48741612ee4dc
   size: 6120786
+java-buildpack/java-buildpack-v4.5.1.zip:
+  object_id: f071d009-0e16-4bb6-acb5-cd4b89782c7e
+  sha: c9ce53d1d9fe1f9715d38393543e8b2ee876399e
+  size: 201320
