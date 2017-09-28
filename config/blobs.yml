@@ -195,10 +195,6 @@ staticfile-buildpack/staticfile-buildpack-v1.4.15.zip:
   object_id: 96774df3-e6ff-4cbe-b51f-8cb8657bf41e
   sha: dfd2d22467b6797aecb7311e8ac5f98eb9e7625f
   size: 4286289
-php-buildpack/php-buildpack-v4.3.41.zip:
-  object_id: d8b7c209-ac64-4d19-b2b0-5fe8c3861a6b
-  sha: f5a03a364e6b4fd998277a2e7bad20150dee8237
-  size: 289564
 cli/cf-cli_6.31.0_linux_x86-64.tgz:
   object_id: 234ea85b-4584-409a-b267-d891d9c0eaa6
   sha: a8c3621b6d34c765e918efdce60e1cbf17ab9f37
@@ -223,3 +219,7 @@ nodejs-buildpack/nodejs-buildpack-v1.6.7.zip:
   object_id: fc45fc93-66b2-44e1-98fb-b8ea32a712f7
   sha: dbede5d59f950a681b949374f9a89265a0d4de05
   size: 3830907
+php-buildpack/php-buildpack-v4.3.42.zip:
+  object_id: af5eed80-01b0-484d-abc7-e45cfb76fe36
+  sha: ac8c420ea4c79799d88437a5f6f34f960c1f32ff
+  size: 289726
