@@ -4200,6 +4200,11 @@ properties:
               4SlotYRHgPCEubokb2S1zfZDWIXW3HmggnGgM949TlY=
               -----END RSA PRIVATE KEY-----
     ldap: null
+    limitedFunctionality:
+      enabled: null
+      whitelist:
+        endpoints: null
+        methods: null
     login: null
     newrelic: null
     no_ssl: null
