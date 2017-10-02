@@ -704,7 +704,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -730,7 +730,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -741,8 +741,6 @@ jobs:
   name: doppler_z1
   networks:
   - name: cf1
-    static_ips:
-    - 10.10.0.145
   properties:
     consul:
       agent:
@@ -763,7 +761,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -774,7 +772,6 @@ jobs:
   name: doppler_z2
   networks:
   - name: cf1
-    static_ips: []
   properties:
     consul:
       agent:
@@ -795,7 +792,7 @@ jobs:
     release: cf
   - name: doppler
     release: cf
-  - name: adapter
+  - name: syslog_drain_binder
     release: cf
   - name: metron_agent
     release: cf
@@ -811,7 +808,6 @@ jobs:
       agent:
         services:
           loggregator_trafficcontroller: {}
-          reverse_log_proxy: {}
     loggregator:
       uaa:
         client_secret: DOPPLER_SECRET
@@ -841,10 +837,6 @@ jobs:
   - name: metron_agent
     release: cf
   - consumes:
-      doppler: nil
-    name: reverse_log_proxy
-    release: cf
-  - consumes:
       nats: nil
     name: route_registrar
     release: cf
@@ -862,7 +854,6 @@ jobs:
       agent:
         services:
           loggregator_trafficcontroller: {}
-          reverse_log_proxy: {}
     loggregator:
       uaa:
         client_secret: DOPPLER_SECRET
@@ -892,38 +883,8 @@ jobs:
   - name: metron_agent
     release: cf
   - consumes:
-      doppler: nil
-    name: reverse_log_proxy
-    release: cf
-  - consumes:
       nats: nil
     name: route_registrar
-    release: cf
-  update:
-    max_in_flight: 1
-    serial: true
-- default_networks:
-  - name: cf1
-  instances: 1
-  name: loggregator_scheduler_z1
-  networks:
-  - name: cf1
-  properties:
-    metron_agent:
-      zone: z1
-  resource_pool: small_z1
-  templates:
-  - consumes:
-      consul_client: nil
-      consul_common: nil
-      consul_server: nil
-    name: consul_agent
-    release: cf
-  - name: metron_agent
-    release: cf
-  - consumes:
-      adapter_addrs: nil
-    name: scheduler
     release: cf
   update:
     max_in_flight: 1
@@ -1436,11 +1397,9 @@ properties:
   doppler:
     blacklisted_syslog_ranges: null
     debug: false
-    disable_announce: true
     etcd:
       client_cert: ETCD_CLIENT_CERT
       client_key: ETCD_CLIENT_KEY
-    grpc_port: 8082
     maxRetainedLogMessages: 100
     message_drain_buffer_size: null
     outgoing_port: 8081
@@ -1488,9 +1447,6 @@ properties:
   loggregator:
     blacklisted_syslog_ranges: null
     debug: false
-    doppler:
-      addrs:
-      - 10.10.0.145
     etcd:
       ca_cert: ETCD_CA_CERT
       machines:
@@ -1509,9 +1465,6 @@ properties:
       metron:
         cert: LOGGREGATOR_METRON_CERT
         key: LOGGREGATOR_METRON_KEY
-      reverse_log_proxy:
-        cert: LOGGREGATOR_REVERSELOGPROXY_CERT
-        key: LOGGREGATOR_REVERSELOGPROXY_KEY
       statsd_injector:
         cert: LOGGREGATOR_STATSDINJECTOR_CERT
         key: LOGGREGATOR_STATSDINJECTOR_KEY
@@ -1614,39 +1567,6 @@ properties:
     enabled: null
     port: null
     uri: null
-  scalablesyslog:
-    adapter:
-      addrs:
-      - 10.10.0.145
-      logs:
-        addr: reverse-log-proxy.service.cf.internal:8082
-      port: 4443
-      tls:
-        ca: SCALABLESYSLOG_CA
-        cert: SCALABLESYSLOG_ADAPTER_CERT
-        cn: ss-adapter
-        key: SCALABLESYSLOG_ADAPTER_KEY
-    adapter_rlp:
-      tls:
-        ca: SCALABLESYSLOG_CA
-        cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-        cn: reverselogproxy
-        key: SCALABLESYSLOG_ADAPTER_RLP_KEY
-    scheduler:
-      api:
-        url: https://cloud-controller-ng.service.cf.internal:9023
-      require_opt_in: false
-      tls:
-        api:
-          ca: DIEGO_CA
-          cert: CLOUD_CONTROLLER_CERT
-          cn: cloud-controller-ng.service.cf.internal
-          key: CLOUD_CONTROLLER_KEY
-        client:
-          adapter_cn: ss-adapter
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
-          key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
   smoke_tests: null
   ssl:
     skip_cert_verify: true
@@ -1654,6 +1574,10 @@ properties:
     deployment: ENVIRONMENT
   support_address: http://support.cloudfoundry.com
   syslog_daemon_config: null
+  syslog_drain_binder:
+    etcd:
+      client_cert: ETCD_CLIENT_CERT
+      client_key: ETCD_CLIENT_KEY
   system_domain: SYSTEM_DOMAIN
   system_domain_organization: SYSTEM_DOMAIN_ORGANIZATION
   traffic_controller:
@@ -1736,6 +1660,11 @@ properties:
       signing_key: JWT_SIGNING_KEY
       verification_key: JWT_VERIFICATION_KEY
     ldap: null
+    limitedFunctionality:
+      enabled: null
+      whitelist:
+        endpoints: null
+        methods: null
     login: null
     newrelic: null
     no_ssl: null

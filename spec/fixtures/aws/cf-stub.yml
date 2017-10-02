@@ -117,9 +117,6 @@ properties:
       metron:
         cert: LOGGREGATOR_METRON_CERT
         key: LOGGREGATOR_METRON_KEY
-      reverse_log_proxy:
-        cert: LOGGREGATOR_REVERSELOGPROXY_CERT
-        key: LOGGREGATOR_REVERSELOGPROXY_KEY
       syslogdrainbinder:
         cert: LOGGREGATOR_SYSLOGDRAINBINDER_CERT
         key: LOGGREGATOR_SYSLOGDRAINBINDER_KEY
@@ -135,29 +132,6 @@ properties:
     status:
       user: ROUTER_USER
       password: ROUTER_PASSWORD
-  scalablesyslog:
-    adapter:
-      logs:
-        addr: reverse-log-proxy.service.cf.internal:8082
-      tls:
-        ca: SCALABLESYSLOG_CA
-        cert: SCALABLESYSLOG_ADAPTER_CERT
-        key: SCALABLESYSLOG_ADAPTER_KEY
-    adapter_rlp:
-      tls:
-        ca: SCALABLESYSLOG_CA
-        cert: SCALABLESYSLOG_ADAPTER_RLP_CERT
-        key: SCALABLESYSLOG_ADAPTER_RLP_KEY
-    scheduler:
-      tls:
-        api:
-          ca: DIEGO_CA
-          cert: CLOUD_CONTROLLER_CERT
-          key: CLOUD_CONTROLLER_KEY
-        client:
-          ca: SCALABLESYSLOG_CA
-          cert: SCALABLESYSLOG_SCHEDULER_CLIENT_CERT
-          key: SCALABLESYSLOG_SCHEDULER_CLIENT_KEY
   uaa:
     admin:
       client_secret: ADMIN_SECRET
@@ -200,6 +174,14 @@ properties:
         - doppler.firehose
     sslCertificate: UAA_SERVER_CERT
     sslPrivateKey: UAA_SERVER_KEY
+
+    limitedFunctionality:
+      enabled: true
+      whitelist:
+        endpoints:
+          - UAA_WHITELISTED_ENDPOINT
+        methods:
+          - UAA_WHITELISTED_METHOD
   uaadb:
     db_scheme: UAADB_SCHEME
     roles:
