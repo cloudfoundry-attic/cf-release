@@ -35,4 +35,4 @@ if [[ "${blobs_to_upload}" -ne 0 ]]; then
   exit 1
 fi
 
-"${SCRIPT_DIR}/unused_packages" && bundle exec rspec
+bundle exec rspec

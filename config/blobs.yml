@@ -1,4 +1,7 @@
----
+binary-buildpack/binary-buildpack-v1.0.14.zip:
+  size: 63404
+  object_id: 0cc798e8-4629-4ba2-b737-7c02b05c9381
+  sha: 04822369d716467bf471eb5d4c6adf8627e71184
 cli/cf-cli_6.26.0_linux_x86-64.tgz:
   size: 5174999
   object_id: db58b893-9d3e-477e-96ae-9941d3cebea9
@@ -7,6 +10,14 @@ cli/cf-cli_6.26.0_winx64.zip:
   size: 5239878
   object_id: aefa451b-b95c-4ed1-8c9c-87cdc4266bc6
   sha: 653f3d3b0f93f414ca787e421403e0e0475793ec
+cli/cf-cli_6.31.0_linux_x86-64.tgz:
+  size: 6045122
+  object_id: 234ea85b-4584-409a-b267-d891d9c0eaa6
+  sha: a8c3621b6d34c765e918efdce60e1cbf17ab9f37
+cli/cf-cli_6.31.0_winx64.zip:
+  size: 6120786
+  object_id: 44b7b2e2-d2e7-4e59-ae4f-587763a89450
+  sha: 4dcda267010e525c1ad1cbd370c48741612ee4dc
 consul-windows/consul_0.7.4_windows_amd64.zip:
   size: 8797270
   object_id: 87935063-a863-4036-7ba9-fc213b389a44
@@ -27,6 +38,10 @@ debian_nfs_server/nfs-kernel-server_1%3a1.2.0-4ubuntu4.1_amd64.deb:
   size: 169618
   object_id: rest/objects/4e4e78bca41e122204e4e9863d076304f307136db190
   sha: a44b3f8319984bace61f21bb6d15cee1419e5bf3
+dotnet-core-buildpack/dotnet-core-buildpack-v1.0.27.zip:
+  size: 92162
+  object_id: 822e512d-869f-4333-9f04-3422ac95b0c6
+  sha: 9d713afa6441e3b925c9b85c28f6fa413da68721
 etcd/etcd-v2.2.0-tls1.2-patch-linux-amd64.tar.gz:
   size: 6517667
   object_id: b7a5fbf5-3f8d-461d-a6dc-4440a375b096
@@ -35,6 +50,10 @@ expat/expat-2.2.0.tar.bz2:
   size: 414352
   object_id: 879fb468-db40-4462-5c7f-9ae52bb8b8f0
   sha: 8453bc52324be4c796fd38742ec48470eef358b3
+go-buildpack/go-buildpack-v1.8.8.zip:
+  size: 5100506
+  object_id: 8cd1cb72-3a6c-404b-af0f-f0496204a13e
+  sha: a6bad601784f5b52eac7e31c1246e82d55cef726
 golang/go1.6.3.linux-amd64.tar.gz:
   size: 84856920
   object_id: 7ad4929c-a987-4b84-b686-3c9598951f25
@@ -47,6 +66,14 @@ golang/go1.7.4.windows-amd64.zip:
   size: 90409580
   object_id: dbebd00d-43b7-434d-6603-c7a8fbcbf779
   sha: a0da2f5d67e5b800eba811a34ca4b2aa22cca678
+golang/go1.8.3.linux-amd64.tar.gz:
+  size: 90029041
+  object_id: 7c7afa17-ac33-43f5-9a1b-5ecc01cde3a1
+  sha: 838c415896ef5ecd395dfabde5e7e6f8ac943c8e
+golang/go1.8.3.windows-amd64.zip:
+  size: 96254597
+  object_id: 1aeb9d98-da6a-4042-8dd0-ec1a135cfe7f
+  sha: 8a539ecd86505aca6e70e7e561a2b5877d91c000
 golang/go1.8.linux-amd64.tar.gz:
   size: 89803580
   object_id: 981ceeb2-b4b7-47e2-a3f4-9ca90fe20806
@@ -55,6 +82,10 @@ golang/go1.8.windows-amd64.zip:
   size: 95976688
   object_id: 643d1977-7a08-4cd1-95e2-86c38435dade
   sha: e31d11df0ac5d8e16a64c8dcfce706589842410f
+golang/go1.9.1.linux-amd64.tar.gz:
+  size: 104197862
+  object_id: 1dd4c088-96ac-47f0-448e-5f4110fed554
+  sha: 8ab67607ac917684560e699b76b3121f5799e24e
 haproxy/haproxy-1.5.19.tar.gz:
   size: 1362834
   object_id: c1a80f45-f732-4184-917b-ce2cf796ffad
@@ -67,10 +98,18 @@ java-buildpack/java-buildpack-offline-v3.16.zip:
   size: 277353138
   object_id: 8bce5914-014a-4b5e-bd0e-00ec822fcc47
   sha: 0592fe11b2c49aa4dafabc2d0493540174f42c0f
+java-buildpack/java-buildpack-v4.5.1.zip:
+  size: 201320
+  object_id: f071d009-0e16-4bb6-acb5-cd4b89782c7e
+  sha: c9ce53d1d9fe1f9715d38393543e8b2ee876399e
 libmariadb/libmariadb-5.5.36.tar.xz:
   size: 1260684
   object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
   sha: 4985fd30ffd60de12770153346b4485cd5dcb7ad
+mariadb_connector_c/mariadb-connector-c-2.3.0-src.tar.gz:
+  size: 536647
+  object_id: c8145788-04f7-4e78-8261-64acba9df3f8
+  sha: 35f4c58c9d54d970b931c5df880718062efbb3c7
 nginx/headers-more-nginx-module-0.32.tar.gz:
   size: 28033
   object_id: b1b5570e-3d28-4b61-b429-734679b2dfed
@@ -95,6 +134,10 @@ nginx/pcre-8.40.tar.gz:
   size: 2065161
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
+nodejs-buildpack/nodejs-buildpack-v1.6.7.zip:
+  size: 3830907
+  object_id: fc45fc93-66b2-44e1-98fb-b8ea32a712f7
+  sha: dbede5d59f950a681b949374f9a89265a0d4de05
 openjdk/openjdk-1.8.0_141-x86_64-mountainlion.tar.gz:
   size: 75693489
   object_id: af715da0-f5c1-4d5a-5989-90894ab80245
@@ -103,6 +146,10 @@ openjdk/openjdk-1.8.0_141-x86_64-trusty.tar.gz:
   size: 78460327
   object_id: 1a6017ca-e6bc-4704-418d-7ca2569bc16e
   sha: bec09ecc5092b6211f1a40367ff021d6de65279c
+php-buildpack/php-buildpack-v4.3.42.zip:
+  size: 289726
+  object_id: af5eed80-01b0-484d-abc7-e45cfb76fe36
+  sha: ac8c420ea4c79799d88437a5f6f34f960c1f32ff
 postgres/postgresql-9.4.9.tar.gz:
   size: 23300245
   object_id: 528861b6-d7c1-4ecd-82b1-d9d56aea62ea
@@ -119,6 +166,10 @@ postgres/postgresql-9.6.4.tar.gz:
   size: 25636545
   object_id: 39a1a055-d233-466f-5850-1bd69f80bde6
   sha: 5fed25b376a3a478325ebff2874865446aa2520e
+python-buildpack/python-buildpack-v1.5.26.zip:
+  size: 81401
+  object_id: 5b83101e-cf5e-4b46-ac6f-458649346714
+  sha: 3b0c5213e8b24f0275697f15d4c3faa471e91bf4
 ruby-2.1.8/bundler-1.9.4.gem:
   size: 244224
   object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
@@ -135,6 +186,10 @@ ruby-2.2.5/bundler-1.11.2.gem:
   size: 263168
   object_id: 61e0839e-176e-41a1-a13b-ee53337794a3
   sha: 8eb956dec72da753d3d2a2126c78508b17af434e
+ruby-2.2.5/bundler-1.15.0.gem:
+  size: 338432
+  object_id: f839ea17-d873-4e56-bdbf-3827d1e22ad9
+  sha: 10feaa6564d972673b21652fbecab24fb5bbdc95
 ruby-2.2.5/ruby-2.2.5.tar.gz:
   size: 16654395
   object_id: 9a7262fc-f0af-4bba-be5d-b9d59044071a
@@ -143,46 +198,6 @@ ruby-2.2.5/yaml-0.1.6.tar.gz:
   size: 503012
   object_id: 1d7ec354-5aa6-4e19-b6e5-51f6d6327814
   sha: f3d404e11bec3c4efcddfd14c42d46f1aabe0b5d
-uaa/newrelic.jar:
-  size: 7064901
-  object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
-  sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
-ruby-2.2.5/bundler-1.15.0.gem:
-  object_id: f839ea17-d873-4e56-bdbf-3827d1e22ad9
-  sha: 10feaa6564d972673b21652fbecab24fb5bbdc95
-  size: 338432
-golang/go1.8.3.windows-amd64.zip:
-  object_id: 1aeb9d98-da6a-4042-8dd0-ec1a135cfe7f
-  sha: 8a539ecd86505aca6e70e7e561a2b5877d91c000
-  size: 96254597
-golang/go1.8.3.linux-amd64.tar.gz:
-  object_id: 7c7afa17-ac33-43f5-9a1b-5ecc01cde3a1
-  sha: 838c415896ef5ecd395dfabde5e7e6f8ac943c8e
-  size: 90029041
-uaa/apache-tomcat-8.5.16.tar.gz:
-  size: 9417469
-  object_id: eeb161ee-4b05-4480-7378-8ef36d532545
-  sha: 6ae7b007fc17eb2821585e2651edaca90708a75b
-binary-buildpack/binary-buildpack-v1.0.14.zip:
-  object_id: 0cc798e8-4629-4ba2-b737-7c02b05c9381
-  sha: 04822369d716467bf471eb5d4c6adf8627e71184
-  size: 63404
-mariadb_connector_c/mariadb-connector-c-2.3.0-src.tar.gz:
-  object_id: c8145788-04f7-4e78-8261-64acba9df3f8
-  sha: 35f4c58c9d54d970b931c5df880718062efbb3c7
-  size: 536647
-go-buildpack/go-buildpack-v1.8.8.zip:
-  object_id: 8cd1cb72-3a6c-404b-af0f-f0496204a13e
-  sha: a6bad601784f5b52eac7e31c1246e82d55cef726
-  size: 5100506
-cli/cf-cli_6.31.0_linux_x86-64.tgz:
-  object_id: 234ea85b-4584-409a-b267-d891d9c0eaa6
-  sha: a8c3621b6d34c765e918efdce60e1cbf17ab9f37
-  size: 6045122
-cli/cf-cli_6.31.0_winx64.zip:
-  object_id: 44b7b2e2-d2e7-4e59-ae4f-587763a89450
-  sha: 4dcda267010e525c1ad1cbd370c48741612ee4dc
-  size: 6120786
 ruby-2.4/bundler-1.14.6.gem:
   size: 319488
   object_id: ab46a241-b756-4b5d-68b1-d2e5c32e620e
@@ -195,31 +210,19 @@ ruby-2.4/rubygems-2.6.13.tgz:
   size: 768906
   object_id: 6109db52-8886-4928-428f-7434d623950b
   sha: ebc88822f50656e84ec87687029e9baf5b895f63
-java-buildpack/java-buildpack-v4.5.1.zip:
-  object_id: f071d009-0e16-4bb6-acb5-cd4b89782c7e
-  sha: c9ce53d1d9fe1f9715d38393543e8b2ee876399e
-  size: 201320
-dotnet-core-buildpack/dotnet-core-buildpack-v1.0.27.zip:
-  object_id: 822e512d-869f-4333-9f04-3422ac95b0c6
-  sha: 9d713afa6441e3b925c9b85c28f6fa413da68721
-  size: 92162
-nodejs-buildpack/nodejs-buildpack-v1.6.7.zip:
-  object_id: fc45fc93-66b2-44e1-98fb-b8ea32a712f7
-  sha: dbede5d59f950a681b949374f9a89265a0d4de05
-  size: 3830907
-php-buildpack/php-buildpack-v4.3.42.zip:
-  object_id: af5eed80-01b0-484d-abc7-e45cfb76fe36
-  sha: ac8c420ea4c79799d88437a5f6f34f960c1f32ff
-  size: 289726
 ruby-buildpack/ruby-buildpack-v1.7.3.zip:
+  size: 3904082
   object_id: 034c4033-7a47-4886-8aa7-5dbd6cee3d93
   sha: 2f6c984dbf7848e8bc9bf434686f7a84cdf8b61e
-  size: 3904082
 staticfile-buildpack/staticfile-buildpack-v1.4.16.zip:
+  size: 4286583
   object_id: 5b829050-ceca-4318-93b6-ae389d620fb0
   sha: 92203766a05a346deda7291be6f2dd6879df98a3
-  size: 4286583
-python-buildpack/python-buildpack-v1.5.26.zip:
-  object_id: 5b83101e-cf5e-4b46-ac6f-458649346714
-  sha: 3b0c5213e8b24f0275697f15d4c3faa471e91bf4
-  size: 81401
+uaa/apache-tomcat-8.5.16.tar.gz:
+  size: 9417469
+  object_id: eeb161ee-4b05-4480-7378-8ef36d532545
+  sha: 6ae7b007fc17eb2821585e2651edaca90708a75b
+uaa/newrelic.jar:
+  size: 7064901
+  object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
+  sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
