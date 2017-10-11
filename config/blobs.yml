@@ -1,3 +1,4 @@
+---
 binary-buildpack/binary-buildpack-v1.0.14.zip:
   size: 63404
   object_id: 0cc798e8-4629-4ba2-b737-7c02b05c9381
@@ -98,10 +99,6 @@ java-buildpack/java-buildpack-offline-v3.16.zip:
   size: 277353138
   object_id: 8bce5914-014a-4b5e-bd0e-00ec822fcc47
   sha: 0592fe11b2c49aa4dafabc2d0493540174f42c0f
-java-buildpack/java-buildpack-v4.5.1.zip:
-  size: 201320
-  object_id: f071d009-0e16-4bb6-acb5-cd4b89782c7e
-  sha: c9ce53d1d9fe1f9715d38393543e8b2ee876399e
 libmariadb/libmariadb-5.5.36.tar.xz:
   size: 1260684
   object_id: 4d6e5c2c-76be-4df0-9fdd-4eea3b3563a2
@@ -226,3 +223,7 @@ uaa/newrelic.jar:
   size: 7064901
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
   sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
+java-buildpack/java-buildpack-v4.5.2.zip:
+  object_id: cd2d8ff2-a4c1-4fca-b574-b581ffd0ddd0
+  sha: 6ab60f4abdef568e893d5b4a14a1ad01b105ace9
+  size: 201320
