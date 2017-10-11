@@ -73,7 +73,7 @@ used by the Cloud Controller's interactions with other components.
 ## <a name='guide'></a>Step-by-step guide to generating certificates
 
 ```
-./scripts/generate-cf-certs <ROOT_DEPOT_PATH> [--recreate-ca]
+./scripts/generate-cf-certs <ROOT_DEPOT_PATH> [--recreate-ca] [--no-bbs-ca]
 ```
 where `ROOT_DEPOT_PATH` is the path to the folder that will store all the certificates. In the following example, `$PWD/credentials` is the `ROOT_DEPOT_PATH`.
 ```
@@ -192,7 +192,7 @@ These certs must be signed by `cf-diego-ca`:
 #### Generate the certificates for Loggregator
 Generate the certificates and keys:
 ```
-./scripts/generate-loggregator-certs <ROOT_DEPOT_PATH> [--recreate-ca]
+./scripts/generate-loggregator-certs <ROOT_DEPOT_PATH> [--recreate-ca] [--no-bbs-ca]
 ```
 
 This script creates certificates
