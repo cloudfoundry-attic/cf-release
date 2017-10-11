@@ -5,14 +5,27 @@ set -e
 # Install certstrap
 go get -v github.com/square/certstrap
 
+CREDS_FOLDER="$PWD"
+RECREATE_CA_PARAM=""
+BBS_CA_PARAM=""
+
+if [[ ! -z "$1" ]]; then
+  test -d "$1" || mkdir -p "$1"
+  CREDS_FOLDER="$1"
+fi
+if [[ "$2" == "--recreate-ca" ]]; then
+  RECREATE_CA_PARAM="$2"
+fi
+if [[ "$3" == "--no-bbs-ca" ]]; then
+  BBS_CA_PARAM="$3"
+fi
+
 pushd "$(dirname "$0")/.." > /dev/null
-    creds_folder="$1" && shift
-    recreate="$1"
-    scripts/generate-consul-certs "$recreate"
-    scripts/generate-etcd-certs "$recreate"
-    scripts/generate-blobstore-certs "$recreate"
-    scripts/generate-uaa-certs "$recreate"
-    scripts/generate-cf-diego-certs "$recreate"
-    scripts/generate-loggregator-certs "$creds_folder" "$recreate"
-    scripts/generate-statsd-injector-certs "$creds_folder" "$recreate"
+    scripts/generate-consul-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-etcd-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-blobstore-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-uaa-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-cf-diego-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-loggregator-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM" "$BBS_CA_PARAM"
+    scripts/generate-statsd-injector-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
 popd > /dev/null

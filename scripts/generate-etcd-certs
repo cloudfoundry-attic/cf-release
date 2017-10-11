@@ -2,27 +2,48 @@
 
 set -e
 
-scripts_folder="$(dirname "$0")"
+SCRIPTS_FOLDER="$(dirname "$0")"
 
-# Place keys and certificates here
-depot_path="etcd-certs"
-mkdir -p ${depot_path}
+ROOT_DEPOT_PATH="$1"
+DEPOT_PATH="etcd-certs"
+CA_NAME="etcd-ca"
+PEER_CA_NAME="peer-ca"
 
+function create_ca {
+  # CA to distribute to diego and cloud_controller
+  "${SCRIPTS_FOLDER}"/generate_ca_cert --common-name "$1" --depot-path "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" --output-file "$2"
+}
 
-if [[ "$1" == "--recreate-ca" ]] || [[ -z "$1" && ! -f "$depot_path/etcd-ca.crt" ]]; then
-    # CA to distribute to etcd clients and servers
-    "${scripts_folder}"/generate_ca_cert --common-name "etcdCA" --depot-path "${depot_path}" --output-file etcd-ca
-    # CA to distribute across etcd peerss
-    "${scripts_folder}"/generate_ca_cert --common-name "peerCA" --depot-path "${depot_path}" --output-file peer-ca
-elif [[ -z "$1" && -f "$depot_path/etcd-ca.crt" ]]; then
-    echo -e "\e[1m\e[33m[INFO] Using existing etcd/peer CA, recreating only client/server certificates\e[0m"
+if [[ "$1" == "--recreate-ca" || -z "$1" || ! -d "$1" ]]; then
+  echo -e "\e[1m\e[31m[ERROR] Missing ROOT_DEPOT_PATH parameter.\e[0m"
+  exit 1
 fi
 
+test -d "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" || mkdir -p "${ROOT_DEPOT_PATH}/${DEPOT_PATH}"
+
+if [[ "$2" == "--recreate-ca" ]]; then
+  create_ca "etcdCA" "$CA_NAME"
+  create_ca "peerCA" "$PEER_CA_NAME"
+else
+  if [[ -d "$ROOT_DEPOT_PATH/$DEPOT_PATH" && ! -f "$ROOT_DEPOT_PATH/$DEPOT_PATH/$CA_NAME.crt" ]]; then
+    create_ca "etcdCA" "$CA_NAME"
+  else
+    echo -e "\e[1m\e[33m[INFO] Using existing etcd CA, recreating only client/server certificates\e[0m"
+  fi
+  if [[ -d "$ROOT_DEPOT_PATH/$DEPOT_PATH" && ! -f "$ROOT_DEPOT_PATH/$DEPOT_PATH/$PEER_CA_NAME.crt" ]]; then
+    create_ca "peerCA" "$PEER_CA_NAME"
+  else
+    echo -e "\e[1m\e[33m[INFO] Using existing peer CA, recreating only client/server certificates\e[0m"
+  fi
+fi
+
+CC_CN="cf-etcd.service.cf.internal"
+DOMAIN="*.$CC_CN,$CC_CN"
 # Server certificate to share across the etcd cluster
-"${scripts_folder}"/generate_end_entity_certs --common-name "cf-etcd.service.cf.internal" --ca-name etcd-ca --domain '*.cf-etcd.service.cf.internal,cf-etcd.service.cf.internal' --depot-path "${depot_path}" --output-file server
+"${SCRIPTS_FOLDER}"/generate_end_entity_certs --common-name "$CC_CN" --ca-name "$CA_NAME" --domain "$DOMAIN" --depot-path "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" --output-file server
 
 # Client certificate to distribute to jobs that access etcd
-"${scripts_folder}"/generate_end_entity_certs --common-name "clientName" --ca-name etcd-ca --depot-path "${depot_path}" --output-file client
+"${SCRIPTS_FOLDER}"/generate_end_entity_certs --common-name "clientName" --ca-name "$CA_NAME" --depot-path "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" --output-file client
 
 # Client certificate to distribute across etcd peers
-"${scripts_folder}"/generate_end_entity_certs --common-name cf-etcd.service.cf.internal --domain '*.cf-etcd.service.cf.internal,cf-etcd.service.cf.internal' --ca-name peer-ca --depot-path "${depot_path}" --output-file peer
+"${SCRIPTS_FOLDER}"/generate_end_entity_certs --common-name "$CC_CN" --domain "$DOMAIN" --ca-name "$PEER_CA_NAME" --depot-path "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" --output-file peer

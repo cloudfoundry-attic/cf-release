@@ -2,21 +2,32 @@
 
 set -e
 
-scripts_folder="$(dirname "$0")"
+SCRIPTS_FOLDER="$(dirname "$0")"
 
-# Place keys and certificates here
-depot_path="consul-certs"
-mkdir -p ${depot_path}
-ca_name="consul-ca"
+ROOT_DEPOT_PATH="$1"
+DEPOT_PATH="consul-certs"
+CA_NAME="consul-ca"
 
-if [[ "$1" == "--recreate-ca" ]] || [[ -z "$1" && ! -f "$depot_path/$ca_name.crt" ]]; then
-  "${scripts_folder}"/generate_ca_cert --common-name "consulCA" --depot-path ${depot_path} --output-file "$ca_name"
-elif [[ -z "$1" && -f "$depot_path/$ca_name.crt" ]]; then
+function create_ca {
+  "${SCRIPTS_FOLDER}"/generate_ca_cert --common-name "consulCA" --depot-path "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" --output-file "$CA_NAME"
+}
+
+if [[ "$1" == "--recreate-ca" || -z "$1" || ! -d "$1" ]]; then
+  echo -e "\e[1m\e[31m[ERROR] Missing ROOT_DEPOT_PATH parameter.\e[0m"
+  exit 1
+fi
+
+test -d "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" || mkdir -p "${ROOT_DEPOT_PATH}/${DEPOT_PATH}"
+
+if [[ "$2" == "--recreate-ca" ]] || [[ -d "$ROOT_DEPOT_PATH/$DEPOT_PATH" && ! -f "$ROOT_DEPOT_PATH/$DEPOT_PATH/$CA_NAME.crt" ]]; then
+  create_ca
+elif [[ -d "$ROOT_DEPOT_PATH/$DEPOT_PATH" && -f "$ROOT_DEPOT_PATH/$DEPOT_PATH/$CA_NAME.crt" ]]; then
   echo -e "\e[1m\e[33m[INFO] Using existing consul CA, recreating only client/server certificates\e[0m"
 fi
 
+CC_CN="server.dc1.cf.internal"
 # Server certificate to share across the consul cluster
-"${scripts_folder}"/generate_end_entity_certs --common-name server.dc1.cf.internal --ca-name "$ca_name" --depot-path ${depot_path} --output-file server
+"${SCRIPTS_FOLDER}"/generate_end_entity_certs --common-name "$CC_CN" --ca-name "$CA_NAME" --depot-path "$ROOT_DEPOT_PATH/$DEPOT_PATH" --output-file server
 
 # Agent certificate to distribute to jobs that access consul
-"${scripts_folder}"/generate_end_entity_certs --common-name 'consul agent' --ca-name "$ca_name" --depot-path ${depot_path} --output-file agent
+"${SCRIPTS_FOLDER}"/generate_end_entity_certs --common-name 'consul agent' --ca-name "$CA_NAME" --depot-path "$ROOT_DEPOT_PATH/$DEPOT_PATH" --output-file agent
