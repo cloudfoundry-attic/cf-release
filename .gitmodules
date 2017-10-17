@@ -3,7 +3,7 @@
   url = https://github.com/cloudfoundry/collector.git
 [submodule "src/loggregator"]
 	path = src/loggregator
-	url = https://github.com/cloudfoundry/loggregator
+	url = https://github.com/cloudfoundry/loggregator-release
 [submodule "src/smoke-tests"]
 	path = src/smoke-tests
 	url = https://github.com/cloudfoundry/cf-smoke-tests
