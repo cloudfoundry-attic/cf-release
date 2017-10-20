@@ -744,8 +744,8 @@ properties:
     internal_api_user: "internal_user"
     internal_api_password: (( bulk_api_password ))
 
-    logging_level: debug
-    db_logging_level: debug
+    logging_level: info
+    db_logging_level: off
 
     staging_upload_user: (( merge ))
     staging_upload_password: (( merge ))
