@@ -5,6 +5,12 @@ set -e
 # Install certstrap
 go get -v github.com/square/certstrap
 
+function custom_realpath {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+export -f custom_realpath
+
+
 CREDS_FOLDER="$PWD"
 RECREATE_CA_PARAM=""
 BBS_CA_PARAM=""

@@ -34,8 +34,8 @@ if [[ -z "$3" || "$3" != "--no-bbs-ca" ]]; then
     echo -e "\e[1m\e[33m[ERROR] Please execute '$SCRIPTS_FOLDER/generate-cf-diego-certs' before running this script.\e[0m"
     exit 1
   fi
-  bbs_ca_cert_path="$(realpath "$bbs_ca_cert_path")"
-  bbs_ca_key_path="$(realpath "$bbs_ca_key_path")"
+  bbs_ca_cert_path="$(custom_realpath "$bbs_ca_cert_path")"
+  bbs_ca_key_path="$(custom_realpath "$bbs_ca_key_path")"
   BBS_CA_NAME="cf-diego-ca"
   ln -s "$bbs_ca_cert_path" "${ROOT_DEPOT_PATH}/${DEPOT_PATH}/"
   ln -s "$bbs_ca_key_path" "${ROOT_DEPOT_PATH}/${DEPOT_PATH}/"
