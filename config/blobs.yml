@@ -143,10 +143,6 @@ postgres/postgresql-9.6.4.tar.gz:
   size: 25636545
   object_id: 39a1a055-d233-466f-5850-1bd69f80bde6
   sha: 5fed25b376a3a478325ebff2874865446aa2520e
-python-buildpack/python-buildpack-v1.5.26.zip:
-  size: 81401
-  object_id: 5b83101e-cf5e-4b46-ac6f-458649346714
-  sha: 3b0c5213e8b24f0275697f15d4c3faa471e91bf4
 ruby-2.1.8/bundler-1.9.4.gem:
   size: 244224
   object_id: 25f8ce04-957f-4e17-acd2-f9825a87d132
@@ -227,3 +223,7 @@ php-buildpack/php-buildpack-v4.3.43.zip:
   object_id: 1b9d8d57-4c79-4819-bb4c-391d4ba84b2a
   sha: 693d49d94b9deaa376c86fb2f9f0ffd010adfcd2
   size: 297275
+python-buildpack/python-buildpack-v1.6.1.zip:
+  object_id: 4acdbf63-cd0b-4edb-9bb2-af6e00632dca
+  sha: b536c4afcd0af00aede3a888088e06d04c61896c
+  size: 3855509
