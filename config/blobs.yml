@@ -199,10 +199,6 @@ uaa/newrelic.jar:
   size: 7064901
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
   sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
-nodejs-buildpack/nodejs-buildpack-v1.6.8.zip:
-  object_id: 1d911060-f523-4a5d-8189-9eac18d6a7e9
-  sha: 71f628ad52d276a991abe38cadd762fff7ce02dc
-  size: 3830934
 java-buildpack/java-buildpack-v4.6.zip:
   object_id: 7bc42d08-3d3a-4d08-80c5-a422ca9b395e
   sha: 4ad44b08233edae23d85c70aa4d1516dfd71e67d
@@ -227,3 +223,7 @@ staticfile-buildpack/staticfile-buildpack-v1.4.18.zip:
   object_id: 7e198c39-877f-47f5-b625-3cbf5287e200
   sha: 3d5fbf6c1835963a86379702b53d997bd9d32725
   size: 4287909
+nodejs-buildpack/nodejs-buildpack-v1.6.10.zip:
+  object_id: f04fcab7-4f35-4554-9206-6b83edc2211c
+  sha: 38e4ab210b81545d3198a2848b243f487ef2c18d
+  size: 3894673
