@@ -211,10 +211,6 @@ uaa/newrelic.jar:
   size: 7064901
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
   sha: a5070963fc84bea27acc1d492cb9e3143f0c4715
-go-buildpack/go-buildpack-v1.8.11.zip:
-  object_id: 932421e1-38d6-4ed7-99f6-bc20a1279eab
-  sha: ca3dc6bebea9371d3b1d6f80a2068d4ab4759bd7
-  size: 5103391
 nodejs-buildpack/nodejs-buildpack-v1.6.8.zip:
   object_id: 1d911060-f523-4a5d-8189-9eac18d6a7e9
   sha: 71f628ad52d276a991abe38cadd762fff7ce02dc
@@ -227,3 +223,7 @@ dotnet-core-buildpack/dotnet-core-buildpack-v1.0.30.zip:
   object_id: 97cc433a-1a3d-43bb-b68c-747e4e9bccc7
   sha: 7b278a4bc875753df144789b36b8b854cc978e7b
   size: 92488
+go-buildpack/go-buildpack-v1.8.13.zip:
+  object_id: 022abf26-24bb-4895-bd58-7d9beb59644c
+  sha: 19d24213806946a7fed7a8107cfcec71272ff1c0
+  size: 5105949
