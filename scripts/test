@@ -3,7 +3,7 @@
 set -u -o pipefail
 
 set +e
-hash bundler > /dev/null 2>&1
+hash bundle > /dev/null 2>&1
 bundler_exists=$?
 set -e
 
