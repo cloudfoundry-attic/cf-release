@@ -119,14 +119,6 @@ nginx/pcre-8.40.tar.gz:
   size: 2065161
   object_id: f544dc8e-0d52-4e54-a80d-0d9419bcfc32
   sha: 10384eb3d411794cc15f55b9d837d3f69e35391e
-openjdk/openjdk-1.8.0_141-x86_64-mountainlion.tar.gz:
-  size: 75693489
-  object_id: af715da0-f5c1-4d5a-5989-90894ab80245
-  sha: 5e3d9e5a9b5fcc4a1503dae72246306f712b2fc3
-openjdk/openjdk-1.8.0_141-x86_64-trusty.tar.gz:
-  size: 78460327
-  object_id: 1a6017ca-e6bc-4704-418d-7ca2569bc16e
-  sha: bec09ecc5092b6211f1a40367ff021d6de65279c
 postgres/postgresql-9.4.9.tar.gz:
   size: 23300245
   object_id: 528861b6-d7c1-4ecd-82b1-d9d56aea62ea
@@ -183,10 +175,6 @@ ruby-2.4/rubygems-2.6.13.tgz:
   size: 768906
   object_id: 6109db52-8886-4928-428f-7434d623950b
   sha: ebc88822f50656e84ec87687029e9baf5b895f63
-uaa/apache-tomcat-8.5.16.tar.gz:
-  size: 9417469
-  object_id: eeb161ee-4b05-4480-7378-8ef36d532545
-  sha: 6ae7b007fc17eb2821585e2651edaca90708a75b
 uaa/newrelic.jar:
   size: 7064901
   object_id: 2b9d1b59-bc86-4089-95ba-2c0374fe3737
@@ -227,3 +215,15 @@ python-buildpack/python-buildpack-v1.6.1.zip:
   object_id: 4acdbf63-cd0b-4edb-9bb2-af6e00632dca
   sha: b536c4afcd0af00aede3a888088e06d04c61896c
   size: 3855509
+uaa/apache-tomcat-8.5.23.tar.gz:
+  size: 9472492
+  object_id: 6c9a8642-700d-4ccc-6328-5e66985fcefe
+  sha: 1ba27c1bb86ab9c8404e98068800f90bd662523c
+openjdk/openjdk-1.8.0_152-x86_64-mountainlion.tar.gz:
+  size: 75736351
+  object_id: fc5c7adc-c68f-44bf-6ee2-8aec604e97eb
+  sha: 60fa4b6827f11c86c4ae52d5c5756ee9e4465dd5
+openjdk/openjdk-1.8.0_152-x86_64-trusty.tar.gz:
+  size: 78240380
+  object_id: 22d6231c-c04c-41a6-4561-c89318aa01b6
+  sha: 16a408d79a81499f525427c6d74a70ad5780a6ac
