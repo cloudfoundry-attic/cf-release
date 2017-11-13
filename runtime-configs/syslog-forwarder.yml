@@ -9,7 +9,9 @@ addons:
       port: ((port))
       transport: ((transport))
       fallback_servers: ((fallback_servers))
-      custom_rule: ((custom_rule))
+      custom_rule: |
+        ((custom_rule))
+        if ($programname startswith "vcap.") then ~
 
 releases:
 - name: syslog
