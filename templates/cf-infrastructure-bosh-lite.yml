@@ -488,14 +488,6 @@ properties:
     monitor_port: 4221
 
   cc:
-    diego:
-      temporary_local_staging: false
-      temporary_local_tasks: false
-      temporary_local_apps: false
-      temporary_local_sync: false
-      temporary_local_tps: false
-      temporary_cc_uploader_mtls: false
-      temporary_droplet_download_mtls: false
     tls_port: 9023
     mutual_tls:
       ca_cert: |
