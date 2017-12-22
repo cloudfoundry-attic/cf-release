@@ -243,6 +243,8 @@ jobs:
     release: cf
   - name: blobstore
     release: cf
+    consumes:
+      directories_to_backup: nil
   - consumes:
       nats: nil
     name: route_registrar
@@ -283,6 +285,8 @@ jobs:
     release: cf
   - name: blobstore
     release: cf
+    consumes:
+      directories_to_backup: nil
   - consumes:
       nats: nil
     name: route_registrar
@@ -1253,6 +1257,7 @@ properties:
         total_service_keys: 1000
         total_services: 100
     rate_limiter: null
+    release_level_backup: false
     reserved_private_domains: null
     resource_pool:
       blobstore_type: webdav

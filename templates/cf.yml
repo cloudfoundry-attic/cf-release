@@ -756,6 +756,8 @@ properties:
 
     disable_custom_buildpacks: false
 
+    release_level_backup: false
+
     broker_client_timeout_seconds: 70
     broker_client_default_async_poll_interval_seconds: ~
     broker_client_max_async_poll_duration_minutes: ~
@@ -1374,6 +1376,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: blobstore
     release: (( meta.capi_release_name ))
+    consumes: {directories_to_backup: nil}
   - name: route_registrar
     release: (( meta.routing_release_name ))
     consumes: {nats: nil}
@@ -1388,6 +1391,7 @@ meta:
     release: (( meta.loggregator_release_name ))
   - name: blobstore
     release: (( meta.capi_release_name ))
+    consumes: {directories_to_backup: nil}
   - name: route_registrar
     release: (( meta.routing_release_name ))
     consumes: {nats: nil}
