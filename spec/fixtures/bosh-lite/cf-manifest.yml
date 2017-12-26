@@ -240,9 +240,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - consumes:
-      directories_to_backup: nil
-    name: blobstore
+  - name: blobstore
     release: cf
   - consumes:
       nats: nil
@@ -282,9 +280,7 @@ jobs:
     release: cf
   - name: metron_agent
     release: cf
-  - consumes:
-      directories_to_backup: nil
-    name: blobstore
+  - name: blobstore
     release: cf
   - consumes:
       nats: nil
@@ -3161,7 +3157,6 @@ properties:
         total_service_keys: 1000
         total_services: 100
     rate_limiter: null
-    release_level_backup: false
     reserved_private_domains: null
     resource_pool:
       blobstore_type: webdav
