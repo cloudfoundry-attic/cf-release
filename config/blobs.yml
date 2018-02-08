@@ -138,14 +138,14 @@ nodejs-buildpack/nodejs-buildpack-v1.6.15.zip:
   size: 3904262
   object_id: dfda9fb0-42e0-4379-5eba-0730dc0ba321
   sha: 64f2ee1a94b6591e174ee0938041fc3fb49f8aca
-openjdk/openjdk-1.8.0_152-x86_64-mountainlion.tar.gz:
-  size: 75736351
-  object_id: fc5c7adc-c68f-44bf-6ee2-8aec604e97eb
-  sha: 60fa4b6827f11c86c4ae52d5c5756ee9e4465dd5
-openjdk/openjdk-1.8.0_152-x86_64-trusty.tar.gz:
-  size: 78240380
-  object_id: 22d6231c-c04c-41a6-4561-c89318aa01b6
-  sha: 16a408d79a81499f525427c6d74a70ad5780a6ac
+openjdk/openjdk-1.8.0_162-x86_64-mountainlion.tar.gz:
+  size: 75744413
+  object_id: 5b6d4139-a7dd-4313-777b-93ff19422ad0
+  sha: fe41178f9b44a432cead3cb0c70e9a9330ebe833
+openjdk/openjdk-1.8.0_162-x86_64-trusty.tar.gz:
+  size: 78245143
+  object_id: 2b35b52c-dd61-4a90-633d-88a49f8a1240
+  sha: 76a74043924dfc1bbb5531b02be014fcd2ef0a6e
 php-buildpack/php-buildpack-v4.3.48.zip:
   size: 330580
   object_id: 7c21b825-8915-422c-656f-27db0ccb7830
@@ -166,6 +166,10 @@ postgres/postgresql-9.6.4.tar.gz:
   size: 25636545
   object_id: 39a1a055-d233-466f-5850-1bd69f80bde6
   sha: 5fed25b376a3a478325ebff2874865446aa2520e
+postgres/postgresql-9.6.6.tar.gz:
+  size: 25709021
+  object_id: bd371fa6-1733-41b9-749d-92d43f6f19a5
+  sha: fff718c31685b7c2b6b99e97916260f8cf7f0083
 python-buildpack/python-buildpack-v1.6.7.zip:
   size: 3864628
   object_id: 2f6962bf-2a47-4ccb-5951-b2e1ea1bb17e
