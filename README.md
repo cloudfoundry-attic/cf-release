@@ -1,3 +1,17 @@
+# DEPRECATED
+
+v287 is the final version of cf-release
+
+To deploy Cloud Foundry, use [cf-deployment](https://github.com/cloudfoundry/cf-deployment)
+
+To transition a cf-release-based deployment to cf-deployment,
+use the tools in [cf-deployment-transition](https://github.com/cloudfoundry/cf-deployment-transition)
+
+The Release Integration team is standing by
+to take your calls
+in the #cf-deployment channel
+on the [Cloud Foundry slack](https://cloudfoundry.slack.com/)
+
 # Welcome to Cloud Foundry
 
 Cloud Foundry is an open platform as a service (PaaS) that provides a choice of clouds, developer frameworks, and application services. Cloud Foundry makes it faster and easier to build, test, deploy, and scale applications.
