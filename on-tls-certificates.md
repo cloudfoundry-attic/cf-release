@@ -72,12 +72,23 @@ used by the Cloud Controller's interactions with other components.
 
 ## <a name='guide'></a>Step-by-step guide to generating certificates
 
+```
+./scripts/generate-cf-certs <ROOT_DEPOT_PATH> [--recreate-ca] [--no-bbs-ca]
+```
+where `ROOT_DEPOT_PATH` is the path to the folder that will store all the certificates. In the following example, `$PWD/credentials` is the `ROOT_DEPOT_PATH`.
+```
+$PWD/credentials
+  consul-certs
+  etcd-certs
+  ...
+```
+
 ### Start by generating certs for the small "cliques"
 
 #### Consul
 Generate the certs and keys:
 ```
-./scripts/generate-consul-certs
+./scripts/generate-consul-certs <ROOT_DEPOT_PATH> [--recreate-ca]
 ```
 
 The script creates a CA for consul,
@@ -96,7 +107,7 @@ Place the following generated values in the your stub or manifest:
 #### Etcd
 Generate the certs and keys:
 ```
-./scripts/generate-etcd-certs
+./scripts/generate-etcd-certs <ROOT_DEPOT_PATH> [--recreate-ca]
 ```
 
 The script creates two CAs,
@@ -118,7 +129,7 @@ It uses those CAs to sign the three keypairs it generates.
 #### Blobstore (if you're deploying your own)
 Generate the certs and keys:
 ```
-./scripts/generate-blobstore-certs
+./scripts/generate-blobstore-certs <ROOT_DEPOT_PATH> [--recreate-ca]
 ```
 
 The script generates a CA and a certificate for the WebDAV blobstore.
@@ -132,7 +143,7 @@ The script generates a CA and a certificate for the WebDAV blobstore.
 #### UAA
 Generate the certs and keys:
 ```
-./scripts/generate-uaa-certs
+./scripts/generate-uaa-certs <ROOT_DEPOT_PATH> [--recreate-ca]
 ```
 
 The script generates a CA and sert for the UAA.
@@ -148,7 +159,7 @@ The script generates a CA and sert for the UAA.
 #### First, generate the `cf-diego-ca`
 Generate the certs and keys:
 ```
-./scripts/generate-cf-diego-certs
+./scripts/generate-cf-diego-certs <ROOT_DEPOT_PATH> [--recreate-ca]
 ```
 
 The script generates mutual TLS certs for the Cloud Controller,
@@ -181,7 +192,7 @@ These certs must be signed by `cf-diego-ca`:
 #### Generate the certificates for Loggregator
 Generate the certificates and keys:
 ```
-./scripts/generate-loggregator-certs cf-diego-certs/cf-diego-ca.crt cf-diego-certs/cf-diego-ca.key
+./scripts/generate-loggregator-certs <ROOT_DEPOT_PATH> [--recreate-ca] [--no-bbs-ca]
 ```
 
 This script creates certificates
@@ -207,7 +218,7 @@ and the syslog_drain_binder is signed by the `cf-diego-ca`.
 Generate the certificates and keys.
 These certs must be signed by the loggregator CA:
 ```
-./scripts/generate-statsd-injector-certs loggregator-certs/loggregator-ca.crt loggregator-certs/loggregator-ca.key
+./scripts/generate-statsd-injector-certs <ROOT_DEPOT_PATH> [--recreate-ca]
 ```
 
 | Script Output | Properties |

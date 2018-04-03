@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Install certstrap
+go get -v github.com/square/certstrap
+
+function custom_realpath {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+export -f custom_realpath
+
+
+CREDS_FOLDER="$PWD"
+RECREATE_CA_PARAM=""
+BBS_CA_PARAM=""
+
+if [[ ! -z "$1" ]]; then
+  test -d "$1" || mkdir -p "$1"
+  CREDS_FOLDER="$1"
+fi
+if [[ "$2" == "--recreate-ca" ]]; then
+  RECREATE_CA_PARAM="$2"
+fi
+if [[ "$3" == "--no-bbs-ca" ]]; then
+  BBS_CA_PARAM="$3"
+fi
+
+pushd "$(dirname "$0")/.." > /dev/null
+    scripts/generate-consul-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-etcd-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-blobstore-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-uaa-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-cf-diego-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+    scripts/generate-loggregator-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM" "$BBS_CA_PARAM"
+    scripts/generate-statsd-injector-certs "$CREDS_FOLDER" "$RECREATE_CA_PARAM"
+popd > /dev/null

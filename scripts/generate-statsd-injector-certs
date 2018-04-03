@@ -1,44 +1,33 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 
-if [ "$1" = "" ]; then
-    echo "usage: $0 <loggregator-ca.crt> <loggregator-ca.key>"
-    echo "       $0 no-loggregator-ca"
-    exit 1
+SCRIPTS_FOLDER="$(dirname "$0")"
+
+ROOT_DEPOT_PATH="$1"
+DEPOT_PATH="statsd-injector-certs"
+
+if [[ "$1" == "--recreate-ca" || -z "$1" || ! -d "$1" ]]; then
+  echo -e "\e[1m\e[31m[ERROR] Missing ROOT_DEPOT_PATH parameter.\e[0m"
+  exit 1
 fi
 
-set -x
+test -d "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" || mkdir -p "${ROOT_DEPOT_PATH}/${DEPOT_PATH}"
 
-# Install certstrap
-go get -v github.com/square/certstrap
-
-readlink() {
-  (
-    cd $(dirname $1)
-    echo $PWD/$(basename $1)
-  )
-}
-
-# Place keys and certificates here
-depot_path=$(readlink ./statsd-injector-certs)
-mkdir -p ${depot_path}
-
-if [ "$1" = "no-loggregator-ca" ]; then
-    # CA to sign statsdinjector certs
-    certstrap --depot-path ${depot_path} init --passphrase '' --common-name loggregatorCA
-    mv -f ${depot_path}/loggregatorCA.crt ${depot_path}/loggregator-ca.crt
-    mv -f ${depot_path}/loggregatorCA.key ${depot_path}/loggregator-ca.key
-    mv -f ${depot_path}/loggregatorCA.crl ${depot_path}/loggregator-ca.crl
-    loggregator_ca_name=loggregator-ca
-else
-    loggregator_ca_cert_path=$(readlink ${1})
-    loggregator_ca_key_path=$(readlink ${2})
-    loggregator_ca_name=$(basename ${loggregator_ca_cert_path} ".crt")
-    ln -s ${loggregator_ca_cert_path} ${depot_path}/
-    ln -s ${loggregator_ca_key_path} ${depot_path}/
+LOGGREGATOR_CA_CERT_PATH="$(find "$ROOT_DEPOT_PATH" -name 'loggregator-ca.crt')"
+LOGGREGATOR_CA_KEY_PATH="$(find "$ROOT_DEPOT_PATH" -name 'loggregator-ca.key')"
+if [[ -z "$LOGGREGATOR_CA_CERT_PATH" || -z "$LOGGREGATOR_CA_KEY_PATH" ]]; then
+  echo -e "\e[1m\e[33m[ERROR] Please execute '$SCRIPTS_FOLDER/generate-loggregator-cert' before running this script.\e[0m"
+  exit 1
 fi
+
+LOGGREGATOR_CA_CERT_PATH="$(custom_realpath "$LOGGREGATOR_CA_CERT_PATH")"
+LOGGREGATOR_CA_KEY_PATH="$(custom_realpath "$LOGGREGATOR_CA_KEY_PATH")"
+ln -s "${LOGGREGATOR_CA_CERT_PATH}" "${ROOT_DEPOT_PATH}/${DEPOT_PATH}/"
+ln -s "${LOGGREGATOR_CA_KEY_PATH}" "${ROOT_DEPOT_PATH}/${DEPOT_PATH}/"
 
 # Statsd injector certificate
-certstrap --depot-path ${depot_path} request-cert --passphrase '' --common-name statsdinjector
-certstrap --depot-path ${depot_path} sign statsdinjector --CA ${loggregator_ca_name}
+server_cn="statsdinjector.service.cf.internal"
+"${SCRIPTS_FOLDER}"/generate_end_entity_certs --common-name "${server_cn}" --ca-name loggregator-ca --depot-path "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" --output-file statsdinjector
+
+find "${ROOT_DEPOT_PATH}/${DEPOT_PATH}" -type l -delete
